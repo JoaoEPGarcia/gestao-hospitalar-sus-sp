@@ -1,0 +1,11 @@
+﻿amostra,indicador,estatistica_F,gl,p_valor
+completa,Mortalidade geral,8.98938,313,0.0
+completa,TMP,1.35239,295,0.2506
+completa,Custo real por saída,2.69048,313,0.03125
+completa,Fração alta complexidade,1.12561,313,0.34438
+completa,Ocupação internação,6.91052,313,2e-05
+suporte comum,Mortalidade geral,642.52802,238,0.0
+suporte comum,TMP,21.50878,227,0.0
+suporte comum,Custo real por saída,74.08061,238,0.0
+suporte comum,Fração alta complexidade,19.01224,238,0.0
+suporte comum,Ocupação internação,24.02154,238,0.0

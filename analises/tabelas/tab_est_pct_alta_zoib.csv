@@ -1,0 +1,41 @@
+﻿,componente,coeficiente,ep_cluster,z,p_valor
+constante,média Beta,-2.81479,0.27807,-10.12272,0.0
+Filantrópico,média Beta,0.28633,0.21474,1.3334,0.1824
+OSS,média Beta,-0.22624,0.23719,-0.95382,0.34018
+Privado,média Beta,4.19814,0.61891,6.78309,0.0
+Público Municipal,média Beta,-0.44731,0.21596,-2.07126,0.03833
+porte Especial,média Beta,1.31169,0.69222,1.89489,0.05811
+porte Grande Porte,média Beta,0.60406,0.15341,3.93745,8e-05
+ano 2016,média Beta,0.11089,0.03891,2.84986,0.00437
+ano 2017,média Beta,0.02824,0.03496,0.80794,0.41912
+ano 2018,média Beta,0.04112,0.04046,1.01624,0.30951
+ano 2019,média Beta,0.10018,0.04185,2.3936,0.01668
+ano 2020,média Beta,0.12547,0.04286,2.92733,0.00342
+ano 2021,média Beta,0.11011,0.04355,2.52849,0.01146
+ano 2022,média Beta,0.06694,0.03968,1.68728,0.09155
+ano 2023,média Beta,0.15704,0.04873,3.22231,0.00127
+ano 2024,média Beta,0.12877,0.04782,2.69302,0.00708
+ano 2025,média Beta,0.12245,0.05877,2.08371,0.03719
+complexidade estrutural,média Beta,0.0003,0.00049,0.60809,0.54313
+longa permanência,média Beta,-0.68625,0.16139,-4.25211,2e-05
+ln precisão,média Beta,1.42548,0.14333,9.94576,0.0
+constante,logito do zero,3.20837,0.75072,4.27371,2e-05
+Filantrópico,logito do zero,-0.83536,0.55709,-1.49952,0.13374
+OSS,logito do zero,-0.90142,0.64866,-1.38966,0.16463
+Privado,logito do zero,-2.828,2.4995,-1.13142,0.25788
+Público Municipal,logito do zero,-0.71546,0.60778,-1.17717,0.23913
+porte Especial,logito do zero,5.50288,1.83974,2.99111,0.00278
+porte Grande Porte,logito do zero,0.28021,0.49957,0.56091,0.57486
+ano 2016,logito do zero,0.27014,0.11977,2.25554,0.0241
+ano 2017,logito do zero,-0.17398,0.11697,-1.48745,0.1369
+ano 2018,logito do zero,-0.13096,0.12787,-1.02418,0.30575
+ano 2019,logito do zero,0.01833,0.12927,0.14178,0.88725
+ano 2020,logito do zero,0.16376,0.13243,1.23664,0.21622
+ano 2021,logito do zero,0.18475,0.12792,1.44432,0.14865
+ano 2022,logito do zero,-0.04538,0.13803,-0.32878,0.74232
+ano 2023,logito do zero,0.06395,0.13268,0.48197,0.62983
+ano 2024,logito do zero,-0.27902,0.14479,-1.92707,0.05397
+ano 2025,logito do zero,-0.27303,0.15227,-1.79313,0.07295
+complexidade estrutural,logito do zero,-0.01507,0.00254,-5.9365,0.0
+constante,logito do um,-14.54964,0.05681,-256.12807,0.0
+d_privado,logito do um,13.71651,1.17501,11.67352,0.0

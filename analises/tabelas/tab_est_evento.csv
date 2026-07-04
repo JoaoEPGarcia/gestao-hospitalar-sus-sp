@@ -1,0 +1,76 @@
+﻿amostra,indicador,unidade,termo,coef,ep_cluster,p_valor
+completa,Mortalidade geral,p.p.,-5 ou antes,-1.02115,1.07922,0.34405
+completa,Mortalidade geral,p.p.,-4,-1.10127,0.62622,0.07865
+completa,Mortalidade geral,p.p.,-3,0.69499,0.48296,0.15015
+completa,Mortalidade geral,p.p.,-2,0.13806,0.27537,0.61612
+completa,Mortalidade geral,p.p.,0,-1.30059,0.46327,0.00499
+completa,Mortalidade geral,p.p.,+1,-2.60666,0.49605,0.0
+completa,Mortalidade geral,p.p.,+2,-2.86044,0.34305,0.0
+completa,Mortalidade geral,p.p.,+3 ou depois,-2.17876,0.22702,0.0
+completa,TMP,log pontos,-5 ou antes,-0.17459,0.10816,0.10647
+completa,TMP,log pontos,-4,-0.15641,0.08609,0.06925
+completa,TMP,log pontos,-3,-0.044,0.03426,0.19903
+completa,TMP,log pontos,-2,0.00649,0.0234,0.78154
+completa,TMP,log pontos,0,-0.14494,0.04969,0.00353
+completa,TMP,log pontos,+1,-0.24665,0.04282,0.0
+completa,TMP,log pontos,+2,-0.24545,0.03787,0.0
+completa,TMP,log pontos,+3 ou depois,-0.28226,0.03,0.0
+completa,Custo real por saída,log pontos,-5 ou antes,-0.12272,0.12218,0.31516
+completa,Custo real por saída,log pontos,-4,-0.03511,0.1034,0.73418
+completa,Custo real por saída,log pontos,-3,-0.00918,0.05684,0.8717
+completa,Custo real por saída,log pontos,-2,0.04562,0.03248,0.16016
+completa,Custo real por saída,log pontos,0,-0.04898,0.04099,0.23205
+completa,Custo real por saída,log pontos,+1,-0.16992,0.085,0.04561
+completa,Custo real por saída,log pontos,+2,-0.26192,0.12808,0.04086
+completa,Custo real por saída,log pontos,+3 ou depois,-0.1295,0.04304,0.00262
+completa,Fração alta complexidade,p.p.,-5 ou antes,0.39339,0.81797,0.63056
+completa,Fração alta complexidade,p.p.,-4,0.27949,0.2714,0.3031
+completa,Fração alta complexidade,p.p.,-3,1.05923,0.62574,0.0905
+completa,Fração alta complexidade,p.p.,-2,1.44307,0.86295,0.09448
+completa,Fração alta complexidade,p.p.,0,-0.38141,1.2152,0.75362
+completa,Fração alta complexidade,p.p.,+1,-1.40037,1.81332,0.43996
+completa,Fração alta complexidade,p.p.,+2,-2.41441,1.41104,0.08706
+completa,Fração alta complexidade,p.p.,+3 ou depois,0.88948,0.43607,0.04137
+completa,Ocupação internação,log pontos,-5 ou antes,0.07534,0.09817,0.44278
+completa,Ocupação internação,log pontos,-4,-0.05831,0.14646,0.69053
+completa,Ocupação internação,log pontos,-3,-0.03462,0.12625,0.78389
+completa,Ocupação internação,log pontos,-2,0.06621,0.01477,1e-05
+completa,Ocupação internação,log pontos,0,0.11008,0.11182,0.3249
+completa,Ocupação internação,log pontos,+1,0.3874,0.23526,0.09962
+completa,Ocupação internação,log pontos,+2,0.1862,0.20225,0.35724
+completa,Ocupação internação,log pontos,+3 ou depois,0.03376,0.09843,0.73161
+suporte comum,Mortalidade geral,p.p.,-5 ou antes,-1.41917,1.38425,0.30526
+suporte comum,Mortalidade geral,p.p.,-4,-1.26006,0.99164,0.20384
+suporte comum,Mortalidade geral,p.p.,-3,1.37711,0.4426,0.00186
+suporte comum,Mortalidade geral,p.p.,-2,0.42618,0.34949,0.22268
+suporte comum,Mortalidade geral,p.p.,0,-2.05965,0.20761,0.0
+suporte comum,Mortalidade geral,p.p.,+1,-3.54571,0.77928,1e-05
+suporte comum,Mortalidade geral,p.p.,+2,-3.41068,0.78254,1e-05
+suporte comum,TMP,log pontos,-5 ou antes,-0.16998,0.1552,0.27343
+suporte comum,TMP,log pontos,-4,-0.20959,0.12855,0.103
+suporte comum,TMP,log pontos,-3,-0.02831,0.0448,0.52743
+suporte comum,TMP,log pontos,-2,0.02751,0.00895,0.0021
+suporte comum,TMP,log pontos,0,-0.20557,0.05501,0.00019
+suporte comum,TMP,log pontos,+1,-0.31998,0.08979,0.00037
+suporte comum,TMP,log pontos,+2,-0.30943,0.09015,0.0006
+suporte comum,Custo real por saída,log pontos,-5 ou antes,-0.15393,0.14778,0.29759
+suporte comum,Custo real por saída,log pontos,-4,-0.09329,0.14766,0.52753
+suporte comum,Custo real por saída,log pontos,-3,-0.02819,0.08062,0.7266
+suporte comum,Custo real por saída,log pontos,-2,0.06294,0.03307,0.05705
+suporte comum,Custo real por saída,log pontos,0,-0.0978,0.03772,0.00952
+suporte comum,Custo real por saída,log pontos,+1,-0.33677,0.08718,0.00011
+suporte comum,Custo real por saída,log pontos,+2,-0.50512,0.08753,0.0
+suporte comum,Fração alta complexidade,p.p.,-5 ou antes,0.35615,1.06819,0.73882
+suporte comum,Fração alta complexidade,p.p.,-4,0.71858,0.28463,0.01158
+suporte comum,Fração alta complexidade,p.p.,-3,1.46564,1.00273,0.14384
+suporte comum,Fração alta complexidade,p.p.,-2,2.26464,1.29746,0.08091
+suporte comum,Fração alta complexidade,p.p.,0,-0.46269,2.04679,0.82116
+suporte comum,Fração alta complexidade,p.p.,+1,-3.81889,0.37544,0.0
+suporte comum,Fração alta complexidade,p.p.,+2,-4.24758,0.40159,0.0
+suporte comum,Ocupação internação,log pontos,-5 ou antes,0.05652,0.15785,0.7203
+suporte comum,Ocupação internação,log pontos,-4,-0.12916,0.23714,0.58598
+suporte comum,Ocupação internação,log pontos,-3,-0.15712,0.1809,0.38509
+suporte comum,Ocupação internação,log pontos,-2,0.05855,0.01418,4e-05
+suporte comum,Ocupação internação,log pontos,0,0.18732,0.16778,0.26423
+suporte comum,Ocupação internação,log pontos,+1,0.62234,0.13063,0.0
+suporte comum,Ocupação internação,log pontos,+2,0.38217,0.13142,0.00364

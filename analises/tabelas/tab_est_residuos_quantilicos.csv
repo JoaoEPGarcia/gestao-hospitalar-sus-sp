@@ -1,0 +1,9 @@
+﻿modelo,r_qq,assimetria,curtose_excesso,n
+Mortalidade geral (ZIB),0.984,-0.4378,0.909,3452
+Mortalidade ajustada (ZIB),0.9845,-0.4011,0.8437,3452
+Fração alta complexidade (ZOIB),0.9912,0.3098,1.3527,3452
+Produção (Binomial Negativa),0.9681,-1.0814,4.1202,3452
+"Custo real (log, efeitos fixos)",0.9704,0.2422,5.6243,3452
+"TMP (log, efeitos fixos)",0.9521,-0.0768,13.8553,3254
+Ocupação internação (log),0.9443,-1.9564,11.2297,3452
+"Ocupação UTI (log, positivos)",0.8144,-4.7413,44.3109,2571
