@@ -1,0 +1,124 @@
+\section{O teste de estresse final: quanta confiança os efeitos merecem}
+\label{sec:inferenciafinal}
+
+A Seção~\ref{sec:robustez} encerrou com um aviso: todo o efeito de
+gestão medido dentro de hospital repousa em cinco conversores, e
+margens de erro calculadas com tão poucas unidades tratadas tendem a
+ser otimistas. Esta seção fecha a pesquisa quantificando exatamente
+isso, com três instrumentos usados na literatura para situações de
+poucos tratados, e resolve a pendência técnica da UTI.
+
+\textbf{Conversores de mentira.} O teste mais intuitivo é o de
+permutação: sorteamos 5 hospitais falsos entre os 309 que nunca
+mudaram de gestão, fingimos que eles converteram nos mesmos anos dos
+conversores reais e medimos o efeito que o modelo atribuiria a essa
+conversão inventada. Repetindo o sorteio 1.999 vezes, obtemos a régua
+do acaso. O resultado: a queda de custo real atribuída à OSS é comum
+entre os falsos conversores (49\% deles produzem efeito tão grande
+quanto o real), enquanto \textbf{a queda de tempo de permanência de
+10,2\% é maior que a de 85\% dos placebos} (p igual a 0,153). Um
+segundo método, o bootstrap selvagem por cluster, sabidamente
+conservador nesta situação, aponta na mesma direção. A tradução: o
+efeito no tempo de permanência é consistente em direção e tamanho, mas
+\textbf{cinco hospitais não bastam para sustentar a afirmação com o
+rigor estatístico convencional}; ele deve ser tratado como evidência
+sugestiva forte, não como fato demonstrado.
+
+\textbf{Um estimador moderno para conversões em anos diferentes.} Como
+as conversões ocorreram em 2019, 2023 e 2025, a comparação clássica
+pode misturar hospitais já convertidos no grupo de controle. O
+estimador de Callaway e Sant'Anna evita isso comparando cada coorte de
+conversão apenas com os hospitais que nunca mudaram. A
+Figura~\ref{fig:cstwfe} mostra que, no ano da conversão, os dois
+métodos coincidem em todos os indicadores (na mortalidade, 1,298
+contra 1,301 pontos percentuais de queda); nas janelas intermediárias
+o método clássico exagera um pouco o efeito do tempo de permanência
+(0,25 contra 0,15 em log pontos) e as janelas longas voltam a
+coincidir. Nenhuma conclusão muda; a magnitude intermediária do tempo
+de permanência era o único ponto inflado.
+
+\begin{figure}[H]
+\centering
+\subfig{fig_est_07_cs_twfe_mort.png}{Mortalidade geral, em pontos
+percentuais}
+\subfig{fig_est_07_cs_twfe_tmp.png}{Tempo de permanência, em log pontos}
+\caption{Estudo de eventos estimado pelo método clássico (TWFE, com
+intervalo de confiança) e por Callaway e Sant'Anna, que compara cada
+coorte de conversão só com hospitais nunca convertidos.}
+\label{fig:cstwfe}
+\end{figure}
+
+\comoler{os círculos escuros repetem o estudo de eventos da
+Seção~\ref{sec:efeitogestao}; os quadrados verdes são o estimador
+alternativo. Quando os dois símbolos quase se tocam, como no ano zero
+e na janela longa, o resultado não depende do método; a distância nos
+anos intermediários do tempo de permanência mostra o único ponto em
+que o método clássico exagerava.}
+
+\textbf{O gêmeo sintético.} Para Sorocaba e Pérola Byington, os dois
+conversores com janela posterior utilizável, construímos um
+\emph{controle sintético}: uma combinação ponderada de hospitais nunca
+convertidos que reproduz a trajetória do hospital antes da mudança de
+gestão. Se a conversão teve efeito, o hospital real deve descolar do
+seu gêmeo depois dela. A Figura~\ref{fig:sintetico} traz o resultado
+para a mortalidade, e ele é a ducha de água fria mais importante do
+documento: \textbf{em Sorocaba o hospital real fica 1,09 ponto
+percentual acima do gêmeo} após a conversão (o gêmeo, que acompanhava
+a subida até 2018, também cai depois, confirmando que parte da queda
+era retorno natural ao patamar); \textbf{no Pérola Byington o hospital
+fica 0,95 ponto abaixo do gêmeo}, na direção esperada, mas dentro do
+que sorteios de placebo produzem (p igual a 0,33). No custo real, a
+lacuna do Pérola é de R\$ 354 a menos por saída (p igual a 0,28). Em
+nenhum caso o descolamento é raro o bastante para valer como prova.
+
+\begin{figure}[H]
+\centering
+\subfig{fig_est_06_sintetico_2081695_mort_pp.png}{Conjunto Hospitalar
+de Sorocaba (CNES 2081695), conversão em 2019}
+\subfig{fig_est_06_sintetico_2078287_mort_pp.png}{Pérola Byington
+(CNES 2078287), conversão em 2023}
+\caption{Mortalidade geral: hospital real contra o seu controle
+sintético, construído só com hospitais nunca convertidos.}
+\label{fig:sintetico}
+\end{figure}
+
+\comoler{a linha preta é o hospital; a azul tracejada é o gêmeo
+sintético, montado para imitar o hospital antes da linha vertical. O
+efeito da conversão é a distância entre as duas linhas depois da linha
+vertical. Em Sorocaba a linha preta termina acima da azul; no Pérola,
+abaixo, mas com o gêmeo também caindo.}
+
+\textbf{A pendência da UTI, resolvida.} A intensidade de uso de UTI
+foi reestimada com a família Gama, adequada à cauda de UTIs de uso
+quase nulo que o modelo em logaritmo não acomodava. O diagnóstico de
+resíduos salta de 0,814 para \textbf{0,944} (Figura~\ref{fig:qqgama}),
+e o resultado substantivo permanece: uso de UTI \textbf{18,2\% maior
+nas OSS} (p igual a 0,005), com a variante de corte mínimo de
+atividade confirmando (22,3\%). A conclusão da
+Seção~\ref{sec:resultados} fica, portanto, validada também neste
+indicador.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.72\textwidth]{fig_est_08_qq_uti_gama.png}
+\caption{Resíduos quantílicos da intensidade de UTI reestimada com a
+família Gama: a aderência sobe de 0,814 para 0,944.}
+\label{fig:qqgama}
+\end{figure}
+
+\comoler{compare com o último painel da Seção~\ref{sec:robustez}: os
+pontos que antes despencavam da linha tracejada na ponta esquerda
+agora a acompanham em quase todo o trajeto.}
+
+\textbf{Balanço final da fase de estimação.} O quadro que resiste a
+toda a bateria de testes é: as OSS operam um regime assistencial
+claramente mais intenso (mais produção, mais ocupação, mais uso de
+UTI, diferenças firmes); o tempo de permanência menor é a evidência
+causal mais consistente, presente em todos os métodos, ainda que com
+cinco conversores ela permaneça sugestiva e não definitiva; o custo
+real por saída não mostra diferença demonstrável em nenhum método; e
+a queda de mortalidade após as conversões, embora visível, não
+sobrevive ao confronto com o gêmeo sintético em Sorocaba e fica sem
+significância no Pérola Byington. Novos anos de dados, especialmente
+para os três hospitais convertidos em 2025, são o caminho natural para
+transformar as sugestões em conclusões.

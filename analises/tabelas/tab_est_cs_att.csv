@@ -1,0 +1,56 @@
+﻿indicador,coorte,ano,evento,n_tratados,att
+Mortalidade geral,2019,2019,0,1,-0.85585
+Mortalidade geral,2019,2020,1,1,-2.14685
+Mortalidade geral,2019,2021,2,1,-2.88608
+Mortalidade geral,2019,2022,3,1,-3.00715
+Mortalidade geral,2019,2023,4,1,-2.59382
+Mortalidade geral,2019,2024,5,1,-2.30734
+Mortalidade geral,2019,2025,6,1,-1.60962
+Mortalidade geral,2023,2023,0,1,-1.6394
+Mortalidade geral,2023,2024,1,1,-1.81854
+Mortalidade geral,2023,2025,2,1,-1.59014
+Mortalidade geral,2025,2025,0,3,-1.33213
+TMP,2019,2019,0,1,-0.13524
+TMP,2019,2020,1,1,-0.2094
+TMP,2019,2021,2,1,-0.22675
+TMP,2019,2022,3,1,-0.29787
+TMP,2019,2023,4,1,-0.25967
+TMP,2019,2024,5,1,-0.29607
+TMP,2019,2025,6,1,-0.33944
+TMP,2023,2023,0,1,-0.08043
+TMP,2023,2024,1,1,-0.10126
+TMP,2023,2025,2,1,-0.08216
+TMP,2025,2025,0,3,-0.16979
+Custo real por saída,2019,2019,0,1,-0.07099
+Custo real por saída,2019,2020,1,1,-0.06884
+Custo real por saída,2019,2021,2,1,-0.09594
+Custo real por saída,2019,2022,3,1,-0.0564
+Custo real por saída,2019,2023,4,1,-0.12711
+Custo real por saída,2019,2024,5,1,-0.19525
+Custo real por saída,2019,2025,6,1,-0.10077
+Custo real por saída,2023,2023,0,1,-0.1769
+Custo real por saída,2023,2024,1,1,-0.1234
+Custo real por saída,2023,2025,2,1,-0.28042
+Custo real por saída,2025,2025,0,3,0.0017
+Fração alta complexidade,2019,2019,0,1,-0.24174
+Fração alta complexidade,2019,2020,1,1,0.95831
+Fração alta complexidade,2019,2021,2,1,-0.59922
+Fração alta complexidade,2019,2022,3,1,0.69586
+Fração alta complexidade,2019,2023,4,1,1.21146
+Fração alta complexidade,2019,2024,5,1,0.60569
+Fração alta complexidade,2019,2025,6,1,2.06569
+Fração alta complexidade,2023,2023,0,1,-4.6283
+Fração alta complexidade,2023,2024,1,1,-4.07841
+Fração alta complexidade,2023,2025,2,1,-4.52062
+Fração alta complexidade,2025,2025,0,3,1.00751
+Ocupação internação,2019,2019,0,1,0.09715
+Ocupação internação,2019,2020,1,1,0.13033
+Ocupação internação,2019,2021,2,1,-0.02339
+Ocupação internação,2019,2022,3,1,0.01284
+Ocupação internação,2019,2023,4,1,0.00216
+Ocupação internação,2019,2024,5,1,-0.00673
+Ocupação internação,2019,2025,6,1,-0.01145
+Ocupação internação,2023,2023,0,1,0.57094
+Ocupação internação,2023,2024,1,1,0.85613
+Ocupação internação,2023,2025,2,1,0.60583
+Ocupação internação,2025,2025,0,3,-0.04029

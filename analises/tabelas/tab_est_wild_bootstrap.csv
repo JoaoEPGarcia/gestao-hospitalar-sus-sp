@@ -1,0 +1,3 @@
+﻿modelo,coef_oss,ep_cluster,t,p_normal,p_wild_bootstrap,B
+"Custo real por saída (log, EF)",-0.06962,0.09041,-0.77,0.4413,0.6825,1999
+"TMP (log, EF, sem longa permanência)",-0.10758,0.04441,-2.42233,0.01542,0.3345,1999

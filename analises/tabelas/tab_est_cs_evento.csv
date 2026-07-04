@@ -1,0 +1,21 @@
+﻿indicador,unidade,evento,att_cs,coef_twfe,ep_twfe
+Mortalidade geral,p.p.,0,-1.29833,-1.30059,0.46327
+Mortalidade geral,p.p.,+1,-1.98269,-2.60666,0.49605
+Mortalidade geral,p.p.,+2,-2.23811,-2.86044,0.34305
+Mortalidade geral,p.p.,+3 ou depois,-2.37948,-2.17876,0.22702
+TMP,log pontos,0,-0.14501,-0.14494,0.04969
+TMP,log pontos,+1,-0.15533,-0.24665,0.04282
+TMP,log pontos,+2,-0.15446,-0.24545,0.03787
+TMP,log pontos,+3 ou depois,-0.29827,-0.28226,0.03
+Custo real por saída,log pontos,0,-0.04856,-0.04898,0.04099
+Custo real por saída,log pontos,+1,-0.09612,-0.16992,0.085
+Custo real por saída,log pontos,+2,-0.18818,-0.26192,0.12808
+Custo real por saída,log pontos,+3 ou depois,-0.11988,-0.1295,0.04304
+Fração alta complexidade,p.p.,0,-0.3695,-0.38141,1.2152
+Fração alta complexidade,p.p.,+1,-1.56005,-1.40037,1.81332
+Fração alta complexidade,p.p.,+2,-2.55992,-2.41441,1.41104
+Fração alta complexidade,p.p.,+3 ou depois,1.14468,0.88948,0.43607
+Ocupação internação,log pontos,0,0.10944,0.11008,0.11182
+Ocupação internação,log pontos,+1,0.49323,0.3874,0.23526
+Ocupação internação,log pontos,+2,0.29122,0.1862,0.20225
+Ocupação internação,log pontos,+3 ou depois,-0.00079,0.03376,0.09843
