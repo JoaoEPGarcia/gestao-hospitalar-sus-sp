@@ -1,0 +1,271 @@
+\section{Que molde estatístico descreve cada indicador}
+\label{sec:distribuicoes}
+
+Cada indicador tem uma forma própria de variar entre hospitais, e há
+moldes matemáticos (as chamadas famílias de distribuição) desenhados
+para cada tipo de forma. Identificar o molde certo é importante porque
+toda análise posterior fica mais confiável quando respeita a natureza
+do dado: proporções entre 0 e 1 pedem um molde, valores em reais com
+cauda longa pedem outro, contagens pedem um terceiro. Esta seção testa
+os moldes contra os dados e documenta as escolhas.
+
+\subsection{Mortalidade: uma proporção com dois grupos de hospitais}
+
+A mortalidade é uma proporção (fica entre 0 e 1), e o molde clássico
+para proporções é a distribuição \textbf{Beta}. O ajuste de uma Beta
+única descreve bem a escala geral, mas erra o pico de hospitais com
+mortalidade quase nula. A Figura~\ref{fig:mistura} mostra a solução e,
+ao mesmo tempo, a explicação: somando \textbf{duas Betas} (uma para
+cada grupo de hospitais), a curva acompanha o histograma com nitidez, e
+a nota de ajuste melhora de forma expressiva (ganho de 1.124 pontos de
+AIC). O ponto central para a gestão é que esses dois grupos
+\textbf{existem de verdade no painel}: um grupo de \textbf{58 hospitais
+de baixo óbito estrutural} (mortalidade mediana abaixo de 2\%,
+majoritariamente maternidades, pediátricos e oncológicos) e os
+\textbf{256 demais}, hospitais gerais com mortalidade em torno de 6\%.
+A aparente anomalia do histograma é, portanto, apenas o retrato de dois
+perfis assistenciais diferentes convivendo na rede. Como também existem
+observações com mortalidade exatamente zero (1,5\%), o molde completo
+para a mortalidade é a \textbf{Beta com um tratamento especial para os
+zeros}.
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_12_mistura_mort_all.png}{Um molde só vs a soma de dois}
+\subfig{fig_ae_12_decomposicao_mort_all.png}{Os dois grupos reais de
+hospitais}
+\caption{Mortalidade geral: à esquerda, a curva cinza tracejada é o
+molde único (que erra o pico perto de zero) e a curva escura é a soma
+de dois moldes, que acompanha o histograma; à direita, a mesma soma
+reconstruída a partir dos dois grupos reais de hospitais do painel.}
+\label{fig:mistura}
+\end{figure}
+
+\comoler{no painel da esquerda, compare as duas curvas com as barras: a
+tracejada passa por cima do vale e erra os dois picos; a escura desenha
+os dois picos. No painel da direita, as curvas tracejadas coloridas são
+os dois grupos de hospitais (baixo óbito à esquerda, demais à direita)
+e a curva preta é a soma dos dois, praticamente idêntica ao histograma:
+a forma estranha da mortalidade é só a mistura de dois perfis de
+hospital.}
+
+\subsection{Alta complexidade: o peso dos zeros}
+
+A fração de alta complexidade também é uma proporção, mas com uma
+particularidade dominante: \textbf{um terço das observações vale
+exatamente zero} (hospitais que não realizam alta complexidade) e uma
+pequena parcela vale exatamente um (hospitais que só realizam alta
+complexidade). O molde adequado trata três situações em separado: a
+chance de o hospital estar no zero, a chance de estar no um, e a
+distribuição de quem está no meio; esse molde combinado é conhecido
+pela sigla \textbf{ZOIB}. A Figura~\ref{fig:betapct} mostra o ajuste do
+miolo e a Figura~\ref{fig:zeros} mostra que \textbf{os zeros não são
+aleatórios}: a proporção de hospitais sem alta complexidade cai de
+82,6\% na faixa 2 de complexidade para zero na faixa 6, e de 41,1\% nos
+Filantrópicos para 10,3\% nas OSS. Ou seja, saber a complexidade, o
+porte e a categoria do hospital já diz muito sobre a chance de ele
+estar no grupo do zero.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.96\textwidth]{fig_ae_02_beta_pct_alta_complex.png}
+\caption{Fração de alta complexidade entre os hospitais que realizam
+alguma alta complexidade: histograma e molde Beta ajustado. O eixo
+vertical está em escala logarítmica para a cauda inteira ficar
+visível.}
+\label{fig:betapct}
+\end{figure}
+
+\comoler{a grande maioria dos hospitais que fazem alta complexidade faz
+pouca (a concentração à esquerda; metade fica abaixo de 3,7\%), e uma
+minoria é altamente especializada (as barras à direita, perto de
+100\%). A curva escura é o molde Beta, que acompanha essa queda
+contínua.}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_15_zeros_pct_alta_categoria.png}{Por categoria de
+gestão}
+\subfig{fig_ae_15_zeros_pct_alta_faixa.png}{Por faixa de complexidade}
+\caption{Percentual de observações com alta complexidade exatamente
+zero, por grupo de hospitais.}
+\label{fig:zeros}
+\end{figure}
+
+\comoler{cada barra é a proporção de hospitais ano daquele grupo que
+não realizou nenhuma internação de alta complexidade. A queda das
+barras da esquerda para a direita no painel (b) mostra que o zero é
+questão de perfil e estrutura: quase todos os hospitais de faixa 2
+estão no zero, e nenhum de faixa 6 está.}
+
+\subsection{Custo e tempo de permanência: valores positivos com cauda
+longa}
+
+Custo por saída e TMP são valores positivos com cauda à direita. Cinco
+moldes clássicos foram postos à prova (Tabela~\ref{tab:familias}),
+comparados pela nota AIC e pelo gráfico QQ. O resultado é consistente:
+o molde \textbf{log logístico (também chamado de Fisk)} vence nas três
+amostras, com a \textbf{LogNormal} logo atrás, e a Gama, molde usado
+por tradição em análises de custo, fica sempre entre as piores. No TMP
+há um detalhe decisivo: enquanto os hospitais de longa permanência
+estiverem na amostra, nenhum molde acompanha o teto de 30,5 dias;
+\textbf{retirando os 18 hospitais de longa permanência, o ajuste do
+molde log logístico fica praticamente perfeito} (r de 0,9975 na
+Figura~\ref{fig:qqtmpsemlp}). A leitura prática: custo e TMP devem ser
+analisados na escala logarítmica, e os hospitais de longa permanência
+merecem tratamento em separado nas análises de TMP.
+
+\begin{table}[H]
+\centering
+\caption{Comparação dos cinco moldes de distribuição para custo e TMP.
+O AIC é a nota de ajuste (menor é melhor) e o r do QQ mede a aderência
+dos pontos à reta (mais perto de 1 é melhor).}
+\label{tab:familias}
+\small
+\begin{tabular}{llrrr}
+\toprule
+Amostra & Molde & $n$ & AIC & r do QQ \\
+\midrule
+Custo por saída & Log logística (Fisk) & 3.454 & 55.483 & 0,9754 \\
+                & LogNormal            & 3.454 & 55.547 & 0,9162 \\
+                & Gaussiana inversa    & 3.454 & 55.608 & 0,9018 \\
+                & Gama                 & 3.454 & 56.499 & 0,8411 \\
+                & Weibull              & 3.454 & 56.995 & 0,8415 \\
+\midrule
+TMP, painel completo & Log logística (Fisk) & 3.453 & 15.990 & 0,8597 \\
+                     & LogNormal            & 3.453 & 16.650 & 0,8696 \\
+                     & Gaussiana inversa    & 3.453 & 16.767 & 0,8736 \\
+                     & Gama                 & 3.453 & 17.990 & 0,8379 \\
+                     & Weibull              & 3.453 & 18.701 & 0,8399 \\
+\midrule
+TMP sem longa permanência & Log logística (Fisk) & 3.255 & 12.147 & 0,9975 \\
+                          & LogNormal            & 3.255 & 12.226 & 0,9810 \\
+                          & Gaussiana inversa    & 3.255 & 12.260 & 0,9787 \\
+                          & Gama                 & 3.255 & 12.417 & 0,9635 \\
+                          & Weibull              & 3.255 & 13.204 & 0,9403 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_03_hist_log_custo_saida.png}{Custo por saída}
+\subfig{fig_ae_03_hist_log_tmp.png}{TMP}
+\caption{Distribuições de custo e TMP com o eixo horizontal em escala
+logarítmica (os rótulos mostram os valores reais).}
+\label{fig:histlog}
+\end{figure}
+
+\comoler{na escala logarítmica, o custo (a) vira um morro quase
+simétrico, sinal clássico de que a análise deve ser feita nessa escala.
+No TMP (b), além do morro principal entre 3 e 8 dias, aparece um
+segundo morrinho isolado à direita, junto de 30 dias: é a subpopulação
+de longa permanência.}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_03_qq_lognormal_custo_saida.png}{Molde LogNormal}
+\subfig{fig_ae_03_qq_fisk_custo_saida.png}{Molde log logístico (Fisk)}
+\caption{Gráficos QQ do custo por saída: os pontos são os dados e a
+reta é o comportamento esperado pelo molde.}
+\label{fig:qqcusto}
+\end{figure}
+
+\comoler{quanto mais os pontos abraçam a reta, melhor o molde. No
+painel (b), o molde log logístico segue os dados por quase toda a
+extensão, descolando apenas nos pouquíssimos hospitais mais caros; por
+isso ele recebe a melhor nota da Tabela~\ref{tab:familias}.}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_03_qq_lognormal_tmp.png}{Molde LogNormal}
+\subfig{fig_ae_03_qq_fisk_tmp.png}{Molde log logístico (Fisk)}
+\caption{Gráficos QQ do TMP no painel completo.}
+\label{fig:qqtmp}
+\end{figure}
+
+\comoler{nos dois painéis os pontos acompanham a reta na maior parte do
+caminho e se achatam no alto: é o teto de 30,5 dias dos hospitais de
+longa permanência, que nenhum molde contínuo consegue reproduzir. A
+nota explicativa dentro dos gráficos remete à versão sem esses
+hospitais, logo abaixo.}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.96\textwidth]{fig_ae_03_qq_fisk_tmp_sem_longa_perm.png}
+\caption{Gráfico QQ do TMP sem os 18 hospitais de longa permanência: os
+pontos ficam praticamente sobre a reta (r de 0,9975).}
+\label{fig:qqtmpsemlp}
+\end{figure}
+
+\comoler{este é o mesmo gráfico anterior após retirar os 18 hospitais
+de longa permanência: o achatamento desaparece e o molde descreve os
+dados quase perfeitamente. É a demonstração visual de que o problema
+não era o molde, era a mistura de dois perfis de hospital.}
+
+\subsection{Produção: contagens muito mais variáveis que o usual}
+
+A produção anual (número de saídas) é uma contagem. O molde mais
+simples para contagens, a Poisson, supõe que a variação entre hospitais
+seja comparável à média; aqui \textbf{a variação é milhares de vezes
+maior que a média} (razão de 6.381 no agregado e de 93 mesmo comparando
+cada hospital só consigo mesmo ao longo dos anos). O molde adequado é a
+\textbf{Binomial Negativa}, que aceita essa variação extra.
+
+\subsection{Os moldes melhoram quando se compara o comparável}
+
+Uma pergunta natural: se os QQ do painel completo não são perfeitos, o
+molde está errado? As Figuras~\ref{fig:qqcondA} a~\ref{fig:qqcondC}
+respondem que não: o desajuste vem de misturar 314 hospitais muito
+diferentes num único gráfico. Quando se compara cada hospital consigo mesmo (controlando o
+efeito do hospital e do ano), os desvios praticamente desaparecem: no
+custo, a assimetria restante é quase nula; na mortalidade, a forte
+assimetria da distribuição bruta (1,72 negativa) cai para 0,11 depois
+do controle. Em resumo, \textbf{os moldes escolhidos descrevem bem os
+dados quando se compara o comparável}.
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_11_qq_custo_marginal.png}{Custo: todos os hospitais
+juntos}
+\subfig{fig_ae_11_qq_custo_residuo_ef.png}{Custo: cada hospital
+comparado consigo mesmo}
+\caption{Custo por saída: gráfico QQ antes e depois de controlar as
+diferenças fixas entre hospitais e entre anos.}
+\label{fig:qqcondA}
+\end{figure}
+
+\comoler{compare o gráfico de cima com o de baixo: em cima, todos os
+hospitais juntos, os pontos serpenteiam em volta da reta; embaixo,
+comparando cada hospital consigo mesmo, os pontos praticamente deitam
+na reta.}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_11_qq_tmp_marginal.png}{TMP: todos os hospitais juntos}
+\subfig{fig_ae_11_qq_tmp_marginal_sem_longa_perm.png}{TMP: sem os
+hospitais de longa permanência}
+\caption{TMP: gráfico QQ com o painel completo e sem a subpopulação de
+longa permanência.}
+\label{fig:qqcondB}
+\end{figure}
+
+\comoler{aqui a comparação é entre incluir e excluir os 18 hospitais de
+longa permanência: com eles, o desenho em degrau; sem eles, uma reta
+quase perfeita. O desvio era a subpopulação, não o molde.}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_11_qq_mort_logito_marginal.png}{Mortalidade: todos os
+hospitais juntos}
+\subfig{fig_ae_11_qq_mort_logito_residuo_ef.png}{Mortalidade: cada
+hospital comparado consigo mesmo}
+\caption{Mortalidade: gráfico QQ antes e depois de controlar as
+diferenças fixas entre hospitais e entre anos.}
+\label{fig:qqcondC}
+\end{figure}
+
+\comoler{mesmo padrão do custo: a curva em S do gráfico de cima, com
+todos os hospitais misturados, vira uma reta bem comportada quando cada
+hospital é comparado consigo mesmo. A heterogeneidade entre hospitais,
+e não o molde, era a fonte do desajuste.}

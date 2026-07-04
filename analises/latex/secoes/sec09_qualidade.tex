@@ -1,0 +1,76 @@
+\section{Qualidade dos registros e cuidados adotados}
+\label{sec:qualidade}
+
+Nenhuma base administrativa é perfeita, e parte do trabalho
+exploratório é localizar exatamente onde estão os problemas para que
+eles não contaminem as conclusões. A boa notícia: os problemas deste
+painel são poucos, identificados e circunscritos.
+
+\textbf{Ocupação acima de 100\%.} Na internação, 14,7\% das observações
+(509) ultrapassam 100\%, e na UTI, 6,1\% (209). Em sua maioria isso é
+informação verdadeira de sobrecarga (mais diárias que a capacidade
+cadastrada comporta) e não deve ser apagado. O problema real está na
+cauda extrema da UTI: \textbf{os 15 maiores valores pertencem todos a
+2020 e 2021}, liderados pelo \textbf{Hospital Irmãos Penteado e Santa
+Casa de Campinas (CNES 2022648)}, que registra 875\% de ocupação de UTI
+em 2021, com 6.389 diárias para apenas 16 leitos cadastrados. A
+explicação é operacional: na onda da pandemia os hospitais expandiram
+leitos de UTI às pressas e o cadastro não acompanhou, produzindo
+divisões por um denominador defasado. O cuidado adotado: analisar a
+ocupação como razão positiva, tratar a UTI em duas partes (ter ou não
+UTI ativa; e, entre os que têm, a intensidade de uso) e aparar a cauda
+extrema (winsorização no percentil 99: 124\% na internação e 164\% na
+UTI), com atenção redobrada ao biênio pandêmico.
+
+\textbf{Denominadores frágeis na pandemia.} Ao excluir as internações
+COVID, alguns hospitais poderiam ficar com pouquíssimas internações
+restantes, tornando suas taxas instáveis. No painel isso ocorre em
+\textbf{apenas 2 observações, ambas do Hospital Infante D.\ Henrique
+(CNES 2097613, São José do Rio Preto)}: 13 saídas não COVID em 2020 e
+somente 3 em 2021, ano em que o TMP calculado degenera para zero (o
+único zero de TMP de todo o painel). As duas observações recebem
+marcação de denominador frágil e ficam de fora das análises de
+resultado.
+
+\textbf{Ruído estatístico dos hospitais pequenos.} A
+Figura~\ref{fig:funil} organiza essa discussão: cada ponto é um
+hospital num ano, posicionado pelo volume de saídas (eixo horizontal) e
+pela mortalidade (eixo vertical); as linhas mostram a faixa em que a
+mortalidade deveria variar se as diferenças fossem puro acaso
+estatístico, faixa que é larga para hospitais pequenos e estreita para
+os grandes. O resultado: \textbf{cerca de 69\% das observações caem
+fora até da faixa mais generosa} (1.119 acima e 1.269 abaixo). Isso diz
+duas coisas ao mesmo tempo: as diferenças de mortalidade entre
+hospitais são reais e estruturais, ligadas ao perfil assistencial, e
+não flutuação de sorte; e, abaixo de mil saídas por ano, o acaso passa
+a pesar de verdade, o que justifica a cautela extra com hospitais
+pequenos.
+
+\textbf{Valores extremos e completude.} Pela regra usual de detecção
+(3 intervalos interquartílicos acima do terceiro quartil), há 11
+observações extremas de mortalidade (acima de 18,9\%), 82 de custo
+(acima de R\$~4.727), 206 de alta complexidade e 223 de TMP, estas
+últimas concentradas nos hospitais de longa permanência já descritos,
+que merecem tratamento em separado e não corte cego. Quanto à
+completude, \textbf{o painel não tem nenhum valor faltante nos sete
+indicadores} nem nas variáveis de estratificação; as únicas lacunas
+estão em campos cadastrais (nome fantasia e especialização), sem
+consequência para as análises.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.96\textwidth]{fig_ae_16_funnel_mortalidade.png}
+\caption{Funil da mortalidade: cada ponto é um hospital num ano; a
+linha horizontal é a mortalidade média da rede (5,4\%) e as linhas
+curvas delimitam a faixa esperada por puro acaso estatístico (95\% e
+99,8\%), conforme o volume de saídas.}
+\label{fig:funil}
+\end{figure}
+
+\comoler{o funil é estreito à direita (hospitais grandes, onde o acaso
+pesa pouco) e largo à esquerda (hospitais pequenos, onde uma morte a
+mais ou a menos muda a taxa). Pontos fora das linhas curvas indicam
+mortalidade que o acaso não explica: a nuvem inteira transbordando das
+linhas mostra que as diferenças entre hospitais são estruturais, e a
+região à esquerda de mil saídas mostra onde as taxas devem ser lidas
+com reserva.}

@@ -1,0 +1,24 @@
+﻿=== 20260303 - Classificação Hospitais.xlsx ===
+  Abas: ['Com Municípios']
+=== 20260605 - 2016.xlsx ===
+  Abas: ['SP - 2016 ', 'Capital - 2016']
+=== 20260605 - 2022.xlsx ===
+  Abas: ['Estado - 2022', 'Capital - 2022']
+=== 20260605 - 2023.xlsx ===
+  Abas: ['Estado - 2023', 'Capital - 2023']
+=== 20260605 - 2024.xlsx ===
+  Abas: ['Estado - 2024', 'Capital - 2024']
+=== 20260605 - 2025.xlsx ===
+  Abas: ['Estado - 2025', 'Capital - 2025']
+=== 20260607 - 2015.xlsx ===
+  Abas: ['Estado - 2015', 'Capital - 2015']
+=== 20260607 - 2017.xlsx ===
+  Abas: ['Estado - 2017', 'Capital - 2017']
+=== 20260607 - 2018.xlsx ===
+  Abas: ['Estado - 2018', 'Capital - 2018']
+=== 20260607 - 2019.xlsx ===
+  Abas: ['Estado - 2019', 'Capital - 2019']
+=== 20260611 - 2020.xlsx ===
+  Abas: ['Estado - 2020', 'Capital - 2020']
+=== 20260612 - 2021.xlsx ===
+  Abas: ['ESTADO - 2021', 'CAPITAL - 2021']

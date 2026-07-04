@@ -1,0 +1,125 @@
+\section{O perfil de cada categoria de gestão}
+\label{sec:categorias}
+
+O painel contém \textbf{187 hospitais Filantrópicos, 58 Públicos
+Municipais, 39 sob gestão de OSS, 32 da administração Direta e 3
+Privados}; as contagens de OSS e Direta variam levemente no tempo por
+causa dos cinco hospitais que trocaram de gestão. A
+Tabela~\ref{tab:categorias} traz as medianas de cada grupo e as
+Figuras~\ref{fig:violA} a~\ref{fig:violC} mostram a distribuição
+completa.
+
+O retrato operacional é nítido e fala direto à gestão: \textbf{os
+hospitais OSS operam com ocupação mediana de 91,6\% e os Públicos
+Municipais de 87,3\%, contra 68,2\% dos Filantrópicos e apenas 62,8\%
+da administração Direta}. O tempo de permanência conta história
+parecida: \textbf{6,07 dias na Direta contra 4,85 nas OSS}, 4,77 nos
+Municipais e 4,11 nos Filantrópicos. Já na mortalidade a ordem se
+inverte: Direta (4,75\%) e OSS (4,93\%) ficam abaixo de Filantrópicos
+(5,45\%) e Municipais (5,64\%). É essencial não tirar conclusões de
+causa dessas comparações brutas: as categorias atendem perfis
+diferentes de complexidade e porte, e essas diferenças precisam ser
+descontadas antes de qualquer julgamento. O custo mediano por saída
+varia pouco entre as categorias públicas e filantrópicas (de R\$~979
+nos Municipais a R\$~1.193 na Direta). A categoria \textbf{Privado é um
+mundo à parte}: custo mediano de R\$~12.798 e 98,4\% de alta
+complexidade, perfil de centros especializados; com só 3 hospitais,
+serve de registro, não de comparação.
+
+\begin{table}[H]
+\centering
+\caption{Medianas por categoria de gestão, período completo
+(mortalidade em proporção; ocupações em percentual).}
+\label{tab:categorias}
+\small
+\begin{tabular}{lrrrrrr}
+\toprule
+Categoria & Mortalidade & TMP & Custo (R\$) & Alta complex. &
+Ocup.\ int.\ (\%) & Ocup.\ UTI (\%) \\
+\midrule
+Direta            & 0,0475 & 6,07 & 1.192,67  & 0,0088 & 62,8 & 57,3 \\
+OSS               & 0,0493 & 4,85 & 1.147,40  & 0,0242 & 91,6 & 73,4 \\
+Público Municipal & 0,0564 & 4,77 & 978,96    & 0,0010 & 87,3 & 69,7 \\
+Filantrópico      & 0,0545 & 4,11 & 1.086,13  & 0,0011 & 68,2 & 66,8 \\
+Privado           & 0,0256 & 4,24 & 12.798,36 & 0,9836 & 40,5 & 3,5  \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_04_violino_mort_all.png}{Mortalidade geral}
+\subfig{fig_ae_04_violino_tmp.png}{TMP (escala log)}
+\caption{Distribuição da mortalidade e do TMP por categoria de gestão.
+Cada violino é a silhueta da distribuição do grupo; o número impresso é
+a mediana.}
+\label{fig:violA}
+\end{figure}
+
+\comoler{a silhueta engorda onde há mais hospitais; as linhas internas
+marcam os quartis e o número é a mediana. Na mortalidade, os violinos
+das quatro categorias públicas e filantrópicas ocupam alturas
+parecidas; no TMP, o violino da Direta está visivelmente deslocado para
+cima.}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_04_violino_custo_saida.png}{Custo por saída (escala
+log)}
+\subfig{fig_ae_04_violino_pct_alta_complex.png}{Fração alta
+complexidade}
+\caption{Distribuição do custo por saída e da fração de alta
+complexidade por categoria de gestão.}
+\label{fig:violB}
+\end{figure}
+
+\comoler{no custo, os quatro grupos públicos e filantrópicos são
+parecidos e o Privado flutua sozinho lá em cima, uma ordem de grandeza
+acima. Nos Filantrópicos, os violinos mais compridos refletem a enorme
+diversidade interna do grupo, das pequenas Santas Casas aos grandes
+hospitais de referência.}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_04_violino_ocupacao_internacao.png}{Ocupação de
+internação}
+\subfig{fig_ae_04_violino_ocupacao_uti.png}{Ocupação de UTI}
+\caption{Distribuição das taxas de ocupação por categoria de gestão.}
+\label{fig:violC}
+\end{figure}
+
+\comoler{na ocupação de internação, veja como os violinos de OSS e
+Municipal estão inteiros mais altos que os de Direta e Filantrópico: é
+a diferença de regime operacional em uma imagem. Na UTI, os corpos dos
+violinos são mais parecidos, mas as caudas de zeros (hospitais sem UTI)
+puxam as silhuetas para baixo.}
+
+Uma pergunta indispensável antes de comparar categorias:
+\textbf{elas têm hospitais parecidos o bastante para a comparação ser
+justa?} A Figura~\ref{fig:composicao} responde contando os hospitais de
+cada categoria em cada faixa de complexidade e porte. A sobreposição é
+boa nas faixas 3 e 4, onde estão 24 dos 31 hospitais da Direta e 31 dos
+35 das OSS; mas \textbf{a Direta não tem nenhum hospital na faixa 5 e
+as OSS não têm nenhum nas faixas 2 e 6}; o Privado só existe nas faixas
+2 e 3; e a faixa 2 é quase toda Filantrópica (37 dos 49 hospitais). No
+porte, as OSS não têm hospital especial. Em consequência,
+\textbf{comparações entre categorias são seguras nas faixas 3 e 4 e nos
+portes médio e grande}, onde todos os grupos públicos e filantrópicos
+estão presentes; fora dessa região faltam hospitais para comparar.
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_13_composicao_categoria_faixa.png}{Categoria por faixa
+de complexidade}
+\subfig{fig_ae_13_composicao_categoria_porte.png}{Categoria por porte}
+\caption{Quantos hospitais cada categoria tem em cada faixa de
+complexidade e em cada porte (contagem de CNES; azul mais escuro
+indica mais hospitais).}
+\label{fig:composicao}
+\end{figure}
+
+\comoler{cada célula informa o número de hospitais daquela categoria
+naquela faixa ou porte. As células com zero são o alerta: onde há zero,
+não existe hospital daquele perfil naquela categoria, e portanto não há
+como comparar. A mancha escura na linha dos Filantrópicos, faixas 2 e
+3, mostra onde está o grosso da rede.}

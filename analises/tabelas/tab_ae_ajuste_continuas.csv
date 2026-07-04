@@ -1,0 +1,16 @@
+﻿variavel,familia,n,aic,r_qq,melhor_aic
+custo_saida,LogNormal,3454,55546.5042,0.9162,False
+custo_saida,Gama,3454,56498.8364,0.8411,False
+custo_saida,Log logística (Fisk),3454,55482.7765,0.9754,True
+custo_saida,Weibull,3454,56995.238,0.8415,False
+custo_saida,Gaussiana inversa,3454,55608.2614,0.9018,False
+tmp,LogNormal,3453,16649.5364,0.8696,False
+tmp,Gama,3453,17989.6907,0.8379,False
+tmp,Log logística (Fisk),3453,15989.9191,0.8597,True
+tmp,Weibull,3453,18701.4572,0.8399,False
+tmp,Gaussiana inversa,3453,16767.4572,0.8736,False
+tmp_sem_longa_perm,LogNormal,3255,12226.4622,0.981,False
+tmp_sem_longa_perm,Gama,3255,12416.8296,0.9635,False
+tmp_sem_longa_perm,Log logística (Fisk),3255,12147.1178,0.9975,True
+tmp_sem_longa_perm,Weibull,3255,13203.6661,0.9403,False
+tmp_sem_longa_perm,Gaussiana inversa,3255,12260.2107,0.9787,False

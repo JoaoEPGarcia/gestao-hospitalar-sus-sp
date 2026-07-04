@@ -1,0 +1,46 @@
+COMO COMPILAR NO OVERLEAF
+=========================
+
+1. Crie um projeto novo em branco no Overleaf.
+2. Faça upload de:
+   a) principal.tex (este diretório; substitui o antigo main.tex,
+      renomeado para evitar conflito com versões antigas)
+   b) a pasta secoes inteira (9 arquivos .tex, sec01 a sec09)
+   c) a pasta figuras_analise_exploratoria inteira
+      (as 94 imagens .png geradas por analise_exploratoria.py)
+   A estrutura final no Overleaf deve ser:
+      principal.tex
+      secoes/sec01_painel.tex ... secoes/sec09_qualidade.tex
+      figuras_analise_exploratoria/fig_ae_01_... .png (94 arquivos)
+   Se houver um main.tex antigo no projeto Overleaf, apague o antes
+   de compilar.
+3. Defina principal.tex como documento principal (Menu, Main document)
+   e compile com pdfLaTeX (duas vezes, para o sumário e as referências
+   cruzadas).
+
+OBSERVAÇÕES
+===========
+1. A capa traz João Eduardo Pastori Garcia (Estatístico Responsável),
+   Priscilla Reinisch Perdicaris (Pesquisadora Principal) e Alberto
+   Tomasi Diniz Tiefensee (Revisor e Responsável pelo Banco de Dados).
+2. A linguagem foi adaptada para leitura por gestores: a Seção 1 traz
+   um guia rápido dos tipos de gráfico e cada figura (ou grupo de
+   figuras semelhantes) é acompanhada de um bloco em itálico
+   "Como ler" explicando o que observar.
+3. O documento é o início do texto final da pesquisa: novas seções
+   podem ser acrescentadas com \input{secoes/arquivo} no main.tex.
+4. As grades de figuras usam sempre número par de painéis (6, 4 ou 2);
+   figuras únicas aparecem centralizadas com legenda própria. As
+   imagens da mortalidade ajustada existem na pasta mas não são
+   exibidas, pois são idênticas às da mortalidade geral (o texto
+   registra essa identidade).
+5. Sempre que um CNES é citado no texto, o nome fantasia do hospital o
+   acompanha.
+6. O caminho das figuras está definido em \graphicspath no main.tex;
+   se renomear a pasta de imagens, ajuste apenas essa linha.
+7. Todos os números do texto foram extraídos das execuções reais de
+   analise_exploratoria.py sobre o painel de 314 CNES e 3.454
+   observações. Se o painel for regenerado, rode o script de novo e
+   confira os valores antes de recompilar.
+8. Fonte do IPCA usado na correção do custo: IBGE, variação dez/dez,
+   com 2025 fechado em 4,26% (divulgação de janeiro de 2026).

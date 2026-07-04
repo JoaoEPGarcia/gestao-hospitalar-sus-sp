@@ -1,0 +1,167 @@
+\section{A evolução no tempo e a marca da pandemia}
+\label{sec:tendencia}
+
+As Figuras~\ref{fig:tendA} a~\ref{fig:tendC} acompanham a mediana anual
+de cada indicador de 2015 a 2025, com a faixa cinza destacando o biênio
+2020 e 2021. A pandemia deixou marca em quase tudo: a mortalidade (já sem as
+internações COVID) sobe de cerca de 5,1\% para \textbf{5,63\% em 2020 e
+5,94\% em 2021} e só retorna ao patamar histórico em 2025, sinal de que
+o biênio afetou também os pacientes não COVID. A ocupação de internação
+despenca para \textbf{65,9\% em 2020} (leitos esvaziados por
+cancelamentos e medo) enquanto a de UTI dispara para \textbf{82,9\% em
+2021}, seu recorde na série. O tempo de permanência atravessa tudo
+estável, em torno de 4,4 dias.
+
+O custo pede uma leitura em duas camadas. Em valores correntes
+(nominais), a mediana sobe de R\$~908 em 2015 para R\$~1.317 em 2025.
+Mas parte dessa alta é só inflação. Corrigindo tudo para o poder de
+compra de 2025 com o IPCA (Figura~\ref{fig:custoreal} e
+Tabela~\ref{tab:custoreal}), a história muda de sinal: \textbf{em
+valores de 2025, o custo mediano caiu de R\$~1.496 para R\$~1.317, uma
+queda real de cerca de 12\% na década}. Toda a alta aparente é
+inflação. Qualquer avaliação da evolução de custo deve, portanto, ser
+feita em valores reais ou com o nível de preços de cada ano devidamente
+considerado.
+
+Por categoria (Figuras~\ref{fig:tendcatA} a~\ref{fig:tendcatC}), o
+choque pandêmico é
+generalizado, mas a queda de ocupação de 2020 é mais funda na Direta e
+nos Filantrópicos; a fração de alta complexidade das OSS cresce de
+forma consistente na segunda metade do período; e, no custo, a Direta
+parte de nível parecido com as demais categorias e passa a liderar o
+custo mediano a partir de 2020.
+
+\begin{table}[H]
+\centering
+\caption{Custo por saída mediano por ano: em valores correntes e em
+valores de 2025 (corrigidos pelo IPCA, variação de dezembro a dezembro,
+IBGE). O fator indica por quanto o valor do ano é multiplicado para
+chegar a preços de 2025.}
+\label{tab:custoreal}
+\small
+\begin{tabular}{lrrr}
+\toprule
+Ano & Nominal (R\$) & Valores de 2025 (R\$) & Fator IPCA \\
+\midrule
+2015 & 907,60   & 1.495,61 & 1,6479 \\
+2016 & 907,18   & 1.406,45 & 1,5504 \\
+2017 & 921,69   & 1.388,00 & 1,5059 \\
+2018 & 931,01   & 1.351,36 & 1,4515 \\
+2019 & 957,47   & 1.332,35 & 1,3915 \\
+2020 & 1.060,25 & 1.411,56 & 1,3313 \\
+2021 & 1.093,68 & 1.322,98 & 1,2097 \\
+2022 & 1.220,00 & 1.395,02 & 1,1435 \\
+2023 & 1.236,87 & 1.351,85 & 1,0930 \\
+2024 & 1.300,81 & 1.356,22 & 1,0426 \\
+2025 & 1.316,94 & 1.316,94 & 1,0000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_07_tendencia_mort_all.png}{Mortalidade geral}
+\subfig{fig_ae_07_tendencia_tmp.png}{TMP}
+\caption{Mediana anual da mortalidade e do TMP, com a metade central
+dos hospitais na área sombreada em azul; a faixa cinza destaca 2020 e
+2021 e os pontos de máximo, mínimo e último ano estão anotados.}
+\label{fig:tendA}
+\end{figure}
+
+\comoler{a linha é o hospital mediano em cada ano; a área azul em volta
+contém a metade central dos hospitais (do quartil inferior ao
+superior). Dentro da faixa cinza da pandemia, note a corcova da
+mortalidade; o TMP, em contraste, atravessa a década quase imóvel.}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_07_tendencia_custo_saida.png}{Custo por saída (valores
+correntes)}
+\subfig{fig_ae_07_tendencia_pct_alta_complex.png}{Fração alta
+complexidade}
+\caption{Mediana anual do custo por saída (valores correntes) e da
+fração de alta complexidade.}
+\label{fig:tendB}
+\end{figure}
+
+\comoler{o custo em valores correntes sobe a década inteira, mas essa
+leitura é enganosa; a correção pela inflação está na
+Figura~\ref{fig:custoreal}. A alta complexidade mediana cresce nos anos
+finais da série.}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_07_tendencia_ocupacao_internacao.png}{Ocupação de
+internação}
+\subfig{fig_ae_07_tendencia_ocupacao_uti.png}{Ocupação de UTI}
+\caption{Mediana anual das taxas de ocupação.}
+\label{fig:tendC}
+\end{figure}
+
+\comoler{dentro da faixa cinza da pandemia, os dois movimentos em
+sentidos opostos: a internação esvazia em 2020 (mergulho para 65,9\%) e
+a UTI lota em 2021 (pico de 82,9\%, recorde da série).}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.96\textwidth]{fig_ae_07_tendencia_custo_saida_real.png}
+\caption{Custo por saída mediano: a linha clara tracejada é o valor
+corrente e a linha escura é o valor corrigido pelo IPCA para o poder de
+compra de 2025.}
+\label{fig:custoreal}
+\end{figure}
+
+\comoler{as duas linhas contam histórias opostas. A clara (valores
+correntes) sobe o tempo todo; a escura (valores de 2025) mostra o que o
+dinheiro de fato compra e cai ao longo da década: de R\$~1.496 para
+R\$~1.317 por internação. Quando as duas linhas se encontram, em 2025,
+é porque ali o valor corrente e o corrigido coincidem por definição.}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_08_categoria_mort_all.png}{Mortalidade geral}
+\subfig{fig_ae_08_categoria_tmp.png}{TMP}
+\caption{Mediana anual da mortalidade e do TMP por categoria de gestão;
+cada categoria tem cor e marcador próprios, e a linha pontilhada cinza
+do Privado (3 hospitais) é apenas registro.}
+\label{fig:tendcatA}
+\end{figure}
+
+\comoler{cada linha é o hospital mediano de uma categoria em cada ano.
+Na mortalidade, todas as categorias fazem a corcova da pandemia. No
+TMP, a linha da Direta corre acima das demais durante a década
+inteira.}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_08_categoria_custo_saida.png}{Custo por saída (Privado
+omitido por escala)}
+\subfig{fig_ae_08_categoria_pct_alta_complex.png}{Fração alta
+complexidade (Privado omitido por escala)}
+\caption{Mediana anual do custo por saída e da fração de alta
+complexidade por categoria. O Privado foi omitido destes dois painéis
+porque sua escala (custo dez vezes maior) esconderia as demais
+categorias; seus valores estão na Tabela~\ref{tab:categorias}.}
+\label{fig:tendcatB}
+\end{figure}
+
+\comoler{no custo, as quatro categorias sobem juntas até 2019 e se
+abrem a partir de 2020, com a Direta na frente; lembre que são valores
+correntes (a correção pela inflação está na
+Figura~\ref{fig:custoreal}). Na alta complexidade, a linha das OSS se
+descola das demais na segunda metade do período.}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_08_categoria_ocupacao_internacao.png}{Ocupação de
+internação}
+\subfig{fig_ae_08_categoria_ocupacao_uti.png}{Ocupação de UTI}
+\caption{Mediana anual das taxas de ocupação por categoria de gestão.}
+\label{fig:tendcatC}
+\end{figure}
+
+\comoler{na ocupação de internação, as duas linhas de cima (OSS e
+Municipal) e as duas de baixo (Filantrópico e Direta) mantêm a
+separação de quase 25 pontos percentuais durante toda a década, com o
+mergulho de 2020 visível em todas. Na UTI, o pico coletivo de 2021 é a
+marca da pandemia.}

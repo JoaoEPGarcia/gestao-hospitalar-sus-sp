@@ -1,0 +1,8 @@
+﻿etapa,criterio,cnes_removidos,hospital_ano_removidos,cnes_restantes,hospital_ano_restantes
+ETAPA 0,painel bruto (sem filtros),0,0,830,7016
+ETAPA A,tipo de estabelecimento (hospital dia 62 / psiquiátrico 07+006 / CAPS 70),76,646,754,6370
+ETAPA B,porte fixo: mediana de total_leitos > 50 nos anos com produção,349,2538,405,3832
+ETAPA C1,hospitais de campanha COVID (criados exclusivamente para a pandemia),6,9,399,3823
+ETAPA C2,procedimentos COVID (cód. 999) removidos dos indicadores: 613 hospital-ano afetados em 2020-2021 (6.7% da produção do biênio); nenhuma linha removida,0,0,399,3823
+ETAPA D,painel balanceado: produção em todos os 11 anos (2015-2025),82,336,317,3487
+ETAPA E,exclusão de CNES sem pontuação de Barcelona (complexidade indisponível),3,33,314,3454

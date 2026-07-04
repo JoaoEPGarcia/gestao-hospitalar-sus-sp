@@ -1,0 +1,27 @@
+﻿variavel,dimensao,grupo,frac_zero,n
+pct_alta_complex,categoria,Direta,0.3422,339
+pct_alta_complex,categoria,OSS,0.1034,387
+pct_alta_complex,categoria,Público Municipal,0.2774,638
+pct_alta_complex,categoria,Filantrópico,0.4113,2057
+pct_alta_complex,categoria,Privado,0.303,33
+pct_alta_complex,faixa Barcelona,2,0.8256,539
+pct_alta_complex,faixa Barcelona,3,0.424,1474
+pct_alta_complex,faixa Barcelona,4,0.0926,1166
+pct_alta_complex,faixa Barcelona,5,0.0667,165
+pct_alta_complex,faixa Barcelona,6,0.0,110
+pct_alta_complex,porte,Médio Porte,0.5197,1903
+pct_alta_complex,porte,Grande Porte,0.1322,1430
+pct_alta_complex,porte,Especial,0.0909,121
+mort_all,categoria,Direta,0.0354,339
+mort_all,categoria,OSS,0.0,387
+mort_all,categoria,Público Municipal,0.0,638
+mort_all,categoria,Filantrópico,0.018,2057
+mort_all,categoria,Privado,0.0606,33
+mort_all,faixa Barcelona,2,0.0612,539
+mort_all,faixa Barcelona,3,0.0115,1474
+mort_all,faixa Barcelona,4,0.0009,1166
+mort_all,faixa Barcelona,5,0.0,165
+mort_all,faixa Barcelona,6,0.0,110
+mort_all,porte,Médio Porte,0.0194,1903
+mort_all,porte,Grande Porte,0.0098,1430
+mort_all,porte,Especial,0.0,121

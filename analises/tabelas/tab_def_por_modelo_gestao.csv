@@ -1,0 +1,6 @@
+﻿modelo_gestao_proxy (PROVISÓRIO — ver nota),n_hospital_ano,mort_all,mort_sem_excl,tmp,custo_saida,pct_alta_complex
+Direta,339,0.0475,0.0475,6.0671,1192.6736,0.0088
+Filantrópico,2057,0.0545,0.0545,4.111,1086.1309,0.0011
+OSS,387,0.0493,0.0492,4.8544,1147.395,0.0242
+Privado,33,0.0256,0.0256,4.2441,12798.3596,0.9836
+Público Municipal,638,0.0564,0.0564,4.7678,978.964,0.001

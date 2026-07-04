@@ -1,0 +1,86 @@
+\section{O que anda junto com o quê}
+\label{sec:correlacao}
+
+A Figura~\ref{fig:correlacao} resume, num único mapa, o quanto cada par
+de indicadores anda junto. A medida usada (correlação de Spearman) vai
+de 0, quando dois indicadores não têm relação, a 1, quando crescem
+sempre juntos. A mortalidade ajustada foi retirada do mapa por ser
+estatisticamente idêntica à mortalidade geral (correlação de 1,000
+entre as duas; todas as demais relações coincidem casa a casa).
+
+Os pares mais fortes fazem sentido imediato para a gestão:
+\textbf{custo por saída e fração de alta complexidade (0,63)}, custo e
+tempo de permanência (0,56), e as duas ocupações entre si (0,48). A
+\textbf{complexidade estrutural conversa com tudo}: 0,55 com alta
+complexidade, 0,57 com ocupação de internação, 0,49 com custo, 0,47 com
+TMP e 0,28 com mortalidade, o retrato numérico do papel de grande
+divisor que a Seção~\ref{sec:complexidadeporte} descreveu. Já a
+mortalidade se associa mais à ocupação de UTI (0,40) do que à de
+internação (0,17), na direção esperada: onde a casuística é mais grave,
+usa se mais UTI e morre se mais.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.96\textwidth]{fig_ae_10_correlacao_spearman.png}
+\caption{Mapa de correlações entre os indicadores, as ocupações e a
+complexidade estrutural. Azul mais escuro indica relação mais forte;
+todos os valores estão impressos.}
+\label{fig:correlacao}
+\end{figure}
+
+\comoler{procure a linha de um indicador e percorra as colunas: cada
+célula diz o quanto aquele par anda junto (0 sem relação, 1 relação
+perfeita). A diagonal vale sempre 1 porque compara o indicador com ele
+mesmo. Repare na coluna da complexidade estrutural, escura quase
+inteira: é o confundidor que precisa ser descontado em qualquer
+comparação.}
+
+A Figura~\ref{fig:variancia} e a Tabela~\ref{tab:variancia} respondem a
+outra pergunta essencial: \textbf{quando um indicador varia, essa
+variação vem de comparar hospitais diferentes ou do mesmo hospital
+mudando ao longo dos anos?} A resposta é contundente: a variação vem
+quase toda das diferenças entre hospitais. No tempo de permanência,
+\textbf{apenas 2\% da variação total acontece dentro do mesmo hospital}
+ao longo da década; na alta complexidade são 4,4\%, no custo 8,3\%, na
+mortalidade 13,9\%, e só a ocupação de UTI passa de um terço (34,7\%).
+Em termos de gestão: \textbf{cada hospital é muito parecido consigo
+mesmo, ano após ano, e muito diferente dos vizinhos}. Os indicadores
+têm forte inércia institucional, e mudanças reais dentro de um hospital
+são eventos raros e valiosos de observar, o que dá ainda mais peso aos
+cinco casos de conversão da Seção~\ref{sec:conversores}.
+
+\begin{table}[H]
+\centering
+\caption{De onde vem a variação de cada indicador: parcela que ocorre
+dentro do mesmo hospital ao longo dos anos e parcela que vem das
+diferenças entre hospitais.}
+\label{tab:variancia}
+\small
+\begin{tabular}{lrr}
+\toprule
+Indicador & Dentro do hospital (\%) & Entre hospitais (\%) \\
+\midrule
+TMP                    & 2,0  & 98,0 \\
+Fração alta complex.   & 4,4  & 95,6 \\
+Custo por saída        & 8,3  & 91,7 \\
+Mortalidade geral      & 13,9 & 86,2 \\
+Mortalidade ajustada   & 13,9 & 86,2 \\
+Ocupação internação    & 17,9 & 82,1 \\
+Ocupação UTI           & 34,7 & 65,3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.96\textwidth]{fig_ae_14_variancia_within.png}
+\caption{Parcela da variação de cada indicador que acontece dentro do
+mesmo hospital ao longo do tempo.}
+\label{fig:variancia}
+\end{figure}
+
+\comoler{quanto menor a barra, mais estável o indicador dentro de cada
+hospital e mais as diferenças observadas são traço permanente da
+instituição. O TMP, com 2\%, é quase uma impressão digital do hospital;
+a ocupação de UTI, com 35\%, é a que mais responde ao tempo, em boa
+parte por causa da pandemia.}

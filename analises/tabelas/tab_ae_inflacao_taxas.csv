@@ -1,0 +1,4 @@
+﻿indicador,n,frac_zero,frac_um,n_interior,beta_a,beta_b,aic_beta_interior
+mort_all,3454,0.0148,0.0,3403,1.6148,29.319,-13772.1089
+mort_sem_excl,3454,0.0156,0.0,3400,1.6252,29.4918,-13766.9873
+pct_alta_complex,3454,0.3442,0.0032,2254,0.3312,2.4103,-7594.966

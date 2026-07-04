@@ -1,0 +1,517 @@
+﻿etapa,cnes,nome_referencia,motivo,anos_removidos
+ETAPA A,9695,Centro De Referencia Em Molestias Infecciosas,hospital dia (tipo 62),11
+ETAPA A,664200,Hospital Dia Santo Amaro,hospital dia (tipo 62),2
+ETAPA A,852554,I E Pacheco Servicos Medicos Ltda Caraguatatuba,hospital dia (tipo 62),4
+ETAPA A,2027240,Hospital Dia Butanta,hospital dia (tipo 62),8
+ETAPA A,2035081,,hospital dia (tipo 62),2
+ETAPA A,2040573,Ambulat De Especialidades E Hospital Dia Dr Renato Riggio Jr,hospital dia (tipo 62),11
+ETAPA A,2043351,,hospital dia (tipo 62),4
+ETAPA A,2058626,Hospital Psiquiatrico Mahatma Gandhi,psiquiátrico (tipo 07 + especialização 006),11
+ETAPA A,2058782,Hospital Psiquiatrico Espirita Bezerra De Menezes P Prudent,psiquiátrico (tipo 07 + especialização 006),11
+ETAPA A,2068974,Pam Varzea Do Carmo Nga 63 Sao Paulo,hospital dia (tipo 62),11
+ETAPA A,2069008,Ambulatorio De Especialidades Dr Geraldo Paulo Bourroul,hospital dia (tipo 62),11
+ETAPA A,2070766,Caism Dr David Capistrano Da Costa Filho Da Agua Funda Sp,psiquiátrico (tipo 07 + especialização 006),11
+ETAPA A,2077310,Hospital Dia Irmao Altino Saude Mental,hospital dia (tipo 62),7
+ETAPA A,2077418,Caism Philippe Pinel Sao Paulo,psiquiátrico (tipo 07 + especialização 006),11
+ETAPA A,2077612,,psiquiátrico (tipo 07 + especialização 006),2
+ETAPA A,2078384,Hospital Espirita,psiquiátrico (tipo 07 + especialização 006),11
+ETAPA A,2079763,Casa Cairbar Schutel,psiquiátrico (tipo 07 + especialização 006),11
+ETAPA A,2080117,Hospital Psiquiatrico Allan Kardec Franca Sp,psiquiátrico (tipo 07 + especialização 006),11
+ETAPA A,2080990,Hospital Espirita De Marilia,psiquiátrico (tipo 07 + especialização 006),11
+ETAPA A,2081563,Clinica De Repouso Santa Rosa Espirito Santo Do Pinhal,psiquiátrico (tipo 07 + especialização 006),11
+ETAPA A,2081733,Seara Hospital Psiquiatrico,psiquiátrico (tipo 07 + especialização 006),11
+ETAPA A,2082446,Clinica Nosso Lar Adamantina,psiquiátrico (tipo 07 + especialização 006),11
+ETAPA A,2083159,Bezerra De Menezes Rio Claro,psiquiátrico (tipo 07 + especialização 006),11
+ETAPA A,2084244,Irpsi,psiquiátrico (tipo 07 + especialização 006),11
+ETAPA A,2084317,Clinica Fazenda Palmeiras,psiquiátrico (tipo 07 + especialização 006),11
+ETAPA A,2084384,Instituto Bezerra De Menezes Espirito Santo Do Pinhal,psiquiátrico (tipo 07 + especialização 006),11
+ETAPA A,2085143,Instituto Americo Bairral De Psiquiatria,psiquiátrico (tipo 07 + especialização 006),11
+ETAPA A,2085569,Cvv Francisca Julia,psiquiátrico (tipo 07 + especialização 006),11
+ETAPA A,2089203,,psiquiátrico (tipo 07 + especialização 006),2
+ETAPA A,2089432,,psiquiátrico (tipo 07 + especialização 006),1
+ETAPA A,2090309,Centro De Atencao Integral A Saude Cantidio De Moura Campos,psiquiátrico (tipo 07 + especialização 006),11
+ETAPA A,2091275,Cais Centro Atencao Integral Saude Santa Rita Passa Quatro,psiquiátrico (tipo 07 + especialização 006),11
+ETAPA A,2091305,H O Redentora Hospital De Olhos,hospital dia (tipo 62),11
+ETAPA A,2091542,Ame Ambulatorio Medico De Especialidades Maria Zelia,hospital dia (tipo 62),11
+ETAPA A,2091658,Hospital Dia M Boi Mirim I Jardim Ibirapuera,hospital dia (tipo 62),11
+ETAPA A,2093405,Inamex Nhandeara,psiquiátrico (tipo 07 + especialização 006),11
+ETAPA A,2097648,Hospital Bezerra De Menezes,psiquiátrico (tipo 07 + especialização 006),11
+ETAPA A,2688514,Hospital Psiquiatrico De Vila Mariana,psiquiátrico (tipo 07 + especialização 006),11
+ETAPA A,2701561,Instituto Jundiaiense Luiz Braille Unidade I,hospital dia (tipo 62),11
+ETAPA A,2745356,Clinica Andre Luiz,psiquiátrico (tipo 07 + especialização 006),11
+ETAPA A,2746220,Complexo Hospitalar Juquery Franco Da Rocha,psiquiátrico (tipo 07 + especialização 006),7
+ETAPA A,2749033,Centro De Reabilitacao De Casa Branca,psiquiátrico (tipo 07 + especialização 006),11
+ETAPA A,2751852,Hospital Dia Da Rede Hora Certa Vila Prudente,hospital dia (tipo 62),9
+ETAPA A,2751860,Unidade Hospitalar Dr Flavio Giannotti,hospital dia (tipo 62),10
+ETAPA A,2751925,Hospital Dia Cidade Ademar,hospital dia (tipo 62),9
+ETAPA A,2751933,Hospital Dia Penha,hospital dia (tipo 62),11
+ETAPA A,2751976,Hospital Dia Sao Miguel Dr Tito Lopes Da Silva,hospital dia (tipo 62),10
+ETAPA A,2754908,,CAPS (tipo 70),3
+ETAPA A,2790653,Hospital Tereza Perlatti Jau,psiquiátrico (tipo 07 + especialização 006),11
+ETAPA A,2855917,,hospital dia (tipo 62),4
+ETAPA A,2867257,,hospital dia (tipo 62),3
+ETAPA A,3345327,Kaiser Clinica,hospital dia (tipo 62),3
+ETAPA A,3346072,,hospital dia (tipo 62),2
+ETAPA A,5170958,Iom Hospital Dia,hospital dia (tipo 62),9
+ETAPA A,6135749,Hospital Dia Mooca,hospital dia (tipo 62),9
+ETAPA A,6136028,Hospital Dia Itaim Paulista,hospital dia (tipo 62),11
+ETAPA A,6233848,Ame Ambulatorio Medico De Especialidades De Caraguatatuba,hospital dia (tipo 62),11
+ETAPA A,6284582,Ame Piracicaba Dr Oswaldo Cambiaghi,hospital dia (tipo 62),11
+ETAPA A,6289304,Ame Ambulatorio Medico De Especialidades Barretos,hospital dia (tipo 62),11
+ETAPA A,6391869,Hospital Dia Sao Mateus Dr Henrique Carlos Goncalves,hospital dia (tipo 62),9
+ETAPA A,6479200,Ame Dr Luiz Roberto Barradas Barata Sao Paulo,hospital dia (tipo 62),11
+ETAPA A,6655416,Ame Santo Andre Dr Newton Da Costa Brandao,hospital dia (tipo 62),11
+ETAPA A,6971199,,hospital dia (tipo 62),1
+ETAPA A,6998178,Hospital Dia Campo Limpo Jardim Pirajussara,hospital dia (tipo 62),10
+ETAPA A,7019076,Hospital Dia Da Rede Hora Certa Brasilandia Fo,hospital dia (tipo 62),11
+ETAPA A,7188676,Ame Ambulatorio Medico De Especialidades De Ourinhos,hospital dia (tipo 62),11
+ETAPA A,7385978,Unidade Pirituba Cies,hospital dia (tipo 62),9
+ETAPA A,7572468,Instituto Da Visao,hospital dia (tipo 62),10
+ETAPA A,7979649,Hospital Dia Vila Guilherme,hospital dia (tipo 62),9
+ETAPA A,7992890,Hospital Dia Capela Do Socorro,hospital dia (tipo 62),9
+ETAPA A,9265732,,hospital dia (tipo 62),2
+ETAPA A,9403345,,hospital dia (tipo 62),2
+ETAPA A,9404236,,hospital dia (tipo 62),1
+ETAPA A,9462023,,hospital dia (tipo 62),1
+ETAPA A,9898565,Hoftalmed,hospital dia (tipo 62),7
+ETAPA A,9950931,,hospital dia (tipo 62),4
+ETAPA B,8087,Pronto Socorro Conrado Cesarino Nuvolini,mediana de leitos = 21.0 (corte: > 50),11
+ETAPA B,8141,Pronto Socorro Dr Antonio Flavio Franca,mediana de leitos = 10.0 (corte: > 50),11
+ETAPA B,8494,Upa Bangu,mediana de leitos = 31.0 (corte: > 50),10
+ETAPA B,21520,Upa Vila Luzita,mediana de leitos = 30.0 (corte: > 50),11
+ETAPA B,24228,Upa Central Emilio Pires Magalhaes,mediana de leitos = 24.0 (corte: > 50),10
+ETAPA B,26417,Hospital De Clinicas Sul,mediana de leitos = 43.0 (corte: > 50),11
+ETAPA B,34053,HOSPITAL ESTADUAL DE COVID 19 AME CAMPINAS,mediana de leitos = 0.0 (corte: > 50),2
+ETAPA B,89621,HOSPITAL DE CAMPANHA COVID 19 EMBU DAS ARTES,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,102040,HOSPITAL DE CAMPANHA COVID 19 SMS SP PACAEMBU,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,102172,HOSPITAL DE CAMPANHA COVID 19 CENTRO DE COMBATE AO CORONA,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,102571,HOSPITAL DE CAMPANHA COVID 19 AFIP,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,102741,Hospital De Campanha Covid 19 Araraquara,mediana de leitos = 36.0 (corte: > 50),2
+ETAPA B,102792,Hospital De Campanha Covid 19 Upa Central,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,102806,HOSPITAL DE CAMPANHA COVID 19 UPA ZONA LESTE,mediana de leitos = 0.0 (corte: > 50),2
+ETAPA B,103462,Hospital De Campanha Covid 19,mediana de leitos = 8.0 (corte: > 50),3
+ETAPA B,103608,Hospital De Campanha Covid 19 Cotia,mediana de leitos = 36.0 (corte: > 50),1
+ETAPA B,104892,Hospital De Campanha Covid 19 Fernao Dias,mediana de leitos = 0.0 (corte: > 50),3
+ETAPA B,105120,Hospital De Campanha Posto Avancado Covid 19,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,105589,Hospital De Campanha Covid 19 Falcao,mediana de leitos = 47.5 (corte: > 50),2
+ETAPA B,105597,Hospital De Campanha Covid 19 Osasco,mediana de leitos = 17.5 (corte: > 50),2
+ETAPA B,105708,Hospital De Campanha Covid 19 Franco Da Rocha,mediana de leitos = 0.0 (corte: > 50),3
+ETAPA B,106232,HOSPITAL DE CAMPANHA COVID 19 SUZANO,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,110310,Hospital De Campanha Covid 19 Caieiras,mediana de leitos = 7.5 (corte: > 50),2
+ETAPA B,110612,Unidade Respiratoria Nova Hortolandia,mediana de leitos = 0.0 (corte: > 50),3
+ETAPA B,110981,Hospital De Campanha Covid 19 Dr Akira Tada,mediana de leitos = 10.0 (corte: > 50),3
+ETAPA B,112062,Hospital De Campanha Ribeirao Pires,mediana de leitos = 13.5 (corte: > 50),2
+ETAPA B,112542,Hospital De Campanha Covid 19,mediana de leitos = 25.0 (corte: > 50),2
+ETAPA B,113921,Hospital De Campanha,mediana de leitos = 15.0 (corte: > 50),2
+ETAPA B,115509,Hospital De Clinicas Anjo Gabriel,mediana de leitos = 34.0 (corte: > 50),5
+ETAPA B,116750,HOSPITAL DE CAMPANHA POA CONTRA COVID,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,117749,HOSPITAL DE CAMPANHA COVID 19 FERRAZ DE VASCONCELOS,mediana de leitos = 20.0 (corte: > 50),1
+ETAPA B,119172,ATPN HOSPITAL DE CAMPANHA DE MAUA,mediana de leitos = 30.0 (corte: > 50),1
+ETAPA B,119199,HOSPITAL CAMPANHA DO MUNICIPIO DE CAJAMAR,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,127868,HOSPITAL ESTADUAL DE CAMPANHA COVID 19 IBIRAPUERA,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,127876,Hospital Estadual De Campanha Covid 19 Barradas,mediana de leitos = 0.0 (corte: > 50),2
+ETAPA B,133272,Hospital De Campanha Covid 19 Municipio De Taubate,mediana de leitos = 10.0 (corte: > 50),2
+ETAPA B,134163,Hospital De Campanha Covid 19 Jacarei,mediana de leitos = 7.0 (corte: > 50),2
+ETAPA B,136328,Hospital De Campanha Covid 19 Pindamonhangaba,mediana de leitos = 2.0 (corte: > 50),3
+ETAPA B,145963,HOSPITAL DE CAMPANHA COVID 19 CAMPINAS,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,146048,CENTRO DE COMBATE AO COVID 19 VILA ESPERANCA,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,149632,HOSPITAL DE CAMPANHA COVID 19 MOGI DAS CRUZES,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,150126,HOSPITAL DE CAMPANHA COVID 19 BRUNO DANIEL,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,151882,HOSPITAL DE CAMPANHA COVID 19 SOROCABA,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,155829,HOSPITAL DE CAMPANHA COVID 19 ASSIS,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,156701,HOSPITAL DE CAMPANHA COVID 19,mediana de leitos = 20.0 (corte: > 50),1
+ETAPA B,158119,Complexo Hospitalar Municipal Sorocabana,mediana de leitos = 24.5 (corte: > 50),2
+ETAPA B,163279,Hospital De Campanha Covid 19 Ufabc,mediana de leitos = 0.0 (corte: > 50),3
+ETAPA B,179914,HOSPITAL DE CAMPANHA COVID 19 SV CONTINENTAL,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,197831,Hospital De Campanha Covid 19 Carlos Lourenco,mediana de leitos = 10.5 (corte: > 50),4
+ETAPA B,213527,Hospital Estadual De Campanha Covid 19 Bauru,mediana de leitos = 40.0 (corte: > 50),3
+ETAPA B,215368,Hospital De Campanha Covid 19,mediana de leitos = 38.0 (corte: > 50),1
+ETAPA B,255297,Hospital Estadual Covid 19 Bebedouro,mediana de leitos = 20.0 (corte: > 50),3
+ETAPA B,255874,Hospital De Campanha Covid 19 Guaratingueta,mediana de leitos = 20.0 (corte: > 50),2
+ETAPA B,260134,UNIDADE DE INTERNACAO BASICA COVID,mediana de leitos = 10.0 (corte: > 50),2
+ETAPA B,265187,,mediana de leitos = 33.5 (corte: > 50),2
+ETAPA B,302961,Hospital De Campanha Covid 19 Rio Claro,mediana de leitos = 9.0 (corte: > 50),4
+ETAPA B,404853,Ame Ambulatorio Medico De Especialidades De Campinas,mediana de leitos = 17.0 (corte: > 50),6
+ETAPA B,478024,Ubsf Luz Da Esperanca,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,478849,Ubs Fraternidade,mediana de leitos = 10.0 (corte: > 50),2
+ETAPA B,502138,HOSPITAL ESTADUAL COVID19 FRANCA,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,604828,HOSPITAL DE CAMPANHA COVID 19 ANCHIETA,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,605107,Hospital De Campanha Centro De Transicao E Estabilizacao Cov,mediana de leitos = 0.0 (corte: > 50),2
+ETAPA B,621110,Hospital De Campanha Covid Embu Das Artes,mediana de leitos = 2.5 (corte: > 50),2
+ETAPA B,625469,UPH ZO UNIDADE DE ATENDIMENTO DE SINDROME GRIPAL,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,636800,Hospital Estadual Covid 19 Ame Barretos,mediana de leitos = 2.0 (corte: > 50),1
+ETAPA B,647101,Pronto Atendimento Dr Rubens Luis Costa,mediana de leitos = 7.0 (corte: > 50),1
+ETAPA B,648582,HOSPITAL ESTADUAL COVID 19 AME ANDRADINA,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,650587,HOSPITAL ESTADUAL DE CAMPANHA COVID 19 ITAPEVA,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,650595,HOSPITAL ESTADUAL COVID 19 AME BOTUCATU,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,665037,UPH ZONA NORTE UNIDADE DE ATENDIMENTO DE SINDROME GRIPAL,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,684651,UPA DO EDEN UNIDADE DE ATENDIMENTO DE SINDROME GRIPAL,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,694622,Hospital Estadual Covid 19 Metropolitano Santa Cecilia,mediana de leitos = 32.0 (corte: > 50),2
+ETAPA B,792063,Uph Zona Leste Unidade De Atendimento De Sindrome Gripal,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,2023865,Hospital Municipal Dr Amadeu Pagliuso,mediana de leitos = 17.0 (corte: > 50),11
+ETAPA B,2024438,Hospital E Maternidade Dra Adoniran Correia Campos Mongagua,mediana de leitos = 36.0 (corte: > 50),11
+ETAPA B,2024772,Santa Casa De Misericordia Sao Jose,mediana de leitos = 32.0 (corte: > 50),9
+ETAPA B,2035723,,mediana de leitos = 37.0 (corte: > 50),1
+ETAPA B,2039001,Pronto Socorro Municipal De Suzano,mediana de leitos = 15.0 (corte: > 50),3
+ETAPA B,2053500,Hospital Senhor Bom Jesus,mediana de leitos = 40.0 (corte: > 50),11
+ETAPA B,2053519,Maternidade Fernando Magalhaes,mediana de leitos = 30.0 (corte: > 50),11
+ETAPA B,2058243,Santa Casa De Misericordia De Sao Simao,mediana de leitos = 40.0 (corte: > 50),11
+ETAPA B,2058340,Hospital Municipal De Queluz,mediana de leitos = 19.0 (corte: > 50),9
+ETAPA B,2058405,Unidade Mista De Saude De Silveiras,mediana de leitos = 2.0 (corte: > 50),11
+ETAPA B,2061562,,mediana de leitos = 14.0 (corte: > 50),3
+ETAPA B,2072033,Unidade Mista De Saude De Embuguacu,mediana de leitos = 16.0 (corte: > 50),11
+ETAPA B,2072513,Hospital E Maternidade Municipal Santa Ana,mediana de leitos = 45.0 (corte: > 50),11
+ETAPA B,2076942,Hospital De Itatinga,mediana de leitos = 14.0 (corte: > 50),11
+ETAPA B,2077078,Unidade Mista E Maternidade Central,mediana de leitos = 48.0 (corte: > 50),11
+ETAPA B,2077124,Unidade Mista De Atendimento Infantil,mediana de leitos = 17.0 (corte: > 50),11
+ETAPA B,2077515,Hospital Sao Vicente De Paula De Arandu,mediana de leitos = 6.0 (corte: > 50),8
+ETAPA B,2077558,Hospital Sao Camilo Aguas De Lindoia,mediana de leitos = 42.0 (corte: > 50),11
+ETAPA B,2077566,Hospital Municipal Da Mulher Dr Joao Luis J Rosseto,mediana de leitos = 36.0 (corte: > 50),4
+ETAPA B,2077752,Hosp Monumento Cehm,mediana de leitos = 50.0 (corte: > 50),11
+ETAPA B,2077957,Centro De Referencia E Treinamento Dst Aids Sao Paulo,mediana de leitos = 46.0 (corte: > 50),11
+ETAPA B,2078112,Hospital Santa Rita De Sales Oliveira,mediana de leitos = 30.0 (corte: > 50),11
+ETAPA B,2078198,Unidade Mista De Santo Antonio Da Alegria,mediana de leitos = 12.0 (corte: > 50),11
+ETAPA B,2078341,Associacao Hospital Beneficente Sagrado Coracao De Jesus,mediana de leitos = 35.0 (corte: > 50),11
+ETAPA B,2078422,Funbepe Pedreira,mediana de leitos = 49.0 (corte: > 50),11
+ETAPA B,2078449,Santa Casa De Patrocinio Paulista,mediana de leitos = 35.0 (corte: > 50),11
+ETAPA B,2078538,Hospital Nossa Senhora Aparecida,mediana de leitos = 50.0 (corte: > 50),11
+ETAPA B,2078546,Santa Casa Sao Bento Do Sapucai,mediana de leitos = 40.0 (corte: > 50),11
+ETAPA B,2078805,,mediana de leitos = 8.0 (corte: > 50),1
+ETAPA B,2078813,Hospital Oftalmologico De Sorocaba,mediana de leitos = 16.0 (corte: > 50),11
+ETAPA B,2078902,Santa Casa Pilar Do Sul,mediana de leitos = 35.0 (corte: > 50),11
+ETAPA B,2078937,Santa Casa De Aparecida Doeste,mediana de leitos = 14.0 (corte: > 50),11
+ETAPA B,2079003,,mediana de leitos = 20.0 (corte: > 50),3
+ETAPA B,2079011,Hosp Leito E Pronto Atendimento Aurelino Alves Dos Santos,mediana de leitos = 41.0 (corte: > 50),11
+ETAPA B,2079046,,mediana de leitos = 14.0 (corte: > 50),1
+ETAPA B,2079119,Centro De Ref Da Saude Da Mulher De R Preto Mater,mediana de leitos = 49.0 (corte: > 50),11
+ETAPA B,2079178,Maternidade Municipal,mediana de leitos = 8.0 (corte: > 50),11
+ETAPA B,2079216,Hospital E Maternidade Jose Fortuna,mediana de leitos = 31.0 (corte: > 50),11
+ETAPA B,2079224,Hospital Sao Jose,mediana de leitos = 30.0 (corte: > 50),11
+ETAPA B,2079283,Santa Casa De Panorama,mediana de leitos = 36.0 (corte: > 50),8
+ETAPA B,2079291,Santa Casa De Palmeira Doeste,mediana de leitos = 20.0 (corte: > 50),11
+ETAPA B,2079313,Hospital Sao Roque Cabreuva,mediana de leitos = 16.0 (corte: > 50),11
+ETAPA B,2079348,Santa Casa De Igarapava,mediana de leitos = 47.0 (corte: > 50),11
+ETAPA B,2079380,Santa Casa De Salesopolis,mediana de leitos = 19.0 (corte: > 50),11
+ETAPA B,2079399,Santa Casa De Misericordia Tabatinga Sp,mediana de leitos = 35.0 (corte: > 50),11
+ETAPA B,2079402,Santa Casa Sao Vicente De Paulo Boa Esperanca Do Sul,mediana de leitos = 15.0 (corte: > 50),11
+ETAPA B,2079429,Santa Casa Salto De Pirapora,mediana de leitos = 44.0 (corte: > 50),11
+ETAPA B,2079437,Hospital Beneficente De Maracai,mediana de leitos = 26.0 (corte: > 50),11
+ETAPA B,2079461,Santa Casa De Misericordia Sao Francisco Buritama,mediana de leitos = 34.0 (corte: > 50),11
+ETAPA B,2079496,Santa Casa De Cravinhos,mediana de leitos = 15.0 (corte: > 50),11
+ETAPA B,2079518,Santa Casa De Mis E Maternidade N Sra Da Conceicao Cunha,mediana de leitos = 40.0 (corte: > 50),11
+ETAPA B,2079550,Santa Casa De Santa Adelia,mediana de leitos = 24.0 (corte: > 50),11
+ETAPA B,2079682,Santa Casa De Neves Paulista,mediana de leitos = 21.0 (corte: > 50),11
+ETAPA B,2079690,Santa Casa De Misericordia De Sao Luiz Do Paraitinga,mediana de leitos = 25.0 (corte: > 50),11
+ETAPA B,2079852,Santa Casa De Piracaia,mediana de leitos = 37.0 (corte: > 50),11
+ETAPA B,2079879,Santa Casa De Taquarituba,mediana de leitos = 49.0 (corte: > 50),11
+ETAPA B,2079909,Hosp Beneficente De Pirangi,mediana de leitos = 41.0 (corte: > 50),11
+ETAPA B,2079917,Santa Casa De Louveira,mediana de leitos = 40.0 (corte: > 50),11
+ETAPA B,2079968,Santa Casa De Urania,mediana de leitos = 26.0 (corte: > 50),11
+ETAPA B,2079976,Santa Casa De Laranjal Paulista,mediana de leitos = 46.0 (corte: > 50),11
+ETAPA B,2080109,Santa Casa De Populina,mediana de leitos = 18.0 (corte: > 50),11
+ETAPA B,2080141,,mediana de leitos = 25.0 (corte: > 50),1
+ETAPA B,2080184,Hospital Municipal,mediana de leitos = 30.0 (corte: > 50),7
+ETAPA B,2080206,,mediana de leitos = 19.0 (corte: > 50),1
+ETAPA B,2080362,Casa De Saude De Indiapora,mediana de leitos = 36.0 (corte: > 50),11
+ETAPA B,2080370,Santa Casa De Pirajui,mediana de leitos = 49.0 (corte: > 50),11
+ETAPA B,2080443,Hospital Da Casa Pia Sao Vicente De Paula,mediana de leitos = 45.0 (corte: > 50),11
+ETAPA B,2080451,Irmandade Da Santa Casa De Misericordia De Ipua,mediana de leitos = 49.0 (corte: > 50),11
+ETAPA B,2080486,,mediana de leitos = 30.0 (corte: > 50),1
+ETAPA B,2080508,Santa Casa De Alvares Machado,mediana de leitos = 20.0 (corte: > 50),11
+ETAPA B,2080524,Hospital E Maternidade Regional Regente Feijo,mediana de leitos = 35.0 (corte: > 50),11
+ETAPA B,2080605,Hospital Padre Nicanor Merino Torrinha,mediana de leitos = 20.0 (corte: > 50),11
+ETAPA B,2080621,Santa Casa Pompeia,mediana de leitos = 26.0 (corte: > 50),11
+ETAPA B,2080737,Hospital Sao Vicente De Galia,mediana de leitos = 45.0 (corte: > 50),11
+ETAPA B,2080745,Santa Casa De Santa Cruz Das Palmeiras,mediana de leitos = 35.0 (corte: > 50),11
+ETAPA B,2080788,Hosp Mun V Nhocune Alexandre Zaio,mediana de leitos = 48.0 (corte: > 50),11
+ETAPA B,2080826,Hospital Sao Jose De Itajobi,mediana de leitos = 50.0 (corte: > 50),11
+ETAPA B,2080842,Santa Casa De Misericordia De Candido Mota,mediana de leitos = 30.0 (corte: > 50),11
+ETAPA B,2080869,Santa Casa De Paulo De Faria,mediana de leitos = 24.0 (corte: > 50),11
+ETAPA B,2080907,Santa Casa Pacaembu,mediana de leitos = 37.0 (corte: > 50),7
+ETAPA B,2080915,Hospital Padre Bernardo Braakius,mediana de leitos = 36.0 (corte: > 50),11
+ETAPA B,2080966,Santa Casa De Estrela Doeste,mediana de leitos = 50.0 (corte: > 50),11
+ETAPA B,2080982,Hospital De Clementina,mediana de leitos = 24.0 (corte: > 50),11
+ETAPA B,2081202,Hospital E Maternidade Sao Lucas,mediana de leitos = 50.0 (corte: > 50),11
+ETAPA B,2081229,Santa Casa De Parapua,mediana de leitos = 32.0 (corte: > 50),10
+ETAPA B,2081237,Hospital Sao Paulo De Rinopolis,mediana de leitos = 23.0 (corte: > 50),11
+ETAPA B,2081245,Santa Casa De Sud Mennucci,mediana de leitos = 22.0 (corte: > 50),11
+ETAPA B,2081296,Hospital Joao Depieri De Cajobi,mediana de leitos = 32.0 (corte: > 50),11
+ETAPA B,2081342,Hospital Sao Lourenco,mediana de leitos = 34.0 (corte: > 50),11
+ETAPA B,2081385,Santa Casa De Tupi Paulista,mediana de leitos = 48.0 (corte: > 50),11
+ETAPA B,2081393,Hospital Santa Rosa De Lima De Serra Negra,mediana de leitos = 49.0 (corte: > 50),11
+ETAPA B,2081407,Unidade Mista De Saude De Jarinu Monsenhor Jacob Conti,mediana de leitos = 17.0 (corte: > 50),11
+ETAPA B,2081431,Santa Casa De Lucelia,mediana de leitos = 32.0 (corte: > 50),11
+ETAPA B,2081520,Hospital E Maternidade De Guaracai,mediana de leitos = 23.0 (corte: > 50),11
+ETAPA B,2081571,Santa Casa De Riolandia,mediana de leitos = 36.0 (corte: > 50),11
+ETAPA B,2081598,Santa Casa De Misericordia Sao Lucas,mediana de leitos = 16.0 (corte: > 50),11
+ETAPA B,2081652,Santa Casa De General Salgado,mediana de leitos = 28.0 (corte: > 50),11
+ETAPA B,2081660,Santa Casa De Ipaucu,mediana de leitos = 49.0 (corte: > 50),11
+ETAPA B,2081717,Santa Casa Descalvado,mediana de leitos = 40.0 (corte: > 50),11
+ETAPA B,2081768,Santa Casa De Auriflama,mediana de leitos = 44.0 (corte: > 50),11
+ETAPA B,2081784,Hospital Santa Therezinha Brotas,mediana de leitos = 41.0 (corte: > 50),11
+ETAPA B,2081792,Santa Casa De Macaubal,mediana de leitos = 19.0 (corte: > 50),11
+ETAPA B,2081806,Hospital Padre Joao W Braem,mediana de leitos = 22.0 (corte: > 50),11
+ETAPA B,2081857,,mediana de leitos = 13.0 (corte: > 50),1
+ETAPA B,2081903,Hospital De Caridade De Vargem Grande Do Sul,mediana de leitos = 50.0 (corte: > 50),11
+ETAPA B,2081989,Hospital Sao Sebastiao De Borborema,mediana de leitos = 26.0 (corte: > 50),11
+ETAPA B,2082071,Santa Casa De Cardoso,mediana de leitos = 31.0 (corte: > 50),11
+ETAPA B,2082160,,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,2082195,Beneficencia Portuguesa De Amparo,mediana de leitos = 42.0 (corte: > 50),10
+ETAPA B,2082284,Santa Casa De Grama,mediana de leitos = 30.0 (corte: > 50),11
+ETAPA B,2082306,Santa Casa De Casa Branca,mediana de leitos = 47.0 (corte: > 50),11
+ETAPA B,2082411,Pronto Atendimento Dr Guido Guida,mediana de leitos = 35.0 (corte: > 50),7
+ETAPA B,2082438,Santa Casa De Chavantes,mediana de leitos = 50.0 (corte: > 50),11
+ETAPA B,2082497,Santa Casa Hospital Jesus Maria Jose,mediana de leitos = 27.0 (corte: > 50),11
+ETAPA B,2082551,Santa Casa De Ibira,mediana de leitos = 27.0 (corte: > 50),11
+ETAPA B,2082578,,mediana de leitos = 19.0 (corte: > 50),2
+ETAPA B,2082756,Santa Casa De Salto Grande,mediana de leitos = 34.0 (corte: > 50),11
+ETAPA B,2082780,Beneficencia Hospitalar De Cesario Lange,mediana de leitos = 27.0 (corte: > 50),11
+ETAPA B,2082934,Santa Casa De Misericordia De Taguai,mediana de leitos = 29.0 (corte: > 50),11
+ETAPA B,2082942,Santa Casa De Macatuba,mediana de leitos = 31.0 (corte: > 50),11
+ETAPA B,2083167,,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,2083213,Hospital Terra Roxa,mediana de leitos = 34.0 (corte: > 50),11
+ETAPA B,2083264,Hospital Municipal Joaquim Raimundo Gomes Guapiara,mediana de leitos = 19.5 (corte: > 50),10
+ETAPA B,2083272,Hospital Municipal De Bertioga,mediana de leitos = 49.0 (corte: > 50),11
+ETAPA B,2083493,Santa Casa De Pontal,mediana de leitos = 45.0 (corte: > 50),11
+ETAPA B,2083973,Santa Casa De Guara,mediana de leitos = 48.0 (corte: > 50),11
+ETAPA B,2084007,Unidade Mista De Saude Dr Jose Orlando S Borgatto,mediana de leitos = 11.0 (corte: > 50),11
+ETAPA B,2084023,Hospital Municipal De Nazare Paulista,mediana de leitos = 20.0 (corte: > 50),11
+ETAPA B,2084074,Hosp Maria Valle Pereira De Tabapua,mediana de leitos = 30.0 (corte: > 50),11
+ETAPA B,2084139,Hosp Mun Dr Benedicto Montenegro,mediana de leitos = 50.0 (corte: > 50),11
+ETAPA B,2084147,,mediana de leitos = 10.0 (corte: > 50),2
+ETAPA B,2084252,Sobrapar Campinas,mediana de leitos = 19.0 (corte: > 50),11
+ETAPA B,2084430,Hospital E Maternidade Madre Vannini Conchal Sp,mediana de leitos = 50.0 (corte: > 50),11
+ETAPA B,2085577,,mediana de leitos = 30.0 (corte: > 50),5
+ETAPA B,2085976,Psa Dr Ideir Hamamoto E Psi Givaldo Soares Da Silva,mediana de leitos = 27.0 (corte: > 50),11
+ETAPA B,2086050,Maternidade Gota De Leite,mediana de leitos = 32.0 (corte: > 50),11
+ETAPA B,2086271,Maternidade Municipal Zoraide Eva Das Dores,mediana de leitos = 19.0 (corte: > 50),11
+ETAPA B,2086336,Hospital E Maternidade Mairipora,mediana de leitos = 47.0 (corte: > 50),11
+ETAPA B,2086719,Santa Casa De Misericordia De Joanopolis,mediana de leitos = 11.0 (corte: > 50),11
+ETAPA B,2087642,Unidade Mista De Saude Mons Cid Franca Santos,mediana de leitos = 15.0 (corte: > 50),7
+ETAPA B,2089548,Santa Casa De Pitangueiras,mediana de leitos = 50.0 (corte: > 50),11
+ETAPA B,2090171,Unidade Hospitalar Dr Jose Nigro Neto Americo Brasiliense,mediana de leitos = 18.0 (corte: > 50),11
+ETAPA B,2090333,Santa Casa De Cerqueira Cesar,mediana de leitos = 41.0 (corte: > 50),11
+ETAPA B,2090376,Hospital Municipal Julio Rodrigues De Paula Colombia,mediana de leitos = 20.0 (corte: > 50),11
+ETAPA B,2090619,,mediana de leitos = 15.0 (corte: > 50),4
+ETAPA B,2091356,Hospital Vital Brazil Sao Paulo,mediana de leitos = 11.0 (corte: > 50),11
+ETAPA B,2091550,Inst Cema De Oftalmologia E Otorrinolaringologia,mediana de leitos = 31.0 (corte: > 50),11
+ETAPA B,2091577,,mediana de leitos = 2.0 (corte: > 50),4
+ETAPA B,2092093,Hospital E Maternidade Sao Vicente De Paulo Viradouro Sp,mediana de leitos = 48.0 (corte: > 50),11
+ETAPA B,2092107,,mediana de leitos = 33.0 (corte: > 50),1
+ETAPA B,2092395,Hospital Municipal Ibate,mediana de leitos = 27.0 (corte: > 50),11
+ETAPA B,2092638,Santa Casa De Fartura,mediana de leitos = 20.0 (corte: > 50),11
+ETAPA B,2092980,Hospital De Bastos,mediana de leitos = 35.0 (corte: > 50),11
+ETAPA B,2093030,,mediana de leitos = 15.0 (corte: > 50),3
+ETAPA B,2093197,,mediana de leitos = 13.0 (corte: > 50),2
+ETAPA B,2093227,Irmandade Da Santa Casa De Misericordia De Itai,mediana de leitos = 35.0 (corte: > 50),11
+ETAPA B,2093502,Hospital Sao Domingos Na Prov De Deus Nhandeara,mediana de leitos = 49.0 (corte: > 50),11
+ETAPA B,2095912,Hospital Jose Venancio,mediana de leitos = 47.0 (corte: > 50),11
+ETAPA B,2096196,Hospital Enf Antonio Policarpo De Oliveira,mediana de leitos = 49.0 (corte: > 50),11
+ETAPA B,2096617,Hospital Assistencial Maria Cavalotti Neves Potirendaba,mediana de leitos = 31.0 (corte: > 50),11
+ETAPA B,2688638,Inst Suel Abujamra,mediana de leitos = 16.0 (corte: > 50),11
+ETAPA B,2698439,Seambesp Regiao Central Historica Santos,mediana de leitos = 1.0 (corte: > 50),5
+ETAPA B,2698463,Secao Hospital E Maternidade Municipal Dr Silverio Fontes,mediana de leitos = 46.0 (corte: > 50),11
+ETAPA B,2705249,Hospital Municipal Maria Rosa Cardoso,mediana de leitos = 34.0 (corte: > 50),11
+ETAPA B,2707209,Sae Secao De Atendimento Especializado,mediana de leitos = 8.0 (corte: > 50),4
+ETAPA B,2708760,Policlinica Municipal Dr Edward Maluf Sorocaba,mediana de leitos = 1.0 (corte: > 50),5
+ETAPA B,2716275,Hospital E Maternidade Mae Do Divino Amor Na Prov Deus,mediana de leitos = 47.0 (corte: > 50),11
+ETAPA B,2716291,Hospital Joao Velloso,mediana de leitos = 33.0 (corte: > 50),11
+ETAPA B,2716593,Hospital De Misericordia Altinopolis,mediana de leitos = 31.0 (corte: > 50),11
+ETAPA B,2716801,Hospital Da Crianca Grendacc,mediana de leitos = 16.0 (corte: > 50),9
+ETAPA B,2745402,Santa Casa De Misericordia De Florida Paulista,mediana de leitos = 47.0 (corte: > 50),11
+ETAPA B,2745801,Hospital Sao Marcos Morro Agudo,mediana de leitos = 45.0 (corte: > 50),11
+ETAPA B,2746298,Santa Casa De Santa Rosa De Viterbo,mediana de leitos = 32.0 (corte: > 50),11
+ETAPA B,2747685,Santa Casa De Misericordia Nova Europa,mediana de leitos = 16.0 (corte: > 50),11
+ETAPA B,2747693,Santa Casa De Misericordia Ribeirao Bonito,mediana de leitos = 17.0 (corte: > 50),11
+ETAPA B,2747871,Hospital Municipal Gov Mario Covas Jr,mediana de leitos = 48.0 (corte: > 50),11
+ETAPA B,2748010,,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,2748320,,mediana de leitos = 6.0 (corte: > 50),2
+ETAPA B,2748436,Hosp Mat Benef De Charqueada,mediana de leitos = 33.0 (corte: > 50),11
+ETAPA B,2749149,Santa Casa De Misericordia De Tambau,mediana de leitos = 36.0 (corte: > 50),11
+ETAPA B,2750538,Hospital Municipal De Iepe,mediana de leitos = 18.0 (corte: > 50),11
+ETAPA B,2751011,Santa Casa Misericordia Padre Joao Schneider Martinopolis,mediana de leitos = 45.0 (corte: > 50),11
+ETAPA B,2751569,Santa Casa De Misericordia De Cerquilho,mediana de leitos = 38.0 (corte: > 50),11
+ETAPA B,2751674,Hospital E Maternidade Nossa Senhora Das Gracas,mediana de leitos = 48.0 (corte: > 50),11
+ETAPA B,2766167,Hospital E Maternidade Sao Vicente De Paulo Rio Das Pedras,mediana de leitos = 39.0 (corte: > 50),8
+ETAPA B,2773333,Santa Casa De Guararema,mediana de leitos = 35.0 (corte: > 50),11
+ETAPA B,2791668,Santa Casa De Arealva,mediana de leitos = 29.0 (corte: > 50),11
+ETAPA B,2791684,Santa Casa De Cafelandia,mediana de leitos = 48.0 (corte: > 50),11
+ETAPA B,2791706,Santa Casa De Getulina,mediana de leitos = 38.0 (corte: > 50),8
+ETAPA B,2791714,Santa Casa De Iacanga,mediana de leitos = 30.0 (corte: > 50),11
+ETAPA B,2791730,Santa Casa De Misericordia De Bocaina,mediana de leitos = 35.0 (corte: > 50),11
+ETAPA B,2791757,Santa Casa De Piratininga,mediana de leitos = 28.0 (corte: > 50),11
+ETAPA B,2791773,Centro De Referencia Modulo I Sae Ii Adt Iii Hd,mediana de leitos = 8.0 (corte: > 50),11
+ETAPA B,2792346,Upa Piracicamirim Dr Fortunato Losso Neto Piracicaba,mediana de leitos = 27.5 (corte: > 50),2
+ETAPA B,2798239,Hospital Sao Jose Itirapina,mediana de leitos = 22.0 (corte: > 50),10
+ETAPA B,2801051,Pronto Socorro Central De Diadema,mediana de leitos = 46.0 (corte: > 50),10
+ETAPA B,2811626,Hospital Metropolitano Campinas,mediana de leitos = 25.0 (corte: > 50),3
+ETAPA B,2831503,,mediana de leitos = 6.0 (corte: > 50),2
+ETAPA B,2882949,,mediana de leitos = 26.0 (corte: > 50),4
+ETAPA B,2888491,,mediana de leitos = 36.0 (corte: > 50),4
+ETAPA B,2956098,,mediana de leitos = 24.0 (corte: > 50),4
+ETAPA B,3071448,,mediana de leitos = 20.0 (corte: > 50),4
+ETAPA B,3254631,Fundacao Penido Burnier Campinas,mediana de leitos = 4.0 (corte: > 50),7
+ETAPA B,3314766,Hospital Electro Bonini Ribeirao Preto,mediana de leitos = 35.0 (corte: > 50),11
+ETAPA B,3346110,,mediana de leitos = 19.0 (corte: > 50),1
+ETAPA B,3701832,,mediana de leitos = 31.0 (corte: > 50),1
+ETAPA B,3825752,Pronto Socorro Pestana P S Andre Sacco,mediana de leitos = 21.0 (corte: > 50),11
+ETAPA B,3828107,Pronto Socorro Dr Osmar Mesquita,mediana de leitos = 12.0 (corte: > 50),9
+ETAPA B,3949621,Hospital Municipal Dr Aucipio Da Silva Oliveira Junior,mediana de leitos = 33.0 (corte: > 50),11
+ETAPA B,4047613,Pronto Socorro Da Vila Dirce,mediana de leitos = 17.0 (corte: > 50),11
+ETAPA B,4048660,Ums De Juquitiba,mediana de leitos = 10.5 (corte: > 50),2
+ETAPA B,4050665,Pronto Socorro Municipal De Taubate,mediana de leitos = 5.0 (corte: > 50),2
+ETAPA B,4390563,,mediana de leitos = 20.0 (corte: > 50),2
+ETAPA B,4702069,,mediana de leitos = 7.0 (corte: > 50),2
+ETAPA B,5033543,Casa Transitoria Andre Luiz,mediana de leitos = 40.0 (corte: > 50),11
+ETAPA B,5130883,Hsolhos,mediana de leitos = 8.0 (corte: > 50),8
+ETAPA B,5435072,Pronto Socorro Jardim Jacira,mediana de leitos = 10.0 (corte: > 50),1
+ETAPA B,5437156,Hospital Local De Sapopemba,mediana de leitos = 39.0 (corte: > 50),11
+ETAPA B,5451612,Instituto De Reabilitacao Lucy Montoro,mediana de leitos = 49.0 (corte: > 50),11
+ETAPA B,5550874,,mediana de leitos = 40.0 (corte: > 50),1
+ETAPA B,5851084,Quarteirao Da Saude,mediana de leitos = 12.0 (corte: > 50),11
+ETAPA B,5869412,Centro De Tratamento Fabiana Macedo De Morais,mediana de leitos = 30.0 (corte: > 50),11
+ETAPA B,5887623,Hospital Estadual De Rib Preto Dr Carlos Eduardo Martinelli,mediana de leitos = 48.0 (corte: > 50),11
+ETAPA B,5932696,Ps Fenelon Guedes Pereira,mediana de leitos = 10.0 (corte: > 50),10
+ETAPA B,6014739,Policlinica,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,6024688,Psi Rene Aprigio Brunetti Da Silva,mediana de leitos = 13.0 (corte: > 50),11
+ETAPA B,6166598,,mediana de leitos = 8.0 (corte: > 50),2
+ETAPA B,6212581,Ame Ambulatorio Med De Especialidades Sta Barbara Doeste,mediana de leitos = 12.0 (corte: > 50),8
+ETAPA B,6258484,,mediana de leitos = 2.0 (corte: > 50),1
+ETAPA B,6270107,Upa Santo Antonio,mediana de leitos = 0.5 (corte: > 50),2
+ETAPA B,6270131,Upa Jaguare,mediana de leitos = 15.0 (corte: > 50),2
+ETAPA B,6451098,Hospital Dalila Ferreira Barbosa,mediana de leitos = 29.0 (corte: > 50),11
+ETAPA B,6452302,,mediana de leitos = 19.0 (corte: > 50),3
+ETAPA B,6591620,Pronto Atendimento Infantil,mediana de leitos = 26.0 (corte: > 50),11
+ETAPA B,6603378,Hospital Municipal Leonardus Van Mellis,mediana de leitos = 15.0 (corte: > 50),11
+ETAPA B,6607330,,mediana de leitos = 4.0 (corte: > 50),1
+ETAPA B,6628842,Pam Posto De Atendimento Medico Barreto,mediana de leitos = 0.0 (corte: > 50),2
+ETAPA B,6669727,Ame Ambulatorio Medico De Especialidades De Franca,mediana de leitos = 14.0 (corte: > 50),11
+ETAPA B,6680968,Hospital Municipal Santo Antonio,mediana de leitos = 9.0 (corte: > 50),11
+ETAPA B,6788122,,mediana de leitos = 8.0 (corte: > 50),2
+ETAPA B,6821626,,mediana de leitos = 2.0 (corte: > 50),1
+ETAPA B,6895263,,mediana de leitos = 5.0 (corte: > 50),2
+ETAPA B,6919456,,mediana de leitos = 14.0 (corte: > 50),2
+ETAPA B,6938361,Unidade Ambulatorial Hospital Sao Caetano,mediana de leitos = 0.0 (corte: > 50),2
+ETAPA B,6950043,,mediana de leitos = 14.0 (corte: > 50),3
+ETAPA B,6950051,,mediana de leitos = 14.0 (corte: > 50),3
+ETAPA B,6992560,Ame Ambulatorio Medico De Especialidades Jundiai,mediana de leitos = 7.0 (corte: > 50),11
+ETAPA B,6998194,Hosp Mun Sorocabana,mediana de leitos = 8.0 (corte: > 50),11
+ETAPA B,7021461,Upa Sacadura Cabral,mediana de leitos = 20.0 (corte: > 50),11
+ETAPA B,7047517,Upa Jardim Santo Andre,mediana de leitos = 23.0 (corte: > 50),10
+ETAPA B,7066376,Hospital De Amor Jales,mediana de leitos = 37.0 (corte: > 50),9
+ETAPA B,7094132,Unidade De Pronto Atendimento Upa I Santa Isabel,mediana de leitos = 9.0 (corte: > 50),2
+ETAPA B,7113218,Upa Perimetral,mediana de leitos = 22.0 (corte: > 50),9
+ETAPA B,7210094,Hospital Municipal De Conchas,mediana de leitos = 23.5 (corte: > 50),10
+ETAPA B,7228163,Pronto Socorro Central,mediana de leitos = 13.0 (corte: > 50),11
+ETAPA B,7299532,,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,7327021,,mediana de leitos = 2.0 (corte: > 50),1
+ETAPA B,7371349,Hospital Dr Olavo Horneaux De Moura Sao Vicente,mediana de leitos = 39.0 (corte: > 50),9
+ETAPA B,7378394,Unidade Hospitalar M Boi Mirim Ii,mediana de leitos = 5.0 (corte: > 50),10
+ETAPA B,7420595,,mediana de leitos = 23.5 (corte: > 50),4
+ETAPA B,7496117,,mediana de leitos = 9.0 (corte: > 50),3
+ETAPA B,7544529,Inst De Infect Emilio Ribas Ii Baixada Santista,mediana de leitos = 46.0 (corte: > 50),11
+ETAPA B,7603274,Hospital Municipal Sao Jose,mediana de leitos = 19.0 (corte: > 50),11
+ETAPA B,7615280,Cantinho Do Ceu Ribeirao Preto,mediana de leitos = 35.0 (corte: > 50),11
+ETAPA B,7682581,Ps Jose Ibrahin,mediana de leitos = 26.5 (corte: > 50),8
+ETAPA B,7684452,Hol Clinica Medica Oftalmologica Limeira,mediana de leitos = 2.0 (corte: > 50),5
+ETAPA B,7864124,,mediana de leitos = 50.0 (corte: > 50),1
+ETAPA B,8002959,,mediana de leitos = 16.0 (corte: > 50),1
+ETAPA B,9211861,Upa Iii Dr Thelmo De Almeida Cruz,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA B,9232141,Ame Amb Medico De Esp Francesco Leonardo Beira De Amparo,mediana de leitos = 2.0 (corte: > 50),7
+ETAPA B,9267263,Unidade De Retaguarda De Urgencia E Diagnostico Do Melhado,mediana de leitos = 23.0 (corte: > 50),5
+ETAPA B,9297715,,mediana de leitos = 18.0 (corte: > 50),2
+ETAPA B,9314687,,mediana de leitos = 2.0 (corte: > 50),4
+ETAPA B,9567674,,mediana de leitos = 1.0 (corte: > 50),3
+ETAPA B,9580743,Ame Sao Vicente,mediana de leitos = 10.0 (corte: > 50),7
+ETAPA B,9677011,,mediana de leitos = 0.0 (corte: > 50),1
+ETAPA C1,102083,Hospital De Campanha Covid 19 Sms Sp Anhembi P 38,hospital de campanha COVID (produção restrita a [2020]),1
+ETAPA C1,104795,Hospital De Campanha Covid 19 Hospital Vitoria,"hospital de campanha COVID (produção restrita a [2020, 2021]) [fora do critério literal de classe — regra ampliada D-C1]",2
+ETAPA C1,105759,Hospital De Campanha Covid 19 Hospital De Urgencia,"hospital de campanha COVID (produção restrita a [2020, 2021]) [fora do critério literal de classe — regra ampliada D-C1]",2
+ETAPA C1,105856,Hospital De Campanha Covid 19 Ser,hospital de campanha COVID (produção restrita a [2020]),1
+ETAPA C1,109746,Hospital De Campanha Covid 19 Pedro Dell Antonia,"hospital de campanha COVID (produção restrita a [2020, 2021]) [fora do critério literal de classe — regra ampliada D-C1]",2
+ETAPA C1,113123,Hospital De Campanha Covid 19 Sms Sp Anhembi P 35,hospital de campanha COVID (produção restrita a [2020]),1
+ETAPA D,8478,,presente em 5/11 anos com produção,5
+ETAPA D,9539,,presente em 8/11 anos com produção,8
+ETAPA D,9636,,presente em 1/11 anos com produção,1
+ETAPA D,92894,Hospital Regional Do Litoral Norte,presente em 6/11 anos com produção,6
+ETAPA D,102075,Hospital Municipal Da Bela Vista Santa Dulce Dos Pobres,presente em 5/11 anos com produção,5
+ETAPA D,102105,Hospital Municipal Brasilandia,presente em 6/11 anos com produção,6
+ETAPA D,105767,Hospital De Campanha Covid 19 Hospital Anchieta,presente em 3/11 anos com produção,3
+ETAPA D,127604,Hospital De Campanha Covid 19 Jardim Paulista,presente em 6/11 anos com produção,6
+ETAPA D,158100,Hospital Municipal Brigadeiro,presente em 3/11 anos com produção,3
+ETAPA D,161438,Hospital Municipal Guarapiranga,presente em 6/11 anos com produção,6
+ETAPA D,189979,Hospital De Campanha Covid 19 Caraguatatuba,presente em 3/11 anos com produção,3
+ETAPA D,605484,Amhe Med Sorocaba,presente em 5/11 anos com produção,5
+ETAPA D,2023644,,presente em 3/11 anos com produção,3
+ETAPA D,2025523,,presente em 4/11 anos com produção,4
+ETAPA D,2058332,,presente em 6/11 anos com produção,6
+ETAPA D,2058391,,presente em 2/11 anos com produção,2
+ETAPA D,2058502,,presente em 2/11 anos com produção,2
+ETAPA D,2058774,,presente em 2/11 anos com produção,2
+ETAPA D,2077469,,presente em 1/11 anos com produção,1
+ETAPA D,2078023,,presente em 4/11 anos com produção,4
+ETAPA D,2078236,,presente em 4/11 anos com produção,4
+ETAPA D,2078570,Hospital Cantareira,presente em 4/11 anos com produção,4
+ETAPA D,2078589,,presente em 1/11 anos com produção,1
+ETAPA D,2078597,,presente em 3/11 anos com produção,3
+ETAPA D,2079038,Hospital Sao Paulo Ribeirao Preto,presente em 2/11 anos com produção,2
+ETAPA D,2079275,Hospital Ribeirao Preto,presente em 6/11 anos com produção,6
+ETAPA D,2079569,,presente em 1/11 anos com produção,1
+ETAPA D,2080656,,presente em 1/11 anos com produção,1
+ETAPA D,2080672,,presente em 3/11 anos com produção,3
+ETAPA D,2080699,Hospital Unimed Piracicaba,presente em 5/11 anos com produção,5
+ETAPA D,2080729,,presente em 3/11 anos com produção,3
+ETAPA D,2080818,,presente em 2/11 anos com produção,2
+ETAPA D,2081113,Hospital Santa Filomena De Rio Claro,presente em 8/11 anos com produção,8
+ETAPA D,2081288,,presente em 3/11 anos com produção,3
+ETAPA D,2081547,,presente em 4/11 anos com produção,4
+ETAPA D,2081644,Hospital Frei Galvao,presente em 10/11 anos com produção,10
+ETAPA D,2081946,Casa De Saude,presente em 3/11 anos com produção,3
+ETAPA D,2082616,,presente em 4/11 anos com produção,4
+ETAPA D,2082624,Hospital Japones Santa Cruz,presente em 8/11 anos com produção,8
+ETAPA D,2082683,,presente em 1/11 anos com produção,1
+ETAPA D,2082918,,presente em 4/11 anos com produção,4
+ETAPA D,2083221,,presente em 3/11 anos com produção,3
+ETAPA D,2084198,,presente em 5/11 anos com produção,5
+ETAPA D,2084279,,presente em 2/11 anos com produção,2
+ETAPA D,2084287,,presente em 4/11 anos com produção,4
+ETAPA D,2086263,,presente em 4/11 anos com produção,4
+ETAPA D,2089084,,presente em 1/11 anos com produção,1
+ETAPA D,2089637,,presente em 2/11 anos com produção,2
+ETAPA D,2089777,,presente em 1/11 anos com produção,1
+ETAPA D,2096625,,presente em 1/11 anos com produção,1
+ETAPA D,2097605,,presente em 3/11 anos com produção,3
+ETAPA D,2708558,,presente em 2/11 anos com produção,2
+ETAPA D,2751747,,presente em 4/11 anos com produção,4
+ETAPA D,2752077,Hosp Do Serv Pub Municipal Hspm,presente em 8/11 anos com produção,8
+ETAPA D,3058808,,presente em 4/11 anos com produção,4
+ETAPA D,3529282,,presente em 3/11 anos com produção,3
+ETAPA D,3880966,,presente em 4/11 anos com produção,4
+ETAPA D,4123077,,presente em 3/11 anos com produção,3
+ETAPA D,4233646,,presente em 2/11 anos com produção,2
+ETAPA D,4943309,,presente em 1/11 anos com produção,1
+ETAPA D,5171946,Hospital Sao Lucas Ribeirania,presente em 1/11 anos com produção,1
+ETAPA D,6585019,,presente em 1/11 anos com produção,1
+ETAPA D,6817203,Hospital De Clinicas Caieiras,presente em 1/11 anos com produção,1
+ETAPA D,6891411,Ibcc Unidade Jacana,presente em 5/11 anos com produção,5
+ETAPA D,6984649,Bp Hospital Filantropico,presente em 7/11 anos com produção,7
+ETAPA D,6998704,Complexo Hospitalar Dos Estivadores,presente em 9/11 anos com produção,9
+ETAPA D,7252455,Ais Uninove Vergueiro,presente em 3/11 anos com produção,3
+ETAPA D,7400926,Fundacao Hospital Regional Do Cancer,presente em 5/11 anos com produção,5
+ETAPA D,7894260,,presente em 2/11 anos com produção,2
+ETAPA D,7947984,Complexo Municipal De Saude,presente em 10/11 anos com produção,10
+ETAPA D,7965192,,presente em 3/11 anos com produção,3
+ETAPA D,8005877,Hospital Sao Marcos Jaboticabal,presente em 6/11 anos com produção,6
+ETAPA D,9377255,,presente em 4/11 anos com produção,4
+ETAPA D,9425802,Hospital Regional De Piracicaba,presente em 8/11 anos com produção,8
+ETAPA D,9465464,Hosp Mun Josanias Castanha Braga,presente em 6/11 anos com produção,6
+ETAPA D,9491112,Hospital Regional De Sorocaba,presente em 8/11 anos com produção,8
+ETAPA D,9491252,Dr Rubens Savastano Hospital Regional De Sao Jose Dos Campos,presente em 8/11 anos com produção,8
+ETAPA D,9556095,Hospital Regional De Registro Registro,presente em 7/11 anos com produção,7
+ETAPA D,9639659,Santa Casa De Misericordia De Cosmopolis,presente em 7/11 anos com produção,7
+ETAPA D,9662561,Hospital De Amor Nossa Senhora,presente em 2/11 anos com produção,2
+ETAPA D,9680500,Ahbb,presente em 8/11 anos com produção,8
+ETAPA D,9773657,Hospital Estadual De Serrana,presente em 7/11 anos com produção,7
+ETAPA E,2042894,Secao Pronto Socorro Central Sepros C,sem pontuação de Barcelona na planilha de classificação,11
+ETAPA E,2078031,Hospital Santa Tereza De Ribeirao Preto,sem pontuação de Barcelona na planilha de classificação,11
+ETAPA E,2082209,Ps E Maternidade Nair Fonseca Leitao Arantes,sem pontuação de Barcelona na planilha de classificação,11

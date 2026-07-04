@@ -1,0 +1,11 @@
+﻿cnes,ano,nome_fantasia,municipio,porte_hospital,faixa_complex,mort_sem_excl
+197831,2022,,Campinas,HPP,,1.0
+21520,2020,Upa Vila Luzita,Santo Andre,HPP,,0.8095238095238095
+2708558,2022,,Sorocaba,Médio Porte,,0.75
+2081946,2021,Casa De Saude,Campinas,Médio Porte,,0.5126050420168067
+105767,2022,,Sao Bernardo Do Campo,HPP,,0.5
+5171946,2021,Hospital Sao Lucas Ribeirania,Ribeirao Preto,Médio Porte,,0.4666666666666667
+9662561,2021,Hospital De Amor Nossa Senhora,Barretos,Médio Porte,,0.42655935613682094
+9465464,2020,Hosp Mun Josanias Castanha Braga,Sao Paulo,HPP,4.0,0.42584167424931757
+2081946,2020,Casa De Saude,Campinas,Médio Porte,,0.38571428571428573
+6817203,2021,Hospital De Clinicas Caieiras,Caieiras,Médio Porte,,0.38461538461538464

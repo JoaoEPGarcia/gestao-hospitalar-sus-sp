@@ -1,0 +1,95 @@
+\section{O painel de dados e como ler este documento}
+\label{sec:painel}
+
+Esta parte do documento apresenta a Análise Exploratória dos dados da
+pesquisa: antes de qualquer conclusão sobre o efeito do modelo de
+gestão, é preciso conhecer em detalhe o material com que trabalhamos.
+O que se faz aqui é responder perguntas simples e fundamentais: como se
+distribuem os indicadores de desempenho entre os hospitais? Quem são os
+hospitais de cada categoria de gestão e eles são comparáveis entre si?
+O que aconteceu nos anos da pandemia? O que os dados mostram nos cinco
+hospitais que trocaram a administração Direta pela gestão por OSS? E
+onde estão os problemas de qualidade de registro que precisam de
+cuidado?
+
+\subsection{O painel}
+
+A base é o painel consolidado do projeto, com \textbf{314 hospitais
+acompanhados ano a ano de 2015 a 2025, totalizando 3.454 observações}
+(uma observação corresponde a um hospital em um ano). O painel é
+\textbf{balanceado}: todos os 314 hospitais aparecem nos 11 anos, sem
+buracos, o que permite comparar a evolução de cada um deles em bases
+iguais. Esse conjunto resulta de um funil documentado de seleção que
+partiu de 830 estabelecimentos da base bruta do SIH/SUS e reteve
+apenas hospitais com porte mínimo (mais de 50 leitos na mediana dos
+anos), produção contínua no período e classificação de complexidade
+disponível, excluindo ainda os hospitais de campanha da pandemia.
+
+Os indicadores analisados são os cinco oficiais do estudo, sempre nas
+versões que excluem as internações por COVID: \textbf{mortalidade
+geral} (proporção de internações que terminam em óbito);
+\textbf{mortalidade ajustada}, que exclui os óbitos fetais, maternos e
+neonatais; \textbf{tempo médio de permanência} (TMP, em dias);
+\textbf{custo por saída} (valor pago por internação encerrada, em
+reais); e \textbf{fração de alta complexidade} (proporção das
+internações classificadas como de alta complexidade). A eles se somam
+as duas \textbf{taxas de ocupação} (internação e UTI), em escala
+percentual.
+
+Três regras valem para todo o documento. Primeira: a categoria de
+gestão de cada hospital (Direta, OSS, Público Municipal, Filantrópico,
+Privado) segue a classificação assistencial do SIH como definição
+adotada pela equipe; a categoria \textbf{Privado reúne apenas 3
+hospitais} e por isso nunca deve ser lida como retrato de um grupo,
+apenas registrada. Segunda: o \textbf{porte} de cada hospital é fixo,
+calculado sobre a mediana de leitos de todos os anos com os cortes
+oficiais (até 50 leitos, pequeno porte; 51 a 150, médio; 151 a 500,
+grande; acima de 500, especial); como o funil já excluiu os pequenos, o
+painel tem \textbf{173 hospitais médios, 130 grandes e 11 especiais}, e
+o rótulo anual do SIH, que oscila com o cadastro, não é usado.
+Terceira: nas análises que envolvem mortalidade, a complexidade do
+hospital entra sempre pela versão \textbf{estrutural} do escore
+(baseada só em estrutura física e tecnológica), nunca pela versão que
+usa a própria mortalidade, para não misturar causa e consequência.
+
+\subsection{Guia rápido de leitura dos gráficos}
+
+Alguns tipos de gráfico e de medida se repetem ao longo do documento;
+vale fixá los uma única vez, em linguagem direta.
+
+\textbf{Mediana e média.} A mediana é o valor do hospital do meio da
+fila: metade dos hospitais está abaixo dela, metade acima. A média é a
+soma dividida pelo total e é sensível a valores extremos: um único
+hospital muito caro puxa a média para cima, mas quase não move a
+mediana. Como nossos indicadores têm valores extremos legítimos, a
+mediana é quase sempre o retrato mais fiel do hospital típico, e por
+isso é a medida preferida aqui. Os \textbf{percentis} generalizam a
+ideia: o percentil 90 (p90) é o valor abaixo do qual estão 90\% dos
+hospitais.
+
+\textbf{Histograma.} É a fotografia da distribuição: o eixo horizontal
+traz o valor do indicador e a altura de cada barra mostra quantas
+observações caem naquele trecho. Onde as barras são altas, os hospitais
+se concentram; caudas compridas para a direita indicam poucos casos com
+valores muito altos.
+
+\textbf{Gráfico de violino.} É um histograma de pé e espelhado, um por
+categoria: a silhueta engorda onde há mais hospitais. As linhas
+internas marcam os quartis e o número impresso é a mediana do grupo.
+
+\textbf{Gráfico QQ.} Compara os dados reais com um molde matemático de
+distribuição. Se os pontos seguem a reta, o molde descreve bem os
+dados; desvios sistemáticos da reta indicam onde o molde falha. O
+número r que acompanha cada QQ resume essa aderência: quanto mais
+próximo de 1, melhor.
+
+\textbf{AIC.} É uma nota de qualidade de ajuste usada para comparar
+moldes de distribuição entre si: \textbf{quanto menor o AIC, melhor o
+molde descreve os dados}. A nota só serve para comparação; o valor
+isolado não tem interpretação.
+
+\textbf{Escala logarítmica.} Alguns gráficos usam eixo em escala
+logarítmica, em que as marcas avançam por multiplicação (100, 1.000,
+10.000) em vez de soma. Isso permite enxergar ao mesmo tempo hospitais
+de R\$~500 e de R\$~20.000 por saída sem que os pequenos virem um
+borrão; os rótulos dos eixos mostram sempre os valores reais.

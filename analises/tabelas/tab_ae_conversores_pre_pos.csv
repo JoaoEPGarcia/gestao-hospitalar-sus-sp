@@ -1,0 +1,26 @@
+﻿cnes,hospital,ano_conversao,indicador,mediana_pre,mediana_pos,variacao_relativa
+2081695,Conjunto Hospitalar Sorocaba,2019,mort_all,0.0934,0.0795,-0.1484
+2081695,Conjunto Hospitalar Sorocaba,2019,mort_sem_excl,0.0934,0.0795,-0.1486
+2081695,Conjunto Hospitalar Sorocaba,2019,tmp,8.2899,7.1271,-0.1403
+2081695,Conjunto Hospitalar Sorocaba,2019,custo_saida,1768.2665,2110.219,0.1934
+2081695,Conjunto Hospitalar Sorocaba,2019,pct_alta_complex,0.0927,0.1031,0.1122
+2078287,Centro De Referencia Da Saude Da Mulher Sao Paulo,2023,mort_all,0.0755,0.0457,-0.395
+2078287,Centro De Referencia Da Saude Da Mulher Sao Paulo,2023,mort_sem_excl,0.0755,0.0457,-0.395
+2078287,Centro De Referencia Da Saude Da Mulher Sao Paulo,2023,tmp,4.1175,3.3956,-0.1753
+2078287,Centro De Referencia Da Saude Da Mulher Sao Paulo,2023,custo_saida,1469.5493,1302.6718,-0.1136
+2078287,Centro De Referencia Da Saude Da Mulher Sao Paulo,2023,pct_alta_complex,0.2836,0.2464,-0.131
+2082225,Hospital Katia De Souza Rodrigues Taipas Sao Paulo,2025,mort_all,0.079,0.0647,-0.1815
+2082225,Hospital Katia De Souza Rodrigues Taipas Sao Paulo,2025,mort_sem_excl,0.0789,0.0645,-0.1828
+2082225,Hospital Katia De Souza Rodrigues Taipas Sao Paulo,2025,tmp,5.4146,5.3528,-0.0114
+2082225,Hospital Katia De Souza Rodrigues Taipas Sao Paulo,2025,custo_saida,689.3618,977.0697,0.4174
+2082225,Hospital Katia De Souza Rodrigues Taipas Sao Paulo,2025,pct_alta_complex,0.0003,0.0005,0.3483
+2091755,Hospital Geral De Vila Penteado Dr Jose Pangella Sao Paulo,2025,mort_all,0.0748,0.0831,0.1108
+2091755,Hospital Geral De Vila Penteado Dr Jose Pangella Sao Paulo,2025,mort_sem_excl,0.0748,0.0831,0.1108
+2091755,Hospital Geral De Vila Penteado Dr Jose Pangella Sao Paulo,2025,tmp,5.0304,5.4994,0.0932
+2091755,Hospital Geral De Vila Penteado Dr Jose Pangella Sao Paulo,2025,custo_saida,650.5882,1246.1275,0.9154
+2091755,Hospital Geral De Vila Penteado Dr Jose Pangella Sao Paulo,2025,pct_alta_complex,0.0203,0.0766,2.7807
+2750511,Hospital Estadual Dr Odilo Antunes De Siqueira P Prudente,2025,mort_all,0.006,0.0068,0.1339
+2750511,Hospital Estadual Dr Odilo Antunes De Siqueira P Prudente,2025,mort_sem_excl,0.006,0.0065,0.0867
+2750511,Hospital Estadual Dr Odilo Antunes De Siqueira P Prudente,2025,tmp,3.7151,3.9146,0.0537
+2750511,Hospital Estadual Dr Odilo Antunes De Siqueira P Prudente,2025,custo_saida,879.3047,1082.2733,0.2308
+2750511,Hospital Estadual Dr Odilo Antunes De Siqueira P Prudente,2025,pct_alta_complex,0.0,0.0,

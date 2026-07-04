@@ -1,0 +1,182 @@
+﻿======================================================================
+INSPEÇÃO DE PLANILHAS SIH/SUS + CLASSIFICAÇÃO
+======================================================================
+
+======================================================================
+  ARQUIVO CLASSIFICAÇÃO : 20260303 - Classificação Hospitais.xlsx
+  Abas  : ['Com Municípios']
+  Aba   : Com Municípios
+  Cabeçalhos (13):
+    ['CNES', 'Instituição', 'Leitos', 'Salas Cirúrgicas', 'UTI', 'Cirurgia Torácica', 'Neurocirurgia', 'Cirurgia Pediátrica', 'Pontuação', 'Classificação', 'Hospital?', 'cód IBGE', 'UF ']
+  *** AUSENTES : ['UF']
+  --- EXTRAS   : ['UF ']
+  Amostra linha 1: [8028, 'HOSPITAL MUNICIPAL ANTONIO GIGLIO', 181, 5, 20, 8, 4, 93, 346, 4, 'hospital', 353440, 'SP']
+  Amostra linha 2: [8036, 'HOSPITAL MATERNIDADE AMADOR AGUIAR', 157, 3, 18, 0, 0, 22, 260, 4, 'hospital', 353440, 'SP']
+  !!! DIVERGÊNCIA: colunas ausentes: ['UF']
+  !!! INFO: colunas extras: ['UF ']
+======================================================================
+
+Arquivos SIH encontrados: 11
+  2015: 20260607 - 2015.xlsx
+  2016: 20260605 - 2016.xlsx
+  2017: 20260607 - 2017.xlsx
+  2018: 20260607 - 2018.xlsx
+  2019: 20260607 - 2019.xlsx
+  2020: 20260611 - 2020.xlsx
+  2021: 20260612 - 2021.xlsx
+  2022: 20260605 - 2022.xlsx
+  2023: 20260605 - 2023.xlsx
+  2024: 20260605 - 2024.xlsx
+  2025: 20260605 - 2025.xlsx
+
+INSPECIONANDO CADA ARQUIVO SIH...
+
+----------------------------------------------------------------------
+  ARQUIVO : 20260607 - 2015.xlsx  (ano=2015)
+  Abas    : ['Estado - 2015', 'Capital - 2015']
+  Aba estado  : Estado - 2015
+  Aba capital : Capital - 2015
+  Colunas None (padding): 7
+  Cabeçalhos brutos (40):
+    ['CNES', 'NOME FANTASIA', 'CO_PROCEDIMENTO', 'NO_PROCEDIMENTO', 'QTDE', 'SomaDeDIAS_PERM', 'SomaDeUTI_MES_TO', 'VALOR TOTAL', 'DESFECHO', 'FINANCIMANTO', 'COMPLEX', 'Faixa', 'SEXO', 'Cód Grupo', 'Nome do Grupo', 'Cód Subgrupo', 'Nome Subgrupo', 'Classificação assistencial', 'Leitos Internação', 'Leitos SUS', 'UTI ', 'UTI SUS', 'Total Leitos', 'Total Leitos SUS', 'Diárias Internação Ano', 'Diárias UTI Ano', 'Porte Hospital', 'Ocupação Internação', 'Ocupação UTI', 'Cód IBGE', 'Município', 'Tipo de Hospital', 'Especialização', None, None, None, None, None, None, None]
+  Cabeçalhos normalizados (sem None) (33):
+    ['CNES', 'NOME FANTASIA', 'CO_PROCEDIMENTO', 'NO_PROCEDIMENTO', 'QTDE', 'SomaDeDIAS_PERM', 'SomaDeUTI_MES_TO', 'VALOR TOTAL', 'DESFECHO', 'FINANCIMANTO', 'COMPLEX', 'Faixa', 'SEXO', 'Cód Grupo', 'Nome do Grupo', 'Cód Subgrupo', 'Nome Subgrupo', 'Classificação assistencial', 'Leitos Internação', 'Leitos SUS', 'UTI ', 'UTI SUS', 'Total Leitos', 'Total Leitos SUS', 'Diárias Internação Ano', 'Diárias UTI Ano', 'Porte Hospital', 'Ocupação Internação', 'Ocupação UTI', 'Cód IBGE', 'Município', 'Tipo de Hospital', 'Especialização']
+  idx QTDE=4  idx Total Leitos=22
+  Amostra linha 1: [8028, 'HOSPITAL MUNICIPAL ANTONIO GIGLIO', 301060010, 'DIAGNOSTICO E/OU ATENDIMENTO DE URGENCIA EM CLINICA PEDIATRICA', 10, 9, 0, 472.7, 'Alta melhorado', 'Média e Alta Complexidade (MAC)', 'Média complexidade', '< 1 ano', 'M', 3, 'Procedimentos clinicos', 301, 'Consultas / Atendimentos / Acompanhamentos', 'Público Municipal', None, None, None, None, None, None, None, None, None, None, None, 353440, 'Osasco', '05 HOSPITAL GERAL', 'N/A', None, None, None, None, None, None, None]
+
+----------------------------------------------------------------------
+  ARQUIVO : 20260605 - 2016.xlsx  (ano=2016)
+  Abas    : ['SP - 2016 ', 'Capital - 2016']
+  Aba estado  : SP - 2016 
+  Aba capital : Capital - 2016
+  Colunas None (padding): 0
+  Cabeçalhos brutos (33):
+    ['CNES', 'NOME FANTASIA', 'CO_PROCEDIMENTO', 'NO_PROCEDIMENTO', 'QTDE', 'SomaDeDIAS_PERM', 'SomaDeUTI_MES_TO', 'VALOR TOTAL', 'DESFECHO', 'FINANCIMANTO', 'COMPLEX', 'Faixa', 'SEXO', 'Cód Grupo', 'Nome do Grupo', 'Cód Subgrupo', 'Nome Subgrupo', 'Classificação assistencial', 'Leitos Internação', 'Leitos SUS', 'UTI ', 'UTI SUS', 'Total Leitos', 'Total Leitos SUS', 'Diárias Internação Ano', 'Diárias UTI Ano', 'Porte Hospital', 'Ocupação Internação', 'Ocupação UTI', 'Cód IBGE', 'Município', 'Tipo de Hospital', 'Especialização']
+  Cabeçalhos normalizados (sem None) (33):
+    ['CNES', 'NOME FANTASIA', 'CO_PROCEDIMENTO', 'NO_PROCEDIMENTO', 'QTDE', 'SomaDeDIAS_PERM', 'SomaDeUTI_MES_TO', 'VALOR TOTAL', 'DESFECHO', 'FINANCIMANTO', 'COMPLEX', 'Faixa', 'SEXO', 'Cód Grupo', 'Nome do Grupo', 'Cód Subgrupo', 'Nome Subgrupo', 'Classificação assistencial', 'Leitos Internação', 'Leitos SUS', 'UTI ', 'UTI SUS', 'Total Leitos', 'Total Leitos SUS', 'Diárias Internação Ano', 'Diárias UTI Ano', 'Porte Hospital', 'Ocupação Internação', 'Ocupação UTI', 'Cód IBGE', 'Município', 'Tipo de Hospital', 'Especialização']
+  idx QTDE=4  idx Total Leitos=22
+  Amostra linha 1: [8028, 'HOSPITAL MUNICIPAL ANTONIO GIGLIO', 301060010, 'DIAGNOSTICO E/OU ATENDIMENTO DE URGENCIA EM CLINICA PEDIATRICA', 1, 1, 0, 152.71, 'Alta curado', 'Média e Alta Complexidade (MAC)', 'Média complexidade', '1 a 5 anos', 'M', 3, 'Procedimentos clinicos', 301, 'Consultas / Atendimentos / Acompanhamentos', 'Público Municipal', None, None, None, None, None, None, None, None, None, None, None, 353440, 'Osasco', '05 HOSPITAL GERAL', 'N/A']
+
+----------------------------------------------------------------------
+  ARQUIVO : 20260607 - 2017.xlsx  (ano=2017)
+  Abas    : ['Estado - 2017', 'Capital - 2017']
+  Aba estado  : Estado - 2017
+  Aba capital : Capital - 2017
+  Colunas None (padding): 0
+  Cabeçalhos brutos (33):
+    ['CNES', 'NOME FANTASIA', 'CO_PROCEDIMENTO', 'NO_PROCEDIMENTO', 'QTDE', 'SomaDeDIAS_PERM', 'SomaDeUTI_MES_TO', 'VALOR TOTAL', 'DESFECHO', 'FINANCIMANTO', 'COMPLEX', 'Faixa', 'SEXO', 'Cód Grupo', 'Nome do Grupo', 'Cód Subgrupo', 'Nome Subgrupo', 'Classificação assistencial', 'Leitos Internação', 'Leitos SUS', 'UTI ', 'UTI SUS', 'Total Leitos', 'Total Leitos SUS', 'Diárias Internação Ano', 'Diárias UTI Ano', 'Porte Hospital', 'Ocupação Internação', 'Ocupação UTI', 'Cód IBGE', 'Município', 'Tipo de Hospital', 'Especialização']
+  Cabeçalhos normalizados (sem None) (33):
+    ['CNES', 'NOME FANTASIA', 'CO_PROCEDIMENTO', 'NO_PROCEDIMENTO', 'QTDE', 'SomaDeDIAS_PERM', 'SomaDeUTI_MES_TO', 'VALOR TOTAL', 'DESFECHO', 'FINANCIMANTO', 'COMPLEX', 'Faixa', 'SEXO', 'Cód Grupo', 'Nome do Grupo', 'Cód Subgrupo', 'Nome Subgrupo', 'Classificação assistencial', 'Leitos Internação', 'Leitos SUS', 'UTI ', 'UTI SUS', 'Total Leitos', 'Total Leitos SUS', 'Diárias Internação Ano', 'Diárias UTI Ano', 'Porte Hospital', 'Ocupação Internação', 'Ocupação UTI', 'Cód IBGE', 'Município', 'Tipo de Hospital', 'Especialização']
+  idx QTDE=4  idx Total Leitos=22
+  Amostra linha 1: [8028, 'HOSPITAL MUNICIPAL ANTONIO GIGLIO', 201010321, 'BIOPSIA DE OSSO / CARTILAGEM DE MEMBRO INFERIOR (POR AGULHA / CEU ABERTO)', 1, 5, 0, 252.72, 'Alta melhorado', 'Média e Alta Complexidade (MAC)', 'Média complexidade', '46 a 50 anos', 'F', 2, 'Procedimentos com finalidade diagnostica', 201, 'Coleta de material', 'Público Municipal', None, None, None, None, None, None, None, None, None, None, None, 353440, 'Osasco', '05 HOSPITAL GERAL', 'N/A']
+
+----------------------------------------------------------------------
+  ARQUIVO : 20260607 - 2018.xlsx  (ano=2018)
+  Abas    : ['Estado - 2018', 'Capital - 2018']
+  Aba estado  : Estado - 2018
+  Aba capital : Capital - 2018
+  Colunas None (padding): 0
+  Cabeçalhos brutos (33):
+    ['CNES', 'NOME FANTASIA', 'CO_PROCEDIMENTO', 'NO_PROCEDIMENTO', 'QTDE', 'SomaDeDIAS_PERM', 'SomaDeUTI_MES_TO', 'VALOR TOTAL', 'DESFECHO', 'FINANCIMANTO', 'COMPLEX', 'Faixa', 'SEXO', 'Cód Grupo', 'Nome do Grupo', 'Cód Subgrupo', 'Nome Subgrupo', 'Classificação assistencial', 'Leitos Internação', 'Leitos SUS', 'UTI ', 'UTI SUS', 'Total Leitos', 'Total Leitos SUS', 'Diárias Internação Ano', 'Diárias UTI Ano', 'Porte Hospital', 'Ocupação Internação', 'Ocupação UTI', 'Cód IBGE', 'Município', 'Tipo de Hospital', 'Especialização']
+  Cabeçalhos normalizados (sem None) (33):
+    ['CNES', 'NOME FANTASIA', 'CO_PROCEDIMENTO', 'NO_PROCEDIMENTO', 'QTDE', 'SomaDeDIAS_PERM', 'SomaDeUTI_MES_TO', 'VALOR TOTAL', 'DESFECHO', 'FINANCIMANTO', 'COMPLEX', 'Faixa', 'SEXO', 'Cód Grupo', 'Nome do Grupo', 'Cód Subgrupo', 'Nome Subgrupo', 'Classificação assistencial', 'Leitos Internação', 'Leitos SUS', 'UTI ', 'UTI SUS', 'Total Leitos', 'Total Leitos SUS', 'Diárias Internação Ano', 'Diárias UTI Ano', 'Porte Hospital', 'Ocupação Internação', 'Ocupação UTI', 'Cód IBGE', 'Município', 'Tipo de Hospital', 'Especialização']
+  idx QTDE=4  idx Total Leitos=22
+  Amostra linha 1: [8028, 'HOSPITAL MUNICIPAL ANTONIO GIGLIO', 301060010, 'DIAGNOSTICO E/OU ATENDIMENTO DE URGENCIA EM CLINICA PEDIATRICA', 2, 1, 0, 94.54, 'Alta com previsão de retorno p/acomp do paciente', 'Média e Alta Complexidade (MAC)', 'Média complexidade', '< 1 ano', 'M', 3, 'Procedimentos clinicos', 301, 'Consultas / Atendimentos / Acompanhamentos', 'Público Municipal', None, None, None, None, None, None, None, None, None, None, None, 353440, 'Osasco', '05 HOSPITAL GERAL', 'N/A']
+
+----------------------------------------------------------------------
+  ARQUIVO : 20260607 - 2019.xlsx  (ano=2019)
+  Abas    : ['Estado - 2019', 'Capital - 2019']
+  Aba estado  : Estado - 2019
+  Aba capital : Capital - 2019
+  Colunas None (padding): 0
+  Cabeçalhos brutos (33):
+    ['CNES', 'NOME FANTASIA', 'CO_PROCEDIMENTO', 'NO_PROCEDIMENTO', 'QTDE', 'SomaDeDIAS_PERM', 'SomaDeUTI_MES_TO', 'VALOR TOTAL', 'DESFECHO', 'FINANCIMANTO', 'COMPLEX', 'Faixa', 'SEXO', 'Cód Grupo', 'Nome do Grupo', 'Cód Subgrupo', 'Nome Subgrupo', 'Classificação assistencial', 'Leitos Internação', 'Leitos SUS', 'UTI ', 'UTI SUS', 'Total Leitos', 'Total Leitos SUS', 'Diárias Internação Ano', 'Diárias UTI Ano', 'Porte Hospital', 'Ocupação Internação', 'Ocupação UTI', 'Cód IBGE', 'Município', 'Tipo de Hospital', 'Especialização']
+  Cabeçalhos normalizados (sem None) (33):
+    ['CNES', 'NOME FANTASIA', 'CO_PROCEDIMENTO', 'NO_PROCEDIMENTO', 'QTDE', 'SomaDeDIAS_PERM', 'SomaDeUTI_MES_TO', 'VALOR TOTAL', 'DESFECHO', 'FINANCIMANTO', 'COMPLEX', 'Faixa', 'SEXO', 'Cód Grupo', 'Nome do Grupo', 'Cód Subgrupo', 'Nome Subgrupo', 'Classificação assistencial', 'Leitos Internação', 'Leitos SUS', 'UTI ', 'UTI SUS', 'Total Leitos', 'Total Leitos SUS', 'Diárias Internação Ano', 'Diárias UTI Ano', 'Porte Hospital', 'Ocupação Internação', 'Ocupação UTI', 'Cód IBGE', 'Município', 'Tipo de Hospital', 'Especialização']
+  idx QTDE=4  idx Total Leitos=22
+  Amostra linha 1: [8028, 'HOSPITAL MUNICIPAL ANTONIO GIGLIO', 301060010, 'DIAGNOSTICO E/OU ATENDIMENTO DE URGENCIA EM CLINICA PEDIATRICA', 8, 9, 0, 589.04, 'Alta melhorado', 'Média e Alta Complexidade (MAC)', 'Média complexidade', '< 1 ano', 'M', 3, 'Procedimentos clinicos', 301, 'Consultas / Atendimentos / Acompanhamentos', 'Público Municipal', None, None, None, None, None, None, None, None, None, None, None, 353440, 'Osasco', '05 HOSPITAL GERAL', 'N/A']
+
+----------------------------------------------------------------------
+  ARQUIVO : 20260611 - 2020.xlsx  (ano=2020)
+  Abas    : ['Estado - 2020', 'Capital - 2020']
+  Aba estado  : Estado - 2020
+  Aba capital : Capital - 2020
+  Colunas None (padding): 25
+  Cabeçalhos brutos (58):
+    ['CNES', 'NOME FANTASIA', 'CO_PROCEDIMENTO', 'NO_PROCEDIMENTO', 'QTDE', 'SomaDeDIAS_PERM', 'SomaDeUTI_MES_TO', 'VALOR TOTAL', 'DESFECHO', 'FINANCIMANTO', 'COMPLEX', 'Faixa', 'SEXO', 'Cód Grupo', 'Nome do Grupo', 'Cód Subgrupo', 'Nome Subgrupo', 'Classificação assistencial', 'Leitos Internação', 'Leitos SUS', 'UTI ', 'UTI SUS', 'Total Leitos', 'Total Leitos SUS', 'Diárias Internação Ano', 'Diárias UTI Ano', 'Porte Hospital', 'Ocupação Internação', 'Ocupação UTI', 'Cód IBGE', 'Município', 'Tipo de Hospital', 'Especialização', None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+  Cabeçalhos normalizados (sem None) (33):
+    ['CNES', 'NOME FANTASIA', 'CO_PROCEDIMENTO', 'NO_PROCEDIMENTO', 'QTDE', 'SomaDeDIAS_PERM', 'SomaDeUTI_MES_TO', 'VALOR TOTAL', 'DESFECHO', 'FINANCIMANTO', 'COMPLEX', 'Faixa', 'SEXO', 'Cód Grupo', 'Nome do Grupo', 'Cód Subgrupo', 'Nome Subgrupo', 'Classificação assistencial', 'Leitos Internação', 'Leitos SUS', 'UTI ', 'UTI SUS', 'Total Leitos', 'Total Leitos SUS', 'Diárias Internação Ano', 'Diárias UTI Ano', 'Porte Hospital', 'Ocupação Internação', 'Ocupação UTI', 'Cód IBGE', 'Município', 'Tipo de Hospital', 'Especialização']
+  idx QTDE=4  idx Total Leitos=22
+  Amostra linha 1: [8028, 'Hospital Municipal Antonio Giglio', 201010208, 'BIOPSIA DE FIGADO EM CUNHA / FRAGMENTO', 1, 5, 0, 326.92, 'Alta melhorado', 'Média e Alta Complexidade (MAC)', 'Média complexidade', '66 a 70 anos', 'M', 2, 'Procedimentos com finalidade diagnostica', 201, 'Coleta de material', 'Público Municipal', None, None, None, None, None, None, None, None, None, None, None, 353440, 'Osasco', '05 HOSPITAL GERAL', 'N/A', None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+
+----------------------------------------------------------------------
+  ARQUIVO : 20260612 - 2021.xlsx  (ano=2021)
+  Abas    : ['ESTADO - 2021', 'CAPITAL - 2021']
+  Aba estado  : ESTADO - 2021
+  Aba capital : CAPITAL - 2021
+  Colunas None (padding): 29
+  Cabeçalhos brutos (62):
+    ['CNES', 'NOME FANTASIA', 'CO_PROCEDIMENTO', 'NO_PROCEDIMENTO', 'QTDE', 'SomaDeDIAS_PERM', 'SomaDeUTI_MES_TO', 'VALOR TOTAL', 'DESFECHO', 'FINANCIAMENTO', 'COMPLEX', 'Faixa', 'SEXO', 'Cód Grupo', 'Nome do Grupo', 'Cód Subgrupo', 'Nome Subgrupo', 'Classificação assistencial', 'Leitos Internação', 'Leitos SUS', 'UTI ', 'UTI SUS', 'Total Leitos', 'Total Leitos SUS', 'Diárias Internação Ano', 'Diárias UTI Ano', 'Porte Hospital', 'Ocupação Internação', 'Ocupação UTI', 'Cód IBGE', 'Município', 'Tipo de Hospital', 'Especialização', None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+  Cabeçalhos normalizados (sem None) (33):
+    ['CNES', 'NOME FANTASIA', 'CO_PROCEDIMENTO', 'NO_PROCEDIMENTO', 'QTDE', 'SomaDeDIAS_PERM', 'SomaDeUTI_MES_TO', 'VALOR TOTAL', 'DESFECHO', 'FINANCIMANTO', 'COMPLEX', 'Faixa', 'SEXO', 'Cód Grupo', 'Nome do Grupo', 'Cód Subgrupo', 'Nome Subgrupo', 'Classificação assistencial', 'Leitos Internação', 'Leitos SUS', 'UTI ', 'UTI SUS', 'Total Leitos', 'Total Leitos SUS', 'Diárias Internação Ano', 'Diárias UTI Ano', 'Porte Hospital', 'Ocupação Internação', 'Ocupação UTI', 'Cód IBGE', 'Município', 'Tipo de Hospital', 'Especialização']
+  idx QTDE=4  idx Total Leitos=22
+  Amostra linha 1: [8028, 'Hospital Municipal Antonio Giglio', 201010208, 'BIOPSIA DE FIGADO EM CUNHA / FRAGMENTO', 1, 1, 0, 238.37, 'Alta melhorado', 'Média e Alta Complexidade (MAC)', 'Média complexidade', '66 a 70 anos', 'M', 2, 'Procedimentos com finalidade diagnostica', 201, 'Coleta de material', 'Público Municipal', None, None, None, None, None, None, None, None, None, None, None, 353440, 'Osasco', '05 HOSPITAL GERAL', 'N/A', None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+
+----------------------------------------------------------------------
+  ARQUIVO : 20260605 - 2022.xlsx  (ano=2022)
+  Abas    : ['Estado - 2022', 'Capital - 2022']
+  Aba estado  : Estado - 2022
+  Aba capital : Capital - 2022
+  Colunas None (padding): 0
+  Cabeçalhos brutos (33):
+    ['CNES', 'NOME FANTASIA', 'CO_PROCEDIMENTO', 'NO_PROCEDIMENTO', 'QTDE', 'SomaDeDIAS_PERM', 'SomaDeUTI_MES_TO', 'VALOR TOTAL', 'DESFECHO', 'FINANCIMANTO', 'COMPLEX', 'Faixa', 'SEXO', 'Cód Grupo', 'Nome do Grupo', 'Cód Subgrupo', 'Nome Subgrupo', 'Classificação assistencial', 'Leitos Internação', 'Leitos SUS', 'UTI ', 'UTI SUS', 'Total Leitos', 'Total Leitos SUS', 'Diárias Internação Ano', 'Diárias UTI Ano', 'Porte Hospital', 'Ocupação Internação', 'Ocupação UTI', 'Cód IBGE', 'Município', 'Tipo de Hospital', 'Especialização']
+  Cabeçalhos normalizados (sem None) (33):
+    ['CNES', 'NOME FANTASIA', 'CO_PROCEDIMENTO', 'NO_PROCEDIMENTO', 'QTDE', 'SomaDeDIAS_PERM', 'SomaDeUTI_MES_TO', 'VALOR TOTAL', 'DESFECHO', 'FINANCIMANTO', 'COMPLEX', 'Faixa', 'SEXO', 'Cód Grupo', 'Nome do Grupo', 'Cód Subgrupo', 'Nome Subgrupo', 'Classificação assistencial', 'Leitos Internação', 'Leitos SUS', 'UTI ', 'UTI SUS', 'Total Leitos', 'Total Leitos SUS', 'Diárias Internação Ano', 'Diárias UTI Ano', 'Porte Hospital', 'Ocupação Internação', 'Ocupação UTI', 'Cód IBGE', 'Município', 'Tipo de Hospital', 'Especialização']
+  idx QTDE=4  idx Total Leitos=22
+  Amostra linha 1: [8028, 'HOSPITAL MUNICIPAL ANTONIO GIGLIO', 201010208, 'BIOPSIA DE FIGADO EM CUNHA / FRAGMENTO', 1, 4, 0, 319.09, 'Alta melhorado', 'Média e Alta Complexidade (MAC)', 'Média complexidade', '51 a 55 anos', 'F', 2, 'Procedimentos com finalidade diagnostica', 201, 'Coleta de material', 'Público Municipal', None, None, None, None, None, None, None, None, None, None, None, 353440, 'Osasco', '05 HOSPITAL GERAL', 'N/A']
+
+----------------------------------------------------------------------
+  ARQUIVO : 20260605 - 2023.xlsx  (ano=2023)
+  Abas    : ['Estado - 2023', 'Capital - 2023']
+  Aba estado  : Estado - 2023
+  Aba capital : Capital - 2023
+  Colunas None (padding): 0
+  Cabeçalhos brutos (33):
+    ['CNES', 'NOME FANTASIA', 'CO_PROCEDIMENTO', 'NO_PROCEDIMENTO', 'QTDE', 'SomaDeDIAS_PERM', 'SomaDeUTI_MES_TO', 'VALOR TOTAL', 'DESFECHO', 'FINANCIMANTO', 'COMPLEX', 'Faixa', 'SEXO', 'Cód Grupo', 'Nome do Grupo', 'Cód Subgrupo', 'Nome Subgrupo', 'Classificação assistencial', 'Leitos Internação', 'Leitos SUS', 'UTI ', 'UTI SUS', 'Total Leitos', 'Total Leitos SUS', 'Diárias Internação Ano', 'Diárias UTI Ano', 'Porte Hospital', 'Ocupação Internação', 'Ocupação UTI', 'Cód IBGE', 'Município', 'Tipo de Hospital', 'Especialização']
+  Cabeçalhos normalizados (sem None) (33):
+    ['CNES', 'NOME FANTASIA', 'CO_PROCEDIMENTO', 'NO_PROCEDIMENTO', 'QTDE', 'SomaDeDIAS_PERM', 'SomaDeUTI_MES_TO', 'VALOR TOTAL', 'DESFECHO', 'FINANCIMANTO', 'COMPLEX', 'Faixa', 'SEXO', 'Cód Grupo', 'Nome do Grupo', 'Cód Subgrupo', 'Nome Subgrupo', 'Classificação assistencial', 'Leitos Internação', 'Leitos SUS', 'UTI ', 'UTI SUS', 'Total Leitos', 'Total Leitos SUS', 'Diárias Internação Ano', 'Diárias UTI Ano', 'Porte Hospital', 'Ocupação Internação', 'Ocupação UTI', 'Cód IBGE', 'Município', 'Tipo de Hospital', 'Especialização']
+  idx QTDE=4  idx Total Leitos=22
+  Amostra linha 1: [8028, 'HOSPITAL MUNICIPAL ANTONIO GIGLIO', 201010208, 'BIOPSIA DE FIGADO EM CUNHA / FRAGMENTO', 1, 2, 0, 556.41, 'Alta melhorado', 'Média e Alta Complexidade (MAC)', 'Média complexidade', '41 a 45 anos', 'F', 2, 'Procedimentos com finalidade diagnostica', 201, 'Coleta de material', 'Público Municipal', None, None, None, None, None, None, None, None, None, None, None, 353440, 'Osasco', '05 HOSPITAL GERAL', 'N/A']
+
+----------------------------------------------------------------------
+  ARQUIVO : 20260605 - 2024.xlsx  (ano=2024)
+  Abas    : ['Estado - 2024', 'Capital - 2024']
+  Aba estado  : Estado - 2024
+  Aba capital : Capital - 2024
+  Colunas None (padding): 0
+  Cabeçalhos brutos (33):
+    ['CNES', 'NOME FANTASIA', 'CO_PROCEDIMENTO', 'NO_PROCEDIMENTO', 'QTDE', 'SomaDeDIAS_PERM', 'SomaDeUTI_MES_TO', 'VALOR TOTAL', 'DESFECHO', 'FINANCIMANTO', 'COMPLEX', 'Faixa', 'SEXO', 'Cód Grupo', 'Nome do Grupo', 'Cód Subgrupo', 'Nome Subgrupo', 'Classificação assistencial', 'Leitos Internação', 'Leitos SUS', 'UTI ', 'UTI SUS', 'Total Leitos', 'Total Leitos SUS', 'Diárias Internação Ano', 'Diárias UTI Ano', 'Porte Hospital', 'Ocupação Internação', 'Ocupação UTI', 'Cód IBGE', 'Município', 'Tipo de Hospital', 'Especialização']
+  Cabeçalhos normalizados (sem None) (33):
+    ['CNES', 'NOME FANTASIA', 'CO_PROCEDIMENTO', 'NO_PROCEDIMENTO', 'QTDE', 'SomaDeDIAS_PERM', 'SomaDeUTI_MES_TO', 'VALOR TOTAL', 'DESFECHO', 'FINANCIMANTO', 'COMPLEX', 'Faixa', 'SEXO', 'Cód Grupo', 'Nome do Grupo', 'Cód Subgrupo', 'Nome Subgrupo', 'Classificação assistencial', 'Leitos Internação', 'Leitos SUS', 'UTI ', 'UTI SUS', 'Total Leitos', 'Total Leitos SUS', 'Diárias Internação Ano', 'Diárias UTI Ano', 'Porte Hospital', 'Ocupação Internação', 'Ocupação UTI', 'Cód IBGE', 'Município', 'Tipo de Hospital', 'Especialização']
+  idx QTDE=4  idx Total Leitos=22
+  Amostra linha 1: [8028, 'HOSPITAL MUNICIPAL ANTONIO GIGLIO', 201010208, 'BIOPSIA DE FIGADO EM CUNHA / FRAGMENTO', 1, 9, 0, 542.14, 'Alta melhorado', 'Média e Alta Complexidade (MAC)', 'Média complexidade', '46 a 50 anos', 'F', 2, 'Procedimentos com finalidade diagnostica', 201, 'Coleta de material', 'Público Municipal', None, None, None, None, None, None, None, None, None, None, None, 353440, 'Osasco', '05 HOSPITAL GERAL', 'N/A']
+
+----------------------------------------------------------------------
+  ARQUIVO : 20260605 - 2025.xlsx  (ano=2025)
+  Abas    : ['Estado - 2025', 'Capital - 2025']
+  Aba estado  : Estado - 2025
+  Aba capital : Capital - 2025
+  Colunas None (padding): 5
+  Cabeçalhos brutos (39):
+    ['CNES', 'NOME FANTASIA', 'CO_PROCEDIMENTO', 'NO_PROCEDIMENTO', 'QTDE', 'SomaDeDIAS_PERM', 'SomaDeUTI_MES_TO', 'VALOR TOTAL', 'DESFECHO', 'FINANCIMANTO', 'COMPLEX', 'Faixa', 'SEXO', 'Cód Grupo', 'Nome do Grupo', 'Cód Subgrupo', 'Nome Subgrupo', 'Classificação assistencial', 'Leitos Internação', 'Leitos SUS', 'UTI ', 'UTI SUS', 'Total Leitos', 'Total Leitos SUS', 'Diárias Internação Ano', 'Diárias UTI Ano', 'Porte Hospital', 'Ocupação Internação', 'Ocupação UTI', 'Cód IBGE', 'Município', 'Tipo de Hospital', 'Especialização', None, None, None, None, None, 'Classificação Assistencial']
+  Cabeçalhos normalizados (sem None) (34):
+    ['CNES', 'NOME FANTASIA', 'CO_PROCEDIMENTO', 'NO_PROCEDIMENTO', 'QTDE', 'SomaDeDIAS_PERM', 'SomaDeUTI_MES_TO', 'VALOR TOTAL', 'DESFECHO', 'FINANCIMANTO', 'COMPLEX', 'Faixa', 'SEXO', 'Cód Grupo', 'Nome do Grupo', 'Cód Subgrupo', 'Nome Subgrupo', 'Classificação assistencial', 'Leitos Internação', 'Leitos SUS', 'UTI ', 'UTI SUS', 'Total Leitos', 'Total Leitos SUS', 'Diárias Internação Ano', 'Diárias UTI Ano', 'Porte Hospital', 'Ocupação Internação', 'Ocupação UTI', 'Cód IBGE', 'Município', 'Tipo de Hospital', 'Especialização', 'Classificação assistencial']
+  idx QTDE=4  idx Total Leitos=22
+  Amostra linha 1: [8028, 'HOSPITAL MUNICIPAL ANTONIO GIGLIO', 201010208, 'BIOPSIA DE FIGADO EM CUNHA / FRAGMENTO', 1, 14, 0, 1173.56, 'Alta melhorado', 'Média e Alta Complexidade (MAC)', 'Média complexidade', '66 a 70 anos', 'M', 2, 'Procedimentos com finalidade diagnostica', 201, 'Coleta de material', 'Público Municipal', None, None, None, None, None, None, None, None, None, None, None, 353440, 'Osasco', '05 HOSPITAL GERAL', 'N/A', None, None, None, None, 8028, 'Público Municipal']
+
+======================================================================
+RESUMO DE DIVERGÊNCIAS / ALERTAS
+======================================================================
+Nenhuma divergência encontrada — todas as premissas validadas.
+
+Inspeção concluída.

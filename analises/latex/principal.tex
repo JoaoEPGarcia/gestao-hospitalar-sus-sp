@@ -1,0 +1,81 @@
+% Documento da pesquisa: Gestão Hospitalar no SUS
+% Parte atual: Análise Exploratória do painel de hospitais SUS/SP.
+% Linguagem adaptada para leitura por gestores (não estatísticos).
+% Compilar no Overleaf com pdfLaTeX. Ver LEIAME_overleaf.txt.
+% Este arquivo substitui o antigo main.tex.
+
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[brazilian]{babel}
+% margens laterais mínimas para as imagens ocuparem quase toda a página
+\usepackage[top=2cm, bottom=2cm, left=1cm, right=1cm]{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\captionsetup{font=small, labelfont=bf}
+\captionsetup[sub]{font=footnotesize}
+
+\graphicspath{{figuras_analise_exploratoria/}}
+
+% subfigura padrão: largura quase total, uma por linha, centralizada
+\newcommand{\subfig}[2]{%
+  \begin{subfigure}[t]{0.96\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{#1}
+    \caption{#2}
+  \end{subfigure}\par\medskip}
+
+% bloco "Como ler": explicação curta e acessível de cada figura
+\newcommand{\comoler}[1]{%
+  \par\medskip
+  \noindent\begingroup\small\itshape
+  \textcolor{black!70}{\textbf{Como ler:} #1}%
+  \endgroup\par\medskip}
+
+\title{Gestão Hospitalar no SUS}
+
+\begin{document}
+
+% ══════════════════════════════ CAPA ══════════════════════════════
+\begin{titlepage}
+  \centering
+  \vspace*{2.5cm}
+  {\LARGE\bfseries Gestão Hospitalar no SUS: o Impacto do Modelo
+   Institucional e Organizacional na Prestação de Serviço\par}
+  \vspace{1.2cm}
+  {\Large Análise Exploratória do Painel de Hospitais SUS/SP,
+   2015 a 2025\par}
+  \vspace{3.5cm}
+  {\large
+   João Eduardo Pastori Garcia\\
+   {\normalsize Estatístico Responsável}\\[1.4em]
+   Priscilla Reinisch Perdicaris\\
+   {\normalsize Pesquisadora Principal}\\[1.4em]
+   Alberto Tomasi Diniz Tiefensee\\
+   {\normalsize Revisor e Responsável pelo Banco de Dados}\par}
+  \vfill
+  {\large São Paulo\\ Julho de 2026}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+\input{secoes/sec01_painel}
+\input{secoes/sec02_univariada}
+\input{secoes/sec03_distribuicoes}
+\input{secoes/sec04_categorias}
+\input{secoes/sec05_complexidade_porte}
+\input{secoes/sec06_tendencia}
+\input{secoes/sec07_conversores}
+\input{secoes/sec08_correlacao_variancia}
+\input{secoes/sec09_qualidade}
+
+\end{document}

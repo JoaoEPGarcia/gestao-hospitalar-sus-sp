@@ -1,0 +1,18 @@
+# Arquivos brutos anuais do SIH (86 a 113 MB cada; excedem o limite do
+# GitHub). Fonte: DataSUS/SIH SUS, extração da equipe. A planilha de
+# classificação Barcelona (pequena) permanece versionada.
+* - 2[0-9][0-9][0-9].xlsx
+
+# Artefatos de execução
+__pycache__/
+*.pyc
+
+# Saídas temporárias de compilação LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+
+# Configuração local da sessão
+.claude/

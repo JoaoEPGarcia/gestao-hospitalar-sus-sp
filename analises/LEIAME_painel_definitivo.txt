@@ -1,0 +1,53 @@
+PAINEL ANALÍTICO DEFINITIVO — LEIA-ME
+=====================================
+
+NOTA — a variável de modelo de gestão (modelo_gestao_proxy) usa as categorias de class_assistencial (SIH) como DEFINIÇÃO ADOTADA: PPP e Autarquia não são desmembrados e 'Público Municipal' entra como dummy única. Os 3 CNES sem pontuação de Barcelona (2042894, 2078031, 2082209) foram EXCLUÍDOS do painel (ETAPA E).
+
+Indicadores principais (mort_all, mort_sem_excl, tmp, custo_saida,
+pct_alta_complex) são as versões SEM procedimentos COVID (cód. 999),
+conforme §3 dos critérios. As versões com sufixo _com_covid existem
+apenas para comparação. Ocupação não possui versão sem-COVID
+(denominador não decomponível por procedimento).
+
+Complexidade: duas colunas coexistem por decisão da equipe (§4):
+  complexidade_estrutural — Barcelona pura; usar OBRIGATORIAMENTE em
+      modelos com mortalidade como variável dependente (circularidade).
+  complexidade_pond_mort  — Barcelona ponderada por mortalidade
+      relativa (fórmula provisória); reservada aos demais modelos.
+
+Cortes por modelo de gestão devem usar a coluna modelo_gestao_proxy
+(NUNCA class_assistencial diretamente): é nela que as decisões de
+agrupamento da equipe são materializadas.
+
+DECISÃO REGISTRADA — HU-UFSCar (5586348): classificação real
+CONFIRMADA por fonte externa — hospital público FEDERAL administrado
+pela Ebserh (empresa pública vinculada ao MEC); o rótulo 'Privado'
+do SIH NÃO corresponde à sua natureza jurídica. Por decisão da
+equipe, permanece AGRUPADO em 'Privado' no proxy, por conveniência
+estatística (eleva o grupo de n=2 para n=3). Não é erro: é escolha
+de agrupamento pragmático registrada.
+
+LIMITAÇÃO DE DESENHO (destacar no relatório): dos 5 switchers
+Direta->OSS documentados, 3 (CNES 2082225, 2091755, 2750511) só
+viram OSS em 2025 — apenas 1 ano de pós-tratamento no painel, o que
+limita o poder de identificação within-hospital. Os demais: 2081695
+(virada em 2019) e 2078287 (virada em 2023).
+
+ETAPA E — os 3 CNES sem classificação Barcelona (2042894, 2078031,
+2082209) foram EXCLUÍDOS do painel: todo hospital do painel definitivo
+tem pontuação de Barcelona.
+
+DEFINIÇÃO ADOTADA — modelo de gestão: modelo_gestao_proxy usa as
+categorias de class_assistencial (SIH) como definição adotada, sem
+desmembrar PPP/Autarquia e com 'Público Municipal' como dummy única.
+
+RESSALVA ESTATÍSTICA — categoria 'Privado' (n=3): Leforte
+Liberdade, Unimed Sorocaba e HU-UFSCar (este por agrupamento
+pragmático — ver decisão acima). O grupo mistura prestadores
+privados contratualizados de nicho com um hospital universitário
+federal de perfil assistencial distinto; com n=3, coeficientes
+dessa categoria NÃO são interpretáveis como efeito médio do modelo
+de gestão.
+
+Auditoria dos filtros: analises/tabelas/tab_auditoria_filtros.csv,
+tab_auditoria_cnes_removidos.csv e tab_auditoria_revisao_manual.csv.

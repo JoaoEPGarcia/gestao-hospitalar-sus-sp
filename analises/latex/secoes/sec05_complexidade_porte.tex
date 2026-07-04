@@ -1,0 +1,107 @@
+\section{Complexidade e porte: os grandes divisores da rede}
+\label{sec:complexidadeporte}
+
+Antes de qualquer comparação entre modelos de gestão, é preciso
+reconhecer o quanto a complexidade e o porte, sozinhos, separam os
+hospitais. As Figuras~\ref{fig:faixaA} a~\ref{fig:faixaC} mostram a
+mediana de cada indicador ao longo das faixas Barcelona de complexidade
+(da faixa 2, menor, à 6, maior), e as Figuras~\ref{fig:porteA}
+a~\ref{fig:porteC}, ao longo dos portes.
+
+O padrão é de escada: o custo mediano por saída sobe de \textbf{R\$~495
+na faixa 2 para R\$~2.772 na faixa 6} (mais de cinco vezes), o tempo de
+permanência vai de 3,27 para 6,30 dias, a fração de alta complexidade
+sai de zero e chega a 22,5\%, e a ocupação de internação sobe de 37,5\%
+para a casa dos 90\%. A mortalidade cresce com a complexidade até a
+faixa 5 (de 2,88\% para 6,40\%) e \textbf{recua na faixa 6 (5,43\%)},
+um sinal de que os hospitais de ponta convertem estrutura em resultado.
+Vale notar que metade dos 49 hospitais da faixa 2 não opera UTI. No
+porte, a mesma escada: custo mediano de \textbf{R\$~834 nos médios,
+R\$~1.470 nos grandes e R\$~2.754 nos especiais}.
+
+A conclusão para todo o restante do documento: \textbf{complexidade e
+porte precisam ser sempre levados em conta ao comparar categorias de
+gestão}, sob pena de atribuir ao modelo de gestão diferenças que são,
+na verdade, de perfil assistencial. E, pela salvaguarda definida na
+Seção~\ref{sec:painel}, a complexidade entra nas análises de
+mortalidade apenas pela versão estrutural do escore.
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_05_faixa_mort_all.png}{Mortalidade geral}
+\subfig{fig_ae_05_faixa_tmp.png}{TMP}
+\caption{Mediana da mortalidade e do TMP por faixa Barcelona de
+complexidade (2 a 6), com o valor sobre cada barra.}
+\label{fig:faixaA}
+\end{figure}
+
+\comoler{cada barra é a mediana do indicador naquela faixa de
+complexidade, com o valor impresso em cima. Na mortalidade, repare no
+degrau que sobe até a faixa 5 e desce na 6; no TMP, a escada é sempre
+ascendente.}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_05_faixa_custo_saida.png}{Custo por saída}
+\subfig{fig_ae_05_faixa_pct_alta_complex.png}{Fração alta complexidade}
+\caption{Mediana do custo por saída e da fração de alta complexidade
+por faixa Barcelona.}
+\label{fig:faixaB}
+\end{figure}
+
+\comoler{a escada do custo é a mais íngreme do documento: da faixa 2
+para a 6, a mediana mais que quintuplica. A alta complexidade parte do
+zero absoluto nas faixas baixas.}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_05_faixa_ocupacao_internacao.png}{Ocupação de
+internação}
+\subfig{fig_ae_05_faixa_ocupacao_uti.png}{Ocupação de UTI}
+\caption{Mediana das taxas de ocupação por faixa Barcelona.}
+\label{fig:faixaC}
+\end{figure}
+
+\comoler{quanto mais complexo o hospital, mais cheio ele opera. Na
+UTI, a barra da faixa 2 vale zero porque metade daqueles hospitais não
+tem UTI.}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_06_porte_mort_all.png}{Mortalidade geral}
+\subfig{fig_ae_06_porte_tmp.png}{TMP}
+\caption{Mediana da mortalidade e do TMP por porte (classificação fixa
+pela mediana de leitos: 173 hospitais médios, 130 grandes e 11
+especiais).}
+\label{fig:porteA}
+\end{figure}
+
+\comoler{mesma leitura das figuras por faixa, agora por porte:
+hospitais maiores seguram o paciente por mais tempo e têm mortalidade
+um pouco maior, coerente com casos mais graves.}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_06_porte_custo_saida.png}{Custo por saída}
+\subfig{fig_ae_06_porte_pct_alta_complex.png}{Fração alta complexidade}
+\caption{Mediana do custo por saída e da fração de alta complexidade
+por porte.}
+\label{fig:porteB}
+\end{figure}
+
+\comoler{o custo mediano dos hospitais especiais é mais de três vezes o
+dos médios, e a alta complexidade se concentra quase toda nos portes
+grande e especial.}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_06_porte_ocupacao_internacao.png}{Ocupação de
+internação}
+\subfig{fig_ae_06_porte_ocupacao_uti.png}{Ocupação de UTI}
+\caption{Mediana das taxas de ocupação por porte.}
+\label{fig:porteC}
+\end{figure}
+
+\comoler{hospitais maiores operam mais cheios, tanto na internação
+quanto na UTI: mais um retrato de que porte e pressão assistencial
+andam juntos.}

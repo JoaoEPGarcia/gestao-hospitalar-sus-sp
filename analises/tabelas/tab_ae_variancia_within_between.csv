@@ -1,0 +1,8 @@
+﻿indicador,var_between,var_within,pct_within,icc_between
+mort_all,0.0009,0.0001,0.1385,0.8615
+mort_sem_excl,0.0009,0.0001,0.1385,0.8615
+tmp,32.5119,0.6556,0.0198,0.9802
+custo_saida,2575187.0075,233158.7033,0.083,0.917
+pct_alta_complex,0.0225,0.001,0.0439,0.9561
+ocupacao_internacao,631.8622,138.1256,0.1794,0.8206
+ocupacao_uti,1342.437,712.6165,0.3468,0.6532

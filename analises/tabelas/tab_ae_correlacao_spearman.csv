@@ -1,0 +1,8 @@
+﻿,mort_all,tmp,custo_saida,pct_alta_complex,ocupacao_internacao,ocupacao_uti,complexidade_estrutural
+mort_all,1.0,0.225,0.109,0.24,0.168,0.398,0.275
+tmp,0.225,1.0,0.559,0.221,0.473,0.182,0.468
+custo_saida,0.109,0.559,1.0,0.63,0.448,0.424,0.489
+pct_alta_complex,0.24,0.221,0.63,1.0,0.32,0.446,0.547
+ocupacao_internacao,0.168,0.473,0.448,0.32,1.0,0.475,0.567
+ocupacao_uti,0.398,0.182,0.424,0.446,0.475,1.0,0.475
+complexidade_estrutural,0.275,0.468,0.489,0.547,0.567,0.475,1.0
