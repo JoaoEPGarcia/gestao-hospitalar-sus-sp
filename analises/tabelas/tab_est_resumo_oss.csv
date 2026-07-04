@@ -1,8 +1,8 @@
 ﻿modelo,coef_oss,ep_cluster,z,efeito_pct,ame_pp
 Mortalidade (geral),-0.2297,0.1332,-1.7246,,-1.1187
 Fração alta complexidade,-0.2262,0.2372,-0.9538,,
-Custo real por saída (log),-0.0696,0.095,-0.7326,-6.7249,
-"TMP (log, sem longa perm.)",-0.1076,0.0467,-2.3044,-10.1995,
+Custo real por saída (log),-0.0696,0.095,-0.733,-6.7249,
+"TMP (log, sem longa perm.)",-0.1076,0.0467,-2.3056,-10.1995,
 Produção (saídas),0.3743,0.0825,4.5356,45.3964,
 Ocupação internação,0.2122,0.0742,2.8619,23.6452,
 Ocupação UTI (intensidade),0.1856,0.0734,2.5292,20.391,

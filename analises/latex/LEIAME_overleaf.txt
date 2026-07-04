@@ -5,13 +5,16 @@ COMO COMPILAR NO OVERLEAF
 2. Faça upload de:
    a) principal.tex (este diretório; substitui o antigo main.tex,
       renomeado para evitar conflito com versões antigas)
-   b) a pasta secoes inteira (9 arquivos .tex, sec01 a sec09)
+   b) a pasta secoes inteira (13 arquivos .tex, sec01 a sec13)
    c) a pasta figuras_analise_exploratoria inteira
       (as 94 imagens .png geradas por analise_exploratoria.py)
+   d) a pasta figuras_estimacao inteira
+      (as 20 imagens .png geradas por estimacao.py)
    A estrutura final no Overleaf deve ser:
       principal.tex
-      secoes/sec01_painel.tex ... secoes/sec09_qualidade.tex
+      secoes/sec01_painel.tex ... secoes/sec13_robustez_diagnostico.tex
       figuras_analise_exploratoria/fig_ae_01_... .png (94 arquivos)
+      figuras_estimacao/fig_est_01_... .png (20 arquivos)
    Se houver um main.tex antigo no projeto Overleaf, apague o antes
    de compilar.
 3. Defina principal.tex como documento principal (Menu, Main document)

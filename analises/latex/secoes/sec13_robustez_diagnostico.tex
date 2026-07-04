@@ -1,0 +1,83 @@
+\section{Robustez e diagnóstico dos modelos}
+\label{sec:robustez}
+
+Três baterias de verificação fecham a fase de estimação.
+
+\textbf{Sem o biênio pandêmico.} Todos os modelos foram reestimados
+excluindo 2020 e 2021, os anos em que a casuística, os denominadores e
+o cadastro de leitos sofreram os choques documentados na primeira
+parte. A Figura~\ref{fig:robustezpandemia} compara os contrastes OSS vs
+Direta nas duas amostras: as diferenças são mínimas (o tempo de
+permanência passa de 10,2\% para 11,3\% de queda, a produção de 45,4\%
+para 46,6\% de alta, e assim por diante). \textbf{Nenhuma conclusão
+deste documento depende dos anos de pandemia.}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.96\textwidth]{fig_est_05_robustez_sem_pandemia.png}
+\caption{Contraste OSS vs Direta estimado no painel completo e na
+amostra sem 2020 e 2021, para os modelos em escala percentual.}
+\label{fig:robustezpandemia}
+\end{figure}
+
+\comoler{cada linha traz duas estimativas do mesmo efeito: o círculo
+azul escuro usa todos os anos e o quadrado verde exclui 2020 e 2021.
+Quanto mais próximos os dois símbolos, mais robusto o resultado; aqui
+eles praticamente se sobrepõem em todas as linhas.}
+
+\textbf{Mortalidade ajustada.} O modelo de mortalidade foi refeito com
+a versão que exclui óbitos fetais, maternos e neonatais: o efeito OSS
+within vai de 0,230 para 0,233 negativos no logito e o efeito marginal
+médio de 1,12 para 1,14 ponto percentual, confirmando que as duas
+versões do indicador contam a mesma história, como a correlação
+perfeita da primeira parte já anunciava.
+
+\textbf{Resíduos quantílicos.} A primeira parte prometeu que a escolha
+das famílias de distribuição seria validada nos modelos ajustados, e é
+o que as Figuras~\ref{fig:qqprimeira} e~\ref{fig:qqsegunda} fazem. O
+resíduo quantílico é um teste de qualidade: se o modelo descreve bem os
+dados, esses resíduos se alinham sobre a diagonal do gráfico. O
+alinhamento é muito bom na mortalidade (correlação de 0,984), na
+fração de alta complexidade (0,991) e na produção (0,968), e bom no
+custo (0,970) e no tempo de permanência (0,952), cujas caudas pesadas
+já estavam diagnosticadas e são absorvidas pelas margens de erro
+agrupadas. A exceção honesta é a \textbf{intensidade de ocupação da
+UTI} (0,814): a cauda de UTIs com uso quase nulo escapa do modelo em
+logaritmo, e esse resultado específico deve ser lido com reserva; fica
+registrado para a próxima iteração o uso de uma família com massa
+perto de zero para esse indicador.
+
+\begin{figure}[H]
+\centering
+\subfig{fig_est_04_qq_mort_zib.png}{Mortalidade geral, modelo Beta com
+inflação em zero}
+\subfig{fig_est_04_qq_pct_alta_zoib.png}{Fração de alta complexidade,
+modelo ZOIB}
+\caption{Resíduos quantílicos dos modelos de taxa.}
+\label{fig:qqprimeira}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_est_04_qq_producao_bn.png}{Produção, Binomial Negativa}
+\subfig{fig_est_04_qq_ocup_uti_pos.png}{Ocupação de UTI entre os
+positivos, o único ajuste insatisfatório}
+\caption{Resíduos quantílicos da produção e da parte positiva da UTI.}
+\label{fig:qqsegunda}
+\end{figure}
+
+\comoler{quanto mais os pontos azuis acompanham a linha tracejada,
+melhor o modelo descreve os dados; o valor de r no canto é essa
+aderência resumida em um número (1 seria perfeito). Compare o
+alinhamento quase exato da fração de alta complexidade com o descolamento
+da cauda esquerda na UTI, que motivou a ressalva do texto.}
+
+Fecham o quadro as ressalvas permanentes de leitura. A identificação
+do efeito de gestão dentro de hospital repousa em \textbf{cinco
+conversores}, três deles com um único ano após a mudança; as margens
+de erro agrupadas com tão poucas unidades tratadas tendem a ser
+otimistas, e os efeitos devem ser lidos como ordens de grandeza. A
+categoria Privado (3 CNES) permaneceu como controle de absorção em
+todos os modelos, sem interpretação. E os resultados de mortalidade e
+ocupação do estudo de eventos carregam a contaminação de tendências
+anteriores já descrita, que o tempo de permanência não apresenta.

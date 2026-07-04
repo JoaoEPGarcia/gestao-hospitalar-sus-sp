@@ -1,0 +1,111 @@
+\section{O efeito da mudança de gestão: estudo de eventos}
+\label{sec:efeitogestao}
+
+A forma mais exigente de medir o efeito da gestão OSS é acompanhar
+\textbf{os cinco hospitais que de fato mudaram} (Conjunto Hospitalar de
+Sorocaba, CNES 2081695; Pérola Byington, CNES 2078287; Hospital Kátia
+de Souza Rodrigues de Taipas, CNES 2082225; Hospital Geral de Vila
+Penteado, CNES 2091755; e Hospital Estadual de Presidente Prudente,
+CNES 2750511) ano a ano em torno da conversão, comparando cada um com
+sua própria história e com a evolução simultânea dos demais 309
+hospitais. É o chamado \textbf{estudo de eventos}: o ano anterior à
+mudança serve de marco zero, e o modelo estima quanto o hospital se
+afastou do próprio padrão em cada ano antes e depois da conversão.
+
+As Figuras~\ref{fig:eventomorttmp} e~\ref{fig:eventocustoocup} mostram
+os resultados para quatro indicadores. Depois da conversão, a
+\textbf{mortalidade cai 1,30 ponto percentual já no ano da mudança},
+aprofunda para 2,61 e 2,86 pontos nos dois anos seguintes e estabiliza
+em 2,18 pontos na janela de três ou mais anos. O \textbf{tempo de
+permanência} cai de forma crescente até 24,6\% na janela longa. O
+\textbf{custo real por saída} não reage no ano da mudança, mas acumula
+queda de 12,1\% três ou mais anos depois. A \textbf{ocupação de
+internação} sobe após a conversão, com pico no primeiro ano.
+
+Antes de comemorar, é preciso olhar o lado esquerdo das figuras, os
+anos \emph{anteriores} à conversão. Ali mora o teste de credibilidade:
+se o hospital já vinha melhorando antes de mudar de gestão, parte da
+melhora posterior não pode ser atribuída à OSS. O teste formal (os
+pontos à esquerda da linha tracejada serem todos estatisticamente
+nulos) \textbf{passa para o tempo de permanência (p igual a 0,251) e
+para a fração de alta complexidade (p igual a 0,344), fica no limite
+para o custo (p igual a 0,031) e é rejeitado para a mortalidade e a
+ocupação} (p abaixo de 0,001). A rejeição na mortalidade tem nome e
+sobrenome, já antecipados na Seção~\ref{sec:conversores}: em Sorocaba
+o pico de mortalidade imediatamente anterior à conversão sugere
+reversão à média, e no Pérola Byington a melhora começou antes da
+mudança formal. Em resumo: \textbf{a evidência mais defensável de
+efeito causal da gestão OSS está no tempo de permanência}; para a
+mortalidade e a ocupação, os números medem uma associação temporal
+real, mas não um efeito causal limpo.
+
+\begin{figure}[H]
+\centering
+\subfig{fig_est_01_evento_mort_all.png}{Mortalidade geral, em pontos
+percentuais}
+\subfig{fig_est_01_evento_tmp.png}{Tempo de permanência, em log pontos}
+\caption{Estudo de eventos da conversão para OSS: mortalidade geral e
+tempo de permanência, amostra completa.}
+\label{fig:eventomorttmp}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_est_01_evento_custo_real.png}{Custo real por saída, em log
+pontos}
+\subfig{fig_est_01_evento_ocupacao_internacao_w.png}{Ocupação de
+internação, em log pontos}
+\caption{Estudo de eventos da conversão para OSS: custo real por saída
+e ocupação de internação, amostra completa.}
+\label{fig:eventocustoocup}
+\end{figure}
+
+\comoler{cada ponto é o desvio do hospital convertido em relação ao seu
+próprio padrão, no ano indicado; a haste vertical é a margem de erro e
+o losango escuro marca o ano de referência, imediatamente anterior à
+mudança. À esquerda da linha tracejada o hospital ainda era Direta; à
+direita, já era OSS. Efeito crível pede pontos próximos de zero à
+esquerda e afastamento só à direita: é o que se vê no tempo de
+permanência, mas não na mortalidade, onde os anos anteriores já
+oscilam. Log pontos podem ser lidos, aproximadamente, como variação
+percentual dividida por 100.}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.96\textwidth]{fig_est_01_evento_pct_alta_complex.png}
+\caption{Estudo de eventos da conversão para OSS: fração de alta
+complexidade, em pontos percentuais, amostra completa.}
+\label{fig:eventopctalta}
+\end{figure}
+
+\comoler{mesma leitura das figuras anteriores. Aqui nenhum ponto
+posterior à conversão se firma longe do zero: a mudança de gestão não
+alterou o perfil de complexidade da produção desses hospitais.}
+
+Como exercício de robustez, o estudo foi refeito na \textbf{região de
+suporte comum} (faixas Barcelona 3 e 4, portes médio e grande), onde
+Direta e OSS convivem em número suficiente. Sorocaba (faixa 5) e
+Presidente Prudente (faixa 2) saem dessa amostra, que fica com Pérola
+Byington, Taipas e Vila Penteado. A Figura~\ref{fig:eventosuporte}
+mostra o resultado para mortalidade e tempo de permanência: os efeitos
+posteriores ficam ainda maiores (mortalidade 2,06 pontos menor no ano
+da conversão, tempo de permanência 18,6\% menor), mas o teste dos anos
+anteriores é rejeitado em todos os indicadores e a janela posterior se
+apoia em três hospitais, dois deles com um único ano observado após a
+mudança. Esses números confirmam a direção dos achados, sem
+constituir prova independente.
+
+\begin{figure}[H]
+\centering
+\subfig{fig_est_02_evento_suporte_mort_all.png}{Mortalidade geral, em
+pontos percentuais}
+\subfig{fig_est_02_evento_suporte_tmp.png}{Tempo de permanência, em log
+pontos}
+\caption{Estudo de eventos na região de suporte comum (faixas 3 e 4,
+portes médio e grande): mortalidade geral e tempo de permanência.}
+\label{fig:eventosuporte}
+\end{figure}
+
+\comoler{mesma leitura do estudo de eventos anterior, agora só com
+hospitais comparáveis entre si. Note que restam menos anos após a
+conversão: dos três conversores presentes, dois mudaram em 2025.}

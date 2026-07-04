@@ -156,6 +156,7 @@ def _renomear(nome: str) -> str:
         "longa_perm": "longa permanência",
         "media_oss": "média OSS (Mundlak)",
         "log_leitos": "log leitos",
+        "d_oss": "OSS",
     }
     for antes, depois in trocas.items():
         nome = nome.replace(antes, depois)
@@ -370,7 +371,7 @@ def _ajustar_logit(formula, dados, rotulo, tentar_sem_ano=True):
 
 def _extrair_oss(res, escala="log"):
     """Coeficiente OSS vs Direta e erro padrão agrupado de um resultado."""
-    alvo = [n for n in res.params.index if "[T.OSS]" in n]
+    alvo = [n for n in res.params.index if "[T.OSS]" in n or n == "d_oss"]
     if not alvo:
         return np.nan, np.nan
     c, e = res.params[alvo[0]], res.bse[alvo[0]]
@@ -509,7 +510,10 @@ def _modelo_fe(painel, col, transform, nome_tab, rotulo, excluir_lp=False,
     if excluir_lp:
         d = d[d["longa_perm"] == 0]
     d["y"] = transform(d[col])
-    f = f"y ~ {CAT} + C(ano) + C(cnes)"
+    # com efeitos fixos de hospital, as categorias fixas no tempo são
+    # colineares com os próprios efeitos; entra somente a dummy OSS, a
+    # única com variação dentro de hospital (os 5 conversores)
+    f = "y ~ d_oss + C(ano) + C(cnes)"
     res = smf.ols(f, data=d).fit(cov_type="cluster",
                                  cov_kwds={"groups": d["cnes"]})
     tab = pd.DataFrame({"coeficiente": res.params, "ep_cluster": res.bse,

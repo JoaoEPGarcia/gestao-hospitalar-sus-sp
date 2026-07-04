@@ -1,0 +1,56 @@
+\section{Como estimamos os efeitos: método e salvaguardas}
+\label{sec:estrategia}
+
+Até aqui o documento descreveu os dados. Nesta segunda parte, entramos
+na fase de \textbf{estimação}: usamos modelos estatísticos para medir
+quanto de cada diferença entre hospitais pode ser atribuído ao modelo
+de gestão, depois de descontar complexidade, porte e ano. A ideia
+central é simples: comparar hospitais como se estivessem em igualdade
+de condições. Um hospital OSS de grande porte e alta complexidade não
+pode ser comparado diretamente com uma Santa Casa pequena; o modelo faz
+esse desconto de forma sistemática, para todos os hospitais ao mesmo
+tempo.
+
+Cada indicador recebeu a família de modelo decidida empiricamente na
+primeira parte deste documento: a mortalidade usa uma regressão Beta
+com inflação em zero (que acomoda tanto a escala de porcentagens quanto
+os raros anos sem óbito); a fração de alta complexidade usa o modelo
+ZOIB (que trata separadamente os hospitais sem nenhuma produção de alta
+complexidade e os raros casos de produção exclusiva); o custo real por
+saída e o tempo de permanência são modelados no logaritmo, comparando
+cada hospital com ele mesmo ao longo do tempo (os chamados efeitos
+fixos); a produção usa a Binomial Negativa, adequada para contagens com
+grande dispersão; a ocupação de internação é modelada no logaritmo sem
+truncar em 100\%; e a ocupação de UTI usa um modelo em duas partes,
+primeiro se o hospital tem UTI ativa, depois com que intensidade a usa.
+
+Cinco salvaguardas valem para todos os modelos. Primeira: o custo entra
+sempre \textbf{em valores reais}, deflacionado pelo IPCA para preços de
+2025, porque a primeira parte mostrou que o crescimento nominal do
+custo era, na íntegra, inflação. Segunda: as duas observações de
+denominador frágil do Hospital Infante D Henrique (CNES 2097613, São
+José do Rio Preto, 2020 e 2021, com 13 e 3 saídas fora da COVID) ficam
+fora de todas as equações. Terceira: os 18 hospitais de longa
+permanência (perfil psiquiátrico e de cuidados prolongados, com
+permanência mediana acima de 20 dias) recebem tratamento próprio e
+ficam fora das equações de tempo de permanência. Quarta: as ocupações
+extremas são limitadas ao percentil 99 (124,2\% na internação e
+164,2\% na UTI), preservando a informação de sobrecarga real e
+removendo o erro de cadastro documentado do biênio pandêmico. Quinta e
+mais importante: \textbf{todas as margens de erro são calculadas
+agrupando por hospital}, reconhecendo que 11 anos do mesmo CNES não são
+11 informações independentes; sem esse agrupamento, os efeitos
+pareceriam muito mais precisos do que de fato são.
+
+Um cuidado adicional merece explicação. Como quase toda a variação dos
+indicadores está \emph{entre} hospitais e não \emph{dentro} deles ao
+longo do tempo (a Seção~\ref{sec:correlacao} documentou parcelas de
+variação interna de 2\% a 35\%), o contraste entre gestões
+pode ser lido de duas maneiras: comparando hospitais diferentes
+(between) ou acompanhando os cinco hospitais que trocaram de gestão
+(within). Na mortalidade usamos a especificação de Mundlak, que separa
+as duas leituras dentro do mesmo modelo; no custo e no tempo de
+permanência, os efeitos fixos de hospital fazem a leitura within pura.
+E a ressalva permanente continua de pé: a categoria Privado tem apenas
+3 hospitais e entra nos modelos somente para não contaminar as demais
+comparações; nenhum número dela deve ser interpretado.

@@ -1,0 +1,57 @@
+\section{Resultados por indicador}
+\label{sec:resultados}
+
+A Figura~\ref{fig:contrasteoss} resume o contraste central da pesquisa:
+quanto cada indicador difere entre a gestão por OSS e a administração
+Direta, já descontados complexidade, porte, perfil de longa
+permanência e ano, com as margens de erro agrupadas por hospital.
+
+O quadro que emerge é o de um \textbf{regime operacional claramente
+mais intenso nas OSS}: produção de saídas \textbf{45,4\% maior},
+ocupação de internação \textbf{23,6\% maior} e uso da UTI, entre os
+hospitais que a possuem, \textbf{20,4\% maior}, todos com significância
+estatística confortável. O \textbf{tempo de permanência é 10,2\%
+menor} nas OSS na comparação de cada hospital consigo mesmo (p igual a
+0,021), o que fecha a conta do giro: mais pacientes passam pelos mesmos
+leitos porque cada um fica menos tempo internado. O \textbf{custo real
+por saída} aparece 6,7\% menor, mas com margem de erro grande demais
+para afirmar diferença (o intervalo vai de 22,6\% de queda a 12,4\% de
+alta): com apenas cinco hospitais mudando de gestão, os dados não
+permitem cravar se as OSS são mais baratas ou mais caras por paciente
+atendido. Os efeitos de ano do mesmo modelo confirmam, agora em
+ambiente controlado, a queda real de custo da década: 2025 fica 11,6\%
+abaixo de 2015 em preços comparáveis.
+
+Na \textbf{mortalidade}, o modelo Beta com inflação em zero e
+especificação de Mundlak estima, para a mudança de Direta para OSS
+dentro do mesmo hospital, uma redução equivalente a \textbf{1,12 ponto
+percentual} na taxa (p igual a 0,085, significância marginal). Duas
+leituras complementares importam. Primeiro, o termo de Mundlak (que
+captura a diferença estrutural entre hospitais OSS e os demais) é
+positivo e não significativo: as OSS não são hospitais de mortalidade
+estruturalmente baixa; a queda estimada vem da trajetória dos
+conversores. Segundo, o componente de zeros do modelo confirmou um
+fato notável da primeira parte: \textbf{nenhum hospital OSS ou
+Municipal registra ano sem óbito} no painel, de modo que a chance de
+mortalidade zero foi modelada apenas para Filantrópicos e Privados
+contra o bloco público. Na \textbf{fração de alta complexidade}, o
+modelo ZOIB não encontra diferença entre OSS e Direta em nenhum dos
+componentes; quem explica essa fração é a complexidade estrutural (nos
+zeros) e o porte (na média), como esperado.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.96\textwidth]{fig_est_03_contraste_oss_direta.png}
+\caption{Contraste OSS vs Direta nos modelos principais, em efeito
+percentual com intervalo de 95\%; a mortalidade, que tem escala
+própria, aparece anotada no título.}
+\label{fig:contrasteoss}
+\end{figure}
+
+\comoler{cada linha é um indicador; o quadrado verde é a melhor
+estimativa do efeito de ser OSS em vez de Direta, e a haste horizontal
+é a margem de erro. Quando a haste cruza a linha vertical do zero, como
+no custo, não se pode afirmar diferença; quando fica inteira de um
+lado, como na produção e na ocupação, a diferença é estatisticamente
+firme. Valores à direita do zero indicam OSS maior; à esquerda, OSS
+menor.}
