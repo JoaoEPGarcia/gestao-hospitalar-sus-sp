@@ -5,7 +5,8 @@ COMO COMPILAR NO OVERLEAF
 2. Faça upload de:
    a) principal.tex (este diretório; substitui o antigo main.tex,
       renomeado para evitar conflito com versões antigas)
-   b) a pasta secoes inteira (14 arquivos .tex, sec01 a sec14)
+   b) a pasta secoes inteira (15 arquivos .tex: sec01 a sec14 e o
+      apendiceA_diagnosticos)
    c) a pasta figuras_analise_exploratoria inteira
       (as 94 imagens .png geradas por analise_exploratoria.py)
    d) a pasta figuras_estimacao inteira (as 29 imagens .png geradas

@@ -13,14 +13,29 @@ cadastrada comporta) e não deve ser apagado. O problema real está na
 cauda extrema da UTI: \textbf{os 15 maiores valores pertencem todos a
 2020 e 2021}, liderados pelo \textbf{Hospital Irmãos Penteado e Santa
 Casa de Campinas (CNES 2022648)}, que registra 875\% de ocupação de UTI
-em 2021, com 6.389 diárias para apenas 16 leitos cadastrados. A
+em 2021: são 6.389 diárias divididas pelos \textbf{2 leitos SUS de UTI}
+então cadastrados, pois a razão do SIH é computada sobre os leitos SUS
+(o cadastro total do hospital indicava 16 leitos de UTI, que ainda
+assim dariam 109\% de ocupação). A
 explicação é operacional: na onda da pandemia os hospitais expandiram
 leitos de UTI às pressas e o cadastro não acompanhou, produzindo
-divisões por um denominador defasado. O cuidado adotado: analisar a
+divisões por um denominador defasado. Parte dos valores acima de 100\%
+tem origem em um \textbf{descasamento de calendário}: leitos que
+entraram no cadastro apenas no meio do ano (caso típico das UTIs
+expandidas na pandemia) convivem com diárias acumuladas em período
+maior que o de cadastro, inflando a razão. Esse viés não é corrigível
+com a granularidade anual do painel; a winsorização no percentil 99 e o
+tratamento da UTI em duas partes o mitigam, e ele deve ser lembrado na
+leitura dos anos de 2020 e 2021. O cuidado adotado: analisar a
 ocupação como razão positiva, tratar a UTI em duas partes (ter ou não
 UTI ativa; e, entre os que têm, a intensidade de uso) e aparar a cauda
 extrema (winsorização no percentil 99: 124\% na internação e 164\% na
-UTI), com atenção redobrada ao biênio pandêmico.
+UTI), com atenção redobrada ao biênio pandêmico.\footnote{Duas
+alternativas metodológicas ficam registradas para trabalhos futuros: a
+sensibilidade da winsorização a cortes no percentil 95 e no percentil
+98, e a modelagem estrutural das diárias como contagem (Binomial
+Negativa) com o logaritmo dos leitos como termo de exposição, que
+dispensa a razão de ocupação e o seu denominador problemático.}
 
 \textbf{Denominadores frágeis na pandemia.} Ao excluir as internações
 COVID, alguns hospitais poderiam ficar com pouquíssimas internações

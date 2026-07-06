@@ -33,8 +33,11 @@ Figura~\ref{fig:cstwfe} mostra que, no ano da conversão, os dois
 métodos coincidem em todos os indicadores (na mortalidade, 1,298
 contra 1,301 pontos percentuais de queda); nas janelas intermediárias
 o método clássico exagera um pouco o efeito do tempo de permanência
-(0,25 contra 0,15 em log pontos) e as janelas longas voltam a
-coincidir. Nenhuma conclusão muda; a magnitude intermediária do tempo
+(0,25 contra 0,15 em log pontos) e as janelas longas se aproximam, com
+intervalos sobrepostos (na mortalidade, 2,18 pontos negativos no
+método clássico contra 2,38 no alternativo; no tempo de permanência,
+0,28 contra 0,30 em log pontos). Nenhuma conclusão muda; a magnitude
+intermediária do tempo
 de permanência era o único ponto inflado.
 
 \begin{figure}[H]
@@ -91,31 +94,21 @@ abaixo, mas com o gêmeo também caindo.}
 \textbf{A pendência da UTI, resolvida.} A intensidade de uso de UTI
 foi reestimada com a família Gama, adequada à cauda de UTIs de uso
 quase nulo que o modelo em logaritmo não acomodava. O diagnóstico de
-resíduos salta de 0,814 para \textbf{0,944} (Figura~\ref{fig:qqgama}),
+resíduos salta de 0,814 para \textbf{0,944}
+(Figura~\ref{fig:qqgama}, no Apêndice~\ref{ap:diagnosticos}),
 e o resultado substantivo permanece: uso de UTI \textbf{18,2\% maior
 nas OSS} (p igual a 0,005), com a variante de corte mínimo de
 atividade confirmando (22,3\%). A conclusão da
 Seção~\ref{sec:resultados} fica, portanto, validada também neste
 indicador.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=.72\textwidth]{fig_est_08_qq_uti_gama.png}
-\caption{Resíduos quantílicos da intensidade de UTI reestimada com a
-família Gama: a aderência sobe de 0,814 para 0,944.}
-\label{fig:qqgama}
-\end{figure}
-
-\comoler{compare com o último painel da Seção~\ref{sec:robustez}: os
-pontos que antes despencavam da linha tracejada na ponta esquerda
-agora a acompanham em quase todo o trajeto.}
-
 \textbf{Balanço final da fase de estimação.} O quadro que resiste a
 toda a bateria de testes é: as OSS operam um regime assistencial
 claramente mais intenso (mais produção, mais ocupação, mais uso de
-UTI, diferenças firmes); o tempo de permanência menor é a evidência
-causal mais consistente, presente em todos os métodos, ainda que com
-cinco conversores ela permaneça sugestiva e não definitiva; o custo
+UTI), com diferenças firmes \textbf{enquanto retrato transversal das
+redes}; a única evidência com pretensão causal que resiste é a do
+tempo de permanência, presente em todos os métodos, e mesmo ela
+permanece sugestiva com cinco conversores, não definitiva; o custo
 real por saída não mostra diferença demonstrável em nenhum método; e
 a queda de mortalidade após as conversões, embora visível, não
 sobrevive ao confronto com o gêmeo sintético em Sorocaba e fica sem

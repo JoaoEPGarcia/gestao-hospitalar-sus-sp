@@ -1,0 +1,145 @@
+\section{Diagnósticos de ajuste: gráficos QQ e resíduos quantílicos}
+\label{ap:diagnosticos}
+
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{A.\arabic{figure}}
+
+Este apêndice reúne os gráficos de diagnóstico técnico do documento,
+para que o corpo do texto flua sem interrupções; cada figura mantém o
+seu bloco de leitura. Duas noções bastam para acompanhar tudo.
+\textbf{Gráfico QQ}: compara os dados reais com um molde matemático de
+distribuição; se os pontos seguem a reta, o molde descreve bem os
+dados, e desvios sistemáticos da reta indicam onde o molde falha. O
+número r que acompanha cada QQ resume essa aderência: quanto mais
+próximo de 1, melhor. \textbf{Resíduo quantílico}: é a versão do QQ
+para um modelo já ajustado com covariáveis; se o modelo descreve bem
+os dados, esses resíduos se comportam como uma Normal padrão e os
+pontos deitam na diagonal.
+
+\subsection*{Diagnósticos da fase exploratória}
+
+As Figuras~\ref{fig:qqcusto} e~\ref{fig:qqtmp} avaliam os moldes
+marginais de custo e TMP da Seção~\ref{sec:distribuicoes}.
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_03_qq_lognormal_custo_saida.png}{Molde LogNormal}
+\subfig{fig_ae_03_qq_fisk_custo_saida.png}{Molde log logístico (Fisk)}
+\caption{Gráficos QQ do custo por saída: os pontos são os dados e a
+reta é o comportamento esperado pelo molde.}
+\label{fig:qqcusto}
+\end{figure}
+
+\comoler{quanto mais os pontos abraçam a reta, melhor o molde. No
+painel (b), o molde log logístico segue os dados por quase toda a
+extensão, descolando apenas nos pouquíssimos hospitais mais caros; por
+isso ele recebe a melhor nota da Tabela~\ref{tab:familias}.}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_03_qq_lognormal_tmp.png}{Molde LogNormal}
+\subfig{fig_ae_03_qq_fisk_tmp.png}{Molde log logístico (Fisk)}
+\caption{Gráficos QQ do TMP no painel completo.}
+\label{fig:qqtmp}
+\end{figure}
+
+\comoler{nos dois painéis os pontos acompanham a reta na maior parte do
+caminho e se achatam no alto: é o teto de 30,5 dias dos hospitais de
+longa permanência, que nenhum molde contínuo consegue reproduzir. A
+versão sem esses hospitais está na Figura~\ref{fig:qqtmpsemlp}, no
+corpo do documento.}
+
+As Figuras~\ref{fig:qqcondA} a~\ref{fig:qqcondC} sustentam a conclusão
+da Seção~\ref{sec:distribuicoes} de que o desajuste dos QQ marginais
+vem de misturar 314 hospitais heterogêneos, não do molde.
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_11_qq_custo_marginal.png}{Custo: todos os hospitais
+juntos}
+\subfig{fig_ae_11_qq_custo_residuo_ef.png}{Custo: cada hospital
+comparado consigo mesmo}
+\caption{Custo por saída: gráfico QQ antes e depois de controlar as
+diferenças fixas entre hospitais e entre anos.}
+\label{fig:qqcondA}
+\end{figure}
+
+\comoler{compare o gráfico de cima com o de baixo: em cima, todos os
+hospitais juntos, os pontos serpenteiam em volta da reta; embaixo,
+comparando cada hospital consigo mesmo, os pontos praticamente deitam
+na reta.}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_11_qq_tmp_marginal.png}{TMP: todos os hospitais juntos}
+\subfig{fig_ae_11_qq_tmp_marginal_sem_longa_perm.png}{TMP: sem os
+hospitais de longa permanência}
+\caption{TMP: gráfico QQ com o painel completo e sem a subpopulação de
+longa permanência.}
+\label{fig:qqcondB}
+\end{figure}
+
+\comoler{aqui a comparação é entre incluir e excluir os 18 hospitais de
+longa permanência: com eles, o desenho em degrau; sem eles, uma reta
+quase perfeita. O desvio era a subpopulação, não o molde.}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_11_qq_mort_logito_marginal.png}{Mortalidade: todos os
+hospitais juntos}
+\subfig{fig_ae_11_qq_mort_logito_residuo_ef.png}{Mortalidade: cada
+hospital comparado consigo mesmo}
+\caption{Mortalidade: gráfico QQ antes e depois de controlar as
+diferenças fixas entre hospitais e entre anos.}
+\label{fig:qqcondC}
+\end{figure}
+
+\comoler{mesmo padrão do custo: a curva em S do gráfico de cima, com
+todos os hospitais misturados, vira uma reta bem comportada quando cada
+hospital é comparado consigo mesmo. A heterogeneidade entre hospitais,
+e não o molde, era a fonte do desajuste.}
+
+\subsection*{Resíduos quantílicos dos modelos estimados}
+
+As Figuras~\ref{fig:qqprimeira} e~\ref{fig:qqsegunda} validam as
+famílias dos modelos da Seção~\ref{sec:resultados}, e a
+Figura~\ref{fig:qqgama} documenta a reestimação da UTI comentada na
+Seção~\ref{sec:inferenciafinal}.
+
+\begin{figure}[H]
+\centering
+\subfig{fig_est_04_qq_mort_zib.png}{Mortalidade geral, modelo Beta com
+inflação em zero}
+\subfig{fig_est_04_qq_pct_alta_zoib.png}{Fração de alta complexidade,
+modelo ZOIB}
+\caption{Resíduos quantílicos dos modelos de taxa.}
+\label{fig:qqprimeira}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_est_04_qq_producao_bn.png}{Produção, Binomial Negativa}
+\subfig{fig_est_04_qq_ocup_uti_pos.png}{Ocupação de UTI entre os
+positivos, o único ajuste insatisfatório}
+\caption{Resíduos quantílicos da produção e da parte positiva da UTI.}
+\label{fig:qqsegunda}
+\end{figure}
+
+\comoler{quanto mais os pontos azuis acompanham a linha tracejada,
+melhor o modelo descreve os dados; o valor de r no canto é essa
+aderência resumida em um número (1 seria perfeito). Compare o
+alinhamento quase exato da fração de alta complexidade com o
+descolamento da cauda esquerda na UTI, que motivou a reestimação da
+figura seguinte.}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.72\textwidth]{fig_est_08_qq_uti_gama.png}
+\caption{Resíduos quantílicos da intensidade de UTI reestimada com a
+família Gama: a aderência sobe de 0,814 para 0,944.}
+\label{fig:qqgama}
+\end{figure}
+
+\comoler{compare com o painel (b) da figura anterior: os pontos que
+antes despencavam da linha tracejada na ponta esquerda agora a
+acompanham em quase todo o trajeto.}

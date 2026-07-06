@@ -9,8 +9,10 @@ o cadastro de leitos sofreram os choques documentados na primeira
 parte. A Figura~\ref{fig:robustezpandemia} compara os contrastes OSS vs
 Direta nas duas amostras: as diferenças são mínimas (o tempo de
 permanência passa de 10,2\% para 11,3\% de queda, a produção de 45,4\%
-para 46,6\% de alta, e assim por diante). \textbf{Nenhuma conclusão
-deste documento depende dos anos de pandemia.}
+para 46,6\% de alta, e assim por diante). \textbf{Nenhum dos
+contrastes principais depende dos anos de pandemia.} A exclusão do
+biênio também cobre o pior do descasamento de calendário dos leitos
+descrito na Seção~\ref{sec:qualidade}, concentrado em 2020 e 2021.
 
 \begin{figure}[H]
 \centering
@@ -34,11 +36,16 @@ perfeita da primeira parte já anunciava.
 
 \textbf{Resíduos quantílicos.} A primeira parte prometeu que a escolha
 das famílias de distribuição seria validada nos modelos ajustados, e é
-o que as Figuras~\ref{fig:qqprimeira} e~\ref{fig:qqsegunda} fazem. O
+o que as Figuras~\ref{fig:qqprimeira} e~\ref{fig:qqsegunda}, reunidas
+no Apêndice~\ref{ap:diagnosticos}, fazem. O
 resíduo quantílico é um teste de qualidade: se o modelo descreve bem os
 dados, esses resíduos se alinham sobre a diagonal do gráfico. O
 alinhamento é muito bom na mortalidade (correlação de 0,984), na
-fração de alta complexidade (0,991) e na produção (0,968), e bom no
+fração de alta complexidade (0,991) e na produção (0,968; o piso
+achatado na ponta esquerda do QQ, com observações empilhadas perto de
+menos 5, corresponde a hospitais produzindo muito abaixo do que porte e
+perfil preveriam, desvio confinado à cauda extrema que não compromete o
+contraste entre categorias), e bom no
 custo (0,970) e no tempo de permanência (0,952), cujas caudas pesadas
 já estavam diagnosticadas e são absorvidas pelas margens de erro
 agrupadas. A exceção honesta é a \textbf{intensidade de ocupação da
@@ -46,31 +53,6 @@ UTI} (0,814): a cauda de UTIs com uso quase nulo escapa do modelo em
 logaritmo, e esse resultado específico deve ser lido com reserva; fica
 registrado para a próxima iteração o uso de uma família com massa
 perto de zero para esse indicador.
-
-\begin{figure}[H]
-\centering
-\subfig{fig_est_04_qq_mort_zib.png}{Mortalidade geral, modelo Beta com
-inflação em zero}
-\subfig{fig_est_04_qq_pct_alta_zoib.png}{Fração de alta complexidade,
-modelo ZOIB}
-\caption{Resíduos quantílicos dos modelos de taxa.}
-\label{fig:qqprimeira}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\subfig{fig_est_04_qq_producao_bn.png}{Produção, Binomial Negativa}
-\subfig{fig_est_04_qq_ocup_uti_pos.png}{Ocupação de UTI entre os
-positivos, o único ajuste insatisfatório}
-\caption{Resíduos quantílicos da produção e da parte positiva da UTI.}
-\label{fig:qqsegunda}
-\end{figure}
-
-\comoler{quanto mais os pontos azuis acompanham a linha tracejada,
-melhor o modelo descreve os dados; o valor de r no canto é essa
-aderência resumida em um número (1 seria perfeito). Compare o
-alinhamento quase exato da fração de alta complexidade com o descolamento
-da cauda esquerda na UTI, que motivou a ressalva do texto.}
 
 Fecham o quadro as ressalvas permanentes de leitura. A identificação
 do efeito de gestão dentro de hospital repousa em \textbf{cinco

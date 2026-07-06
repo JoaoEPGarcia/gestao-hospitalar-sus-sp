@@ -10,9 +10,15 @@ O quadro que emerge é o de um \textbf{regime operacional claramente
 mais intenso nas OSS}: produção de saídas \textbf{45,4\% maior},
 ocupação de internação \textbf{23,6\% maior} e uso da UTI, entre os
 hospitais que a possuem, \textbf{20,4\% maior}, todos com significância
-estatística confortável. O \textbf{tempo de permanência é 10,2\%
+estatística confortável. É uma diferença de regime entre redes com
+missões distintas, não um efeito demonstrado da conversão de um
+hospital individual (ver as Seções~\ref{sec:efeitogestao}
+e~\ref{sec:inferenciafinal}). O \textbf{tempo de permanência é 10,2\%
 menor} nas OSS na comparação de cada hospital consigo mesmo (p igual a
-0,021), o que fecha a conta do giro: mais pacientes passam pelos mesmos
+0,021, valor que, agrupado por hospital com apenas cinco tratados,
+tende a ser otimista; a Seção~\ref{sec:inferenciafinal} o submete a
+permutação, que devolve p igual a 0,153), o que fecha a conta do giro:
+mais pacientes passam pelos mesmos
 leitos porque cada um fica menos tempo internado. O \textbf{custo real
 por saída} aparece 6,7\% menor, mas com margem de erro grande demais
 para afirmar diferença (o intervalo vai de 22,6\% de queda a 12,4\% de
@@ -25,7 +31,9 @@ abaixo de 2015 em preços comparáveis.
 Na \textbf{mortalidade}, o modelo Beta com inflação em zero e
 especificação de Mundlak estima, para a mudança de Direta para OSS
 dentro do mesmo hospital, uma redução equivalente a \textbf{1,12 ponto
-percentual} na taxa (p igual a 0,085, significância marginal). Duas
+percentual} na taxa (p igual a 0,085, significância marginal); esse
+número não sobrevive intacto ao confronto com o controle sintético da
+Seção~\ref{sec:inferenciafinal} e não deve ser citado isoladamente. Duas
 leituras complementares importam. Primeiro, o termo de Mundlak (que
 captura a diferença estrutural entre hospitais OSS e os demais) é
 positivo e não significativo: as OSS não são hospitais de mortalidade
@@ -44,7 +52,10 @@ zeros) e o porte (na média), como esperado.
 \includegraphics[width=.96\textwidth]{fig_est_03_contraste_oss_direta.png}
 \caption{Contraste OSS vs Direta nos modelos principais, em efeito
 percentual com intervalo de 95\%; a mortalidade, que tem escala
-própria, aparece anotada no título.}
+própria, aparece anotada no título. Custo e TMP: identificação
+\emph{within} (efeitos fixos, sustentada pelos cinco conversores);
+produção e ocupações: contraste predominantemente \emph{between} entre
+as redes OSS e Direta, de natureza associativa.}
 \label{fig:contrasteoss}
 \end{figure}
 

@@ -9,7 +9,11 @@ central é simples: comparar hospitais como se estivessem em igualdade
 de condições. Um hospital OSS de grande porte e alta complexidade não
 pode ser comparado diretamente com uma Santa Casa pequena; o modelo faz
 esse desconto de forma sistemática, para todos os hospitais ao mesmo
-tempo.
+tempo. Em todas as equações que têm a \textbf{mortalidade como variável
+dependente}, a complexidade entra exclusivamente pela \textbf{versão
+estrutural} do escore Barcelona (estrutura física e tecnológica), nunca
+pela versão ponderada por mortalidade, conforme a salvaguarda da
+Seção~\ref{sec:painel}.
 
 Cada indicador recebeu a família de modelo decidida empiricamente na
 primeira parte deste documento: a mortalidade usa uma regressão Beta
@@ -23,6 +27,11 @@ fixos); a produção usa a Binomial Negativa, adequada para contagens com
 grande dispersão; a ocupação de internação é modelada no logaritmo sem
 truncar em 100\%; e a ocupação de UTI usa um modelo em duas partes,
 primeiro se o hospital tem UTI ativa, depois com que intensidade a usa.
+A mistura de duas Betas que a Seção~\ref{sec:distribuicoes} identificou
+na mortalidade não precisa de molde próprio aqui: os dois grupos de
+hospitais são absorvidos pelas covariáveis de complexidade estrutural e
+perfil, e os resíduos quantílicos da Seção~\ref{sec:robustez} (r igual
+a 0,984) comprovam que a Beta única condicional basta.
 
 Cinco salvaguardas valem para todos os modelos. Primeira: o custo entra
 sempre \textbf{em valores reais}, deflacionado pelo IPCA para preços de
@@ -33,7 +42,12 @@ José do Rio Preto, 2020 e 2021, com 13 e 3 saídas fora da COVID) ficam
 fora de todas as equações. Terceira: os 18 hospitais de longa
 permanência (perfil psiquiátrico e de cuidados prolongados, com
 permanência mediana acima de 20 dias) recebem tratamento próprio e
-ficam fora das equações de tempo de permanência. Quarta: as ocupações
+ficam fora das equações de tempo de permanência.\footnote{O teto de
+30,5 dias é uma censura administrativa do ciclo de faturamento da AIH.
+A alternativa formal à exclusão seria uma verossimilhança censurada no
+teto, ou a inclusão dos 18 hospitais com interação de perfil; fica
+registrada como extensão, pois a exclusão preserva a comparabilidade do
+indicador entre hospitais de agudos.} Quarta: as ocupações
 extremas são limitadas ao percentil 99 (124,2\% na internação e
 164,2\% na UTI), preservando a informação de sobrecarga real e
 removendo o erro de cadastro documentado do biênio pandêmico. Quinta e

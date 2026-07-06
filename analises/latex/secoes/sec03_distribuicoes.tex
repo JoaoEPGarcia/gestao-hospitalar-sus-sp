@@ -102,7 +102,17 @@ estão no zero, e nenhum de faixa 6 está.}
 longa}
 
 Custo por saída e TMP são valores positivos com cauda à direita. Cinco
-moldes clássicos foram postos à prova (Tabela~\ref{tab:familias}),
+moldes clássicos foram postos à prova
+(Tabela~\ref{tab:familias})\footnote{Guia dos tamanhos de amostra que
+aparecem no documento: \textbf{3.454} é o painel completo;
+\textbf{3.453} exclui a única observação com TMP igual a zero (Hospital
+Infante D.\ Henrique, 2021), incompatível com a escala logarítmica;
+\textbf{3.255} exclui também as 198 observações dos 18 hospitais de
+longa permanência; \textbf{3.452} exclui as duas observações de
+denominador frágil da Seção~\ref{sec:qualidade}, regra usada nos
+modelos da fase de estimação; e \textbf{2.571} são as observações com
+UTI ativa depois de retiradas essas duas frágeis. Cada conta foi
+conferida no painel.},
 comparados pela nota AIC e pelo gráfico QQ. O resultado é consistente:
 o molde \textbf{log logístico (também chamado de Fisk)} vence nas três
 amostras, com a \textbf{LogNormal} logo atrás, e a Gama, molde usado
@@ -113,13 +123,17 @@ estiverem na amostra, nenhum molde acompanha o teto de 30,5 dias;
 molde log logístico fica praticamente perfeito} (r de 0,9975 na
 Figura~\ref{fig:qqtmpsemlp}). A leitura prática: custo e TMP devem ser
 analisados na escala logarítmica, e os hospitais de longa permanência
-merecem tratamento em separado nas análises de TMP.
+merecem tratamento em separado nas análises de TMP. Os gráficos QQ
+completos estão no Apêndice~\ref{ap:diagnosticos}: no custo, o molde
+log logístico acompanha os dados por quase toda a extensão (r de
+0,9754, Figura~\ref{fig:qqcusto}); no TMP do painel completo, nenhum
+molde reproduz o teto de 30,5 dias (Figura~\ref{fig:qqtmp}).
 
 \begin{table}[H]
 \centering
-\caption{Comparação dos cinco moldes de distribuição para custo e TMP.
-O AIC é a nota de ajuste (menor é melhor) e o r do QQ mede a aderência
-dos pontos à reta (mais perto de 1 é melhor).}
+\caption{Comparação dos cinco moldes de distribuição para custo e TMP
+pela nota AIC (Seção~\ref{sec:painel}) e pelo r do QQ
+(Apêndice~\ref{ap:diagnosticos}).}
 \label{tab:familias}
 \small
 \begin{tabular}{llrrr}
@@ -164,42 +178,16 @@ de longa permanência.}
 
 \begin{figure}[H]
 \centering
-\subfig{fig_ae_03_qq_lognormal_custo_saida.png}{Molde LogNormal}
-\subfig{fig_ae_03_qq_fisk_custo_saida.png}{Molde log logístico (Fisk)}
-\caption{Gráficos QQ do custo por saída: os pontos são os dados e a
-reta é o comportamento esperado pelo molde.}
-\label{fig:qqcusto}
-\end{figure}
-
-\comoler{quanto mais os pontos abraçam a reta, melhor o molde. No
-painel (b), o molde log logístico segue os dados por quase toda a
-extensão, descolando apenas nos pouquíssimos hospitais mais caros; por
-isso ele recebe a melhor nota da Tabela~\ref{tab:familias}.}
-
-\begin{figure}[H]
-\centering
-\subfig{fig_ae_03_qq_lognormal_tmp.png}{Molde LogNormal}
-\subfig{fig_ae_03_qq_fisk_tmp.png}{Molde log logístico (Fisk)}
-\caption{Gráficos QQ do TMP no painel completo.}
-\label{fig:qqtmp}
-\end{figure}
-
-\comoler{nos dois painéis os pontos acompanham a reta na maior parte do
-caminho e se achatam no alto: é o teto de 30,5 dias dos hospitais de
-longa permanência, que nenhum molde contínuo consegue reproduzir. A
-nota explicativa dentro dos gráficos remete à versão sem esses
-hospitais, logo abaixo.}
-
-\begin{figure}[H]
-\centering
 \includegraphics[width=.96\textwidth]{fig_ae_03_qq_fisk_tmp_sem_longa_perm.png}
 \caption{Gráfico QQ do TMP sem os 18 hospitais de longa permanência: os
 pontos ficam praticamente sobre a reta (r de 0,9975).}
 \label{fig:qqtmpsemlp}
 \end{figure}
 
-\comoler{este é o mesmo gráfico anterior após retirar os 18 hospitais
-de longa permanência: o achatamento desaparece e o molde descreve os
+\comoler{este é o gráfico QQ do TMP refeito sem os 18 hospitais de
+longa permanência (a versão com o painel completo está na
+Figura~\ref{fig:qqtmp}, no apêndice): o achatamento desaparece e o
+molde descreve os
 dados quase perfeitamente. É a demonstração visual de que o problema
 não era o molde, era a mistura de dois perfis de hospital.}
 
@@ -215,57 +203,15 @@ cada hospital só consigo mesmo ao longo dos anos). O molde adequado é a
 \subsection{Os moldes melhoram quando se compara o comparável}
 
 Uma pergunta natural: se os QQ do painel completo não são perfeitos, o
-molde está errado? As Figuras~\ref{fig:qqcondA} a~\ref{fig:qqcondC}
+molde está errado? As Figuras~\ref{fig:qqcondA} a~\ref{fig:qqcondC},
+reunidas no Apêndice~\ref{ap:diagnosticos},
 respondem que não: o desajuste vem de misturar 314 hospitais muito
 diferentes num único gráfico. Quando se compara cada hospital consigo mesmo (controlando o
 efeito do hospital e do ano), os desvios praticamente desaparecem: no
 custo, a assimetria restante é quase nula; na mortalidade, a forte
-assimetria da distribuição bruta (1,72 negativa) cai para 0,11 depois
-do controle. Em resumo, \textbf{os moldes escolhidos descrevem bem os
+assimetria da distribuição bruta na escala \textbf{logito} (a escala
+interna em que o modelo trabalha proporções), de 1,72 negativa, cai
+para 0,11 depois do controle; na escala original da
+Tabela~\ref{tab:univariada} a assimetria é outra (0,72 positiva), e os
+dois números não se contradizem. Em resumo, \textbf{os moldes escolhidos descrevem bem os
 dados quando se compara o comparável}.
-
-\begin{figure}[H]
-\centering
-\subfig{fig_ae_11_qq_custo_marginal.png}{Custo: todos os hospitais
-juntos}
-\subfig{fig_ae_11_qq_custo_residuo_ef.png}{Custo: cada hospital
-comparado consigo mesmo}
-\caption{Custo por saída: gráfico QQ antes e depois de controlar as
-diferenças fixas entre hospitais e entre anos.}
-\label{fig:qqcondA}
-\end{figure}
-
-\comoler{compare o gráfico de cima com o de baixo: em cima, todos os
-hospitais juntos, os pontos serpenteiam em volta da reta; embaixo,
-comparando cada hospital consigo mesmo, os pontos praticamente deitam
-na reta.}
-
-\begin{figure}[H]
-\centering
-\subfig{fig_ae_11_qq_tmp_marginal.png}{TMP: todos os hospitais juntos}
-\subfig{fig_ae_11_qq_tmp_marginal_sem_longa_perm.png}{TMP: sem os
-hospitais de longa permanência}
-\caption{TMP: gráfico QQ com o painel completo e sem a subpopulação de
-longa permanência.}
-\label{fig:qqcondB}
-\end{figure}
-
-\comoler{aqui a comparação é entre incluir e excluir os 18 hospitais de
-longa permanência: com eles, o desenho em degrau; sem eles, uma reta
-quase perfeita. O desvio era a subpopulação, não o molde.}
-
-\begin{figure}[H]
-\centering
-\subfig{fig_ae_11_qq_mort_logito_marginal.png}{Mortalidade: todos os
-hospitais juntos}
-\subfig{fig_ae_11_qq_mort_logito_residuo_ef.png}{Mortalidade: cada
-hospital comparado consigo mesmo}
-\caption{Mortalidade: gráfico QQ antes e depois de controlar as
-diferenças fixas entre hospitais e entre anos.}
-\label{fig:qqcondC}
-\end{figure}
-
-\comoler{mesmo padrão do custo: a curva em S do gráfico de cima, com
-todos os hospitais misturados, vira uma reta bem comportada quando cada
-hospital é comparado consigo mesmo. A heterogeneidade entre hospitais,
-e não o molde, era a fonte do desajuste.}
