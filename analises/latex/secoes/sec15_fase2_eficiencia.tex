@@ -1,0 +1,138 @@
+\section{A segunda camada de evidência: hierarquia e eficiência}
+\label{sec:fase2}
+
+A segunda fase da estimação atacou a mesma pergunta com três famílias
+de métodos ainda não usadas no documento: modelos
+\textbf{hierárquicos} (que tratam os 11 anos de cada hospital como
+parentes, não como observações soltas), a análise envoltória de dados
+(\textbf{DEA}, que constrói uma fronteira de melhores práticas e mede
+a distância de cada hospital até ela) e a fronteira estocástica
+(\textbf{SFA}, a contraparte paramétrica do DEA). O pacote completo de
+resultados, com scripts, diagnósticos e um relatório de execução
+auditável, está na pasta resultados\_fase2 do repositório; aqui ficam
+os achados que mudam ou reforçam a leitura do documento.
+
+\textbf{O que a camada hierárquica confirma.} Reestimados com um
+efeito próprio para cada hospital, o tempo de permanência e o custo
+real reproduzem quase exatamente os resultados da
+Seção~\ref{sec:resultados} (queda de 10,2\% no TMP; custo sem
+diferença), a produção e a ocupação continuam maiores nas OSS com
+magnitudes menores (33\% e 13\%, porque parte do contraste entre as
+redes é absorvida pelo efeito de hospital), e a mortalidade aparece
+0,255 menor no logito, com precisão maior que a da
+Seção~\ref{sec:resultados}. O teste decisivo, porém, é outro:
+\textbf{retirando os cinco conversores, a diferença de mortalidade
+entre as redes desaparece} (0,09 positivo, nulo), enquanto TMP,
+produção, ocupação e eficiência sobrevivem intactos. É a quantificação
+do aviso da Seção~\ref{sec:inferenciafinal}: a mortalidade menor é uma
+história dos hospitais que mudaram de gestão, não uma diferença entre
+as redes OSS e Direta.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.9\textwidth]{figB02_encolhimento_categorias.png}
+\caption{Efeitos de categoria na mortalidade com e sem partial
+pooling: com apenas 3 hospitais, o efeito aparente do Privado encolhe
+em quase 90\% quando o modelo pondera a evidência pelo tamanho do
+grupo.}
+\label{fig:encolhimento}
+\end{figure}
+
+\comoler{cada linha compara duas estimativas do efeito da mesma
+categoria: o círculo escuro trata cada categoria isoladamente; o
+quadrado verde deixa as categorias emprestarem informação umas às
+outras, na proporção da quantidade de dados de cada uma. Quanto menor
+o grupo, maior o recuo do quadrado em direção ao zero: o Privado, com
+3 hospitais, quase não sustenta efeito próprio. É a ilustração formal
+da regra deste documento de nunca interpretar essa categoria.}
+
+\textbf{Eficiência: a ressalva vem antes do resultado.} O DEA e a SFA
+medem eficiência produtiva: quanto produto (saídas, incluída a alta
+complexidade) cada hospital extrai dos seus insumos. Um dos insumos é
+o \textbf{valor total real} pago pelo SUS, e ele exige a ressalva de
+primeira ordem desta seção: o valor do SIH é reembolso por produção
+faturada, não medida direta de recursos consumidos, e os regimes de
+pagamento diferem por categoria (as OSS recebem pelo contrato de
+gestão, de modo que o faturamento por AIH pode divergir do recurso
+efetivo; os filantrópicos convivem com subfinanciamento e subsídio
+cruzado). Parte da distância entre categorias pode refletir regime de
+pagamento, não gestão. Duas verificações sustentam que a ordenação
+não é artefato do insumo financeiro: a \textbf{produção física por
+leito}, que não usa dinheiro nenhum, já ordena as redes do mesmo jeito
+(54 saídas por leito nas OSS e 51 nos Municipais, contra 35 na Direta
+e 34 nos Filantrópicos); e o DEA reestimado \textbf{só com leitos como
+insumo} preserva e até amplia a vantagem (medianas de 0,68 nas OSS
+contra 0,40 na Direta).
+
+Com a ressalva posta, o resultado: na eficiência corrigida de viés
+(bootstrap de Simar e Wilson, 2.000 réplicas por ano), as medianas do
+período são \textbf{OSS 0,72, Público Municipal 0,64, Direta 0,59 e
+Filantrópico 0,58}. Na regressão da distância à fronteira sobre
+categoria, complexidade, porte e ano, a vantagem OSS equivale a cerca
+de \textbf{40\% menos distância à fronteira que a Direta}, estável
+retirando o biênio pandêmico, os cinco conversores ou restringindo ao
+suporte comum. Ao contrário da mortalidade, \textbf{a eficiência
+maior das OSS é um traço da rede}, presente na comparação pura entre
+hospitais distintos. E o receio de os 3 hospitais Privados
+distorcerem a fronteira não se confirma: retirados, os escores dos
+demais praticamente não se movem (correlação de ordem 1,000), porque
+o perfil deles opera longe da fronteira.
+
+\begin{figure}[H]
+\centering
+\subfig{figE01_violino_te_categoria.png}{Eficiência DEA corrigida de
+viés}
+\subfig{figS01_te_categoria.png}{Eficiência técnica da fronteira
+estocástica}
+\caption{Eficiência por categoria nos dois métodos. No painel (b), a
+concentração das OSS junto ao valor 1 é uma degeneração numérica do
+modelo (o texto explica) e o valor delas não deve ser citado; a ordem
+das demais categorias é a informação válida.}
+\label{fig:eficiencia}
+\end{figure}
+
+\comoler{como nos violinos das seções anteriores: a silhueta engorda
+onde há mais hospitais e o número é a mediana do grupo. Compare a
+posição dos violinos de OSS e Municipal com os de Direta e
+Filantrópico nos dois painéis: métodos de naturezas opostas ordenam as
+redes do mesmo jeito. O Privado aparece só como registro.}
+
+\textbf{A contraparte paramétrica e a convergência entre métodos.} A
+fronteira estocástica (Translog, preferida ao Cobb Douglas por larga
+margem; 94\% da variância composta atribuída à ineficiência) confirma
+a ordem das redes, com uma honestidade a registrar: as OSS ficam tão
+coladas à fronteira paramétrica que o coeficiente delas na equação de
+ineficiência perde identificação (o análogo da separação perfeita da
+Seção~\ref{sec:estrategia}), e por isso o NÍVEL da eficiência das OSS
+na SFA não é citável; vale a ordem, não o número. O resultado síntese
+da fase é a concordância entre os dois métodos: correlação de ordem
+de \textbf{0,63 entre as eficiências do DEA e da SFA} (0,65 excluindo
+as OSS, mostrando que a concordância não depende do grupo problemático),
+crescendo ao longo do período.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.9\textwidth]{figS02_dispersao_sfa_dea.png}
+\caption{Convergência entre os dois métodos de eficiência: cada ponto
+é um hospital num ano, posicionado pelo escore DEA (horizontal) e pela
+eficiência SFA (vertical).}
+\label{fig:convergencia}
+\end{figure}
+
+\comoler{quanto mais a nuvem sobe da esquerda para a direita, mais os
+dois métodos concordam sobre quem é eficiente. A faixa verde colada no
+topo é a degeneração das OSS descrita no texto (o modelo paramétrico as
+coloca todas na fronteira); mesmo descontando essa faixa, a
+concordância entre os métodos permanece.}
+
+\textbf{O que fica para a leitura do documento.} A segunda fase não
+altera nenhuma conclusão; ela redistribui os pesos. O \textbf{regime
+operacional mais intenso e a eficiência produtiva maior das OSS são
+traços robustos da rede}, visíveis em todos os métodos e em todas as
+amostras, inclusive sem os conversores; o \textbf{TMP menor} replica
+com exatidão em especificação hierárquica; o \textbf{custo} segue sem
+diferença em qualquer método; e a \textbf{mortalidade menor}
+concentra se inteiramente na trajetória dos cinco conversores, o
+que a aproxima das ressalvas causais das
+Seções~\ref{sec:efeitogestao} e~\ref{sec:inferenciafinal} e a afasta
+de uma leitura de superioridade da rede OSS nesse desfecho.
