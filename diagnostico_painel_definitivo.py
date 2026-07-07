@@ -2,16 +2,16 @@
 """
 diagnostico_painel_definitivo.py
 ================================
-Diagnóstico exploratório do PAINEL ANALÍTICO DEFINITIVO (317 hospitais ×
-11 anos), gerado por construir_painel_definitivo.py. Reaproveita a
+Diagnóstico exploratório do PAINEL ANALÍTICO DEFINITIVO (314 hospitais ×
+11 anos = 3.454 observações), gerado por construir_painel_definitivo.py. Reaproveita a
 infraestrutura de analise_sih.py (rotulagem, figuras, descritivas).
 
 Blocos:
   1. Descritivas dos indicadores oficiais (versões SEM covid) — geral e por ano
   2. Distribuições: boxplots por ano, histogramas, séries temporais
-  3. Corte por modelo_gestao_proxy — PROXY PROVISÓRIO, aviso estampado em
-     figura e tabela; usa modelo_gestao_proxy (NUNCA class_assistencial):
-     HU-UFSCar fora do corte por decisão da equipe (pendência Alberto)
+  3. Corte por modelo_gestao_proxy — DEFINIÇÃO ADOTADA de modelo de gestão,
+     ressalva estampada em figura e tabela; usa modelo_gestao_proxy (NUNCA
+     class_assistencial); HU-UFSCar agrupado em Privado por decisão da equipe
   4. Comparação ANTES/DEPOIS dos filtros: painel bruto (com covid) ×
      definitivo (com covid) × definitivo (sem covid) — separa o efeito da
      seleção de hospitais do efeito da remoção do código 999
@@ -133,7 +133,7 @@ def figuras_distribuicao(painel: pd.DataFrame):
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# 3. CORTE POR MODELO DE GESTÃO (PROXY PROVISÓRIO)
+# 3. CORTE POR MODELO DE GESTÃO (DEFINIÇÃO ADOTADA — ver nota)
 # ══════════════════════════════════════════════════════════════════════════════
 
 def corte_modelo_gestao(painel: pd.DataFrame):
@@ -152,7 +152,7 @@ def corte_modelo_gestao(painel: pd.DataFrame):
     # tabela de medianas por categoria × indicador (todos os anos)
     tab = sub.groupby(col)[INDICADORES].median().round(4)
     tab.insert(0, "n_hospital_ano", sub.groupby(col).size())
-    tab.index.name = f"modelo_gestao_proxy (PROVISÓRIO — ver nota)"
+    tab.index.name = "modelo_gestao_proxy (definição adotada — ver nota)"
     tab.to_csv(TAB_MODELO, encoding="utf-8-sig")
     print(f"\nMedianas por categoria (todos os anos) → {TAB_MODELO.name}")
     print(tab.to_string())
@@ -167,7 +167,7 @@ def corte_modelo_gestao(painel: pd.DataFrame):
         ax.set_title(ROTULOS[ind], fontsize=8)
         ax.tick_params(axis="x", rotation=55, labelsize=7)
     fig.suptitle("Painel definitivo — indicadores por modelo de gestão "
-                 "(PROXY PROVISÓRIO)")
+                 "(definição adotada — ver nota)")
     fig.text(.5, .01, NOTA_PROXY_FIG, ha="center", fontsize=7,
              style="italic", wrap=True,
              bbox={"facecolor": "#fff3cd", "edgecolor": "#e0a800", "pad": 4})

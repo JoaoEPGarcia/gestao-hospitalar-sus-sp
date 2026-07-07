@@ -54,11 +54,11 @@ COMPLEXIDADE (§4 dos critérios — DUAS versões, NENHUMA descartada):
     >>> calcular_escores_complexidade): em modelos com MORTALIDADE como
     >>> variável DEPENDENTE, usar SEMPRE complexidade_estrutural.
 
-AVISO PROXY: class_assistencial é PROXY PROVISÓRIO do modelo de gestão.
-    Não captura Autarquia nem PPP e mistura esfera administrativa com modelo
-    de gestão ("Público Municipal"). O crosswalk institucional definitivo
-    (CNES → Direta/Autarquia/OSS/PPP/Filantrópico, por ano) depende de
-    levantamento a cargo de Alberto Tomasi e NÃO é resolvido aqui.
+MODELO DE GESTÃO: modelo_gestao_proxy (cópia de class_assistencial) é a
+    DEFINIÇÃO ADOTADA de modelo de gestão do projeto (decisão jul/2026). Não
+    desmembra Autarquia nem PPP e mantém "Público Municipal" como dummy
+    única. O crosswalk institucional definitivo foi avaliado e CANCELADO;
+    não há pendência de crosswalk.
 
 USO:
     python construir_painel_definitivo.py
@@ -606,10 +606,10 @@ def aplicar_decisoes_equipe(painel: pd.DataFrame) -> pd.DataFrame:
     Materializa decisões pontuais da equipe sobre o painel construído.
 
     modelo_gestao_proxy: cópia de class_assistencial a ser usada em QUALQUER
-    corte por modelo de gestão. Difere do original apenas nos CNES de
-    CNES_SEM_MODELO_GESTAO (rótulo considerado não confiável — NaN até o
-    crosswalk definitivo). class_assistencial permanece intacta para
-    rastreabilidade da fonte.
+    corte por modelo de gestão (DEFINIÇÃO ADOTADA). Difere do original apenas
+    nos CNES de CNES_SEM_MODELO_GESTAO — mecanismo de supressão de rótulo que
+    hoje está VAZIO (nenhum CNES suprimido). class_assistencial permanece
+    intacta para rastreabilidade da fonte.
     """
     df = painel.copy()
     df["modelo_gestao_proxy"] = df["class_assistencial"]
@@ -617,8 +617,8 @@ def aplicar_decisoes_equipe(painel: pd.DataFrame) -> pd.DataFrame:
     df.loc[mask, "modelo_gestao_proxy"] = np.nan
     if mask.any():
         print(f"[DECISÃO EQUIPE] {df.loc[mask, 'cnes'].nunique()} CNES com "
-              f"modelo_gestao_proxy = NaN (rótulo não confiável; pendência "
-              f"Alberto): {sorted(df.loc[mask, 'cnes'].unique())}")
+              f"modelo_gestao_proxy = NaN (rótulo suprimido pelo mecanismo "
+              f"CNES_SEM_MODELO_GESTAO): {sorted(df.loc[mask, 'cnes'].unique())}")
     return df
 
 

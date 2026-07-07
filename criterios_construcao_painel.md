@@ -57,8 +57,13 @@ A equipe decidiu não analisar separadamente as categorias de financiamento (MAC
 
 Os critérios acima resolvem a construção mecânica do painel, mas **não resolvem** a variável central da pesquisa. Permanecem pendentes:
 
-1. **Crosswalk institucional definitivo (CNES → modelo de gestão, por ano)** — o campo `class_assistencial` do SIH captura Direta, OSS e Filantrópico de forma razoavelmente confiável, inclusive os switchers Direta→OSS já documentados, mas não contempla Autarquia nem PPP, e mistura esfera administrativa com modelo de gestão na categoria "Público Municipal"
-2. **Público Municipal** — decisão pendente sobre se hospitais municipais permanecem no escopo do estudo e, em caso afirmativo, como distinguir internamente Direta municipal de OSS municipal
-3. **Datas exatas de conversão** dos hospitais que mudaram de modelo de gestão ao longo do painel, com precisão de mês/ano, a partir de fonte oficial (contrato de gestão ou Diário Oficial)
-4. **Duplicidade de coluna em 2025** entre `pos17` (constante) e `pos38` (variando corretamente por CNES) na classificação assistencial
-5. **Definição da fonte e do denominador** dos indicadores de ocupação — já resolvida e confirmada por Alberto (permanência acumulada no ano dividida por leitos × 365), mas ainda pendente de formalização textual definitiva no documento técnico-metodológico
+1. **Público Municipal** — decisão pendente sobre se hospitais municipais permanecem no escopo do estudo e, em caso afirmativo, como distinguir internamente Direta municipal de OSS municipal
+2. **Datas exatas de conversão** dos hospitais que mudaram de modelo de gestão ao longo do painel, com precisão de mês/ano, a partir de fonte oficial (contrato de gestão ou Diário Oficial)
+
+## 7. Decisões Registradas (jul/2026)
+
+Itens antes listados como pendências e desde então resolvidos ou decididos pela equipe:
+
+1. **Crosswalk institucional definitivo (CNES → modelo de gestão, por ano)** — avaliado e **CANCELADO** em julho/2026. A variável `modelo_gestao_proxy`, construída a partir de `class_assistencial` do SIH, passa a ser a **definição adotada** de modelo de gestão do projeto: captura Direta, OSS e Filantrópico (inclusive os switchers Direta→OSS documentados), não desmembra Autarquia nem PPP, e mantém "Público Municipal" como categoria única. Deixou de ser pendência aberta.
+2. **Duplicidade de coluna em 2025** na classificação assistencial — **resolvida**: a fonte passou a ser o lookup CNES→classificação embutido nas primeiras linhas de produção do arquivo de 2025 (637 pares CNES→rótulo), conforme `relatorio_verificacao_painel_jul2026.md` (CHANGE 1).
+3. **Fonte e denominador dos indicadores de ocupação** — **resolvida** (permanência acumulada no ano ÷ leitos × 365), confirmada por Alberto e registrada neste documento e no LEIA-ME do painel definitivo.
