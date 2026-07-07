@@ -1,0 +1,152 @@
+\section{Síntese e Conclusão Geral}
+\label{sec:conclusao}
+
+Este documento perseguiu uma única pergunta ao longo de todas as suas
+seções: entre os cinco arranjos institucionais que administram os
+hospitais do SUS no estado de São Paulo (\textbf{Filantrópico, Público
+Municipal, OSS, Administração Direta e Privado}), algum entrega
+desempenho sistematicamente melhor nos cinco indicadores oficiais do
+estudo? A resposta foi construída sobre o painel definitivo descrito na
+Seção~\ref{sec:painel}: \textbf{314 hospitais acompanhados ano a ano de
+2015 a 2025, 3.454 observações balanceadas}, destilado por um funil
+auditável a partir de 830 estabelecimentos da base bruta do SIH/SUS. A
+conclusão honesta é que a resposta depende radicalmente de qual pergunta
+se faz, se quem opera mais intensamente, quem é mais eficiente ou quem
+\emph{causa} melhor desfecho ao mudar de gestão, e que a evidência é
+forte para umas e frágil para outras. Esta seção amarra as duas metades
+do trabalho: a leitura descritiva do painel (Seções~\ref{sec:painel}
+a~\ref{sec:qualidade}) e a leitura inferencial e de eficiência
+(Seções~\ref{sec:estrategia} a~\ref{sec:fase2}).
+
+\textbf{O que a fase descritiva estabeleceu.} A metade exploratória do
+documento mapeou o terreno antes de qualquer modelo. Fixou os moldes
+estatísticos de cada indicador (Seção~\ref{sec:distribuicoes}),
+retratou o perfil bruto de cada categoria de gestão em medianas e
+violinos (Seção~\ref{sec:categorias}) e mostrou que as redes diferem
+tanto em desempenho quanto naquilo que as torna comparáveis, a
+complexidade e o porte (Seção~\ref{sec:complexidadeporte}). Duas
+ressalvas atravessam toda essa leitura e valem para o documento
+inteiro. A primeira é que a categoria de gestão de cada hospital segue
+a classificação assistencial do SIH adotada operacionalmente pela
+equipe (a variável \texttt{modelo\_gestao\_proxy}), e \textbf{não um
+cruzamento institucional depurado} caso a caso: é uma definição de
+trabalho, não um cadastro jurídico. A segunda é que todo contraste
+descritivo entre categorias reflete o \textbf{desempenho médio de quem
+está em cada rede}, e não o efeito causal limpo do modelo de gestão,
+pois hospitais não são sorteados para uma administração ou outra, e as
+redes diferem de partida em porte, complexidade e vocação assistencial.
+Os números descritivos situam; não julgam.
+
+\textbf{O que a fase inferencial sustenta, por ordem de robustez.} A
+metade causal e de eficiência do documento pode ser resumida não pela
+ordem em que os métodos foram aplicados, mas pela \textbf{firmeza da
+evidência que cada achado resistiu a produzir}. O que sobrevive a todos
+os testes é o \textbf{regime assistencial mais intenso das OSS}: mais
+produção, maior ocupação e maior uso de UTI (18,2\% acima da Direta,
+p~igual a 0,005, na Seção~\ref{sec:inferenciafinal}), um contraste
+transversal firme entre as redes, visível na produção física por leito
+que não usa dinheiro nenhum (54 saídas por leito nas OSS contra 35 na
+Direta) e replicado em todos os métodos, inclusive sem os conversores.
+A esse traço soma-se a \textbf{maior eficiência produtiva das OSS}
+(Seção~\ref{sec:fase2}), cerca de 40\% menos distância à fronteira que
+a Direta, concordante entre DEA e SFA e igualmente estável à retirada
+dos conversores: como a intensidade operacional, é uma característica
+\emph{da rede}, medida na comparação entre hospitais distintos, e não um
+efeito de conversão.
+
+\textbf{O que é sugestivo, mas não definitivo}, é a queda de cerca de
+\textbf{10\% no tempo médio de permanência} associada à gestão por OSS.
+Diferentemente dos traços anteriores, esse é um efeito identificado
+\emph{dentro} do hospital, pelos cinco conversores que trocaram a
+Direta pela OSS (Seções~\ref{sec:efeitogestao}
+e~\ref{sec:inferenciafinal}). Ele é consistente em direção e tamanho,
+maior que o de 85\% dos conversores-placebo no teste de permutação e
+resistente ao bootstrap selvagem por cluster, mas não alcança a
+significância estatística convencional (p~igual a 0,153), porque
+\textbf{cinco hospitais não bastam} para sustentar a afirmação com
+rigor. É evidência sugestiva forte, não fato demonstrado. \textbf{O que
+não se sustenta} é a queda de mortalidade após a conversão para OSS.
+Visível nos dados brutos dos conversores, ela \textbf{não sobrevive ao
+controle sintético}: em Sorocaba o hospital real termina \emph{acima}
+do seu gêmeo, com efeito nulo, e no Pérola Byington a queda existe mas
+fica dentro do que sorteios de placebo produzem (p~igual a 0,33). A
+Seção~\ref{sec:fase2} deu a esse ponto a demonstração mais direta:
+retirando os cinco conversores da amostra, a diferença de mortalidade
+entre as redes OSS e Direta simplesmente desaparece. A mortalidade
+menor é um \textbf{fenômeno da trajetória dos hospitais que mudaram de
+gestão, não uma diferença estrutural entre as redes}. \textbf{O que não
+mostrou diferença em método nenhum} foi o custo real por saída, igual
+entre as redes na leitura transversal (Seção~\ref{sec:resultados}) e na
+hierárquica (Seção~\ref{sec:fase2}), e comum entre os placebos no teste
+de permutação. Sobre o grupo \textbf{Privado} (n~igual a 3), a regra do
+documento foi mantida do início ao fim: entrou em todos os modelos
+apenas como \textbf{controle de absorção}, para não contaminar as
+demais categorias, e nunca recebeu interpretação substantiva, pois a
+Seção~\ref{sec:fase2} mostrou seu efeito aparente encolher quase 90\%
+assim que o modelo pondera a evidência pelo tamanho do grupo.
+
+\textbf{Limitações do projeto como um todo.} Para além das ressalvas
+técnicas discutidas seção a seção, quatro limitações operam no nível do
+projeto e condicionam toda leitura dos resultados. A primeira, e a mais
+importante, é que \textbf{toda a identificação causal repousa em apenas
+cinco conversores}, três deles com um único ano de dados após a mudança
+de gestão, uma base estreita para qualquer afirmação de efeito, por
+mais cuidadosa que seja a metodologia. A segunda é a \textbf{ausência de
+DRG no SIH}: a gravidade do caso, que idealmente ajustaria a comparação,
+foi suprida por uma métrica própria de complexidade (de inspiração
+Barcelona), cuja versão ponderada por mortalidade
+(\texttt{complexidade\_pond\_mort}) permanece provisória. A terceira é
+que o painel, por construção, retém apenas hospitais com mediana de
+leitos superior a 50, o que \textbf{limita a generalização para
+hospitais menores}, ausentes do estudo. A quarta é a \textbf{janela
+temporal ainda curta} para os hospitais convertidos em 2025, cujo
+pós-tratamento se resume a um único ano e não permite ver a trajetória
+se estabilizar.
+
+\textbf{Contribuição.} Com essas fronteiras claras, o que o projeto
+entrega é, ao que se sabe, o \textbf{primeiro comparativo institucional
+abrangente do estado de São Paulo}, e não apenas da Região
+Metropolitana, a reunir, sobre o mesmo painel, três camadas
+metodológicas que raramente convivem: a \textbf{estimação causal}
+(efeitos aleatórios correlacionados de Mundlak, estudo de eventos,
+o estimador de Callaway e Sant'Anna e controle sintético), a
+\textbf{análise de eficiência} (DEA com correção de viés e fronteira
+estocástica) e a \textbf{validação por modelos bayesianos
+hierárquicos}. Mais do que o arsenal, a contribuição está no cuidado
+metodológico explícito de \textbf{não confundir efeito de gestão com
+efeito de trajetória de conversão}, distinção que, aplicada à
+mortalidade, inverteu a leitura ingênua dos dados brutos e é
+provavelmente o achado mais consequente do trabalho.
+
+\textbf{Direções futuras.} Três frentes dão continuidade natural à
+pesquisa. A primeira é a \textbf{fase qualitativa de entrevistas}, cuja
+seleção de entrevistados e roteiro completo já constam da
+Seção~\ref{sec:qualitativa}: as entrevistas semiestruturadas ali
+desenhadas são dirigidas a investigar o mecanismo por trás do efeito no
+tempo de permanência, pois, se ele é real, algo na gestão por OSS
+encurta a internação, e entender o quê é o passo que os dados
+administrativos não alcançam. A segunda é o acúmulo de \textbf{novos
+anos de dados}, sobretudo para os três hospitais convertidos em 2025, o
+único caminho para transformar a evidência dentro do hospital, hoje
+sugestiva, em conclusão. A terceira é a \textbf{ratificação da forma
+funcional da complexidade}, a escolha entre \texttt{complexidade\_pond\_mort}
+e o fator de segurança \(s(M)\), ainda pendente de decisão junto à
+pesquisadora principal, e que afeta o ajuste de gravidade em todas as
+análises de mortalidade.
+
+\textbf{Uma palavra final de cautela.} Os resultados aqui reunidos
+foram construídos para serem lidos em conjunto e com seu contexto
+metodológico completo. Isolado desse contexto, qualquer número deste
+documento é vulnerável ao uso indevido, e dois pontos exigem alerta
+expresso. Primeiro, \textbf{nada aqui autoriza a afirmação de que a
+gestão por OSS reduz a mortalidade}: a evidência aponta o contrário
+depois do confronto com o controle sintético, e citar a queda bruta
+seria trair o próprio achado central do trabalho. Segundo, toda a
+identificação causal apoia-se em \textbf{cinco hospitais convertidos},
+uma base estatística frágil por natureza. Por isso, os achados deste
+documento \textbf{não devem ser usados isoladamente por gestores
+públicos para justificar decisões de modelo de gestão} sem o contexto
+metodológico que os cerca. O que a pesquisa oferece com segurança é um
+retrato: as OSS operam um regime mais intenso e mais eficiente; o que
+ela expressamente não oferece é um veredito causal sobre qual modelo
+salva mais vidas.
