@@ -118,11 +118,21 @@ def preparar_base():
                       encoding="utf-8")[["cnes", "ano", "te_bcc_vc"]]
     sfa = pd.read_csv("resultados_fase2/sfa/sfa_eficiencias.csv",
                       encoding="utf-8")[["cnes", "ano", "te_sfa"]]
+    # DEA só com leitos como insumo (sem valor_real), corrigido de viés
+    # pelo mesmo bootstrap de Simar e Wilson do DEA principal (fase2_dea_
+    # leitos_boot.R) — usado só como marcador informativo de divergência
+    # financeiro x físico (recomendação #7 da auditoria de 17/07/2026),
+    # nunca como critério de inclusão/exclusão em nenhum bloco.
+    dea_leitos = pd.read_csv(
+        "resultados_fase2/dea/dea_escores_so_leitos_vc.csv",
+        encoding="utf-8")[["cnes", "ano", "te_bcc_leitos_vc"]]
     painel = painel.merge(dea, on=["cnes", "ano"], how="left")
     painel = painel.merge(sfa, on=["cnes", "ano"], how="left")
+    painel = painel.merge(dea_leitos, on=["cnes", "ano"], how="left")
     print(f"\n[1] Eficiências mescladas: te_bcc_vc com "
           f"{painel['te_bcc_vc'].notna().sum()} obs, te_sfa com "
-          f"{painel['te_sfa'].notna().sum()} obs (de {len(painel)})")
+          f"{painel['te_sfa'].notna().sum()} obs, te_bcc_leitos_vc com "
+          f"{painel['te_bcc_leitos_vc'].notna().sum()} obs (de {len(painel)})")
 
     # medianas por CNES; indicadores assistenciais excluem as 2 observações
     # de denominador frágil (CNES 2097613, 2020-21)
@@ -137,6 +147,7 @@ def preparar_base():
         complexidade_estrutural=("complexidade_estrutural", "first"),
         te_dea_med=("te_bcc_vc", "median"),
         te_sfa_med=("te_sfa", "median"),
+        te_dea_leitos_med=("te_bcc_leitos_vc", "median"),
         tmp_med=("tmp", "median"),
         mort_med=("mort_all", "median"),
         custo_med=("custo_real", "median"),
@@ -160,6 +171,25 @@ def preparar_base():
     eleg["pct_dea"] = eleg["te_dea_med"].rank(pct=True)
     eleg["pct_sfa"] = eleg["te_sfa_med"].rank(pct=True)
     eleg["pct_comb"] = (eleg["pct_dea"] + eleg["pct_sfa"]) / 2
+
+    # marcador informativo de divergência financeiro x físico: rank no DEA
+    # principal (2 insumos, com valor_real) contra rank no DEA só-leitos
+    # (sem valor_real), ambos corrigidos de viés. Positivo = hospital
+    # ranqueia MELHOR com o insumo financeiro do que sem ele (candidato ao
+    # artefato de regime de pagamento); negativo = o oposto. Só
+    # informativo — nunca critério de inclusão/exclusão (decisão de
+    # 18/07/2026: excluir descartaria justo os casos mais informativos
+    # para a pergunta que a entrevista deveria responder).
+    eleg["rank_dea_leitos"] = eleg["te_dea_leitos_med"].rank(ascending=False)
+    eleg["divergencia_dea_leitos"] = eleg["rank_dea_leitos"] - eleg["rank_dea"]
+
+    # ranks e divergência ficam disponíveis em `resumo` (NaN fora da rede
+    # elegível) para que _linha() os inclua em todos os blocos
+    resumo["rank_dea"] = eleg["rank_dea"]
+    resumo["rank_sfa"] = eleg["rank_sfa"]
+    resumo["rank_dea_leitos"] = eleg["rank_dea_leitos"]
+    resumo["divergencia_dea_leitos"] = eleg["divergencia_dea_leitos"]
+
     print(f"[1] Rede elegível para os blocos b-e: {len(eleg)} CNES "
           f"(excluídos Privado n=3, 5 conversores e o frágil {est.CNES_FRAGIL})")
     return painel, resumo, eleg
@@ -178,6 +208,13 @@ def _linha(bloco, cnes, resumo, papel, justificativa, tipo="plena"):
             "leitos_mediana": round(r["leitos_med"], 0),
             "te_bcc_vc_mediana": round(r["te_dea_med"], 3),
             "te_sfa_mediana": round(r["te_sfa_med"], 3),
+            "rank_dea": (round(r["rank_dea"], 0)
+                        if pd.notna(r["rank_dea"]) else np.nan),
+            "rank_dea_leitos": (round(r["rank_dea_leitos"], 0)
+                                if pd.notna(r["rank_dea_leitos"]) else np.nan),
+            "divergencia_dea_leitos": (round(r["divergencia_dea_leitos"], 0)
+                                       if pd.notna(r["divergencia_dea_leitos"])
+                                       else np.nan),
             "tmp_mediana": round(r["tmp_med"], 2),
             "mort_all_mediana": round(r["mort_med"], 4),
             "custo_real_mediana": round(r["custo_med"], 0),
@@ -303,6 +340,20 @@ def bloco_bc(eleg, resumo):
                   f"{_pt(r['te_sfa_med'], 3)} (medianas 2015-2025), "
                   f"no suporte comum (faixa {r['faixa_barcelona']}, "
                   f"{r['porte_fixo']}).")
+        # marcador informativo (não critério de seleção): divergência de
+        # rank entre o DEA com insumo financeiro e o DEA só com leitos —
+        # sinaliza se a eficiência aparente deste desviante positivo pode
+        # estar ligada ao regime de pagamento, não à gestão; a pergunta
+        # fica para a entrevista, não é resolvida aqui.
+        if pd.notna(r["rank_dea_leitos"]):
+            just += (f" Marcador financeiro x físico: {_pt(r['rank_dea'], 0)}"
+                     f"º no rank DEA com insumo financeiro contra "
+                     f"{_pt(r['rank_dea_leitos'], 0)}º só com leitos "
+                     f"(diferença de {_pt(r['divergencia_dea_leitos'], 0)} "
+                     f"posições; positivo = ranqueia melhor com o insumo "
+                     f"financeiro do que sem ele) — investigar se a "
+                     f"divergência é regime de pagamento, porte, "
+                     f"complexidade ou gestão real.")
         linhas_b.append(_linha("b_desviante_positivo", cnes, resumo,
                                f"desviante positivo {cat}", just))
 
@@ -554,7 +605,7 @@ def gerar_tex(selecao: pd.DataFrame, n_unicos: int, n_plenas: int,
 
 Este roteiro operacionaliza a fase qualitativa da pesquisa sobre o efeito
 do modelo institucional de gestão no desempenho de hospitais SUS de São
-Paulo (painel balanceado de 314 hospitais, 2015 a 2025). A fase de
+Paulo (painel balanceado de 289 hospitais, 2015 a 2025). A fase de
 estimação, concluída, deixou quatro achados que as entrevistas devem
 explicar por dentro: (i) o regime operacional mais intenso e a eficiência
 técnica maior das OSS (DEA-BCC corrigida de viés e SFA-BC95) são traços
@@ -581,8 +632,10 @@ comum (faixas Barcelona 3--4, portes médio e grande), pares casados de
 contraste OSS vs.\ Direta e OSS vs.\ Filantrópico com estrutura parecida
 e eficiência divergente, casos de maior divergência entre DEA e SFA, e
 duas entrevistas curtas de validação de registro. O grupo Privado (3
-hospitais) e os 18 hospitais de longa permanência ficam fora dos blocos
-comparativos, pelo tamanho e pelo perfil assistencial não comparável. As
+hospitais) fica fora dos blocos comparativos, pelo tamanho e pelo
+perfil assistencial não comparável (o painel de 289 não tem mais
+hospitais de longa permanência: a ETAPA F removeu todos os 18 que
+existiam no painel de 314). As
 entrevistas são semiestruturadas: o roteiro-base da Seção~\ref{sec:base}
 vale para todos os entrevistados dos blocos a--e, e os módulos da
 Seção~\ref{sec:modulos} acrescentam perguntas específicas por perfil.
