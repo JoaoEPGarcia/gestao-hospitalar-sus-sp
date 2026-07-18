@@ -2,7 +2,8 @@
 inferencia_robusta.py
 =====================
 Fechamento inferencial da fase de estimação do painel de hospitais
-SUS/SP (314 CNES, 2015 a 2025). Reforça a leitura do efeito de gestão,
+SUS/SP (289 CNES, 2015 a 2025 — painel pós-ETAPA F de 15/07/2026).
+Reforça a leitura do efeito de gestão,
 que repousa em apenas 5 hospitais convertidos de Direta para OSS, com
 métodos adequados a poucos tratados, e fecha a limitação distribucional
 da ocupação de UTI registrada em analises/estimacao.md.
@@ -10,7 +11,7 @@ da ocupação de UTI registrada em analises/estimacao.md.
 Blocos (iterativos; rodar um por vez ou todos):
   bootstrap   1a. Bootstrap selvagem por cluster (Rademacher, hipótese
                   nula imposta) para o efeito OSS nos modelos de efeitos
-                  fixos de log custo real e log TMP
+                  fixos de log faturamento real e log TMP
   permutacao  1b. Teste de permutação: 5 conversores falsos sorteados
                   entre os nunca tratados, com os anos reais de conversão
   cs          2a. Callaway e Sant'Anna com controles nunca tratados:
@@ -49,7 +50,7 @@ B_PERM = 1999
 
 ROT_VAR_SINT = {"mort_pp": ("Mortalidade geral (%)", "%"),
                 "tmp": ("TMP (dias)", "dias"),
-                "custo_real": ("Custo real por saída (R$ de 2025)", "R$")}
+                "custo_real": ("Faturamento real por saída (R$ de 2025)", "R$")}
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -109,7 +110,7 @@ def bloco_bootstrap(painel):
     print("=" * 70)
     rng = np.random.default_rng(SEMENTE)
     linhas = []
-    for alvo, rotulo in [("custo_real", "Custo real por saída (log, EF)"),
+    for alvo, rotulo in [("custo_real", "Faturamento real por saída (log, EF)"),
                          ("tmp", "TMP (log, EF, sem longa permanência)")]:
         d, c1, c2, ytil, dtil = _preparar_fwl(painel, alvo)
         beta, t_obs, ep = _beta_t_cluster(ytil, dtil, c1)
@@ -144,7 +145,7 @@ def bloco_permutacao(painel):
     rng = np.random.default_rng(SEMENTE)
     anos_conv = np.array(sorted(est.CONVERSOES.values()))
     linhas = []
-    for alvo, rotulo in [("custo_real", "Custo real por saída (log, EF)"),
+    for alvo, rotulo in [("custo_real", "Faturamento real por saída (log, EF)"),
                          ("tmp", "TMP (log, EF, sem longa permanência)")]:
         d, c1, c2, ytil, dtil = _preparar_fwl(painel, alvo)
         sdd = float(dtil @ dtil)
@@ -180,7 +181,7 @@ def bloco_permutacao(painel):
 
 ALVOS_CS = [("mort_all", "pp", "Mortalidade geral", "p.p."),
             ("tmp", "log", "TMP", "log pontos"),
-            ("custo_real", "log", "Custo real por saída", "log pontos"),
+            ("custo_real", "log", "Faturamento real por saída", "log pontos"),
             ("pct_alta_complex", "pp", "Fração alta complexidade", "p.p."),
             ("ocupacao_internacao_w", "log", "Ocupação internação",
              "log pontos")]
