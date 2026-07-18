@@ -8,7 +8,7 @@ da fase de estimação (relatório principal.pdf):
   - TMP menor nas OSS: evidência sugestiva within (5 conversores, -10,2%);
   - mortalidade menor concentrada na trajetória dos conversores, não
     sobrevive ao controle sintético;
-  - custo real por saída não difere entre categorias.
+  - faturamento real por saída não difere entre categorias.
 
 Blocos de seleção:
   a) 5 conversores Direta->OSS (inclusão obrigatória);
@@ -56,7 +56,7 @@ INDICADORES_QUALI = ["tmp", "mort_all", "custo_real", "qtde"]
 ROT_QUALI = {
     "tmp":        "TMP (dias)",
     "mort_all":   "Mortalidade geral",
-    "custo_real": "Custo por saída (R$ de 2025)",
+    "custo_real": "Faturamento real por saída (R$ de 2025)",
     "qtde":       "Saídas hospitalares (produção)",
 }
 
@@ -562,9 +562,15 @@ robustos da rede; (ii) o tempo médio de permanência cerca de 10\% menor
 nas OSS é evidência sugestiva de variação dentro do hospital, apoiada em
 apenas 5 conversores; (iii) a mortalidade menor concentra-se na
 trajetória dos conversores e não sobrevive ao controle sintético, o que
-recomenda cautela e investigação de mecanismo; (iv) o custo real por
+recomenda cautela e investigação de mecanismo; (iv) o faturamento real por
 saída não difere entre categorias --- a diferença de gestão, se existe,
-não aparece no custo. Toda leitura de mortalidade nesta fase usa a
+não aparece no faturamento. Ressalva de leitura (regime de pagamento):
+hospitais OSS são custeados por contrato de gestão com orçamento global,
+não por reembolso de AIH --- o valor registrado por saída é, para eles,
+produção sem consequência financeira direta; a diferença de faturamento
+pode refletir o próprio regime de pagamento, a variável cujo efeito se
+busca medir, e não uso de recursos ou qualidade assistencial. Toda
+leitura de mortalidade nesta fase usa a
 complexidade estrutural como referência de perfil, nunca a complexidade
 ponderada pela mortalidade, para evitar circularidade.
 
@@ -663,8 +669,8 @@ entrevistado antes da resposta.
             ("Como funcionam as compras e a manutenção de equipamentos: "
              "prazos típicos, o que mais trava? [licitação vs.\\ compra "
              "direta; estoque; equipamento parado]",
-             "o custo real por saída não difere entre categorias; se as "
-             "OSS produzem mais com custo igual, a diferença deve estar "
+             "o faturamento real por saída não difere entre categorias; se as "
+             "OSS produzem mais com faturamento igual, a diferença deve estar "
              "no uso dos insumos, não no preço."),
             ("Qual é a rotatividade das equipes médica e de enfermagem, e "
              "o que a explica? [vínculos múltiplos; plantões; salário "
@@ -695,7 +701,7 @@ entrevistado antes da resposta.
              "da relação praticada."),
             ("Como o dinheiro chega e o que acontece numa crise de caixa? "
              "[teto MAC; incentivos; atraso de repasse; quem socorre]",
-             "o custo real por saída não difere entre categorias: se o "
+             "o faturamento real por saída não difere entre categorias: se o "
              "financiamento é semelhante, a diferença de desempenho não "
              "é explicada por mais dinheiro."),
         ]),
@@ -831,7 +837,7 @@ quem opera, e confrontar depois com as restrições objetivas do painel.
              "gargalo."),
             ("O financiamento cobre o custo do que o hospital produz? "
              "Onde aperta primeiro? [tabela SUS; folha; incentivos]",
-             "o custo real por saída não difere entre categorias na "
+             "o faturamento real por saída não difere entre categorias na "
              "rede; se a restrição percebida é financeira, ela precisa "
              "ser conciliada com esse achado."),
             ("Se o hospital pudesse mudar uma única regra (de RH, compra "
