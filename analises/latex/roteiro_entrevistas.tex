@@ -34,7 +34,7 @@
 
 Este roteiro operacionaliza a fase qualitativa da pesquisa sobre o efeito
 do modelo institucional de gestão no desempenho de hospitais SUS de São
-Paulo (painel balanceado de 314 hospitais, 2015 a 2025). A fase de
+Paulo (painel balanceado de 289 hospitais, 2015 a 2025). A fase de
 estimação, concluída, deixou quatro achados que as entrevistas devem
 explicar por dentro: (i) o regime operacional mais intenso e a eficiência
 técnica maior das OSS (DEA-BCC corrigida de viés e SFA-BC95) são traços
@@ -42,9 +42,15 @@ robustos da rede; (ii) o tempo médio de permanência cerca de 10\% menor
 nas OSS é evidência sugestiva de variação dentro do hospital, apoiada em
 apenas 5 conversores; (iii) a mortalidade menor concentra-se na
 trajetória dos conversores e não sobrevive ao controle sintético, o que
-recomenda cautela e investigação de mecanismo; (iv) o custo real por
+recomenda cautela e investigação de mecanismo; (iv) o faturamento real por
 saída não difere entre categorias --- a diferença de gestão, se existe,
-não aparece no custo. Toda leitura de mortalidade nesta fase usa a
+não aparece no faturamento. Ressalva de leitura (regime de pagamento):
+hospitais OSS são custeados por contrato de gestão com orçamento global,
+não por reembolso de AIH --- o valor registrado por saída é, para eles,
+produção sem consequência financeira direta; a diferença de faturamento
+pode refletir o próprio regime de pagamento, a variável cujo efeito se
+busca medir, e não uso de recursos ou qualidade assistencial. Toda
+leitura de mortalidade nesta fase usa a
 complexidade estrutural como referência de perfil, nunca a complexidade
 ponderada pela mortalidade, para evitar circularidade.
 
@@ -55,8 +61,10 @@ comum (faixas Barcelona 3--4, portes médio e grande), pares casados de
 contraste OSS vs.\ Direta e OSS vs.\ Filantrópico com estrutura parecida
 e eficiência divergente, casos de maior divergência entre DEA e SFA, e
 duas entrevistas curtas de validação de registro. O grupo Privado (3
-hospitais) e os 18 hospitais de longa permanência ficam fora dos blocos
-comparativos, pelo tamanho e pelo perfil assistencial não comparável. As
+hospitais) fica fora dos blocos comparativos, pelo tamanho e pelo
+perfil assistencial não comparável (o painel de 289 não tem mais
+hospitais de longa permanência: a ETAPA F removeu todos os 18 que
+existiam no painel de 314). As
 entrevistas são semiestruturadas: o roteiro-base da Seção~\ref{sec:base}
 vale para todos os entrevistados dos blocos a--e, e os módulos da
 Seção~\ref{sec:modulos} acrescentam perguntas específicas por perfil.
@@ -73,19 +81,19 @@ entrevistado antes da resposta.
 \toprule
 CNES & Hospital & Município & Categoria & DEA & SFA \\
 \midrule
-2081695 & Conjunto Hospitalar Sorocaba & Sorocaba & OSS (conversor) & 0,560 & 0,999 \\
-2078287 & Centro De Referencia Da Saude Da Mulhe & Sao Paulo & OSS (conversor) & 0,825 & 0,773 \\
-2082225 & Hospital Katia De Souza Rodrigues Taip & Sao Paulo & OSS (conversor) & 0,820 & 0,906 \\
-2091755 & Hospital Geral De Vila Penteado Dr Jos & Sao Paulo & OSS (conversor) & 0,581 & 0,882 \\
-2750511 & Hospital Estadual Dr Odilo Antunes De  & Presidente Prudente & OSS (conversor) & 0,695 & 0,877 \\
+2081695 & Conjunto Hospitalar Sorocaba & Sorocaba & OSS (conversor) & 0,563 & 0,999 \\
+2078287 & Centro De Referencia Da Saude Da Mulhe & Sao Paulo & OSS (conversor) & 0,827 & 0,805 \\
+2082225 & Hospital Katia De Souza Rodrigues Taip & Sao Paulo & OSS (conversor) & 0,818 & 0,912 \\
+2091755 & Hospital Geral De Vila Penteado Dr Jos & Sao Paulo & OSS (conversor) & 0,582 & 0,893 \\
+2750511 & Hospital Estadual Dr Odilo Antunes De  & Presidente Prudente & OSS (conversor) & 0,698 & 0,900 \\
 \bottomrule
 \end{tabular}
 \end{center}
-\noindent\textbf{2081695 --- Conjunto Hospitalar Sorocaba} (Sorocaba, interior; Grande Porte, faixa Barcelona 5, complexidade estrutural 675,0). Conversor Direta->OSS em 2019. Antes/depois (medianas): TMP (dias): 8,29 -> 7,13 (-14,0\%); Mortalidade geral: 0,09 -> 0,08 (-14,8\%); Custo por saída (R\$ de 2025): 2.734,63 -> 2.401,47 (-12,2\%); Saídas hospitalares (produção): 13.159,50 -> 16.243,00 (23,4\%)\par\medskip
-\noindent\textbf{2078287 --- Centro De Referencia Da Saude Da Mulher Sao Paulo} (Sao Paulo, capital; Médio Porte, faixa Barcelona 4, complexidade estrutural 266,0). Conversor Direta->OSS em 2023. Antes/depois (medianas): TMP (dias): 4,12 -> 3,40 (-17,5\%); Mortalidade geral: 0,08 -> 0,05 (-39,5\%); Custo por saída (R\$ de 2025): 1.989,40 -> 1.423,76 (-28,4\%); Saídas hospitalares (produção): 5.583,00 -> 14.036,00 (151,4\%)\par\medskip
-\noindent\textbf{2082225 --- Hospital Katia De Souza Rodrigues Taipas Sao Paulo} (Sao Paulo, capital; Grande Porte, faixa Barcelona 4, complexidade estrutural 380,0). Conversor Direta->OSS em 2025 [apenas 1 ano pós: sem leitura de tendência]. Antes/depois (medianas): TMP (dias): 5,41 -> 5,35 (-1,1\%); Mortalidade geral: 0,08 -> 0,06 (-18,1\%); Custo por saída (R\$ de 2025): 869,18 -> 977,07 (12,4\%); Saídas hospitalares (produção): 9.804,00 -> 10.839,00 (10,6\%)\par\medskip
-\noindent\textbf{2091755 --- Hospital Geral De Vila Penteado Dr Jose Pangella Sao Paulo} (Sao Paulo, capital; Grande Porte, faixa Barcelona 4, complexidade estrutural 350,0). Conversor Direta->OSS em 2025 [apenas 1 ano pós: sem leitura de tendência]. Antes/depois (medianas): TMP (dias): 5,03 -> 5,50 (9,3\%); Mortalidade geral: 0,07 -> 0,08 (11,1\%); Custo por saída (R\$ de 2025): 940,08 -> 1.246,13 (32,6\%); Saídas hospitalares (produção): 8.350,50 -> 7.783,00 (-6,8\%)\par\medskip
-\noindent\textbf{2750511 --- Hospital Estadual Dr Odilo Antunes De Siqueira P Prudente} (Presidente Prudente, interior; Médio Porte, faixa Barcelona 2, complexidade estrutural 94,0). Conversor Direta->OSS em 2025 [apenas 1 ano pós: sem leitura de tendência]. Antes/depois (medianas): TMP (dias): 3,72 -> 3,91 (5,4\%); Mortalidade geral: 0,01 -> 0,01 (13,4\%); Custo por saída (R\$ de 2025): 1.132,81 -> 1.082,27 (-4,5\%); Saídas hospitalares (produção): 3.675,00 -> 3.513,00 (-4,4\%)\par\medskip
+\noindent\textbf{2081695 --- Conjunto Hospitalar Sorocaba} (Sorocaba, interior; Grande Porte, faixa Barcelona 5, complexidade estrutural 675,0). Conversor Direta->OSS em 2019. Antes/depois (medianas): TMP (dias): 8,29 -> 7,13 (-14,0\%); Mortalidade geral: 0,09 -> 0,08 (-14,8\%); Faturamento real por saída (R\$ de 2025): 2.734,63 -> 2.401,47 (-12,2\%); Saídas hospitalares (produção): 13.159,50 -> 16.243,00 (23,4\%)\par\medskip
+\noindent\textbf{2078287 --- Centro De Referencia Da Saude Da Mulher Sao Paulo} (Sao Paulo, capital; Médio Porte, faixa Barcelona 4, complexidade estrutural 266,0). Conversor Direta->OSS em 2023. Antes/depois (medianas): TMP (dias): 4,12 -> 3,40 (-17,5\%); Mortalidade geral: 0,08 -> 0,05 (-39,5\%); Faturamento real por saída (R\$ de 2025): 1.989,40 -> 1.423,76 (-28,4\%); Saídas hospitalares (produção): 5.583,00 -> 14.036,00 (151,4\%)\par\medskip
+\noindent\textbf{2082225 --- Hospital Katia De Souza Rodrigues Taipas Sao Paulo} (Sao Paulo, capital; Grande Porte, faixa Barcelona 4, complexidade estrutural 380,0). Conversor Direta->OSS em 2025 [apenas 1 ano pós: sem leitura de tendência]. Antes/depois (medianas): TMP (dias): 5,41 -> 5,35 (-1,1\%); Mortalidade geral: 0,08 -> 0,06 (-18,1\%); Faturamento real por saída (R\$ de 2025): 869,18 -> 977,07 (12,4\%); Saídas hospitalares (produção): 9.804,00 -> 10.839,00 (10,6\%)\par\medskip
+\noindent\textbf{2091755 --- Hospital Geral De Vila Penteado Dr Jose Pangella Sao Paulo} (Sao Paulo, capital; Grande Porte, faixa Barcelona 4, complexidade estrutural 350,0). Conversor Direta->OSS em 2025 [apenas 1 ano pós: sem leitura de tendência]. Antes/depois (medianas): TMP (dias): 5,03 -> 5,50 (9,3\%); Mortalidade geral: 0,07 -> 0,08 (11,1\%); Faturamento real por saída (R\$ de 2025): 940,08 -> 1.246,13 (32,6\%); Saídas hospitalares (produção): 8.350,50 -> 7.783,00 (-6,8\%)\par\medskip
+\noindent\textbf{2750511 --- Hospital Estadual Dr Odilo Antunes De Siqueira P Prudente} (Presidente Prudente, interior; Médio Porte, faixa Barcelona 2, complexidade estrutural 94,0). Conversor Direta->OSS em 2025 [apenas 1 ano pós: sem leitura de tendência]. Antes/depois (medianas): TMP (dias): 3,72 -> 3,91 (5,4\%); Mortalidade geral: 0,01 -> 0,01 (13,4\%); Faturamento real por saída (R\$ de 2025): 1.132,81 -> 1.082,27 (-4,5\%); Saídas hospitalares (produção): 3.675,00 -> 3.513,00 (-4,4\%)\par\medskip
 
 \subsection{Bloco b --- Desviantes positivos (quartil superior persistente)}
 \begin{center}\small
@@ -93,17 +101,17 @@ CNES & Hospital & Município & Categoria & DEA & SFA \\
 \toprule
 CNES & Hospital & Município & Categoria & DEA & SFA \\
 \midrule
-7573162 & Hospital Regional De Jundiai & Jundiai & OSS & 0,904 & 0,999 \\
-6164366 & Hospital Estadual Americo Brasiliense & Americo Brasiliense & Direta & 0,807 & 0,886 \\
-5718368 & Hosp Mun M Boi Mirim & Sao Paulo & Público Municipal & 0,867 & 0,962 \\
-2076896 & Hospital Sao Luiz Gonzaga & Sao Paulo & Filantrópico & 0,927 & 0,925 \\
+7573162 & Hospital Regional De Jundiai & Jundiai & OSS & 0,905 & 0,999 \\
+6164366 & Hospital Estadual Americo Brasiliense & Americo Brasiliense & Direta & 0,810 & 0,908 \\
+5718368 & Hosp Mun M Boi Mirim & Sao Paulo & Público Municipal & 0,870 & 0,962 \\
+2076896 & Hospital Sao Luiz Gonzaga & Sao Paulo & Filantrópico & 0,922 & 0,928 \\
 \bottomrule
 \end{tabular}
 \end{center}
-\noindent\textbf{7573162 --- Hospital Regional De Jundiai} (Jundiai, interior; Médio Porte, faixa Barcelona 3, complexidade estrutural 246,0). Desviante positivo da categoria OSS (quartil superior persistente de te\_bcc\_vc e te\_sfa): eficiência DEA 0,904 e SFA 0,999 (medianas 2015-2025), no suporte comum (faixa 3, Médio Porte).\par\medskip
-\noindent\textbf{6164366 --- Hospital Estadual Americo Brasiliense} (Americo Brasiliense, interior; Médio Porte, faixa Barcelona 3, complexidade estrutural 187,0). Desviante positivo da categoria Direta (critério relaxado: quartil superior de DEA e acima da mediana de SFA): eficiência DEA 0,807 e SFA 0,886 (medianas 2015-2025), no suporte comum (faixa 3, Médio Porte).\par\medskip
-\noindent\textbf{5718368 --- Hosp Mun M Boi Mirim} (Sao Paulo, capital; Grande Porte, faixa Barcelona 4, complexidade estrutural 469,0). Desviante positivo da categoria Público Municipal (quartil superior persistente de te\_bcc\_vc e te\_sfa): eficiência DEA 0,867 e SFA 0,962 (medianas 2015-2025), no suporte comum (faixa 4, Grande Porte).\par\medskip
-\noindent\textbf{2076896 --- Hospital Sao Luiz Gonzaga} (Sao Paulo, capital; Grande Porte, faixa Barcelona 3, complexidade estrutural 241,0). Desviante positivo da categoria Filantrópico (quartil superior persistente de te\_bcc\_vc e te\_sfa): eficiência DEA 0,927 e SFA 0,925 (medianas 2015-2025), no suporte comum (faixa 3, Grande Porte).\par\medskip
+\noindent\textbf{7573162 --- Hospital Regional De Jundiai} (Jundiai, interior; Médio Porte, faixa Barcelona 3, complexidade estrutural 246,0). Desviante positivo da categoria OSS (quartil superior persistente de te\_bcc\_vc e te\_sfa): eficiência DEA 0,905 e SFA 0,999 (medianas 2015-2025), no suporte comum (faixa 3, Médio Porte). Marcador financeiro x físico: 4º no rank DEA com insumo financeiro contra 18º só com leitos (diferença de 14 posições; positivo = ranqueia melhor com o insumo financeiro do que sem ele) — investigar se a divergência é regime de pagamento, porte, complexidade ou gestão real.\par\medskip
+\noindent\textbf{6164366 --- Hospital Estadual Americo Brasiliense} (Americo Brasiliense, interior; Médio Porte, faixa Barcelona 3, complexidade estrutural 187,0). Desviante positivo da categoria Direta (critério relaxado: quartil superior de DEA e acima da mediana de SFA): eficiência DEA 0,810 e SFA 0,908 (medianas 2015-2025), no suporte comum (faixa 3, Médio Porte). Marcador financeiro x físico: 27º no rank DEA com insumo financeiro contra 75º só com leitos (diferença de 48 posições; positivo = ranqueia melhor com o insumo financeiro do que sem ele) — investigar se a divergência é regime de pagamento, porte, complexidade ou gestão real.\par\medskip
+\noindent\textbf{5718368 --- Hosp Mun M Boi Mirim} (Sao Paulo, capital; Grande Porte, faixa Barcelona 4, complexidade estrutural 469,0). Desviante positivo da categoria Público Municipal (quartil superior persistente de te\_bcc\_vc e te\_sfa): eficiência DEA 0,870 e SFA 0,962 (medianas 2015-2025), no suporte comum (faixa 4, Grande Porte). Marcador financeiro x físico: 12º no rank DEA com insumo financeiro contra 4º só com leitos (diferença de -8 posições; positivo = ranqueia melhor com o insumo financeiro do que sem ele) — investigar se a divergência é regime de pagamento, porte, complexidade ou gestão real.\par\medskip
+\noindent\textbf{2076896 --- Hospital Sao Luiz Gonzaga} (Sao Paulo, capital; Grande Porte, faixa Barcelona 3, complexidade estrutural 241,0). Desviante positivo da categoria Filantrópico (quartil superior persistente de te\_bcc\_vc e te\_sfa): eficiência DEA 0,922 e SFA 0,928 (medianas 2015-2025), no suporte comum (faixa 3, Grande Porte). Marcador financeiro x físico: 1º no rank DEA com insumo financeiro contra 66º só com leitos (diferença de 65 posições; positivo = ranqueia melhor com o insumo financeiro do que sem ele) — investigar se a divergência é regime de pagamento, porte, complexidade ou gestão real.\par\medskip
 
 \subsection{Bloco c --- Desviantes negativos (quartil inferior persistente)}
 \begin{center}\small
@@ -111,15 +119,15 @@ CNES & Hospital & Município & Categoria & DEA & SFA \\
 \toprule
 CNES & Hospital & Município & Categoria & DEA & SFA \\
 \midrule
-2028840 & Instituto De Infectologia Emilio Ribas & Sao Paulo & Direta & 0,447 & 0,410 \\
-2698471 & Secao Hospital Municipal Dr Arthur Dom & Santos & Público Municipal & 0,377 & 0,699 \\
-2078465 & Real Sociedade Portuguesa De Beneficen & Campinas & Filantrópico & 0,229 & 0,464 \\
+2028840 & Instituto De Infectologia Emilio Ribas & Sao Paulo & Direta & 0,447 & 0,409 \\
+2698471 & Secao Hospital Municipal Dr Arthur Dom & Santos & Público Municipal & 0,378 & 0,717 \\
+2080354 & Hospital Santo Antonio Santos & Santos & Filantrópico & 0,351 & 0,399 \\
 \bottomrule
 \end{tabular}
 \end{center}
-\noindent\textbf{2028840 --- Instituto De Infectologia Emilio Ribas Sao Paulo} (Sao Paulo, capital; Grande Porte, faixa Barcelona 4, complexidade estrutural 459,0). Desviante negativo da categoria Direta (quartil inferior persistente de te\_bcc\_vc e te\_sfa): eficiência DEA 0,447 e SFA 0,410 (medianas 2015-2025), no suporte comum (faixa 4, Grande Porte).\par\medskip
-\noindent\textbf{2698471 --- Secao Hospital Municipal Dr Arthur Domingues Pinto} (Santos, interior; Médio Porte, faixa Barcelona 3, complexidade estrutural 122,0). Desviante negativo da categoria Público Municipal (quartil inferior persistente de te\_bcc\_vc e te\_sfa): eficiência DEA 0,377 e SFA 0,699 (medianas 2015-2025), no suporte comum (faixa 3, Médio Porte).\par\medskip
-\noindent\textbf{2078465 --- Real Sociedade Portuguesa De Beneficencia} (Campinas, interior; Médio Porte, faixa Barcelona 3, complexidade estrutural 128,0). Desviante negativo da categoria Filantrópico (quartil inferior persistente de te\_bcc\_vc e te\_sfa): eficiência DEA 0,229 e SFA 0,464 (medianas 2015-2025), no suporte comum (faixa 3, Médio Porte).\par\medskip
+\noindent\textbf{2028840 --- Instituto De Infectologia Emilio Ribas Sao Paulo} (Sao Paulo, capital; Grande Porte, faixa Barcelona 4, complexidade estrutural 459,0). Desviante negativo da categoria Direta (quartil inferior persistente de te\_bcc\_vc e te\_sfa): eficiência DEA 0,447 e SFA 0,409 (medianas 2015-2025), no suporte comum (faixa 4, Grande Porte).\par\medskip
+\noindent\textbf{2698471 --- Secao Hospital Municipal Dr Arthur Domingues Pinto} (Santos, interior; Médio Porte, faixa Barcelona 3, complexidade estrutural 122,0). Desviante negativo da categoria Público Municipal (quartil inferior persistente de te\_bcc\_vc e te\_sfa): eficiência DEA 0,378 e SFA 0,717 (medianas 2015-2025), no suporte comum (faixa 3, Médio Porte).\par\medskip
+\noindent\textbf{2080354 --- Hospital Santo Antonio Santos} (Santos, interior; Grande Porte, faixa Barcelona 3, complexidade estrutural 126,0). Desviante negativo da categoria Filantrópico (quartil inferior persistente de te\_bcc\_vc e te\_sfa): eficiência DEA 0,351 e SFA 0,399 (medianas 2015-2025), no suporte comum (faixa 3, Grande Porte).\par\medskip
 
 \subsection{Bloco d --- Pares casados de contraste}
 \begin{center}\small
@@ -127,19 +135,19 @@ CNES & Hospital & Município & Categoria & DEA & SFA \\
 \toprule
 CNES & Hospital & Município & Categoria & DEA & SFA \\
 \midrule
-2792141 & Hospital Regional De Cotia & Cotia & OSS & 0,891 & 0,999 \\
-2079410 & Complexo Hospitalar Padre Bento De Gua & Guarulhos & Direta & 0,528 & 0,795 \\
-2096412 & Santa Casa De Misericordia De Jacarei & Jacarei & Filantrópico & 0,596 & 0,880 \\
-2071371 & Hospital Infantil Darcy Vargas Uga Iii & Sao Paulo & Direta & 0,541 & 0,719 \\
-2079232 & Hospital Santa Barbara & Santa Barbara D'Oeste & Filantrópico & 0,523 & 0,805 \\
+2065665 & Hospital Maternidade Interlagos & Sao Paulo & Direta & 0,690 & 0,900 \\
+2079232 & Hospital Santa Barbara & Santa Barbara D'Oeste & Filantrópico & 0,523 & 0,820 \\
+2792141 & Hospital Regional De Cotia & Cotia & OSS & 0,893 & 0,999 \\
+2079410 & Complexo Hospitalar Padre Bento De Gua & Guarulhos & Direta & 0,527 & 0,815 \\
+2096412 & Santa Casa De Misericordia De Jacarei & Jacarei & Filantrópico & 0,598 & 0,890 \\
 \bottomrule
 \end{tabular}
 \end{center}
-\noindent\textbf{2792141 --- Hospital Regional De Cotia} (Cotia, interior; Médio Porte, faixa Barcelona 4, complexidade estrutural 330,0). Âncora OSS de alta eficiência (DEA 0,891, SFA 0,999) para os pares casados.\par\medskip
-\noindent\textbf{2079410 --- Complexo Hospitalar Padre Bento De Guarulhos} (Guarulhos, interior; Médio Porte, faixa Barcelona 4, complexidade estrutural 327,0). Par casado da âncora OSS Hospital Regional De Cotia (CNES 2792141): mesmo porte (Médio Porte), faixa Barcelona 4 vs 4, leitos 145 vs 145, mas eficiência divergente: DEA 0,528 vs 0,891; SFA 0,795 vs 0,999. Estrutura parecida, gestão Direta: o que a gestão faz de diferente?\par\medskip
-\noindent\textbf{2096412 --- Santa Casa De Misericordia De Jacarei} (Jacarei, interior; Médio Porte, faixa Barcelona 4, complexidade estrutural 312,0). Par casado da âncora OSS Hospital Regional De Cotia (CNES 2792141): mesmo porte (Médio Porte), faixa Barcelona 4 vs 4, leitos 143 vs 145, mas eficiência divergente: DEA 0,596 vs 0,891; SFA 0,880 vs 0,999. Estrutura parecida, gestão Filantrópico: o que a gestão faz de diferente?\par\medskip
-\noindent\textbf{2071371 --- Hospital Infantil Darcy Vargas Uga Iii Sao Paulo} (Sao Paulo, capital; Médio Porte, faixa Barcelona 3, complexidade estrutural 222,0). Par casado da âncora OSS Hospital Regional De Jundiai (CNES 7573162): mesmo porte (Médio Porte), faixa Barcelona 3 vs 3, leitos 116 vs 136, mas eficiência divergente: DEA 0,541 vs 0,904; SFA 0,719 vs 0,999. Estrutura parecida, gestão Direta: o que a gestão faz de diferente?\par\medskip
-\noindent\textbf{2079232 --- Hospital Santa Barbara} (Santa Barbara D'Oeste, interior; Médio Porte, faixa Barcelona 3, complexidade estrutural 247,0). Par casado da âncora OSS Hospital Regional De Jundiai (CNES 7573162): mesmo porte (Médio Porte), faixa Barcelona 3 vs 3, leitos 137 vs 136, mas eficiência divergente: DEA 0,523 vs 0,904; SFA 0,805 vs 0,999. Estrutura parecida, gestão Filantrópico: o que a gestão faz de diferente?\par\medskip
+\noindent\textbf{2065665 --- Hospital Maternidade Interlagos} (Sao Paulo, capital; Médio Porte, faixa Barcelona 3, complexidade estrutural 160,0). Par casado da âncora OSS Hospital Regional De Jundiai (CNES 7573162): mesmo porte (Médio Porte), faixa Barcelona 3 vs 3, leitos 89 vs 136, mas eficiência divergente: DEA 0,690 vs 0,905; SFA 0,900 vs 0,999. Estrutura parecida, gestão Direta: o que a gestão faz de diferente?\par\medskip
+\noindent\textbf{2079232 --- Hospital Santa Barbara} (Santa Barbara D'Oeste, interior; Médio Porte, faixa Barcelona 3, complexidade estrutural 247,0). Par casado da âncora OSS Hospital Regional De Jundiai (CNES 7573162): mesmo porte (Médio Porte), faixa Barcelona 3 vs 3, leitos 137 vs 136, mas eficiência divergente: DEA 0,523 vs 0,905; SFA 0,820 vs 0,999. Estrutura parecida, gestão Filantrópico: o que a gestão faz de diferente?\par\medskip
+\noindent\textbf{2792141 --- Hospital Regional De Cotia} (Cotia, interior; Médio Porte, faixa Barcelona 4, complexidade estrutural 330,0). Âncora OSS de alta eficiência (DEA 0,893, SFA 0,999) para os pares casados.\par\medskip
+\noindent\textbf{2079410 --- Complexo Hospitalar Padre Bento De Guarulhos} (Guarulhos, interior; Médio Porte, faixa Barcelona 4, complexidade estrutural 327,0). Par casado da âncora OSS Hospital Regional De Cotia (CNES 2792141): mesmo porte (Médio Porte), faixa Barcelona 4 vs 4, leitos 145 vs 145, mas eficiência divergente: DEA 0,527 vs 0,893; SFA 0,815 vs 0,999. Estrutura parecida, gestão Direta: o que a gestão faz de diferente?\par\medskip
+\noindent\textbf{2096412 --- Santa Casa De Misericordia De Jacarei} (Jacarei, interior; Médio Porte, faixa Barcelona 4, complexidade estrutural 312,0). Par casado da âncora OSS Hospital Regional De Cotia (CNES 2792141): mesmo porte (Médio Porte), faixa Barcelona 4 vs 4, leitos 143 vs 145, mas eficiência divergente: DEA 0,598 vs 0,893; SFA 0,890 vs 0,999. Estrutura parecida, gestão Filantrópico: o que a gestão faz de diferente?\par\medskip
 
 \subsection{Bloco e --- Divergência DEA$\times$SFA}
 \begin{center}\small
@@ -147,19 +155,19 @@ CNES & Hospital & Município & Categoria & DEA & SFA \\
 \toprule
 CNES & Hospital & Município & Categoria & DEA & SFA \\
 \midrule
-3001466 & Centro Hospitalar Do Sistema Penitenci & Sao Paulo & OSS & 0,393 & 0,999 \\
-2081482 & Boldrini Campinas & Campinas & Filantrópico & 0,817 & 0,690 \\
-2089785 & Hospital Do Rim E Hipertensao & Sao Paulo & Filantrópico & 0,774 & 0,651 \\
-2077590 & Ibcc & Sao Paulo & Filantrópico & 0,737 & 0,447 \\
-2079720 & Hospital Guilherme Alvaro Santos & Santos & OSS & 0,491 & 0,999 \\
+2077590 & Ibcc & Sao Paulo & Filantrópico & 0,748 & 0,456 \\
+2089785 & Hospital Do Rim E Hipertensao & Sao Paulo & Filantrópico & 0,782 & 0,675 \\
+2083086 & Hospital Amaral Carvalho Jau & Jau & Filantrópico & 0,801 & 0,765 \\
+2790734 & Instituto Lauro De Souza Lima Bauru & Bauru & Direta & 0,742 & 0,642 \\
+9601 & Hospital Pio Xii & Sao Jose Dos Campos & Filantrópico & 0,729 & 0,671 \\
 \bottomrule
 \end{tabular}
 \end{center}
-\noindent\textbf{3001466 --- Centro Hospitalar Do Sistema Penitenciario Sao Paulo} (Sao Paulo, capital; Grande Porte, faixa Barcelona 4, complexidade estrutural 305,0). Divergência DEA x SFA: rank DEA 277 vs rank SFA 34 entre 305 CNES (|dif| = 243; SFA favorável, DEA desfavorável; te\_bcc\_vc 0,393, te\_sfa 0,999). Os dois métodos discordam: há algo que os modelos não capturam. Hospital de longa permanência.\par\medskip
-\noindent\textbf{2081482 --- Boldrini Campinas} (Campinas, interior; Médio Porte, faixa Barcelona 3, complexidade estrutural 167,0). Divergência DEA x SFA: rank DEA 24 vs rank SFA 252 entre 305 CNES (|dif| = 228; DEA favorável, SFA desfavorável; te\_bcc\_vc 0,817, te\_sfa 0,690). Os dois métodos discordam: há algo que os modelos não capturam.\par\medskip
-\noindent\textbf{2089785 --- Hospital Do Rim E Hipertensao} (Sao Paulo, capital; Grande Porte, faixa Barcelona 3, complexidade estrutural 227,0). Divergência DEA x SFA: rank DEA 42 vs rank SFA 265 entre 305 CNES (|dif| = 223; DEA favorável, SFA desfavorável; te\_bcc\_vc 0,774, te\_sfa 0,651). Os dois métodos discordam: há algo que os modelos não capturam.\par\medskip
-\noindent\textbf{2077590 --- Ibcc} (Sao Paulo, capital; Grande Porte, faixa Barcelona 3, complexidade estrutural 176,0). Divergência DEA x SFA: rank DEA 70 vs rank SFA 290 entre 305 CNES (|dif| = 220; DEA favorável, SFA desfavorável; te\_bcc\_vc 0,737, te\_sfa 0,447). Os dois métodos discordam: há algo que os modelos não capturam.\par\medskip
-\noindent\textbf{2079720 --- Hospital Guilherme Alvaro Santos} (Santos, interior; Grande Porte, faixa Barcelona 4, complexidade estrutural 486,0). Divergência DEA x SFA: rank DEA 241 vs rank SFA 29 entre 305 CNES (|dif| = 212; SFA favorável, DEA desfavorável; te\_bcc\_vc 0,491, te\_sfa 0,999). Os dois métodos discordam: há algo que os modelos não capturam.\par\medskip
+\noindent\textbf{2077590 --- Ibcc} (Sao Paulo, capital; Grande Porte, faixa Barcelona 3, complexidade estrutural 176,0). Divergência DEA x SFA: rank DEA 57 vs rank SFA 273 entre 280 CNES (|dif| = 216; DEA favorável, SFA desfavorável; te\_bcc\_vc 0,748, te\_sfa 0,456). Os dois métodos discordam: há algo que os modelos não capturam.\par\medskip
+\noindent\textbf{2089785 --- Hospital Do Rim E Hipertensao} (Sao Paulo, capital; Grande Porte, faixa Barcelona 3, complexidade estrutural 227,0). Divergência DEA x SFA: rank DEA 39 vs rank SFA 251 entre 280 CNES (|dif| = 212; DEA favorável, SFA desfavorável; te\_bcc\_vc 0,782, te\_sfa 0,675). Os dois métodos discordam: há algo que os modelos não capturam.\par\medskip
+\noindent\textbf{2083086 --- Hospital Amaral Carvalho Jau} (Jau, interior; Grande Porte, faixa Barcelona 4, complexidade estrutural 415,0). Divergência DEA x SFA: rank DEA 28 vs rank SFA 232 entre 280 CNES (|dif| = 204; DEA favorável, SFA desfavorável; te\_bcc\_vc 0,801, te\_sfa 0,765). Os dois métodos discordam: há algo que os modelos não capturam.\par\medskip
+\noindent\textbf{2790734 --- Instituto Lauro De Souza Lima Bauru} (Bauru, interior; Médio Porte, faixa Barcelona 2, complexidade estrutural 27,0). Divergência DEA x SFA: rank DEA 67 vs rank SFA 262 entre 280 CNES (|dif| = 195; DEA favorável, SFA desfavorável; te\_bcc\_vc 0,742, te\_sfa 0,642). Os dois métodos discordam: há algo que os modelos não capturam.\par\medskip
+\noindent\textbf{9601 --- Hospital Pio Xii} (Sao Jose Dos Campos, interior; Médio Porte, faixa Barcelona 3, complexidade estrutural 141,0). Divergência DEA x SFA: rank DEA 73 vs rank SFA 253 entre 280 CNES (|dif| = 180; DEA favorável, SFA desfavorável; te\_bcc\_vc 0,729, te\_sfa 0,671). Os dois métodos discordam: há algo que os modelos não capturam.\par\medskip
 
 \subsection{Bloco f --- Validação de registro (entrevistas curtas)}
 \begin{center}\small
@@ -167,8 +175,8 @@ CNES & Hospital & Município & Categoria & DEA & SFA \\
 \toprule
 CNES & Hospital & Município & Categoria & DEA & SFA \\
 \midrule
-2022648 & Hospital Irmaos Penteado E Santa Casa  & Campinas & Filantrópico & 0,356 & 0,639 \\
-2097613 & Hospital Infante D Henrique & Sao Jose Do Rio Preto & Filantrópico & 0,744 & 0,228 \\
+2022648 & Hospital Irmaos Penteado E Santa Casa  & Campinas & Filantrópico & 0,354 & 0,664 \\
+2097613 & Hospital Infante D Henrique & Sao Jose Do Rio Preto & Filantrópico & 0,758 & 0,264 \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -195,7 +203,7 @@ O roteiro-base cobre seis domínios e dura de 50 a 60 minutos. As perguntas são
   \item Como o hospital contrata e desliga pessoal assistencial, e quanto tempo passa entre a necessidade identificada e o profissional trabalhando? [concurso vs.\ CLT; terceirização; banco de horas]
   \par\nopagebreak\achado{a produção das OSS é cerca de 45\% maior a estrutura comparável; elasticidade de RH é o mecanismo candidato.}
   \item Como funcionam as compras e a manutenção de equipamentos: prazos típicos, o que mais trava? [licitação vs.\ compra direta; estoque; equipamento parado]
-  \par\nopagebreak\achado{o custo real por saída não difere entre categorias; se as OSS produzem mais com custo igual, a diferença deve estar no uso dos insumos, não no preço.}
+  \par\nopagebreak\achado{o faturamento real por saída não difere entre categorias; se as OSS produzem mais com faturamento igual, a diferença deve estar no uso dos insumos, não no preço.}
   \item Qual é a rotatividade das equipes médica e de enfermagem, e o que a explica? [vínculos múltiplos; plantões; salário relativo]
   \par\nopagebreak\achado{estabilidade de equipe é explicação concorrente à gestão para a eficiência persistente dos desviantes positivos.}
 \end{enumerate}
@@ -213,7 +221,7 @@ O roteiro-base cobre seis domínios e dura de 50 a 60 minutos. As perguntas são
   \item Como é a interação com a Secretaria (estadual ou municipal): cobrança, apoio técnico, regulação de fila? Com que frequência? [câmaras técnicas; visitas; sistemas]
   \par\nopagebreak\achado{categorias públicas e OSS respondem à mesma Secretaria com resultados diferentes; a pergunta separa o vínculo formal da relação praticada.}
   \item Como o dinheiro chega e o que acontece numa crise de caixa? [teto MAC; incentivos; atraso de repasse; quem socorre]
-  \par\nopagebreak\achado{o custo real por saída não difere entre categorias: se o financiamento é semelhante, a diferença de desempenho não é explicada por mais dinheiro.}
+  \par\nopagebreak\achado{o faturamento real por saída não difere entre categorias: se o financiamento é semelhante, a diferença de desempenho não é explicada por mais dinheiro.}
 \end{enumerate}
 
 \subsection{Gestão de leitos e fluxo do paciente}
@@ -289,7 +297,7 @@ quem opera, e confrontar depois com as restrições objetivas do painel.
   \item Descreva o paciente típico que fica internado mais tempo do que precisaria. Por que ele não sai? [internação social; retaguarda; exame que não sai]
   \par\nopagebreak\achado{TMP alto com ocupação alta indica leito ocupado por paciente que não precisaria dele; a pergunta identifica o gargalo.}
   \item O financiamento cobre o custo do que o hospital produz? Onde aperta primeiro? [tabela SUS; folha; incentivos]
-  \par\nopagebreak\achado{o custo real por saída não difere entre categorias na rede; se a restrição percebida é financeira, ela precisa ser conciliada com esse achado.}
+  \par\nopagebreak\achado{o faturamento real por saída não difere entre categorias na rede; se a restrição percebida é financeira, ela precisa ser conciliada com esse achado.}
   \item Se o hospital pudesse mudar uma única regra (de RH, compra ou contrato), qual mudaria e o que aconteceria? [pergunta projetiva]
   \par\nopagebreak\achado{a resposta revela qual margem de autonomia o gestor acredita que falta --- comparável, em espelho, com o que as OSS dizem ter.}
 \end{enumerate}
