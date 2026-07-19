@@ -44,7 +44,14 @@ d$uti_ativa <- as.integer(d$ocupacao_uti > 0)
 # parte fixa comum: categoria, complexidade padronizada, porte, ano;
 # Mundlak = media_oss (única covariável com variação within relevante);
 # efeito aleatório de intercepto por hospital em tudo.
-FX <- "categoria + cplx_z + porte_fixo + longa_perm + media_oss + ano_f"
+# longa_perm entra apenas com variação: no painel de 289 (ETAPA F,
+# 15/07/2026) nenhum CNES tem TMP mediano > 20 e o termo constante seria
+# descartado por aliasing (linhas NA nas tabelas) — exclusão explícita.
+TERMO_LP <- if (var(painel$longa_perm) > 0) " + longa_perm" else ""
+if (TERMO_LP == "") cat("[especificação] longa_perm sem variação —",
+                        "termo excluído das fórmulas\n")
+FX <- paste0("categoria + cplx_z + porte_fixo", TERMO_LP,
+             " + media_oss + ano_f")
 FX_TMP <- "categoria + cplx_z + porte_fixo + media_oss + ano_f"
 
 ajustar <- function(nome, formula, familia, dados, zi = ~0,
@@ -122,7 +129,7 @@ cat(sprintf("  comparação TMP: AIC lognormal (no log) %.0f vs Gama %.0f\n",
 resultados$tmp <- extrair_oss(m_tmp)
 ppcheck(m_tmp, dt$log_tmp, "tmp", "TMP no log (hierárquico)")
 
-# 4. custo real: lognormal vs Gama
+# 4. faturamento real: lognormal vs Gama
 d$log_custo <- log(d$custo_real)
 f_cus_ln <- as.formula(paste("log_custo ~", FX, "+ (1 | cnes_f)"))
 m_cus <- ajustar("custo_lognormal", f_cus_ln, gaussian(), d)
@@ -131,7 +138,7 @@ m_cus_g <- ajustar("custo_gama", f_cus_g, Gamma(link = "log"), d)
 cat(sprintf("  comparação custo: AIC lognormal (no log) %.0f vs Gama %.0f\n",
             AIC(m_cus) + 2 * sum(d$log_custo), AIC(m_cus_g)))
 resultados$custo <- extrair_oss(m_cus)
-ppcheck(m_cus, d$log_custo, "custo", "Custo real no log (hierárquico)")
+ppcheck(m_cus, d$log_custo, "custo", "Faturamento real no log (hierárquico)")
 
 # 5. produção: Binomial Negativa com log de leitos
 d$log_leitos <- log(d$total_leitos)
@@ -178,7 +185,7 @@ freq <- read.csv("C:/ProjetoPosDoc/analises/tabelas/tab_est_resumo_oss.csv",
                  fileEncoding = "UTF-8-BOM")
 mapa <- c("Mortalidade (geral)" = "mortalidade",
           "Fração alta complexidade" = NA,
-          "Custo real por saída (log)" = "custo",
+          "Faturamento real por saída (log)" = "custo",
           "TMP (log, sem longa perm.)" = "tmp",
           "Produção (saídas)" = "producao",
           "Ocupação internação" = "ocupacao_internacao",
@@ -199,12 +206,14 @@ cat("[TAB] tabB_comparacao_freq_bayes.csv\n")
 # ── encolhimento: categoria como efeito aleatório (partial pooling) ──
 # sem pooling: dummies fixas de categoria; com pooling: (1|categoria).
 # O Privado (3 CNES) é o caso de demonstração, nunca resultado.
-m_fixo <- glmmTMB(mort_all ~ 0 + categoria + cplx_z + porte_fixo +
-                    longa_perm + ano_f + (1 | cnes_f),
+m_fixo <- glmmTMB(as.formula(paste0(
+                    "mort_all ~ 0 + categoria + cplx_z + porte_fixo",
+                    TERMO_LP, " + ano_f + (1 | cnes_f)")),
                   family = beta_family(), ziformula = ~ cplx_z,
                   data = d)
-m_rand <- glmmTMB(mort_all ~ cplx_z + porte_fixo + longa_perm + ano_f +
-                    (1 | categoria) + (1 | cnes_f),
+m_rand <- glmmTMB(as.formula(paste0(
+                    "mort_all ~ cplx_z + porte_fixo", TERMO_LP,
+                    " + ano_f + (1 | categoria) + (1 | cnes_f)")),
                   family = beta_family(), ziformula = ~ cplx_z,
                   data = d)
 saveRDS(m_fixo, file.path(RDS, "modB_encolhimento_fixo.rds"))
@@ -250,12 +259,15 @@ write.csv(enc, file.path(TAB, "tabB_encolhimento.csv"),
 # sem priors no glmmTMB, a sensibilidade testa a especificação:
 # (a) sem o termo de Mundlak; (b) com efeito aleatório de ano;
 # o bootstrap paramétrico roda em script próprio (fase2_bayes_boot.R).
-m_sem_mundlak <- glmmTMB(mort_all ~ categoria + cplx_z + porte_fixo +
-                           longa_perm + ano_f + (1 | cnes_f),
+m_sem_mundlak <- glmmTMB(as.formula(paste0(
+                           "mort_all ~ categoria + cplx_z + porte_fixo",
+                           TERMO_LP, " + ano_f + (1 | cnes_f)")),
                          family = beta_family(),
                          ziformula = ~ cplx_z + porte_fixo, data = d)
-m_re_ano <- glmmTMB(mort_all ~ categoria + cplx_z + porte_fixo +
-                      longa_perm + media_oss + (1 | ano_f) + (1 | cnes_f),
+m_re_ano <- glmmTMB(as.formula(paste0(
+                      "mort_all ~ categoria + cplx_z + porte_fixo",
+                      TERMO_LP,
+                      " + media_oss + (1 | ano_f) + (1 | cnes_f)")),
                     family = beta_family(),
                     ziformula = ~ cplx_z + porte_fixo, data = d)
 sens <- rbind(principal = resultados$mortalidade,

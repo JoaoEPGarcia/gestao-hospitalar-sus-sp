@@ -20,7 +20,7 @@ primeira parte deste documento: a mortalidade usa uma regressão Beta
 com inflação em zero (que acomoda tanto a escala de porcentagens quanto
 os raros anos sem óbito); a fração de alta complexidade usa o modelo
 ZOIB (que trata separadamente os hospitais sem nenhuma produção de alta
-complexidade e os raros casos de produção exclusiva); o custo real por
+complexidade e os raros casos de produção exclusiva); o faturamento real por
 saída e o tempo de permanência são modelados no logaritmo, comparando
 cada hospital com ele mesmo ao longo do tempo (os chamados efeitos
 fixos); a produção usa a Binomial Negativa, adequada para contagens com
@@ -33,10 +33,10 @@ hospitais são absorvidos pelas covariáveis de complexidade estrutural e
 perfil, e os resíduos quantílicos da Seção~\ref{sec:robustez} (r igual
 a 0,984) comprovam que a Beta única condicional basta.
 
-Cinco salvaguardas valem para todos os modelos. Primeira: o custo entra
+Cinco salvaguardas valem para todos os modelos. Primeira: o faturamento entra
 sempre \textbf{em valores reais}, deflacionado pelo IPCA para preços de
 2025, porque a primeira parte mostrou que o crescimento nominal do
-custo era, na íntegra, inflação. Segunda: as duas observações de
+faturamento era, na íntegra, inflação. Segunda: as duas observações de
 denominador frágil do Hospital Infante D Henrique (CNES 2097613, São
 José do Rio Preto, 2020 e 2021, com 13 e 3 saídas fora da COVID) ficam
 fora de todas as equações. Terceira: os 18 hospitais de longa
@@ -63,7 +63,7 @@ variação interna de 2\% a 35\%), o contraste entre gestões
 pode ser lido de duas maneiras: comparando hospitais diferentes
 (between) ou acompanhando os cinco hospitais que trocaram de gestão
 (within). Na mortalidade usamos a especificação de Mundlak, que separa
-as duas leituras dentro do mesmo modelo; no custo e no tempo de
+as duas leituras dentro do mesmo modelo; no faturamento e no tempo de
 permanência, os efeitos fixos de hospital fazem a leitura within pura.
 E a ressalva permanente continua de pé: a categoria Privado tem apenas
 3 hospitais e entra nos modelos somente para não contaminar as demais

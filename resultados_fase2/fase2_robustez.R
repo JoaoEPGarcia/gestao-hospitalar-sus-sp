@@ -28,7 +28,10 @@ variantes <- list(
 
 # ── Frente 1: modelos hierárquicos ───────────────────────────────────
 cat("\n[robustez] Frente 1 (hierárquicos)\n")
-FX <- "categoria + cplx_z + porte_fixo + longa_perm + media_oss + ano_f"
+# longa_perm só entra com variação (painel de 289: constante — ETAPA F)
+TERMO_LP <- if (var(painel$longa_perm) > 0) " + longa_perm" else ""
+FX <- paste0("categoria + cplx_z + porte_fixo", TERMO_LP,
+             " + media_oss + ano_f")
 FX_TMP <- "categoria + cplx_z + porte_fixo + media_oss + ano_f"
 especs <- list(
   mortalidade = list(f = paste("mort_all ~", FX, "+ (1|cnes_f)"),

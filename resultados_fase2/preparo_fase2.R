@@ -11,12 +11,13 @@ preparar_painel <- function(caminho = "C:/ProjetoPosDoc/analises/painel_definiti
                      check.names = FALSE, stringsAsFactors = FALSE)
 
   # verificação obrigatória: aborta se o painel não conferir
-  stopifnot(length(unique(painel$cnes)) == 314,
-            nrow(painel) == 3454,
+  # (289/3.179 desde a ETAPA F de 15/07/2026; era 314/3.454)
+  stopifnot(length(unique(painel$cnes)) == 289,
+            nrow(painel) == 3179,
             all(table(painel$cnes) == 11),
             sum(is.na(painel$modelo_gestao_proxy)) == 0,
             sum(is.na(painel$complexidade_estrutural)) == 0)
-  cat("[preparo] Painel verificado: 314 CNES, 3.454 observações\n")
+  cat("[preparo] Painel verificado: 289 CNES, 3.179 observações\n")
 
   # IPCA dez sobre dez (IBGE; 2025 fechado em 4,26) e fatores para 2025
   ipca <- c("2015" = 10.67, "2016" = 6.29, "2017" = 2.95, "2018" = 3.75,
@@ -45,7 +46,12 @@ preparar_painel <- function(caminho = "C:/ProjetoPosDoc/analises/painel_definiti
   tmp_med <- tapply(painel$tmp, painel$cnes, median)
   cnes_lp <- names(tmp_med)[tmp_med > 20]
   painel$longa_perm <- as.integer(as.character(painel$cnes) %in% cnes_lp)
-  stopifnot(length(cnes_lp) == 18, sum(painel$flag_fragil) == 2)
+  # A ETAPA F (15/07/2026) removeu todos os 18 CNES de longa permanência
+  # do painel de 314: no painel de 289 nenhum CNES tem TMP mediano > 20 e
+  # a dummy é constante (termo inestimável). A REGRA permanece definida;
+  # os scripts que a usam em fórmula incluem o termo apenas se houver
+  # variação (TERMO_LP em cada script).
+  stopifnot(length(cnes_lp) == 0, sum(painel$flag_fragil) == 2)
 
   # winsorização das ocupações no p99 do painel completo
   for (v in c("ocupacao_internacao", "ocupacao_uti")) {

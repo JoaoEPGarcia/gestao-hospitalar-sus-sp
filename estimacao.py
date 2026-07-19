@@ -1,20 +1,21 @@
 """
 estimacao.py
 ============
-Fase de estimação do painel analítico de hospitais SUS/SP (314 hospitais,
-2015 a 2025, 3.454 observações de hospital e ano), honrando integralmente
+Fase de estimação do painel analítico de hospitais SUS/SP (289 hospitais,
+2015 a 2025, 3.179 observações de hospital e ano — painel pós-ETAPA F de
+15/07/2026), honrando integralmente
 as decisões da Análise Exploratória (analises/analise_exploratoria.md e
 tabelas tab_ae_*). Erros padrão agrupados por CNES em todos os modelos.
 
 Blocos (iterativos; rodar um por vez ou todos):
   prep        0. Verificação do painel (aborta se não conferir) e
-              1. Preparo: custo real (IPCA a preços de 2025), porte fixo,
+              1. Preparo: faturamento real (IPCA a preços de 2025), porte fixo,
                  flag de denominador frágil, dummy de longa permanência,
                  winsorização das ocupações no p99, dummies de ano
   principais  2. Modelos principais por indicador, nas famílias decididas:
                  mortalidade em Beta com inflação em zero (Mundlak),
                  fração de alta complexidade em ZOIB completo,
-                 log do custo real e log do TMP em efeitos fixos,
+                 log do faturamento real e log do TMP em efeitos fixos,
                  produção em Binomial Negativa,
                  ocupação de internação no log, UTI em duas partes
   gestao      3. Efeito de gestão OSS vs Direta: estudo de eventos com
@@ -80,8 +81,8 @@ ROT = {
     "mort_all":            "Mortalidade geral",
     "mort_sem_excl":       "Mortalidade ajustada",
     "tmp":                 "TMP (dias)",
-    "custo_saida":         "Custo por saída (R$)",
-    "custo_real":          "Custo por saída (R$ de 2025)",
+    "custo_saida":         "Faturamento por saída (SIH, R$)",
+    "custo_real":          "Faturamento real por saída (R$ de 2025)",
     "pct_alta_complex":    "Fração alta complexidade",
     "qtde":                "Saídas hospitalares (produção)",
     "ocupacao_internacao": "Ocupação internação (%)",
@@ -209,11 +210,12 @@ def carregar_e_verificar() -> pd.DataFrame:
           f"anos por CNES min {anos_cnes.min()} max {anos_cnes.max()}, "
           f"NaN modelo_gestao_proxy {nan_mod}, "
           f"NaN complexidade_estrutural {nan_cpx}")
-    ok = (n_cnes == 314 and n_obs == 3454 and (anos_cnes == 11).all()
+    # 289/3.179 desde a ETAPA F de 15/07/2026 (era 314/3.454)
+    ok = (n_cnes == 289 and n_obs == 3179 and (anos_cnes == 11).all()
           and nan_mod == 0 and nan_cpx == 0)
     if not ok:
         raise SystemExit("[0] PAINEL NÃO CONFERE COM O ESPERADO. PARANDO.")
-    print("[0] Verificação OK: 314 CNES, 3.454 observações, painel balanceado.")
+    print("[0] Verificação OK: 289 CNES, 3.179 observações, painel balanceado.")
     return painel
 
 
@@ -223,7 +225,7 @@ def carregar_e_verificar() -> pd.DataFrame:
 
 def preparar(painel: pd.DataFrame) -> pd.DataFrame:
     print("\n" + "=" * 70)
-    print("[1] PREPARO: custo real, porte fixo, frágeis, longa permanência, "
+    print("[1] PREPARO: faturamento real, porte fixo, frágeis, longa permanência, "
           "winsorização")
     print("=" * 70)
 
@@ -232,7 +234,7 @@ def preparar(painel: pd.DataFrame) -> pd.DataFrame:
     painel["custo_real"] = painel["custo_saida"] * painel["ano"].map(fatores)
     med15 = painel.loc[painel["ano"] == 2015, "custo_real"].median()
     med25 = painel.loc[painel["ano"] == 2025, "custo_real"].median()
-    print(f"  Custo real (R$ de 2025): mediana 2015 R$ {med15:,.0f}, "
+    print(f"  Faturamento real (R$ de 2025): mediana 2015 R$ {med15:,.0f}, "
           f"mediana 2025 R$ {med25:,.0f} "
           f"(fator de 2015: {fatores[2015]:.4f})")
 
@@ -266,6 +268,14 @@ def preparar(painel: pd.DataFrame) -> pd.DataFrame:
     painel["longa_perm"] = painel["cnes"].isin(cnes_lp).astype(int)
     print(f"  Longa permanência: {len(cnes_lp)} CNES, "
           f"{int(painel['longa_perm'].sum())} observações")
+    # painel de 289: a ETAPA F removeu todos os CNES de longa permanência;
+    # sem variação, o termo sai das fórmulas (inestimável) — regra preservada
+    global TERMO_LP, COV_BASE
+    TERMO_LP = " + longa_perm" if painel["longa_perm"].nunique() > 1 else ""
+    COV_BASE = f"{CAT} + complexidade_estrutural + {PORTE}{TERMO_LP} + C(ano)"
+    if not TERMO_LP:
+        print("  longa_perm sem variação (0 CNES) — termo excluído das "
+              "fórmulas; subamostra 'sem longa perm.' = painel completo")
 
     # 1e. winsorização das ocupações no percentil 99 (sem truncar em 100)
     limites = {}
@@ -346,7 +356,13 @@ def amostra_suporte(painel: pd.DataFrame) -> pd.DataFrame:
 
 CAT   = "C(modelo_gestao_proxy, Treatment('Direta'))"
 PORTE = "C(porte_fixo, Treatment('Médio Porte'))"
-COV_BASE = f"{CAT} + complexidade_estrutural + {PORTE} + longa_perm + C(ano)"
+# longa_perm entra nas fórmulas apenas quando há variação no painel: no
+# painel de 289 (pós-ETAPA F de 15/07/2026) nenhum CNES tem TMP mediano
+# > 20 dias e o termo constante seria inestimável (coluna singular no
+# patsy). A regra da dummy permanece definida em preparar(); TERMO_LP e
+# COV_BASE são redefinidos lá conforme a variação observada.
+TERMO_LP = " + longa_perm"
+COV_BASE = f"{CAT} + complexidade_estrutural + {PORTE}{TERMO_LP} + C(ano)"
 
 
 def _ajustar_logit(formula, dados, rotulo, tentar_sem_ano=True):
@@ -395,8 +411,8 @@ def modelo_mortalidade(painel, col="mort_all", sufixo="", verboso=True):
 
     # componente Beta no interior, com Mundlak
     interior = d[(d[col] > 0) & (d[col] < 1)].copy()
-    f_media = (f"{col} ~ {CAT} + complexidade_estrutural + {PORTE} "
-               "+ longa_perm + media_oss + C(ano)")
+    f_media = (f"{col} ~ {CAT} + complexidade_estrutural + {PORTE}"
+               f"{TERMO_LP} + media_oss + C(ano)")
     y, X = patsy.dmatrices(f_media, data=interior, return_type="dataframe")
     mod_beta = BetaModel(np.asarray(y).ravel(), X)
     res_beta = mod_beta.fit(maxiter=500, disp=0)
@@ -460,8 +476,8 @@ def modelo_pct_alta(painel, sufixo="", verboso=True):
                             tentar_sem_ano=False)
 
     interior = d[(d[col] > 0) & (d[col] < 1)].copy()
-    f_media = (f"{col} ~ {CAT} + complexidade_estrutural + {PORTE} "
-               "+ longa_perm + C(ano)")
+    f_media = (f"{col} ~ {CAT} + complexidade_estrutural + {PORTE}"
+               f"{TERMO_LP} + C(ano)")
     y, X = patsy.dmatrices(f_media, data=interior, return_type="dataframe")
     mod_beta = BetaModel(np.asarray(y).ravel(), X)
     res_beta = mod_beta.fit(maxiter=500, disp=0)
@@ -643,7 +659,7 @@ def modelos_principais(painel, sufixo="", verboso=True):
                                              verboso=verboso)
     resultados["custo"] = _modelo_fe(
         painel, "custo_real", np.log, f"tab_est_custo_fe{sufixo}.csv",
-        "Custo real por saída (log)", verboso=verboso)
+        "Faturamento real por saída (log)", verboso=verboso)
     resultados["tmp"] = _modelo_fe(
         painel, "tmp", np.log, f"tab_est_tmp_fe{sufixo}.csv",
         "TMP (log, sem longa perm.)", excluir_lp=True, verboso=verboso)
@@ -691,7 +707,7 @@ ROT_EVENTO = {"ev_m5": "-5 ou antes", "ev_m4": "-4", "ev_m3": "-3",
 ALVOS_EVENTO = [
     ("mort_all", "pp", "Mortalidade geral", "p.p."),
     ("tmp", "log", "TMP", "log pontos"),
-    ("custo_real", "log", "Custo real por saída", "log pontos"),
+    ("custo_real", "log", "Faturamento real por saída", "log pontos"),
     ("pct_alta_complex", "pp", "Fração alta complexidade", "p.p."),
     ("ocupacao_internacao_w", "log", "Ocupação internação", "log pontos"),
 ]
@@ -945,7 +961,7 @@ def residuos_quantilicos(resultados):
 
     # modelos gaussianos no log: resíduos padronizados
     for chave, slug, titulo in [
-            ("custo", "custo_fe", "Custo real (log, efeitos fixos)"),
+            ("custo", "custo_fe", "Faturamento real (log, efeitos fixos)"),
             ("tmp", "tmp_fe", "TMP (log, efeitos fixos)"),
             ("ocup_int", "ocup_internacao", "Ocupação internação (log)")]:
         res = resultados[chave]["res"]

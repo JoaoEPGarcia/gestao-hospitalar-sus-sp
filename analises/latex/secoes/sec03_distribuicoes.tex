@@ -98,10 +98,10 @@ barras da esquerda para a direita no painel (b) mostra que o zero é
 questão de perfil e estrutura: quase todos os hospitais de faixa 2
 estão no zero, e nenhum de faixa 6 está.}
 
-\subsection{Custo e tempo de permanência: valores positivos com cauda
+\subsection{Faturamento e tempo de permanência: valores positivos com cauda
 longa}
 
-Custo por saída e TMP são valores positivos com cauda à direita. Cinco
+Faturamento por saída e TMP são valores positivos com cauda à direita. Cinco
 moldes clássicos foram postos à prova
 (Tabela~\ref{tab:familias})\footnote{Guia dos tamanhos de amostra que
 aparecem no documento: \textbf{3.454} é o painel completo;
@@ -121,17 +121,17 @@ há um detalhe decisivo: enquanto os hospitais de longa permanência
 estiverem na amostra, nenhum molde acompanha o teto de 30,5 dias;
 \textbf{retirando os 18 hospitais de longa permanência, o ajuste do
 molde log logístico fica praticamente perfeito} (r de 0,9975 na
-Figura~\ref{fig:qqtmpsemlp}). A leitura prática: custo e TMP devem ser
+Figura~\ref{fig:qqtmpsemlp}). A leitura prática: faturamento e TMP devem ser
 analisados na escala logarítmica, e os hospitais de longa permanência
 merecem tratamento em separado nas análises de TMP. Os gráficos QQ
-completos estão no Apêndice~\ref{ap:diagnosticos}: no custo, o molde
+completos estão no Apêndice~\ref{ap:diagnosticos}: no faturamento, o molde
 log logístico acompanha os dados por quase toda a extensão (r de
 0,9754, Figura~\ref{fig:qqcusto}); no TMP do painel completo, nenhum
 molde reproduz o teto de 30,5 dias (Figura~\ref{fig:qqtmp}).
 
 \begin{table}[H]
 \centering
-\caption{Comparação dos cinco moldes de distribuição para custo e TMP
+\caption{Comparação dos cinco moldes de distribuição para faturamento e TMP
 pela nota AIC (Seção~\ref{sec:painel}) e pelo r do QQ
 (Apêndice~\ref{ap:diagnosticos}).}
 \label{tab:familias}
@@ -140,7 +140,7 @@ pela nota AIC (Seção~\ref{sec:painel}) e pelo r do QQ
 \toprule
 Amostra & Molde & $n$ & AIC & r do QQ \\
 \midrule
-Custo por saída & Log logística (Fisk) & 3.454 & 55.483 & 0,9754 \\
+Faturamento por saída & Log logística (Fisk) & 3.454 & 55.483 & 0,9754 \\
                 & LogNormal            & 3.454 & 55.547 & 0,9162 \\
                 & Gaussiana inversa    & 3.454 & 55.608 & 0,9018 \\
                 & Gama                 & 3.454 & 56.499 & 0,8411 \\
@@ -163,14 +163,14 @@ TMP sem longa permanência & Log logística (Fisk) & 3.255 & 12.147 & 0,9975 \\
 
 \begin{figure}[H]
 \centering
-\subfig{fig_ae_03_hist_log_custo_saida.png}{Custo por saída}
+\subfig{fig_ae_03_hist_log_custo_saida.png}{Faturamento por saída}
 \subfig{fig_ae_03_hist_log_tmp.png}{TMP}
-\caption{Distribuições de custo e TMP com o eixo horizontal em escala
+\caption{Distribuições de faturamento e TMP com o eixo horizontal em escala
 logarítmica (os rótulos mostram os valores reais).}
 \label{fig:histlog}
 \end{figure}
 
-\comoler{na escala logarítmica, o custo (a) vira um morro quase
+\comoler{na escala logarítmica, o faturamento (a) vira um morro quase
 simétrico, sinal clássico de que a análise deve ser feita nessa escala.
 No TMP (b), além do morro principal entre 3 e 8 dias, aparece um
 segundo morrinho isolado à direita, junto de 30 dias: é a subpopulação
@@ -208,7 +208,7 @@ reunidas no Apêndice~\ref{ap:diagnosticos},
 respondem que não: o desajuste vem de misturar 314 hospitais muito
 diferentes num único gráfico. Quando se compara cada hospital consigo mesmo (controlando o
 efeito do hospital e do ano), os desvios praticamente desaparecem: no
-custo, a assimetria restante é quase nula; na mortalidade, a forte
+faturamento, a assimetria restante é quase nula; na mortalidade, a forte
 assimetria da distribuição bruta na escala \textbf{logito} (a escala
 interna em que o modelo trabalha proporções), de 1,72 negativa, cai
 para 0,11 depois do controle; na escala original da

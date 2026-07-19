@@ -6,3 +6,4 @@ ETAPA C1,hospitais de campanha COVID (criados exclusivamente para a pandemia),6,
 ETAPA C2,procedimentos COVID (cód. 999) removidos dos indicadores: 613 hospital-ano afetados em 2020-2021 (6.7% da produção do biênio); nenhuma linha removida,0,0,399,3823
 ETAPA D,painel balanceado: produção em todos os 11 anos (2015-2025),82,336,317,3487
 ETAPA E,exclusão de CNES sem pontuação de Barcelona (complexidade indisponível),3,33,314,3454
+ETAPA F,"populações estruturalmente incomparáveis (critérios §2.3, decisões 13-15/07/2026): pediátrico/onco-pediátrico, crônico/reabilitação/ex-sanatório, 4 casos de 15/07/2026 e psiquiátrico §2.1",25,275,289,3179

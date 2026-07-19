@@ -1,38 +1,37 @@
 ﻿,componente,coeficiente,ep_cluster,z,p_valor
-constante,logito UTI ativa,-2.99241,0.92354,-3.24014,0.00119
-Filantrópico,logito UTI ativa,-0.74423,0.78851,-0.94384,0.34525
-OSS,logito UTI ativa,-1.75532,1.06214,-1.65263,0.09841
-Privado,logito UTI ativa,3.36409,2.67138,1.25931,0.20792
-Público Municipal,logito UTI ativa,-0.2257,0.83476,-0.27037,0.78687
-porte Especial,logito UTI ativa,-10.65217,2.71182,-3.92805,9e-05
-porte Grande Porte,logito UTI ativa,-1.47444,0.82178,-1.79419,0.07278
-ano 2016,logito UTI ativa,0.08074,0.04751,1.69953,0.08922
-ano 2017,logito UTI ativa,0.1082,0.06697,1.61554,0.10619
-ano 2018,logito UTI ativa,0.16327,0.06701,2.43654,0.01483
-ano 2019,logito UTI ativa,0.19091,0.08102,2.35633,0.01846
-ano 2020,logito UTI ativa,0.21912,0.08714,2.51453,0.01192
-ano 2021,logito UTI ativa,0.24692,0.09113,2.70955,0.00674
-ano 2022,logito UTI ativa,0.68064,0.1262,5.39336,0.0
-ano 2023,logito UTI ativa,0.77365,0.13382,5.78126,0.0
-ano 2024,logito UTI ativa,0.77365,0.13382,5.78126,0.0
-ano 2025,logito UTI ativa,0.72473,0.13694,5.29224,0.0
-complexidade estrutural,logito UTI ativa,0.02595,0.00479,5.42008,0.0
-constante,log intensidade,3.87191,0.08412,46.0298,0.0
-Filantrópico,log intensidade,0.2625,0.07633,3.43892,0.00058
-OSS,log intensidade,0.18557,0.07337,2.52919,0.01143
-Privado,log intensidade,-2.59074,0.60537,-4.27961,2e-05
-Público Municipal,log intensidade,0.22041,0.07487,2.94373,0.00324
-porte Especial,log intensidade,-0.42601,0.28576,-1.49078,0.13602
-porte Grande Porte,log intensidade,-0.06413,0.09369,-0.68445,0.49369
-ano 2016,log intensidade,-0.00056,0.02524,-0.02221,0.98228
-ano 2017,log intensidade,-0.00054,0.03482,-0.0155,0.98763
-ano 2018,log intensidade,-0.00461,0.02364,-0.19487,0.8455
-ano 2019,log intensidade,0.00437,0.02429,0.17992,0.85721
-ano 2020,log intensidade,0.14551,0.03863,3.76699,0.00017
-ano 2021,log intensidade,0.38554,0.03729,10.34015,0.0
-ano 2022,log intensidade,-0.06458,0.03323,-1.9435,0.05196
-ano 2023,log intensidade,0.01709,0.03547,0.48165,0.63006
-ano 2024,log intensidade,0.07778,0.0391,1.9892,0.04668
-ano 2025,log intensidade,0.10834,0.03741,2.89555,0.00378
-complexidade estrutural,log intensidade,0.00046,0.00026,1.75813,0.07873
-longa permanência,log intensidade,0.01256,0.41448,0.0303,0.97583
+constante,logito UTI ativa,-1.54775,0.79272,-1.95244,0.05089
+Filantrópico,logito UTI ativa,-2.40787,0.69074,-3.48595,0.00049
+OSS,logito UTI ativa,-3.22762,1.05109,-3.07075,0.00214
+Privado,logito UTI ativa,-0.19188,2.88932,-0.06641,0.94705
+Público Municipal,logito UTI ativa,-2.06585,0.75308,-2.74321,0.00608
+porte Especial,logito UTI ativa,0.0056,2.27491,0.00246,0.99804
+porte Grande Porte,logito UTI ativa,0.52203,1.4226,0.36695,0.71365
+ano 2016,logito UTI ativa,0.07097,0.04999,1.41971,0.15569
+ano 2017,logito UTI ativa,0.14064,0.08683,1.61971,0.10529
+ano 2018,logito UTI ativa,0.21131,0.0871,2.42623,0.01526
+ano 2019,logito UTI ativa,0.24704,0.10394,2.37672,0.01747
+ano 2020,logito UTI ativa,0.28713,0.10924,2.62847,0.00858
+ano 2021,logito UTI ativa,0.32355,0.11244,2.87754,0.00401
+ano 2022,logito UTI ativa,0.88092,0.15897,5.54152,0.0
+ano 2023,logito UTI ativa,1.00103,0.16822,5.95059,0.0
+ano 2024,logito UTI ativa,1.00103,0.16822,5.95059,0.0
+ano 2025,logito UTI ativa,0.94788,0.17332,5.46891,0.0
+complexidade estrutural,logito UTI ativa,0.02657,0.00532,4.99724,0.0
+constante,log intensidade,3.85404,0.08711,44.24266,0.0
+Filantrópico,log intensidade,0.28443,0.07891,3.6045,0.00031
+OSS,log intensidade,0.20579,0.07467,2.75584,0.00585
+Privado,log intensidade,-2.57302,0.60445,-4.25678,2e-05
+Público Municipal,log intensidade,0.23263,0.07731,3.00929,0.00262
+porte Especial,log intensidade,-0.43431,0.28814,-1.50731,0.13173
+porte Grande Porte,log intensidade,-0.07018,0.09457,-0.74213,0.45801
+ano 2016,log intensidade,0.01869,0.02135,0.87553,0.38129
+ano 2017,log intensidade,-0.00207,0.03601,-0.05741,0.95422
+ano 2018,log intensidade,-0.00536,0.0243,-0.22046,0.82551
+ano 2019,log intensidade,0.00624,0.02497,0.25005,0.80255
+ano 2020,log intensidade,0.15863,0.0398,3.98599,7e-05
+ano 2021,log intensidade,0.39939,0.0387,10.31929,0.0
+ano 2022,log intensidade,-0.06384,0.03423,-1.86473,0.06222
+ano 2023,log intensidade,0.01886,0.03658,0.51546,0.60623
+ano 2024,log intensidade,0.08117,0.04031,2.01364,0.04405
+ano 2025,log intensidade,0.11556,0.03814,3.02958,0.00245
+complexidade estrutural,log intensidade,0.00046,0.00026,1.7576,0.07882

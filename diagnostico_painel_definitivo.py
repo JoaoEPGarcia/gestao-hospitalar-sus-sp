@@ -35,10 +35,42 @@ import construir_painel_definitivo as cpd
 INDICADORES = base.INDICADORES                  # 5 indicadores oficiais
 ROTULOS     = base.ROTULOS
 
+# Item 1.5 (decisão de 14/07/2026): deflação da camada DESCRITIVA. A série
+# IPCA (variação % dez/dez, IBGE; 2025 fechado em 4,26%) é idêntica à
+# canônica de estimacao.py — replicada aqui (mesmo padrão já usado em
+# analise_exploratoria.py e preparo_fase2.R) para não importar statsmodels.
+# Nas FIGURAS o faturamento real substitui o nominal; nas TABELAS o real
+# entra AO LADO do nominal. Nenhuma variável de modelo é alterada.
+IPCA_ANUAL = {2015: 10.67, 2016: 6.29, 2017: 2.95, 2018: 3.75, 2019: 4.31,
+              2020: 4.52, 2021: 10.06, 2022: 5.79, 2023: 4.62, 2024: 4.83,
+              2025: 4.26}
+
+
+def _fatores_ipca_2025() -> dict:
+    anos = sorted(IPCA_ANUAL)
+    acum_ate, acum = {}, 1.0
+    for a in anos:
+        acum *= 1 + IPCA_ANUAL[a] / 100
+        acum_ate[a] = acum
+    total = acum_ate[anos[-1]]
+    return {a: total / acum_ate[a] for a in anos}
+
+
+ROTULOS_D = {**ROTULOS,
+             "custo_real": "Faturamento real por saída (R$ de 2025)"}
+IND_FIG = [("custo_real" if c == "custo_saida" else c) for c in INDICADORES]
+IND_TAB = INDICADORES + ["custo_real"]
+
 TAB_DESC_GERAL   = base.PASTA_TABELAS / "tab_def_descritiva_geral.csv"
 TAB_DESC_ANO     = base.PASTA_TABELAS / "tab_def_descritiva_por_ano.csv"
 TAB_MODELO       = base.PASTA_TABELAS / "tab_def_por_modelo_gestao.csv"
 TAB_ANTES_DEPOIS = base.PASTA_TABELAS / "tab_def_antes_depois.csv"
+TAB_OCUP_SEM_PAND = base.PASTA_TABELAS / "tab_def_ocupacao_sem_pandemia.csv"
+
+NOTA_PRIVADO_UTI = ("Privado (n=3): sem leitura de efeito médio; produção SUS "
+                    "de UTI residual (Leforte 30 leitos SUS/595 diárias "
+                    "medianas; Unimed Sorocaba 4 leitos; HU-UFSCar 0) — não "
+                    "interpretar.")
 
 NOTA_PROXY_FIG = ("Modelo de gestão: categorias de class_assistencial (SIH) "
                   "como definição operacional adotada; PPP/Autarquia não "
@@ -62,6 +94,12 @@ def carregar():
     painel_bruto = cpd.carregar_painel_bruto()
     # indicadores do bruto = versões COM covid (base histórica, sem filtros)
     bruto_ind = base.calcular_indicadores(painel_bruto)
+    # Item 1.5: coluna de APRESENTAÇÃO em preços de 2025 nas duas bases
+    fat = _fatores_ipca_2025()
+    painel_def["custo_real"] = (painel_def["custo_saida"]
+                                * painel_def["ano"].map(fat))
+    bruto_ind["custo_real"] = (bruto_ind["custo_saida"]
+                               * bruto_ind["ano"].map(fat))
     return painel_def, bruto_ind
 
 
@@ -70,7 +108,7 @@ def carregar():
 # ══════════════════════════════════════════════════════════════════════════════
 
 def descritivas(painel: pd.DataFrame):
-    cols = INDICADORES + ["ocupacao_internacao", "ocupacao_uti"]
+    cols = IND_TAB + ["ocupacao_internacao", "ocupacao_uti"]
     cols = [c for c in cols if c in painel.columns]
 
     geral = (painel[cols].describe(percentiles=[.10, .25, .5, .75, .90])
@@ -93,41 +131,43 @@ def descritivas(painel: pd.DataFrame):
 
 def figuras_distribuicao(painel: pd.DataFrame):
     anos = sorted(painel["ano"].unique())
-    n = len(INDICADORES)
+    n = len(IND_FIG)
 
-    # figD01 — boxplots por ano
+    # figD01 — boxplots por ano (faturamento em termos REAIS — item 1.5)
     fig, axes = plt.subplots(n, 1, figsize=(14, 4 * n))
-    for ax, ind in zip(axes, INDICADORES):
+    for ax, ind in zip(axes, IND_FIG):
         dados = [painel.loc[painel["ano"] == a, ind].dropna() for a in anos]
         ax.boxplot(dados, labels=[str(a) for a in anos],
                    patch_artist=True, flierprops={"markersize": 2})
-        ax.set_title(ROTULOS[ind], fontsize=9)
+        ax.set_title(ROTULOS_D[ind], fontsize=9)
     fig.suptitle("Painel definitivo — distribuição dos indicadores por ano "
-                 "(versões sem COVID)", y=1.005)
+                 "(versões sem COVID; faturamento em R$ de 2025)", y=1.005)
     fig.tight_layout()
     base._salvar_fig(fig, "figD01_boxplots_por_ano.png")
 
     # figD02 — séries temporais mediana ± IQR
-    grp = painel.groupby("ano")[INDICADORES]
+    grp = painel.groupby("ano")[IND_FIG]
     med, q25, q75 = grp.median(), grp.quantile(.25), grp.quantile(.75)
     fig, axes = plt.subplots(1, n, figsize=(5 * n, 4))
-    for ax, ind in zip(axes, INDICADORES):
+    for ax, ind in zip(axes, IND_FIG):
         ax.plot(med.index, med[ind], "o-", color="#4e79a7", lw=1.8, ms=5)
         ax.fill_between(med.index, q25[ind], q75[ind], alpha=.2, color="#4e79a7")
-        ax.set_title(ROTULOS[ind], fontsize=8)
+        ax.set_title(ROTULOS_D[ind], fontsize=8)
         ax.tick_params(axis="x", rotation=45)
-    fig.suptitle("Painel definitivo — mediana ± IQR por ano (sem COVID)")
+    fig.suptitle("Painel definitivo — mediana ± IQR por ano "
+                 "(sem COVID; faturamento em R$ de 2025)")
     fig.tight_layout()
     base._salvar_fig(fig, "figD02_series_temporais.png")
 
     # figD03 — histogramas gerais
     fig, axes = plt.subplots(1, n, figsize=(5 * n, 4))
-    for ax, ind in zip(axes, INDICADORES):
+    for ax, ind in zip(axes, IND_FIG):
         ax.hist(painel[ind].dropna(), bins=50, color="#4e79a7",
                 edgecolor="white", lw=.3)
-        ax.set_title(ROTULOS[ind], fontsize=8)
+        ax.set_title(ROTULOS_D[ind], fontsize=8)
         ax.set_ylabel("Nº hospitais-ano")
-    fig.suptitle("Painel definitivo — histogramas (todos os anos)")
+    fig.suptitle("Painel definitivo — histogramas "
+                 "(todos os anos; faturamento em R$ de 2025)")
     fig.tight_layout()
     base._salvar_fig(fig, "figD03_histogramas.png")
 
@@ -149,8 +189,9 @@ def corte_modelo_gestao(painel: pd.DataFrame):
                 .agg(hospital_ano="size", cnes_distintos="nunique"))
     print(contagem.to_string())
 
-    # tabela de medianas por categoria × indicador (todos os anos)
-    tab = sub.groupby(col)[INDICADORES].median().round(4)
+    # tabela de medianas por categoria × indicador (todos os anos);
+    # item 1.5: faturamento real ao lado do nominal
+    tab = sub.groupby(col)[IND_TAB].median().round(4)
     tab.insert(0, "n_hospital_ano", sub.groupby(col).size())
     tab.index.name = "modelo_gestao_proxy (definição adotada — ver nota)"
     tab.to_csv(TAB_MODELO, encoding="utf-8-sig")
@@ -158,13 +199,13 @@ def corte_modelo_gestao(painel: pd.DataFrame):
     print(tab.to_string())
 
     # figD04 — boxplots por categoria, aviso estampado
-    n = len(INDICADORES)
+    n = len(IND_FIG)
     fig, axes = plt.subplots(1, n, figsize=(5 * n, 6))
-    for ax, ind in zip(axes, INDICADORES):
+    for ax, ind in zip(axes, IND_FIG):
         vals = [sub.loc[sub[col] == c, ind].dropna() for c in cats]
         ax.boxplot(vals, labels=[str(c) for c in cats],
                    patch_artist=True, flierprops={"markersize": 2})
-        ax.set_title(ROTULOS[ind], fontsize=8)
+        ax.set_title(ROTULOS_D[ind], fontsize=8)
         ax.tick_params(axis="x", rotation=55, labelsize=7)
     fig.suptitle("Painel definitivo — indicadores por modelo de gestão "
                  "(definição adotada — ver nota)")
@@ -173,6 +214,33 @@ def corte_modelo_gestao(painel: pd.DataFrame):
              bbox={"facecolor": "#fff3cd", "edgecolor": "#e0a800", "pad": 4})
     fig.tight_layout(rect=[0, .04, 1, 1])
     base._salvar_fig(fig, "figD04_por_modelo_gestao_proxy.png")
+
+
+def ocupacao_sem_pandemia(painel: pd.DataFrame):
+    """
+    Tabela comparativa da ocupação (internação e UTI) por modelo de gestão:
+    2015-2025 completo vs excluindo 2020-2021 (decisão da reunião de
+    13/07/2026, item 1.3). A exclusão é por ANO CIVIL COMPLETO: o denominador
+    da ocupação não é decomponível por procedimento (D-C2) — não existe versão
+    "sem COVID" da ocupação, existe versão "sem o biênio pandêmico".
+    Camada de APRESENTAÇÃO: nenhuma variável usada nos modelos é alterada.
+    """
+    col = "modelo_gestao_proxy"
+    partes = []
+    for versao, df in [("2015-2025 completo", painel),
+                       ("excluindo 2020-2021",
+                        painel[~painel["ano"].isin([2020, 2021])])]:
+        g = df.groupby(col)[["ocupacao_internacao", "ocupacao_uti"]]
+        t = pd.concat([g.size().rename("n_hospital_ano"),
+                       g.median().add_suffix("_mediana").round(2),
+                       g.mean().add_suffix("_media").round(2)], axis=1)
+        t.insert(0, "versao", versao)
+        partes.append(t.reset_index())
+    tab = pd.concat(partes, ignore_index=True)
+    tab["nota"] = np.where(tab[col] == "Privado", NOTA_PRIVADO_UTI, "")
+    tab.to_csv(TAB_OCUP_SEM_PAND, index=False, encoding="utf-8-sig")
+    print(f"\n[3b] Ocupação com/sem 2020-2021 → {TAB_OCUP_SEM_PAND.name}")
+    print(tab.to_string(index=False))
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -202,6 +270,10 @@ def antes_depois(painel_def: pd.DataFrame, bruto_ind: pd.DataFrame):
         med["versao"] = versao
         linhas.append(med.reset_index())
     tab = pd.concat(linhas, ignore_index=True).round(4)
+    # item 1.5: coluna real derivada por ano (fator constante dentro do ano,
+    # então mediana deflacionada = fator × mediana nominal)
+    tab["custo_real"] = (tab["custo_saida"]
+                         * tab["ano"].map(_fatores_ipca_2025())).round(4)
     tab.to_csv(TAB_ANTES_DEPOIS, index=False, encoding="utf-8-sig")
     print(f"\n[4] Antes/depois dos filtros → {TAB_ANTES_DEPOIS.name}")
 
@@ -209,8 +281,8 @@ def antes_depois(painel_def: pd.DataFrame, bruto_ind: pd.DataFrame):
     print("Mediana das medianas anuais, por versão do painel:")
     print(resumo.to_string())
 
-    # figD05 — séries sobrepostas
-    n = len(INDICADORES)
+    # figD05 — séries sobrepostas (faturamento em termos reais — item 1.5)
+    n = len(IND_FIG)
     cores = {"bruto_com_covid": "#bab0ac",
              "definitivo_com_covid": "#e15759",
              "definitivo_sem_covid": "#4e79a7"}
@@ -218,12 +290,12 @@ def antes_depois(painel_def: pd.DataFrame, bruto_ind: pd.DataFrame):
                  "definitivo_com_covid": "Definitivo (314 CNES, com COVID)",
                  "definitivo_sem_covid": "Definitivo (314 CNES, sem COVID)"}
     fig, axes = plt.subplots(1, n, figsize=(5 * n, 4))
-    for ax, ind in zip(axes, INDICADORES):
+    for ax, ind in zip(axes, IND_FIG):
         for versao, cor in cores.items():
             s = tab[tab["versao"] == versao]
             ax.plot(s["ano"], s[ind], "o-", color=cor, lw=1.6, ms=4,
                     label=rotulos_v[versao])
-        ax.set_title(ROTULOS[ind], fontsize=8)
+        ax.set_title(ROTULOS_D[ind], fontsize=8)
         ax.tick_params(axis="x", rotation=45)
     axes[0].legend(fontsize=6)
     fig.suptitle("Efeito dos filtros: medianas anuais antes/depois "
@@ -280,6 +352,7 @@ def main():
     descritivas(painel_def)
     figuras_distribuicao(painel_def)
     corte_modelo_gestao(painel_def)
+    ocupacao_sem_pandemia(painel_def)
     antes_depois(painel_def, bruto_ind)
     complexidade(painel_def)
 

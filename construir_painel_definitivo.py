@@ -20,6 +20,11 @@ Analítico Definitivo" (criterios_construcao_painel.md), na seguinte ordem:
     ETAPA C2 Remoção de procedimentos COVID (código 999) dos hospitais que
              permanecem: indicadores *_sem_covid (não remove linhas)
     ETAPA D  Painel balanceado: apenas CNES com produção em TODOS os anos
+    ETAPA E  Exclusão de CNES sem pontuação de Barcelona
+    ETAPA F  Exclusão de populações estruturalmente incomparáveis (critérios
+             §2.3, decisões de 13-15/07/2026): pediátricos/onco-pediátricos,
+             crônicos/reabilitação/ex-sanatórios, 4 casos decididos em
+             15/07/2026 e o psiquiátrico não capturado pelo §2.1
     LOG      Auditoria por etapa (tab_auditoria_filtros.csv +
              tab_auditoria_cnes_removidos.csv + tab_auditoria_revisao_manual.csv)
 
@@ -45,6 +50,18 @@ DECISÕES DE IMPLEMENTAÇÃO (a validar com a equipe):
     D-C2. Ocupação (internação/UTI) NÃO tem versão sem-COVID: o denominador
          (leitos × 365) e as diárias vêm prontos do resumo SIH e não são
          decomponíveis por procedimento. Mantida a versão original com nota.
+    D-F. NOTA DE PROCEDIMENTO (15/07/2026): a lista de 20 CNES da ETAPA F
+         submetida a ratificação (pediátricos/onco-pediátricos + crônicos/
+         reabilitação/ex-sanatórios) foi RATIFICADA POR JOÃO em 15/07/2026 —
+         e não pela Priscilla, como previa o desenho original da pergunta 3
+         do memorando de 14/07/2026. A simplificação da mortalidade que
+         acompanhava a mesma pergunta NÃO foi aplicada (reversão à definição
+         original: mort_all e mort_sem_excl paralelos; item 1.13 desativado —
+         ver ITEM_113_MORT_ESTRATIFICADA em analise_sih.py). Os 4 casos antes
+         pendentes foram decididos por João em 15/07/2026 e o Inst. de
+         Psiquiatria HCFMUSP (2812703) sai pelo critério §2.1 (falha de
+         preenchimento corrigida), fora da ratificação. Registro também em
+         criterios_construcao_painel.md §2.3 e §7.
 
 COMPLEXIDADE (§4 dos critérios — DUAS versões, NENHUMA descartada):
     complexidade_estrutural : Pontuação Barcelona pura (fixa por CNES)
@@ -58,7 +75,10 @@ MODELO DE GESTÃO: modelo_gestao_proxy (cópia de class_assistencial) é a
     DEFINIÇÃO ADOTADA de modelo de gestão do projeto (decisão jul/2026). Não
     desmembra Autarquia nem PPP e mantém "Público Municipal" como dummy
     única. O crosswalk institucional definitivo foi avaliado e CANCELADO;
-    não há pendência de crosswalk.
+    não há pendência de crosswalk. Sobrescritas pontuais decididas pela
+    equipe ficam em SOBRESCRITAS_MODELO_GESTAO e são aplicadas em
+    aplicar_decisoes_equipe com registro na auditoria de revisão manual
+    (hoje: 2079720, Hospital Guilherme Álvaro, OSS→Direta — 13/07/2026).
 
 USO:
     python construir_painel_definitivo.py
@@ -111,6 +131,66 @@ CLASSES_CRITERIO_LITERAL = {"Público", "Hospital COVID", "Sem Fins Lucrativos"}
 # leitura do coeficiente da categoria deve considerar essa mistura.
 # O mecanismo abaixo permanece para futuras decisões de supressão de rótulo.
 CNES_SEM_MODELO_GESTAO: set[int] = set()
+
+# Decisão da equipe (reunião de 13/07/2026 — Priscilla, Alberto e João):
+# o Hospital Guilherme Álvaro (Santos, CNES 2079720) consta como "OSS" na
+# class_assistencial do SIH em TODOS os anos 2015-2025, mas é hospital de
+# administração DIRETA (estadual). Erro de rótulo de ORIGEM da base — não é
+# transição nem switcher (rótulo estável na série inteira; verificação no
+# item 1.11 da investigação de 13/07/2026). A correção sobrescreve APENAS
+# modelo_gestao_proxy; class_assistencial permanece intacta para
+# rastreabilidade da fonte. Independente da regra de valor modal de
+# tipo_hospital/especializacao (ETAPA A): aquela decide EXCLUSÃO por tipo de
+# estabelecimento e não lê class_assistencial; esta roda ao FINAL do funil e
+# só toca modelo_gestao_proxy — não há sobreposição nem ordem que gere
+# efeito colateral.
+SOBRESCRITAS_MODELO_GESTAO: dict[int, str] = {2079720: "Direta"}
+
+# ETAPA F — exclusão de populações estruturalmente incomparáveis (critérios
+# §2.3; decisões de 13-15/07/2026 — ver nota D-F no cabeçalho). Mapeia
+# cnes→motivo; consumido direto pela auditoria (tab_auditoria_cnes_removidos).
+MOTIVO_F_PEDIATRICO = ("população estruturalmente incomparável por faixa "
+                       "etária/perfil epidemiológico (pediátrico/"
+                       "onco-pediátrico) — ratificação de 15/07/2026")
+MOTIVO_F_CRONICO = ("população estruturalmente incomparável por intensidade/"
+                    "duração do cuidado (crônico/reabilitação/ex-sanatório) "
+                    "— ratificação de 15/07/2026")
+CNES_ETAPA_F: dict[int, str] = {
+    # ── pediátricos/onco-pediátricos (9) ────────────────────────────────
+    2071371: MOTIVO_F_PEDIATRICO,   # Hospital Infantil Darcy Vargas (SP)
+    2078325: MOTIVO_F_PEDIATRICO,   # Hosp. Mun. Infantil Menino Jesus (SP)
+    2080427: MOTIVO_F_PEDIATRICO,   # HMCA Guarulhos
+    2088517: MOTIVO_F_PEDIATRICO,   # Hosp. Infantil Cândido Fontoura (SP)
+    2081482: MOTIVO_F_PEDIATRICO,   # Boldrini (Campinas)
+    2089696: MOTIVO_F_PEDIATRICO,   # GRAACC (SP)
+    2076985: MOTIVO_F_PEDIATRICO,   # Casa da Criança Betinho (SP)
+    2082454: MOTIVO_F_PEDIATRICO,   # Casa da Criança de Tupã
+    2079321: MOTIVO_F_PEDIATRICO,   # GPACI Sorocaba (onco-pediátrico)
+    # ── crônicos/reabilitação/ex-sanatórios (11) ────────────────────────
+    2079208: MOTIVO_F_CRONICO,      # Lar Espírita Maria de Nazaré (Mogi Mirim)
+    2790998: MOTIVO_F_CRONICO,      # Lar Irmã Dulce (Pirajuí)
+    2082276: MOTIVO_F_CRONICO,      # Casas André Luiz (Guarulhos)
+    2089572: MOTIVO_F_CRONICO,      # Assoc. Cruz Verde (SP)
+    2688522: MOTIVO_F_CRONICO,      # Casa de David (SP)
+    2080192: MOTIVO_F_CRONICO,      # Hosp. Estadual de Reabilitação (Itu)
+    2084236: MOTIVO_F_CRONICO,      # C. Reab. Dr. Arnaldo Pezzuti (Mogi das Cruzes)
+    2082675: MOTIVO_F_CRONICO,      # Amparo ao Excepcional Ritinha (Araçatuba)
+    2081725: MOTIVO_F_CRONICO,      # CAIS Clemente Ferreira (Lins, ex-sanatório)
+    2079194: MOTIVO_F_CRONICO,      # Nestor Goulart Reis (Américo Brasiliense)
+    3753433: MOTIVO_F_CRONICO,      # Leonor Mendes de Barros (C. do Jordão)
+    # ── 4 casos decididos autonomamente por João em 15/07/2026 (§2.3) ───
+    3223728: ("perfil de retaguarda/cuidados prolongados consolidado — "
+              "decisão de 15/07/2026"),                  # Santa Casa de S.B. do Campo
+    3001466: ("população cativa em regime não-clínico (hospital "
+              "penitenciário) — decisão de 15/07/2026"), # C.H. do Sistema Penitenciário
+    2082470: ("psiquiátrico não capturado pelo §2.1 (especialização em "
+              "branco; ex-Clínica Sayão) — decisão de 15/07/2026"),  # S. Leopoldo Mandic
+    2081466: ("dependência química/cuidados prolongados/paliativos — "
+              "decisão de 15/07/2026"),                  # N. Sra. da Divina Providência
+    # ── psiquiátrico pelo critério §2.1 — fora da ratificação ───────────
+    2812703: ("psiquiátrico — critério §2.1, correção de falha de "
+              "preenchimento da especialização (fora da ratificação)"),  # IPq HCFMUSP
+}
 
 AVISO_PROXY = (
     "NOTA — a variável de modelo de gestão (modelo_gestao_proxy) usa as "
@@ -400,9 +480,13 @@ def restream_numeradores_covid() -> pd.DataFrame:
     """
     if CACHE_COVID_NUM.exists():
         df = pd.read_csv(CACHE_COVID_NUM, encoding="utf-8-sig")
-        print(f"[CACHE] Numeradores COVID carregados de {CACHE_COVID_NUM.name} "
-              f"({len(df)} hospital-ano)")
-        return df
+        if (not base.ITEM_113_MORT_ESTRATIFICADA
+                or "qtde_obito_alta_complex_covid" in df.columns):
+            print(f"[CACHE] Numeradores COVID carregados de {CACHE_COVID_NUM.name} "
+                  f"({len(df)} hospital-ano)")
+            return df
+        print(f"[CACHE] {CACHE_COVID_NUM.name} é de versão anterior ao item 1.13 "
+              f"(sem qtde_obito_alta_complex_covid) — reprocessando 2020/2021")
 
     arquivos_sih, _, _ = base.localizar_arquivos(base.PASTA_DADOS)
     alvos = [(p, ano) for p, ano in arquivos_sih if ano in base.ANOS_COVID]
@@ -431,12 +515,19 @@ def restream_numeradores_covid() -> pd.DataFrame:
             q = base.val_float(qtde)
             a = acc.setdefault(cnes, {"qtde_obito_all_covid": 0.0,
                                       "qtde_obito_sem_excl_covid": 0.0,
-                                      "qtde_alta_complex_covid": 0.0})
+                                      "qtde_alta_complex_covid": 0.0,
+                                      **({"qtde_obito_alta_complex_covid": 0.0}
+                                         if base.ITEM_113_MORT_ESTRATIFICADA
+                                         else {})})
             desfecho = row[i_desf]
             if base.eh_obito(desfecho):
                 a["qtde_obito_all_covid"] += q
                 if base.eh_obito_versao_b(desfecho):
                     a["qtde_obito_sem_excl_covid"] += q
+                # item 1.13: óbito × alta complexidade condicional a COVID
+                if (base.ITEM_113_MORT_ESTRATIFICADA
+                        and row[i_cplx] == "Alta complexidade"):
+                    a["qtde_obito_alta_complex_covid"] += q
             if row[i_cplx] == "Alta complexidade":
                 a["qtde_alta_complex_covid"] += q
         wb.close()
@@ -461,8 +552,9 @@ def etapa_c2_indicadores_sem_covid(painel: pd.DataFrame, aud: Auditoria,
     """
     df = painel.merge(covid_num, on=["cnes", "ano"], how="left")
     for c in ["qtde_obito_all_covid", "qtde_obito_sem_excl_covid",
-              "qtde_alta_complex_covid"]:
-        df[c] = df[c].fillna(0.0)
+              "qtde_alta_complex_covid", "qtde_obito_alta_complex_covid"]:
+        if c in df.columns:
+            df[c] = df[c].fillna(0.0)
 
     _div = base._div
     # Versões COM covid (registro integral, para a comparação antes/depois)
@@ -486,6 +578,42 @@ def etapa_c2_indicadores_sem_covid(painel: pd.DataFrame, aud: Auditoria,
     df["pct_alta_complex"] = _div(
         df["qtde_alta_complex"] - df["qtde_alta_complex_covid"],
         df["qtde_sem_covid"])
+
+    # ── item 1.13: mortalidade estratificada por complexidade ────────────────
+    # DESATIVADO em 15/07/2026 (reversão à definição original de mortalidade —
+    # decisão de João; flag única em analise_sih.ITEM_113_MORT_ESTRATIFICADA).
+    # Com a flag ligada: requer o acumulador qtde_obito_alta_complex do cache
+    # base (analise_sih); em cache antigo a coluna não existe e o bloco é
+    # pulado com aviso.
+    if not base.ITEM_113_MORT_ESTRATIFICADA:
+        print("[ETAPA C2] item 1.13 INATIVO (reversão de 15/07/2026): "
+              "mortalidade estratificada por complexidade não é calculada; "
+              "mort_all e mort_sem_excl seguem como indicadores paralelos")
+    elif "qtde_obito_alta_complex" in df.columns:
+        df["mort_alta_complex_com_covid"] = _div(
+            df["qtde_obito_alta_complex"], df["qtde_alta_complex"])
+        df["mort_baixa_complex_com_covid"] = _div(
+            df["qtde_obito_all"] - df["qtde_obito_alta_complex"],
+            df["qtde"] - df["qtde_alta_complex"])
+        # Denominadores explícitos sem COVID — usados também para o corte de
+        # denominador mínimo na camada de relatório (memorando P3, item 4)
+        df["qtde_alta_complex_sem_covid"] = (
+            df["qtde_alta_complex"] - df["qtde_alta_complex_covid"])
+        df["qtde_baixa_complex_sem_covid"] = (
+            df["qtde_sem_covid"] - df["qtde_alta_complex_sem_covid"])
+        df["mort_alta_complex"] = _div(
+            df["qtde_obito_alta_complex"] - df["qtde_obito_alta_complex_covid"],
+            df["qtde_alta_complex_sem_covid"])
+        df["mort_baixa_complex"] = _div(
+            (df["qtde_obito_all"] - df["qtde_obito_alta_complex"])
+            - (df["qtde_obito_all_covid"] - df["qtde_obito_alta_complex_covid"]),
+            df["qtde_baixa_complex_sem_covid"])
+        print("[ETAPA C2] item 1.13: mort_alta_complex/mort_baixa_complex "
+              "calculadas (com e sem COVID)")
+    else:
+        print("[ETAPA C2][AVISO] item 1.13: cache base sem "
+              "qtde_obito_alta_complex — mortalidade estratificada será "
+              "calculada na reexecução da Etapa 3 (cache reconstruído)")
     # Ocupação: sem versão sem-COVID (ver D-C2 no cabeçalho) — mantida original
 
     afetados = df[(df["ano"].isin(base.ANOS_COVID)) & (df["qtde_covid"] > 0)]
@@ -549,6 +677,26 @@ def etapa_sem_barcelona(painel: pd.DataFrame, aud: Auditoria,
 
 
 # ══════════════════════════════════════════════════════════════════════════════
+# ETAPA F — POPULAÇÕES ESTRUTURALMENTE INCOMPARÁVEIS (critérios §2.3)
+# ══════════════════════════════════════════════════════════════════════════════
+
+def etapa_f_incomparaveis(painel: pd.DataFrame, aud: Auditoria) -> pd.DataFrame:
+    """
+    Exclui os 25 CNES da ETAPA F (critérios §2.3, decisões de 13-15/07/2026):
+    9 pediátricos/onco-pediátricos, 11 crônicos/reabilitação/ex-sanatórios,
+    4 casos decididos autonomamente em 15/07/2026 e 1 psiquiátrico pelo
+    critério §2.1 (falha de preenchimento). Ratificação dos 20 por João em
+    15/07/2026 — ver nota de procedimento D-F no cabeçalho.
+    """
+    return aud.aplicar_filtro(
+        painel, "ETAPA F",
+        "populações estruturalmente incomparáveis (critérios §2.3, decisões "
+        "13-15/07/2026): pediátrico/onco-pediátrico, crônico/reabilitação/"
+        "ex-sanatório, 4 casos de 15/07/2026 e psiquiátrico §2.1",
+        set(CNES_ETAPA_F), CNES_ETAPA_F)
+
+
+# ══════════════════════════════════════════════════════════════════════════════
 # COMPLEXIDADE — DUAS VERSÕES (§4 DOS CRITÉRIOS)
 # ══════════════════════════════════════════════════════════════════════════════
 
@@ -601,15 +749,19 @@ def calcular_escores_complexidade(painel: pd.DataFrame,
     return df
 
 
-def aplicar_decisoes_equipe(painel: pd.DataFrame) -> pd.DataFrame:
+def aplicar_decisoes_equipe(painel: pd.DataFrame,
+                            aud: Auditoria | None = None) -> pd.DataFrame:
     """
     Materializa decisões pontuais da equipe sobre o painel construído.
 
     modelo_gestao_proxy: cópia de class_assistencial a ser usada em QUALQUER
-    corte por modelo de gestão (DEFINIÇÃO ADOTADA). Difere do original apenas
-    nos CNES de CNES_SEM_MODELO_GESTAO — mecanismo de supressão de rótulo que
-    hoje está VAZIO (nenhum CNES suprimido). class_assistencial permanece
-    intacta para rastreabilidade da fonte.
+    corte por modelo de gestão (DEFINIÇÃO ADOTADA). Difere do original apenas:
+      - nos CNES de CNES_SEM_MODELO_GESTAO — supressão de rótulo (hoje VAZIO);
+      - nos CNES de SOBRESCRITAS_MODELO_GESTAO — correção de erro de rótulo
+        de origem do SIH, decidida pela equipe (hoje: 2079720, Hospital
+        Guilherme Álvaro, OSS→Direta em toda a série — reunião 13/07/2026),
+        registrada na auditoria de revisão manual quando `aud` é fornecida.
+    class_assistencial permanece intacta para rastreabilidade da fonte.
     """
     df = painel.copy()
     df["modelo_gestao_proxy"] = df["class_assistencial"]
@@ -619,6 +771,21 @@ def aplicar_decisoes_equipe(painel: pd.DataFrame) -> pd.DataFrame:
         print(f"[DECISÃO EQUIPE] {df.loc[mask, 'cnes'].nunique()} CNES com "
               f"modelo_gestao_proxy = NaN (rótulo suprimido pelo mecanismo "
               f"CNES_SEM_MODELO_GESTAO): {sorted(df.loc[mask, 'cnes'].unique())}")
+    for cnes, rotulo in SOBRESCRITAS_MODELO_GESTAO.items():
+        m = df["cnes"] == cnes
+        if not m.any():
+            continue
+        originais = sorted(df.loc[m, "class_assistencial"].dropna().unique())
+        df.loc[m, "modelo_gestao_proxy"] = rotulo
+        print(f"[DECISÃO EQUIPE] CNES {cnes}: modelo_gestao_proxy sobrescrito "
+              f"para {rotulo!r} em {int(m.sum())} hospital-ano "
+              f"(class_assistencial original: {originais}) — reunião 13/07/2026.")
+        if aud is not None:
+            aud.marcar_revisao(
+                "DECISÃO EQUIPE 13/07/2026", int(cnes),
+                f"sobrescrita de modelo_gestao_proxy: {originais} → {rotulo!r} "
+                f"em todos os anos (erro de rótulo de origem no SIH; "
+                f"Hospital Guilherme Álvaro, Santos)")
     return df
 
 
@@ -659,6 +826,13 @@ def salvar_painel_definitivo(df: pd.DataFrame):
         "equipe, permanece AGRUPADO em 'Privado' no proxy, por conveniência\n"
         "estatística (eleva o grupo de n=2 para n=3). Não é erro: é escolha\n"
         "de agrupamento pragmático registrada.\n\n"
+        "DECISÃO REGISTRADA — Hospital Guilherme Álvaro (2079720, Santos):\n"
+        "a base SIH rotula o hospital como 'OSS' em todos os anos, mas ele é\n"
+        "de administração DIRETA. Por decisão da equipe (reunião 13/07/2026),\n"
+        "modelo_gestao_proxy = 'Direta' em toda a série deste CNES;\n"
+        "class_assistencial permanece com o valor original do SIH para\n"
+        "rastreabilidade. Não é switcher (rótulo de origem estável — erro de\n"
+        "base, não transição). Registro em tab_auditoria_revisao_manual.csv.\n\n"
         "LIMITAÇÃO DE DESENHO (destacar no relatório): dos 5 switchers\n"
         "Direta->OSS documentados, 3 (CNES 2082225, 2091755, 2750511) só\n"
         "viram OSS em 2025 — apenas 1 ano de pós-tratamento no painel, o que\n"
@@ -667,6 +841,14 @@ def salvar_painel_definitivo(df: pd.DataFrame):
         "ETAPA E — os 3 CNES sem classificação Barcelona (2042894, 2078031,\n"
         "2082209) foram EXCLUÍDOS do painel: todo hospital do painel definitivo\n"
         "tem pontuação de Barcelona.\n\n"
+        "ETAPA F — 25 CNES excluídos por população estruturalmente\n"
+        "incomparável (critérios §2.3; decisões de 13-15/07/2026):\n"
+        "9 pediátricos/onco-pediátricos, 11 crônicos/reabilitação/\n"
+        "ex-sanatórios, 4 casos decididos em 15/07/2026 e o Inst. de\n"
+        "Psiquiatria HCFMUSP (§2.1). NOTA DE PROCEDIMENTO: a lista de 20\n"
+        "submetida a ratificação foi ratificada por João em 15/07/2026 (não\n"
+        "pela Priscilla, como previa o memorando de 14/07/2026). Detalhe por\n"
+        "CNES em tab_auditoria_cnes_removidos.csv.\n\n"
         "DEFINIÇÃO ADOTADA — modelo de gestão: modelo_gestao_proxy usa as\n"
         "categorias de class_assistencial (SIH) como definição adotada, sem\n"
         "desmembrar PPP/Autarquia e com 'Público Municipal' como dummy única.\n\n"
@@ -710,8 +892,9 @@ def main():
 
     painel = etapa_d_balanceado(painel, aud)
     painel = etapa_sem_barcelona(painel, aud, df_classif)
+    painel = etapa_f_incomparaveis(painel, aud)
     painel = calcular_escores_complexidade(painel, df_classif)
-    painel = aplicar_decisoes_equipe(painel)
+    painel = aplicar_decisoes_equipe(painel, aud)
 
     aud.salvar()
     salvar_painel_definitivo(painel)

@@ -17,3 +17,4 @@ ETAPA C1,302961,Hospital De Campanha Covid 19 Rio Claro,"nome/rótulo indica COV
 ETAPA C1,605107,Hospital De Campanha Centro De Transicao E Estabilizacao Cov,"nome/rótulo indica COVID, mas há produção fora de [2020, 2021] (anos: [2021, 2022]) — possível hospital regular rebatizado na pandemia; MANTIDO no painel"
 ETAPA C1,621110,Hospital De Campanha Covid Embu Das Artes,"nome/rótulo indica COVID, mas há produção fora de [2020, 2021] (anos: [2021, 2022]) — possível hospital regular rebatizado na pandemia; MANTIDO no painel"
 ETAPA C1,694622,Hospital Estadual Covid 19 Metropolitano Santa Cecilia,"nome/rótulo indica COVID, mas há produção fora de [2020, 2021] (anos: [2021, 2022]) — possível hospital regular rebatizado na pandemia; MANTIDO no painel"
+DECISÃO EQUIPE 13/07/2026,2079720,Hospital Guilherme Alvaro Santos,"sobrescrita de modelo_gestao_proxy: ['OSS'] → 'Direta' em todos os anos (erro de rótulo de origem no SIH; Hospital Guilherme Álvaro, Santos)"

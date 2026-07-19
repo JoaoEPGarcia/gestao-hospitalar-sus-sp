@@ -1,8 +1,8 @@
 ﻿modelo,escala,coef_oss_completo,ep_completo,coef_oss_sem_pandemia,ep_sem_pandemia,efeito_pct_completo,efeito_pct_sem_pandemia
-Mortalidade (geral),logito Beta,-0.2297,0.1332,-0.2265,0.1206,,
-Fração alta complexidade,logito Beta,-0.2262,0.2372,-0.2152,0.2351,,
-Custo real por saída (log),log,-0.0696,0.095,-0.0648,0.0982,-6.7249,-6.2715
-"TMP (log, sem longa perm.)",log,-0.1076,0.0467,-0.1203,0.0526,-10.1995,-11.3305
-Produção (saídas),log,0.3743,0.0825,0.3828,0.0828,45.3964,46.6398
-Ocupação internação,log,0.2122,0.0742,0.2119,0.0723,23.6452,23.5982
-Ocupação UTI (intensidade),log,0.1856,0.0734,0.1921,0.0724,20.391,21.1829
+Mortalidade (geral),logito Beta,-0.2237,0.1311,-0.2329,0.1157,,
+Fração alta complexidade,logito Beta,-0.2044,0.2348,-0.1937,0.2333,,
+Faturamento real por saída (log),log,-0.0866,0.0948,-0.083,0.0978,-8.2983,-7.9656
+"TMP (log, sem longa perm.)",log,-0.108,0.0468,-0.1207,0.0527,-10.2359,-11.3676
+Produção (saídas),log,0.3629,0.0895,0.3694,0.0892,43.7475,44.6934
+Ocupação internação,log,0.2044,0.0779,0.2015,0.0753,22.6751,22.3188
+Ocupação UTI (intensidade),log,0.2058,0.0747,0.2175,0.0723,22.8495,24.2927

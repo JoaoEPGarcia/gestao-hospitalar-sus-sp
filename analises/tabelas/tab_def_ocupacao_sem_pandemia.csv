@@ -1,0 +1,11 @@
+﻿modelo_gestao_proxy,versao,n_hospital_ano,ocupacao_internacao_mediana,ocupacao_uti_mediana,ocupacao_internacao_media,ocupacao_uti_media,nota
+Direta,2015-2025 completo,284,64.13,58.49,65.19,58.76,
+Filantrópico,2015-2025 completo,1881,65.52,70.18,65.16,57.14,
+OSS,2015-2025 completo,365,92.6,73.92,87.01,68.77,
+Privado,2015-2025 completo,33,40.54,3.49,48.13,8.0,Privado (n=3): sem leitura de efeito médio; produção SUS de UTI residual (Leforte 30 leitos SUS/595 diárias medianas; Unimed Sorocaba 4 leitos; HU-UFSCar 0) — não interpretar.
+Público Municipal,2015-2025 completo,616,86.89,69.46,82.43,66.05,
+Direta,excluindo 2020-2021,232,65.47,57.29,66.19,54.47,
+Filantrópico,excluindo 2020-2021,1539,66.13,69.38,65.74,53.51,
+OSS,excluindo 2020-2021,299,93.55,72.58,87.64,65.83,
+Privado,excluindo 2020-2021,27,37.02,3.86,47.29,9.1,Privado (n=3): sem leitura de efeito médio; produção SUS de UTI residual (Leforte 30 leitos SUS/595 diárias medianas; Unimed Sorocaba 4 leitos; HU-UFSCar 0) — não interpretar.
+Público Municipal,excluindo 2020-2021,504,88.53,67.13,82.54,60.24,

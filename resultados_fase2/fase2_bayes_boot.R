@@ -21,9 +21,12 @@ d <- amostra_desfecho(painel)
 m <- readRDS(file.path(BASE, "bayes", "modB_mortalidade.rds"))
 
 # a chamada é refeita explicitamente (update() reavaliaria a chamada
-# original, cujos argumentos eram variáveis locais de um helper)
-f_mort <- mort_all ~ categoria + cplx_z + porte_fixo + longa_perm +
-  media_oss + ano_f + (1 | cnes_f)
+# original, cujos argumentos eram variáveis locais de um helper);
+# longa_perm só entra com variação (painel de 289: constante — ETAPA F)
+TERMO_LP <- if (var(painel$longa_perm) > 0) " + longa_perm" else ""
+f_mort <- as.formula(paste0(
+  "mort_all ~ categoria + cplx_z + porte_fixo", TERMO_LP,
+  " + media_oss + ano_f + (1 | cnes_f)"))
 zi_mort <- ~ cplx_z + porte_fixo
 
 co_alvo <- "categoriaOSS"

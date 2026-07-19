@@ -1,34 +1,33 @@
 ﻿,componente,coeficiente,ep_cluster,z,p_valor
-constante,logito UTI ativa,-3.05212,0.92138,-3.31255,0.00092
-Filantrópico,logito UTI ativa,-0.65731,0.77066,-0.85292,0.3937
-OSS,logito UTI ativa,-1.78384,1.04586,-1.70562,0.08808
-Privado,logito UTI ativa,3.6163,2.54029,1.42358,0.15457
-Público Municipal,logito UTI ativa,-0.14292,0.81579,-0.1752,0.86093
-porte Especial,logito UTI ativa,-10.65375,2.73442,-3.89617,0.0001
-porte Grande Porte,logito UTI ativa,-1.48128,0.83313,-1.77796,0.07541
-ano 2016,logito UTI ativa,0.08115,0.04731,1.71542,0.08627
-ano 2017,logito UTI ativa,0.10861,0.06671,1.62817,0.10349
-ano 2018,logito UTI ativa,0.16339,0.0668,2.446,0.01445
-ano 2019,logito UTI ativa,0.19073,0.08041,2.37208,0.01769
-ano 2022,logito UTI ativa,0.67884,0.12661,5.36173,0.0
-ano 2023,logito UTI ativa,0.77168,0.13445,5.73951,0.0
-ano 2024,logito UTI ativa,0.77168,0.13445,5.73951,0.0
-ano 2025,logito UTI ativa,0.723,0.13737,5.26303,0.0
-complexidade estrutural,logito UTI ativa,0.02586,0.00487,5.31333,0.0
-constante,log intensidade,3.87988,0.08164,47.527,0.0
-Filantrópico,log intensidade,0.25395,0.07636,3.32569,0.00088
-OSS,log intensidade,0.19213,0.0724,2.65379,0.00796
-Privado,log intensidade,-2.54905,0.65181,-3.91071,9e-05
-Público Municipal,log intensidade,0.20217,0.07352,2.75003,0.00596
-porte Especial,log intensidade,-0.41814,0.31914,-1.31022,0.19012
-porte Grande Porte,log intensidade,-0.07868,0.10879,-0.72328,0.46951
-ano 2016,log intensidade,-0.00051,0.02508,-0.02017,0.98391
-ano 2017,log intensidade,-0.00057,0.03483,-0.01624,0.98704
-ano 2018,log intensidade,-0.00468,0.02367,-0.19796,0.84308
-ano 2019,log intensidade,0.00427,0.02432,0.17546,0.86072
-ano 2022,log intensidade,-0.06498,0.03328,-1.95244,0.05089
-ano 2023,log intensidade,0.01663,0.03538,0.47013,0.63826
-ano 2024,log intensidade,0.07733,0.039,1.98293,0.04738
-ano 2025,log intensidade,0.10785,0.03731,2.89093,0.00384
-complexidade estrutural,log intensidade,0.00048,0.0003,1.58881,0.1121
-longa permanência,log intensidade,-0.02059,0.49053,-0.04197,0.96652
+constante,logito UTI ativa,-1.6624,0.78542,-2.11659,0.03429
+Filantrópico,logito UTI ativa,-2.25613,0.67248,-3.35495,0.00079
+OSS,logito UTI ativa,-3.24371,1.05163,-3.08445,0.00204
+Privado,logito UTI ativa,0.13894,2.75521,0.05043,0.95978
+Público Municipal,logito UTI ativa,-1.92202,0.7291,-2.63614,0.00839
+porte Especial,logito UTI ativa,0.00574,2.27752,0.00252,0.99799
+porte Grande Porte,logito UTI ativa,0.49332,1.42788,0.34549,0.72973
+ano 2016,logito UTI ativa,0.06998,0.04969,1.40812,0.15909
+ano 2017,logito UTI ativa,0.13948,0.08635,1.6154,0.10622
+ano 2018,logito UTI ativa,0.21027,0.0866,2.42797,0.01518
+ano 2019,logito UTI ativa,0.24615,0.10264,2.39831,0.01647
+ano 2022,logito UTI ativa,0.8758,0.15902,5.50758,0.0
+ano 2023,logito UTI ativa,0.99607,0.16865,5.90607,0.0
+ano 2024,logito UTI ativa,0.99607,0.16865,5.90607,0.0
+ano 2025,logito UTI ativa,0.9427,0.17361,5.43005,0.0
+complexidade estrutural,logito UTI ativa,0.02642,0.00534,4.9521,0.0
+constante,log intensidade,3.8578,0.08333,46.29778,0.0
+Filantrópico,log intensidade,0.2788,0.0781,3.56987,0.00036
+OSS,log intensidade,0.21747,0.0723,3.00796,0.00263
+Privado,log intensidade,-2.52736,0.65039,-3.88595,0.0001
+Público Municipal,log intensidade,0.21481,0.07474,2.87417,0.00405
+porte Especial,log intensidade,-0.42591,0.32181,-1.32347,0.18568
+porte Grande Porte,log intensidade,-0.08309,0.10959,-0.75821,0.44833
+ano 2016,log intensidade,0.01859,0.02139,0.86916,0.38476
+ano 2017,log intensidade,-0.00206,0.03602,-0.05733,0.95428
+ano 2018,log intensidade,-0.00539,0.02432,-0.22146,0.82473
+ano 2019,log intensidade,0.00616,0.025,0.2463,0.80545
+ano 2022,log intensidade,-0.06416,0.0343,-1.87048,0.06142
+ano 2023,log intensidade,0.01847,0.03649,0.50623,0.6127
+ano 2024,log intensidade,0.08079,0.0402,2.00951,0.04448
+ano 2025,log intensidade,0.11506,0.03803,3.02509,0.00249
+complexidade estrutural,log intensidade,0.00048,0.0003,1.59584,0.11052

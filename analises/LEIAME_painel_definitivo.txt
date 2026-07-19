@@ -27,6 +27,14 @@ equipe, permanece AGRUPADO em 'Privado' no proxy, por conveniência
 estatística (eleva o grupo de n=2 para n=3). Não é erro: é escolha
 de agrupamento pragmático registrada.
 
+DECISÃO REGISTRADA — Hospital Guilherme Álvaro (2079720, Santos):
+a base SIH rotula o hospital como 'OSS' em todos os anos, mas ele é
+de administração DIRETA. Por decisão da equipe (reunião 13/07/2026),
+modelo_gestao_proxy = 'Direta' em toda a série deste CNES;
+class_assistencial permanece com o valor original do SIH para
+rastreabilidade. Não é switcher (rótulo de origem estável — erro de
+base, não transição). Registro em tab_auditoria_revisao_manual.csv.
+
 LIMITAÇÃO DE DESENHO (destacar no relatório): dos 5 switchers
 Direta->OSS documentados, 3 (CNES 2082225, 2091755, 2750511) só
 viram OSS em 2025 — apenas 1 ano de pós-tratamento no painel, o que
@@ -36,6 +44,15 @@ limita o poder de identificação within-hospital. Os demais: 2081695
 ETAPA E — os 3 CNES sem classificação Barcelona (2042894, 2078031,
 2082209) foram EXCLUÍDOS do painel: todo hospital do painel definitivo
 tem pontuação de Barcelona.
+
+ETAPA F — 25 CNES excluídos por população estruturalmente
+incomparável (critérios §2.3; decisões de 13-15/07/2026):
+9 pediátricos/onco-pediátricos, 11 crônicos/reabilitação/
+ex-sanatórios, 4 casos decididos em 15/07/2026 e o Inst. de
+Psiquiatria HCFMUSP (§2.1). NOTA DE PROCEDIMENTO: a lista de 20
+submetida a ratificação foi ratificada por João em 15/07/2026 (não
+pela Priscilla, como previa o memorando de 14/07/2026). Detalhe por
+CNES em tab_auditoria_cnes_removidos.csv.
 
 DEFINIÇÃO ADOTADA — modelo de gestão: modelo_gestao_proxy usa as
 categorias de class_assistencial (SIH) como definição adotada, sem

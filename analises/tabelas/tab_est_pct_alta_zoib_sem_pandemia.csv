@@ -1,37 +1,36 @@
 ﻿,componente,coeficiente,ep_cluster,z,p_valor
-constante,média Beta,-2.82431,0.27598,-10.23361,0.0
-Filantrópico,média Beta,0.28925,0.21254,1.36091,0.17354
-OSS,média Beta,-0.21521,0.23511,-0.91535,0.36001
-Privado,média Beta,4.03109,0.81264,4.96048,0.0
-Público Municipal,média Beta,-0.43766,0.21372,-2.04783,0.04058
-porte Especial,média Beta,1.31396,0.68202,1.92657,0.05403
-porte Grande Porte,média Beta,0.611,0.15278,3.99916,6e-05
-ano 2016,média Beta,0.11059,0.03886,2.84593,0.00443
-ano 2017,média Beta,0.02888,0.03482,0.82931,0.40693
-ano 2018,média Beta,0.04188,0.04044,1.03557,0.3004
-ano 2019,média Beta,0.10074,0.04172,2.41459,0.01575
-ano 2022,média Beta,0.06729,0.03953,1.70242,0.08868
-ano 2023,média Beta,0.15781,0.04865,3.24369,0.00118
-ano 2024,média Beta,0.12972,0.04774,2.71757,0.00658
-ano 2025,média Beta,0.12126,0.06025,2.01256,0.04416
-complexidade estrutural,média Beta,0.0003,0.00048,0.62115,0.5345
-longa permanência,média Beta,-0.65615,0.17335,-3.78512,0.00015
-ln precisão,média Beta,1.4249,0.14305,9.96075,0.0
-constante,logito do zero,3.26436,0.76841,4.24821,2e-05
-Filantrópico,logito do zero,-0.84216,0.56612,-1.4876,0.13686
-OSS,logito do zero,-0.89516,0.66298,-1.3502,0.17695
-Privado,logito do zero,-2.87845,2.4979,-1.15235,0.24918
-Público Municipal,logito do zero,-0.7656,0.61602,-1.24282,0.21393
-porte Especial,logito do zero,5.65467,1.87134,3.02173,0.00251
-porte Grande Porte,logito do zero,0.29579,0.51754,0.57153,0.56764
-ano 2016,logito do zero,0.27574,0.12094,2.2799,0.02261
-ano 2017,logito do zero,-0.17165,0.11784,-1.45654,0.14524
-ano 2018,logito do zero,-0.12843,0.12886,-0.99667,0.31893
-ano 2019,logito do zero,0.0216,0.13028,0.16578,0.86833
-ano 2022,logito do zero,-0.04249,0.13911,-0.30542,0.76005
-ano 2023,logito do zero,0.06761,0.13373,0.50555,0.61317
-ano 2024,logito do zero,-0.27803,0.1459,-1.90569,0.05669
-ano 2025,logito do zero,-0.272,0.15344,-1.77268,0.07628
-complexidade estrutural,logito do zero,-0.01535,0.00264,-5.80504,0.0
-constante,logito do um,-14.35453,0.05681,-252.6966,0.0
-d_privado,logito do um,13.66436,1.22702,11.1362,0.0
+constante,média Beta,-2.92816,0.27976,-10.4666,0.0
+Filantrópico,média Beta,0.32071,0.20915,1.53343,0.12517
+OSS,média Beta,-0.19368,0.23329,-0.8302,0.40643
+Privado,média Beta,4.06637,0.82787,4.91186,0.0
+Público Municipal,média Beta,-0.40499,0.20958,-1.93241,0.05331
+porte Especial,média Beta,1.38453,0.68891,2.00974,0.04446
+porte Grande Porte,média Beta,0.6725,0.15498,4.33928,1e-05
+ano 2016,média Beta,0.10899,0.03922,2.77895,0.00545
+ano 2017,média Beta,0.03366,0.03528,0.95398,0.3401
+ano 2018,média Beta,0.04979,0.04097,1.21514,0.22431
+ano 2019,média Beta,0.10457,0.04235,2.46888,0.01355
+ano 2022,média Beta,0.07333,0.03964,1.8497,0.06436
+ano 2023,média Beta,0.16394,0.04967,3.30096,0.00096
+ano 2024,média Beta,0.13997,0.04865,2.8769,0.00402
+ano 2025,média Beta,0.13006,0.06233,2.08676,0.03691
+complexidade estrutural,média Beta,0.0003,0.00049,0.61054,0.54151
+ln precisão,média Beta,1.44513,0.15076,9.58535,0.0
+constante,logito do zero,2.41427,0.87144,2.77045,0.0056
+Filantrópico,logito do zero,-0.23574,0.73545,-0.32054,0.74856
+OSS,logito do zero,-0.2062,0.8487,-0.24296,0.80803
+Privado,logito do zero,-1.36862,2.22286,-0.6157,0.53809
+Público Municipal,logito do zero,0.02665,0.77135,0.03455,0.97244
+porte Especial,logito do zero,-14.09833,1.27123,-11.09032,0.0
+porte Grande Porte,logito do zero,-0.57585,0.57794,-0.99638,0.31906
+ano 2016,logito do zero,0.29676,0.13869,2.13974,0.03238
+ano 2017,logito do zero,-0.22575,0.13504,-1.67176,0.09457
+ano 2018,logito do zero,-0.14992,0.14583,-1.02804,0.30393
+ano 2019,logito do zero,-1e-05,0.14987,-8e-05,0.99993
+ano 2022,logito do zero,-0.07478,0.15634,-0.47833,0.63242
+ano 2023,logito do zero,0.05057,0.15396,0.32844,0.74258
+ano 2024,logito do zero,-0.3524,0.1681,-2.09642,0.03605
+ano 2025,logito do zero,-0.32574,0.17477,-1.86382,0.06235
+complexidade estrutural,logito do zero,-0.01352,0.00249,-5.43863,0.0
+constante,logito do um,-13.83773,0.05925,-233.56752,0.0
+d_privado,logito do um,13.14507,1.22834,10.70152,0.0

@@ -10,25 +10,7 @@ fator IPCA para 2025,2022,1.1435
 fator IPCA para 2025,2023,1.093
 fator IPCA para 2025,2024,1.0426
 fator IPCA para 2025,2025,1.0
-p99 winsorização,ocupacao_internacao,124.2
-p99 winsorização,ocupacao_uti,164.2
+p99 winsorização,ocupacao_internacao,125.1
+p99 winsorização,ocupacao_uti,171.2
 denominador frágil,CNES 2097613 (Hospital Infante D Henrique) 2020,1.0
 denominador frágil,CNES 2097613 (Hospital Infante D Henrique) 2021,1.0
-longa permanência,CNES 2076985 (Casa Da Crianca Betinho),29.7
-longa permanência,CNES 2079194 (Hospital Nestor Goulart Reis Americo Brasiliense),25.6
-longa permanência,CNES 2079208 (Lar Espirita Maria De Nazare Moji Mirim),30.3
-longa permanência,CNES 2080192 (Hosp Est Espec Em Reabilit Dr Francisco Ribeiro Arantes),29.8
-longa permanência,CNES 2081466 (Hospital Nossa Senhora Da Divina Providencia),24.7
-longa permanência,CNES 2081725 (Cais Clemente Ferreira De Lins),26.8
-longa permanência,CNES 2082276 (Casas Andre Luiz Guarulhos),30.3
-longa permanência,CNES 2082454 (Casa Da Crianca De Tupa),30.1
-longa permanência,CNES 2082470 (Hospital Sao Leopoldo Mandic),30.0
-longa permanência,CNES 2082675 (Associacao De Amparo Ao Excepcional Ritinha Prates),30.2
-longa permanência,CNES 2084236 (Centro Esp Em Reabilitacao Dr Arnaldo Pezzuti Cavalcanti Mog),27.9
-longa permanência,CNES 2089572 (Assoc Cruz Verde),30.2
-longa permanência,CNES 2688522 (Casa De David Sao Paulo),30.2
-longa permanência,CNES 2790998 (Lar Irma Dulce Na Providencia De Deus Pirajui),30.3
-longa permanência,CNES 2812703 (Fundacao Faculdade De Medicinahcfmusp Inst De Psiquiatria Sp),26.7
-longa permanência,CNES 3001466 (Centro Hospitalar Do Sistema Penitenciario Sao Paulo),21.1
-longa permanência,CNES 3223728 (Santa Casa De Misericordia De Sao Bernardo Do Campo),24.8
-longa permanência,CNES 3753433 (Hospital Leonor Mendes De Barros),25.0

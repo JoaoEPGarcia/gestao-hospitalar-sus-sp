@@ -47,6 +47,24 @@ SWITCHERS = {
 CNES_EXCLUIDOS_E = [2042894, 2078031, 2082209]
 INDICADORES = ["mort_all", "mort_sem_excl", "tmp", "custo_saida", "pct_alta_complex"]
 
+# Item 1.5 (14/07/2026): a tabela de medianas pós-patch ganha também o
+# faturamento REAL (R$ de 2025). As CHECAGENS numéricas de referência
+# permanecem sobre custo_saida (valores esperados inalterados). Série IPCA
+# idêntica à canônica de estimacao.py (dez/dez IBGE; 2025 = 4,26%).
+IPCA_ANUAL = {2015: 10.67, 2016: 6.29, 2017: 2.95, 2018: 3.75, 2019: 4.31,
+              2020: 4.52, 2021: 10.06, 2022: 5.79, 2023: 4.62, 2024: 4.83,
+              2025: 4.26}
+
+
+def _fatores_ipca_2025() -> dict:
+    anos = sorted(IPCA_ANUAL)
+    acum_ate, acum = {}, 1.0
+    for a in anos:
+        acum *= 1 + IPCA_ANUAL[a] / 100
+        acum_ate[a] = acum
+    total = acum_ate[anos[-1]]
+    return {a: total / acum_ate[a] for a in anos}
+
 # Referências do painel de 317 (pré-patch) — diferenças pequenas esperadas
 REFERENCIAS = {
     "mort_all":         0.0535,
@@ -224,8 +242,12 @@ def item3_modelo_gestao(depois):
     print(f"\n    Total hospital-ano com rótulo: {len(sub)} "
           f"(NaN: {depois[col].isna().sum()})")
 
-    med = sub.groupby(col)[INDICADORES].median().round(6)
-    print("\n  Mediana dos 5 indicadores por categoria:")
+    sub = sub.copy()
+    sub["custo_real"] = (sub["custo_saida"]
+                         * sub["ano"].map(_fatores_ipca_2025()))
+    med = sub.groupby(col)[INDICADORES + ["custo_real"]].median().round(6)
+    print("\n  Mediana dos indicadores por categoria (custo_real = "
+          "faturamento em R$ de 2025, item 1.5):")
     with pd.option_context("display.width", 200):
         print("    " + med.to_string().replace("\n", "\n    "))
     med.to_csv(PASTA_TABELAS / "tab_pospatch_medianas_por_modelo.csv",

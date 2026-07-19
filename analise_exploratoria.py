@@ -49,11 +49,19 @@ INDICADORES = base.INDICADORES                  # 5 indicadores oficiais
 OCUPACOES   = ["ocupacao_internacao", "ocupacao_uti"]
 IND7        = INDICADORES + OCUPACOES
 
+# Item 1.5 (decisão de 14/07/2026): a camada descritiva usa o faturamento
+# REAL (custo_real = custo_saida × fator IPCA, preços de 2025). Nas FIGURAS
+# o real SUBSTITUI o nominal (a comparação nominal×real segue na fig_ae_07
+# dedicada); nas TABELAS o real entra AO LADO do nominal.
+IND7_FIG = [("custo_real" if c == "custo_saida" else c) for c in IND7]
+IND8_TAB = IND7 + ["custo_real"]
+
 ROT = {
     "mort_all":            "Mortalidade geral",
     "mort_sem_excl":       "Mortalidade ajustada",
     "tmp":                 "TMP (dias)",
-    "custo_saida":         "Custo por saída (R$)",
+    "custo_saida":         "Faturamento por saída (SIH, R$)",
+    "custo_real":          "Faturamento real por saída (R$ de 2025)",
     "pct_alta_complex":    "Fração alta complexidade",
     "ocupacao_internacao": "Ocupação internação (%)",
     "ocupacao_uti":        "Ocupação UTI (%)",
@@ -467,7 +475,7 @@ def _fig_qq(x, dist, shape, titulo, nome_arq, nota=None):
 
 
 def distribucional_continuas(painel: pd.DataFrame):
-    print("\n[2b] CUSTO POR SAÍDA E TMP: cinco famílias candidatas por "
+    print("\n[2b] FATURAMENTO POR SAÍDA (SIH) E TMP: cinco famílias candidatas por "
           "AIC e QQ (locação em zero)")
     med_cnes = painel[painel["tmp"] > 0].groupby("cnes")["tmp"].median()
     longa = med_cnes[med_cnes > 20].index
@@ -499,13 +507,27 @@ def distribucional_continuas(painel: pd.DataFrame):
     for var in ["custo_saida", "tmp"]:
         x = amostras[var]
         fig, ax = plt.subplots(figsize=(7, 4.5))
-        bins = np.logspace(np.log10(x.min()), np.log10(x.max()), 60)
-        ax.hist(x, bins=bins, density=True, color=COR_SERIE,
-                edgecolor="white", lw=.3)
-        ax.set_xscale("log")
-        ax.xaxis.set_major_formatter(FuncFormatter(lambda v, _p: _fmt_val(v)))
-        ax.set_title(f"{ROT[var]}: distribuição em eixo logarítmico "
-                     f"(valores reais nos rótulos)", fontsize=11.5)
+        if var == "tmp":
+            # Decisão 13-14/07/2026 (item 1.4): TMP em escala LINEAR com teto
+            # fixo de 35 dias (a base trunca em ~30,5 — censura à direita
+            # documentada no dossiê do item 1.4; 120 comprimiria o gráfico).
+            # Nome do arquivo (hist_log) mantido por estabilidade das
+            # referências no LaTeX; renomeação avaliada na Etapa 4.
+            bins = np.linspace(0, 35, 60)
+            ax.hist(x, bins=bins, density=True, color=COR_SERIE,
+                    edgecolor="white", lw=.3)
+            ax.set_xlim(0, 35)
+            ax.set_title(f"{ROT[var]}: distribuição em escala linear "
+                         f"(teto fixo do eixo em 35 dias)", fontsize=11.5)
+        else:
+            bins = np.logspace(np.log10(x.min()), np.log10(x.max()), 60)
+            ax.hist(x, bins=bins, density=True, color=COR_SERIE,
+                    edgecolor="white", lw=.3)
+            ax.set_xscale("log")
+            ax.xaxis.set_major_formatter(
+                FuncFormatter(lambda v, _p: _fmt_val(v)))
+            ax.set_title(f"{ROT[var]}: distribuição em eixo logarítmico "
+                         f"(valores reais nos rótulos)", fontsize=11.5)
         ax.set_ylabel("Densidade")
         fig.tight_layout()
         _salvar(fig, f"fig_ae_03_hist_log_{var}.png")
@@ -644,7 +666,7 @@ def por_categoria(painel: pd.DataFrame):
           "efeito médio da categoria.")
 
     blocos = []
-    for c in IND7:
+    for c in IND8_TAB:
         g = painel.groupby(col)[c]
         bloco = pd.DataFrame({
             ("n", c): g.count(), ("p25", c): g.quantile(.25),
@@ -655,22 +677,25 @@ def por_categoria(painel: pd.DataFrame):
     tab = pd.concat(blocos, axis=1).reindex(CATEGORIAS).round(4)
     tab.columns = [f"{c}_{e}" for e, c in tab.columns]
     _tab(tab, "tab_ae_por_categoria.csv")
-    medianas = tab[[f"{c}_mediana" for c in IND7]]
-    medianas.columns = IND7
+    medianas = tab[[f"{c}_mediana" for c in IND8_TAB]]
+    medianas.columns = IND8_TAB
     print("\nMedianas por categoria (todos os anos):")
     print(medianas.to_string())
 
-    for c in IND7:
+    for c in IND7_FIG:
         dados = painel[[col, c]].dropna()
-        if c == "custo_saida":
+        if c in ("custo_saida", "custo_real"):
             dados = dados[dados[c] > 0]
         fig, ax = plt.subplots(figsize=(7.5, 4.8))
         sns.violinplot(data=dados, x=col, y=c, order=CATEGORIAS,
                        hue=col, palette=CORES_CAT_CLARAS, legend=False,
                        cut=0, inner="quartile", linewidth=.8,
                        density_norm="width", ax=ax)
-        if c in ("custo_saida", "tmp"):
+        if c == "custo_saida":
             ax.set_yscale("log")
+        elif c == "tmp":
+            # Decisão 13-14/07/2026 (item 1.4): TMP linear, teto fixo 35 dias.
+            ax.set_ylim(0, 35)
         medianas_cat = dados.groupby(col)[c].median().reindex(CATEGORIAS)
         for i, v in enumerate(medianas_cat):
             if pd.notna(v):
@@ -694,13 +719,13 @@ def por_categoria(painel: pd.DataFrame):
 
 def _painel_medianas_grupo(painel, col, ordem, rampa, prefixo_fig, nome_tab,
                            rotulo_grupo):
-    g = painel.groupby(col)[IND7].median().reindex(ordem).round(4)
+    g = painel.groupby(col)[IND8_TAB].median().reindex(ordem).round(4)
     g.insert(0, "n_cnes", painel.groupby(col)["cnes"].nunique().reindex(ordem))
     _tab(g, nome_tab)
     print(f"\nMedianas por {col}:")
     print(g.to_string())
 
-    for c in IND7:
+    for c in IND7_FIG:
         fig, ax = plt.subplots(figsize=(7, 4.5))
         barras = ax.bar([str(o) for o in ordem], g[c],
                         color=rampa[:len(ordem)], edgecolor="white", lw=.5)
@@ -748,12 +773,12 @@ def tendencia_temporal(painel: pd.DataFrame):
     print("=" * 70)
     anos = sorted(painel["ano"].unique())
 
-    grp = painel.groupby("ano")[IND7]
+    grp = painel.groupby("ano")[IND8_TAB]
     med, q25, q75 = grp.median(), grp.quantile(.25), grp.quantile(.75)
     _tab(med.round(4), "tab_ae_mediana_ano.csv")
     print(med.round(4).to_string())
 
-    for c in IND7:
+    for c in IND7_FIG:
         fig, ax = plt.subplots(figsize=(7, 4.5))
         _banda_covid(ax)
         ax.plot(anos, med[c], "o", ls="solid", color=COR_SERIE, lw=1.8, ms=4)
@@ -776,12 +801,12 @@ def tendencia_temporal(painel: pd.DataFrame):
         fig.tight_layout()
         _salvar(fig, f"fig_ae_07_tendencia_{c}.png")
 
-    med_cat = (painel.groupby(["ano", "modelo_gestao_proxy"])[IND7]
+    med_cat = (painel.groupby(["ano", "modelo_gestao_proxy"])[IND8_TAB]
                .median().round(4))
     _tab(med_cat, "tab_ae_mediana_ano_categoria.csv")
 
-    SEM_PRIVADO = ("custo_saida", "pct_alta_complex")
-    for c in IND7:
+    SEM_PRIVADO = ("custo_saida", "custo_real", "pct_alta_complex")
+    for c in IND7_FIG:
         fig, ax = plt.subplots(figsize=(7.5, 4.8))
         _banda_covid(ax)
         cats_plot = [cat for cat in CATEGORIAS
@@ -803,6 +828,51 @@ def tendencia_temporal(painel: pd.DataFrame):
         ax.legend(fontsize=9.5, title=titulo_leg, title_fontsize=9.5)
         fig.tight_layout()
         _salvar(fig, f"fig_ae_08_categoria_{c}.png")
+
+
+def comparativo_atendimento_conversores(painel: pd.DataFrame):
+    """
+    Item 1.6 (decisão de 14/07/2026): "comparativo de atendimento" definido
+    como PERFIL DE COMPLEXIDADE ATENDIDA (pct_alta_complex) ano a ano, lado a
+    lado com mortalidade geral, TMP e faturamento real, para o Conjunto
+    Hospitalar Sorocaba (2081695, conversão 2019) e, como contraste, o
+    Pérola Byington (2078287, conversão 2023). complexidade_estrutural e
+    faixa_barcelona são FIXAS por CNES — por construção não medem mudança de
+    composição; o único sinal temporal disponível é pct_alta_complex.
+    """
+    ALVOS = {2081695: "Conjunto Hospitalar Sorocaba (conversão 2019)",
+             2078287: "Pérola Byington (conversão 2023)"}
+    COLS = ["pct_alta_complex", "mort_all", "tmp", "custo_real"]
+
+    sub = painel[painel["cnes"].isin(ALVOS)].sort_values(["cnes", "ano"])
+    tab = sub[["cnes", "ano"] + COLS + ["qtde_sem_covid"]].round(4)
+    _tab(tab, "tab_ae_comparativo_atendimento.csv", index=False)
+    print("\n[6b] Comparativo de atendimento (item 1.6) — perfil de "
+          "complexidade ao lado dos desfechos:")
+    print(tab.to_string(index=False))
+
+    fig, axes = plt.subplots(len(COLS), 2, figsize=(12, 3.1 * len(COLS)),
+                             sharex=True)
+    for j, (cnes, nome) in enumerate(ALVOS.items()):
+        d = sub[sub["cnes"] == cnes]
+        for i, c in enumerate(COLS):
+            ax = axes[i, j]
+            _banda_covid(ax)
+            ax.plot(d["ano"], d[c], marker="o", ms=4, lw=1.7, color=COR_SERIE)
+            ax.axvline(CONVERSOES[cnes] - .5, color=COR_EVENTO, lw=1.2,
+                       ls="dashed")
+            if i == 0:
+                ax.set_title(nome, fontsize=11)
+            ax.set_ylabel(ROT[c], fontsize=9)
+            ax.tick_params(labelsize=9)
+    axes[-1, 0].set_xlabel("Ano")
+    axes[-1, 1].set_xlabel("Ano")
+    fig.suptitle("Comparativo de atendimento dos conversores: o perfil de "
+                 "complexidade (1ª linha) mudou junto com os desfechos?\n"
+                 "Linha tracejada: entrada na gestão OSS; faixa cinza: "
+                 "2020 e 2021", fontsize=12)
+    fig.tight_layout(rect=[0, 0, 1, .94])
+    _salvar(fig, "fig_ae_17_comparativo_atendimento_conversores.png")
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -1072,8 +1142,8 @@ def anatomia_zeros(painel: pd.DataFrame):
 
 
 def custo_real(painel: pd.DataFrame):
-    """Série do custo por saída corrigida pelo IPCA para preços de 2025."""
-    print("\n[5b] CUSTO POR SAÍDA EM PREÇOS DE 2025 (IPCA dez/dez, IBGE)")
+    """Série do faturamento por saída corrigida pelo IPCA para preços de 2025."""
+    print("\n[5b] FATURAMENTO POR SAÍDA (SIH) EM PREÇOS DE 2025 (IPCA dez/dez, IBGE)")
     fat = _fatores_ipca_2025()
     sub = painel.copy()
     sub["custo_real_2025"] = sub["custo_saida"] * sub["ano"].map(fat)
@@ -1098,7 +1168,7 @@ def custo_real(painel: pd.DataFrame):
                     (med.index[-1], med[serie].iloc[-1]),
                     textcoords="offset points", xytext=(4, 0),
                     fontsize=10, color="#52514e")
-    ax.set_title("Custo por saída: mediana anual nominal vs corrigida "
+    ax.set_title("Faturamento por saída: mediana anual nominal vs corrigida "
                  "pelo IPCA (faixa cinza: 2020 e 2021)", fontsize=11.5)
     ax.set_xlabel("Ano")
     ax.set_ylabel("R$ por saída")
@@ -1203,6 +1273,9 @@ def main():
     print(f"[DIR] Figuras desta etapa em: {PASTA_FIG_AE}")
 
     painel = carregar_e_verificar()
+    # Item 1.5: coluna de APRESENTAÇÃO em preços de 2025 (não altera modelos)
+    painel["custo_real"] = (painel["custo_saida"]
+                            * painel["ano"].map(_fatores_ipca_2025()))
 
     univariada(painel)
     print("\n" + "=" * 70)
@@ -1220,12 +1293,13 @@ def main():
     tendencia_temporal(painel)
     custo_real(painel)
     estudo_eventos(painel)
+    comparativo_atendimento_conversores(painel)
     correlacoes(painel)
     variancia_within_between(painel)
     qualidade_dados(painel)
     funnel_mortalidade(painel)
 
-    print("\nCONCLUÍDO. Figuras das famílias fig_ae_01 a fig_ae_16 (uma "
+    print("\nCONCLUÍDO. Figuras das famílias fig_ae_01 a fig_ae_17 (uma "
           "imagem por gráfico) em analises/figuras_analise_exploratoria; "
           "tabelas tab_ae_* em analises/tabelas.")
 

@@ -123,14 +123,25 @@ DESFECHO_OBITO_VERSAO_B: dict[str, bool] = {
 # Anos com procedimentos COVID (código 999 em Cód Grupo ou Cód Subgrupo)
 ANOS_COVID = {2020, 2021}
 
+# item 1.13 (cruzamento óbito×complexidade) — DESATIVADO por decisão de João
+# em 15/07/2026: reversão à definição ORIGINAL de mortalidade (mort_all e
+# mort_sem_excl como indicadores paralelos, sem estratificação por
+# complexidade). O código permanece no lugar para eventual reativação pela
+# equipe: mudar para True e apagar os caches (painel_hospital_ano.* e
+# covid_numeradores_2020_2021.csv). Flag ÚNICA — construir_painel_definitivo
+# a referencia via base.ITEM_113_MORT_ESTRATIFICADA.
+ITEM_113_MORT_ESTRATIFICADA = False
+
 # Cinco indicadores principais
 INDICADORES = ["mort_all", "mort_sem_excl", "tmp", "custo_saida", "pct_alta_complex"]
 ROTULOS = {
     "mort_all":           "Mortalidade (todos os óbitos)",
     "mort_sem_excl":      "Mortalidade (exc. fetal/materno/neonatal)",
     "tmp":                "Tempo médio de permanência (dias)",
-    "custo_saida":        "Custo por saída (R$)",
+    "custo_saida":        "Faturamento por saída (SIH, R$)",
     "pct_alta_complex":   "% Alta complexidade",
+    "mort_alta_complex":  "Mortalidade — internações de alta complexidade",
+    "mort_baixa_complex": "Mortalidade — demais internações",
     "ocupacao_internacao":"Ocupação internação",
     "ocupacao_uti":       "Ocupação UTI",
 }
@@ -294,12 +305,15 @@ def eh_covid(cod_grupo, cod_sub) -> bool:
 
 def _prod0() -> dict:
     """Acumulador vazio para linhas de produção de um CNES."""
-    return {
+    d = {
         "qtde": 0.0, "qtde_obito_all": 0.0, "qtde_obito_sem_excl": 0.0,
         "dias_perm": 0.0, "valor": 0.0, "qtde_alta_complex": 0.0,
         "qtde_covid": 0.0, "dias_covid": 0.0, "valor_covid": 0.0,
         "n_linhas": 0, "n_linhas_covid": 0,
     }
+    if ITEM_113_MORT_ESTRATIFICADA:
+        d["qtde_obito_alta_complex"] = 0.0
+    return d
 
 
 def _resumo0() -> dict:
@@ -451,6 +465,9 @@ def processar_arquivo_sih(path: Path, ano: int) -> tuple:
             p["qtde_obito_all"] += q
             if eh_obito_versao_b(desfecho):
                 p["qtde_obito_sem_excl"] += q
+            # item 1.13: óbito e complexidade estão na mesma linha — cruzamento
+            if ITEM_113_MORT_ESTRATIFICADA and complex_ == "Alta complexidade":
+                p["qtde_obito_alta_complex"] += q
 
         if complex_ == "Alta complexidade":
             p["qtde_alta_complex"] += q
@@ -540,6 +557,8 @@ def construir_df_arquivo(prod_dict: dict, resumo_dict: dict, ano: int) -> pd.Dat
             "dias_perm":           p["dias_perm"],
             "valor":               p["valor"],
             "qtde_alta_complex":   p["qtde_alta_complex"],
+            **({"qtde_obito_alta_complex": p["qtde_obito_alta_complex"]}
+               if ITEM_113_MORT_ESTRATIFICADA else {}),
             "qtde_covid":          p["qtde_covid"],
             "dias_covid":          p["dias_covid"],
             "valor_covid":         p["valor_covid"],
@@ -752,7 +771,7 @@ def calcular_indicadores(painel: pd.DataFrame) -> pd.DataFrame:
     mort_all        : todos os óbitos / qtde total
     mort_sem_excl   : exclui óbito fetal/materno/neonatal (versão B — decisão clínica)
     tmp             : dias_perm / qtde  (tempo médio de permanência)
-    custo_saida     : valor / qtde      (custo por saída, R$)
+    custo_saida     : valor / qtde      (faturamento por saída, R$)
     pct_alta_complex: qtde_alta_complex / qtde
     ocupacao_*      : vem do resumo — NÃO recalculada aqui
     pct_covid_*     : só preenchida em 2020-2021; NaN nos demais anos
@@ -845,7 +864,7 @@ def relatorio_covid(painel_ind: pd.DataFrame):
 
     # ── fig03: comparação visual ──────────────────────────────────────────
     metricas = [("tmp_mediana",   "TMP mediano (dias)"),
-                ("custo_mediana", "Custo/saída mediano (R$)"),
+                ("custo_mediana", "Faturamento/saída mediano (R$)"),
                 ("mort_mediana",  "Mortalidade mediana")]
     fig, axes = plt.subplots(1, 3, figsize=(14, 5))
     cores = {"Com COVID": "#e15759", "Sem COVID": "#4e79a7"}
