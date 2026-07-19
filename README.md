@@ -4,13 +4,13 @@ Repositório da pesquisa sobre o impacto do modelo institucional e
 organizacional na prestação de serviço hospitalar da rede SUS do Estado
 de São Paulo. Reúne os códigos, as tabelas, as figuras e os relatórios
 da etapa de Análise Exploratória, construída sobre um painel balanceado
-de **314 hospitais acompanhados de 2015 a 2025 (3.454 observações de
-hospital e ano)**.
+de **289 hospitais acompanhados de 2015 a 2025 (3.179 observações de
+hospital e ano; pós-ETAPA F de 15/07/2026)**.
 
-O painel definitivo corrente é `analises/painel_definitivo.csv` (314
-hospitais × 11 anos = 3.454 observações, pós-patch de julho/2026);
-qualquer arquivo com `317` ou `3.487`/`3487` no nome ou no conteúdo é
-**histórico** (estado pré-patch). A fonte de verdade operacional do
+O painel definitivo corrente é `analises/painel_definitivo.csv` (289
+hospitais × 11 anos = 3.179 observações, pós-ETAPA F de 15/07/2026);
+qualquer arquivo com `317`/`3.487` ou `314`/`3.454` no nome ou no
+conteúdo é **histórico** (estados pré-patch e pré-ETAPA F). A fonte de verdade operacional do
 painel é `analises/LEIAME_painel_definitivo.txt`; o registro da
 verificação pós-patch é `relatorio_verificacao_painel_jul2026.md`.
 
@@ -25,7 +25,7 @@ verificação pós-patch é `relatorio_verificacao_painel_jul2026.md`.
 * `analise_sih.py`: pipeline de leitura dos arquivos anuais do SIH/SUS
   (streaming dos xlsx) e agregação em painel de hospital e ano.
 * `construir_painel_definitivo.py`: funil documentado de seleção
-  (etapas A, B, C1, C2, D e E) que gera o painel analítico
+  (etapas A, B, C1, C2, D, E e F) que gera o painel analítico
   `analises/painel_definitivo.csv`.
 * `analise_exploratoria.py`: script da Análise Exploratória; gera as 94
   figuras de `analises/figuras_analise_exploratoria` e as tabelas
