@@ -8,18 +8,13 @@ ser otimistas. Esta seção fecha a pesquisa quantificando exatamente
 isso, com três instrumentos usados na literatura para situações de
 poucos tratados, e resolve a pendência técnica da UTI.
 
-% PENDENTE (reconciliação painel 289, 18/07/2026): "309" abaixo deveria
-% virar 284 (289-5). NÃO editar isolado — o resto deste parágrafo
-% (p-valores da permutação) só fica correto depois do Bloco 3
-% (inferencia_robusta.py rodar no painel de 289). Ver
-% auditoria-fase2-jul2026.md, bloqueante B2.
 \textbf{Conversores de mentira.} O teste mais intuitivo é o de
-permutação: sorteamos 5 hospitais falsos entre os 309 que nunca
+permutação: sorteamos 5 hospitais falsos entre os 284 que nunca
 mudaram de gestão, fingimos que eles converteram nos mesmos anos dos
 conversores reais e medimos o efeito que o modelo atribuiria a essa
 conversão inventada. Repetindo o sorteio 1.999 vezes, obtemos a régua
 do acaso. O resultado: a queda de faturamento real atribuída à OSS é comum
-entre os falsos conversores (49\% deles produzem efeito tão grande
+entre os falsos conversores (40\% deles produzem efeito tão grande
 quanto o real), enquanto \textbf{a queda de tempo de permanência de
 10,2\% é maior que a de 85\% dos placebos} (p igual a 0,153). Um
 segundo método, o bootstrap selvagem por cluster, sabidamente
@@ -35,15 +30,16 @@ pode misturar hospitais já convertidos no grupo de controle. O
 estimador de Callaway e Sant'Anna evita isso comparando cada coorte de
 conversão apenas com os hospitais que nunca mudaram. A
 Figura~\ref{fig:cstwfe} mostra que, no ano da conversão, os dois
-métodos coincidem em todos os indicadores (na mortalidade, 1,298
-contra 1,301 pontos percentuais de queda); nas janelas intermediárias
-o método clássico exagera um pouco o efeito do tempo de permanência
-(0,25 contra 0,15 em log pontos) e as janelas longas se aproximam, com
-intervalos sobrepostos (na mortalidade, 2,18 pontos negativos no
-método clássico contra 2,38 no alternativo; no tempo de permanência,
-0,28 contra 0,30 em log pontos). Nenhuma conclusão muda; a magnitude
-intermediária do tempo
-de permanência era o único ponto inflado.
+métodos coincidem em todos os indicadores (na mortalidade, 1,296
+contra 1,293 pontos percentuais de queda); nas janelas intermediárias
+o método clássico exagera o efeito — na mortalidade (2,6 e 2,9 pontos
+contra 2,0 e 2,3 do alternativo) e no tempo de permanência (0,25
+contra 0,16 em log pontos) — e as janelas longas se aproximam, com
+intervalos sobrepostos (na mortalidade, 2,23 pontos negativos no
+método clássico contra 2,44 no alternativo; no tempo de permanência,
+0,28 contra 0,30 em log pontos). Nenhuma conclusão muda; as
+magnitudes das janelas intermediárias — da mortalidade e do tempo de
+permanência — eram os pontos inflados.
 
 \begin{figure}[H]
 \centering
@@ -69,14 +65,22 @@ conversores com janela posterior utilizável, construímos um
 convertidos que reproduz a trajetória do hospital antes da mudança de
 gestão. Se a conversão teve efeito, o hospital real deve descolar do
 seu gêmeo depois dela. A Figura~\ref{fig:sintetico} traz o resultado
-para a mortalidade, e ele é a ducha de água fria mais importante do
-documento: \textbf{em Sorocaba o hospital real fica 1,09 ponto
-percentual acima do gêmeo} após a conversão (o gêmeo, que acompanhava
-a subida até 2018, também cai depois, confirmando que parte da queda
-era retorno natural ao patamar); \textbf{no Pérola Byington o hospital
-fica 0,95 ponto abaixo do gêmeo}, na direção esperada, mas dentro do
-que sorteios de placebo produzem (p igual a 0,33). No faturamento real, a
-lacuna do Pérola é de R\$ 354 a menos por saída (p igual a 0,28).
+para a mortalidade, e ele pede duas honestidades. A primeira:
+\textbf{em Sorocaba não há descolamento} — o gêmeo também cai depois
+de 2019 (confirmando que parte da queda era retorno natural ao
+patamar) e o hospital real fica, em média, \textbf{0,54 ponto
+percentual abaixo do gêmeo}, lacuna que os placebos produzem com
+facilidade (p igual a 0,67). A segunda é de robustez, pelo mesmo
+princípio da variante sem conversores da Seção~\ref{sec:fase2}: no
+painel anterior à ETAPA F (314 hospitais), este mesmo exercício dava
+Sorocaba \textbf{1,09 ponto \emph{acima} do gêmeo} — a exclusão dos 25
+hospitais estruturalmente incomparáveis trocou os doadores e o
+\textbf{sinal da lacuna inverteu}. Um resultado cujo sinal depende da
+composição do pool de doadores não sustenta leitura direcional em
+nenhum dos dois sentidos. Já \textbf{no Pérola Byington o hospital
+fica 1,06 ponto abaixo do gêmeo}, na direção esperada, mas dentro do
+que sorteios de placebo produzem (p igual a 0,32). No faturamento real, a
+lacuna do Pérola é de R\$ 354 a menos por saída (p igual a 0,25).
 \textit{Ressalva de leitura (regime de pagamento): hospitais OSS são
 custeados por contrato de gestão com orçamento global, não por
 reembolso de AIH --- o valor registrado por saída é, para eles,
@@ -100,17 +104,18 @@ sintético, construído só com hospitais nunca convertidos.}
 \comoler{a linha preta é o hospital; a azul tracejada é o gêmeo
 sintético, montado para imitar o hospital antes da linha vertical. O
 efeito da conversão é a distância entre as duas linhas depois da linha
-vertical. Em Sorocaba a linha preta termina acima da azul; no Pérola,
-abaixo, mas com o gêmeo também caindo.}
+vertical. Em Sorocaba as duas linhas caem juntas, com a preta um pouco
+abaixo, e terminam praticamente sobrepostas; no Pérola, a preta cai
+abaixo da azul, mas com o gêmeo também caindo.}
 
 \textbf{A pendência da UTI, resolvida.} A intensidade de uso de UTI
 foi reestimada com a família Gama, adequada à cauda de UTIs de uso
 quase nulo que o modelo em logaritmo não acomodava. O diagnóstico de
 resíduos salta de 0,814 para \textbf{0,944}
 (Figura~\ref{fig:qqgama}, no Apêndice~\ref{ap:diagnosticos}),
-e o resultado substantivo permanece: uso de UTI \textbf{18,2\% maior
-nas OSS} (p igual a 0,005), com a variante de corte mínimo de
-atividade confirmando (22,3\%). A conclusão da
+e o resultado substantivo permanece: uso de UTI \textbf{19,3\% maior
+nas OSS} (p igual a 0,003), com a variante de corte mínimo de
+atividade confirmando (23,3\%). A conclusão da
 Seção~\ref{sec:resultados} fica, portanto, validada também neste
 indicador.
 
@@ -122,9 +127,11 @@ redes}; a única evidência com pretensão causal que resiste é a do
 tempo de permanência, presente em todos os métodos, e mesmo ela
 permanece sugestiva com cinco conversores, não definitiva; o faturamento
 real por saída não mostra diferença demonstrável em nenhum método; e
-a queda de mortalidade após as conversões, embora visível, não
-sobrevive ao confronto com o gêmeo sintético em Sorocaba e fica sem
-significância no Pérola Byington. A segunda fase da estimação
+a queda de mortalidade após as conversões, embora visível nos dados
+brutos, não produz descolamento raro frente ao gêmeo sintético em
+nenhum dos dois conversores testados — e em Sorocaba o próprio sinal
+da lacuna inverte com a mudança de painel da ETAPA F, o que rebaixa o
+resultado a frágil, não adverso nem favorável. A segunda fase da estimação
 (Seção~\ref{sec:fase2}) quantificou esse último ponto da forma mais
 direta possível: retirando os cinco conversores da amostra, a
 diferença de mortalidade entre as redes OSS e Direta simplesmente

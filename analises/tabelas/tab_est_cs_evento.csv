@@ -1,21 +1,21 @@
 ﻿indicador,unidade,evento,att_cs,coef_twfe,ep_twfe
-Mortalidade geral,p.p.,0,-1.29833,-1.30059,0.46327
-Mortalidade geral,p.p.,+1,-1.98269,-2.60666,0.49605
-Mortalidade geral,p.p.,+2,-2.23811,-2.86044,0.34305
-Mortalidade geral,p.p.,+3 ou depois,-2.37948,-2.17876,0.22702
-TMP,log pontos,0,-0.14501,-0.14494,0.04969
-TMP,log pontos,+1,-0.15533,-0.24665,0.04282
-TMP,log pontos,+2,-0.15446,-0.24545,0.03787
-TMP,log pontos,+3 ou depois,-0.29827,-0.28226,0.03
-Custo real por saída,log pontos,0,-0.04856,-0.04898,0.04099
-Custo real por saída,log pontos,+1,-0.09612,-0.16992,0.085
-Custo real por saída,log pontos,+2,-0.18818,-0.26192,0.12808
-Custo real por saída,log pontos,+3 ou depois,-0.11988,-0.1295,0.04304
-Fração alta complexidade,p.p.,0,-0.3695,-0.38141,1.2152
-Fração alta complexidade,p.p.,+1,-1.56005,-1.40037,1.81332
-Fração alta complexidade,p.p.,+2,-2.55992,-2.41441,1.41104
-Fração alta complexidade,p.p.,+3 ou depois,1.14468,0.88948,0.43607
-Ocupação internação,log pontos,0,0.10944,0.11008,0.11182
-Ocupação internação,log pontos,+1,0.49323,0.3874,0.23526
-Ocupação internação,log pontos,+2,0.29122,0.1862,0.20225
-Ocupação internação,log pontos,+3 ou depois,-0.00079,0.03376,0.09843
+Mortalidade geral,p.p.,0,-1.29345,-1.29602,0.46188
+Mortalidade geral,p.p.,+1,-2.01143,-2.64234,0.47854
+Mortalidade geral,p.p.,+2,-2.28063,-2.90988,0.3471
+Mortalidade geral,p.p.,+3 ou depois,-2.43762,-2.22659,0.23187
+TMP,log pontos,0,-0.14483,-0.14476,0.0496
+TMP,log pontos,+1,-0.15565,-0.2465,0.04297
+TMP,log pontos,+2,-0.15482,-0.24533,0.03776
+TMP,log pontos,+3 ou depois,-0.29922,-0.28269,0.03001
+Faturamento real por saída,log pontos,0,-0.05353,-0.05396,0.04021
+Faturamento real por saída,log pontos,+1,-0.10106,-0.17354,0.08638
+Faturamento real por saída,log pontos,+2,-0.19712,-0.26954,0.13201
+Faturamento real por saída,log pontos,+3 ou depois,-0.13614,-0.14521,0.04339
+Fração alta complexidade,p.p.,0,-0.38189,-0.39476,1.22085
+Fração alta complexidade,p.p.,+1,-1.59336,-1.42206,1.83308
+Fração alta complexidade,p.p.,+2,-2.58358,-2.428,1.44366
+Fração alta complexidade,p.p.,+3 ou depois,1.11918,0.844,0.45688
+Ocupação internação,log pontos,0,0.10968,0.11035,0.11087
+Ocupação internação,log pontos,+1,0.49102,0.38996,0.22873
+Ocupação internação,log pontos,+2,0.28567,0.18552,0.19887
+Ocupação internação,log pontos,+3 ou depois,-0.00474,0.0307,0.09681

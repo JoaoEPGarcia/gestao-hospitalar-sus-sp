@@ -1,7 +1,7 @@
 ﻿cnes,hospital,indicador,lacuna_media_pos,rmspe_pre,p_placebo_lacuna,n_doadores
-2081695,Conjunto Hospitalar Sorocaba,Mortalidade geral (%),1.0868,0.0,0.5405,308
-2081695,Conjunto Hospitalar Sorocaba,TMP (dias),-0.2369,0.0,0.7766,290
-2081695,Conjunto Hospitalar Sorocaba,Custo real por saída (R$ de 2025),-56.3847,0.0,0.7508,308
-2078287,Centro De Referencia Da Saude Da Mulher Sao Paulo,Mortalidade geral (%),-0.9514,0.2349,0.3333,308
-2078287,Centro De Referencia Da Saude Da Mulher Sao Paulo,TMP (dias),-0.1333,0.0,0.7526,290
-2078287,Centro De Referencia Da Saude Da Mulher Sao Paulo,Custo real por saída (R$ de 2025),-353.9216,0.0,0.2816,308
+2081695,Conjunto Hospitalar Sorocaba,Mortalidade geral (%),-0.5417,0.0,0.6655,283
+2081695,Conjunto Hospitalar Sorocaba,TMP (dias),-0.2369,0.0,0.7817,283
+2081695,Conjunto Hospitalar Sorocaba,Faturamento real por saída (R$ de 2025),-56.3847,0.0,0.7535,283
+2078287,Centro De Referencia Da Saude Da Mulher Sao Paulo,Mortalidade geral (%),-1.0593,0.2917,0.3204,283
+2078287,Centro De Referencia Da Saude Da Mulher Sao Paulo,TMP (dias),-0.1333,0.0,0.75,283
+2078287,Centro De Referencia Da Saude Da Mulher Sao Paulo,Faturamento real por saída (R$ de 2025),-353.9216,0.0,0.2465,283
