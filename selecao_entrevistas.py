@@ -738,7 +738,7 @@ entrevistado antes da resposta.
              "renegociação]",
              "o contrato de gestão é a diferença institucional formal "
              "entre OSS e administração direta; TMP $-$10,2\\% e produção "
-             "$+$45\\% são os efeitos que ele teria de explicar."),
+             "$+$43,7\\% são os efeitos que ele teria de explicar."),
             ("As metas chegam ao cotidiano clínico? Dê um exemplo de "
              "decisão de ponta (alta, agenda cirúrgica, escala) que mudou "
              "por causa de meta. [quem traduz a meta para a equipe]",
@@ -833,8 +833,9 @@ pois a resposta separa efeito da gestão OSS de tendência pré-existente.
             ("Quais metas o contrato de gestão fixou no início e como "
              "elas mudaram? Alguma meta era vista como inatingível? "
              "[metas de produção vs.\\ qualidade]",
-             "produção $+$45\\% e TMP $-$10,2\\% within: as metas "
-             "contratuais são a explicação institucional candidata."),
+             "produção $+$43,7\\% (transversal) e TMP $-$10,2\\% within: "
+             "as metas contratuais são a explicação institucional "
+             "candidata."),
             ("(Somente Pérola Byington e Sorocaba) Os indicadores já "
              "vinham melhorando antes da conversão formal. O que estava "
              "acontecendo no hospital nos 2--3 anos anteriores? [gestor "

@@ -30,13 +30,16 @@ conversores <- attr(painel, "conversores")
 # ── R1: variante sem conversores, fórmula sem media_oss ─────────────
 cat("\n[R1] mortalidade sem conversores, sem media_oss na fórmula\n")
 dsw <- d[!(d$cnes %in% conversores), ]
-m_r1 <- glmmTMB(mort_all ~ categoria + cplx_z + porte_fixo +
-                  longa_perm + ano_f + (1 | cnes_f),
+# longa_perm só entra com variação (painel de 289: constante — ETAPA F)
+TERMO_LP <- if (var(painel$longa_perm) > 0) " + longa_perm" else ""
+m_r1 <- glmmTMB(as.formula(paste0(
+                  "mort_all ~ categoria + cplx_z + porte_fixo",
+                  TERMO_LP, " + ano_f + (1 | cnes_f)")),
                 family = beta_family(),
                 ziformula = ~ cplx_z + porte_fixo, data = dsw)
 s <- summary(m_r1)$coefficients$cond
 i <- grep("categoriaOSS", rownames(s))[1]
-cat(sprintf("  coef OSS %+.4f (EP %.4f); com media_oss aliased era +0.0945 (0.2124)\n",
+cat(sprintf("  coef OSS %+.4f (EP %.4f); deve coincidir com a variante sem_switchers de fase2_robustez.R (media_oss aliased)\n",
             s[i, 1], s[i, 2]))
 write.csv(data.frame(especificacao = "sem_switchers_sem_mundlak",
                      coef_oss = s[i, 1], ep = s[i, 2]),
