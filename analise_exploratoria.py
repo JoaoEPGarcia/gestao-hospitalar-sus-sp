@@ -1,8 +1,9 @@
 """
 analise_exploratoria.py
 =======================
-Análise Exploratória do painel analítico de hospitais SUS/SP (314 hospitais,
-2015 a 2025, 3.454 observações de hospital e ano), gerado por
+Análise Exploratória do painel analítico de hospitais SUS/SP (289 hospitais,
+2015 a 2025, 3.179 observações de hospital e ano, painel pós-ETAPA F de
+15/07/2026), gerado por
 construir_painel_definitivo.py. Prepara a fase de estimação: caracteriza os
 dados, perfila as categorias institucionais, visualiza as conversões de
 gestão e decide empiricamente as famílias de distribuição.
@@ -173,11 +174,12 @@ def carregar_e_verificar() -> pd.DataFrame:
           f"anos por CNES min {anos_cnes.min()} max {anos_cnes.max()}, "
           f"NaN modelo_gestao_proxy {nan_mod}, "
           f"NaN complexidade_estrutural {nan_cpx}")
-    ok = (n_cnes == 314 and n_obs == 3454 and (anos_cnes == 11).all()
+    # 289/3.179 desde a ETAPA F de 15/07/2026 (era 314/3.454)
+    ok = (n_cnes == 289 and n_obs == 3179 and (anos_cnes == 11).all()
           and nan_mod == 0 and nan_cpx == 0)
     if not ok:
         raise SystemExit("[0] PAINEL NÃO CONFERE COM O ESPERADO. PARANDO.")
-    print("[0] Verificação OK: 314 CNES, 3.454 observações, painel balanceado.")
+    print("[0] Verificação OK: 289 CNES, 3.179 observações, painel balanceado.")
 
     # porte FIXO por CNES: mediana de total_leitos com os cortes oficiais
     # (até 50 HPP; 51 a 150 médio; 151 a 500 grande; acima de 500 especial).
@@ -267,7 +269,7 @@ def univariada(painel: pd.DataFrame):
             ax.text(.97, .95 - .07 * i, txt, transform=ax.transAxes,
                     ha="right", va="top", fontsize=10.5, color=cor)
         ax.set_title(f"{ROT[c]}: distribuição "
-                     f"(314 hospitais, 2015 a 2025)")
+                     f"(289 hospitais, 2015 a 2025)")
         ax.set_ylabel("Densidade")
         fig.tight_layout()
         _salvar(fig, f"fig_ae_01_hist_{c}.png")
@@ -576,7 +578,7 @@ def _r_qq(x):
 
 
 def distribucional_condicional(painel: pd.DataFrame):
-    """O QQ marginal mistura 314 hospitais heterogêneos; a estimação assume
+    """O QQ marginal mistura 289 hospitais heterogêneos; a estimação assume
     a distribuição CONDICIONAL (dadas as covariáveis e o efeito do hospital).
     Este bloco refaz os QQ sobre resíduos condicionais e quantifica a
     diferença, inclusive isolando a subpopulação de longa permanência."""
