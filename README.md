@@ -65,7 +65,20 @@ verificação pós-patch é `relatorio_verificacao_painel_jul2026.md`.
 5. Para o documento: subir `analises/latex/principal.tex`, a pasta
    `analises/latex/secoes` e a pasta
    `analises/figuras_analise_exploratoria` no Overleaf e compilar duas
-   vezes com pdfLaTeX.
+   vezes com pdfLaTeX. Detalhes em `analises/latex/LEIAME_overleaf.txt`.
+
+### Compilar localmente em outro computador
+
+As pastas de figuras dentro de `analises/latex/` são vínculos locais
+(*junctions*) e ficam de fora do git; as imagens em si estão
+versionadas em `analises/figuras_*`. Depois de clonar, recrie os
+vínculos uma vez e compile:
+
+```powershell
+cd analises/latex
+./vincular_figuras.ps1     # recria os vínculos para as figuras versionadas
+latexmk -pdf principal.tex # ou: pdflatex principal.tex (duas vezes)
+```
 
 ## Nota sobre os dados
 
