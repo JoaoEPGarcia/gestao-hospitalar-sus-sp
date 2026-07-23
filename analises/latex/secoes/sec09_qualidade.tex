@@ -6,8 +6,8 @@ exploratório é localizar exatamente onde estão os problemas para que
 eles não contaminem as conclusões. A boa notícia: os problemas deste
 painel são poucos, identificados e circunscritos.
 
-\textbf{Ocupação acima de 100\%.} Na internação, 14,7\% das observações
-(509) ultrapassam 100\%, e na UTI, 6,1\% (209). Em sua maioria isso é
+\textbf{Ocupação acima de 100\%.} Na internação, 15,5\% das observações
+(492) ultrapassam 100\%, e na UTI, 6,5\% (207). Em sua maioria isso é
 informação verdadeira de sobrecarga (mais diárias que a capacidade
 cadastrada comporta) e não deve ser apagado. O problema real está na
 cauda extrema da UTI: \textbf{os 15 maiores valores pertencem todos a
@@ -29,7 +29,7 @@ tratamento da UTI em duas partes o mitigam, e ele deve ser lembrado na
 leitura dos anos de 2020 e 2021. O cuidado adotado: analisar a
 ocupação como razão positiva, tratar a UTI em duas partes (ter ou não
 UTI ativa; e, entre os que têm, a intensidade de uso) e aparar a cauda
-extrema (winsorização no percentil 99: 124\% na internação e 164\% na
+extrema (winsorização no percentil 99: 125\% na internação e 171\% na
 UTI), com atenção redobrada ao biênio pandêmico.\footnote{Duas
 alternativas metodológicas ficam registradas para trabalhos futuros: a
 sensibilidade da winsorização a cortes no percentil 95 e no percentil
@@ -42,7 +42,7 @@ COVID, alguns hospitais poderiam ficar com pouquíssimas internações
 restantes, tornando suas taxas instáveis. No painel isso ocorre em
 \textbf{apenas 2 observações, ambas do Hospital Infante D.\ Henrique
 (CNES 2097613, São José do Rio Preto)}: 13 saídas não COVID em 2020 e
-somente 3 em 2021, ano em que o TMP calculado degenera para zero (o
+somente 4 em 2021, ano em que o TMP calculado degenera para zero (o
 único zero de TMP de todo o painel). As duas observações recebem
 marcação de denominador frágil e ficam de fora das análises de
 resultado.
@@ -53,8 +53,8 @@ hospital num ano, posicionado pelo volume de saídas (eixo horizontal) e
 pela mortalidade (eixo vertical); as linhas mostram a faixa em que a
 mortalidade deveria variar se as diferenças fossem puro acaso
 estatístico, faixa que é larga para hospitais pequenos e estreita para
-os grandes. O resultado: \textbf{cerca de 69\% das observações caem
-fora até da faixa mais generosa} (1.119 acima e 1.269 abaixo). Isso diz
+os grandes. O resultado: \textbf{cerca de 66\% das observações caem
+fora até da faixa mais generosa} (1.033 acima e 1.051 abaixo). Isso diz
 duas coisas ao mesmo tempo: as diferenças de mortalidade entre
 hospitais são reais e estruturais, ligadas ao perfil assistencial, e
 não flutuação de sorte; e, abaixo de mil saídas por ano, o acaso passa
@@ -62,11 +62,11 @@ a pesar de verdade, o que justifica a cautela extra com hospitais
 pequenos.
 
 \textbf{Valores extremos e completude.} Pela regra usual de detecção
-(3 intervalos interquartílicos acima do terceiro quartil), há 11
-observações extremas de mortalidade (acima de 18,9\%), 82 de faturamento
-(acima de R\$~4.727), 206 de alta complexidade e 223 de TMP, estas
-últimas concentradas nos hospitais de longa permanência já descritos,
-que merecem tratamento em separado e não corte cego. Quanto à
+(3 intervalos interquartílicos acima do terceiro quartil), há 18
+observações extremas de mortalidade (acima de 17,2\%), 87 de faturamento
+(acima de R\$~4.223), 178 de alta complexidade e 33 de TMP --- bem
+menos que no painel anterior, porque a subpopulação de longa
+permanência que concentrava esses extremos saiu com a ETAPA F. Quanto à
 completude, \textbf{o painel não tem nenhum valor faltante nos sete
 indicadores} nem nas variáveis de estratificação; as únicas lacunas
 estão em campos cadastrais (nome fantasia e especialização), sem
@@ -76,7 +76,7 @@ consequência para as análises.
 \centering
 \includegraphics[width=.96\textwidth]{fig_ae_16_funnel_mortalidade.png}
 \caption{Funil da mortalidade: cada ponto é um hospital num ano; a
-linha horizontal é a mortalidade média da rede (5,4\%) e as linhas
+linha horizontal é a mortalidade média da rede (5,57\%) e as linhas
 curvas delimitam a faixa esperada por puro acaso estatístico (95\% e
 99,8\%), conforme o volume de saídas.}
 \label{fig:funil}

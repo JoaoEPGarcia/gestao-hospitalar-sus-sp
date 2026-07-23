@@ -77,7 +77,10 @@ Sorocaba \textbf{1,09 ponto \emph{acima} do gêmeo} — a exclusão dos 25
 hospitais estruturalmente incomparáveis trocou os doadores e o
 \textbf{sinal da lacuna inverteu}. Não é um caso de ajuste pré-período
 pior: o RMSPE pré permanece exatamente 0,0 nas duas rodadas, interpolação
-perfeita em ambas. A causa é degeneração de pesos — com apenas 4 anos
+perfeita em ambas --- e é justamente por isso que a inferência aqui usa
+o placebo baseado na lacuna pós-conversão, e não a razão entre RMSPE pós
+e pré (a estatística usual do controle sintético), que fica indefinida
+quando o ajuste pré é perfeito. A causa é degeneração de pesos — com apenas 4 anos
 pré-conversão (2015 a 2018) e centenas de doadores potenciais, várias
 combinações de pesos produzem ajuste pré-período idêntico e perfeito;
 trocar quais doadores estão disponíveis levou o otimizador a uma

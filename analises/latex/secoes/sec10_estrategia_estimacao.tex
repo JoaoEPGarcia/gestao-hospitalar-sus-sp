@@ -38,18 +38,20 @@ sempre \textbf{em valores reais}, deflacionado pelo IPCA para preços de
 2025, porque a primeira parte mostrou que o crescimento nominal do
 faturamento era, na íntegra, inflação. Segunda: as duas observações de
 denominador frágil do Hospital Infante D Henrique (CNES 2097613, São
-José do Rio Preto, 2020 e 2021, com 13 e 3 saídas fora da COVID) ficam
-fora de todas as equações. Terceira: os 18 hospitais de longa
-permanência (perfil psiquiátrico e de cuidados prolongados, com
-permanência mediana acima de 20 dias) recebem tratamento próprio e
-ficam fora das equações de tempo de permanência.\footnote{O teto de
-30,5 dias é uma censura administrativa do ciclo de faturamento da AIH.
-A alternativa formal à exclusão seria uma verossimilhança censurada no
-teto, ou a inclusão dos 18 hospitais com interação de perfil; fica
-registrada como extensão, pois a exclusão preserva a comparabilidade do
-indicador entre hospitais de agudos.} Quarta: as ocupações
-extremas são limitadas ao percentil 99 (124,2\% na internação e
-164,2\% na UTI), preservando a informação de sobrecarga real e
+José do Rio Preto, 2020 e 2021, com 13 e 4 saídas fora da COVID) ficam
+fora de todas as equações. Terceira: o tratamento especial que o
+painel anterior dava aos hospitais de longa permanência deixou de ser
+necessário --- a ETAPA F removeu essa subpopulação do painel inteiro,
+de modo que a antiga dummy de longa permanência fica sem variação e sai
+das equações de tempo de permanência onde antes entrava.\footnote{O
+teto de 30,5 dias que motivava esse tratamento era uma censura
+administrativa do ciclo de faturamento da AIH; com a subpopulação
+removida do painel, ele não aparece mais nas distribuições
+(Seção~\ref{sec:distribuicoes}) e o ajuste do tempo de permanência é
+hoje quase perfeito. A regra permanece definida no código para eventual
+reativação, mas não tem efeito prático no painel corrente.} Quarta: as
+ocupações extremas são limitadas ao percentil 99 (125,1\% na internação
+e 171,2\% na UTI), preservando a informação de sobrecarga real e
 removendo o erro de cadastro documentado do biênio pandêmico. Quinta e
 mais importante: \textbf{todas as margens de erro são calculadas
 agrupando por hospital}, reconhecendo que 11 anos do mesmo CNES não são

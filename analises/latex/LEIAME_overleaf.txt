@@ -5,7 +5,7 @@ COMO COMPILAR NO OVERLEAF
 2. Faça upload de:
    a) principal.tex (este diretório; substitui o antigo main.tex,
       renomeado para evitar conflito com versões antigas)
-   b) a pasta secoes inteira (16 arquivos .tex: sec01 a sec15 e o
+   b) a pasta secoes inteira (18 arquivos .tex: sec01 a sec17 e o
       apendiceA_diagnosticos)
    c) a pasta figuras_analise_exploratoria inteira
       (as 94 imagens .png geradas por analise_exploratoria.py)
@@ -46,8 +46,8 @@ OBSERVAÇÕES
 6. O caminho das figuras está definido em \graphicspath no main.tex;
    se renomear a pasta de imagens, ajuste apenas essa linha.
 7. Todos os números do texto foram extraídos das execuções reais de
-   analise_exploratoria.py sobre o painel de 314 CNES e 3.454
-   observações. Se o painel for regenerado, rode o script de novo e
-   confira os valores antes de recompilar.
+   analise_exploratoria.py sobre o painel de 289 CNES e 3.179
+   observações (pós-ETAPA F de 15/07/2026). Se o painel for regenerado,
+   rode o script de novo e confira os valores antes de recompilar.
 8. Fonte do IPCA usado na correção do custo: IBGE, variação dez/dez,
    com 2025 fechado em 4,26% (divulgação de janeiro de 2026).
