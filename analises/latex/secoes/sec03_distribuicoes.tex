@@ -17,15 +17,16 @@ para proporções é a distribuição \textbf{Beta}. O ajuste de uma Beta
 mortalidade quase nula. A Figura~\ref{fig:mistura} mostra a solução e,
 ao mesmo tempo, a explicação: somando \textbf{duas Betas} (uma para
 cada grupo de hospitais), a curva acompanha o histograma com nitidez, e
-a nota de ajuste melhora de forma expressiva (ganho de 1.124 pontos de
+a nota de ajuste melhora de forma expressiva (ganho de 949 pontos de
 AIC). O ponto central para a gestão é que esses dois grupos
-\textbf{existem de verdade no painel}: um grupo de \textbf{58 hospitais
-de baixo óbito estrutural} (mortalidade mediana abaixo de 2\%,
-majoritariamente maternidades, pediátricos e oncológicos) e os
-\textbf{256 demais}, hospitais gerais com mortalidade em torno de 6\%.
+\textbf{existem de verdade no painel}: um grupo de \textbf{35 hospitais
+de baixo óbito estrutural} (mortalidade mediana abaixo de 2\%; 16 são
+hospitais especializados e os outros 19, hospitais gerais de baixo
+volume) e os \textbf{254 demais}, hospitais gerais com mortalidade em
+torno de 6\%.
 A aparente anomalia do histograma é, portanto, apenas o retrato de dois
 perfis assistenciais diferentes convivendo na rede. Como também existem
-observações com mortalidade exatamente zero (1,5\%), o molde completo
+observações com mortalidade exatamente zero (0,9\%), o molde completo
 para a mortalidade é a \textbf{Beta com um tratamento especial para os
 zeros}.
 
@@ -61,8 +62,8 @@ distribuição de quem está no meio; esse molde combinado é conhecido
 pela sigla \textbf{ZOIB}. A Figura~\ref{fig:betapct} mostra o ajuste do
 miolo e a Figura~\ref{fig:zeros} mostra que \textbf{os zeros não são
 aleatórios}: a proporção de hospitais sem alta complexidade cai de
-82,6\% na faixa 2 de complexidade para zero na faixa 6, e de 41,1\% nos
-Filantrópicos para 10,3\% nas OSS. Ou seja, saber a complexidade, o
+80,1\% na faixa 2 de complexidade para zero na faixa 6, e de 37,5\% nos
+Filantrópicos para 10,7\% nas OSS. Ou seja, saber a complexidade, o
 porte e a categoria do hospital já diz muito sobre a chance de ele
 estar no grupo do zero.
 
@@ -104,30 +105,27 @@ longa}
 Faturamento por saída e TMP são valores positivos com cauda à direita. Cinco
 moldes clássicos foram postos à prova
 (Tabela~\ref{tab:familias})\footnote{Guia dos tamanhos de amostra que
-aparecem no documento: \textbf{3.454} é o painel completo;
-\textbf{3.453} exclui a única observação com TMP igual a zero (Hospital
+aparecem no documento: \textbf{3.179} é o painel completo;
+\textbf{3.178} exclui a única observação com TMP igual a zero (Hospital
 Infante D.\ Henrique, 2021), incompatível com a escala logarítmica;
-\textbf{3.255} exclui também as 198 observações dos 18 hospitais de
-longa permanência; \textbf{3.452} exclui as duas observações de
+\textbf{3.177} exclui as duas observações de
 denominador frágil da Seção~\ref{sec:qualidade}, regra usada nos
-modelos da fase de estimação; e \textbf{2.571} são as observações com
+modelos da fase de estimação; e \textbf{2.482} são as observações com
 UTI ativa depois de retiradas essas duas frágeis. Cada conta foi
 conferida no painel.},
 comparados pela nota AIC e pelo gráfico QQ. O resultado é consistente:
-o molde \textbf{log logístico (também chamado de Fisk)} vence nas três
+o molde \textbf{log logístico (também chamado de Fisk)} vence nas duas
 amostras, com a \textbf{LogNormal} logo atrás, e a Gama, molde usado
-por tradição em análises de custo, fica sempre entre as piores. No TMP
-há um detalhe decisivo: enquanto os hospitais de longa permanência
-estiverem na amostra, nenhum molde acompanha o teto de 30,5 dias;
-\textbf{retirando os 18 hospitais de longa permanência, o ajuste do
-molde log logístico fica praticamente perfeito} (r de 0,9975 na
-Figura~\ref{fig:qqtmpsemlp}). A leitura prática: faturamento e TMP devem ser
-analisados na escala logarítmica, e os hospitais de longa permanência
-merecem tratamento em separado nas análises de TMP. Os gráficos QQ
-completos estão no Apêndice~\ref{ap:diagnosticos}: no faturamento, o molde
-log logístico acompanha os dados por quase toda a extensão (r de
-0,9754, Figura~\ref{fig:qqcusto}); no TMP do painel completo, nenhum
-molde reproduz o teto de 30,5 dias (Figura~\ref{fig:qqtmp}).
+por tradição em análises de custo, fica sempre entre as piores. No TMP,
+\textbf{o ajuste do molde log logístico é praticamente perfeito} (r de
+0,9974 na Figura~\ref{fig:qqtmpsemlp}), porque a consolidação do painel
+já removeu os hospitais de longa permanência que, na versão anterior,
+criavam um teto de 30,5 dias que nenhum molde contínuo reproduzia. A
+leitura prática: faturamento e TMP devem ser analisados na escala
+logarítmica. Os gráficos QQ completos estão no
+Apêndice~\ref{ap:diagnosticos}: tanto no faturamento (r de 0,9700,
+Figura~\ref{fig:qqcusto}) quanto no TMP (Figura~\ref{fig:qqtmp}) o molde
+log logístico acompanha os dados por quase toda a extensão.
 
 \begin{table}[H]
 \centering
@@ -140,23 +138,17 @@ pela nota AIC (Seção~\ref{sec:painel}) e pelo r do QQ
 \toprule
 Amostra & Molde & $n$ & AIC & r do QQ \\
 \midrule
-Faturamento por saída & Log logística (Fisk) & 3.454 & 55.483 & 0,9754 \\
-                & LogNormal            & 3.454 & 55.547 & 0,9162 \\
-                & Gaussiana inversa    & 3.454 & 55.608 & 0,9018 \\
-                & Gama                 & 3.454 & 56.499 & 0,8411 \\
-                & Weibull              & 3.454 & 56.995 & 0,8415 \\
+Faturamento por saída & Log logística (Fisk) & 3.179 & 50.785 & 0,9700 \\
+                & LogNormal            & 3.179 & 50.883 & 0,9079 \\
+                & Gaussiana inversa    & 3.179 & 50.952 & 0,8943 \\
+                & Gama                 & 3.179 & 51.867 & 0,8310 \\
+                & Weibull              & 3.179 & 52.320 & 0,8343 \\
 \midrule
-TMP, painel completo & Log logística (Fisk) & 3.453 & 15.990 & 0,8597 \\
-                     & LogNormal            & 3.453 & 16.650 & 0,8696 \\
-                     & Gaussiana inversa    & 3.453 & 16.767 & 0,8736 \\
-                     & Gama                 & 3.453 & 17.990 & 0,8379 \\
-                     & Weibull              & 3.453 & 18.701 & 0,8399 \\
-\midrule
-TMP sem longa permanência & Log logística (Fisk) & 3.255 & 12.147 & 0,9975 \\
-                          & LogNormal            & 3.255 & 12.226 & 0,9810 \\
-                          & Gaussiana inversa    & 3.255 & 12.260 & 0,9787 \\
-                          & Gama                 & 3.255 & 12.417 & 0,9635 \\
-                          & Weibull              & 3.255 & 13.204 & 0,9403 \\
+TMP & Log logística (Fisk) & 3.178 & 11.878 & 0,9974 \\
+                     & LogNormal            & 3.178 & 11.956 & 0,9810 \\
+                     & Gaussiana inversa    & 3.178 & 11.989 & 0,9786 \\
+                     & Gama                 & 3.178 & 12.150 & 0,9631 \\
+                     & Weibull              & 3.178 & 12.920 & 0,9398 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -172,31 +164,29 @@ logarítmica (os rótulos mostram os valores reais).}
 
 \comoler{na escala logarítmica, o faturamento (a) vira um morro quase
 simétrico, sinal clássico de que a análise deve ser feita nessa escala.
-No TMP (b), além do morro principal entre 3 e 8 dias, aparece um
-segundo morrinho isolado à direita, junto de 30 dias: é a subpopulação
-de longa permanência.}
+No TMP (b), o morro principal fica entre 3 e 7 dias, com uma cauda
+curta à direita e sem o segundo grupo isolado de longa permanência que
+o painel anterior exibia.}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=.96\textwidth]{fig_ae_03_qq_fisk_tmp_sem_longa_perm.png}
-\caption{Gráfico QQ do TMP sem os 18 hospitais de longa permanência: os
-pontos ficam praticamente sobre a reta (r de 0,9975).}
+\caption{Gráfico QQ do TMP no painel de 289 hospitais (log logística):
+os pontos ficam praticamente sobre a reta (r de 0,9974).}
 \label{fig:qqtmpsemlp}
 \end{figure}
 
-\comoler{este é o gráfico QQ do TMP refeito sem os 18 hospitais de
-longa permanência (a versão com o painel completo está na
-Figura~\ref{fig:qqtmp}, no apêndice): o achatamento desaparece e o
-molde descreve os
-dados quase perfeitamente. É a demonstração visual de que o problema
-não era o molde, era a mistura de dois perfis de hospital.}
+\comoler{este é o gráfico QQ do TMP no painel atual: os pontos seguem a
+reta e o molde descreve os dados quase perfeitamente. Não há mais o
+achatamento que a versão anterior do painel exibia, porque os hospitais
+de longa permanência que o causavam saíram na consolidação.}
 
 \subsection{Produção: contagens muito mais variáveis que o usual}
 
 A produção anual (número de saídas) é uma contagem. O molde mais
 simples para contagens, a Poisson, supõe que a variação entre hospitais
 seja comparável à média; aqui \textbf{a variação é milhares de vezes
-maior que a média} (razão de 6.381 no agregado e de 93 mesmo comparando
+maior que a média} (razão de 6.249 no agregado e de 102 mesmo comparando
 cada hospital só consigo mesmo ao longo dos anos). O molde adequado é a
 \textbf{Binomial Negativa}, que aceita essa variação extra.
 
@@ -205,13 +195,13 @@ cada hospital só consigo mesmo ao longo dos anos). O molde adequado é a
 Uma pergunta natural: se os QQ do painel completo não são perfeitos, o
 molde está errado? As Figuras~\ref{fig:qqcondA} a~\ref{fig:qqcondC},
 reunidas no Apêndice~\ref{ap:diagnosticos},
-respondem que não: o desajuste vem de misturar 314 hospitais muito
+respondem que não: o desajuste vem de misturar 289 hospitais muito
 diferentes num único gráfico. Quando se compara cada hospital consigo mesmo (controlando o
 efeito do hospital e do ano), os desvios praticamente desaparecem: no
 faturamento, a assimetria restante é quase nula; na mortalidade, a forte
 assimetria da distribuição bruta na escala \textbf{logito} (a escala
-interna em que o modelo trabalha proporções), de 1,72 negativa, cai
-para 0,11 depois do controle; na escala original da
-Tabela~\ref{tab:univariada} a assimetria é outra (0,72 positiva), e os
+interna em que o modelo trabalha proporções), de 1,97 negativa, cai
+para 0,27 negativa depois do controle; na escala original da
+Tabela~\ref{tab:univariada} a assimetria é outra (0,80 positiva), e os
 dois números não se contradizem. Em resumo, \textbf{os moldes escolhidos descrevem bem os
 dados quando se compara o comparável}.

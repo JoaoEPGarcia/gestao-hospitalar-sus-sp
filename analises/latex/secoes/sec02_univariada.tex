@@ -9,53 +9,55 @@ documento: a \textbf{mortalidade ajustada é, na prática, idêntica à
 mortalidade geral} neste painel (a exclusão dos óbitos fetais, maternos
 e neonatais quase não altera as taxas; a concordância entre as duas é
 quase total, com correlação de 1,000 após arredondamento, e as
-pequenas diferenças aparecem apenas na fração de zeros, 1,5\% contra
-1,6\%). Por isso ela aparece na tabela, mas as
+pequenas diferenças aparecem apenas na fração de zeros, 0,9\% contra
+1,0\%). Por isso ela aparece na tabela, mas as
 figuras mostram apenas a mortalidade geral, e tudo o que for dito vale
 igualmente para a versão ajustada.
 
 Em palavras simples, o que os dados mostram: o hospital típico do
-painel tem \textbf{mortalidade em torno de 5,4\%} (metade dos hospitais
-está entre 3,0\% e 7,0\%), \textbf{permanência média de 4,4 dias} e
-\textbf{faturamento de cerca de R\$~1.071 por internação encerrada}. Mas os
+painel tem \textbf{mortalidade em torno de 5,6\%} (metade dos hospitais
+está entre 3,7\% e 7,1\%), \textbf{permanência típica de 4,3 dias} e
+\textbf{faturamento de cerca de R\$~1.034 por internação encerrada}. Mas os
 extremos importam. Na mortalidade há um segundo grupo de hospitais com
-taxas próximas de zero (maternidades e especializados) e \textbf{1,5\%
+taxas próximas de zero (maternidades e especializados) e \textbf{0,9\%
 das observações têm mortalidade exatamente zero}. No tempo de
-permanência existe uma \textbf{subpopulação que se acumula num teto de
-30,5 dias}: são hospitais de perfil psiquiátrico ou de cuidados
-prolongados, em que a permanência longa é característica do serviço (o
-teto reflete o ciclo mensal de faturamento da AIH), e não erro de
-registro. No faturamento, a cauda direita é longa: enquanto a mediana é
-R\$~1.071, o máximo chega a R\$~27.888, e é por isso que a média
-(R\$~1.475) fica 38\% acima da mediana. A fração de alta complexidade é
-o indicador mais concentrado: \textbf{34,4\% dos hospitais ano não
+permanência, a distribuição é assimétrica à direita, com máximo de
+24,8 dias e \textbf{sem a antiga subpopulação de longa permanência}: os
+hospitais de perfil psiquiátrico ou de cuidados prolongados, que na
+versão anterior do painel se acumulavam num teto de 30,5 dias, foram
+removidos na consolidação e não aparecem mais nos dados. No faturamento, a cauda direita é longa: enquanto a mediana é
+R\$~1.034, o máximo chega a R\$~27.888, e é por isso que a média
+(R\$~1.431) fica 38\% acima da mediana. A fração de alta complexidade é
+o indicador mais concentrado: \textbf{31,3\% dos hospitais ano não
 realizam nenhuma internação de alta complexidade}. Na ocupação,
-\textbf{14,7\% das observações de internação ultrapassam 100\%}
+\textbf{15,5\% das observações de internação ultrapassam 100\%}
 (hospital operando acima da capacidade cadastrada, informação real de
-sobrecarga) e a UTI combina \textbf{25,5\% de zeros} (hospitais sem UTI
+sobrecarga) e a UTI combina \textbf{21,9\% de zeros} (hospitais sem UTI
 ativa) com um máximo impossível de 875\%, examinado na
 Seção~\ref{sec:qualidade}.
 
 \begin{table}[H]
 \centering
-\caption{Resumo estatístico dos sete indicadores (3.454 observações de
+\caption{Resumo estatístico dos sete indicadores (3.179 observações de
 hospital e ano; mortalidades e alta complexidade em proporção;
 ocupações em percentual). DP é o desvio padrão, medida do espalhamento
 dos valores; p90 é o valor abaixo do qual estão 90\% das observações;
-assimetria positiva indica cauda comprida à direita.}
+assimetria positiva indica cauda comprida à direita. As versões geral e
+ajustada da mortalidade coincidem em quase todas as estatísticas,
+divergindo de forma visível apenas na fração de zeros.}
 \label{tab:univariada}
 \small
 \begin{tabular}{lrrrrrrr}
 \toprule
 Indicador & Média & DP & Mediana & p90 & Máximo & Assimetria & Zeros \\
 \midrule
-Mortalidade geral      & 0,0517 & 0,0319 & 0,0536 & 0,0878 & 0,2602 & 0,72 & 1,5\% \\
-Mortalidade ajustada   & 0,0517 & 0,0319 & 0,0535 & 0,0878 & 0,2602 & 0,72 & 1,6\% \\
-TMP (dias)             & 5,99   & 5,75   & 4,42   & 7,98   & 30,50  & 3,33 & 0,03\% \\
-Faturamento por saída (R\$)  & 1.475,00 & 1.673,59 & 1.071,27 & 2.459,93 & 27.887,60 & 6,59 & 0\% \\
-Fração alta complex.   & 0,0731 & 0,1530 & 0,0020 & 0,2215 & 1,0000 & 3,41 & 34,4\% \\
-Ocupação internação (\%) & 71,42 & 27,72 & 73,46 & 103,83 & 236,61 & 0,05 & 0\% \\
-Ocupação UTI (\%)      & 56,83  & 45,29  & 67,15  & 96,10  & 875,21 & 2,72 & 25,5\% \\
+Mortalidade geral      & 0,0552 & 0,0301 & 0,0558 & 0,0886 & 0,2602 & 0,80 & 0,9\% \\
+Mortalidade ajustada   & 0,0552 & 0,0301 & 0,0558 & 0,0886 & 0,2602 & 0,80 & 1,0\% \\
+TMP (dias)             & 4,65   & 1,92   & 4,29   & 6,73   & 24,79  & 2,40 & 0,03\% \\
+Faturamento por saída (R\$)  & 1.431,37 & 1.708,50 & 1.033,97 & 2.465,42 & 27.887,60 & 6,71 & 0\% \\
+Fração alta complex.   & 0,0759 & 0,1563 & 0,0029 & 0,2234 & 1,0000 & 3,39 & 31,3\% \\
+Ocupação internação (\%) & 70,84 & 28,17 & 72,70 & 104,26 & 236,61 & -0,01 & 0\% \\
+Ocupação UTI (\%)      & 59,84  & 44,89  & 69,38  & 96,67  & 875,21 & 2,95 & 21,9\% \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -74,7 +76,7 @@ na UTI, dos zeros.
 \subfig{fig_ae_01_hist_mort_all.png}{Mortalidade geral}
 \subfig{fig_ae_01_hist_tmp.png}{TMP}
 \caption{Distribuição da mortalidade geral e do tempo médio de
-permanência (314 hospitais, 2015 a 2025). Em cada gráfico, a linha
+permanência (289 hospitais, 2015 a 2025). Em cada gráfico, a linha
 tracejada vertical é a mediana, a pontilhada é a média e os valores de
 pico e máximo estão anotados.}
 \label{fig:univA}
@@ -83,9 +85,9 @@ pico e máximo estão anotados.}
 \comoler{cada barra mostra quantas observações caem naquele valor do
 indicador. Na mortalidade, note as duas corcovas: a da esquerda, perto
 de zero, são as maternidades e especializados; a principal fica perto
-de 5,5\%. No TMP, quase todos os hospitais estão entre 3 e 8 dias, mas
-há um pequeno grupo isolado junto ao máximo de 30,5 dias, os hospitais
-de longa permanência.}
+de 5,5\%. No TMP, quase todos os hospitais estão entre 3 e 7 dias, com uma cauda
+curta que se estende até cerca de 25 dias, sem o grupo isolado de longa
+permanência que o painel anterior mostrava.}
 
 \begin{figure}[H]
 \centering
@@ -99,7 +101,7 @@ complexidade.}
 \comoler{no faturamento, a concentração fica perto de R\$~1.000 e a cauda se
 estica até quase R\$~28.000, o que explica a média (pontilhada) ficar
 bem à direita da mediana (tracejada). Na alta complexidade, a barra
-gigante em zero mostra os 34,4\% de hospitais ano sem nenhuma
+gigante em zero mostra os 31,3\% de hospitais ano sem nenhuma
 internação desse tipo.}
 
 \begin{figure}[H]
@@ -113,6 +115,6 @@ escala percentual.}
 
 \comoler{a linha pontilhada vertical marca 100\%: tudo à direita dela é
 operação acima da capacidade cadastrada. Na internação, isso ocorre em
-14,7\% das observações. Na UTI, a barra em zero são os hospitais sem
+15,5\% das observações. Na UTI, a barra em zero são os hospitais sem
 UTI ativa, e a cauda que se arrasta até 875\% é o problema de cadastro
 examinado na Seção~\ref{sec:qualidade}.}
