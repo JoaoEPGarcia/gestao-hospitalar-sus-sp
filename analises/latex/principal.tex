@@ -27,9 +27,18 @@
 
 \graphicspath{{figuras_analise_exploratoria/}{figuras_estimacao/}{figuras_fase2/}{figuras_selecao_entrevistas/}}
 
+% Paginação: não esticar o espaço vertical para preencher a página. Com
+% as figuras fixadas em [H], isto evita os grandes buracos brancos entre
+% parágrafos --- o conteúdo assenta na altura natural e a folga vai para
+% o rodapé, deixando o documento visualmente mais limpo.
+\raggedbottom
+% Evita linhas órfãs e viúvas (uma linha solta no topo ou no rodapé).
+\widowpenalty=10000
+\clubpenalty=10000
+
 % subfigura padrão: largura quase total, uma por linha, centralizada
 \newcommand{\subfig}[2]{%
-  \begin{subfigure}[t]{0.96\textwidth}
+  \begin{subfigure}[t]{0.62\textwidth}
     \centering
     \includegraphics[width=\linewidth]{#1}
     \caption{#2}
@@ -40,6 +49,15 @@
   \par\medskip
   \noindent\begingroup\small\itshape
   \textcolor{black!70}{\textbf{Como ler:} #1}%
+  \endgroup\par\medskip}
+
+% bloco "Como foi feito": explica a construção do gráfico --- o que está
+% no eixo horizontal e no vertical, quais variáveis foram escolhidas e
+% que transformações (escala log, winsorização) foram aplicadas.
+\newcommand{\comofeito}[1]{%
+  \par\medskip
+  \noindent\begingroup\small\itshape
+  \textcolor{black!70}{\textbf{Como foi feito:} #1}%
   \endgroup\par\medskip}
 
 \title{Gestão Hospitalar no SUS}
@@ -70,24 +88,43 @@
 \tableofcontents
 \clearpage
 
+% Cada seção começa em página nova (\clearpage também descarrega qualquer
+% figura pendente antes da quebra), para o documento paginar limpo.
 \input{secoes/sec01_painel}
+\clearpage
 \input{secoes/sec02_univariada}
+\clearpage
 \input{secoes/sec03_distribuicoes}
+\clearpage
 \input{secoes/sec04_categorias}
+\clearpage
 \input{secoes/sec05_complexidade_porte}
+\clearpage
 \input{secoes/sec06_tendencia}
+\clearpage
 \input{secoes/sec07_conversores}
+\clearpage
 \input{secoes/sec08_correlacao_variancia}
+\clearpage
 \input{secoes/sec09_qualidade}
+\clearpage
 \input{secoes/sec10_estrategia_estimacao}
+\clearpage
 \input{secoes/sec11_resultados_indicadores}
+\clearpage
 \input{secoes/sec12_efeito_gestao}
+\clearpage
 \input{secoes/sec13_robustez_diagnostico}
+\clearpage
 \input{secoes/sec14_inferencia_final}
+\clearpage
 \input{secoes/sec15_fase2_eficiencia}
+\clearpage
 \input{secoes/sec16_qualitativa}
+\clearpage
 \input{secoes/sec17_conclusao}
 
+\clearpage
 \appendix
 \input{secoes/apendiceA_diagnosticos}
 

@@ -35,6 +35,14 @@ complexidade (2 a 6), com o valor sobre cada barra.}
 \label{fig:faixaA}
 \end{figure}
 
+\comofeito{gráfico de barras. O eixo horizontal traz as faixas Barcelona
+de complexidade (da 2, menor, à 6, maior) e o eixo vertical, a
+\textbf{mediana} do indicador entre todos os hospitais ano daquela faixa
+(mortalidade em proporção; TMP em dias), com o valor impresso sobre cada
+barra. A faixa Barcelona é a métrica de complexidade construída no
+projeto; nas análises de mortalidade usa-se sempre a versão estrutural
+do escore.}
+
 \comoler{cada barra é a mediana do indicador naquela faixa de
 complexidade, com o valor impresso em cima. Na mortalidade, repare no
 degrau que sobe até a faixa 5 e desce na 6; no TMP, a escada é sempre
@@ -49,6 +57,11 @@ por faixa Barcelona.}
 \label{fig:faixaB}
 \end{figure}
 
+\comofeito{mesma construção da figura anterior, agora com a mediana do
+faturamento por saída (em reais) e da fração de alta complexidade
+(proporção) no eixo vertical, ao longo das faixas Barcelona no eixo
+horizontal.}
+
 \comoler{a escada do faturamento é a mais íngreme do documento: da faixa 2
 para a 6, a mediana mais que quintuplica. A alta complexidade parte do
 zero absoluto nas faixas baixas.}
@@ -61,6 +74,9 @@ internação}
 \caption{Mediana das taxas de ocupação por faixa Barcelona.}
 \label{fig:faixaC}
 \end{figure}
+
+\comofeito{mesma construção, com a mediana das duas taxas de ocupação
+(percentual) no eixo vertical, por faixa Barcelona no eixo horizontal.}
 
 \comoler{quanto mais complexo o hospital, mais cheio ele opera. Na
 UTI, a barra da faixa 2 vale zero porque metade daqueles hospitais não
@@ -76,6 +92,11 @@ especiais).}
 \label{fig:porteA}
 \end{figure}
 
+\comofeito{mesma leitura das figuras por faixa, mas agora o eixo
+horizontal traz o \textbf{porte} do hospital (classificação fixa pela
+mediana de leitos de todos os anos: médio, grande e especial) e o
+vertical, a mediana da mortalidade e do TMP.}
+
 \comoler{mesma leitura das figuras por faixa, agora por porte:
 hospitais maiores seguram o paciente por mais tempo e têm mortalidade
 um pouco maior, coerente com casos mais graves.}
@@ -89,6 +110,10 @@ por porte.}
 \label{fig:porteB}
 \end{figure}
 
+\comofeito{mesma construção, com a mediana do faturamento por saída (em
+reais) e da fração de alta complexidade (proporção) no eixo vertical, por
+porte no eixo horizontal.}
+
 \comoler{o faturamento mediano dos hospitais especiais é mais de três vezes o
 dos médios, e a alta complexidade se concentra quase toda nos portes
 grande e especial.}
@@ -101,6 +126,9 @@ internação}
 \caption{Mediana das taxas de ocupação por porte.}
 \label{fig:porteC}
 \end{figure}
+
+\comofeito{mesma construção, com a mediana das duas taxas de ocupação
+(percentual) no eixo vertical, por porte no eixo horizontal.}
 
 \comoler{hospitais maiores operam mais cheios, tanto na internação
 quanto na UTI: mais um retrato de que porte e pressão assistencial

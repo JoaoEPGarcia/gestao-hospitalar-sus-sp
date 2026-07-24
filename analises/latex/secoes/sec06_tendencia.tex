@@ -58,6 +58,13 @@ Ano & Nominal (R\$) & Valores de 2025 (R\$) & Fator IPCA \\
 \end{tabular}
 \end{table}
 
+\comofeito{cada linha é um ano. A coluna \textbf{Nominal} é o faturamento
+mediano por saída em reais correntes daquele ano; a coluna \textbf{Valores
+de 2025} é o mesmo valor multiplicado pelo \textbf{Fator IPCA} (a
+variação acumulada do IPCA de dezembro a dezembro, IBGE, do ano até
+2025), trazendo tudo para o poder de compra de 2025. Em 2025 o fator é
+1,0000 por definição, então as duas colunas coincidem.}
+
 \begin{figure}[H]
 \centering
 \subfig{fig_ae_07_tendencia_mort_all.png}{Mortalidade geral}
@@ -67,6 +74,13 @@ dos hospitais na área sombreada em azul; a faixa cinza destaca 2020 e
 2021 e os pontos de máximo, mínimo e último ano estão anotados.}
 \label{fig:tendA}
 \end{figure}
+
+\comofeito{série temporal. O eixo horizontal é o ano (2015 a 2025) e o
+vertical, o valor do indicador (mortalidade em proporção; TMP em dias). A
+linha liga a \textbf{mediana} de todos os hospitais em cada ano; a área
+sombreada em azul ao redor é a metade central dos hospitais (do quartil
+inferior ao superior) e a faixa cinza destaca o biênio pandêmico de 2020
+e 2021. Pontos de máximo, mínimo e último ano estão anotados.}
 
 \comoler{a linha é o hospital mediano em cada ano; a área azul em volta
 contém a metade central dos hospitais (do quartil inferior ao
@@ -84,6 +98,11 @@ fração de alta complexidade.}
 \label{fig:tendB}
 \end{figure}
 
+\comofeito{mesma construção da figura anterior (mediana anual e metade
+central sombreada), para o faturamento por saída em valores correntes
+(reais do próprio ano) e a fração de alta complexidade; ano no eixo
+horizontal, indicador no vertical.}
+
 \comoler{o faturamento em valores correntes sobe a década inteira, mas essa
 leitura é enganosa; a correção pela inflação está na
 Figura~\ref{fig:custoreal}. A alta complexidade mediana cresce nos anos
@@ -98,18 +117,28 @@ internação}
 \label{fig:tendC}
 \end{figure}
 
+\comofeito{mesma construção, para as duas taxas de ocupação (percentual)
+no eixo vertical ao longo dos anos no eixo horizontal.}
+
 \comoler{dentro da faixa cinza da pandemia, os dois movimentos em
 sentidos opostos: a internação esvazia em 2020 (mergulho para 65,9\%) e
 a UTI lota em 2021 (pico de 82,9\%, recorde da série).}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.96\textwidth]{fig_ae_07_tendencia_custo_saida_real.png}
+\includegraphics[width=.62\textwidth]{fig_ae_07_tendencia_custo_saida_real.png}
 \caption{Faturamento por saída mediano: a linha clara tracejada é o valor
 corrente e a linha escura é o valor corrigido pelo IPCA para o poder de
 compra de 2025.}
 \label{fig:custoreal}
 \end{figure}
+
+\comofeito{o eixo horizontal é o ano e o vertical, o faturamento mediano
+por saída em reais. São desenhadas \textbf{duas linhas}: a clara
+tracejada é o valor corrente (nominal) e a escura é o mesmo valor
+corrigido pelo IPCA (variação de dezembro a dezembro, IBGE) para o poder
+de compra de 2025. As duas coincidem em 2025 por definição, pois é o ano
+de referência da correção.}
 
 \comoler{as duas linhas contam histórias opostas. A clara (valores
 correntes) sobe o tempo todo; a escura (valores de 2025) mostra o que o
@@ -126,6 +155,12 @@ cada categoria tem cor e marcador próprios, e a linha pontilhada cinza
 do Privado (3 hospitais) é apenas registro.}
 \label{fig:tendcatA}
 \end{figure}
+
+\comofeito{série temporal com uma linha por categoria de gestão. O eixo
+horizontal é o ano e o vertical, a \textbf{mediana anual} do indicador
+(mortalidade em proporção; TMP em dias) dentro de cada categoria. Cada
+categoria tem cor e marcador próprios; a linha pontilhada cinza do
+Privado (só 3 hospitais) aparece apenas como registro.}
 
 \comoler{cada linha é o hospital mediano de uma categoria em cada ano.
 Na mortalidade, todas as categorias fazem a corcova da pandemia. No
@@ -145,6 +180,11 @@ categorias; seus valores estão na Tabela~\ref{tab:categorias}.}
 \label{fig:tendcatB}
 \end{figure}
 
+\comofeito{mesma construção da figura anterior (uma linha de mediana
+anual por categoria), para o faturamento por saída em valores correntes e
+a fração de alta complexidade. O Privado foi omitido destes dois painéis
+porque sua escala, dez vezes maior, esconderia as demais categorias.}
+
 \comoler{no faturamento, as quatro categorias sobem juntas até 2019 e se
 abrem a partir de 2020, com a Direta na frente; lembre que são valores
 correntes (a correção pela inflação está na
@@ -159,6 +199,9 @@ internação}
 \caption{Mediana anual das taxas de ocupação por categoria de gestão.}
 \label{fig:tendcatC}
 \end{figure}
+
+\comofeito{mesma construção, com uma linha de mediana anual por categoria
+para as duas taxas de ocupação (percentual) no eixo vertical.}
 
 \comoler{na ocupação de internação, as duas linhas de cima (OSS e
 Municipal) e as duas de baixo (Filantrópico e Direta) mantêm a

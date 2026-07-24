@@ -62,6 +62,17 @@ Ocupação UTI (\%)      & 59,84  & 44,89  & 69,38  & 96,67  & 875,21 & 2,95 & 2
 \end{tabular}
 \end{table}
 
+\comofeito{cada linha é um indicador e as colunas são estatísticas
+descritivas calculadas sobre as 3.179 observações do painel (cada
+observação é um hospital em um ano): \textbf{Média} (soma dividida pelo
+total), \textbf{DP} (desvio padrão, o espalhamento em torno da média),
+\textbf{Mediana} (valor do hospital do meio da fila), \textbf{p90} (valor
+abaixo do qual estão 90\% das observações), \textbf{Máximo},
+\textbf{Assimetria} (positiva indica cauda comprida à direita) e
+\textbf{Zeros} (percentual de observações exatamente iguais a zero).
+Mortalidades e alta complexidade estão em proporção; as ocupações, em
+percentual.}
+
 Na mortalidade, excepcionalmente, a média fica \textbf{abaixo} da
 mediana: aqui não é a cauda direita que domina, mas o grupo de
 hospitais de baixo óbito perto de zero, que puxa a média para baixo, o
@@ -82,6 +93,14 @@ pico e máximo estão anotados.}
 \label{fig:univA}
 \end{figure}
 
+\comofeito{cada painel é um histograma construído sobre as 3.179
+observações do painel (cada observação é um hospital em um ano). O eixo
+horizontal traz o valor do indicador --- mortalidade geral como
+proporção de internações que terminam em óbito (já excluídas as
+internações por COVID) e TMP em dias --- e o eixo vertical, a densidade,
+que mede o quanto as observações se concentram em cada trecho de valor.
+A linha tracejada vertical marca a mediana e a pontilhada, a média.}
+
 \comoler{cada barra mostra quantas observações caem naquele valor do
 indicador. Na mortalidade, note as duas corcovas: a da esquerda, perto
 de zero, são as maternidades e especializados; a principal fica perto
@@ -98,6 +117,12 @@ complexidade.}
 \label{fig:univB}
 \end{figure}
 
+\comofeito{mesma construção da figura anterior. No eixo horizontal, o
+faturamento por saída em reais (valor pago por internação encerrada) e a
+fração de alta complexidade (proporção das internações classificadas
+como de alta complexidade, entre 0 e 1); no eixo vertical, a densidade
+das mesmas 3.179 observações.}
+
 \comoler{no faturamento, a concentração fica perto de R\$~1.000 e a cauda se
 estica até quase R\$~28.000, o que explica a média (pontilhada) ficar
 bem à direita da mediana (tracejada). Na alta complexidade, a barra
@@ -112,6 +137,12 @@ internação desse tipo.}
 escala percentual.}
 \label{fig:univC}
 \end{figure}
+
+\comofeito{histogramas das duas taxas de ocupação em escala percentual:
+eixo horizontal em \%, eixo vertical em densidade, sobre as 3.179
+observações. A ocupação é calculada como diárias sobre a capacidade
+cadastrada de leitos SUS; a linha vertical em 100\% separa a operação
+dentro da capacidade cadastrada (à esquerda) da sobrecarga (à direita).}
 
 \comoler{a linha pontilhada vertical marca 100\%: tudo à direita dela é
 operação acima da capacidade cadastrada. Na internação, isso ocorre em

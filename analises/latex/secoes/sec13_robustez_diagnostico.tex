@@ -16,11 +16,18 @@ descrito na Seção~\ref{sec:qualidade}, concentrado em 2020 e 2021.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.96\textwidth]{fig_est_05_robustez_sem_pandemia.png}
+\includegraphics[width=.62\textwidth]{fig_est_05_robustez_sem_pandemia.png}
 \caption{Contraste OSS vs Direta estimado no painel completo e na
 amostra sem 2020 e 2021, para os modelos em escala percentual.}
 \label{fig:robustezpandemia}
 \end{figure}
+
+\comofeito{gráfico de pontos. Cada linha é um indicador (eixo vertical) e
+o eixo horizontal traz o \textbf{efeito OSS vs Direta} em variação
+percentual. Cada linha traz \textbf{dois símbolos do mesmo efeito}: um
+estimado no painel completo e outro na amostra que exclui 2020 e 2021.
+Quanto mais próximos os dois símbolos, mais o resultado independe dos
+anos de pandemia.}
 
 \comoler{cada linha traz duas estimativas do mesmo efeito: o círculo
 azul escuro usa todos os anos e o quadrado verde exclui 2020 e 2021.
@@ -34,25 +41,13 @@ médio de 1,16 para 1,18 ponto percentual, confirmando que as duas
 versões do indicador contam a mesma história, como a correlação
 perfeita da primeira parte já anunciava.
 
-\textbf{Resíduos quantílicos.} A primeira parte prometeu que a escolha
-das famílias de distribuição seria validada nos modelos ajustados, e é
-o que as Figuras~\ref{fig:qqprimeira} e~\ref{fig:qqsegunda}, reunidas
-no Apêndice~\ref{ap:diagnosticos}, fazem. O
-resíduo quantílico é um teste de qualidade: se o modelo descreve bem os
-dados, esses resíduos se alinham sobre a diagonal do gráfico. O
-alinhamento é muito bom na mortalidade (correlação de 0,976), na
-fração de alta complexidade (0,991) e na produção (0,967; o piso
-achatado na ponta esquerda do QQ, com observações empilhadas perto de
-menos 5, corresponde a hospitais produzindo muito abaixo do que porte e
-perfil preveriam, desvio confinado à cauda extrema que não compromete o
-contraste entre categorias), e bom no
-faturamento (0,970) e no tempo de permanência (0,952), cujas caudas pesadas
-já estavam diagnosticadas e são absorvidas pelas margens de erro
-agrupadas. A exceção honesta é a \textbf{intensidade de ocupação da
-UTI} (0,814): a cauda de UTIs com uso quase nulo escapa do modelo em
-logaritmo, e esse resultado específico deve ser lido com reserva; fica
-registrado para a próxima iteração o uso de uma família com massa
-perto de zero para esse indicador.
+\textbf{Validação das famílias de distribuição.} A escolha da família de
+distribuição de cada modelo foi validada pelos resíduos quantílicos,
+reunidos no Apêndice~\ref{ap:diagnosticos}
+(Figuras~\ref{fig:qqprimeira} a~\ref{fig:qqgama}). O ajuste é bom na
+maioria dos indicadores; a única exceção, a intensidade de ocupação da
+UTI, foi reestimada com a família Gama na Seção~\ref{sec:inferenciafinal},
+com o diagnóstico saltando de 0,814 para 0,944.
 
 Fecham o quadro as ressalvas permanentes de leitura. A identificação
 do efeito de gestão dentro de hospital repousa em \textbf{cinco

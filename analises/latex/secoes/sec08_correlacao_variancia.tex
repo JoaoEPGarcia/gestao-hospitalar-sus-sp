@@ -22,12 +22,20 @@ usa se mais UTI e morre se mais.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.96\textwidth]{fig_ae_10_correlacao_spearman.png}
+\includegraphics[width=.62\textwidth]{fig_ae_10_correlacao_spearman.png}
 \caption{Mapa de correlações entre os indicadores, as ocupações e a
 complexidade estrutural. Azul mais escuro indica relação mais forte;
 todos os valores estão impressos.}
 \label{fig:correlacao}
 \end{figure}
+
+\comofeito{mapa de calor. Nos dois eixos aparecem os mesmos itens --- os
+sete indicadores, as duas taxas de ocupação e a complexidade estrutural
+--- e cada célula traz a \textbf{correlação de Spearman} entre o par
+correspondente, medida que vai de 0 (sem relação de ordem) a 1 (crescem
+sempre juntos). Azul mais escuro indica relação mais forte; a diagonal
+vale sempre 1 porque compara cada item consigo mesmo. Escolheu-se
+Spearman por captar relações de ordem sem exigir forma linear.}
 
 \comoler{procure a linha de um indicador e percorra as colunas: cada
 célula diz o quanto aquele par anda junto (0 sem relação, 1 relação
@@ -72,13 +80,27 @@ Ocupação UTI           & 34,7 & 65,3 \\
 \end{tabular}
 \end{table}
 
+\comofeito{cada linha é um indicador e as duas colunas repartem 100\% da
+sua variação total em duas parcelas: a que ocorre \textbf{dentro do mesmo
+hospital} ao longo dos anos e a que vem das \textbf{diferenças entre
+hospitais}. As parcelas saem da decomposição da variância de cada
+indicador nessas duas componentes.}
+
 \begin{figure}[H]
 \centering
-\includegraphics[width=.96\textwidth]{fig_ae_14_variancia_within.png}
+\includegraphics[width=.62\textwidth]{fig_ae_14_variancia_within.png}
 \caption{Parcela da variação de cada indicador que acontece dentro do
 mesmo hospital ao longo do tempo.}
 \label{fig:variancia}
 \end{figure}
+
+\comofeito{gráfico de barras horizontais. Cada barra é um indicador
+(eixo vertical) e o comprimento mostra a \textbf{parcela da variação
+total daquele indicador que ocorre dentro do mesmo hospital ao longo dos
+anos} (eixo horizontal, em \%); o restante, até 100\%, vem das
+diferenças entre hospitais. A parcela foi obtida decompondo a variância
+de cada indicador em uma componente dentro do hospital e outra entre
+hospitais.}
 
 \comoler{quanto menor a barra, mais estável o indicador dentro de cada
 hospital e mais as diferenças observadas são traço permanente da

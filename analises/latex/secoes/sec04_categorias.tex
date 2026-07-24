@@ -60,6 +60,13 @@ Privado           & 0,0256 & 4,24 & 12.798,36 & 0,9836 & 40,5 & 3,5  \\
 \end{tabular}
 \end{table}
 
+\comofeito{cada linha é uma categoria de gestão e cada coluna traz a
+\textbf{mediana} daquele indicador entre todas as observações (hospital
+ano) da categoria, no período completo. Cada hospital foi atribuído a uma
+única categoria, aquela em que passou a maior parte do período.
+Mortalidade e alta complexidade estão em proporção; as ocupações, em
+percentual.}
+
 \begin{figure}[H]
 \centering
 \subfig{fig_ae_04_violino_mort_all.png}{Mortalidade geral}
@@ -69,6 +76,15 @@ Cada violino é a silhueta da distribuição do grupo; o número impresso é
 a mediana.}
 \label{fig:violA}
 \end{figure}
+
+\comofeito{gráfico de violino, um por categoria de gestão. O eixo
+horizontal traz as cinco categorias institucionais e o vertical, o valor
+do indicador (mortalidade em proporção; TMP em dias, aqui em escala
+logarítmica pela cauda longa). Cada violino é a silhueta da distribuição
+daquela categoria (engorda onde há mais hospitais), as linhas internas
+marcam os quartis e o número impresso é a mediana do grupo. Cada
+hospital foi atribuído a uma única categoria, aquela em que passou a
+maior parte do período.}
 
 \comoler{a silhueta engorda onde há mais hospitais; as linhas internas
 marcam os quartis e o número é a mediana. Na mortalidade, os violinos
@@ -87,6 +103,11 @@ complexidade por categoria de gestão.}
 \label{fig:violB}
 \end{figure}
 
+\comofeito{mesma construção da figura anterior, agora para o faturamento
+por saída (em reais, escala logarítmica) e para a fração de alta
+complexidade (proporção entre 0 e 1), com as categorias no eixo
+horizontal e o indicador no vertical.}
+
 \comoler{no faturamento, os quatro grupos públicos e filantrópicos são
 parecidos e o Privado flutua sozinho lá em cima, uma ordem de grandeza
 acima. Nos Filantrópicos, os violinos mais compridos refletem a enorme
@@ -101,6 +122,10 @@ internação}
 \caption{Distribuição das taxas de ocupação por categoria de gestão.}
 \label{fig:violC}
 \end{figure}
+
+\comofeito{mesma construção dos violinos anteriores, para as duas taxas
+de ocupação (internação e UTI) em escala percentual no eixo vertical,
+por categoria de gestão no eixo horizontal.}
 
 \comoler{na ocupação de internação, veja como os violinos de OSS e
 Municipal estão inteiros mais altos que os de Direta e Filantrópico: é
@@ -133,6 +158,14 @@ categoria em que passou a maior parte do período; por isso as células
 somam 289, e não a soma por período do texto.}
 \label{fig:composicao}
 \end{figure}
+
+\comofeito{mapa de calor (contagem). No painel (a), o eixo horizontal
+traz as faixas Barcelona de complexidade e, no (b), os portes; o eixo
+vertical traz as categorias de gestão. O número em cada célula é a
+\textbf{quantidade de hospitais} (CNES) daquela categoria naquele perfil,
+e a intensidade do azul acompanha essa contagem. Cada hospital é contado
+uma única vez, na categoria em que passou a maior parte do período, de
+modo que as células somam 289.}
 
 \comoler{cada célula informa o número de hospitais daquela categoria
 naquela faixa ou porte. As células com zero são o alerta: onde há zero,

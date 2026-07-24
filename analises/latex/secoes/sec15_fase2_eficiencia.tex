@@ -34,13 +34,21 @@ gestão, não uma diferença entre as redes OSS e Direta.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.9\textwidth]{figB02_encolhimento_categorias.png}
+\includegraphics[width=.58\textwidth]{figB02_encolhimento_categorias.png}
 \caption{Efeitos de categoria na mortalidade com e sem partial
 pooling: com apenas 3 hospitais, o efeito aparente do Privado encolhe
 em quase 90\% quando o modelo pondera a evidência pelo tamanho do
 grupo.}
 \label{fig:encolhimento}
 \end{figure}
+
+\comofeito{gráfico de pontos. Cada linha é uma categoria de gestão (eixo
+vertical) e o eixo horizontal traz o \textbf{efeito da categoria no
+logito da mortalidade} (centrado). Cada linha traz duas estimativas: o
+círculo escuro trata cada categoria isoladamente e o quadrado verde
+aplica \emph{partial pooling}, deixando as categorias emprestarem
+informação umas às outras na proporção da quantidade de dados de cada
+uma. Quanto menor o grupo, mais o quadrado recua em direção ao zero.}
 
 \comoler{cada linha compara duas estimativas do efeito da mesma
 categoria: o círculo escuro trata cada categoria isoladamente; o
@@ -117,6 +125,15 @@ das demais categorias é a informação válida.}
 \label{fig:eficiencia}
 \end{figure}
 
+\comofeito{gráficos de violino, um por categoria de gestão no eixo
+horizontal. O eixo vertical traz a \textbf{eficiência técnica} (entre 0 e
+1, quanto mais perto de 1 mais próximo da fronteira de melhores
+práticas): no painel (a), a eficiência DEA corrigida de viés, e no (b), a
+eficiência da fronteira estocástica (SFA). Cada violino é a distribuição
+da categoria e o número é a mediana. No painel (b) a concentração das OSS
+junto a 1 é uma degeneração numérica do modelo, e o valor delas não deve
+ser citado --- vale a ordem entre as demais categorias.}
+
 \comoler{como nos violinos das seções anteriores: a silhueta engorda
 onde há mais hospitais e o número é a mediana do grupo. Compare a
 posição dos violinos de OSS e Municipal com os de Direta e
@@ -147,12 +164,19 @@ ascendente ao longo da década.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.9\textwidth]{figS02_dispersao_sfa_dea.png}
+\includegraphics[width=.58\textwidth]{figS02_dispersao_sfa_dea.png}
 \caption{Convergência entre os dois métodos de eficiência: cada ponto
 é um hospital num ano, posicionado pelo escore DEA (horizontal) e pela
 eficiência SFA (vertical).}
 \label{fig:convergencia}
 \end{figure}
+
+\comofeito{gráfico de dispersão. Cada ponto é um hospital em um ano,
+posicionado pelo \textbf{escore de eficiência DEA} no eixo horizontal e
+pela \textbf{eficiência técnica SFA} no vertical (ambos entre 0 e 1).
+Quanto mais a nuvem sobe da esquerda para a direita, mais os dois métodos
+--- de naturezas opostas --- concordam sobre quem é eficiente. A faixa
+verde colada no topo é a degeneração das OSS descrita no texto.}
 
 \comoler{quanto mais a nuvem sobe da esquerda para a direita, mais os
 dois métodos concordam sobre quem é eficiente. A faixa verde colada no

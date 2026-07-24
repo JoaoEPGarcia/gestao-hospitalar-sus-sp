@@ -1,13 +1,16 @@
-\section{Que molde estatístico descreve cada indicador}
+\section{O formato de cada indicador}
 \label{sec:distribuicoes}
 
-Cada indicador tem uma forma própria de variar entre hospitais, e há
-moldes matemáticos (as chamadas famílias de distribuição) desenhados
-para cada tipo de forma. Identificar o molde certo é importante porque
-toda análise posterior fica mais confiável quando respeita a natureza
-do dado: proporções entre 0 e 1 pedem um molde, valores em reais com
-cauda longa pedem outro, contagens pedem um terceiro. Esta seção testa
-os moldes contra os dados e documenta as escolhas.
+Cada indicador tem uma forma própria de variar entre os hospitais, e
+conhecer essa forma tem uma consequência prática para a gestão: por trás
+de um histograma de aparência estranha costuma haver um fato concreto da
+rede --- dois perfis de hospital convivendo lado a lado, um acúmulo de
+zeros com significado, uma cauda que exige leitura em escala própria.
+Esta seção reúne esses achados de formato. A justificativa estatística
+formal --- qual família de distribuição descreve cada indicador e o
+quanto ela se ajusta aos dados, com as tabelas de nota de ajuste e os
+gráficos QQ correspondentes --- foi reunida no
+Apêndice~\ref{ap:diagnosticos}, para não interromper a leitura.
 
 \subsection{Mortalidade: uma proporção com dois grupos de hospitais}
 
@@ -16,9 +19,8 @@ para proporções é a distribuição \textbf{Beta}. O ajuste de uma Beta
 única descreve bem a escala geral, mas erra o pico de hospitais com
 mortalidade quase nula. A Figura~\ref{fig:mistura} mostra a solução e,
 ao mesmo tempo, a explicação: somando \textbf{duas Betas} (uma para
-cada grupo de hospitais), a curva acompanha o histograma com nitidez, e
-a nota de ajuste melhora de forma expressiva (ganho de 949 pontos de
-AIC). O ponto central para a gestão é que esses dois grupos
+cada grupo de hospitais), a curva acompanha o histograma com nitidez. O
+ponto central para a gestão é que esses dois grupos
 \textbf{existem de verdade no painel}: um grupo de \textbf{35 hospitais
 de baixo óbito estrutural} (mortalidade mediana abaixo de 2\%; 16 são
 hospitais especializados e os outros 19, hospitais gerais de baixo
@@ -42,6 +44,14 @@ reconstruída a partir dos dois grupos reais de hospitais do painel.}
 \label{fig:mistura}
 \end{figure}
 
+\comofeito{os dois painéis têm no eixo horizontal a mortalidade geral
+(proporção, entre 0 e 1) e no vertical a densidade das 3.179
+observações. À esquerda, sobre o histograma, foram desenhadas duas
+curvas ajustadas: uma Beta única e a soma de duas Betas. À direita, a
+soma de duas Betas foi reconstruída separando de fato os hospitais nos
+dois grupos observados no painel (baixo óbito estrutural e demais), pela
+mortalidade mediana de cada hospital.}
+
 \comoler{no painel da esquerda, compare as duas curvas com as barras: a
 tracejada passa por cima do vale e erra os dois picos; a escura desenha
 os dois picos. No painel da direita, as curvas tracejadas coloridas são
@@ -56,32 +66,15 @@ A fração de alta complexidade também é uma proporção, mas com uma
 particularidade dominante: \textbf{um terço das observações vale
 exatamente zero} (hospitais que não realizam alta complexidade) e uma
 pequena parcela vale exatamente um (hospitais que só realizam alta
-complexidade). O molde adequado trata três situações em separado: a
-chance de o hospital estar no zero, a chance de estar no um, e a
-distribuição de quem está no meio; esse molde combinado é conhecido
-pela sigla \textbf{ZOIB}. A Figura~\ref{fig:betapct} mostra o ajuste do
-miolo e a Figura~\ref{fig:zeros} mostra que \textbf{os zeros não são
-aleatórios}: a proporção de hospitais sem alta complexidade cai de
-80,1\% na faixa 2 de complexidade para zero na faixa 6, e de 37,5\% nos
-Filantrópicos para 10,7\% nas OSS. Ou seja, saber a complexidade, o
-porte e a categoria do hospital já diz muito sobre a chance de ele
-estar no grupo do zero.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.96\textwidth]{fig_ae_02_beta_pct_alta_complex.png}
-\caption{Fração de alta complexidade entre os hospitais que realizam
-alguma alta complexidade: histograma e molde Beta ajustado. O eixo
-vertical está em escala logarítmica para a cauda inteira ficar
-visível.}
-\label{fig:betapct}
-\end{figure}
-
-\comoler{a grande maioria dos hospitais que fazem alta complexidade faz
-pouca (a concentração à esquerda; metade fica abaixo de 3,7\%), e uma
-minoria é altamente especializada (as barras à direita, perto de
-100\%). A curva escura é o molde Beta, que acompanha essa queda
-contínua.}
+complexidade). Esses dois acúmulos nas pontas exigem um tratamento
+estatístico próprio --- o modelo conhecido pela sigla \textbf{ZOIB},
+cuja construção e ajuste estão no Apêndice~\ref{ap:diagnosticos}. Para a
+gestão, o que importa é que \textbf{os zeros não são aleatórios}
+(Figura~\ref{fig:zeros}): a proporção de hospitais sem alta complexidade
+cai de 80,1\% na faixa 2 de complexidade para zero na faixa 6, e de
+37,5\% nos Filantrópicos para 10,7\% nas OSS. Ou seja, saber a
+complexidade, o porte e a categoria do hospital já diz muito sobre a
+chance de ele estar no grupo do zero.
 
 \begin{figure}[H]
 \centering
@@ -93,18 +86,25 @@ zero, por grupo de hospitais.}
 \label{fig:zeros}
 \end{figure}
 
+\comofeito{gráfico de barras. O eixo horizontal traz os grupos de
+hospitais --- as categorias de gestão no painel (a) e as faixas
+Barcelona de complexidade no painel (b) --- e o eixo vertical, o
+percentual de observações daquele grupo em que a fração de alta
+complexidade é exatamente zero. Cada barra é, portanto, a parcela de
+hospitais ano do grupo que não realizou nenhuma internação de alta
+complexidade.}
+
 \comoler{cada barra é a proporção de hospitais ano daquele grupo que
 não realizou nenhuma internação de alta complexidade. A queda das
 barras da esquerda para a direita no painel (b) mostra que o zero é
 questão de perfil e estrutura: quase todos os hospitais de faixa 2
 estão no zero, e nenhum de faixa 6 está.}
 
-\subsection{Faturamento e tempo de permanência: valores positivos com cauda
+\subsection{Faturamento e tempo de permanência: valores com cauda
 longa}
 
-Faturamento por saída e TMP são valores positivos com cauda à direita. Cinco
-moldes clássicos foram postos à prova
-(Tabela~\ref{tab:familias})\footnote{Guia dos tamanhos de amostra que
+Faturamento por saída e TMP são valores positivos com cauda à
+direita\footnote{Guia dos tamanhos de amostra que
 aparecem no documento: \textbf{3.179} é o painel completo;
 \textbf{3.178} exclui a única observação com TMP igual a zero (Hospital
 Infante D.\ Henrique, 2021), incompatível com a escala logarítmica;
@@ -112,46 +112,18 @@ Infante D.\ Henrique, 2021), incompatível com a escala logarítmica;
 denominador frágil da Seção~\ref{sec:qualidade}, regra usada nos
 modelos da fase de estimação; e \textbf{2.482} são as observações com
 UTI ativa depois de retiradas essas duas frágeis. Cada conta foi
-conferida no painel.},
-comparados pela nota AIC e pelo gráfico QQ. O resultado é consistente:
-o molde \textbf{log logístico (também chamado de Fisk)} vence nas duas
-amostras, com a \textbf{LogNormal} logo atrás, e a Gama, molde usado
-por tradição em análises de custo, fica sempre entre as piores. No TMP,
-\textbf{o ajuste do molde log logístico é praticamente perfeito} (r de
-0,9974 na Figura~\ref{fig:qqtmpsemlp}), porque a consolidação do painel
-já removeu os hospitais de longa permanência que, na versão anterior,
-criavam um teto de 30,5 dias que nenhum molde contínuo reproduzia. A
-leitura prática: faturamento e TMP devem ser analisados na escala
-logarítmica. Os gráficos QQ completos estão no
-Apêndice~\ref{ap:diagnosticos}: tanto no faturamento (r de 0,9700,
-Figura~\ref{fig:qqcusto}) quanto no TMP (Figura~\ref{fig:qqtmp}) o molde
-log logístico acompanha os dados por quase toda a extensão.
-
-\begin{table}[H]
-\centering
-\caption{Comparação dos cinco moldes de distribuição para faturamento e TMP
-pela nota AIC (Seção~\ref{sec:painel}) e pelo r do QQ
-(Apêndice~\ref{ap:diagnosticos}).}
-\label{tab:familias}
-\small
-\begin{tabular}{llrrr}
-\toprule
-Amostra & Molde & $n$ & AIC & r do QQ \\
-\midrule
-Faturamento por saída & Log logística (Fisk) & 3.179 & 50.785 & 0,9700 \\
-                & LogNormal            & 3.179 & 50.883 & 0,9079 \\
-                & Gaussiana inversa    & 3.179 & 50.952 & 0,8943 \\
-                & Gama                 & 3.179 & 51.867 & 0,8310 \\
-                & Weibull              & 3.179 & 52.320 & 0,8343 \\
-\midrule
-TMP & Log logística (Fisk) & 3.178 & 11.878 & 0,9974 \\
-                     & LogNormal            & 3.178 & 11.956 & 0,9810 \\
-                     & Gaussiana inversa    & 3.178 & 11.989 & 0,9786 \\
-                     & Gama                 & 3.178 & 12.150 & 0,9631 \\
-                     & Weibull              & 3.178 & 12.920 & 0,9398 \\
-\bottomrule
-\end{tabular}
-\end{table}
+conferida no painel.}, e a leitura prática que interessa à gestão é uma
+só: \textbf{os dois indicadores devem ser analisados em escala
+logarítmica}. Nessa escala, o faturamento vira um morro quase simétrico
+(Figura~\ref{fig:histlog}) e o TMP hoje se ajusta quase perfeitamente,
+porque a consolidação do painel (ETAPA F) removeu os hospitais de longa
+permanência que, na versão anterior, criavam um teto de 30,5 dias que
+distorcia a distribuição. A comparação formal entre as famílias de
+distribuição candidatas --- com a nota de ajuste de cada uma e os
+gráficos correspondentes --- está reunida no
+Apêndice~\ref{ap:diagnosticos} (Tabela~\ref{tab:familias}), e confirma
+que faturamento e TMP são bem descritos pelo molde log logístico nessa
+escala.
 
 \begin{figure}[H]
 \centering
@@ -162,24 +134,19 @@ logarítmica (os rótulos mostram os valores reais).}
 \label{fig:histlog}
 \end{figure}
 
+\comofeito{são os mesmos histogramas de faturamento por saída e TMP, mas
+com o eixo horizontal em \textbf{escala logarítmica} (as marcas avançam
+por multiplicação, e os rótulos mostram os valores reais em reais e em
+dias); o eixo vertical segue sendo a densidade das observações. A escala
+log foi escolhida justamente porque esses dois indicadores têm cauda
+longa à direita, que na escala linear comprime a maioria dos hospitais
+num só bloco.}
+
 \comoler{na escala logarítmica, o faturamento (a) vira um morro quase
 simétrico, sinal clássico de que a análise deve ser feita nessa escala.
 No TMP (b), o morro principal fica entre 3 e 7 dias, com uma cauda
 curta à direita e sem o segundo grupo isolado de longa permanência que
 o painel anterior exibia.}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.96\textwidth]{fig_ae_03_qq_fisk_tmp_sem_longa_perm.png}
-\caption{Gráfico QQ do TMP no painel de 289 hospitais (log logística):
-os pontos ficam praticamente sobre a reta (r de 0,9974).}
-\label{fig:qqtmpsemlp}
-\end{figure}
-
-\comoler{este é o gráfico QQ do TMP no painel atual: os pontos seguem a
-reta e o molde descreve os dados quase perfeitamente. Não há mais o
-achatamento que a versão anterior do painel exibia, porque os hospitais
-de longa permanência que o causavam saíram na consolidação.}
 
 \subsection{Produção: contagens muito mais variáveis que o usual}
 
@@ -189,19 +156,3 @@ seja comparável à média; aqui \textbf{a variação é milhares de vezes
 maior que a média} (razão de 6.249 no agregado e de 102 mesmo comparando
 cada hospital só consigo mesmo ao longo dos anos). O molde adequado é a
 \textbf{Binomial Negativa}, que aceita essa variação extra.
-
-\subsection{Os moldes melhoram quando se compara o comparável}
-
-Uma pergunta natural: se os QQ do painel completo não são perfeitos, o
-molde está errado? As Figuras~\ref{fig:qqcondA} a~\ref{fig:qqcondC},
-reunidas no Apêndice~\ref{ap:diagnosticos},
-respondem que não: o desajuste vem de misturar 289 hospitais muito
-diferentes num único gráfico. Quando se compara cada hospital consigo mesmo (controlando o
-efeito do hospital e do ano), os desvios praticamente desaparecem: no
-faturamento, a assimetria restante é quase nula; na mortalidade, a forte
-assimetria da distribuição bruta na escala \textbf{logito} (a escala
-interna em que o modelo trabalha proporções), de 1,97 negativa, cai
-para 0,27 negativa depois do controle; na escala original da
-Tabela~\ref{tab:univariada} a assimetria é outra (0,80 positiva), e os
-dois números não se contradizem. Em resumo, \textbf{os moldes escolhidos descrevem bem os
-dados quando se compara o comparável}.
