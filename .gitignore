@@ -13,7 +13,14 @@ __pycache__/
 *.out
 *.toc
 *.synctex.gz
+# Registros de build do latexmk: mudam a cada compilação e não têm valor
+# de revisão (principal.fdb_latexmk e principal.fls estavam versionados
+# por engano e sujavam o git status a cada build).
+*.fdb_latexmk
+*.fls
+# PDFs compilados: reproduzíveis a partir dos .tex, não se versionam.
 analises/latex/principal.pdf
+analises/latex/roteiro_entrevistas.pdf
 
 # Junções locais para compilar com as figuras (no Overleaf as pastas
 # são enviadas ao lado do principal.tex)
