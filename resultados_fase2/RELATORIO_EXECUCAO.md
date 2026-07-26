@@ -49,7 +49,7 @@ Duas leituras importantes da comparação com o frequentista: o TMP e o faturame
 
 **Diagnósticos e ressalvas da Frente 1**:
 - Todos os modelos convergiram (código 0 do otimizador).
-- A checagem preditiva da mortalidade mostra que a simulação MARGINAL do modelo suaviza a bimodalidade observada: o efeito aleatório normal não reproduz por completo os dois grupos de hospitais, embora os resíduos quantílicos condicionais da fase 1 (r de 0,984) mostrem que a média condicional está bem especificada. Registrado como limitação de forma da distribuição dos efeitos, não da média.
+- A checagem preditiva da mortalidade mostra que a simulação MARGINAL do modelo suaviza a bimodalidade observada: o efeito aleatório normal não reproduz por completo os dois grupos de hospitais, embora os resíduos quantílicos condicionais da fase 1 (r de 0,976) mostrem que a média condicional está bem especificada. Registrado como limitação de forma da distribuição dos efeitos, não da média.
 - A parte 1 da UTI (Bernoulli hierárquica) produz coeficiente OSS degenerado (ponto em torno de 59 negativos, com EP não estimável na reexecução): ter ou não UTI quase não varia dentro de hospital, e o efeito aleatório absorve o nível; o contraste dessa parte não é informativo e não deve ser citado.
 - Encolhimento (figB02, tabB_encolhimento): o efeito do Privado encolhe de 0,35 negativo (sem pooling) para 0,04 negativo (com pooling, recuo de 88%), a demonstração pedida de que 3 CNES não sustentam efeito próprio; as demais categorias encolhem pouco.
 - Sensibilidade da mortalidade (tabB_sensibilidade_mortalidade): principal 0,262 negativo; sem Mundlak 0,233 negativo; com efeito aleatório de ano 0,260 negativo. A conclusão qualitativa não se move.
