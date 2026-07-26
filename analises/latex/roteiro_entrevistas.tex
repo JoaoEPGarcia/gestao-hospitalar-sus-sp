@@ -75,6 +75,17 @@ entrevistado antes da resposta.
 \section{Hospitais selecionados}
 \label{sec:selecao}
 
+\noindent\textbf{Ressalva que vale para as seis tabelas desta seção.} As
+colunas \textbf{DEA} e \textbf{SFA} trazem as medianas de 2015 a 2025 dos
+dois escores de eficiência técnica. Nas linhas de categoria \textbf{OSS},
+o valor SFA de 0,999 é \textbf{degeneração numérica}, não uma medida do
+hospital: na fronteira estocástica a eficiência técnica das OSS é
+praticamente uma constante (0,9993 a 0,9994 em todo o painel), porque o
+coeficiente das OSS na equação de ineficiência perde identificação. Para
+os hospitais OSS, portanto, vale apenas a coluna DEA --- o número da
+coluna SFA não deve ser citado nem comparado com o de outras categorias,
+e nos pares casados do bloco d o contraste deve ser lido só no DEA.
+
 \subsection{Bloco a --- Conversores Direta$\to$OSS (obrigatórios)}
 \begin{center}\small
 \begin{tabular}{llllrr}
@@ -108,7 +119,7 @@ CNES & Hospital & Município & Categoria & DEA & SFA \\
 \bottomrule
 \end{tabular}
 \end{center}
-\noindent\textbf{7573162 --- Hospital Regional De Jundiai} (Jundiai, interior; Médio Porte, faixa Barcelona 3, complexidade estrutural 246,0). Desviante positivo da categoria OSS (quartil superior persistente de te\_bcc\_vc e te\_sfa): eficiência DEA 0,905 e SFA 0,999 (medianas 2015-2025), no suporte comum (faixa 3, Médio Porte). Marcador financeiro x físico: 4º no rank DEA com insumo financeiro contra 18º só com leitos (diferença de 14 posições; positivo = ranqueia melhor com o insumo financeiro do que sem ele) — investigar se a divergência é regime de pagamento, porte, complexidade ou gestão real.\par\medskip
+\noindent\textbf{7573162 --- Hospital Regional De Jundiai} (Jundiai, interior; Médio Porte, faixa Barcelona 3, complexidade estrutural 246,0). Desviante positivo da categoria OSS (quartil superior persistente de te\_bcc\_vc e te\_sfa): eficiência DEA 0,905 (mediana 2015-2025), no suporte comum (faixa 3, Médio Porte); a mediana SFA de 0,999 não é citável (\emph{degeneração OSS}), de modo que a seleção deste hospital se apoia no DEA. Marcador financeiro x físico: 4º no rank DEA com insumo financeiro contra 18º só com leitos (diferença de 14 posições; positivo = ranqueia melhor com o insumo financeiro do que sem ele) — investigar se a divergência é regime de pagamento, porte, complexidade ou gestão real.\par\medskip
 \noindent\textbf{6164366 --- Hospital Estadual Americo Brasiliense} (Americo Brasiliense, interior; Médio Porte, faixa Barcelona 3, complexidade estrutural 187,0). Desviante positivo da categoria Direta (critério relaxado: quartil superior de DEA e acima da mediana de SFA): eficiência DEA 0,810 e SFA 0,908 (medianas 2015-2025), no suporte comum (faixa 3, Médio Porte). Marcador financeiro x físico: 27º no rank DEA com insumo financeiro contra 75º só com leitos (diferença de 48 posições; positivo = ranqueia melhor com o insumo financeiro do que sem ele) — investigar se a divergência é regime de pagamento, porte, complexidade ou gestão real.\par\medskip
 \noindent\textbf{5718368 --- Hosp Mun M Boi Mirim} (Sao Paulo, capital; Grande Porte, faixa Barcelona 4, complexidade estrutural 469,0). Desviante positivo da categoria Público Municipal (quartil superior persistente de te\_bcc\_vc e te\_sfa): eficiência DEA 0,870 e SFA 0,962 (medianas 2015-2025), no suporte comum (faixa 4, Grande Porte). Marcador financeiro x físico: 12º no rank DEA com insumo financeiro contra 4º só com leitos (diferença de -8 posições; positivo = ranqueia melhor com o insumo financeiro do que sem ele) — investigar se a divergência é regime de pagamento, porte, complexidade ou gestão real.\par\medskip
 \noindent\textbf{2076896 --- Hospital Sao Luiz Gonzaga} (Sao Paulo, capital; Grande Porte, faixa Barcelona 3, complexidade estrutural 241,0). Desviante positivo da categoria Filantrópico (quartil superior persistente de te\_bcc\_vc e te\_sfa): eficiência DEA 0,922 e SFA 0,928 (medianas 2015-2025), no suporte comum (faixa 3, Grande Porte). Marcador financeiro x físico: 1º no rank DEA com insumo financeiro contra 66º só com leitos (diferença de 65 posições; positivo = ranqueia melhor com o insumo financeiro do que sem ele) — investigar se a divergência é regime de pagamento, porte, complexidade ou gestão real.\par\medskip
@@ -143,11 +154,11 @@ CNES & Hospital & Município & Categoria & DEA & SFA \\
 \bottomrule
 \end{tabular}
 \end{center}
-\noindent\textbf{2065665 --- Hospital Maternidade Interlagos} (Sao Paulo, capital; Médio Porte, faixa Barcelona 3, complexidade estrutural 160,0). Par casado da âncora OSS Hospital Regional De Jundiai (CNES 7573162): mesmo porte (Médio Porte), faixa Barcelona 3 vs 3, leitos 89 vs 136, mas eficiência divergente: DEA 0,690 vs 0,905; SFA 0,900 vs 0,999. Estrutura parecida, gestão Direta: o que a gestão faz de diferente?\par\medskip
-\noindent\textbf{2079232 --- Hospital Santa Barbara} (Santa Barbara D'Oeste, interior; Médio Porte, faixa Barcelona 3, complexidade estrutural 247,0). Par casado da âncora OSS Hospital Regional De Jundiai (CNES 7573162): mesmo porte (Médio Porte), faixa Barcelona 3 vs 3, leitos 137 vs 136, mas eficiência divergente: DEA 0,523 vs 0,905; SFA 0,820 vs 0,999. Estrutura parecida, gestão Filantrópico: o que a gestão faz de diferente?\par\medskip
-\noindent\textbf{2792141 --- Hospital Regional De Cotia} (Cotia, interior; Médio Porte, faixa Barcelona 4, complexidade estrutural 330,0). Âncora OSS de alta eficiência (DEA 0,893, SFA 0,999) para os pares casados.\par\medskip
-\noindent\textbf{2079410 --- Complexo Hospitalar Padre Bento De Guarulhos} (Guarulhos, interior; Médio Porte, faixa Barcelona 4, complexidade estrutural 327,0). Par casado da âncora OSS Hospital Regional De Cotia (CNES 2792141): mesmo porte (Médio Porte), faixa Barcelona 4 vs 4, leitos 145 vs 145, mas eficiência divergente: DEA 0,527 vs 0,893; SFA 0,815 vs 0,999. Estrutura parecida, gestão Direta: o que a gestão faz de diferente?\par\medskip
-\noindent\textbf{2096412 --- Santa Casa De Misericordia De Jacarei} (Jacarei, interior; Médio Porte, faixa Barcelona 4, complexidade estrutural 312,0). Par casado da âncora OSS Hospital Regional De Cotia (CNES 2792141): mesmo porte (Médio Porte), faixa Barcelona 4 vs 4, leitos 143 vs 145, mas eficiência divergente: DEA 0,598 vs 0,893; SFA 0,890 vs 0,999. Estrutura parecida, gestão Filantrópico: o que a gestão faz de diferente?\par\medskip
+\noindent\textbf{2065665 --- Hospital Maternidade Interlagos} (Sao Paulo, capital; Médio Porte, faixa Barcelona 3, complexidade estrutural 160,0). Par casado da âncora OSS Hospital Regional De Jundiai (CNES 7573162): mesmo porte (Médio Porte), faixa Barcelona 3 vs 3, leitos 89 vs 136, mas eficiência divergente: DEA 0,690 vs 0,905; SFA 0,900 (\emph{SFA não comparável --- degeneração OSS}). Estrutura parecida, gestão Direta: o que a gestão faz de diferente?\par\medskip
+\noindent\textbf{2079232 --- Hospital Santa Barbara} (Santa Barbara D'Oeste, interior; Médio Porte, faixa Barcelona 3, complexidade estrutural 247,0). Par casado da âncora OSS Hospital Regional De Jundiai (CNES 7573162): mesmo porte (Médio Porte), faixa Barcelona 3 vs 3, leitos 137 vs 136, mas eficiência divergente: DEA 0,523 vs 0,905; SFA 0,820 (\emph{SFA não comparável --- degeneração OSS}). Estrutura parecida, gestão Filantrópico: o que a gestão faz de diferente?\par\medskip
+\noindent\textbf{2792141 --- Hospital Regional De Cotia} (Cotia, interior; Médio Porte, faixa Barcelona 4, complexidade estrutural 330,0). Âncora OSS de alta eficiência (DEA 0,893; SFA 0,999 \emph{não citável --- degeneração OSS}) para os pares casados.\par\medskip
+\noindent\textbf{2079410 --- Complexo Hospitalar Padre Bento De Guarulhos} (Guarulhos, interior; Médio Porte, faixa Barcelona 4, complexidade estrutural 327,0). Par casado da âncora OSS Hospital Regional De Cotia (CNES 2792141): mesmo porte (Médio Porte), faixa Barcelona 4 vs 4, leitos 145 vs 145, mas eficiência divergente: DEA 0,527 vs 0,893; SFA 0,815 (\emph{SFA não comparável --- degeneração OSS}). Estrutura parecida, gestão Direta: o que a gestão faz de diferente?\par\medskip
+\noindent\textbf{2096412 --- Santa Casa De Misericordia De Jacarei} (Jacarei, interior; Médio Porte, faixa Barcelona 4, complexidade estrutural 312,0). Par casado da âncora OSS Hospital Regional De Cotia (CNES 2792141): mesmo porte (Médio Porte), faixa Barcelona 4 vs 4, leitos 143 vs 145, mas eficiência divergente: DEA 0,598 vs 0,893; SFA 0,890 (\emph{SFA não comparável --- degeneração OSS}). Estrutura parecida, gestão Filantrópico: o que a gestão faz de diferente?\par\medskip
 
 \subsection{Bloco e --- Divergência DEA$\times$SFA}
 \begin{center}\small
