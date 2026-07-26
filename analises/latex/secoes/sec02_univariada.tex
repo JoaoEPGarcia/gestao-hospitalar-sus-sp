@@ -82,6 +82,13 @@ vale a regra usual, com a média acima da mediana; nas duas ocupações a
 média também fica abaixo da mediana, pelo peso dos valores baixos e,
 na UTI, dos zeros.
 
+\comoler{cada barra mostra quantas observações caem naquele valor do
+indicador. Na mortalidade, note as duas corcovas: a da esquerda, perto
+de zero, são as maternidades e especializados; a principal fica perto
+de 5,5\%. No TMP, quase todos os hospitais estão entre 3 e 7 dias, com uma cauda
+curta que se estende até cerca de 25 dias, sem o grupo isolado de longa
+permanência que o painel anterior mostrava.}
+
 \begin{figure}[H]
 \centering
 \subfig{fig_ae_01_hist_mort_all.png}{Mortalidade geral}
@@ -101,12 +108,11 @@ internações por COVID) e TMP em dias --- e o eixo vertical, a densidade,
 que mede o quanto as observações se concentram em cada trecho de valor.
 A linha tracejada vertical marca a mediana e a pontilhada, a média.}
 
-\comoler{cada barra mostra quantas observações caem naquele valor do
-indicador. Na mortalidade, note as duas corcovas: a da esquerda, perto
-de zero, são as maternidades e especializados; a principal fica perto
-de 5,5\%. No TMP, quase todos os hospitais estão entre 3 e 7 dias, com uma cauda
-curta que se estende até cerca de 25 dias, sem o grupo isolado de longa
-permanência que o painel anterior mostrava.}
+\comoler{no faturamento, a concentração fica perto de R\$~1.000 e a cauda se
+estica até quase R\$~28.000, o que explica a média (pontilhada) ficar
+bem à direita da mediana (tracejada). Na alta complexidade, a barra
+gigante em zero mostra os 31,3\% de hospitais ano sem nenhuma
+internação desse tipo.}
 
 \begin{figure}[H]
 \centering
@@ -123,11 +129,11 @@ fração de alta complexidade (proporção das internações classificadas
 como de alta complexidade, entre 0 e 1); no eixo vertical, a densidade
 das mesmas 3.179 observações.}
 
-\comoler{no faturamento, a concentração fica perto de R\$~1.000 e a cauda se
-estica até quase R\$~28.000, o que explica a média (pontilhada) ficar
-bem à direita da mediana (tracejada). Na alta complexidade, a barra
-gigante em zero mostra os 31,3\% de hospitais ano sem nenhuma
-internação desse tipo.}
+\comoler{a linha pontilhada vertical marca 100\%: tudo à direita dela é
+operação acima da capacidade cadastrada. Na internação, isso ocorre em
+15,5\% das observações. Na UTI, a barra em zero são os hospitais sem
+UTI ativa, e a cauda que se arrasta até 875\% é o problema de cadastro
+examinado na Seção~\ref{sec:qualidade}.}
 
 \begin{figure}[H]
 \centering
@@ -144,8 +150,3 @@ observações. A ocupação é calculada como diárias sobre a capacidade
 cadastrada de leitos SUS; a linha vertical em 100\% separa a operação
 dentro da capacidade cadastrada (à esquerda) da sobrecarga (à direita).}
 
-\comoler{a linha pontilhada vertical marca 100\%: tudo à direita dela é
-operação acima da capacidade cadastrada. Na internação, isso ocorre em
-15,5\% das observações. Na UTI, a barra em zero são os hospitais sem
-UTI ativa, e a cauda que se arrasta até 875\% é o problema de cadastro
-examinado na Seção~\ref{sec:qualidade}.}

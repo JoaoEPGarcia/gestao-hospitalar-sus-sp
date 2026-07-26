@@ -68,6 +68,12 @@ para as duas categorias, como nas contagens por período do texto.
 Mortalidade e alta complexidade estão em proporção; as ocupações, em
 percentual.}
 
+\comoler{a silhueta engorda onde há mais hospitais; as linhas internas
+marcam os quartis e o número é a mediana. Na mortalidade, os violinos
+das quatro categorias públicas e filantrópicas ocupam alturas
+parecidas; no TMP, o violino da Direta está visivelmente deslocado para
+cima.}
+
 \begin{figure}[H]
 \centering
 \subfig{fig_ae_04_violino_mort_all.png}{Mortalidade geral}
@@ -87,11 +93,11 @@ marcam os quartis e o número impresso é a mediana do grupo. Cada
 observação hospital ano entra na categoria vigente naquele ano, como na
 Tabela~\ref{tab:categorias}.}
 
-\comoler{a silhueta engorda onde há mais hospitais; as linhas internas
-marcam os quartis e o número é a mediana. Na mortalidade, os violinos
-das quatro categorias públicas e filantrópicas ocupam alturas
-parecidas; no TMP, o violino da Direta está visivelmente deslocado para
-cima.}
+\comoler{no faturamento, os quatro grupos públicos e filantrópicos são
+parecidos e o Privado flutua sozinho lá em cima, uma ordem de grandeza
+acima. Nos Filantrópicos, os violinos mais compridos refletem a enorme
+diversidade interna do grupo, das pequenas Santas Casas aos grandes
+hospitais de referência.}
 
 \begin{figure}[H]
 \centering
@@ -109,11 +115,11 @@ por saída (em reais, escala logarítmica) e para a fração de alta
 complexidade (proporção entre 0 e 1), com as categorias no eixo
 horizontal e o indicador no vertical.}
 
-\comoler{no faturamento, os quatro grupos públicos e filantrópicos são
-parecidos e o Privado flutua sozinho lá em cima, uma ordem de grandeza
-acima. Nos Filantrópicos, os violinos mais compridos refletem a enorme
-diversidade interna do grupo, das pequenas Santas Casas aos grandes
-hospitais de referência.}
+\comoler{na ocupação de internação, veja como os violinos de OSS e
+Municipal estão inteiros mais altos que os de Direta e Filantrópico: é
+a diferença de regime operacional em uma imagem. Na UTI, os corpos dos
+violinos são mais parecidos, mas as caudas de zeros (hospitais sem UTI)
+puxam as silhuetas para baixo.}
 
 \begin{figure}[H]
 \centering
@@ -128,12 +134,6 @@ internação}
 de ocupação (internação e UTI) em escala percentual no eixo vertical,
 por categoria de gestão no eixo horizontal.}
 
-\comoler{na ocupação de internação, veja como os violinos de OSS e
-Municipal estão inteiros mais altos que os de Direta e Filantrópico: é
-a diferença de regime operacional em uma imagem. Na UTI, os corpos dos
-violinos são mais parecidos, mas as caudas de zeros (hospitais sem UTI)
-puxam as silhuetas para baixo.}
-
 Uma pergunta indispensável antes de comparar categorias:
 \textbf{elas têm hospitais parecidos o bastante para a comparação ser
 justa?} A Figura~\ref{fig:composicao} responde contando os hospitais de
@@ -146,6 +146,12 @@ porte, as OSS e os Públicos Municipais não têm hospital especial. Em consequ�
 \textbf{comparações entre categorias são seguras nas faixas 3 e 4 e nos
 portes médio e grande}, onde todos os grupos públicos e filantrópicos
 estão presentes; fora dessa região faltam hospitais para comparar.
+
+\comoler{cada célula informa o número de hospitais daquela categoria
+naquela faixa ou porte. As células com zero são o alerta: onde há zero,
+não existe hospital daquele perfil naquela categoria, e portanto não há
+como comparar. A mancha escura na linha dos Filantrópicos, faixas 2 e
+3, mostra onde está o grosso da rede.}
 
 \begin{figure}[H]
 \centering
@@ -168,8 +174,3 @@ e a intensidade do azul acompanha essa contagem. Cada hospital é contado
 uma única vez, na categoria em que passou a maior parte do período, de
 modo que as células somam 289.}
 
-\comoler{cada célula informa o número de hospitais daquela categoria
-naquela faixa ou porte. As células com zero são o alerta: onde há zero,
-não existe hospital daquele perfil naquela categoria, e portanto não há
-como comparar. A mancha escura na linha dos Filantrópicos, faixas 2 e
-3, mostra onde está o grosso da rede.}

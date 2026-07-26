@@ -80,6 +80,12 @@ complexidade); os dois acúmulos nas pontas --- zero e um --- são
 tratados separadamente pelo modelo ZOIB citado na
 Seção~\ref{sec:distribuicoes}.
 
+\comoler{a grande maioria dos hospitais que fazem alta complexidade faz
+pouca (a concentração à esquerda; metade fica abaixo de 3,7\%), e uma
+minoria é altamente especializada (as barras à direita, perto de
+100\%). A curva escura é o molde Beta, que acompanha essa queda
+contínua.}
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=.62\textwidth]{fig_ae_02_beta_pct_alta_complex.png}
@@ -96,16 +102,15 @@ densidade em escala logarítmica (para a cauda inteira ficar visível).
 Sobre o histograma foi desenhada a curva do molde Beta ajustado a esses
 dados.}
 
-\comoler{a grande maioria dos hospitais que fazem alta complexidade faz
-pouca (a concentração à esquerda; metade fica abaixo de 3,7\%), e uma
-minoria é altamente especializada (as barras à direita, perto de
-100\%). A curva escura é o molde Beta, que acompanha essa queda
-contínua.}
-
 \subsection*{Gráficos QQ da fase exploratória}
 
 As Figuras~\ref{fig:qqcusto} a~\ref{fig:qqtmpsemlp} avaliam os moldes
 marginais de faturamento e TMP da Seção~\ref{sec:distribuicoes}.
+
+\comoler{quanto mais os pontos abraçam a reta, melhor o molde. No
+painel (b), o molde log logístico segue os dados por quase toda a
+extensão, descolando apenas nos pouquíssimos hospitais mais caros; por
+isso ele recebe a melhor nota da Tabela~\ref{tab:familias}.}
 
 \begin{figure}[H]
 \centering
@@ -122,10 +127,12 @@ ordenados do menor ao maior; a reta é o comportamento esperado se o
 molde descrevesse os dados perfeitamente. Cada painel testa um molde
 (LogNormal e log logístico/Fisk), e o r no título resume a aderência.}
 
-\comoler{quanto mais os pontos abraçam a reta, melhor o molde. No
-painel (b), o molde log logístico segue os dados por quase toda a
-extensão, descolando apenas nos pouquíssimos hospitais mais caros; por
-isso ele recebe a melhor nota da Tabela~\ref{tab:familias}.}
+\comoler{nos dois painéis os pontos acompanham a reta em quase toda a
+extensão e descolam apenas nos pouquíssimos hospitais de permanência
+mais longa. O painel corrente já não contém a subpopulação de longa
+permanência que, na versão anterior desta análise, criava um teto de
+30,5 dias e o característico achatamento no alto: a ETAPA F a removeu, e
+o ajuste do TMP passou a ser quase perfeito.}
 
 \begin{figure}[H]
 \centering
@@ -140,12 +147,10 @@ horizontal, valores ordenados no vertical, reta de referência), agora
 para o TMP no painel completo, comparando os moldes LogNormal e log
 logístico.}
 
-\comoler{nos dois painéis os pontos acompanham a reta em quase toda a
-extensão e descolam apenas nos pouquíssimos hospitais de permanência
-mais longa. O painel corrente já não contém a subpopulação de longa
-permanência que, na versão anterior desta análise, criava um teto de
-30,5 dias e o característico achatamento no alto: a ETAPA F a removeu, e
-o ajuste do TMP passou a ser quase perfeito.}
+\comoler{este é o gráfico QQ do TMP no painel atual: os pontos seguem a
+reta e o molde descreve os dados quase perfeitamente. Não há mais o
+achatamento que a versão anterior do painel exibia, porque os hospitais
+de longa permanência que o causavam saíram na consolidação.}
 
 \begin{figure}[H]
 \centering
@@ -159,11 +164,6 @@ os pontos ficam praticamente sobre a reta (r de 0,9974).}
 logístico: quantis teóricos no eixo horizontal, valores ordenados do TMP
 no vertical, reta de referência. Quanto mais os pontos ficam sobre a
 reta, melhor o ajuste (aqui r de 0,9974).}
-
-\comoler{este é o gráfico QQ do TMP no painel atual: os pontos seguem a
-reta e o molde descreve os dados quase perfeitamente. Não há mais o
-achatamento que a versão anterior do painel exibia, porque os hospitais
-de longa permanência que o causavam saíram na consolidação.}
 
 \subsection*{Os moldes melhoram quando se compara o comparável}
 
@@ -179,6 +179,11 @@ para 0,27 negativa depois do controle; na escala original da
 Tabela~\ref{tab:univariada} a assimetria é outra (0,80 positiva), e os
 dois números não se contradizem. Em resumo, \textbf{os moldes escolhidos descrevem bem os
 dados quando se compara o comparável}.
+
+\comoler{compare o gráfico de cima com o de baixo: em cima, todos os
+hospitais juntos, os pontos serpenteiam em volta da reta; embaixo,
+comparando cada hospital consigo mesmo, os pontos praticamente deitam
+na reta.}
 
 \begin{figure}[H]
 \centering
@@ -198,10 +203,11 @@ hospital e de ano, isto é, cada hospital é comparado consigo mesmo ao
 longo do tempo. Comparar os dois isola se o desajuste vem do molde ou da
 mistura de hospitais diferentes.}
 
-\comoler{compare o gráfico de cima com o de baixo: em cima, todos os
-hospitais juntos, os pontos serpenteiam em volta da reta; embaixo,
-comparando cada hospital consigo mesmo, os pontos praticamente deitam
-na reta.}
+\comoler{no painel anterior este par contrastava o desenho em degrau
+(com os hospitais de longa permanência) com a reta quase perfeita (sem
+eles). No painel corrente a ETAPA F já removeu essa subpopulação, então
+as duas versões coincidem e ambas mostram a reta --- a confirmação de
+que o desvio era a subpopulação, não o molde.}
 
 \begin{figure}[H]
 \centering
@@ -219,11 +225,10 @@ cima traz o painel completo e o de baixo, a versão sem a antiga
 subpopulação de longa permanência (no painel atual as duas coincidem,
 pois a ETAPA F já removeu essa subpopulação).}
 
-\comoler{no painel anterior este par contrastava o desenho em degrau
-(com os hospitais de longa permanência) com a reta quase perfeita (sem
-eles). No painel corrente a ETAPA F já removeu essa subpopulação, então
-as duas versões coincidem e ambas mostram a reta --- a confirmação de
-que o desvio era a subpopulação, não o molde.}
+\comoler{mesmo padrão do faturamento: a curva em S do gráfico de cima, com
+todos os hospitais misturados, vira uma reta bem comportada quando cada
+hospital é comparado consigo mesmo. A heterogeneidade entre hospitais,
+e não o molde, era a fonte do desajuste.}
 
 \begin{figure}[H]
 \centering
@@ -239,11 +244,6 @@ diferenças fixas entre hospitais e entre anos.}
 \comofeito{mesma construção (QQ com todos os hospitais juntos em cima e
 cada hospital comparado consigo mesmo embaixo), agora para a mortalidade
 na escala logito, a escala interna em que o modelo trabalha proporções.}
-
-\comoler{mesmo padrão do faturamento: a curva em S do gráfico de cima, com
-todos os hospitais misturados, vira uma reta bem comportada quando cada
-hospital é comparado consigo mesmo. A heterogeneidade entre hospitais,
-e não o molde, era a fonte do desajuste.}
 
 \subsection*{Resíduos quantílicos dos modelos estimados}
 
@@ -267,6 +267,13 @@ quase nulo escapa do modelo em logaritmo, e esse resultado específico
 deve ser lido com reserva; fica registrado para a próxima iteração o uso
 de uma família com massa perto de zero para esse indicador --- reestimada
 com a família Gama na Figura~\ref{fig:qqgama}.
+
+\comoler{quanto mais os pontos azuis acompanham a linha tracejada,
+melhor o modelo descreve os dados; o valor de r no canto é essa
+aderência resumida em um número (1 seria perfeito). Compare o
+alinhamento quase exato da fração de alta complexidade com o
+descolamento da cauda esquerda na UTI, que motivou a reestimação da
+figura seguinte.}
 
 \begin{figure}[H]
 \centering
@@ -299,12 +306,9 @@ Normal no eixo horizontal, resíduos quantílicos ordenados no vertical,
 diagonal de referência), para os modelos de produção (Binomial Negativa)
 e da parte positiva da ocupação de UTI.}
 
-\comoler{quanto mais os pontos azuis acompanham a linha tracejada,
-melhor o modelo descreve os dados; o valor de r no canto é essa
-aderência resumida em um número (1 seria perfeito). Compare o
-alinhamento quase exato da fração de alta complexidade com o
-descolamento da cauda esquerda na UTI, que motivou a reestimação da
-figura seguinte.}
+\comoler{compare com o painel (b) da figura anterior: os pontos que
+antes despencavam da linha tracejada na ponta esquerda agora a
+acompanham em quase todo o trajeto.}
 
 \begin{figure}[H]
 \centering
@@ -319,6 +323,3 @@ Normal no eixo horizontal, resíduos ordenados no vertical), para a
 intensidade de ocupação de UTI reestimada com a família Gama; a aderência
 sobe de 0,814 para 0,944 em relação ao modelo em logaritmo.}
 
-\comoler{compare com o painel (b) da figura anterior: os pontos que
-antes despencavam da linha tracejada na ponta esquerda agora a
-acompanham em quase todo o trajeto.}

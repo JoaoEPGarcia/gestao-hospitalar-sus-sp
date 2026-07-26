@@ -20,6 +20,13 @@ mortalidade se associa mais à ocupação de UTI (0,40) do que à de
 internação (0,17), na direção esperada: onde a casuística é mais grave,
 usa se mais UTI e morre se mais.
 
+\comoler{procure a linha de um indicador e percorra as colunas: cada
+célula diz o quanto aquele par anda junto (0 sem relação, 1 relação
+perfeita). A diagonal vale sempre 1 porque compara o indicador com ele
+mesmo. Repare na coluna da complexidade estrutural, escura quase
+inteira: é o confundidor que precisa ser descontado em qualquer
+comparação.}
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=.62\textwidth]{fig_ae_10_correlacao_spearman.png}
@@ -36,13 +43,6 @@ correspondente, medida que vai de 0 (sem relação de ordem) a 1 (crescem
 sempre juntos). Azul mais escuro indica relação mais forte; a diagonal
 vale sempre 1 porque compara cada item consigo mesmo. Escolheu-se
 Spearman por captar relações de ordem sem exigir forma linear.}
-
-\comoler{procure a linha de um indicador e percorra as colunas: cada
-célula diz o quanto aquele par anda junto (0 sem relação, 1 relação
-perfeita). A diagonal vale sempre 1 porque compara o indicador com ele
-mesmo. Repare na coluna da complexidade estrutural, escura quase
-inteira: é o confundidor que precisa ser descontado em qualquer
-comparação.}
 
 A Figura~\ref{fig:variancia} e a Tabela~\ref{tab:variancia} respondem a
 outra pergunta essencial: \textbf{quando um indicador varia, essa
@@ -86,6 +86,12 @@ hospital} ao longo dos anos e a que vem das \textbf{diferenças entre
 hospitais}. As parcelas saem da decomposição da variância de cada
 indicador nessas duas componentes.}
 
+\comoler{quanto menor a barra, mais estável o indicador dentro de cada
+hospital e mais as diferenças observadas são traço permanente da
+instituição. O TMP, com 2\%, é quase uma impressão digital do hospital;
+a ocupação de UTI, com 35\%, é a que mais responde ao tempo, em boa
+parte por causa da pandemia.}
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=.62\textwidth]{fig_ae_14_variancia_within.png}
@@ -102,8 +108,3 @@ diferenças entre hospitais. A parcela foi obtida decompondo a variância
 de cada indicador em uma componente dentro do hospital e outra entre
 hospitais.}
 
-\comoler{quanto menor a barra, mais estável o indicador dentro de cada
-hospital e mais as diferenças observadas são traço permanente da
-instituição. O TMP, com 2\%, é quase uma impressão digital do hospital;
-a ocupação de UTI, com 35\%, é a que mais responde ao tempo, em boa
-parte por causa da pandemia.}

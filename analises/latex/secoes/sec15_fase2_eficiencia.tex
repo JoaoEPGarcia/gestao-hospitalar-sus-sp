@@ -34,6 +34,14 @@ posterior utilizável), e não sobre uma diferença ampla entre as redes:
 a mortalidade menor é uma história dos hospitais que mudaram de
 gestão, não uma diferença entre as redes OSS e Direta.
 
+\comoler{cada linha compara duas estimativas do efeito da mesma
+categoria: o círculo escuro trata cada categoria isoladamente; o
+quadrado verde deixa as categorias emprestarem informação umas às
+outras, na proporção da quantidade de dados de cada uma. Quanto menor
+o grupo, maior o recuo do quadrado em direção ao zero: o Privado, com
+3 hospitais, quase não sustenta efeito próprio. É a ilustração formal
+da regra deste documento de nunca interpretar essa categoria.}
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=.58\textwidth]{figB02_encolhimento_categorias.png}
@@ -51,14 +59,6 @@ círculo escuro trata cada categoria isoladamente e o quadrado verde
 aplica \emph{partial pooling}, deixando as categorias emprestarem
 informação umas às outras na proporção da quantidade de dados de cada
 uma. Quanto menor o grupo, mais o quadrado recua em direção ao zero.}
-
-\comoler{cada linha compara duas estimativas do efeito da mesma
-categoria: o círculo escuro trata cada categoria isoladamente; o
-quadrado verde deixa as categorias emprestarem informação umas às
-outras, na proporção da quantidade de dados de cada uma. Quanto menor
-o grupo, maior o recuo do quadrado em direção ao zero: o Privado, com
-3 hospitais, quase não sustenta efeito próprio. É a ilustração formal
-da regra deste documento de nunca interpretar essa categoria.}
 
 \textbf{Eficiência: a ressalva vem antes do resultado.} O DEA e a SFA
 medem eficiência produtiva: quanto produto (saídas, incluída a alta
@@ -114,6 +114,12 @@ distorcerem a fronteira não se confirma: retirados, os escores dos
 demais praticamente não se movem (correlação de ordem 1,000), porque
 o perfil deles opera longe da fronteira.
 
+\comoler{como nos violinos das seções anteriores: a silhueta engorda
+onde há mais hospitais e o número é a mediana do grupo. Compare a
+posição dos violinos de OSS e Municipal com os de Direta e
+Filantrópico nos dois painéis: métodos de naturezas opostas ordenam as
+redes do mesmo jeito. O Privado aparece só como registro.}
+
 \begin{figure}[H]
 \centering
 \subfig{figE01_violino_te_categoria.png}{Eficiência DEA corrigida de
@@ -135,12 +141,6 @@ eficiência da fronteira estocástica (SFA). Cada violino é a distribuição
 da categoria e o número é a mediana. No painel (b) a concentração das OSS
 junto a 1 é uma degeneração numérica do modelo, e o valor delas não deve
 ser citado --- vale a ordem entre as demais categorias.}
-
-\comoler{como nos violinos das seções anteriores: a silhueta engorda
-onde há mais hospitais e o número é a mediana do grupo. Compare a
-posição dos violinos de OSS e Municipal com os de Direta e
-Filantrópico nos dois painéis: métodos de naturezas opostas ordenam as
-redes do mesmo jeito. O Privado aparece só como registro.}
 
 \textbf{A contraparte paramétrica e a convergência entre métodos.} A
 fronteira estocástica (Translog, preferida ao Cobb Douglas por larga
@@ -164,6 +164,12 @@ mantém nesse patamar mais alto até 2025, sem tendência adicional — um
 degrau que coincide com o início da pandemia, não uma trajetória
 ascendente ao longo da década.
 
+\comoler{quanto mais a nuvem sobe da esquerda para a direita, mais os
+dois métodos concordam sobre quem é eficiente. A faixa verde colada no
+topo é a degeneração das OSS descrita no texto (o modelo paramétrico as
+coloca todas na fronteira); mesmo descontando essa faixa, a
+concordância entre os métodos permanece.}
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=.58\textwidth]{figS02_dispersao_sfa_dea.png}
@@ -179,12 +185,6 @@ pela \textbf{eficiência técnica SFA} no vertical (ambos entre 0 e 1).
 Quanto mais a nuvem sobe da esquerda para a direita, mais os dois métodos
 --- de naturezas opostas --- concordam sobre quem é eficiente. A faixa
 verde colada no topo é a degeneração das OSS descrita no texto.}
-
-\comoler{quanto mais a nuvem sobe da esquerda para a direita, mais os
-dois métodos concordam sobre quem é eficiente. A faixa verde colada no
-topo é a degeneração das OSS descrita no texto (o modelo paramétrico as
-coloca todas na fronteira); mesmo descontando essa faixa, a
-concordância entre os métodos permanece.}
 
 \textbf{O que fica para a leitura do documento.} A segunda fase não
 altera nenhuma conclusão; ela redistribui os pesos. O \textbf{regime

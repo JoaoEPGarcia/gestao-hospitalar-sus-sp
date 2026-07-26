@@ -45,6 +45,16 @@ efeito causal da gestão OSS está no tempo de permanência}; para a
 mortalidade e a ocupação, os números medem uma associação temporal
 real, mas não um efeito causal limpo.
 
+\comoler{cada ponto é o desvio do hospital convertido em relação ao seu
+próprio padrão, no ano indicado; a haste vertical é a margem de erro e
+o losango escuro marca o ano de referência, imediatamente anterior à
+mudança. À esquerda da linha tracejada o hospital ainda era Direta; à
+direita, já era OSS. Efeito crível pede pontos próximos de zero à
+esquerda e afastamento só à direita: é o que se vê no tempo de
+permanência, mas não na mortalidade, onde os anos anteriores já
+oscilam. Log pontos podem ser lidos, aproximadamente, como variação
+percentual dividida por 100.}
+
 \begin{figure}[H]
 \centering
 \subfig{fig_est_01_evento_mort_all.png}{Mortalidade geral, em pontos
@@ -79,15 +89,9 @@ e ocupação de internação, amostra completa.}
 eixo horizontal, efeito estimado no vertical), agora para o faturamento
 real por saída e a ocupação de internação, ambos em log pontos.}
 
-\comoler{cada ponto é o desvio do hospital convertido em relação ao seu
-próprio padrão, no ano indicado; a haste vertical é a margem de erro e
-o losango escuro marca o ano de referência, imediatamente anterior à
-mudança. À esquerda da linha tracejada o hospital ainda era Direta; à
-direita, já era OSS. Efeito crível pede pontos próximos de zero à
-esquerda e afastamento só à direita: é o que se vê no tempo de
-permanência, mas não na mortalidade, onde os anos anteriores já
-oscilam. Log pontos podem ser lidos, aproximadamente, como variação
-percentual dividida por 100.}
+\comoler{mesma leitura das figuras anteriores. Nesta figura, nenhum ponto
+posterior à conversão se firma longe do zero: a mudança de gestão não
+alterou o perfil de complexidade da produção desses hospitais.}
 
 \begin{figure}[H]
 \centering
@@ -101,10 +105,6 @@ complexidade, em pontos percentuais, amostra completa.}
 complexidade em pontos percentuais no eixo vertical, ao longo dos anos
 desde a conversão no horizontal.}
 
-\comoler{mesma leitura das figuras anteriores. Aqui nenhum ponto
-posterior à conversão se firma longe do zero: a mudança de gestão não
-alterou o perfil de complexidade da produção desses hospitais.}
-
 Como exercício de robustez, o estudo foi refeito na \textbf{região de
 suporte comum} (faixas Barcelona 3 e 4, portes médio e grande), onde
 Direta e OSS convivem em número suficiente. Sorocaba (faixa 5) e
@@ -117,6 +117,10 @@ anteriores é rejeitado em todos os indicadores e a janela posterior se
 apoia em três hospitais, dois deles com um único ano observado após a
 mudança. Esses números confirmam a direção dos achados, sem
 constituir prova independente.
+
+\comoler{mesma leitura do estudo de eventos anterior, agora só com
+hospitais comparáveis entre si. Note que restam menos anos após a
+conversão: dos três conversores presentes, dois mudaram em 2025.}
 
 \begin{figure}[H]
 \centering
@@ -135,6 +139,3 @@ portes médio e grande ---, onde Direta e OSS convivem em número
 suficiente; ficam de fora Sorocaba (faixa 5) e Presidente Prudente
 (faixa 2), restando três conversores.}
 
-\comoler{mesma leitura do estudo de eventos anterior, agora só com
-hospitais comparáveis entre si. Note que restam menos anos após a
-conversão: dos três conversores presentes, dois mudaram em 2025.}

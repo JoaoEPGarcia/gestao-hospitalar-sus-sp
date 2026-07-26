@@ -32,6 +32,14 @@ observações com mortalidade exatamente zero (0,9\%), o molde completo
 para a mortalidade é a \textbf{Beta com um tratamento especial para os
 zeros}.
 
+\comoler{no painel da esquerda, compare as duas curvas com as barras: a
+tracejada passa por cima do vale e erra os dois picos; a escura desenha
+os dois picos. No painel da direita, as curvas tracejadas coloridas são
+os dois grupos de hospitais (baixo óbito à esquerda, demais à direita)
+e a curva preta é a soma dos dois, praticamente idêntica ao histograma:
+a forma estranha da mortalidade é só a mistura de dois perfis de
+hospital.}
+
 \begin{figure}[H]
 \centering
 \subfig{fig_ae_12_mistura_mort_all.png}{Um molde só vs a soma de dois}
@@ -52,14 +60,6 @@ soma de duas Betas foi reconstruída separando de fato os hospitais nos
 dois grupos observados no painel (baixo óbito estrutural e demais), pela
 mortalidade mediana de cada hospital.}
 
-\comoler{no painel da esquerda, compare as duas curvas com as barras: a
-tracejada passa por cima do vale e erra os dois picos; a escura desenha
-os dois picos. No painel da direita, as curvas tracejadas coloridas são
-os dois grupos de hospitais (baixo óbito à esquerda, demais à direita)
-e a curva preta é a soma dos dois, praticamente idêntica ao histograma:
-a forma estranha da mortalidade é só a mistura de dois perfis de
-hospital.}
-
 \subsection{Alta complexidade: o peso dos zeros}
 
 A fração de alta complexidade também é uma proporção, mas com uma
@@ -75,6 +75,12 @@ cai de 80,1\% na faixa 2 de complexidade para zero na faixa 6, e de
 37,5\% nos Filantrópicos para 10,7\% nas OSS. Ou seja, saber a
 complexidade, o porte e a categoria do hospital já diz muito sobre a
 chance de ele estar no grupo do zero.
+
+\comoler{cada barra é a proporção de hospitais ano daquele grupo que
+não realizou nenhuma internação de alta complexidade. A queda das
+barras da esquerda para a direita no painel (b) mostra que o zero é
+questão de perfil e estrutura: quase todos os hospitais de faixa 2
+estão no zero, e nenhum de faixa 6 está.}
 
 \begin{figure}[H]
 \centering
@@ -93,12 +99,6 @@ percentual de observações daquele grupo em que a fração de alta
 complexidade é exatamente zero. Cada barra é, portanto, a parcela de
 hospitais ano do grupo que não realizou nenhuma internação de alta
 complexidade.}
-
-\comoler{cada barra é a proporção de hospitais ano daquele grupo que
-não realizou nenhuma internação de alta complexidade. A queda das
-barras da esquerda para a direita no painel (b) mostra que o zero é
-questão de perfil e estrutura: quase todos os hospitais de faixa 2
-estão no zero, e nenhum de faixa 6 está.}
 
 \subsection{Faturamento e tempo de permanência: valores com cauda
 longa}
@@ -125,6 +125,12 @@ Apêndice~\ref{ap:diagnosticos} (Tabela~\ref{tab:familias}), e confirma
 que faturamento e TMP são bem descritos pelo molde log logístico nessa
 escala.
 
+\comoler{na escala logarítmica, o faturamento (a) vira um morro quase
+simétrico, sinal clássico de que a análise deve ser feita nessa escala.
+No TMP (b), o morro principal fica entre 3 e 7 dias, com uma cauda
+curta à direita e sem o segundo grupo isolado de longa permanência que
+o painel anterior exibia.}
+
 \begin{figure}[H]
 \centering
 \subfig{fig_ae_03_hist_log_custo_saida.png}{Faturamento por saída}
@@ -141,12 +147,6 @@ dias); o eixo vertical segue sendo a densidade das observações. A escala
 log foi escolhida justamente porque esses dois indicadores têm cauda
 longa à direita, que na escala linear comprime a maioria dos hospitais
 num só bloco.}
-
-\comoler{na escala logarítmica, o faturamento (a) vira um morro quase
-simétrico, sinal clássico de que a análise deve ser feita nessa escala.
-No TMP (b), o morro principal fica entre 3 e 7 dias, com uma cauda
-curta à direita e sem o segundo grupo isolado de longa permanência que
-o painel anterior exibia.}
 
 \subsection{Produção: contagens muito mais variáveis que o usual}
 

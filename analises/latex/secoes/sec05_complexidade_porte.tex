@@ -26,6 +26,11 @@ na verdade, de perfil assistencial. E, pela salvaguarda definida na
 Seção~\ref{sec:painel}, a complexidade entra nas análises de
 mortalidade apenas pela versão estrutural do escore.
 
+\comoler{cada barra é a mediana do indicador naquela faixa de
+complexidade, com o valor impresso em cima. Na mortalidade, repare no
+degrau que sobe até a faixa 5 e desce na 6; no TMP, a escada é sempre
+ascendente.}
+
 \begin{figure}[H]
 \centering
 \subfig{fig_ae_05_faixa_mort_all.png}{Mortalidade geral}
@@ -43,10 +48,9 @@ barra. A faixa Barcelona é a métrica de complexidade construída no
 projeto; nas análises de mortalidade usa-se sempre a versão estrutural
 do escore.}
 
-\comoler{cada barra é a mediana do indicador naquela faixa de
-complexidade, com o valor impresso em cima. Na mortalidade, repare no
-degrau que sobe até a faixa 5 e desce na 6; no TMP, a escada é sempre
-ascendente.}
+\comoler{a escada do faturamento é a mais íngreme do documento: da faixa 2
+para a 6, a mediana mais que quintuplica. A alta complexidade parte do
+zero absoluto nas faixas baixas.}
 
 \begin{figure}[H]
 \centering
@@ -62,9 +66,9 @@ faturamento por saída (em reais) e da fração de alta complexidade
 (proporção) no eixo vertical, ao longo das faixas Barcelona no eixo
 horizontal.}
 
-\comoler{a escada do faturamento é a mais íngreme do documento: da faixa 2
-para a 6, a mediana mais que quintuplica. A alta complexidade parte do
-zero absoluto nas faixas baixas.}
+\comoler{quanto mais complexo o hospital, mais cheio ele opera. Na
+UTI, a barra da faixa 2 vale zero porque a maioria daqueles hospitais
+(33 dos 43) não tem UTI.}
 
 \begin{figure}[H]
 \centering
@@ -78,9 +82,9 @@ internação}
 \comofeito{mesma construção, com a mediana das duas taxas de ocupação
 (percentual) no eixo vertical, por faixa Barcelona no eixo horizontal.}
 
-\comoler{quanto mais complexo o hospital, mais cheio ele opera. Na
-UTI, a barra da faixa 2 vale zero porque a maioria daqueles hospitais
-(33 dos 43) não tem UTI.}
+\comoler{mesma leitura das figuras por faixa, agora por porte:
+hospitais maiores seguram o paciente por mais tempo e têm mortalidade
+um pouco maior, coerente com casos mais graves.}
 
 \begin{figure}[H]
 \centering
@@ -97,9 +101,9 @@ horizontal traz o \textbf{porte} do hospital (classificação fixa pela
 mediana de leitos de todos os anos: médio, grande e especial) e o
 vertical, a mediana da mortalidade e do TMP.}
 
-\comoler{mesma leitura das figuras por faixa, agora por porte:
-hospitais maiores seguram o paciente por mais tempo e têm mortalidade
-um pouco maior, coerente com casos mais graves.}
+\comoler{o faturamento mediano dos hospitais especiais é mais de três vezes o
+dos médios, e a alta complexidade se concentra quase toda nos portes
+grande e especial.}
 
 \begin{figure}[H]
 \centering
@@ -114,9 +118,9 @@ por porte.}
 reais) e da fração de alta complexidade (proporção) no eixo vertical, por
 porte no eixo horizontal.}
 
-\comoler{o faturamento mediano dos hospitais especiais é mais de três vezes o
-dos médios, e a alta complexidade se concentra quase toda nos portes
-grande e especial.}
+\comoler{hospitais maiores operam mais cheios, tanto na internação
+quanto na UTI: mais um retrato de que porte e pressão assistencial
+andam juntos.}
 
 \begin{figure}[H]
 \centering
@@ -130,6 +134,3 @@ internação}
 \comofeito{mesma construção, com a mediana das duas taxas de ocupação
 (percentual) no eixo vertical, por porte no eixo horizontal.}
 
-\comoler{hospitais maiores operam mais cheios, tanto na internação
-quanto na UTI: mais um retrato de que porte e pressão assistencial
-andam juntos.}
