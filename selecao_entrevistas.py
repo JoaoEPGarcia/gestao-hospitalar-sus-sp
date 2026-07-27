@@ -25,14 +25,21 @@ Blocos de seleção:
 RESTRIÇÕES HONRADAS: Privado (n=3) fora dos blocos b-e; os 18 CNES de
 longa permanência fora dos blocos b-d; mortalidade sempre acompanhada de
 complexidade_estrutural, nunca de complexidade_pond_mort; diversidade
-geográfica (capital vs interior) como desempate.
+geográfica como desempate, em três estratos por código IBGE (Capital,
+Outras regiões metropolitanas, Interior).
 
 Saídas: analises/tabelas/tab_selecao_entrevistas.csv;
+        analises/tabelas/tab_sel_conversores_trajetoria.csv;
         analises/figuras_selecao_entrevistas/fig_sel_*.png (blocos b-d,
         mesmo estilo das figuras de trajetória dos conversores do
-        relatório, figuras 26-35);
-        analises/latex/roteiro_entrevistas.tex (pdflatex, TeX Live 2023,
-        sem babel e sem lmodern, com as substituições padrão do projeto).
+        relatório, figuras 26-35).
+
+NÃO gera mais o analises/latex/roteiro_entrevistas.tex. Aquele documento
+foi aposentado e movido para analises/latex/arquivo/ (ver o LEIAME de lá):
+o principal.tex é o único documento do projeto, e o conteúdo do roteiro
+vive na Seção 16 e no Apêndice B. A duplicação em arquivo separado foi a
+origem direta da divergência de base do faturamento dos conversores. A
+função gerar_tex permanece no código para consulta, mas não é chamada.
 
 USO: python selecao_entrevistas.py
 """
@@ -87,8 +94,97 @@ CNES_VALIDACAO = {
 }
 
 
-def _capital(municipio: str) -> str:
-    return "capital" if municipio == "Sao Paulo" else "interior"
+# ──────────────────────────────────────────────────────────────────────────────
+# Estrato geográfico, por código IBGE do município (decisão de 27/07/2026)
+#
+# A regra anterior era binária (São Paulo = capital, todo o resto = interior) e
+# rotulava Santos, Cotia e Guarulhos como "interior", o que é visivelmente falso
+# para quem conhece a rede paulista. A classificação passa a ser por código
+# IBGE, em três estratos.
+#
+# A classificação de origem tem quatro estratos — Capital, RMSP, Baixada
+# Santista e Interior —, mas a Baixada Santista reúne apenas 10 hospitais no
+# painel de 289, abaixo do piso de 15 fixado para um estrato de amostragem.
+# Por isso RMSP e Baixada Santista entram juntas como "Outras regiões
+# metropolitanas", deixando os três estratos com 52, 49 e 188 hospitais.
+#
+# O painel guarda o código IBGE de 6 dígitos (padrão DataSUS, sem o dígito
+# verificador). Os códigos abaixo foram conferidos um a um contra o par
+# (cod_ibge, municipio) do próprio painel.
+# ──────────────────────────────────────────────────────────────────────────────
+
+COD_IBGE_CAPITAL = 355030          # São Paulo
+
+# Os 38 demais municípios da Região Metropolitana de São Paulo.
+COD_IBGE_RMSP = frozenset({
+    350390,  # Arujá
+    350570,  # Barueri
+    350660,  # Biritiba-Mirim
+    350900,  # Caieiras
+    350920,  # Cajamar
+    351060,  # Carapicuíba
+    351300,  # Cotia
+    351380,  # Diadema
+    351500,  # Embu das Artes
+    351510,  # Embu-Guaçu
+    351570,  # Ferraz de Vasconcelos
+    351630,  # Francisco Morato
+    351640,  # Franco da Rocha
+    351830,  # Guararema
+    351880,  # Guarulhos
+    352220,  # Itapecerica da Serra
+    352250,  # Itapevi
+    352310,  # Itaquaquecetuba
+    352500,  # Jandira
+    352620,  # Juquitiba
+    352850,  # Mairiporã
+    352940,  # Mauá
+    353060,  # Mogi das Cruzes
+    353440,  # Osasco
+    353910,  # Pirapora do Bom Jesus
+    353980,  # Poá
+    354330,  # Ribeirão Pires
+    354410,  # Rio Grande da Serra
+    354500,  # Salesópolis
+    354680,  # Santa Isabel
+    354730,  # Santana de Parnaíba
+    354780,  # Santo André
+    354870,  # São Bernardo do Campo
+    354880,  # São Caetano do Sul
+    354995,  # São Lourenço da Serra
+    355250,  # Suzano
+    355280,  # Taboão da Serra
+    355635,  # Vargem Grande Paulista
+})
+
+# Os 9 municípios da Região Metropolitana da Baixada Santista.
+COD_IBGE_BAIXADA_SANTISTA = frozenset({
+    350635,  # Bertioga
+    351350,  # Cubatão
+    351870,  # Guarujá
+    352210,  # Itanhaém
+    353110,  # Mongaguá
+    353760,  # Peruíbe
+    354100,  # Praia Grande
+    354850,  # Santos
+    355100,  # São Vicente
+})
+
+GEO_CAPITAL = "Capital"
+GEO_OUTRAS_RM = "Outras regiões metropolitanas"
+GEO_INTERIOR = "Interior"
+
+
+def _estrato_geografico(cod_ibge) -> str:
+    """Estrato geográfico do hospital a partir do código IBGE do município."""
+    if pd.isna(cod_ibge):
+        return GEO_INTERIOR
+    cod = int(cod_ibge)
+    if cod == COD_IBGE_CAPITAL:
+        return GEO_CAPITAL
+    if cod in COD_IBGE_RMSP or cod in COD_IBGE_BAIXADA_SANTISTA:
+        return GEO_OUTRAS_RM
+    return GEO_INTERIOR
 
 
 def _pt(v, nd=1) -> str:
@@ -139,6 +235,7 @@ def preparar_base():
     ok = painel[painel["flag_fragil"] == 0]
     resumo = ok.groupby("cnes").agg(
         municipio=("municipio", lambda s: s.dropna().iloc[-1]),
+        cod_ibge=("cod_ibge", lambda s: s.dropna().iloc[-1]),
         porte_fixo=("porte_fixo", "first"),
         faixa_barcelona=("faixa_barcelona",
                          lambda s: int(s.mode().iloc[0])),
@@ -154,7 +251,7 @@ def preparar_base():
         qtde_med=("qtde", "median"),
     )
     resumo["nome"] = [est.NOMES_CNES.get(c, str(c)) for c in resumo.index]
-    resumo["geografia"] = resumo["municipio"].map(_capital)
+    resumo["geografia"] = resumo["cod_ibge"].map(_estrato_geografico)
 
     # categoria fixa por CNES: modal; conversores marcados à parte
     cat_modal = painel.groupby("cnes")["modelo_gestao_proxy"].agg(
@@ -311,8 +408,10 @@ def _selecionar_extremos(eleg, superior: bool):
         quase = cand[(cand["pct_comb"] - melhor["pct_comb"]).abs()
                      < TOL_EMPATE]
         if len(quase) > 1 and geografias:
-            falta = ("interior" if geografias.count("capital")
-                     >= geografias.count("interior") else "capital")
+            # com três estratos, o desempate favorece o menos representado
+            # entre os já escolhidos que esteja disponível nos quase-empatados
+            disponiveis = list(dict.fromkeys(quase["geografia"]))
+            falta = min(disponiveis, key=geografias.count)
             alt = quase[quase["geografia"] == falta]
             if not alt.empty:
                 melhor = alt.iloc[0]
@@ -1022,7 +1121,11 @@ def main():
     unicos = selecao.drop_duplicates("cnes")
     n_plenas = (unicos["tipo_entrevista"] == "plena").sum()
     n_curtas = (unicos["tipo_entrevista"] == "curta").sum()
-    gerar_tex(selecao, len(unicos), n_plenas, n_curtas)
+    # gerar_tex NÃO é chamada: o roteiro_entrevistas.tex foi aposentado e o
+    # seu conteúdo vive na Seção 16 e no Apêndice B do principal.tex. Regerá-lo
+    # aqui recriaria o documento duplicado no diretório vivo do LaTeX.
+    print("\n  [TEX] roteiro_entrevistas.tex NÃO gerado (documento "
+          "aposentado; conteúdo na Seção 16 e no Apêndice B)")
 
     print("\n" + "=" * 70)
     print("SUMÁRIO DA SELEÇÃO")
