@@ -29,12 +29,18 @@ Não invalida a estratificação — é por isso que complexidade_estrutural
 permanece como covariável dentro do estrato. Ver RESTRICOES_SEGMENTACAO.md
 e tabSEG_05d_composicao_faixa_e3.csv.
 
-NOTA sobre ocupacao_internacao (R1, 27/07/2026): o denominador leitos_sus é
-subdeclarado, com viés diferencial por categoria — 15,5% das observações têm
-ocupação acima de 100%, fisicamente impossível, contra 29,3% no OSS e 3,9%
-na Direta. As descritivas abaixo usam a versão original; a decisão sobre
-como tratar isso está aberta e bloqueia o indicador na Etapa 4. Ver
-diagnostico_ocupacao_internacao.py.
+NOTA sobre ocupacao_internacao (R1, 27/07/2026): 15,5% das observações têm
+ocupação acima de 100%, impossível frente à capacidade cadastrada, com
+incidência diferencial por categoria — 29,3% no OSS contra 3,9% na Direta.
+O DENOMINADOR FOI VALIDADO contra fonte independente (contagem de leitos do
+arquivo Barcelona): não é subdeclaração, e o excesso sobrevive à troca de
+denominador. O que o excesso mede — artefato do numerador ou sobrecarga
+real — está pendente com o Alberto (PENDENCIAS.md §9).
+
+Consequência para esta tabela: o indicador SAI COMO DESCRITIVA TARJADA e
+não entra em modelo na Etapa 4. Os valores abaixo são a versão original e
+não devem ser lidos como taxa de ocupação no sentido usual enquanto a
+pergunta estiver aberta. Ver diagnostico_ocupacao_internacao.py.
 
 Faturamento
 -----------

@@ -8,19 +8,30 @@ das quatro decisões abaixo são do tipo que, se não ficar escrito antes,
 vira racionalização depois.
 
 Estado das etapas: 1, 2, 3 e 3b concluídas e commitadas em `master`. A
-Etapa 4 (reestimação) ainda não começou e sai em branch próprio.
+Etapa 4 (reestimação) foi aprovada em 27/07/2026 com recorte — quatro
+indicadores, sem ocupação de internação — e sai em branch próprio.
 
 ---
 
-## R1 — Ocupação de internação: decisão em aberto, indicador bloqueado
+## R1 — Ocupação de internação: denominador validado, natureza do excesso em aberto
 
-**Status: PENDENTE DE RATIFICAÇÃO DA EQUIPE. Bloqueia a Etapa 4.**
+**Status: FORA DA ESTIMAÇÃO NA ETAPA 4, mantido como descritiva tarjada.
+Pergunta aberta com o Alberto. Ver PENDENCIAS.md §9.**
+
+> **Revisão de 27/07/2026, no mesmo dia da abertura.** Este item foi aberto
+> como "subdeclaração de `leitos_sus`" e **essa hipótese foi refutada** por
+> teste contra fonte independente, algumas horas depois. O registro do
+> diagnóstico refutado fica preservado abaixo, porque o caminho importa: a
+> hipótese motivou uma recomendação de bloquear o indicador, e bloquear com
+> base em diagnóstico refutado seria pior que o problema original.
+
+### O que foi verificado e continua valendo
 
 `ocupacao_internacao = 100 × diarias_internacao / (leitos_sus × 365)`,
 aderência exata verificada nos onze anos. Ocupação acima de 100% é
-fisicamente impossível — mais diárias do que leito-dia disponível — e
-ocorre em **15,5% das observações do painel definitivo**, com incidência
-fortemente diferencial por categoria de gestão:
+fisicamente impossível **frente à capacidade cadastrada** e ocorre em
+**15,5% das observações do painel definitivo**, com incidência fortemente
+diferencial por categoria de gestão:
 
 | categoria | % obs > 100% | média | mediana | máximo |
 |---|---|---|---|---|
@@ -32,18 +43,67 @@ fortemente diferencial por categoria de gestão:
 
 Dentro de E3 o desequilíbrio é maior: **OSS 35,5% contra Direta 2,9%**.
 
-Não é OSS operando mais cheio. É `leitos_sus` subdeclarado frente ao leito
-efetivamente operado, e a subdeclaração é sistematicamente maior em OSS e
-Público Municipal. É a mesma classe de erro corrigida na Etapa 1 para a UTI
-— denominador estrutural mal especificado com viés diferencial por categoria
-— com o sinal invertido: na UTI o artefato **deprimia** o Filantrópico;
-aqui **infla** o OSS.
+### A hipótese de subdeclaração foi REFUTADA
 
-### As três variantes, e por que nenhuma resolve
+A leitura inicial foi que `leitos_sus` estaria subdeclarado frente ao leito
+efetivamente operado, com subdeclaração maior em OSS e Público Municipal —
+a mesma classe de erro corrigida na Etapa 1 para a UTI, com o sinal
+invertido. **Não é isso.**
+
+Teste contra fonte independente de contagem de leitos: a coluna `Leitos` do
+arquivo de classificação Barcelona (`20260303 - Classificação
+Hospitais.xlsx`, do Alberto), que não deriva do SIH. Todos os 289 CNES do
+painel têm correspondência.
+
+| categoria | `leitos_sus` / `Leitos` Barcelona | % > 100% com denominador Barcelona | % > 100% original |
+|---|---|---|---|
+| OSS | 1,00 | 24,4 | 29,3 |
+| Público Municipal | 0,98 | 19,6 | 26,0 |
+| Filantrópico | 1,00 | 9,4 | 11,3 |
+| Direta | 1,00 | 1,8 | 3,9 |
+| Privado | 1,00 | 0,0 | 3,0 |
+
+Três fontes independentes de leito concordam — `leitos_sus`,
+`leitos_internacao` e o cadastro Barcelona dão razão 1,00 nas categorias
+onde o excesso se concentra. E trocando o denominador para a contagem
+Barcelona, **o excesso do OSS sobrevive quase inteiro**: 24,4% contra 1,8%
+da Direta, diferencial ainda mais nítido que o original. Dentro de E3: OSS
+30,1% contra Direta 2,4%.
+
+**O denominador está certo. Não é subdeclaração de leito.**
+
+Limite desta validação, que precisa ficar dito: o arquivo Barcelona é um
+retrato único (março de 2026), enquanto o painel tem onze anos de contagens
+que variam. A concordância observação a observação é de apenas 24% a 40%.
+A validação estabelece que **não há subdeclaração diferencial por categoria
+de gestão** — que é a hipótese que estava em teste — mas não valida a
+contagem de um ano específico.
+
+### O que a refutação implica
+
+Se o denominador está certo, o excesso está no **numerador**
+(`diarias_internacao`) ou é **real**. E "real" aqui tem significado
+substantivo: hospital operando acima da capacidade nominal cadastrada, com
+leito extra, maca em corredor ou leito de observação contabilizado como
+diária. É o que se espera de hospital de porta aberta em região de alta
+demanda.
+
+O teste de persistência abaixo, levantado como agravante, aponta na mesma
+direção: subdeclaração cadastral seria **estável** — leito subdeclarado fica
+subdeclarado. O padrão encontrado é o oposto, e é assinatura de **pico de
+demanda**, não de erro de cadastro.
+
+### As três variantes: nenhuma responde à pergunta que restou
 
 Estão no painel como colunas paralelas (`ocup_int_censura100`,
-`ocup_int_missing100`, `ocup_int_leitos_int`). **Nenhuma foi escolhida.**
-O diagnóstico de cada uma:
+`ocup_int_missing100`, `ocup_int_leitos_int`). **Nenhuma foi escolhida, e
+com a refutação nenhuma deve ser.** As três tratam sintoma: foram desenhadas
+para corrigir um erro de denominador que não existe. Se o excesso for
+sobrecarga real, censurar em 100 ou marcar como missing apagaria justamente
+o achado.
+
+O diagnóstico de cada uma fica registrado porque continua informativo sobre
+a estrutura dos dados:
 
 - **V1 censura em 100.** Preserva o n, mas não move nenhuma mediana — todas
   estão abaixo de 100 — e atua só na cauda. Atenua o viés em média e em
@@ -67,22 +127,42 @@ O diagnóstico de cada uma:
 Gap OSS−Direta em E3 (mediana, descritivo bruto, sem controles):
 V0 27,4 | V1 27,4 | V2 21,1 | V3 28,4.
 
-### O efeito fixo não salva
+### O excesso é episódico
 
-A subdeclaração é **episódica, não traço estável de hospital**: 123 dos 289
-CNES têm ao menos um ano acima de 100%, mas apenas 3 estão acima nos onze
-anos, 57 estão acima em só um ou dois, e a mediana entre os afetados é de 3
-anos. Apenas 19 dos 289 CNES têm `leitos_sus` constante na série.
+**123 dos 289 CNES** têm ao menos um ano acima de 100%, mas apenas **3 estão
+acima nos onze anos**, **57 estão acima em só um ou dois**, e a mediana entre
+os afetados é de **3 anos**. Apenas 19 dos 289 CNES têm `leitos_sus`
+constante na série.
 
-Consequência: o efeito fixo de CNES **não absorve** o artefato. Ele
-contamina também o estimador within, não apenas a comparação entre grupos.
-Esta é a razão pela qual a decisão da equipe é carregada e não pode ser
-substituída por escolha de especificação.
+Por categoria, entre os afetados: OSS 23 CNES com mediana de 4 anos acima,
+Público Municipal 39 com 3, Filantrópico 55 com 2, Direta 5 com 1.
 
-### Enquanto R1 estiver aberta
+Este padrão foi lido primeiro como agravante — o efeito fixo de CNES não
+absorveria um artefato que varia dentro do hospital. Com a refutação da
+subdeclaração, ele vira **evidência a favor da interpretação substantiva**:
+é assinatura de pico de demanda. As duas leituras têm a mesma consequência
+operacional, por caminhos opostos: não se estima sobre o indicador antes de
+saber o que ele mede.
 
-O modelo de ocupação de internação **não roda** na Etapa 4. Os outros cinco
-indicadores não dependem desta decisão e seguem normalmente.
+### Situação na Etapa 4
+
+O modelo de ocupação de internação **fica fora da estimação**, e o indicador
+**não é bloqueado**: sai como descritiva tarjada, com nota de que o
+denominador foi validado contra fonte independente e a interpretação do
+excesso está pendente. Os outros indicadores não dependem disto.
+
+A pergunta que decide não é estatística e não é da equipe de análise —
+é do Alberto, e está em `PENDENCIAS.md` §9:
+
+1. As diárias do SIH incluem permanência em leito extra ou de observação
+   não cadastrado?
+2. O cadastro CNES de leitos SUS exclui leito extra operado?
+
+**Se ambas forem sim, ocupação acima de 100% é medida válida de sobrecarga
+assistencial e vira achado, não bug** — e possivelmente um dos mais
+interessantes do trabalho, porque separa OSS e Público Municipal de Direta e
+Filantrópico numa dimensão de pressão sobre a qual o projeto ainda não disse
+nada.
 
 ---
 
@@ -175,6 +255,29 @@ monotonicamente e o agrupamento destruiria informação.
 Único CNES instável alocado em E3, com 7 dos 11 anos com UTI e `uti_sus`
 variando de 0 a 40 (mediana 20). **Mantido em E3 pela regra da mediana**, com
 sensibilidade que o exclui.
+
+---
+
+## Nota de método — a ordem em que R1 foi levantada
+
+Registrada por decisão de João, 27/07/2026.
+
+R1 foi aberta com uma hipótese — subdeclaração de leito — e uma recomendação
+forte apoiada nela: não aprovar a Etapa 4. A hipótese não sobreviveu ao
+primeiro teste contra fonte independente, feito horas depois. **A checagem
+contra o arquivo do Alberto deveria ter vindo antes da recomendação, não
+depois.**
+
+O que funcionou, e vale como procedimento: o diagnóstico das variantes
+recusou-se a escolher uma e devolveu a decisão à equipe. Foi essa recusa que
+deixou a refutação barata — nenhuma variante tinha sido aplicada ao painel,
+nenhum resultado dependia dela, e reverter custou uma reescrita de registro
+em vez de uma reestimação.
+
+Vale também para R2: a formulação original do mecanismo ("os hospitais de
+complexidade máxima de E3 são todos Direta") estava errada e foi corrigida
+por conferência na tabela de composição. A restrição de citação sobreviveu;
+o motivo dela, não.
 
 ---
 

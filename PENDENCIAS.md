@@ -486,3 +486,59 @@ ocuparem a página). Reduzir a mancha exige revisar as larguras de
 proporcionalmente.
 
 Registrado também no README, seção "Preâmbulo do `principal.tex`".
+
+---
+
+## 9. Ocupação de internação — natureza do excesso acima de 100%
+
+**Aberta em:** 27/07/2026
+**Decisão de:** Alberto
+**Situação:** aberta — mantém o indicador fora da estimação na Etapa 4 da
+segmentação por estratos; não bloqueia os demais indicadores
+
+`ocupacao_internacao = 100 × diarias_internacao / (leitos_sus × 365)`,
+identidade conferida com aderência exata nos onze anos. **15,5% das
+observações do painel definitivo ficam acima de 100%**, o que é impossível
+frente à capacidade cadastrada, com incidência fortemente diferencial por
+categoria de gestão: OSS 29,3%, Público Municipal 26,0%, Filantrópico 11,3%,
+Direta 3,9%, Privado 3,0%. Dentro do estrato E3 o desequilíbrio é maior —
+OSS 35,5% contra Direta 2,9%.
+
+**O denominador foi validado contra três fontes independentes e não é
+subdeclaração.** A hipótese inicial, de que `leitos_sus` estaria subdeclarado
+nas categorias afetadas, foi testada contra a contagem de leitos do arquivo
+de classificação Barcelona (`20260303 - Classificação Hospitais.xlsx`), que
+não deriva do SIH e cobre todos os 289 CNES do painel. A razão
+`leitos_sus`/`Leitos` Barcelona é 1,00 em OSS, Filantrópico, Direta e
+Privado, e 0,98 em Público Municipal. Trocando o denominador para a contagem
+Barcelona, o excesso sobrevive quase inteiro: **OSS 24,4% contra Direta
+1,8%**, diferencial mais nítido que o original.
+
+**O padrão é episódico, incompatível com erro de cadastro.** 123 dos 289
+CNES têm ao menos um ano acima de 100%, mas apenas 3 estão acima nos onze
+anos e 57 em apenas um ou dois; a mediana entre os afetados é de 3 anos.
+Subdeclaração cadastral seria estável — leito subdeclarado fica
+subdeclarado. Este padrão é assinatura de pico de demanda.
+
+Se o denominador está certo, o excesso está no numerador
+(`diarias_internacao`) ou é real, no sentido de hospital operando acima da
+capacidade nominal cadastrada — leito extra, maca em corredor, leito de
+observação contabilizado como diária.
+
+**Perguntas para o Alberto:**
+
+1. As diárias do SIH incluem permanência em leito extra ou de observação não
+   cadastrado?
+2. O cadastro CNES de leitos SUS exclui leito extra operado?
+
+**Se ambas forem sim, o indicador mede sobrecarga assistencial real e é
+citável como achado**, não como bug — e separa OSS e Público Municipal de
+Direta e Filantrópico numa dimensão de pressão que o projeto ainda não
+explorou.
+
+Enquanto a pergunta estiver aberta, o indicador sai como descritiva tarjada,
+com nota sobre a validação do denominador e a interpretação pendente, e não
+entra em modelo. Detalhamento, variantes testadas e o registro do
+diagnóstico refutado ficam em `RESTRICOES_SEGMENTACAO.md`, restrição R1;
+evidência em `analises/tabelas/tabSEG_05b_ocupacao_internacao_acima_100.csv`
+e `tabSEG_05c_variantes_ocupacao_internacao.csv`.
