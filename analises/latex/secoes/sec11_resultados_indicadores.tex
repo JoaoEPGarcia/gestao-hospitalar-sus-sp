@@ -51,6 +51,49 @@ modelo ZOIB não encontra diferença entre OSS e Direta em nenhum dos
 componentes; quem explica essa fração é a complexidade estrutural (nos
 zeros) e o porte (na média), como esperado.
 
+A Tabela~\ref{tab:contrasteoss} traz os mesmos contrastes em número. A
+figura seguinte é a leitura visual dela; quem quiser conferir os valores
+que sustentam cada afirmação desta seção encontra-os aqui.
+
+\begin{table}[H]
+\centering
+\caption{Contraste OSS \emph{versus} Direta nos modelos principais,
+descontados complexidade, porte e ano. O \textbf{coeficiente} está na
+escala interna de cada modelo (logito para a mortalidade e a fração de
+alta complexidade, logaritmo para os demais); o \textbf{erro-padrão} é
+agrupado por hospital; o \textbf{efeito} traduz o coeficiente para
+variação percentual, quando essa tradução faz sentido. Na mortalidade,
+a coluna final traz o efeito marginal médio em pontos percentuais, que
+é a forma interpretável naquele modelo.}
+\label{tab:contrasteoss}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Modelo & Coeficiente & EP agrupado & $z$ & Efeito \\
+\midrule
+Mortalidade (geral)          & $-0{,}2237$ & 0,1311 & $-1{,}71$ & $-1{,}16$ p.p. \\
+Fração alta complexidade     & $-0{,}2044$ & 0,2348 & $-0{,}87$ & --- \\
+Faturamento real por saída   & $-0{,}0866$ & 0,0948 & $-0{,}91$ & $-8{,}3\%$ \\
+Tempo de permanência         & $-0{,}1080$ & 0,0468 & $-2{,}31$ & $-10{,}2\%$ \\
+Produção (saídas)            & $0{,}3629$  & 0,0895 & $4{,}06$  & $+43{,}7\%$ \\
+Ocupação de internação       & $0{,}2044$  & 0,0779 & $2{,}62$  & $+22{,}7\%$ \\
+Ocupação de UTI (intensidade)& $0{,}1769$  & 0,0603 & $2{,}93$  & $+19{,}3\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\comofeito{cada linha é um dos sete modelos principais e as colunas
+trazem o contraste entre a gestão por OSS e a administração Direta.
+\textbf{Coeficiente} é o valor estimado na escala em que cada modelo
+trabalha; \textbf{EP agrupado} é a margem de erro calculada agrupando as
+observações por hospital, reconhecendo que 11 anos do mesmo CNES não são
+11 informações independentes; \textbf{$z$} é o coeficiente dividido pelo
+erro-padrão, e valores acima de 2 em módulo indicam diferença
+estatisticamente firme; \textbf{Efeito} é a tradução para variação
+percentual (ou, na mortalidade, para pontos percentuais). A linha da
+ocupação de UTI já traz a reestimação pela família Gama da
+Seção~\ref{sec:inferenciafinal}.}
+
 \comoler{cada linha é um indicador; o quadrado verde é a melhor
 estimativa do efeito de ser OSS em vez de Direta, e a haste horizontal
 é a margem de erro. Quando a haste cruza a linha vertical do zero, como
