@@ -104,9 +104,9 @@ consistente (Tabela~\ref{tab:familias}): o molde \textbf{log logístico
 logo atrás, e a Gama, molde usado por tradição em análises de custo,
 fica sempre entre as piores. No TMP o ajuste do log logístico é
 praticamente perfeito (r de 0,9974 na Figura~\ref{fig:qqtmpsemlp}),
-porque a consolidação do painel já removeu os hospitais de longa
-permanência que, na versão anterior, criavam um teto de 30,5 dias que
-nenhum molde contínuo reproduzia. Tanto no faturamento (r de 0,9700,
+porque a construção do painel deixou de fora os hospitais de longa
+permanência, que criariam um teto de 30,5 dias que nenhum molde
+contínuo reproduz. Tanto no faturamento (r de 0,9700,
 Figura~\ref{fig:qqcusto}) quanto no TMP (Figura~\ref{fig:qqtmp}) o molde
 log logístico acompanha os dados por quase toda a extensão.
 
@@ -179,16 +179,16 @@ marginais de faturamento e TMP da Seção~\ref{sec:distribuicoes}.
 
 Antes dos gráficos QQ, os dois histogramas em escala logarítmica que
 motivam a escolha. Nessa escala o faturamento vira um morro quase
-simétrico e o TMP se ajusta quase perfeitamente, porque a consolidação
-do painel (ETAPA F) removeu os hospitais de longa permanência que, na
-versão anterior, criavam um teto de 30,5 dias que distorcia a
+simétrico e o TMP se ajusta quase perfeitamente, porque a exclusão dos
+hospitais estruturalmente incomparáveis deixou de fora os de longa
+permanência, que criariam um teto de 30,5 dias e distorceriam a
 distribuição.
 
 \comoler{na escala logarítmica, o faturamento (a) vira um morro quase
 simétrico, sinal clássico de que a análise deve ser feita nessa escala.
 No TMP (b), o morro principal fica entre 3 e 7 dias, com uma cauda
-curta à direita e sem o segundo grupo isolado de longa permanência que
-o painel anterior exibia.}
+curta à direita e sem nenhum segundo grupo isolado de longa
+permanência.}
 
 \begin{figure}[H]
 \centering
@@ -231,10 +231,10 @@ molde descrevesse os dados perfeitamente. Cada painel testa um molde
 
 \comoler{nos dois painéis os pontos acompanham a reta em quase toda a
 extensão e descolam apenas nos pouquíssimos hospitais de permanência
-mais longa. O painel corrente já não contém a subpopulação de longa
-permanência que, na versão anterior desta análise, criava um teto de
-30,5 dias e o característico achatamento no alto: a ETAPA F a removeu, e
-o ajuste do TMP passou a ser quase perfeito.}
+mais longa. O painel não contém a subpopulação de longa permanência,
+que criaria um teto de 30,5 dias e o característico achatamento no
+alto: a exclusão dos hospitais estruturalmente incomparáveis a deixou
+de fora, e o ajuste do TMP é quase perfeito.}
 
 \begin{figure}[H]
 \centering
@@ -249,10 +249,10 @@ horizontal, valores ordenados no vertical, reta de referência), agora
 para o TMP no painel completo, comparando os moldes LogNormal e log
 logístico.}
 
-\comoler{este é o gráfico QQ do TMP no painel atual: os pontos seguem a
-reta e o molde descreve os dados quase perfeitamente. Não há mais o
-achatamento que a versão anterior do painel exibia, porque os hospitais
-de longa permanência que o causavam saíram na consolidação.}
+\comoler{este é o gráfico QQ do TMP: os pontos seguem a
+reta e o molde descreve os dados quase perfeitamente. Não há
+achatamento no alto, porque os hospitais de longa permanência que o
+causariam ficaram de fora na construção do painel.}
 
 \begin{figure}[H]
 \centering
@@ -305,27 +305,27 @@ hospital e de ano, isto é, cada hospital é comparado consigo mesmo ao
 longo do tempo. Comparar os dois isola se o desajuste vem do molde ou da
 mistura de hospitais diferentes.}
 
-\comoler{no painel anterior este par contrastava o desenho em degrau
-(com os hospitais de longa permanência) com a reta quase perfeita (sem
-eles). No painel corrente a ETAPA F já removeu essa subpopulação, então
-as duas versões coincidem e ambas mostram a reta, a confirmação de
-que o desvio era a subpopulação, não o molde.}
+\comoler{este par aplica ao TMP, no gráfico de baixo, o filtro que
+descarta os hospitais de longa permanência. Como o painel já não
+contém nenhum deles, o filtro não retira observação alguma e os dois
+gráficos coincidem: ambos mostram a reta. É a confirmação de que o
+desvio em degrau vinha daquela subpopulação, e não do molde.}
 
 \begin{figure}[H]
 \centering
 \subfig{fig_ae_11_qq_tmp_marginal.png}{TMP: todos os hospitais juntos}
-\subfig{fig_ae_11_qq_tmp_marginal_sem_longa_perm.png}{TMP: sem a antiga
-subpopulação de longa permanência}
-\caption{TMP: gráfico QQ do painel completo e da versão sem a antiga
-subpopulação de longa permanência, no painel corrente as duas
-coincidem, porque a ETAPA F já removeu essa subpopulação.}
+\subfig{fig_ae_11_qq_tmp_marginal_sem_longa_perm.png}{TMP: com o filtro
+de longa permanência aplicado}
+\caption{TMP: gráfico QQ do painel completo e do painel com o filtro de
+longa permanência aplicado. Os dois coincidem, porque o painel não
+contém hospitais de longa permanência para o filtro retirar.}
 \label{fig:qqcondB}
 \end{figure}
 
-\comofeito{mesma construção da figura anterior, para o TMP: o painel de
-cima traz o painel completo e o de baixo, a versão sem a antiga
-subpopulação de longa permanência (no painel atual as duas coincidem,
-pois a ETAPA F já removeu essa subpopulação).}
+\comofeito{mesma construção da figura anterior, para o TMP: o gráfico de
+cima traz o painel completo e o de baixo, o painel com o filtro de
+longa permanência aplicado (os dois coincidem, pois não há hospitais de
+longa permanência no painel).}
 
 \comoler{mesmo padrão do faturamento: a curva em S do gráfico de cima, com
 todos os hospitais misturados, vira uma reta bem comportada quando cada

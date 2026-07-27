@@ -5,14 +5,15 @@ organizacional na prestação de serviço hospitalar da rede SUS do Estado
 de São Paulo. Reúne os códigos, as tabelas, as figuras e os relatórios
 da etapa de Análise Exploratória, construída sobre um painel balanceado
 de **289 hospitais acompanhados de 2015 a 2025 (3.179 observações de
-hospital e ano; pós-ETAPA F de 15/07/2026)**.
+hospital e ano)**.
 
-O painel definitivo corrente é `analises/painel_definitivo.csv` (289
-hospitais × 11 anos = 3.179 observações, pós-ETAPA F de 15/07/2026);
-qualquer arquivo com `317`/`3.487` ou `314`/`3.454` no nome ou no
-conteúdo é **histórico** (estados pré-patch e pré-ETAPA F). A fonte de verdade operacional do
-painel é `analises/LEIAME_painel_definitivo.txt`; o registro da
-verificação pós-patch é `relatorio_verificacao_painel_jul2026.md`.
+O painel definitivo é `analises/painel_definitivo.csv` (289 hospitais ×
+11 anos = 3.179 observações). Aviso operacional para quem for navegar o
+repositório: qualquer arquivo com `317`/`3.487` ou `314`/`3.454` no nome
+ou no conteúdo é **histórico** e não deve ser usado como fonte. A fonte
+de verdade operacional do painel é
+`analises/LEIAME_painel_definitivo.txt`; o registro da verificação de
+integridade é `relatorio_verificacao_painel_jul2026.md`.
 
 ## Equipe
 
@@ -24,9 +25,13 @@ verificação pós-patch é `relatorio_verificacao_painel_jul2026.md`.
 
 * `analise_sih.py`: pipeline de leitura dos arquivos anuais do SIH/SUS
   (streaming dos xlsx) e agregação em painel de hospital e ano.
-* `construir_painel_definitivo.py`: funil documentado de seleção
-  (etapas A, B, C1, C2, D, E e F) que gera o painel analítico
-  `analises/painel_definitivo.csv`.
+* `construir_painel_definitivo.py`: funil documentado de seleção que gera
+  o painel analítico `analises/painel_definitivo.csv`. As sete exclusões,
+  na ordem em que o script as aplica: tipo de estabelecimento; porte
+  mínimo; hospitais de campanha da COVID; remoção dos procedimentos
+  COVID dos hospitais que ficam; balanceamento do painel; ausência de
+  classificação Barcelona; e populações estruturalmente incomparáveis
+  com o hospital geral agudo.
 * `analise_exploratoria.py`: script da Análise Exploratória; gera as 94
   figuras de `analises/figuras_analise_exploratoria` e as tabelas
   `tab_ae_*` de `analises/tabelas`.
@@ -43,8 +48,8 @@ verificação pós-patch é `relatorio_verificacao_painel_jul2026.md`.
   `fase2_*.R`), com `RELATORIO_EXECUCAO.md` documentando ambiente e ordem.
 * `analises/LEIAME_painel_definitivo.txt`: fonte de verdade operacional
   do painel (definição das colunas e das decisões da equipe).
-* `relatorio_verificacao_painel_jul2026.md`: registro da verificação
-  pós-patch (CHANGE 1 e CHANGE 2; 317→314 e 3.487→3.454).
+* `relatorio_verificacao_painel_jul2026.md`: registro da verificação de
+  integridade do painel.
 * `criterios_construcao_painel.md`: critérios metodológicos do funil de
   seleção do painel.
 

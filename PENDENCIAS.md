@@ -112,7 +112,8 @@ no par mais forte contra 0,77 na figura. Corrigido no commit `9872eb8`.
 
 **Por que isso indica risco sistêmico.** A rodada de reconciliação de
 julho/2026 (314 → 289 CNES) foi desenhada em torno dos números que já se
-*sabia* estarem desatualizados pela ETAPA F. Um erro que nunca dependeu da
+*sabia* estarem desatualizados pela exclusão dos hospitais estruturalmente
+incomparáveis. Um erro que nunca dependeu da
 mudança de painel — como o do sec08 — passaria batido por construção. O sec08
 é evidência de que outras seções podem ter escapado pelo mesmo motivo.
 
@@ -178,7 +179,8 @@ A Camada 1 da varredura (item 1) testou 520 dos 1.209 tokens numéricos das 18
 seções. Ficaram **sem qualquer verificação** 412 inteiros, 188 anos e 89
 códigos CNES — e entre os inteiros estão as afirmações de contagem: 289 CNES,
 3.179 observações, os N por categoria (171 Filantrópicos, 56 Municipais, 37
-OSS, 27 Direta, 3 Privados), os 25 excluídos pela ETAPA F, os 5 conversores.
+OSS, 27 Direta, 3 Privados), os 25 excluídos por incomparabilidade
+estrutural, os 5 conversores.
 
 **Por que escaparam.** A triagem testa pertinência contra os CSVs de
 `analises/tabelas/`, e contagens não existem ali como valores: são contagens
