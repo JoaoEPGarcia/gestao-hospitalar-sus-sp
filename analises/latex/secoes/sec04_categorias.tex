@@ -83,22 +83,23 @@ cima.}
 \begin{figure}[H]
 \centering
 \subfig{fig_ae_04_violino_mort_all.png}{Mortalidade geral}
-\subfig{fig_ae_04_violino_tmp.png}{TMP (escala log)}
+\subfig{fig_ae_04_violino_tmp.png}{TMP (escala linear, teto de 35 dias)}
 \caption{Distribuição da mortalidade e do TMP por categoria de gestão.
 Cada violino é a silhueta da distribuição do grupo; o número impresso é
-a mediana. A \emph{largura} do violino é uma densidade: ela mostra onde
-os hospitais daquela categoria se concentram, e não quantos por cento
-deles estão em cada altura. Violinos de categorias diferentes têm
-larguras comparáveis entre si, mas a largura não se lê como quantidade
-de hospitais, para isso, veja as contagens na
-Figura~\ref{fig:composicao}.}
+a mediana. Leia a \emph{largura} assim: onde o violino é mais gordo,
+\textbf{mais hospitais daquela categoria têm aquele valor}. A largura
+não é percentual nem contagem, e por isso não se compara a espessura de
+um violino com a de outro para dizer qual categoria tem mais hospitais;
+todos os violinos são desenhados com a mesma largura máxima,
+independentemente do tamanho do grupo. Para o número de hospitais de
+cada categoria, veja a Figura~\ref{fig:composicao}.}
 \label{fig:violA}
 \end{figure}
 
 \comofeito{gráfico de violino, um por categoria de gestão. O eixo
 horizontal traz as cinco categorias institucionais e o vertical, o valor
-do indicador (mortalidade em proporção; TMP em dias, aqui em escala
-logarítmica pela cauda longa). Cada violino é a silhueta da distribuição
+do indicador (mortalidade em proporção; TMP em dias, em escala linear
+com teto de 35 dias). Cada violino é a silhueta da distribuição
 daquela categoria (engorda onde há mais hospitais), as linhas internas
 marcam os quartis e o número impresso é a mediana do grupo. Cada
 observação hospital-ano entra na categoria vigente naquele ano, como na

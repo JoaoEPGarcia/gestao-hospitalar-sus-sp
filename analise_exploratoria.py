@@ -144,6 +144,35 @@ plt.rcParams.update({
 })
 
 
+# Item 5 (27/07/2026): nenhuma figura deste documento imprime "Densidade" no
+# eixo vertical. O público inclui gestores não estatísticos, que leem
+# densidade como percentual — e ela não é percentual nem contagem. Todos os
+# histogramas passam a contar observações de hospital e ano.
+ROT_CONTAGEM = "Hospitais-ano"
+
+
+def _rotular_mediana(ax, valor, *, dx=6, fmt=None):
+    """Escreve o valor da mediana ao lado da sua linha vertical.
+
+    A linha sozinha não diz quanto vale; o gestor precisa ler o número sem
+    ter de cruzar com o eixo horizontal.
+    """
+    txt = fmt if fmt is not None else _fmt_val(valor)
+    ax.annotate(f"mediana {txt}", (valor, 1), xycoords=("data", "axes fraction"),
+                textcoords="offset points", xytext=(dx, -12),
+                fontsize=10, color=COR_EVENTO, fontweight="bold")
+
+
+def _escala_contagem(pdf_vals, n, largura_bin):
+    """Converte uma densidade ajustada para a escala de contagem do histograma.
+
+    Uma densidade integra 1; multiplicá-la por n e pela largura do bin põe a
+    curva na mesma altura das barras, de modo que o eixo continue sendo
+    contagem de hospitais-ano e a curva ainda possa ser comparada aos dados.
+    """
+    return np.asarray(pdf_vals) * n * largura_bin
+
+
 def _salvar(fig, nome: str):
     """Salva figura na pasta exclusiva da análise exploratória e fecha."""
     caminho = PASTA_FIG_AE / nome
@@ -242,28 +271,22 @@ def univariada(painel: pd.DataFrame):
     for c in IND7_FIG:
         x = painel[c].dropna()
         fig, ax = plt.subplots(figsize=(7, 4.5))
-        ax.hist(x, bins=60, density=True, color=COR_SERIE,
-                edgecolor="white", lw=.3)
-        if x.nunique() > 10:
-            kde = stats.gaussian_kde(x)
-            grade = np.linspace(x.min(), x.max(), 300)
-            dens = kde(grade)
-            ax.plot(grade, dens, color=COR_APOIO, lw=1.4)
-            i_pico = int(np.argmax(dens))
-            ax.annotate(f"pico {_fmt_val(grade[i_pico])}",
-                        (grade[i_pico], dens[i_pico]),
-                        textcoords="offset points", xytext=(8, 3),
-                        fontsize=10, color=COR_APOIO)
+        # Item 5 (27/07/2026): o eixo vertical é CONTAGEM de hospitais-ano.
+        # A densidade era lida como percentual pelo público gestor, que não
+        # é estatístico. A curva KDE saiu junto: ela vive na escala de
+        # densidade e não tem leitura direta em contagem.
+        ax.hist(x, bins=60, color=COR_SERIE, edgecolor="white", lw=.3)
         med_v, media_v = x.median(), x.mean()
-        ax.axvline(med_v, color=COR_EVENTO, lw=1, ls="dashed")
+        ax.axvline(med_v, color=COR_EVENTO, lw=1.4, ls="dashed")
         ax.axvline(media_v, color=COR_APOIO, lw=1, ls="dotted")
+        _rotular_mediana(ax, med_v)
         if c in OCUPACOES:
             ax.axvline(100, color=COR_EVENTO, lw=1, ls=":")
         ax.annotate(f"máx {_fmt_val(x.max())}", (x.max(), 0),
                     textcoords="offset points", xytext=(-4, 8),
                     ha="right", fontsize=10, color="#52514e")
+        # a mediana já vem rotulada na própria linha vertical
         linhas_nota = [
-            (f"mediana {_fmt_val(med_v)} (tracejada)", COR_EVENTO),
             (f"média {_fmt_val(media_v)} (pontilhada)", COR_APOIO),
         ]
         frac_zero = (x == 0).mean()
@@ -277,7 +300,7 @@ def univariada(painel: pd.DataFrame):
                     ha="right", va="top", fontsize=10.5, color=cor)
         ax.set_title(f"{ROT[c]}: distribuição "
                      f"(289 hospitais, 2015 a 2025)")
-        ax.set_ylabel("Densidade")
+        ax.set_ylabel(ROT_CONTAGEM)
         fig.tight_layout()
         _salvar(fig, f"fig_ae_01_hist_{c}.png")
 
@@ -305,11 +328,21 @@ def distribucional_taxas(painel: pd.DataFrame):
         # comparação informativa (Beta única vs mistura) está na fig_ae_12
         if c == "pct_alta_complex":
             fig, ax = plt.subplots(figsize=(7, 4.5))
-            ax.hist(interior, bins=60, density=True, color=COR_SERIE,
-                    edgecolor="white", lw=.3, label="dados em (0, 1)")
+            cont, bordas, _ = ax.hist(interior, bins=60, color=COR_SERIE,
+                                      edgecolor="white", lw=.3,
+                                      label="dados em (0, 1)")
+            larg = bordas[1] - bordas[0]
             grade = np.linspace(interior.min(), interior.quantile(.999), 400)
-            ax.plot(grade, stats.beta.pdf(grade, a, b), color=COR_APOIO,
+            # a Beta é uma densidade: reescalada para a altura das barras,
+            # para o eixo continuar sendo contagem de hospitais-ano
+            ax.plot(grade,
+                    _escala_contagem(stats.beta.pdf(grade, a, b),
+                                     len(interior), larg),
+                    color=COR_APOIO,
                     lw=1.6, label=f"Beta({a:.2f}, {b:.1f})")
+            med_int = interior.median()
+            ax.axvline(med_int, color=COR_EVENTO, lw=1.4, ls="dashed")
+            _rotular_mediana(ax, med_int, fmt=f"{med_int:.3f}")
             ax.set_yscale("log")
             for txt, i in [(f"mediana do interior "
                             f"{interior.median():.3f}", 0),
@@ -318,9 +351,9 @@ def distribucional_taxas(painel: pd.DataFrame):
                            (f"zeros: {p0:.1%}   uns: {p1:.2%}", 2)]:
                 ax.text(.97, .95 - .07 * i, txt, transform=ax.transAxes,
                         ha="right", va="top", fontsize=10.5, color="#52514e")
-            ax.set_title(f"{ROT[c]}: ajuste Beta no interior, densidade "
+            ax.set_title(f"{ROT[c]}: ajuste Beta no interior, contagem "
                          f"em escala log", fontsize=11.5)
-            ax.set_ylabel("Densidade (escala log)")
+            ax.set_ylabel(f"{ROT_CONTAGEM} (escala log)")
             ax.legend(fontsize=10.5, loc="lower left")
             fig.tight_layout()
             _salvar(fig, f"fig_ae_02_beta_{c}.png")
@@ -407,26 +440,37 @@ def distribucional_mistura_mortalidade(painel: pd.DataFrame):
     for c in ["mort_all", "mort_sem_excl"]:
         x, (a, b), par = ajustes[c]
         fig, ax = plt.subplots(figsize=(7, 4.5))
-        ax.hist(x, bins=60, density=True, color=COR_SERIE,
-                edgecolor="white", lw=.3, label="dados em (0, 1)")
+        cont, bordas, _ = ax.hist(x, bins=60, color=COR_SERIE,
+                                  edgecolor="white", lw=.3,
+                                  label="dados em (0, 1)")
+        larg = bordas[1] - bordas[0]
         grade = np.linspace(1e-4, np.quantile(x, .999), 400)
-        ax.plot(grade, stats.beta.pdf(grade, a, b), color=COR_MUTED,
+        # as duas curvas são densidades, reescaladas para a altura das barras
+        ax.plot(grade,
+                _escala_contagem(stats.beta.pdf(grade, a, b), len(x), larg),
+                color=COR_MUTED,
                 lw=1.3, ls="dashed", label=f"Beta única ({a:.2f}, {b:.1f})")
         mist = (par["w"] * stats.beta.pdf(grade, par["a1"], par["b1"])
                 + (1 - par["w"]) * stats.beta.pdf(grade, par["a2"],
                                                   par["b2"]))
-        ax.plot(grade, mist, color=COR_APOIO, lw=1.9,
+        ax.plot(grade, _escala_contagem(mist, len(x), larg),
+                color=COR_APOIO, lw=1.9,
                 label=f"mistura de 2 Betas (w={par['w']:.2f})")
+        med_x = float(np.median(x))
+        ax.axvline(med_x, color=COR_EVENTO, lw=1.4, ls="dashed")
+        _rotular_mediana(ax, med_x, fmt=f"{med_x:.4f}")
         ax.set_title(f"{rotulos_pan[c]}: Beta única vs mistura de 2 Betas")
-        ax.set_ylabel("Densidade")
+        ax.set_ylabel(ROT_CONTAGEM)
         ax.legend(fontsize=10.5)
         fig.tight_layout()
         _salvar(fig, f"fig_ae_12_mistura_{c}.png")
 
     fig, ax = plt.subplots(figsize=(7, 4.5))
     x_all = ajustes["mort_all"][0]
-    ax.hist(x_all, bins=60, density=True, color=COR_SERIE,
-            edgecolor="white", lw=.3, label="dados em (0, 1)")
+    cont, bordas, _ = ax.hist(x_all, bins=60, color=COR_SERIE,
+                              edgecolor="white", lw=.3,
+                              label="dados em (0, 1)")
+    larg = bordas[1] - bordas[0]
     grade = np.linspace(1e-4, np.quantile(x_all, .999), 400)
     n_tot = len(x_all)
     soma = np.zeros_like(grade)
@@ -435,13 +479,18 @@ def distribucional_mistura_mortalidade(painel: pd.DataFrame):
         peso = len(xg) / n_tot
         comp = peso * stats.beta.pdf(grade, ag, bg)
         soma += comp
-        ax.plot(grade, comp, color=cores_g[nome], lw=1.6, ls="dashed",
+        ax.plot(grade, _escala_contagem(comp, n_tot, larg),
+                color=cores_g[nome], lw=1.6, ls="dashed",
                 label=f"{nome} ({len(xg)} obs, média "
                       f"{ag / (ag + bg):.3f})")
-    ax.plot(grade, soma, color="#0b0b0b", lw=1.9, label="soma dos grupos")
+    ax.plot(grade, _escala_contagem(soma, n_tot, larg),
+            color="#0b0b0b", lw=1.9, label="soma dos grupos")
+    med_all = float(np.median(x_all))
+    ax.axvline(med_all, color=COR_EVENTO, lw=1.4, ls="dashed")
+    _rotular_mediana(ax, med_all, fmt=f"{med_all:.4f}")
     ax.set_title(f"Mortalidade geral: decomposição observável "
                  f"({len(baixo)} CNES de baixo óbito)")
-    ax.set_ylabel("Densidade")
+    ax.set_ylabel(ROT_CONTAGEM)
     ax.legend(fontsize=10.5)
     fig.tight_layout()
     _salvar(fig, "fig_ae_12_decomposicao_mort_all.png")
@@ -526,21 +575,24 @@ def distribucional_continuas(painel: pd.DataFrame):
             # Nome do arquivo (hist_log) mantido por estabilidade das
             # referências no LaTeX; renomeação avaliada na Etapa 4.
             bins = np.linspace(0, 35, 60)
-            ax.hist(x, bins=bins, density=True, color=COR_SERIE,
+            ax.hist(x, bins=bins, color=COR_SERIE,
                     edgecolor="white", lw=.3)
             ax.set_xlim(0, 35)
             ax.set_title(f"{ROT[var]}: distribuição em escala linear "
                          f"(teto fixo do eixo em 35 dias)", fontsize=11.5)
         else:
             bins = np.logspace(np.log10(x.min()), np.log10(x.max()), 60)
-            ax.hist(x, bins=bins, density=True, color=COR_SERIE,
+            ax.hist(x, bins=bins, color=COR_SERIE,
                     edgecolor="white", lw=.3)
             ax.set_xscale("log")
             ax.xaxis.set_major_formatter(
                 FuncFormatter(lambda v, _p: _fmt_val(v)))
             ax.set_title(f"{ROT[var]}: distribuição em eixo logarítmico "
-                         f"(valores reais nos rótulos)", fontsize=11.5)
-        ax.set_ylabel("Densidade")
+                         f"(rótulos na unidade original)", fontsize=11.5)
+        med_v = float(np.median(x))
+        ax.axvline(med_v, color=COR_EVENTO, lw=1.4, ls="dashed")
+        _rotular_mediana(ax, med_v)
+        ax.set_ylabel(ROT_CONTAGEM)
         fig.tight_layout()
         _salvar(fig, f"fig_ae_03_hist_log_{var}.png")
         for slug in ["lognormal", "fisk"]:
@@ -703,7 +755,9 @@ def por_categoria(painel: pd.DataFrame):
                        hue=col, palette=CORES_CAT_CLARAS, legend=False,
                        cut=0, inner="quartile", linewidth=.8,
                        density_norm="width", ax=ax)
-        if c == "custo_saida":
+        if c in ("custo_saida", "custo_real"):
+            # sem a escala log, o Privado (mediana 16.262) achata as quatro
+            # categorias públicas e filantrópicas em fatias ilegíveis
             ax.set_yscale("log")
         elif c == "tmp":
             # Decisão 13-14/07/2026 (item 1.4): TMP linear, teto fixo 35 dias.
