@@ -86,8 +86,10 @@ vale a regra usual, com a média acima da mediana; nas duas ocupações a
 média também fica abaixo da mediana, pelo peso dos valores baixos e,
 na UTI, dos zeros.
 
-\comoler{cada barra mostra quantas observações caem naquele valor do
-indicador. Na mortalidade, note as duas corcovas: a da esquerda, perto
+\comoler{a altura de cada barra mostra onde os hospitais se concentram
+--- barra mais alta, mais hospitais naquele trecho ---, e não o
+percentual deles: o eixo vertical está em densidade, escala técnica
+explicada na legenda. Na mortalidade, note as duas corcovas: a da esquerda, perto
 de zero, são as maternidades e especializados; a principal fica perto
 de 5,5\%. No TMP, quase todos os hospitais estão entre 3 e 7 dias, com uma cauda
 curta que se estende até cerca de 25 dias, sem o grupo isolado de longa
@@ -100,7 +102,12 @@ permanência que o painel anterior mostrava.}
 \caption{Distribuição da mortalidade geral e do tempo médio de
 permanência (289 hospitais, 2015 a 2025). Em cada gráfico, a linha
 tracejada vertical é a mediana, a pontilhada é a média e os valores de
-pico e máximo estão anotados.}
+pico e máximo estão anotados. \textbf{Atenção ao eixo vertical:} ele
+está rotulado "Densidade" e \textbf{não é percentual de hospitais}. A
+altura de cada barra indica onde os hospitais se concentram, não quantos
+por cento estão ali. Para a leitura em número de hospitais, use a
+mediana e os percentis da Tabela~\ref{tab:univariada}: metade dos
+hospitais tem mortalidade entre 3,7\% e 7,1\%.}
 \label{fig:univA}
 \end{figure}
 
@@ -108,10 +115,12 @@ pico e máximo estão anotados.}
 observações do painel (cada observação é um hospital em um ano). O eixo
 horizontal traz o valor do indicador --- mortalidade geral como
 proporção de internações que terminam em óbito (já excluídas as
-internações por COVID) e TMP em dias --- e o eixo vertical acompanha a
-quantidade de observações em cada faixa de valor: quanto mais alta a
-barra, mais hospitais-ano caem naquele trecho.
-A linha tracejada vertical marca a mediana e a pontilhada, a média.}
+internações por COVID) e TMP em dias. O eixo vertical traz a
+\textbf{densidade}, uma escala técnica em que a área total das barras
+soma 1: barra mais alta significa \emph{mais hospitais concentrados
+naquele trecho}, mas o número lido no eixo não é contagem nem
+percentual. A linha tracejada vertical marca a mediana e a pontilhada, a
+média.}
 
 \comoler{no faturamento, a concentração fica perto de R\$~1.000 e a cauda se
 estica até quase R\$~28.000, o que explica a média (pontilhada) ficar
@@ -124,7 +133,10 @@ internação desse tipo.}
 \subfig{fig_ae_01_hist_custo_saida.png}{Faturamento por saída}
 \subfig{fig_ae_01_hist_pct_alta_complex.png}{Fração alta complexidade}
 \caption{Distribuição do faturamento por saída (valores correntes) e da
-fração de alta complexidade.}
+fração de alta complexidade. Como na figura anterior, o eixo vertical é
+uma \textbf{densidade} e não um percentual de hospitais: ele mostra onde
+os casos se concentram. Metade dos hospitais fatura entre R\$~703 e
+R\$~1.583 por saída.}
 \label{fig:univB}
 \end{figure}
 
@@ -132,8 +144,9 @@ fração de alta complexidade.}
 faturamento por saída em reais correntes (valor pago por internação
 encerrada, nos reais do próprio ano) e a
 fração de alta complexidade (proporção das internações classificadas
-como de alta complexidade, entre 0 e 1); no eixo vertical, a quantidade
-das mesmas 3.179 observações em cada faixa.}
+como de alta complexidade, entre 0 e 1); no eixo vertical, a densidade
+das mesmas 3.179 observações, na mesma escala técnica da figura
+anterior.}
 
 \comoler{a linha pontilhada vertical marca 100\%: tudo à direita dela é
 operação acima da capacidade cadastrada. Na internação, isso ocorre em
@@ -146,13 +159,15 @@ examinado na Seção~\ref{sec:qualidade}.}
 \subfig{fig_ae_01_hist_ocupacao_internacao.png}{Ocupação de internação}
 \subfig{fig_ae_01_hist_ocupacao_uti.png}{Ocupação de UTI}
 \caption{Distribuição das taxas de ocupação de internação e de UTI, em
-escala percentual.}
+escala percentual. O eixo \emph{horizontal} está em percentual de
+ocupação; o \emph{vertical} é uma \textbf{densidade}, não um percentual
+de hospitais.}
 \label{fig:univC}
 \end{figure}
 
 \comofeito{histogramas das duas taxas de ocupação em escala percentual:
-eixo horizontal em \%, eixo vertical na quantidade de observações por
-faixa, sobre as 3.179 observações. A ocupação é calculada como diárias sobre a capacidade
+eixo horizontal em \%, eixo vertical em densidade, sobre as 3.179
+observações. A ocupação é calculada como diárias sobre a capacidade
 cadastrada de leitos SUS; a linha vertical em 100\% separa a operação
 dentro da capacidade cadastrada (à esquerda) da sobrecarga (à direita).}
 

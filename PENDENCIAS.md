@@ -305,3 +305,60 @@ responsável pelo estudo. **Não foram verificadas de forma independente
 durante a redação**, e as notas de rodapé da Subseção 7.1 atribuem cada
 afirmação à sua fonte. Convém uma checagem antes de qualquer publicação
 externa.
+
+---
+
+## 7. Eixo "Densidade" nos histogramas — ajuste de código
+
+**Aberta em:** 27/07/2026
+**Decisão de:** João
+**Situação:** legendas corrigidas; conversão do código depende de Python
+
+Uma leitora não-estatística lê o eixo "Densidade" como percentual, e ele
+não é. O inventário de 27/07/2026 separou as figuras em duas listas.
+
+### Lista 1 — conversíveis para contagem (8 figuras)
+
+`fig_ae_01_hist_*` (mortalidade, TMP, faturamento, alta complexidade,
+ocupação de internação, ocupação de UTI — Seção 2) e
+`fig_ae_03_hist_log_*` (faturamento e TMP — hoje no Apêndice A).
+
+**O ajuste não é só trocar o rótulo.** `analise_exploratoria.py:238` usa
+`density=True` **porque sobrepõe uma curva KDE** (linhas 241–243). Passar
+para contagem exige uma de duas decisões:
+
+1. remover a curva KDE e usar `density=False` com o eixo em
+   "hospitais-ano"; ou
+2. manter a curva e reescalá-la pela largura do *bin* e pelo N, para que
+   ela continue acompanhando um histograma de contagem.
+
+A opção 1 é mais simples e mais legível para o público-alvo; a opção 2
+preserva a leitura de forma da distribuição. **Decidir antes de
+executar.**
+
+### Lista 2 — não conversíveis (permanecem em densidade)
+
+`fig_ae_12_mistura_mort_all` e `fig_ae_12_decomposicao_mort_all`
+(curvas Beta sobrepostas), `fig_ae_02_beta_pct_alta_complex` (idem), os
+seis `fig_ae_04_violino_*`, e `figE01_violino_te_categoria` e
+`figS01_te_categoria`. São densidade por definição. As três primeiras
+migraram para o Apêndice A no item C de 27/07/2026; os violinos ficaram
+no corpo, com a legenda explicando que a largura mostra concentração e
+não percentual.
+
+As `figB01_ppcheck_*` **não estão no documento** — existem em
+`resultados_fase2/figuras/` e nunca foram referenciadas. Não há o que
+migrar.
+
+### Erro de classe 2 que motivou a revisão
+
+O commit `073b07e` ("Substitui 'densidade' por quantidade de observações
+nos eixos dos histogramas") alterou **apenas a prosa do `.tex`**. O eixo
+Y dos PNGs continua escrito "Densidade" — conferido abrindo
+`fig_ae_01_hist_mort_all.png`. Ou seja, a correção criou a contradição
+texto ↔ figura que pretendia remover, e ela ficou no documento de 25/07
+a 27/07/2026. Enquanto o código não for ajustado, o texto e as legendas
+passam a dizer "densidade", que é o que a figura de fato mostra.
+
+**Lição para a triagem:** correção de eixo de figura exige alterar o
+script e regerar o PNG. Alterar só o `.tex` cria erro de classe 2.
