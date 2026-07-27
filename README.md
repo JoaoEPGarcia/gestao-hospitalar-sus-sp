@@ -92,10 +92,15 @@ Análise Exploratória é reproduzível diretamente a partir do painel.
 ## Decisões registradas
 
 O IPCA usado na correção monetária é a variação de dezembro a dezembro
-do IBGE, com 2025 fechado em 4,26%. O porte hospitalar usa
-classificação fixa pela mediana de leitos (cortes oficiais 50, 150 e
-500). As análises que envolvem mortalidade usam somente a versão
-estrutural do escore de complexidade (salvaguarda de circularidade). O
+do IBGE, com 2025 fechado em 4,26%. **Todo valor monetário impresso no
+documento declara a sua base** — corrente ou real (R$ de dez/2025) —, e
+o relatório de estimação usa exclusivamente valores reais. O porte
+hospitalar usa classificação fixa pela mediana de leitos (cortes
+oficiais 50, 150 e 500). **Todas** as análises usam a versão estrutural
+do escore de complexidade; a versão ponderada pela mortalidade
+(`complexidade_pond_mort`) permanece no `painel_definitivo.csv` mas não
+aparece em nenhuma tabela, figura ou parágrafo do relatório (correlação
+de ordem de 0,926 entre as duas). O
 modelo de gestão é definido pela variável `modelo_gestao_proxy` (a
 partir da classificação assistencial do SIH), adotada como **definição
 do projeto** — não mais um proxy provisório: PPP e Autarquia não são
@@ -103,3 +108,16 @@ desmembrados e "Público Municipal" entra como dummy única. A categoria
 Privado tem 3 CNES — inclui o HU-UFSCar (hospital público federal da
 Ebserh, agrupado por conveniência estatística, n=3) — e não admite
 leitura de efeito médio.
+
+**Documento único (27/07/2026).** O `analises/latex/principal.tex` é o
+**único** documento do projeto. O antigo `roteiro_entrevistas.tex`, que
+duplicava em arquivo separado a seleção de entrevistados e o roteiro da
+fase qualitativa, foi movido para `analises/latex/arquivo/` e não deve
+ser compilado nem distribuído: seu conteúdo vive na Seção 16 e no
+Apêndice B do `principal.tex`. A duplicação foi a origem direta da
+divergência de base do faturamento dos conversores (o mesmo hospital
+aparecia com +19,3% num arquivo e −12,2% no outro, por lerem colunas
+diferentes da base sem declarar qual). Se a fase qualitativa precisar de
+um documento próprio, gere um extrato novo a partir do `principal.tex`
+— não recupere o arquivo aposentado. Ver
+`analises/latex/arquivo/LEIAME.md`.

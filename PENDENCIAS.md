@@ -7,6 +7,75 @@ de abertura, a evidência que o motivou e de quem é a decisão.
 
 ---
 
+## 0. As cinco classes de erro e as duas regras de triagem
+
+**Consolidado em:** 27/07/2026
+
+A triagem padrão de consistência do documento deve testar **cinco**
+classes. As três primeiras eram conhecidas; a quarta e a quinta foram
+descobertas nas auditorias de 26 e 27/07/2026 e nenhuma das anteriores
+as capturava.
+
+| # | Classe | O que o teste compara | Como se detecta |
+|---|---|---|---|
+| 1 | Texto discorda da própria tabela-fonte | valor impresso × CSV | pertinência do token contra o CSV |
+| 2 | Texto discorda da figura da mesma página | valor impresso × PNG | leitura do PNG, não só do CSV |
+| 3 | Contagens inteiras não verificáveis em CSV | N citado × `COUNT` no painel | contagem própria no painel |
+| **4** | **Texto discorda de OUTRA SEÇÃO** | seção × seção | **consistência cruzada** |
+| **5** | **Fonte tem mais linhas do que o texto reporta** | nº de linhas × nº de resultados citados | **completude fonte × texto** |
+
+**Classe 4 — texto discorda de outra seção.** Descoberta em 26/07/2026.
+Nenhum dos dois lados discorda da sua própria fonte; eles discordam
+entre si, em geral porque uma correção foi aplicada num lugar e não
+propagada, ou porque duas seções leem colunas diferentes da mesma base.
+Casos encontrados: a Seção 10 citava a faixa de variação *within* de
+"2% a 35%" quando a Seção 8 já trazia 4,5% a 38,2% (resíduo do commit
+`9872eb8`); a Seção 7 e a Seção 16 imprimiam o faturamento dos mesmos
+conversores em bases diferentes, com inversão de sinal em Sorocaba.
+**Instrumento de defesa:** `analises/NUMEROS_CANONICOS.md`, que lista
+todo valor que aparece em mais de uma seção.
+
+**Classe 5 — reporte parcial da tabela-fonte.** Descoberta em
+27/07/2026. A tabela-fonte contém mais resultados do que o texto
+apresenta, e as linhas omitidas apontam sistematicamente na mesma
+direção — em geral a que enfraquece o argumento. Casos encontrados:
+`tab_est_sintetico.csv` tinha 6 linhas e o texto reportava 3, sendo as 3
+omitidas todas nulas e uma delas do TMP, o achado central;
+`tab_est_wild_bootstrap.csv` tinha 2 p-valores e nenhum era impresso,
+substituídos pelos adjetivos "aponta na mesma direção" e "resistente".
+**Instrumento de defesa:** a coluna "linhas na fonte / linhas citadas"
+do `NUMEROS_CANONICOS.md`.
+
+### Regra A — completude fonte × texto
+
+Para toda tabela que produza **resultados** (não descritivos), conferir
+o número de linhas contra o número de resultados citados. Reporte
+parcial é permitido, mas exige: (i) nota de rodapé remetendo à tabela
+completa, e (ii) declaração explícita da direção das linhas não
+reportadas. Subconjuntos assim declarados hoje: `tab_est_cs_evento`
+(20/8) e `tabB_sensibilidade_mortalidade` (3/1).
+
+### Regra B — nenhum adjetivo de resultado sem número
+
+"Resistente", "robusto", "estável", "confirma", "aponta na mesma
+direção", "sobrevive intacto", "sabidamente conservador", "replica com
+exatidão" — todos exigem o p-valor, o intervalo ou o coeficiente
+impresso **na mesma frase**. Onde o número não couber no corpo, vai em
+nota de rodapé; nunca some.
+
+Exceção única: remissão a número já impresso antes, no mesmo trecho de
+leitura, com o ponteiro explícito. Não vale para resumos de fim de seção
+que enunciam conclusões novas.
+
+A varredura de 27/07/2026 encontrou nove casos e resolveu seis. Um caso
+segue aberto: a Seção 15 diz que a Translog é "preferida ao Cobb Douglas
+por larga margem" e a razão de verossimilhança correspondente **não
+existe em nenhuma tabela do repositório** — teria de sair do log do R da
+fase 2. Enquanto não sair, a formulação não deve ganhar número
+inventado.
+
+---
+
 ## 1. Varredura de consistência texto ↔ figura ↔ tabela-fonte nas 18 seções
 
 **Aberta em:** 26/07/2026
@@ -111,3 +180,112 @@ comparar com o valor impresso na seção. Não é pertinência contra CSVs de
 tabela, é mecanismo próprio. Começar por `sec01_painel`. Convém executar no
 mesmo passo em que `painel_definitivo.csv`, `dea/` e `sfa/` forem indexados
 para o item 1, que precisa das mesmas fontes.
+
+---
+
+## 4. Itens bloqueados por ausência de interpretador Python
+
+**Aberta em:** 27/07/2026
+**Decisão de:** João
+**Situação:** bloqueada por ambiente, não por decisão
+
+O ambiente de trabalho da auditoria de julho de 2026 **não tem Python
+instalado**: `python`, `python3` e `py` resolvem apenas para os *stubs*
+da Microsoft Store em `WindowsApps`, não há venv no repositório, conda
+está ausente e não há instalação em `Programs\Python`, `Program
+Files\Python*`, `C:\Python*`, `anaconda3` ou `miniconda3`. Três itens
+ficaram parados por isso.
+
+**(a) Figuras dos conversores em valores reais.** As cinco
+`fig_ae_09_conversor_*_custo_saida.png` plotam valores **nominais**,
+porque `analise_exploratoria.py:905-923` itera sobre `INDICADORES`, que
+contém `custo_saida`. Como o documento passou a tratar o faturamento
+sempre em valores reais, a Seção 7 deixou de imprimir a variação
+percentual nominal e remete à Seção 16; as cinco legendas declaram
+"valores correntes". A conversão completa — prosa e figuras — depende de
+regerar as figuras com `custo_real`.
+
+**(b) Seções 2 e 9 em valores reais.** `tab_ae_univariada.csv` e
+`tab_ae_outliers.csv` não têm coluna `custo_real`. As duas seções
+declaram "valores correntes" com remissão à Seção 6, mas a conversão
+exige recomputar as duas tabelas.
+
+**(c) Item 10 — geografia da seleção.** Ver item 5 abaixo, que tem
+motivo próprio além deste.
+
+---
+
+## 5. Classificação geográfica em `selecao_entrevistas.py`
+
+**Aberta em:** 27/07/2026
+**Decisão de:** Priscilla e Alberto (não é correção editorial)
+**Situação:** **não aplicar sem ratificação**
+
+A Seção 16 rotula três hospitais como "interior" incorretamente: Santos
+(2 hospitais) é Baixada Santista, e Cotia e Guarulhos são Região
+Metropolitana de São Paulo. A origem é `selecao_entrevistas.py:90-91`:
+
+```python
+def _capital(municipio: str) -> str:
+    return "capital" if municipio == "Sao Paulo" else "interior"
+```
+
+**Por que não foi corrigido.** A variável `geografia` **entra no
+algoritmo de seleção**, não é apenas descritiva. Em
+`selecao_entrevistas.py:310-318`, dentro de `bloco_bc()`, ela é critério
+de desempate entre candidatos quase empatados:
+
+```python
+falta = ("interior" if geografias.count("capital")
+         >= geografias.count("interior") else "capital")
+```
+
+Trocar o binário capital/interior por quatro categorias (Capital, RMSP,
+Baixada Santista, Interior) quebra essa contagem e **pode selecionar
+hospitais diferentes nos blocos b e c**. Há ainda um segundo uso na
+linha 421: o pareamento do bloco d penaliza pares de municípios
+distintos. Mudar a composição dos blocos de entrevista é decisão da
+pesquisadora principal e do responsável pelo banco, não ajuste de
+rótulo.
+
+**O que fazer quando for ratificado:** reescrever `_capital()` para
+classificar por código IBGE, decidir se o desempate passa a operar sobre
+quatro categorias ou continua binário com a nova classificação apenas
+descritiva, regerar `tab_selecao_entrevistas.csv` e as figuras de
+seleção, e reconciliar a Seção 16 e o Apêndice B.
+
+---
+
+## 6. Data de conversão do Hospital Estadual de Presidente Prudente
+
+**Aberta em:** 27/07/2026
+**Decisão de:** João (pesquisa documental)
+**Situação:** aberta
+
+A Subseção 7.1 documenta as datas de assunção das cinco conversões. Duas
+estão confirmadas e duas são aproximadas:
+
+| CNES | Hospital | OSS | Assunção | Confiança |
+|---|---|---|---|---|
+| 2081695 | Conjunto Hospitalar de Sorocaba | Seconci-SP | 1º/11/2018 | confirmada |
+| 2078287 | CRSM / Pérola Byington | Seconci-SP | set/2022 | confirmada |
+| 2082225 | H. Geral de Taipas | IRSSL / Sírio-Libanês | ~set/2024 | **aproximada** |
+| 2091755 | H. Geral de Vila Penteado | IRSSL / Sírio-Libanês | ~set/2024 | **aproximada** |
+| 2750511 | H. Est. de Presidente Prudente | **não localizada** | **não localizada** | — |
+
+As datas aproximadas foram inferidas de reportagem de 08/10/2024 que
+noticiava os "primeiros trinta dias de contrato". A do Presidente
+Prudente não foi localizada, e a OSS responsável também não.
+
+**Por que importa.** A data de assunção determina quantos meses de cada
+ano pertencem a cada regime, e a Subseção 7.1 argumenta que os anos
+parciais **atenuam** o contraste medido. Sem a data de Presidente
+Prudente, esse argumento vale para quatro dos cinco conversores.
+
+**Nota sobre as fontes.** As datas, os nomes das organizações sociais e
+as circunstâncias das conversões descritas na Subseção 7.1 vêm de
+pesquisa documental em imprensa e material institucional, conduzida pelo
+responsável pelo estudo. **Não foram verificadas de forma independente
+durante a redação**, e as notas de rodapé da Subseção 7.1 atribuem cada
+afirmação à sua fonte. Convém uma checagem antes de qualquer publicação
+externa.
