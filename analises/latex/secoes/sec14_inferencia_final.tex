@@ -136,11 +136,21 @@ painel anterior à ETAPA F (314 hospitais), este mesmo exercício dava
 Sorocaba \textbf{1,09 ponto \emph{acima} do gêmeo} — a exclusão dos 25
 hospitais estruturalmente incomparáveis trocou os doadores e o
 \textbf{sinal da lacuna inverteu}. Não é um caso de ajuste pré-período
-pior: o RMSPE pré permanece exatamente 0,0 nas duas rodadas, interpolação
+pior: o RMSPE pré --- a medida de quanto o gêmeo sintético erra ao
+reproduzir o hospital \emph{antes} da conversão, em que zero significa
+reprodução exata --- permanece exatamente 0,0 nas duas rodadas,
+interpolação
 perfeita em ambas --- e é justamente por isso que a inferência aqui usa
 o placebo baseado na lacuna pós-conversão, e não a razão entre RMSPE pós
 e pré (a estatística usual do controle sintético), que fica indefinida
-quando o ajuste pré é perfeito. A causa é degeneração de pesos — com apenas 4 anos
+quando o ajuste pré é perfeito. A causa é a \textbf{degeneração de
+pesos}, e vale explicá-la em português comum porque ela reaparece
+adiante e é o que sustenta boa parte das ressalvas desta seção: dizemos
+que um resultado é \emph{degenerado} quando o método encontra não uma
+resposta, mas muitas respostas igualmente boas, e escolhe uma delas por
+acaso do cálculo. O número que sai não é errado; ele simplesmente não é
+único, e por isso não carrega informação sobre o hospital. Aqui, com
+apenas 4 anos
 pré-conversão (2015 a 2018) e centenas de doadores potenciais, várias
 combinações de pesos produzem ajuste pré-período idêntico e perfeito;
 trocar quais doadores estão disponíveis levou o otimizador a uma

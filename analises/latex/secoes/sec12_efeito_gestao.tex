@@ -62,7 +62,10 @@ hospitais passaram a girar seus leitos mais rápido}.
 A ressalva vem colada e não pode ser separada dele. Esse efeito é
 identificado por \textbf{cinco hospitais}, dois deles com janela
 posterior utilizável, e os três testes desenhados para situações de
-poucos tratados --- permutação, bootstrap selvagem e controle sintético
+poucos tratados --- permutação, bootstrap selvagem por cluster (uma
+técnica de reamostragem que recalcula a margem de erro sorteando
+hospitais inteiros milhares de vezes, apropriada quando há poucas
+unidades tratadas) e controle sintético
 --- não o corroboram (Seção~\ref{sec:inferenciafinal}). Também não o
 contradizem: com esse número de unidades, eles não distinguem um efeito
 nulo de uma ausência de poder para detectá-lo. O achado é, portanto,
@@ -86,7 +89,8 @@ percentual dividida por 100.}
 \centering
 \subfig{fig_est_01_evento_mort_all.png}{Mortalidade geral, em pontos
 percentuais}
-\subfig{fig_est_01_evento_tmp.png}{Tempo de permanência, em log pontos}
+\subfig{fig_est_01_evento_tmp.png}{Tempo de permanência, em log pontos
+(um log ponto equivale, aproximadamente, a 1\% de variação)}
 \caption{Estudo de eventos da conversão para OSS: mortalidade geral e
 tempo de permanência, amostra completa.}
 \label{fig:eventomorttmp}
