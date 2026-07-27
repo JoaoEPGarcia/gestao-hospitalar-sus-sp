@@ -1,5 +1,4 @@
-\section{Diagnósticos de ajuste: escolha dos moldes, gráficos QQ e
-resíduos quantílicos}
+\section{Formas funcionais, escolha de modelo e diagnósticos de ajuste}
 \label{ap:diagnosticos}
 
 \setcounter{figure}{0}
@@ -24,6 +23,76 @@ próximo de 1, melhor. \textbf{Resíduo quantílico}: é a versão do QQ
 para um modelo já ajustado com covariáveis; se o modelo descreve bem
 os dados, esses resíduos se comportam como uma Normal padrão e os
 pontos deitam na diagonal.
+
+\subsection*{A família de distribuição de cada indicador}
+
+Cada indicador recebeu a família de modelo decidida empiricamente na
+fase exploratória. A \textbf{mortalidade} usa uma regressão Beta com
+inflação em zero, que acomoda tanto a escala de proporções quanto os
+raros anos sem óbito. A \textbf{fração de alta complexidade} usa o
+modelo \textbf{ZOIB}, que trata em três partes separadas os hospitais
+que não realizam nada de alta complexidade, os que só realizam alta
+complexidade e a variação contínua entre esses dois extremos. O
+\textbf{faturamento real por saída} e o \textbf{tempo de permanência}
+são modelados no logaritmo, comparando cada hospital com ele mesmo ao
+longo do tempo. A \textbf{produção} usa a \textbf{Binomial Negativa}: o
+molde mais simples para contagens, a Poisson, supõe que a variação entre
+unidades seja comparável à média, e aqui a variação é milhares de vezes
+maior (razão de 6.249 no agregado e de 102 mesmo comparando cada
+hospital só consigo mesmo ao longo dos anos). A \textbf{ocupação de
+internação} é modelada no logaritmo sem truncar em 100\%, e a
+\textbf{ocupação de UTI} usa um modelo em duas partes --- primeiro se o
+hospital tem UTI ativa, depois com que intensidade a usa.
+
+\subsection*{A mortalidade como mistura de duas Betas}
+
+A mortalidade é uma proporção e o molde clássico para proporções é a
+distribuição \textbf{Beta}. O ajuste de uma Beta única descreve bem a
+escala geral, mas erra o pico de hospitais com mortalidade quase nula.
+A Figura~\ref{fig:mistura} mostra a solução e, ao mesmo tempo, a
+explicação: somando \textbf{duas Betas}, uma para cada grupo de
+hospitais, a curva acompanha o histograma com nitidez. Os dois grupos
+não são um artifício de ajuste --- eles existem no painel, e a
+Seção~\ref{sec:distribuicoes} os descreve. Como também há observações
+com mortalidade exatamente zero, o molde completo é a Beta com
+tratamento especial para os zeros.
+
+A mistura identificada aqui \textbf{não precisa de molde próprio na fase
+de estimação}: os dois grupos de hospitais são absorvidos pelas
+covariáveis de complexidade estrutural e perfil, e os resíduos
+quantílicos reunidos adiante (r igual a 0,976) comprovam que a Beta
+única condicional basta.
+
+\comoler{no painel da esquerda, compare as duas curvas com as barras: a
+tracejada passa por cima do vale e erra os dois picos; a escura desenha
+os dois picos. No painel da direita, as curvas tracejadas coloridas são
+os dois grupos de hospitais (baixo óbito à esquerda, demais à direita)
+e a curva preta é a soma dos dois, praticamente idêntica ao histograma:
+a forma estranha da mortalidade é só a mistura de dois perfis de
+hospital.}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_12_mistura_mort_all.png}{Um molde só vs a soma de dois}
+\subfig{fig_ae_12_decomposicao_mort_all.png}{Os dois grupos reais de
+hospitais}
+\caption{Mortalidade geral: à esquerda, a curva cinza tracejada é o
+molde único (que erra o pico perto de zero) e a curva escura é a soma
+de dois moldes, que acompanha o histograma; à direita, a mesma soma
+reconstruída a partir dos dois grupos reais de hospitais do painel. O
+eixo vertical destes dois painéis é uma \textbf{densidade}, escala
+técnica necessária para sobrepor as curvas ajustadas ao histograma: a
+altura não é contagem nem percentual de hospitais.}
+\label{fig:mistura}
+\end{figure}
+
+\comofeito{os dois painéis têm no eixo horizontal a mortalidade geral
+(proporção, entre 0 e 1) e no vertical a densidade das 3.179
+observações. À esquerda, sobre o histograma, foram desenhadas duas
+curvas ajustadas: uma Beta única e a soma de duas Betas. À direita, a
+soma de duas Betas foi reconstruída separando de fato os hospitais nos
+dois grupos observados no painel (baixo óbito estrutural e demais), pela
+mortalidade mediana de cada hospital.}
 
 \subsection*{Escolha do molde de cada indicador}
 
@@ -107,6 +176,38 @@ dados.}
 
 As Figuras~\ref{fig:qqcusto} a~\ref{fig:qqtmpsemlp} avaliam os moldes
 marginais de faturamento e TMP da Seção~\ref{sec:distribuicoes}.
+
+Antes dos gráficos QQ, os dois histogramas em escala logarítmica que
+motivam a escolha. Nessa escala o faturamento vira um morro quase
+simétrico e o TMP se ajusta quase perfeitamente, porque a consolidação
+do painel (ETAPA F) removeu os hospitais de longa permanência que, na
+versão anterior, criavam um teto de 30,5 dias que distorcia a
+distribuição.
+
+\comoler{na escala logarítmica, o faturamento (a) vira um morro quase
+simétrico, sinal clássico de que a análise deve ser feita nessa escala.
+No TMP (b), o morro principal fica entre 3 e 7 dias, com uma cauda
+curta à direita e sem o segundo grupo isolado de longa permanência que
+o painel anterior exibia.}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_ae_03_hist_log_custo_saida.png}{Faturamento por saída,
+valores correntes}
+\subfig{fig_ae_03_hist_log_tmp.png}{TMP}
+\caption{Distribuições de faturamento e TMP com o eixo horizontal em
+escala logarítmica (os rótulos mostram os valores reais). O eixo
+vertical é uma \textbf{densidade}, e não uma contagem de hospitais: a
+altura das barras não se lê como percentual.}
+\label{fig:histlog}
+\end{figure}
+
+\comofeito{são os histogramas de faturamento por saída e TMP com o eixo
+horizontal em \textbf{escala logarítmica} (as marcas avançam por
+multiplicação, e os rótulos mostram os valores reais em reais e em
+dias); o eixo vertical traz a densidade. A escala log foi escolhida
+porque esses dois indicadores têm cauda longa à direita, que na escala
+linear comprime a maioria dos hospitais num só bloco.}
 
 \comoler{quanto mais os pontos abraçam a reta, melhor o molde. No
 painel (b), o molde log logístico segue os dados por quase toda a

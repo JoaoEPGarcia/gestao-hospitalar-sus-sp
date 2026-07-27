@@ -14,22 +14,14 @@ tempo. Em todas as equações, a complexidade entra pelo escore Barcelona
 salvaguarda da Seção~\ref{sec:painel}.
 
 Cada indicador recebeu a família de modelo decidida empiricamente na
-primeira parte deste documento: a mortalidade usa uma regressão Beta
-com inflação em zero (que acomoda tanto a escala de porcentagens quanto
-os raros anos sem óbito); a fração de alta complexidade usa o modelo
-ZOIB (que trata separadamente os hospitais sem nenhuma produção de alta
-complexidade e os raros casos de produção exclusiva); o faturamento real por
-saída e o tempo de permanência são modelados no logaritmo, comparando
-cada hospital com ele mesmo ao longo do tempo (os chamados efeitos
-fixos); a produção usa a Binomial Negativa, adequada para contagens com
-grande dispersão; a ocupação de internação é modelada no logaritmo sem
-truncar em 100\%; e a ocupação de UTI usa um modelo em duas partes,
-primeiro se o hospital tem UTI ativa, depois com que intensidade a usa.
-A mistura de duas Betas que a Seção~\ref{sec:distribuicoes} identificou
-na mortalidade não precisa de molde próprio aqui: os dois grupos de
-hospitais são absorvidos pelas covariáveis de complexidade estrutural e
-perfil, e os resíduos quantílicos reunidos no Apêndice~\ref{ap:diagnosticos} (r igual
-a 0,976) comprovam que a Beta única condicional basta.
+primeira parte deste documento, e a leitura substantiva dos resultados
+não depende dessa escolha: quem quiser conferir qual molde foi usado em
+cada caso, e por quê, encontra tudo no
+Apêndice~\ref{ap:diagnosticos}. O que vale registrar aqui é que
+faturamento e tempo de permanência são analisados no logaritmo,
+comparando cada hospital com ele mesmo ao longo do tempo --- os
+chamados \textbf{efeitos fixos} ---, e que essa é a especificação que
+sustenta os dois achados dentro do hospital deste documento.
 
 Cinco salvaguardas valem para todos os modelos. Primeira: o faturamento entra
 sempre \textbf{em valores reais}, deflacionado pelo IPCA para preços de

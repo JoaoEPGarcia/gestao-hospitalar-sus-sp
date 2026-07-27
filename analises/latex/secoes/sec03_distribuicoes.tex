@@ -6,59 +6,31 @@ conhecer essa forma tem uma consequência prática para a gestão: por trás
 de um histograma de aparência estranha costuma haver um fato concreto da
 rede --- dois perfis de hospital convivendo lado a lado, um acúmulo de
 zeros com significado, uma cauda que exige leitura em escala própria.
-Esta seção reúne esses achados de formato. A justificativa estatística
-formal --- qual família de distribuição descreve cada indicador e o
-quanto ela se ajusta aos dados, com as tabelas de nota de ajuste e os
-gráficos QQ correspondentes --- foi reunida no
-Apêndice~\ref{ap:diagnosticos}, para não interromper a leitura.
+Esta seção reúne esses achados de formato. Toda a justificativa
+estatística --- qual família de distribuição descreve cada indicador,
+como cada uma foi escolhida e o quanto se ajusta aos dados --- está
+reunida no Apêndice~\ref{ap:diagnosticos}, para não interromper a
+leitura. Aqui ficam apenas os fatos sobre a rede.
 
-\subsection{Mortalidade: uma proporção com dois grupos de hospitais}
+\subsection{Mortalidade: dois grupos de hospitais, não um}
 
-A mortalidade é uma proporção (fica entre 0 e 1), e o molde clássico
-para proporções é a distribuição \textbf{Beta}. O ajuste de uma Beta
-única descreve bem a escala geral, mas erra o pico de hospitais com
-mortalidade quase nula. A Figura~\ref{fig:mistura} mostra a solução e,
-ao mesmo tempo, a explicação: somando \textbf{duas Betas} (uma para
-cada grupo de hospitais), a curva acompanha o histograma com nitidez. O
-ponto central para a gestão é que esses dois grupos
-\textbf{existem de verdade no painel}: um grupo de \textbf{35 hospitais
-de baixo óbito estrutural} (mortalidade mediana abaixo de 2\%; 16 são
-hospitais especializados e os outros 19, hospitais gerais de baixo
-volume) e os \textbf{254 demais}, hospitais gerais com mortalidade em
-torno de 6\%.
-A aparente anomalia do histograma é, portanto, apenas o retrato de dois
-perfis assistenciais diferentes convivendo na rede. Como também existem
-observações com mortalidade exatamente zero (0,9\%), o molde completo
-para a mortalidade é a \textbf{Beta com um tratamento especial para os
-zeros}.
+O histograma da mortalidade tem duas corcovas, e essa forma estranha
+não é um defeito dos dados: é o retrato de \textbf{dois perfis
+assistenciais convivendo na mesma rede}. Um grupo de \textbf{35
+hospitais de baixo óbito estrutural} --- mortalidade mediana abaixo de
+2\%, sendo 16 especializados e 19 hospitais gerais de baixo volume ---
+e os \textbf{254 demais}, hospitais gerais com mortalidade em torno de
+6\%. Existem ainda observações com mortalidade exatamente zero (0,9\%
+do painel).
 
-\comoler{no painel da esquerda, compare as duas curvas com as barras: a
-tracejada passa por cima do vale e erra os dois picos; a escura desenha
-os dois picos. No painel da direita, as curvas tracejadas coloridas são
-os dois grupos de hospitais (baixo óbito à esquerda, demais à direita)
-e a curva preta é a soma dos dois, praticamente idêntica ao histograma:
-a forma estranha da mortalidade é só a mistura de dois perfis de
-hospital.}
+A consequência prática para a gestão é direta: \textbf{uma média única
+de mortalidade da rede não descreve hospital nenhum}, porque mistura
+dois perfis que atendem populações diferentes. Qualquer comparação
+precisa levar isso em conta, e é por isso que os modelos deste documento
+incluem sempre a complexidade e o perfil do hospital. O tratamento
+estatístico que acomoda essa forma está no
+Apêndice~\ref{ap:diagnosticos}.
 
-\begin{figure}[H]
-\centering
-\subfig{fig_ae_12_mistura_mort_all.png}{Um molde só vs a soma de dois}
-\subfig{fig_ae_12_decomposicao_mort_all.png}{Os dois grupos reais de
-hospitais}
-\caption{Mortalidade geral: à esquerda, a curva cinza tracejada é o
-molde único (que erra o pico perto de zero) e a curva escura é a soma
-de dois moldes, que acompanha o histograma; à direita, a mesma soma
-reconstruída a partir dos dois grupos reais de hospitais do painel.}
-\label{fig:mistura}
-\end{figure}
-
-\comofeito{os dois painéis têm no eixo horizontal a mortalidade geral
-(proporção, entre 0 e 1) e no vertical a quantidade das 3.179
-observações em cada faixa. À esquerda, sobre o histograma, foram desenhadas duas
-curvas ajustadas: uma Beta única e a soma de duas Betas. À direita, a
-soma de duas Betas foi reconstruída separando de fato os hospitais nos
-dois grupos observados no painel (baixo óbito estrutural e demais), pela
-mortalidade mediana de cada hospital.}
 
 \subsection{Alta complexidade: o peso dos zeros}
 
@@ -67,11 +39,7 @@ particularidade dominante: \textbf{um terço das observações vale
 exatamente zero} (hospitais que não realizam alta complexidade) e uma
 pequena parcela vale exatamente um (hospitais que só realizam alta
 complexidade). Esses dois acúmulos nas pontas exigem um tratamento
-estatístico próprio --- o modelo conhecido pela sigla \textbf{ZOIB}, que
-trata em três partes separadas os hospitais que não fazem nada de alta
-complexidade, os que só fazem alta complexidade e a variação contínua
-entre esses dois extremos,
-cuja construção e ajuste estão no Apêndice~\ref{ap:diagnosticos}. Para a
+estatístico próprio, descrito no Apêndice~\ref{ap:diagnosticos}. Para a
 gestão, o que importa é que \textbf{os zeros não são aleatórios}
 (Figura~\ref{fig:zeros}): a proporção de hospitais sem alta complexidade
 cai de 80,1\% na faixa 2 de complexidade para zero na faixa 6, e de
@@ -117,46 +85,22 @@ modelos da fase de estimação; e \textbf{2.482} são as observações com
 UTI ativa depois de retiradas essas duas frágeis. Cada conta foi
 conferida no painel.}, e a leitura prática que interessa à gestão é uma
 só: \textbf{os dois indicadores devem ser analisados em escala
-logarítmica}. Nessa escala, o faturamento vira um morro quase simétrico
-(Figura~\ref{fig:histlog}) e o TMP hoje se ajusta quase perfeitamente,
-porque a consolidação do painel (ETAPA F) removeu os hospitais de longa
-permanência que, na versão anterior, criavam um teto de 30,5 dias que
-distorcia a distribuição. A comparação formal entre as famílias de
-distribuição candidatas --- com a nota de ajuste de cada uma e os
-gráficos correspondentes --- está reunida no
-Apêndice~\ref{ap:diagnosticos} (Tabela~\ref{tab:familias}), e confirma
-que faturamento e TMP são bem descritos pelo molde log logístico nessa
-escala.
+logarítmica}, e não na escala linear. Na escala linear, um punhado de
+hospitais muito caros ou de permanência muito longa comprime todos os
+demais num bloco só, e a média deixa de descrever o hospital típico. Na
+escala logarítmica cada indicador vira uma distribuição bem comportada,
+e é assim que eles entram em todos os modelos deste documento. A
+comparação formal entre as famílias de distribuição candidatas está no
+Apêndice~\ref{ap:diagnosticos} (Tabela~\ref{tab:familias}).
 
-\comoler{na escala logarítmica, o faturamento (a) vira um morro quase
-simétrico, sinal clássico de que a análise deve ser feita nessa escala.
-No TMP (b), o morro principal fica entre 3 e 7 dias, com uma cauda
-curta à direita e sem o segundo grupo isolado de longa permanência que
-o painel anterior exibia.}
-
-\begin{figure}[H]
-\centering
-\subfig{fig_ae_03_hist_log_custo_saida.png}{Faturamento por saída}
-\subfig{fig_ae_03_hist_log_tmp.png}{TMP}
-\caption{Distribuições de faturamento e TMP com o eixo horizontal em escala
-logarítmica (os rótulos mostram os valores reais).}
-\label{fig:histlog}
-\end{figure}
-
-\comofeito{são os mesmos histogramas de faturamento por saída e TMP, mas
-com o eixo horizontal em \textbf{escala logarítmica} (as marcas avançam
-por multiplicação, e os rótulos mostram os valores reais em reais e em
-dias); o eixo vertical segue acompanhando a quantidade de observações
-por faixa. A escala
-log foi escolhida justamente porque esses dois indicadores têm cauda
-longa à direita, que na escala linear comprime a maioria dos hospitais
-num só bloco.}
 
 \subsection{Produção: contagens muito mais variáveis que o usual}
 
-A produção anual (número de saídas) é uma contagem. O molde mais
-simples para contagens, a Poisson, supõe que a variação entre hospitais
-seja comparável à média; aqui \textbf{a variação é milhares de vezes
-maior que a média} (razão de 6.249 no agregado e de 102 mesmo comparando
-cada hospital só consigo mesmo ao longo dos anos). O molde adequado é a
-\textbf{Binomial Negativa}, que aceita essa variação extra.
+A produção anual --- o número de saídas hospitalares --- varia entre os
+hospitais de forma \textbf{muito mais extrema do que se esperaria de uma
+contagem comum}. O que isso quer dizer na prática: a diferença de
+produção entre dois hospitais quaisquer da rede é enorme e não se
+explica por acaso, mesmo entre hospitais de porte parecido. Também
+dentro de um mesmo hospital, ao longo dos anos, a produção oscila mais
+do que o usual. O tratamento estatístico que essa dispersão exige está
+no Apêndice~\ref{ap:diagnosticos}.
