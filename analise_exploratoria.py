@@ -57,12 +57,19 @@ IND7        = INDICADORES + OCUPACOES
 IND7_FIG = [("custo_real" if c == "custo_saida" else c) for c in IND7]
 IND8_TAB = IND7 + ["custo_real"]
 
+# Item 1 (decisão de 27/07/2026): o faturamento passa a aparecer em valores
+# REAIS também na univariada, no inventário de outliers e no estudo de eventos
+# dos conversores. O documento não imprime mais valor monetário em base
+# nominal; a única exceção é a figura fig_ae_07 e a tabela da Seção 6, cujo
+# assunto é justamente a comparação entre as duas bases.
+IND5_FIG = [("custo_real" if c == "custo_saida" else c) for c in INDICADORES]
+
 ROT = {
     "mort_all":            "Mortalidade geral",
     "mort_sem_excl":       "Mortalidade ajustada",
     "tmp":                 "TMP (dias)",
     "custo_saida":         "Faturamento por saída (SIH, R$)",
-    "custo_real":          "Faturamento real por saída (R$ de 2025)",
+    "custo_real":          "Faturamento real por saída (R$ de dez/2025)",
     "pct_alta_complex":    "Fração alta complexidade",
     "ocupacao_internacao": "Ocupação internação (%)",
     "ocupacao_uti":        "Ocupação UTI (%)",
@@ -215,7 +222,7 @@ def univariada(painel: pd.DataFrame):
     print("=" * 70)
 
     linhas = []
-    for c in IND7:
+    for c in IND7_FIG:
         x = painel[c].dropna()
         linha = {
             "indicador": c, "n": len(x), "media": x.mean(), "dp": x.std(),
@@ -232,7 +239,7 @@ def univariada(painel: pd.DataFrame):
     _tab(tab, "tab_ae_univariada.csv")
     print(tab.to_string())
 
-    for c in IND7:
+    for c in IND7_FIG:
         x = painel[c].dropna()
         fig, ax = plt.subplots(figsize=(7, 4.5))
         ax.hist(x, bins=60, density=True, color=COR_SERIE,
@@ -483,7 +490,10 @@ def distribucional_continuas(painel: pd.DataFrame):
     longa = med_cnes[med_cnes > 20].index
 
     amostras = {
-        "custo_saida": painel.loc[painel["custo_saida"] > 0, "custo_saida"],
+        # Item 1 (27/07/2026): o diagnóstico distribucional do faturamento
+        # passa a usar a série REAL, para que o eixo em R$ do gráfico não
+        # contradiga o resto do documento, que só imprime valores reais.
+        "custo_real": painel.loc[painel["custo_real"] > 0, "custo_real"],
         "tmp": painel.loc[painel["tmp"] > 0, "tmp"],
         "tmp_sem_longa_perm": painel.loc[
             (painel["tmp"] > 0) & ~painel["cnes"].isin(longa), "tmp"],
@@ -506,7 +516,7 @@ def distribucional_continuas(painel: pd.DataFrame):
     NOTA_TETO = ("Achatamento no alto: teto de 30,5 dias\n"
                  "(longa permanência). Ver o QQ sem\n"
                  "longa permanência.")
-    for var in ["custo_saida", "tmp"]:
+    for var in ["custo_real", "tmp"]:
         x = amostras[var]
         fig, ax = plt.subplots(figsize=(7, 4.5))
         if var == "tmp":
@@ -886,7 +896,7 @@ def estudo_eventos(painel: pd.DataFrame):
     print("[6] ESTUDO DE EVENTOS: 5 conversores de Direta para OSS")
     print("=" * 70)
     anos = sorted(painel["ano"].unique())
-    med_cat = painel.groupby(["ano", "modelo_gestao_proxy"])[INDICADORES].median()
+    med_cat = painel.groupby(["ano", "modelo_gestao_proxy"])[IND5_FIG].median()
 
     nomes = {}
     for cnes in CONVERSOES:
@@ -902,7 +912,7 @@ def estudo_eventos(painel: pd.DataFrame):
     linhas_pp = []
     for cnes, ano_conv in CONVERSOES.items():
         sub = painel[painel["cnes"] == cnes].set_index("ano")
-        for c in INDICADORES:
+        for c in IND5_FIG:
             fig, ax = plt.subplots(figsize=(7, 4.2))
             for cat in ["Direta", "OSS"]:
                 s = med_cat.xs(cat, level=1)[c]
@@ -1021,7 +1031,7 @@ def qualidade_dados(painel: pd.DataFrame):
 
     print("\n[8c] INVENTÁRIO DE OUTLIERS E DE FALTANTES")
     linhas = []
-    for c in IND7:
+    for c in IND7_FIG:
         x = painel[c].dropna()
         q1, q3 = x.quantile(.25), x.quantile(.75)
         iiq = q3 - q1

@@ -17,10 +17,8 @@ igualmente para a versão ajustada.
 Em palavras simples, o que os dados mostram: o hospital típico do
 painel tem \textbf{mortalidade em torno de 5,6\%} (metade dos hospitais
 está entre 3,7\% e 7,1\%), \textbf{permanência típica de 4,3 dias} e
-\textbf{faturamento de cerca de R\$~1.034 por internação encerrada} (esta
-seção traz o faturamento em \textbf{valores correntes}, isto é, nos reais
-de cada ano; a leitura em valores reais está na
-Seção~\ref{sec:tendencia}). Mas os
+\textbf{faturamento real de cerca de R\$~1.328 por internação
+encerrada}, em R\$ de dez/2025. Mas os
 extremos importam. Na mortalidade há um segundo grupo de hospitais com
 taxas próximas de zero (maternidades e especializados) e \textbf{0,9\%
 das observações têm mortalidade exatamente zero}. No tempo de
@@ -29,8 +27,8 @@ permanência, a distribuição é assimétrica à direita, com máximo de
 hospitais de perfil psiquiátrico ou de cuidados prolongados foram
 excluídos na construção do painel, por serem estruturalmente
 incomparáveis com o hospital geral agudo, e não aparecem nos dados. No faturamento, a cauda direita é longa: enquanto a mediana é
-R\$~1.034, o máximo chega a R\$~27.888, e é por isso que a média
-(R\$~1.431) fica 38\% acima da mediana. A fração de alta complexidade é
+R\$~1.328, o máximo chega a R\$~41.997, e é por isso que a média
+(R\$~1.833) fica 38\% acima da mediana. A fração de alta complexidade é
 o indicador mais concentrado: \textbf{31,3\% dos hospitais-ano não
 realizam nenhuma internação de alta complexidade}. Na ocupação,
 \textbf{15,5\% das observações de internação ultrapassam 100\%}
@@ -43,8 +41,8 @@ Seção~\ref{sec:qualidade}.
 \centering
 \caption{Resumo estatístico dos sete indicadores (3.179 observações de
 hospital e ano; mortalidades e alta complexidade em proporção;
-ocupações em percentual; faturamento em \textbf{valores correntes},
-nos reais de cada ano, ver Seção~\ref{sec:tendencia}). DP é o desvio padrão, medida do espalhamento
+ocupações em percentual; faturamento \textbf{real}, deflacionado pelo
+IPCA para R\$ de dez/2025). DP é o desvio padrão, medida do espalhamento
 dos valores; p90 é o valor abaixo do qual estão 90\% das observações;
 assimetria positiva indica cauda comprida à direita. As versões geral e
 ajustada da mortalidade coincidem em quase todas as estatísticas,
@@ -58,7 +56,7 @@ Indicador & Média & DP & Mediana & p90 & Máximo & Assimetria & Zeros \\
 Mortalidade geral      & 0,0552 & 0,0301 & 0,0558 & 0,0886 & 0,2602 & 0,80 & 0,9\% \\
 Mortalidade ajustada   & 0,0552 & 0,0301 & 0,0558 & 0,0886 & 0,2602 & 0,80 & 1,0\% \\
 TMP (dias)             & 4,65   & 1,92   & 4,29   & 6,73   & 24,79  & 2,40 & 0,03\% \\
-Faturamento por saída (R\$ correntes)  & 1.431,37 & 1.708,50 & 1.033,97 & 2.465,42 & 27.887,60 & 6,71 & 0\% \\
+Faturamento real (R\$ dez/2025) & 1.833,34 & 2.253,90 & 1.327,62 & 3.171,65 & 41.996,85 & 7,62 & 0\% \\
 Fração alta complex.   & 0,0759 & 0,1563 & 0,0029 & 0,2234 & 1,0000 & 3,39 & 31,3\% \\
 Ocupação internação (\%) & 70,84 & 28,17 & 72,70 & 104,26 & 236,61 & -0,01 & 0\% \\
 Ocupação UTI (\%)      & 59,84  & 44,89  & 69,38  & 96,67  & 875,21 & 2,95 & 21,9\% \\
@@ -122,27 +120,28 @@ naquele trecho}, mas o número lido no eixo não é contagem nem
 percentual. A linha tracejada vertical marca a mediana e a pontilhada, a
 média.}
 
-\comoler{no faturamento, a concentração fica perto de R\$~1.000 e a cauda se
-estica até quase R\$~28.000, o que explica a média (pontilhada) ficar
+\comoler{no faturamento, a concentração fica perto de R\$~1.300 e a cauda se
+estica até quase R\$~42.000, o que explica a média (pontilhada) ficar
 bem à direita da mediana (tracejada). Na alta complexidade, a barra
 gigante em zero mostra os 31,3\% de hospitais-ano sem nenhuma
 internação desse tipo.}
 
 \begin{figure}[H]
 \centering
-\subfig{fig_ae_01_hist_custo_saida.png}{Faturamento por saída}
+\subfig{fig_ae_01_hist_custo_real.png}{Faturamento real por saída
+(R\$ de dez/2025)}
 \subfig{fig_ae_01_hist_pct_alta_complex.png}{Fração alta complexidade}
-\caption{Distribuição do faturamento por saída (valores correntes) e da
+\caption{Distribuição do faturamento real por saída (R\$ de dez/2025) e da
 fração de alta complexidade. Como na figura anterior, o eixo vertical é
 uma \textbf{densidade} e não um percentual de hospitais: ele mostra onde
-os casos se concentram. Metade dos hospitais fatura entre R\$~703 e
-R\$~1.583 por saída.}
+os casos se concentram. Metade dos hospitais fatura entre R\$~923 e
+R\$~1.971 por saída.}
 \label{fig:univB}
 \end{figure}
 
 \comofeito{mesma construção da figura anterior. No eixo horizontal, o
-faturamento por saída em reais correntes (valor pago por internação
-encerrada, nos reais do próprio ano) e a
+faturamento real por saída (valor pago por internação encerrada,
+deflacionado pelo IPCA para R\$ de dez/2025) e a
 fração de alta complexidade (proporção das internações classificadas
 como de alta complexidade, entre 0 e 1); no eixo vertical, a densidade
 das mesmas 3.179 observações, na mesma escala técnica da figura

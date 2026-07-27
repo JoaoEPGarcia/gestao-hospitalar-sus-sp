@@ -105,11 +105,13 @@ Fonte: `tab_est_sintetico.csv`. **6/6** desde 27/07/2026 (eram 3/6).
 
 ## 6. Conversores — antes e depois
 
-Fonte da mortalidade e do TMP: `tab_ae_conversores_pre_pos.csv`.
-Fonte do faturamento: `tab_sel_conversores_trajetoria.csv`, coluna
-`custo_real`. **Atenção:** `tab_ae_conversores_pre_pos.csv` traz também
-uma coluna `custo_saida` **nominal**, que não deve ser usada — foi a
-origem da divergência de 2026.
+Fonte da mortalidade, do TMP e do faturamento:
+`tab_ae_conversores_pre_pos.csv`, que desde 27/07/2026 traz o faturamento
+apenas na linha `custo_real`. A linha `custo_saida` **nominal**, que
+convivia com ela e foi a origem direta da divergência de 2026 (o mesmo
+hospital aparecia com +19,3% e com −12,2%), **deixou de ser gerada**:
+não há mais como ler a base errada por engano.
+`tab_sel_conversores_trajetoria.csv` confere os mesmos valores.
 
 | Hospital | Mortalidade | TMP | Faturamento | Seções | BASE |
 |---|---|---|---|---|---|
@@ -123,19 +125,21 @@ origem da divergência de 2026.
 
 | Seção | O que imprime | BASE | Rotulado? |
 |---|---|---|---|
-| 2 | mediana 1.034, média 1.431, máx 27.888 | **corrente** | sim, desde 27/07/2026 |
+| 2 | mediana 1.327,62, média 1.833,34, máx 41.996,85 | **real** | sim, desde 27/07/2026 |
 | 4 | medianas por categoria (1.293 a 1.438; Privado 16.262) | **real** | sim |
 | 5 | 631 → 3.780 (faixa); 1.035 / 1.806 / 3.831 (porte) | **real** | sim |
 | 6 | 866 → 1.283 nominal; 1.427 → 1.283 real; tabela IPCA | **ambas** | sim, por desenho |
-| 7 | — (remete à Seção 16) | — | n/a |
-| 9 | 87 extremos acima de 4.223 | **corrente** | sim, desde 27/07/2026 |
+| 7 | Sorocaba −12,2%; Pérola −28,4% | **real** | sim, desde 27/07/2026 |
+| 9 | 90 extremos acima de 5.117,74 | **real** | sim, desde 27/07/2026 |
 | 11, 12, 14, 15 | modelos | **real** | sim |
 | 16 | conversores | **real** | sim, desde 27/07/2026 |
+| A (apêndice) | AIC e r dos cinco moldes do faturamento | **real** | sim, desde 27/07/2026 |
 
-**Pendente de pipeline:** as Seções 2 e 9 seguem em valores correntes
-porque `tab_ae_univariada.csv` e `tab_ae_outliers.csv` não têm coluna
-`custo_real`; convertê-las exige reexecutar `analise_exploratoria.py`.
-Ver `PENDENCIAS.md`.
+**Fechado em 27/07/2026.** Não há mais valor monetário em base nominal no
+documento. A única exceção é a Seção 6, cujo assunto **é** a comparação
+entre as duas bases: ali o par nominal × real é o próprio conteúdo, e a
+tabela do IPCA declara os dois lados. `tab_ae_univariada.csv` e
+`tab_ae_outliers.csv` passaram a ser calculadas sobre `custo_real`.
 
 ## 8. Outros valores repetidos
 

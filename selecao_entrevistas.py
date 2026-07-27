@@ -63,7 +63,7 @@ INDICADORES_QUALI = ["tmp", "mort_all", "custo_real", "qtde"]
 ROT_QUALI = {
     "tmp":        "TMP (dias)",
     "mort_all":   "Mortalidade geral",
-    "custo_real": "Faturamento real por saída (R$ de 2025)",
+    "custo_real": "Faturamento real por saída (R$ de dez/2025)",
     "qtde":       "Saídas hospitalares (produção)",
 }
 

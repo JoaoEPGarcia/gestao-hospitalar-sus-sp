@@ -106,25 +106,26 @@ fica sempre entre as piores. No TMP o ajuste do log logístico é
 praticamente perfeito (r de 0,9974 na Figura~\ref{fig:qqtmpsemlp}),
 porque a construção do painel deixou de fora os hospitais de longa
 permanência, que criariam um teto de 30,5 dias que nenhum molde
-contínuo reproduz. Tanto no faturamento (r de 0,9700,
+contínuo reproduz. Tanto no faturamento real (r de 0,9649,
 Figura~\ref{fig:qqcusto}) quanto no TMP (Figura~\ref{fig:qqtmp}) o molde
 log logístico acompanha os dados por quase toda a extensão.
 
 \begin{table}[H]
 \centering
-\caption{Comparação dos cinco moldes de distribuição para faturamento e TMP
-pela nota AIC e pelo r do gráfico QQ.}
+\caption{Comparação dos cinco moldes de distribuição para o faturamento
+real por saída (R\$ de dez/2025) e para o TMP, pela nota AIC e pelo r do
+gráfico QQ.}
 \label{tab:familias}
 \small
 \begin{tabular}{llrrr}
 \toprule
 Amostra & Molde & $n$ & AIC & r do QQ \\
 \midrule
-Faturamento por saída & Log logística (Fisk) & 3.179 & 50.785 & 0,9700 \\
-                & LogNormal            & 3.179 & 50.883 & 0,9079 \\
-                & Gaussiana inversa    & 3.179 & 50.952 & 0,8943 \\
-                & Gama                 & 3.179 & 51.867 & 0,8310 \\
-                & Weibull              & 3.179 & 52.320 & 0,8343 \\
+Faturamento real por saída & Log logística (Fisk) & 3.179 & 52.206 & 0,9649 \\
+                & LogNormal            & 3.179 & 52.362 & 0,8883 \\
+                & Gaussiana inversa    & 3.179 & 52.468 & 0,8739 \\
+                & Gama                 & 3.179 & 53.402 & 0,8085 \\
+                & Weibull              & 3.179 & 53.891 & 0,8130 \\
 \midrule
 TMP & Log logística (Fisk) & 3.178 & 11.878 & 0,9974 \\
                      & LogNormal            & 3.178 & 11.956 & 0,9810 \\
@@ -192,20 +193,22 @@ permanência.}
 
 \begin{figure}[H]
 \centering
-\subfig{fig_ae_03_hist_log_custo_saida.png}{Faturamento por saída,
-valores correntes}
+\subfig{fig_ae_03_hist_log_custo_real.png}{Faturamento real por saída
+(R\$ de dez/2025)}
 \subfig{fig_ae_03_hist_log_tmp.png}{TMP}
-\caption{Distribuições de faturamento e TMP com o eixo horizontal em
-escala logarítmica (os rótulos mostram os valores reais). O eixo
+\caption{Distribuições do faturamento real por saída e do TMP com o eixo
+horizontal em escala logarítmica (os rótulos trazem os valores na
+unidade original, não os logaritmos). O eixo
 vertical é uma \textbf{densidade}, e não uma contagem de hospitais: a
 altura das barras não se lê como percentual.}
 \label{fig:histlog}
 \end{figure}
 
-\comofeito{são os histogramas de faturamento por saída e TMP com o eixo
+\comofeito{são os histogramas do faturamento real por saída (R\$ de
+dez/2025) e do TMP com o eixo
 horizontal em \textbf{escala logarítmica} (as marcas avançam por
-multiplicação, e os rótulos mostram os valores reais em reais e em
-dias); o eixo vertical traz a densidade. A escala log foi escolhida
+multiplicação, e os rótulos trazem os valores na unidade original, em
+reais e em dias); o eixo vertical traz a densidade. A escala log foi escolhida
 porque esses dois indicadores têm cauda longa à direita, que na escala
 linear comprime a maioria dos hospitais num só bloco.}
 
@@ -216,9 +219,10 @@ isso ele recebe a melhor nota da Tabela~\ref{tab:familias}.}
 
 \begin{figure}[H]
 \centering
-\subfig{fig_ae_03_qq_lognormal_custo_saida.png}{Molde LogNormal}
-\subfig{fig_ae_03_qq_fisk_custo_saida.png}{Molde log logístico (Fisk)}
-\caption{Gráficos QQ do faturamento por saída: os pontos são os dados e a
+\subfig{fig_ae_03_qq_lognormal_custo_real.png}{Molde LogNormal}
+\subfig{fig_ae_03_qq_fisk_custo_real.png}{Molde log logístico (Fisk)}
+\caption{Gráficos QQ do faturamento real por saída (R\$ de dez/2025): os
+pontos são os dados e a
 reta é o comportamento esperado pelo molde.}
 \label{fig:qqcusto}
 \end{figure}
