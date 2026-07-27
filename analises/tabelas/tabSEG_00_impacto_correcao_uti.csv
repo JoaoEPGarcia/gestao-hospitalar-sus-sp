@@ -1,0 +1,7 @@
+﻿modelo_gestao_proxy,n_obs,n_obs_sem_uti_sus,pct_sem_uti_sus,ocup_media_todos,ocup_media_valida,ocup_mediana_todos,ocup_mediana_valida,vies_pp
+Direta,284,13,4.58,58.76,61.58,58.49,61.32,-2.82
+OSS,365,25,6.85,68.77,73.83,73.92,76.06,-5.06
+Público Municipal,616,91,14.77,66.05,77.49,69.46,73.87,-11.45
+Filantrópico,1881,552,29.35,57.14,80.87,70.18,80.22,-23.73
+Privado,33,7,21.21,8.0,10.16,3.49,4.81,-2.15
+TOTAL,3179,688,21.64,59.84,76.36,69.38,76.5,-16.53
