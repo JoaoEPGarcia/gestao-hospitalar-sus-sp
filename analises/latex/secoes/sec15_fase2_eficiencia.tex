@@ -19,12 +19,12 @@ Seção~\ref{sec:resultados} (queda de 10,2\% no TMP; faturamento sem
 diferença), a produção continua maior nas OSS (33\%, com intervalo
 inteiro acima do zero) e a ocupação aponta na mesma direção com
 magnitude menor (13\%), \textbf{mas com intervalo que cruza o zero na
-especificação hierárquica} --- em ambos os casos porque parte do
+especificação hierárquica}, em ambos os casos porque parte do
 contraste entre as redes é absorvida pelo efeito de hospital; e a mortalidade aparece
-\textbf{0,262 menor no logito} (intervalo de 0,410 a 0,114 negativos)
---- na escala da própria taxa, isso equivale a cerca de \textbf{1,3
+\textbf{0,262 menor no logito} (intervalo de 0,410 a 0,114 negativos;
+na escala da própria taxa, isso equivale a cerca de \textbf{1,3
 ponto percentual a menos de mortalidade}, na altura da mediana do
-painel, que é a forma interpretável do mesmo número ---,
+painel, que é a forma interpretável do mesmo número),
 com precisão maior que a da
 Seção~\ref{sec:resultados}.\footnote{Duas especificações alternativas
 foram estimadas para esse mesmo coeficiente e não são reportadas aqui
@@ -37,8 +37,8 @@ a 0,003 positivo, com intervalo de 0,414 negativo a 0,420 positivo,
 cruzando o zero com folga, enquanto TMP, produção, ocupação e
 eficiência não só sobrevivem como se \textbf{fortalecem}: sem os
 conversores o TMP vai de 0,108 para 0,281 negativo, a produção de 0,282
-para 0,492, a ocupação de 0,118 para 0,235 --- passando a excluir o zero,
-o que não fazia no modelo principal --- e a eficiência de 0,293 para
+para 0,492, a ocupação de 0,118 para 0,235 (passando a excluir o zero,
+o que não fazia no modelo principal) e a eficiência de 0,293 para
 0,331 negativo. Os dois coeficientes, lado a lado, são
 a evidência direta de que a identificação causal repousa sobre os
 conversores (sobretudo Sorocaba e Pérola Byington, os dois com janela
@@ -77,12 +77,11 @@ grupo.}
 vertical) e o eixo horizontal traz o \textbf{efeito da categoria no
 logito da mortalidade} (centrado). Cada linha traz duas estimativas: o
 círculo escuro trata cada categoria isoladamente e o quadrado verde
-aplica \emph{partial pooling} --- em português, "agrupamento parcial":
-o modelo trata as categorias como aparentadas e permite que uma tome
+aplica \emph{partial pooling}, em português "agrupamento parcial": o
+modelo trata as categorias como aparentadas e permite que uma tome
 emprestada a informação das outras, tanto mais quanto menos dados ela
-própria tiver ---, deixando as categorias emprestarem
-informação umas às outras na proporção da quantidade de dados de cada
-uma. Quanto menor o grupo, mais o quadrado recua em direção ao zero.}
+própria tiver. Quanto menor o grupo, mais o quadrado recua em direção
+ao zero.}
 
 \textbf{Eficiência: a ressalva vem antes do resultado.} O DEA e a SFA
 medem eficiência produtiva: quanto produto (saídas, incluída a alta
@@ -123,7 +122,7 @@ específico só deve ser citada depois de conferida nas duas versões.
 Com a ressalva posta, o resultado: na eficiência corrigida de viés
 (bootstrap de Simar e Wilson, 2.000 réplicas por ano), as medianas do
 período são \textbf{OSS 0,733, Direta 0,634, Público Municipal 0,632 e
-Filantrópico 0,595} — Direta e Público Municipal praticamente empatam
+Filantrópico 0,595}. Direta e Público Municipal praticamente empatam
 (diferença de 0,002), sugerindo três patamares em vez de quatro: OSS à
 frente, Direta e Municipal próximas no meio, Filantrópico atrás. Na
 regressão da distância à fronteira sobre
@@ -131,7 +130,7 @@ categoria, complexidade, porte e ano, a vantagem OSS equivale a
 \textbf{cerca de 25\% menos distância à fronteira que a Direta}
 (exp(-0,293) menos 1), estável retirando o biênio pandêmico (0,272
 negativo), os cinco conversores (0,331 negativo) ou restringindo ao
-suporte comum (0,319 negativo) --- as quatro estimativas com intervalo
+suporte comum (0,319 negativo), as quatro estimativas com intervalo
 inteiro abaixo do zero. Ao contrário da mortalidade,
 \textbf{a eficiência
 maior das OSS é um traço da rede}, presente na comparação pura entre
@@ -161,7 +160,7 @@ concentração das OSS junto ao valor 1 é uma degeneração numérica do
 modelo (o texto explica) e o valor delas não deve ser citado; a ordem
 das demais categorias é a informação válida. Como nos violinos da
 Seção~\ref{sec:categorias}, a \emph{largura} de cada silhueta é uma
-densidade --- mostra onde os hospitais se concentram, não o percentual
+densidade, mostra onde os hospitais se concentram, não o percentual
 deles em cada altura.}
 \label{fig:eficiencia}
 \end{figure}
@@ -173,12 +172,12 @@ práticas): no painel (a), a eficiência DEA corrigida de viés, e no (b), a
 eficiência da fronteira estocástica (SFA). Cada violino é a distribuição
 da categoria e o número é a mediana. No painel (b) a concentração das OSS
 junto a 1 é uma degeneração numérica do modelo, e o valor delas não deve
-ser citado --- vale a ordem entre as demais categorias.}
+ser citado, vale a ordem entre as demais categorias.}
 
 \textbf{A contraparte paramétrica e a convergência entre métodos.} A
-fronteira estocástica (Translog --- uma forma matemática mais flexível
+fronteira estocástica (Translog (uma forma matemática mais flexível
 que a alternativa clássica, Cobb Douglas, por não obrigar os insumos a
-se combinarem sempre na mesma proporção ---, preferida ao Cobb Douglas
+se combinarem sempre na mesma proporção), preferida ao Cobb Douglas
 com folga larga: a estatística de razão de verossimilhança entre as duas
 formas é de 567,0 com 6 graus de liberdade, com p da ordem de
 $10^{-119}$; e 95,5\% da variância composta é atribuída à ineficiência)
@@ -187,7 +186,7 @@ a ordem das redes na ponta de cima, com duas honestidades a registrar:
 as OSS ficam tão coladas à fronteira paramétrica que o coeficiente
 delas na equação de ineficiência perde identificação (o análogo da
 separação perfeita da Seção~\ref{sec:estrategia}), e por isso o NÍVEL
-da eficiência das OSS na SFA não é citável — vale a ordem, não o
+da eficiência das OSS na SFA não é citável, vale a ordem, não o
 número; e, na outra ponta, Direta (0,788) e Filantrópico (0,784)
 praticamente empatam em ponto estimado, a mesma proximidade que o DEA
 mostra entre Direta e Município (sem intervalo de confiança calculado
@@ -198,7 +197,7 @@ de \textbf{0,62 entre as eficiências do DEA e da SFA} (0,63 excluindo
 as OSS, mostrando que a concordância não depende do grupo problemático).
 A concordância não cresce de forma gradual: fica achatada entre 0,50 e
 0,55 de 2015 a 2019, salta para a faixa de 0,66 a 0,74 já em 2020 e se
-mantém nesse patamar mais alto até 2025, sem tendência adicional — um
+mantém nesse patamar mais alto até 2025, sem tendência adicional, um
 degrau que coincide com o início da pandemia, não uma trajetória
 ascendente ao longo da década.
 
@@ -221,7 +220,7 @@ eficiência SFA (vertical).}
 posicionado pelo \textbf{escore de eficiência DEA} no eixo horizontal e
 pela \textbf{eficiência técnica SFA} no vertical (ambos entre 0 e 1).
 Quanto mais a nuvem sobe da esquerda para a direita, mais os dois métodos
---- de naturezas opostas --- concordam sobre quem é eficiente. A faixa
+(de naturezas opostas) concordam sobre quem é eficiente. A faixa
 verde colada no topo é a degeneração das OSS descrita no texto.}
 
 \textbf{O que fica para a leitura do documento.} A segunda fase não
@@ -230,7 +229,7 @@ operacional mais intenso e a eficiência produtiva maior das OSS são
 traços robustos da rede}, visíveis em todos os métodos e em todas as
 amostras, inclusive sem os conversores; o \textbf{TMP menor} reaparece
 com a mesma magnitude na especificação hierárquica, o que confirma que
-o resultado não dependia da forma do modelo --- mas não altera a
+o resultado não dependia da forma do modelo, mas não altera a
 limitação que vem dos cinco conversores, e ele segue sem corroboração
 nos testes de poder limitado (permutação p igual a 0,153, bootstrap
 selvagem 0,324, controle sintético degenerado); o \textbf{faturamento} segue sem

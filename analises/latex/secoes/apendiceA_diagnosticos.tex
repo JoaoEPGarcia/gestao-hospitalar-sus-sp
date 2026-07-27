@@ -7,14 +7,14 @@
 \renewcommand{\thetable}{A.\arabic{table}}
 
 Este apêndice reúne todo o material estatístico de ajuste do documento
---- a escolha da família de distribuição de cada indicador, as notas de
+(a escolha da família de distribuição de cada indicador, as notas de
 qualidade de ajuste, os gráficos QQ e os resíduos quantílicos dos
-modelos ---, para que o corpo do texto flua sem interrupções técnicas.
+modelos), para que o corpo do texto flua sem interrupções técnicas.
 Ele é dirigido a quem quiser conferir a base metodológica; a leitura
 substantiva não depende dele. Três noções bastam para acompanhar tudo.
 \textbf{Nota AIC}: uma medida de qualidade de ajuste usada para comparar
 moldes de distribuição entre si; quanto menor o AIC, melhor o molde
-descreve os dados, e o valor isolado não tem interpretação --- só serve
+descreve os dados, e o valor isolado não tem interpretação, só serve
 para comparar. \textbf{Gráfico QQ}: compara os dados reais com um molde
 matemático de distribuição; se os pontos seguem a reta, o molde descreve
 bem os dados, e desvios sistemáticos da reta indicam onde o molde falha.
@@ -41,7 +41,7 @@ unidades seja comparável à média, e aqui a variação é milhares de vezes
 maior (razão de 6.249 no agregado e de 102 mesmo comparando cada
 hospital só consigo mesmo ao longo dos anos). A \textbf{ocupação de
 internação} é modelada no logaritmo sem truncar em 100\%, e a
-\textbf{ocupação de UTI} usa um modelo em duas partes --- primeiro se o
+\textbf{ocupação de UTI} usa um modelo em duas partes, primeiro se o
 hospital tem UTI ativa, depois com que intensidade a usa.
 
 \subsection*{A mortalidade como mistura de duas Betas}
@@ -52,7 +52,7 @@ escala geral, mas erra o pico de hospitais com mortalidade quase nula.
 A Figura~\ref{fig:mistura} mostra a solução e, ao mesmo tempo, a
 explicação: somando \textbf{duas Betas}, uma para cada grupo de
 hospitais, a curva acompanha o histograma com nitidez. Os dois grupos
-não são um artifício de ajuste --- eles existem no painel, e a
+não são um artifício de ajuste, eles existem no painel, e a
 Seção~\ref{sec:distribuicoes} os descreve. Como também há observações
 com mortalidade exatamente zero, o molde completo é a Beta com
 tratamento especial para os zeros.
@@ -145,7 +145,7 @@ amostra os moldes aparecem ordenados do melhor para o pior AIC.}
 
 Para a fração de alta complexidade, a Figura~\ref{fig:betapct} mostra o
 ajuste Beta do miolo (os hospitais que realizam alguma alta
-complexidade); os dois acúmulos nas pontas --- zero e um --- são
+complexidade); os dois acúmulos nas pontas (zero e um) são
 tratados separadamente pelo modelo ZOIB citado na
 Seção~\ref{sec:distribuicoes}.
 
@@ -308,7 +308,7 @@ mistura de hospitais diferentes.}
 \comoler{no painel anterior este par contrastava o desenho em degrau
 (com os hospitais de longa permanência) com a reta quase perfeita (sem
 eles). No painel corrente a ETAPA F já removeu essa subpopulação, então
-as duas versões coincidem e ambas mostram a reta --- a confirmação de
+as duas versões coincidem e ambas mostram a reta, a confirmação de
 que o desvio era a subpopulação, não o molde.}
 
 \begin{figure}[H]
@@ -317,7 +317,7 @@ que o desvio era a subpopulação, não o molde.}
 \subfig{fig_ae_11_qq_tmp_marginal_sem_longa_perm.png}{TMP: sem a antiga
 subpopulação de longa permanência}
 \caption{TMP: gráfico QQ do painel completo e da versão sem a antiga
-subpopulação de longa permanência --- no painel corrente as duas
+subpopulação de longa permanência, no painel corrente as duas
 coincidem, porque a ETAPA F já removeu essa subpopulação.}
 \label{fig:qqcondB}
 \end{figure}
@@ -367,7 +367,7 @@ pelas margens de erro agrupadas. A exceção honesta é a
 \textbf{intensidade de ocupação da UTI} (0,814): a cauda de UTIs com uso
 quase nulo escapa do modelo em logaritmo, e esse resultado específico
 deve ser lido com reserva; fica registrado para a próxima iteração o uso
-de uma família com massa perto de zero para esse indicador --- reestimada
+de uma família com massa perto de zero para esse indicador, reestimada
 com a família Gama na Figura~\ref{fig:qqgama}.
 
 \comoler{quanto mais os pontos azuis acompanham a linha tracejada,
@@ -441,7 +441,7 @@ ajustada da mortalidade.}
 
 \comofeito{mesma construção, para o modelo de ocupação de internação e
 para a versão da mortalidade que exclui os óbitos fetais, maternos e
-neonatais --- esta última é a que sustenta a verificação de robustez da
+neonatais, esta última é a que sustenta a verificação de robustez da
 Seção~\ref{sec:robustez}.}
 
 \comoler{compare com o painel (b) da figura anterior: os pontos que

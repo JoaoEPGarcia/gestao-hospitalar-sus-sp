@@ -19,8 +19,8 @@ não depende dessa escolha: quem quiser conferir qual molde foi usado em
 cada caso, e por quê, encontra tudo no
 Apêndice~\ref{ap:diagnosticos}. O que vale registrar aqui é que
 faturamento e tempo de permanência são analisados no logaritmo,
-comparando cada hospital com ele mesmo ao longo do tempo --- os
-chamados \textbf{efeitos fixos} ---, e que essa é a especificação que
+comparando cada hospital com ele mesmo ao longo do tempo, os
+chamados \textbf{efeitos fixos}, e que essa é a especificação que
 sustenta os dois achados dentro do hospital deste documento.
 
 Cinco salvaguardas valem para todos os modelos. Primeira: o faturamento entra
@@ -31,7 +31,7 @@ denominador frágil do Hospital Infante D Henrique (CNES 2097613, São
 José do Rio Preto, 2020 e 2021, com 13 e 4 saídas fora da COVID) ficam
 fora de todas as equações. Terceira: o tratamento especial que o
 painel anterior dava aos hospitais de longa permanência deixou de ser
-necessário --- a ETAPA F removeu essa subpopulação do painel inteiro,
+necessário, a ETAPA F removeu essa subpopulação do painel inteiro,
 de modo que a antiga dummy de longa permanência fica sem variação e sai
 das equações de tempo de permanência onde antes entrava.\footnote{O
 teto de 30,5 dias que motivava esse tratamento era uma censura
@@ -54,9 +54,9 @@ longo do tempo (a Seção~\ref{sec:correlacao} documentou parcelas de
 variação interna de 4,5\% a 38,2\%), o contraste entre gestões
 pode ser lido de duas maneiras: comparando hospitais diferentes
 (between) ou acompanhando os cinco hospitais que trocaram de gestão
-(within). Na mortalidade usamos a especificação de Mundlak --- um
+(within). Na mortalidade usamos a especificação de Mundlak (um
 arranjo do modelo que estima essas duas leituras ao mesmo tempo e as
-mantém separadas, em vez de misturá-las num só coeficiente ---, que separa
+mantém separadas, em vez de misturá-las num só coeficiente), que separa
 as duas leituras dentro do mesmo modelo; no faturamento e no tempo de
 permanência, os efeitos fixos de hospital fazem a leitura within pura.
 E a ressalva permanente continua de pé: a categoria Privado tem apenas

@@ -46,14 +46,14 @@ mortalidade e o tempo de permanência, mas a coincidência vale para os
 cinco, e a Tabela~\ref{tab:cstwfezero} traz os cinco pares para que o
 leitor não precise tomar a afirmação como palavra: as diferenças entre
 os dois métodos aparecem só na terceira casa decimal. Nas janelas intermediárias
-o método clássico exagera o efeito — na mortalidade (2,6 e 2,9 pontos
+o método clássico exagera o efeito, na mortalidade (2,6 e 2,9 pontos
 contra 2,0 e 2,3 do alternativo) e no tempo de permanência (0,25
-contra 0,16 em log pontos) — e as janelas longas se aproximam, com
+contra 0,16 em log pontos), e as janelas longas se aproximam, com
 intervalos sobrepostos (na mortalidade, 2,23 pontos negativos no
 método clássico contra 2,44 no alternativo; no tempo de permanência,
 0,28 contra 0,30 em log pontos). Nenhuma conclusão muda; as
-magnitudes das janelas intermediárias — da mortalidade e do tempo de
-permanência — eram os pontos inflados.\footnote{A comparação foi feita
+magnitudes das janelas intermediárias (da mortalidade e do tempo de
+permanência) eram os pontos inflados.\footnote{A comparação foi feita
 para os cinco indicadores, em quatro janelas cada um; o texto e a figura
 discutem a mortalidade e o tempo de permanência, que são os dois
 achados em disputa. Nos outros três os dois métodos também concordam:
@@ -66,8 +66,8 @@ padrão. A tabela completa está em \texttt{tab\_est\_cs\_evento.csv}.}
 Seção~\ref{sec:efeitogestao}; os quadrados verdes são o estimador
 alternativo. Quando os dois símbolos quase se tocam, como no ano zero
 e na janela longa, o resultado não depende do método; onde eles se
-afastam --- nos anos intermediários, tanto da mortalidade quanto do
-tempo de permanência --- é onde o método clássico exagerava.}
+afastam (nos anos intermediários, tanto da mortalidade quanto do
+tempo de permanência) é onde o método clássico exagerava.}
 
 \begin{table}[H]
 \centering
@@ -126,21 +126,21 @@ convertidos que reproduz a trajetória do hospital antes da mudança de
 gestão. Se a conversão teve efeito, o hospital real deve descolar do
 seu gêmeo depois dela. A Figura~\ref{fig:sintetico} traz o resultado
 para a mortalidade, e ele pede duas honestidades. A primeira:
-\textbf{em Sorocaba não há descolamento} — o gêmeo também cai depois
+\textbf{em Sorocaba não há descolamento}, o gêmeo também cai depois
 de 2019 (confirmando que parte da queda era retorno natural ao
 patamar) e o hospital real fica, em média, \textbf{0,54 ponto
 percentual abaixo do gêmeo}, lacuna que os placebos produzem com
 facilidade (p igual a 0,67). A segunda é de robustez, pelo mesmo
 princípio da variante sem conversores da Seção~\ref{sec:fase2}: no
 painel anterior à ETAPA F (314 hospitais), este mesmo exercício dava
-Sorocaba \textbf{1,09 ponto \emph{acima} do gêmeo} — a exclusão dos 25
+Sorocaba \textbf{1,09 ponto \emph{acima} do gêmeo}, a exclusão dos 25
 hospitais estruturalmente incomparáveis trocou os doadores e o
 \textbf{sinal da lacuna inverteu}. Não é um caso de ajuste pré-período
-pior: o RMSPE pré --- a medida de quanto o gêmeo sintético erra ao
+pior: o RMSPE pré, a medida de quanto o gêmeo sintético erra ao
 reproduzir o hospital \emph{antes} da conversão, em que zero significa
-reprodução exata --- permanece exatamente 0,0 nas duas rodadas,
+reprodução exata (permanece exatamente 0,0 nas duas rodadas,
 interpolação
-perfeita em ambas --- e é justamente por isso que a inferência aqui usa
+perfeita em ambas) e é justamente por isso que a inferência aqui usa
 o placebo baseado na lacuna pós-conversão, e não a razão entre RMSPE pós
 e pré (a estatística usual do controle sintético), que fica indefinida
 quando o ajuste pré é perfeito. A causa é a \textbf{degeneração de
@@ -162,8 +162,8 @@ Subseção~\ref{sub:oqueforam}: a conversão de Sorocaba foi decidida
 \emph{em resposta} à crise de gestão de 2018, de modo que o período
 pré-conversão retrata o hospital no seu pior momento. Um gêmeo sintético
 construído para reproduzir esse período reproduz também a crise, e a
-melhora posterior que se observa nos dois --- no hospital real e no
-gêmeo --- é compatível com reversão à média sem efeito algum da nova
+melhora posterior que se observa nos dois (no hospital real e no
+gêmeo) é compatível com reversão à média sem efeito algum da nova
 gestão. Já
 \textbf{no Pérola Byington o hospital
 fica 1,06 ponto abaixo do gêmeo}, na direção esperada, mas dentro do
@@ -178,7 +178,7 @@ valer como prova.
 controle sintético foi rodado para os três indicadores nos dois
 conversores, e a Tabela~\ref{tab:sintetico} traz as seis linhas. As
 três primeiras são as discutidas acima; as três restantes não haviam
-sido apresentadas, e é preciso dizer com cuidado o que elas mostram --- e
+sido apresentadas, e é preciso dizer com cuidado o que elas mostram, e
 o que não mostram. No tempo de permanência, o hospital real fica
 0,24 dia abaixo do gêmeo em Sorocaba e 0,13 dia abaixo no Pérola, sobre
 permanências medianas de cerca de 7,1 e 3,4 dias, com p de 0,78 e 0,75.
@@ -186,7 +186,7 @@ permanências medianas de cerca de 7,1 e 3,4 dias, com p de 0,78 e 0,75.
 corrobora.} A diferença importa. Com dois hospitais utilizáveis e um
 ajuste pré degenerado, um p alto significa que o teste não distingue
 "o efeito é nulo" de "não há poder para detectar um efeito deste
-tamanho" --- exatamente a mesma limitação de poder que a permutação e o
+tamanho", exatamente a mesma limitação de poder que a permutação e o
 bootstrap selvagem enfrentam no começo desta seção. A coluna do RMSPE
 pré é a que sustenta a ressalva: as cinco linhas com valor 0,0 têm
 interpolação perfeita no período anterior à conversão, a degeneração de
@@ -225,7 +225,7 @@ Pérola   & Faturamento real (R\$)    & $-353{,}92$ & 0,00   & 0,25 & 283 \\
 indicador. \textbf{Lacuna pós} é a média, ao longo dos anos posteriores
 à conversão, da diferença entre o hospital real e o seu gêmeo sintético,
 na unidade do indicador. \textbf{RMSPE pré} é a raiz do erro quadrático
-médio do ajuste no período \emph{anterior} à conversão --- quanto menor,
+médio do ajuste no período \emph{anterior} à conversão, quanto menor,
 melhor o gêmeo reproduz o hospital antes da mudança, e o valor exato de
 0,0 indica que a reprodução foi perfeita, situação em que os pesos do
 gêmeo deixam de ser únicos. \textbf{$p$ placebo} é a fração dos
@@ -247,7 +247,7 @@ de Sorocaba (CNES 2081695), conversão em 2019}
 (CNES 2078287), conversão em 2023}
 \caption{Tempo de permanência: hospital real contra o seu controle
 sintético. O exercício não corrobora o efeito estimado pelos demais
-métodos --- e, pelas razões de poder discutidas no texto, também não o
+métodos, e, pelas razões de poder discutidas no texto, também não o
 refuta.}
 \label{fig:sinteticotmp}
 \end{figure}
@@ -303,9 +303,9 @@ UTI), com diferenças firmes \textbf{enquanto retrato transversal das
 redes}; a única evidência com pretensão causal que resiste é a do
 tempo de permanência, e é preciso ser exato sobre o que isso quer
 dizer: ela \textbf{sobrevive a todos os testes que têm poder para
-avaliá-la} --- o teste de tendências anteriores (p igual a 0,254), o
+avaliá-la}, o teste de tendências anteriores (p igual a 0,254), o
 estimador de Callaway e Sant'Anna e a reestimação sem o biênio
-pandêmico --- e \textbf{fica sem corroboração em todos os que têm o
+pandêmico, e \textbf{fica sem corroboração em todos os que têm o
 poder limitado pelo número de tratados}: permutação (p igual a 0,153),
 bootstrap selvagem (p igual a 0,324) e controle sintético (degenerado,
 p de 0,78 e 0,75). Nenhum destes três a contradiz; nenhum a sustenta.
@@ -313,7 +313,7 @@ Ela permanece sugestiva com cinco conversores, não definitiva; o faturamento
 real por saída não mostra diferença demonstrável em nenhum método; e
 a queda de mortalidade após as conversões, embora visível nos dados
 brutos, não produz descolamento raro frente ao gêmeo sintético em
-nenhum dos dois conversores testados — e em Sorocaba o próprio sinal
+nenhum dos dois conversores testados, e em Sorocaba o próprio sinal
 da lacuna inverte com a mudança de painel da ETAPA F, o que rebaixa o
 resultado a frágil, não adverso nem favorável. A segunda fase da estimação
 (Seção~\ref{sec:fase2}) quantificou esse último ponto da forma mais
