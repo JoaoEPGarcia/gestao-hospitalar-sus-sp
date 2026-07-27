@@ -1,11 +1,15 @@
 \section{Fase qualitativa: seleção e roteiro de entrevistas}
 \label{sec:qualitativa}
 
-% comandos locais desta seção: cabeçalhos em negrito no lugar de
-% subseções, para não pesar sumário nem bookmarks (xcolor já carregado
-% no preâmbulo do principal).
-\newcommand{\parte}[1]{\par\bigskip\noindent{\large\bfseries #1}\par\nopagebreak\smallskip}
-\newcommand{\bloco}[1]{\par\medskip\noindent\textbf{#1}\par\nopagebreak\smallskip}
+% comandos locais desta seção. Eram cabeçalhos em negrito soltos, o que
+% deixava 17 páginas sem uma única entrada no sumário nem bookmark de
+% PDF; agora são unidades de seccionamento de verdade. A aparência é
+% praticamente a mesma --- \subsection já é \large\bfseries e
+% \subsubsection já é \bfseries no corpo do texto ---, com o ganho da
+% numeração e da navegabilidade. (xcolor já carregado no preâmbulo do
+% principal.)
+\newcommand{\parte}[1]{\subsection{#1}}
+\newcommand{\bloco}[1]{\subsubsection{#1}}
 \newcommand{\achado}[1]{%
   \par\smallskip
   \noindent\begingroup\small\itshape
