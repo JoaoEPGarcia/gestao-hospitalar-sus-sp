@@ -18,7 +18,18 @@ entre os falsos conversores (40\% deles produzem efeito tão grande
 quanto o real), enquanto \textbf{a queda de tempo de permanência de
 10,2\% é maior que a de 85\% dos placebos} (p igual a 0,153). Um
 segundo método, o bootstrap selvagem por cluster, sabidamente
-conservador nesta situação, aponta na mesma direção. A tradução: o
+conservador nesta situação, aponta na mesma direção e com p ainda mais
+alto: 0,324 no tempo de permanência e 0,597 no faturamento.
+
+Somando ao controle sintético descrito adiante, são \textbf{três testes
+de poder limitado} e vale registrar o que eles têm em comum. Permutação
+(p igual a 0,153), bootstrap selvagem (p igual a 0,324) e controle
+sintético (com ajuste pré degenerado, ver adiante) convergem em
+\textbf{não conseguir distinguir um efeito nulo de uma ausência de
+poder para detectá-lo}. Com cinco hospitais tratados, e apenas dois com
+janela posterior utilizável, é isso que esses testes conseguem dizer:
+não que o efeito não exista, e sim que este desenho não tem como
+separar as duas hipóteses. A tradução: o
 efeito no tempo de permanência é consistente em direção e tamanho, mas
 \textbf{cinco hospitais não bastam para sustentar a afirmação com o
 rigor estatístico convencional}; ele deve ser tratado como evidência
@@ -30,8 +41,11 @@ pode misturar hospitais já convertidos no grupo de controle. O
 estimador de Callaway e Sant'Anna evita isso comparando cada coorte de
 conversão apenas com os hospitais que nunca mudaram. A
 Figura~\ref{fig:cstwfe} mostra que, no ano da conversão, os dois
-métodos coincidem em todos os indicadores (na mortalidade, 1,296
-contra 1,293 pontos percentuais de queda); nas janelas intermediárias
+métodos coincidem em todos os indicadores. A figura traz apenas a
+mortalidade e o tempo de permanência, mas a coincidência vale para os
+cinco, e a Tabela~\ref{tab:cstwfezero} traz os cinco pares para que o
+leitor não precise tomar a afirmação como palavra: as diferenças entre
+os dois métodos aparecem só na terceira casa decimal. Nas janelas intermediárias
 o método clássico exagera o efeito — na mortalidade (2,6 e 2,9 pontos
 contra 2,0 e 2,3 do alternativo) e no tempo de permanência (0,25
 contra 0,16 em log pontos) — e as janelas longas se aproximam, com
@@ -39,7 +53,14 @@ intervalos sobrepostos (na mortalidade, 2,23 pontos negativos no
 método clássico contra 2,44 no alternativo; no tempo de permanência,
 0,28 contra 0,30 em log pontos). Nenhuma conclusão muda; as
 magnitudes das janelas intermediárias — da mortalidade e do tempo de
-permanência — eram os pontos inflados.
+permanência — eram os pontos inflados.\footnote{A comparação foi feita
+para os cinco indicadores, em quatro janelas cada um; o texto e a figura
+discutem a mortalidade e o tempo de permanência, que são os dois
+achados em disputa. Nos outros três os dois métodos também concordam:
+no faturamento real ambos ficam negativos nas quatro janelas, na
+ocupação de internação ambos partem de perto de zero e voltam a zero na
+janela longa, e na fração de alta complexidade ambos oscilam sem
+padrão. A tabela completa está em \texttt{tab\_est\_cs\_evento.csv}.}
 
 \comoler{os círculos escuros repetem o estudo de eventos da
 Seção~\ref{sec:efeitogestao}; os quadrados verdes são o estimador
@@ -47,6 +68,36 @@ alternativo. Quando os dois símbolos quase se tocam, como no ano zero
 e na janela longa, o resultado não depende do método; onde eles se
 afastam --- nos anos intermediários, tanto da mortalidade quanto do
 tempo de permanência --- é onde o método clássico exagerava.}
+
+\begin{table}[H]
+\centering
+\caption{Os dois métodos no \textbf{ano da conversão}, nos cinco
+indicadores estimados. TWFE é o método clássico do estudo de eventos da
+Seção~\ref{sec:efeitogestao}; CS é o estimador de Callaway e
+Sant'Anna. A figura desta seção mostra as duas primeiras linhas; as
+outras três estão aqui para que a coincidência entre os métodos possa
+ser conferida em todos os indicadores, e não apenas nos dois
+ilustrados.}
+\label{tab:cstwfezero}
+\small
+\begin{tabular}{llrr}
+\toprule
+Indicador & Unidade & TWFE & CS \\
+\midrule
+Mortalidade geral          & pontos percentuais & $-1{,}296$ & $-1{,}293$ \\
+Tempo de permanência       & log pontos         & $-0{,}145$ & $-0{,}145$ \\
+Faturamento real por saída & log pontos         & $-0{,}054$ & $-0{,}054$ \\
+Fração alta complexidade   & pontos percentuais & $-0{,}395$ & $-0{,}382$ \\
+Ocupação de internação     & log pontos         & $0{,}110$  & $0{,}110$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\comofeito{cada linha é um indicador e as duas colunas de número trazem
+o efeito estimado \textbf{no próprio ano da conversão} (evento zero) por
+cada um dos dois métodos, na unidade indicada. Quanto mais próximos os
+dois valores, menos o resultado daquele indicador depende da escolha do
+estimador.}
 
 \begin{figure}[H]
 \centering
@@ -105,6 +156,89 @@ Seção~\ref{sec:resultados}: para as OSS, o faturamento por saída é
 produção sem consequência financeira direta.} Em nenhum caso o descolamento é raro o bastante para
 valer como prova.
 
+\textbf{O exercício completo, incluindo o tempo de permanência.} O
+controle sintético foi rodado para os três indicadores nos dois
+conversores, e a Tabela~\ref{tab:sintetico} traz as seis linhas. As
+três primeiras são as discutidas acima; as três restantes não haviam
+sido apresentadas, e é preciso dizer com cuidado o que elas mostram --- e
+o que não mostram. No tempo de permanência, o hospital real fica
+0,24 dia abaixo do gêmeo em Sorocaba e 0,13 dia abaixo no Pérola, sobre
+permanências medianas de cerca de 7,1 e 3,4 dias, com p de 0,78 e 0,75.
+\textbf{Isso não refuta o efeito no tempo de permanência: apenas não o
+corrobora.} A diferença importa. Com dois hospitais utilizáveis e um
+ajuste pré degenerado, um p alto significa que o teste não distingue
+"o efeito é nulo" de "não há poder para detectar um efeito deste
+tamanho" --- exatamente a mesma limitação de poder que a permutação e o
+bootstrap selvagem enfrentam no começo desta seção. A coluna do RMSPE
+pré é a que sustenta a ressalva: as cinco linhas com valor 0,0 têm
+interpolação perfeita no período anterior à conversão, a degeneração de
+pesos descrita acima, e por isso são pouco informativas em qualquer
+direção. Registramos as seis porque o critério tem de valer por igual:
+a linha de mortalidade de Sorocaba, que sustenta parte do argumento
+desta seção, tem a mesma degeneração das linhas de permanência.
+
+\begin{table}[H]
+\centering
+\caption{Controle sintético: as seis combinações de hospital e
+indicador efetivamente estimadas. A \textbf{lacuna pós} é a distância
+média entre o hospital real e o seu gêmeo depois da conversão (negativa
+significa hospital abaixo do gêmeo). O \textbf{RMSPE pré} mede o erro de
+ajuste no período anterior à conversão: o valor 0,0 indica interpolação
+perfeita e, com ela, a degeneração de pesos discutida no texto. O
+\textbf{p placebo} é a proporção de hospitais nunca convertidos que
+produzem lacuna igual ou maior quando submetidos ao mesmo exercício.}
+\label{tab:sintetico}
+\small
+\begin{tabular}{llrrrr}
+\toprule
+Hospital & Indicador & Lacuna pós & RMSPE pré & $p$ placebo & Doadores \\
+\midrule
+Sorocaba & Mortalidade (p.p.)        & $-0{,}54$   & 0,00   & 0,67 & 283 \\
+Sorocaba & Permanência (dias)        & $-0{,}24$   & 0,00   & 0,78 & 283 \\
+Sorocaba & Faturamento real (R\$)    & $-56{,}38$  & 0,00   & 0,75 & 283 \\
+Pérola   & Mortalidade (p.p.)        & $-1{,}06$   & 0,29   & 0,32 & 283 \\
+Pérola   & Permanência (dias)        & $-0{,}13$   & 0,00   & 0,75 & 283 \\
+Pérola   & Faturamento real (R\$)    & $-353{,}92$ & 0,00   & 0,25 & 283 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\comofeito{cada linha é uma combinação de hospital convertido e
+indicador. \textbf{Lacuna pós} é a média, ao longo dos anos posteriores
+à conversão, da diferença entre o hospital real e o seu gêmeo sintético,
+na unidade do indicador. \textbf{RMSPE pré} é a raiz do erro quadrático
+médio do ajuste no período \emph{anterior} à conversão --- quanto menor,
+melhor o gêmeo reproduz o hospital antes da mudança, e o valor exato de
+0,0 indica que a reprodução foi perfeita, situação em que os pesos do
+gêmeo deixam de ser únicos. \textbf{$p$ placebo} é a fração dos
+hospitais nunca convertidos que, submetidos ao mesmo exercício, produzem
+lacuna de tamanho igual ou maior. \textbf{Doadores} é o número de
+hospitais elegíveis para compor o gêmeo.}
+
+\comoler{compare a linha preta com a azul tracejada depois da linha
+vertical: é essa distância que a Tabela~\ref{tab:sintetico} resume na
+coluna da lacuna. Nos dois hospitais as duas linhas seguem praticamente
+juntas no período posterior, que é o que os $p$ de 0,78 e 0,75
+traduzem em número.}
+
+\begin{figure}[H]
+\centering
+\subfig{fig_est_06_sintetico_2081695_tmp.png}{Conjunto Hospitalar
+de Sorocaba (CNES 2081695), conversão em 2019}
+\subfig{fig_est_06_sintetico_2078287_tmp.png}{Pérola Byington
+(CNES 2078287), conversão em 2023}
+\caption{Tempo de permanência: hospital real contra o seu controle
+sintético. O exercício não corrobora o efeito estimado pelos demais
+métodos --- e, pelas razões de poder discutidas no texto, também não o
+refuta.}
+\label{fig:sinteticotmp}
+\end{figure}
+
+\comofeito{mesma construção do controle sintético da figura anterior
+(hospital real em linha preta, gêmeo sintético em azul tracejado, linha
+vertical no ano da conversão), agora com o \textbf{tempo de permanência
+em dias} no eixo vertical em lugar da mortalidade.}
+
 \comoler{a linha preta é o hospital; a azul tracejada é o gêmeo
 sintético, montado para imitar o hospital antes da linha vertical. O
 efeito da conversão é a distância entre as duas linhas depois da linha
@@ -149,8 +283,15 @@ toda a bateria de testes é: as OSS operam um regime assistencial
 claramente mais intenso (mais produção, mais ocupação, mais uso de
 UTI), com diferenças firmes \textbf{enquanto retrato transversal das
 redes}; a única evidência com pretensão causal que resiste é a do
-tempo de permanência, presente em todos os métodos, e mesmo ela
-permanece sugestiva com cinco conversores, não definitiva; o faturamento
+tempo de permanência, e é preciso ser exato sobre o que isso quer
+dizer: ela \textbf{sobrevive a todos os testes que têm poder para
+avaliá-la} --- o teste de tendências anteriores (p igual a 0,254), o
+estimador de Callaway e Sant'Anna e a reestimação sem o biênio
+pandêmico --- e \textbf{fica sem corroboração em todos os que têm o
+poder limitado pelo número de tratados}: permutação (p igual a 0,153),
+bootstrap selvagem (p igual a 0,324) e controle sintético (degenerado,
+p de 0,78 e 0,75). Nenhum destes três a contradiz; nenhum a sustenta.
+Ela permanece sugestiva com cinco conversores, não definitiva; o faturamento
 real por saída não mostra diferença demonstrável em nenhum método; e
 a queda de mortalidade após as conversões, embora visível nos dados
 brutos, não produz descolamento raro frente ao gêmeo sintético em

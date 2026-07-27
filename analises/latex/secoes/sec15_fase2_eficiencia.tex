@@ -22,12 +22,21 @@ magnitude menor (13\%), \textbf{mas com intervalo que cruza o zero na
 especificação hierárquica} --- em ambos os casos porque parte do
 contraste entre as redes é absorvida pelo efeito de hospital; e a mortalidade aparece
 \textbf{0,262 menor no logito} (intervalo de 0,410 a 0,114 negativos),
-com precisão maior que a da Seção~\ref{sec:resultados}. O teste
+com precisão maior que a da
+Seção~\ref{sec:resultados}.\footnote{Duas especificações alternativas
+foram estimadas para esse mesmo coeficiente e não são reportadas aqui
+por apontarem na mesma direção e magnitude: sem o termo de Mundlak,
+0,233 negativo; com efeito aleatório de ano, 0,260 negativo. A tabela
+completa está em \texttt{tabB\_sensibilidade\_mortalidade.csv}.} O teste
 decisivo, porém, é outro: \textbf{retirando os cinco conversores, a
 diferença de mortalidade entre as redes desaparece}: o coeficiente vai
 a 0,003 positivo, com intervalo de 0,414 negativo a 0,420 positivo,
 cruzando o zero com folga, enquanto TMP, produção, ocupação e
-eficiência sobrevivem intactos. Os dois coeficientes, lado a lado, são
+eficiência não só sobrevivem como se \textbf{fortalecem}: sem os
+conversores o TMP vai de 0,108 para 0,281 negativo, a produção de 0,282
+para 0,492, a ocupação de 0,118 para 0,235 --- passando a excluir o zero,
+o que não fazia no modelo principal --- e a eficiência de 0,293 para
+0,331 negativo. Os dois coeficientes, lado a lado, são
 a evidência direta de que a identificação causal repousa sobre os
 conversores (sobretudo Sorocaba e Pérola Byington, os dois com janela
 posterior utilizável), e não sobre uma diferença ampla entre as redes:
@@ -105,8 +114,10 @@ frente, Direta e Municipal próximas no meio, Filantrópico atrás. Na
 regressão da distância à fronteira sobre
 categoria, complexidade, porte e ano, a vantagem OSS equivale a cerca
 de \textbf{cerca de 25\% menos distância à fronteira que a Direta}
-(exp(-0,293) menos 1), estável retirando o biênio pandêmico, os cinco
-conversores ou restringindo ao suporte comum. Ao contrário da mortalidade,
+(exp(-0,293) menos 1), estável retirando o biênio pandêmico (0,272
+negativo), os cinco conversores (0,331 negativo) ou restringindo ao
+suporte comum (0,319 negativo) --- as quatro estimativas com intervalo
+inteiro abaixo do zero. Ao contrário da mortalidade,
 \textbf{a eficiência
 maior das OSS é um traço da rede}, presente na comparação pura entre
 hospitais distintos. E o receio de os 3 hospitais Privados
