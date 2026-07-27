@@ -7,6 +7,60 @@ de abertura, a evidência que o motivou e de quem é a decisão.
 
 ---
 
+## 0-bis. Varredura de `resultados_fase2/tabelas/` (27/07/2026) — achados abertos
+
+**Aberta em:** 27/07/2026
+**Decisão de:** João, com Priscilla onde indicado
+**Situação:** aberta — relatório apenas, nada corrigido
+
+Primeira checagem de completude fonte × texto sobre
+`resultados_fase2/tabelas/` (22 CSVs) e os relatórios em markdown, pastas
+que as auditorias anteriores nunca indexavam. Confirmações positivas:
+`gamma` vale 0,954821 e o texto imprime 95,5% (o erro de 94% está de fato
+corrigido); o LR da Translog (567,0) e a correlação Spearman DEA×SFA
+(0,617 e 0,629, impressos como 0,62 e 0,63) conferem com a fonte. Quatro
+achados ficaram abertos.
+
+**(A) Classe 3 — a equação de ineficiência da SFA não aparece no
+documento.** `tabS_fronteira_bc95.csv` traz seis coeficientes `Z_d_*` e
+o documento não cita nenhum. Quatro são fortemente significativos:
+Público Municipal −5,454 (p = 9,0×10⁻⁸), Privado +2,474 (p = 4,2×10⁻¹⁰),
+Grande Porte +2,470 (p = 1,3×10⁻¹³) e Especial +7,401 (p = 7,0×10⁻¹⁶).
+O único coeficiente dessa equação que o texto menciona é o da OSS, e só
+para explicar que perde identificação. O resultado de que o Público
+Municipal sai significativamente menos ineficiente na mesma equação nunca
+é mostrado, embora o documento discuta a ordem das redes na SFA.
+
+**(B) Classe 3 — violação de monotonicidade do insumo de UTI, não
+reportada.** O `RELATORIO_EXECUCAO.md` (linha 117) registra que o insumo
+de UTI é "mal comportado no Translog (monotonicidade violada em 95% das
+observações no painel de 289)" e que "qualquer leitura fina de UTI em
+eficiência pede desenho próprio". O documento não menciona isso em lugar
+nenhum, embora use a fronteira Translog para sustentar a ordem das redes
+e reporte um coeficiente de intensidade de UTI.
+
+**(C) Classe 2 + 4 — "todas as amostras" contradiz a própria Seção 15.**
+A Seção 15 afirma que "o regime operacional mais intenso e a eficiência
+produtiva maior das OSS são traços robustos da rede, visíveis em todos os
+métodos e em todas as amostras". Por `tabR_frente1_variantes.csv`, a
+ocupação tem intervalo que cruza o zero em duas das quatro amostras
+(principal: −0,041 a 0,277; sem pandemia: −0,077 a 0,260). A própria
+Seção 15 já diz isso duas vezes, mais acima. Produção e intensidade de
+UTI são robustas nas quatro; ocupação não. A frase precisa dizer qual
+componente do "regime operacional" é robusto, ou trazer o número.
+
+**(D) Classe 5 — `tabS_sensibilidade.csv` e `tabR_frente3_variantes.csv`
+não têm nenhuma célula no texto.** Isso é *coerente* com a decisão
+travada de não citar a SFA das OSS, e o documento explica a degeneração.
+Fica o registro de um detalhe: em `tabR_frente3`, a variante sem pandemia
+estima o coeficiente em −1.971,5 com erro padrão 400,0 (p = 8,3×10⁻⁷),
+ou seja, precisamente estimado, enquanto a especificação principal tem
+erro padrão 905,6 (p = 0,152). A afirmação de que o coeficiente "perde
+identificação" vale para a principal, não para todas as variantes. Vale
+conferir se a redação atual cobre isso.
+
+---
+
 ## 0. As cinco classes de erro e as duas regras de triagem
 
 **Consolidado em:** 27/07/2026
@@ -205,31 +259,29 @@ para o item 1, que precisa das mesmas fontes.
 
 **Aberta em:** 27/07/2026
 **Decisão de:** João
-**Situação:** bloqueada por ambiente, não por decisão
+**Situação:** **RESOLVIDA em 27/07/2026**
 
-O ambiente de trabalho da auditoria de julho de 2026 **não tem Python
-instalado**: `python`, `python3` e `py` resolvem apenas para os *stubs*
-da Microsoft Store em `WindowsApps`, não há venv no repositório, conda
-está ausente e não há instalação em `Programs\Python`, `Program
-Files\Python*`, `C:\Python*`, `anaconda3` ou `miniconda3`. Três itens
-ficaram parados por isso.
+O bloqueio era de ambiente: `python`, `python3` e `py` resolviam apenas
+para os *stubs* da Microsoft Store em `WindowsApps`. Foi criado um venv
+com `uv` (`.venv`, CPython 3.12.13) com pandas, numpy, matplotlib,
+seaborn, openpyxl, scipy, statsmodels, patsy e pyarrow. Rodar sempre com
+`.venv\Scripts\python.exe`, nunca com o `python` do PATH.
 
-**(a) Figuras dos conversores em valores reais.** As cinco
-`fig_ae_09_conversor_*_custo_saida.png` plotam valores **nominais**,
-porque `analise_exploratoria.py:905-923` itera sobre `INDICADORES`, que
-contém `custo_saida`. Como o documento passou a tratar o faturamento
-sempre em valores reais, a Seção 7 deixou de imprimir a variação
-percentual nominal e remete à Seção 16; as cinco legendas declaram
-"valores correntes". A conversão completa — prosa e figuras — depende de
-regerar as figuras com `custo_real`.
+Os três itens que dependiam disso foram fechados:
 
-**(b) Seções 2 e 9 em valores reais.** `tab_ae_univariada.csv` e
-`tab_ae_outliers.csv` não têm coluna `custo_real`. As duas seções
-declaram "valores correntes" com remissão à Seção 6, mas a conversão
-exige recomputar as duas tabelas.
+**(a) Figuras dos conversores em valores reais.** Fechado no commit
+`08f8648`. As cinco `fig_ae_09_conversor_*_custo_real.png` foram geradas
+e a Seção 7 passou a exibi-las, com a variação em valores reais de volta
+à prosa (Sorocaba −12,2%, Pérola Byington −28,4%).
 
-**(c) Item 10 — geografia da seleção.** Ver item 5 abaixo, que tem
-motivo próprio além deste.
+**(b) Seções 2 e 9 em valores reais.** Fechado no mesmo commit.
+`tab_ae_univariada.csv` e `tab_ae_outliers.csv` passaram a ser calculadas
+sobre `custo_real`, e os rótulos "(valores correntes)" saíram. Não há
+mais valor monetário em base nominal no documento, exceto na Seção 6,
+cujo assunto é a comparação entre as duas bases.
+
+**(c) Item 10 — geografia da seleção.** Aplicado; ver item 5, que segue
+aberto por depender de ratificação, não de ambiente.
 
 ---
 
@@ -237,11 +289,33 @@ motivo próprio além deste.
 
 **Aberta em:** 27/07/2026
 **Decisão de:** Priscilla e Alberto (não é correção editorial)
-**Situação:** **não aplicar sem ratificação**
+**Situação:** **APLICADA em 27/07/2026 — pendente de ratificação**
 
-A Seção 16 rotula três hospitais como "interior" incorretamente: Santos
+> **Estado em 27/07/2026.** A reclassificação foi implementada (commit
+> `307ef29`) por decisão do João, com três estratos por código IBGE:
+> Capital (52 hospitais), Outras regiões metropolitanas (49, reunindo os
+> 38 demais municípios da RMSP e os 9 da Baixada Santista) e Interior
+> (188). A Baixada Santista sozinha tem 10 hospitais, abaixo do piso de
+> 15 fixado para um estrato, e por isso entrou junto com a RMSP.
+>
+> **Efeito na seleção, que é o que precisa de ratificação:** um único
+> swap, no bloco c (desviante negativo Filantrópico). Saiu o CNES 2080354
+> (Hospital Santo Antônio, Santos) e entrou o CNES 2078465 (Real
+> Sociedade Portuguesa de Beneficência, Campinas). Nenhum outro hospital
+> entrou, saiu ou mudou de bloco; os seis blocos mantêm o mesmo tamanho e
+> o total segue em 24 hospitais únicos. A Seção 16 e o Apêndice B já
+> foram reconciliados.
+>
+> **O que falta:** Priscilla e Alberto ratificarem essa troca. Se
+> preferirem manter o Hospital Santo Antônio, basta reverter o commit
+> `307ef29` ou fixar o desempate como puramente descritivo. A figura
+> `fig_sel_c_2080354.png` foi deixada no repositório de propósito, para
+> servir de referência nessa conversa.
+
+O diagnóstico original, mantido para registro: a Seção 16 rotulava três
+hospitais como "interior" incorretamente: Santos
 (2 hospitais) é Baixada Santista, e Cotia e Guarulhos são Região
-Metropolitana de São Paulo. A origem é `selecao_entrevistas.py:90-91`:
+Metropolitana de São Paulo. A origem era `selecao_entrevistas.py:90-91`:
 
 ```python
 def _capital(municipio: str) -> str:
