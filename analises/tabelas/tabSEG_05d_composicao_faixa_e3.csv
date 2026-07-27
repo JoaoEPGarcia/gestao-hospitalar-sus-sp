@@ -1,0 +1,13 @@
+﻿modelo_gestao_proxy,faixa_barcelona,n_cnes,n_hospital_ano,pct_hospital_ano_da_categoria
+Direta,4,17,182,87.5
+Direta,5,1,4,1.9
+Direta,6,2,22,10.6
+OSS,4,24,236,85.5
+OSS,5,4,40,14.5
+OSS,6,0,0,0.0
+Público Municipal,4,26,286,83.9
+Público Municipal,5,5,55,16.1
+Público Municipal,6,0,0,0.0
+Filantrópico,4,37,407,74.0
+Filantrópico,5,5,55,10.0
+Filantrópico,6,8,88,16.0

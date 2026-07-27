@@ -1,0 +1,24 @@
+﻿estrato,estrato_rotulo,modelo_gestao_proxy,n_cnes,n_hospital_ano,n_acima_100,pct_acima_100,n_cnes_com_algum_acima,media,mediana,p95,maximo,excesso_mediano_pp,tarja
+TODOS,todos,Direta,27,284,11,3.87,8,65.19,64.13,98.48,109.95,2.66,
+TODOS,todos,OSS,37,365,107,29.32,21,87.01,92.6,109.36,119.51,4.51,
+TODOS,todos,Público Municipal,56,616,160,25.97,39,82.43,86.89,114.9,209.16,7.38,
+TODOS,todos,Filantrópico,171,1881,213,11.32,55,65.16,65.52,108.94,236.61,8.01,
+TODOS,todos,Privado,3,33,1,3.03,1,48.13,40.54,90.25,114.55,14.55,[n<10]
+TODOS,todos,TODAS,289,3179,492,15.48,123,70.84,72.7,109.57,236.61,6.86,
+E1,sem_uti_sus,Direta,1,11,0,0.0,0,24.81,27.88,37.54,38.53,,[n<10]
+E1,sem_uti_sus,OSS,2,22,2,9.09,1,82.24,85.67,101.44,106.25,3.94,[n<10]
+E1,sem_uti_sus,Público Municipal,9,99,2,2.02,2,55.17,49.14,91.96,107.94,6.56,[n<10]
+E1,sem_uti_sus,Filantrópico,54,594,2,0.34,2,41.99,39.35,81.15,101.73,1.17,
+E1,sem_uti_sus,Privado,1,11,1,9.09,1,64.57,54.68,103.31,114.55,14.55,[n<10]
+E1,sem_uti_sus,TODAS,67,737,7,0.95,6,45.04,41.04,86.73,114.55,5.19,
+E2,uti_baixa_complex,Direta,6,65,5,7.69,2,58.46,58.01,102.19,109.95,2.72,[n<10]
+E2,uti_baixa_complex,OSS,7,67,7,10.45,2,63.97,58.91,103.23,108.55,3.26,[n<10]
+E2,uti_baixa_complex,Público Municipal,16,176,34,19.32,10,78.0,76.41,111.85,209.16,8.14,
+E2,uti_baixa_complex,Filantrópico,67,737,53,7.19,23,66.29,66.13,102.96,152.34,4.81,
+E2,uti_baixa_complex,Privado,2,22,0,0.0,0,39.91,35.04,79.19,82.89,,[n<10]
+E2,uti_baixa_complex,TODAS,97,1067,99,9.28,37,67.05,66.07,104.7,209.16,6.1,
+E3,uti_alta_complex,Direta,20,208,6,2.88,6,69.43,68.5,98.38,108.61,0.48,
+E3,uti_alta_complex,OSS,28,276,98,35.51,18,92.98,95.89,111.41,119.51,4.59,
+E3,uti_alta_complex,Público Municipal,31,341,124,36.36,27,92.63,94.45,116.47,134.21,7.06,
+E3,uti_alta_complex,Filantrópico,50,550,158,28.73,30,88.68,89.86,118.56,236.61,8.93,
+E3,uti_alta_complex,TODAS,125,1375,386,28.07,80,87.61,90.2,115.28,236.61,7.06,

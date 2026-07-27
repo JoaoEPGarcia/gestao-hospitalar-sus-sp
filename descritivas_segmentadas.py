@@ -12,6 +12,30 @@ Célula com menos de 10 CNES recebe a marca [n<10] na coluna `tarja`. A linha
 NÃO é suprimida: o funil precisa ficar auditável, e uma célula pequena
 omitida é indistinguível de uma célula que não existe.
 
+RESTRIÇÃO DE CITAÇÃO — par de mortalidade de E3 (R2, 27/07/2026)
+----------------------------------------------------------------
+Este script produz, dentro de E3, `mort_all` mediana Direta 0,0698 contra
+OSS 0,0536. ESSE PAR NÃO É CITÁVEL COMO ACHADO DESCRITIVO em nenhum texto:
+está em parte comprado por composição de casemix dentro do próprio estrato.
+A Direta tem 22 hospital-ano em faixa 6 e o OSS tem zero — assimetria de
+cauda, vinda de 2 CNES, com escore Barcelona médio praticamente idêntico
+entre as duas categorias (455,9 contra 455,6).
+
+A restrição vale para o par OSS × Direta. Não vale dizer que os hospitais de
+complexidade máxima de E3 são todos Direta: o Filantrópico tem 8 CNES em
+faixa 6, quatro vezes os 2 da Direta.
+
+Não invalida a estratificação — é por isso que complexidade_estrutural
+permanece como covariável dentro do estrato. Ver RESTRICOES_SEGMENTACAO.md
+e tabSEG_05d_composicao_faixa_e3.csv.
+
+NOTA sobre ocupacao_internacao (R1, 27/07/2026): o denominador leitos_sus é
+subdeclarado, com viés diferencial por categoria — 15,5% das observações têm
+ocupação acima de 100%, fisicamente impossível, contra 29,3% no OSS e 3,9%
+na Direta. As descritivas abaixo usam a versão original; a decisão sobre
+como tratar isso está aberta e bloqueia o indicador na Etapa 4. Ver
+diagnostico_ocupacao_internacao.py.
+
 Faturamento
 -----------
 `custo_saida` está em base NOMINAL no painel. A descritiva usa `custo_real`
