@@ -77,8 +77,40 @@ vínculos uma vez e compile:
 ```powershell
 cd analises/latex
 ./vincular_figuras.ps1     # recria os vínculos para as figuras versionadas
-latexmk -pdf principal.tex # ou: pdflatex principal.tex (duas vezes)
+latexmk -pdf principal.tex # ou: pdflatex principal.tex (três vezes)
 ```
+
+**São necessárias três passadas de `pdflatex`**, não duas: o documento
+tem referências cruzadas para apêndices que vêm depois das seções que os
+citam, e a terceira passada é o que estabiliza a numeração.
+
+### Preâmbulo do `principal.tex` — o que vale e o que não vale
+
+Circulou no projeto uma lista de restrições de LaTeX que na verdade
+pertencia ao antigo `roteiro_entrevistas.tex`, hoje aposentado (ver
+`analises/latex/arquivo/LEIAME.md`). Confundir os dois preâmbulos já
+custou trabalho. O que de fato vale para o `principal.tex`:
+
+| Item | `roteiro_entrevistas.tex` (aposentado) | `principal.tex` |
+|---|---|---|
+| babel português | não carregava | **carrega `[brazilian]{babel}`**, com hifenização funcionando |
+| `\sloppy` e `\emergencystretch` | usava ambos | **não usa nenhum dos dois** |
+| microtype | carregava sem expansão nem protrusão | **não carrega** |
+| lmodern | não usava | não usa |
+| xcolor antes de hyperref | sim | sim |
+| motor | pdfLaTeX, TeX Live 2023 | pdfLaTeX, TeX Live 2023 |
+
+Verificação da hifenização, se houver dúvida: compile um arquivo mínimo
+com `\usepackage[brazilian]{babel}` e
+`\showhyphens{hospitalar mortalidade complexidade filantrópico}`. O log
+deve mostrar `hos-pi-ta-lar mor-ta-li-dade com-ple-xi-dade
+fi-lan-tró-pico`.
+
+O documento compila hoje com **0 overfull e 0 underfull hbox** — sem
+`\sloppy`, portanto sem supressão de aviso. A mancha atual é larga
+(`left=1cm, right=1cm`, cerca de 100 caracteres por linha) e há uma
+branch `repaginacao-jul2026` aberta para tratar disso; qualquer trabalho
+tipográfico deve partir da tabela acima, não da lista antiga.
 
 ## Nota sobre os dados
 

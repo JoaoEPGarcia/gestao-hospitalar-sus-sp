@@ -362,3 +362,41 @@ passam a dizer "densidade", que é o que a figura de fato mostra.
 
 **Lição para a triagem:** correção de eixo de figura exige alterar o
 script e regerar o PNG. Alterar só o `.tex` cria erro de classe 2.
+
+---
+
+## 8. Restrições de LaTeX: registro corrigido
+
+**Corrigido em:** 27/07/2026
+**Situação:** resolvido; fica como registro para não se repetir
+
+Circulou no projeto uma lista de restrições de compilação que na verdade
+pertencia ao cabeçalho do `roteiro_entrevistas.tex`, não ao
+`principal.tex`. Três das seis não valiam para o documento principal:
+
+| Restrição | `roteiro` (aposentado) | `principal.tex` |
+|---|---|---|
+| sem babel português | correta | **falsa** — carrega `[brazilian]{babel}` na linha 12 |
+| `\sloppy` + `\emergencystretch=3em` | correta | **falsa** — não existe nenhum dos dois |
+| microtype sem expansão/protrusão | correta | **falsa** — microtype não é carregado |
+| sem lmodern | correta | correta |
+| xcolor antes de hyperref | correta | correta |
+| pdfLaTeX / TeX Live 2023 | correta | correta |
+
+**Consequência prática.** A hifenização portuguesa **funciona** no
+`principal.tex`; conferido com `\showhyphens`, que devolve
+`hos-pi-ta-lar mor-ta-li-dade com-ple-xi-dade fi-lan-tró-pico`. Os
+zeros de overfull e underfull no log são resultado real, não supressão
+por `\sloppy`. Uma tarefa de repaginação chegou a ser aberta sobre a
+premissa errada e foi interrompida; a branch `repaginacao-jul2026`
+existe, está vazia e atrás de `master`.
+
+**O problema tipográfico real** é a mancha: `left=1cm, right=1cm` produz
+cerca de 100 caracteres por linha a 12pt, contra os 65 a 72
+recomendados para leitura contínua. O comentário na linha 13 do
+`principal.tex` explica a escolha (margens mínimas para as figuras
+ocuparem a página). Reduzir a mancha exige revisar as larguras de
+`\subfig` e `\includegraphics` no mesmo passo, senão as figuras encolhem
+proporcionalmente.
+
+Registrado também no README, seção "Preâmbulo do `principal.tex`".
