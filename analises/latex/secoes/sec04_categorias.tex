@@ -33,29 +33,32 @@ discutida nas Seções~\ref{sec:efeitogestao} e~\ref{sec:inferenciafinal}.
 É essencial não tirar conclusões de
 causa dessas comparações brutas: as categorias atendem perfis
 diferentes de complexidade e porte, e essas diferenças precisam ser
-descontadas antes de qualquer julgamento. O faturamento mediano por saída
-varia pouco entre as categorias públicas e filantrópicas (de R\$~996
-nos Municipais a R\$~1.131 nas OSS). A categoria \textbf{Privado é um
-mundo à parte}: faturamento mediano de R\$~12.798 e 98,4\% de alta
+descontadas antes de qualquer julgamento. O faturamento real mediano por
+saída (R\$ de dez/2025)
+varia pouco entre as categorias públicas e filantrópicas (de R\$~1.293
+nos Municipais a R\$~1.438 nas OSS). A categoria \textbf{Privado é um
+mundo à parte}: faturamento mediano de R\$~16.262 e 98,4\% de alta
 complexidade, perfil de centros especializados; com só 3 hospitais,
 serve de registro, não de comparação.
 
 \begin{table}[H]
 \centering
 \caption{Medianas por categoria de gestão, período completo
-(mortalidade em proporção; ocupações em percentual).}
+(mortalidade em proporção; ocupações em percentual; faturamento real,
+deflacionado pelo IPCA para R\$ de dez/2025, conforme a regra da
+Seção~\ref{sec:tendencia}).}
 \label{tab:categorias}
 \small
 \begin{tabular}{lrrrrrr}
 \toprule
-Categoria & Mortalidade & TMP & Faturamento (R\$) & Alta complex. &
+Categoria & Mortalidade & TMP & Faturamento real (R\$ dez/2025) & Alta complex. &
 Ocup.\ int.\ (\%) & Ocup.\ UTI (\%) \\
 \midrule
-Direta            & 0,0584 & 6,01 & 1.056,77  & 0,0213 & 64,1 & 58,5 \\
-OSS               & 0,0494 & 4,74 & 1.130,77  & 0,0242 & 92,6 & 73,9 \\
-Público Municipal & 0,0574 & 4,82 & 996,21    & 0,0010 & 86,9 & 69,5 \\
-Filantrópico      & 0,0565 & 3,98 & 1.021,30  & 0,0018 & 65,5 & 70,2 \\
-Privado           & 0,0256 & 4,24 & 12.798,36 & 0,9836 & 40,5 & 3,5  \\
+Direta            & 0,0584 & 6,01 & 1.366,65  & 0,0213 & 64,1 & 58,5 \\
+OSS               & 0,0494 & 4,74 & 1.438,03  & 0,0242 & 92,6 & 73,9 \\
+Público Municipal & 0,0574 & 4,82 & 1.292,71  & 0,0010 & 86,9 & 69,5 \\
+Filantrópico      & 0,0565 & 3,98 & 1.303,22  & 0,0018 & 65,5 & 70,2 \\
+Privado           & 0,0256 & 4,24 & 16.262,04 & 0,9836 & 40,5 & 3,5  \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -66,7 +69,8 @@ ano) da categoria, no período completo. Cada observação hospital ano
 entra na categoria vigente naquele ano; os cinco conversores contribuem
 para as duas categorias, como nas contagens por período do texto.
 Mortalidade e alta complexidade estão em proporção; as ocupações, em
-percentual.}
+percentual; o faturamento, em valores reais deflacionados pelo IPCA
+para R\$ de dez/2025.}
 
 \comoler{a silhueta engorda onde há mais hospitais; as linhas internas
 marcam os quartis e o número é a mediana. Na mortalidade, os violinos
@@ -101,18 +105,18 @@ hospitais de referência.}
 
 \begin{figure}[H]
 \centering
-\subfig{fig_ae_04_violino_custo_saida.png}{Faturamento por saída (escala
-log)}
+\subfig{fig_ae_04_violino_custo_real.png}{Faturamento real por saída,
+R\$ de dez/2025 (escala log)}
 \subfig{fig_ae_04_violino_pct_alta_complex.png}{Fração alta
 complexidade}
-\caption{Distribuição do faturamento por saída e da fração de alta
-complexidade por categoria de gestão.}
+\caption{Distribuição do faturamento real por saída (R\$ de dez/2025) e
+da fração de alta complexidade por categoria de gestão.}
 \label{fig:violB}
 \end{figure}
 
 \comofeito{mesma construção da figura anterior, agora para o faturamento
-por saída (em reais, escala logarítmica) e para a fração de alta
-complexidade (proporção entre 0 e 1), com as categorias no eixo
+real por saída (em R\$ de dez/2025, escala logarítmica) e para a fração
+de alta complexidade (proporção entre 0 e 1), com as categorias no eixo
 horizontal e o indicador no vertical.}
 
 \comoler{na ocupação de internação, veja como os violinos de OSS e
