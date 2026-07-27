@@ -504,41 +504,68 @@ categoria de gestão: OSS 29,3%, Público Municipal 26,0%, Filantrópico 11,3%,
 Direta 3,9%, Privado 3,0%. Dentro do estrato E3 o desequilíbrio é maior —
 OSS 35,5% contra Direta 2,9%.
 
-**O denominador foi validado contra três fontes independentes e não é
-subdeclaração.** A hipótese inicial, de que `leitos_sus` estaria subdeclarado
-nas categorias afetadas, foi testada contra a contagem de leitos do arquivo
-de classificação Barcelona (`20260303 - Classificação Hospitais.xlsx`), que
-não deriva do SIH e cobre todos os 289 CNES do painel. A razão
-`leitos_sus`/`Leitos` Barcelona é 1,00 em OSS, Filantrópico, Direta e
-Privado, e 0,98 em Público Municipal. Trocando o denominador para a contagem
-Barcelona, o excesso sobrevive quase inteiro: **OSS 24,4% contra Direta
-1,8%**, diferencial mais nítido que o original.
+**A hipótese de sub-registro de leito não foi refutada: ficou não testada.**
+Ela chegou a ser dada por refutada contra a contagem de leitos do arquivo de
+classificação Barcelona (`20260303 - Classificação Hospitais.xlsx`), que
+concorda com `leitos_sus` (razão 1,00) e sob a qual o excesso sobrevive (OSS
+24,4% contra Direta 1,8%). **Mas essa contagem não é fonte independente.** No
+Privado, `leitos_sus` é 6,7% de `total_leitos`, e a coluna Barcelona dá razão
+1,000 contra `leitos_sus` — uma contagem independente de leito hospitalar
+daria ~15. Nas 3.040 observações em que SUS e total divergem, a diferença
+absoluta mediana contra `leitos_sus` é de 6 leitos, contra `total_leitos`, 38.
+A coluna `UTI` do mesmo arquivo repete a assinatura, e a concordância cresce
+monotonicamente de 9,3% em 2015 a 69,6% em 2025 — perfil de retrato do campo
+CNES tomado no fim do período.
 
-**O padrão é episódico, incompatível com erro de cadastro.** 123 dos 289
-CNES têm ao menos um ano acima de 100%, mas apenas 3 estão acima nos onze
+**Todos os campos de leito disponíveis — `leitos_sus`, `leitos_internacao`,
+`total_leitos`, contagem Barcelona — são de linhagem CNES.** A concordância
+entre eles não constitui validação externa: um CNES que sub-registra leito
+SUS sub-registra em todos ao mesmo tempo. Não se sabe se o excesso é
+sobrecarga real ou sub-registro, e estes dados não conseguem distinguir.
+
+**A única evidência que não depende do CNES é o padrão episódico.** 123 dos
+289 CNES têm ao menos um ano acima de 100%, mas apenas 3 estão acima nos onze
 anos e 57 em apenas um ou dois; a mediana entre os afetados é de 3 anos.
-Subdeclaração cadastral seria estável — leito subdeclarado fica
-subdeclarado. Este padrão é assinatura de pico de demanda.
+Sub-registro cadastral estável produziria excesso persistente, de modo que o
+padrão favorece a leitura de pico de demanda — **sem estabelecê-la**: um
+hospital pode sub-registrar leito justamente nos anos em que expande, e o
+padrão episódico apareceria igual.
 
-Se o denominador está certo, o excesso está no numerador
+Se o denominador estiver certo, o excesso está no numerador
 (`diarias_internacao`) ou é real, no sentido de hospital operando acima da
 capacidade nominal cadastrada — leito extra, maca em corredor, leito de
-observação contabilizado como diária.
+observação contabilizado como diária. Isso é a hipótese alternativa, não a
+conclusão.
 
 **Perguntas para o Alberto:**
 
 1. As diárias do SIH incluem permanência em leito extra ou de observação não
    cadastrado?
 2. O cadastro CNES de leitos SUS exclui leito extra operado?
+3. O número de leitos contratualizados nos contratos de gestão do portal
+   **CGCSS/SES-SP** bate com `leitos_sus`, ou está sistematicamente acima?
+   É a única fonte de contagem de leito que não vem do CNES, e cobre
+   exatamente as OSS, onde o excesso se concentra.
+4. A coluna `Leitos` do arquivo de classificação Barcelona foi extraída do
+   CNES?
 
-**Se ambas forem sim, o indicador mede sobrecarga assistencial real e é
-citável como achado**, não como bug — e separa OSS e Público Municipal de
-Direta e Filantrópico numa dimensão de pressão que o projeto ainda não
-explorou.
+**Se 1 e 2 forem sim e o leito contratualizado de 3 bater com `leitos_sus`,
+o indicador mede sobrecarga assistencial real e é citável como achado**, não
+como bug — e separa OSS e Público Municipal de Direta e Filantrópico numa
+dimensão de pressão que o projeto ainda não explorou. Se o contratualizado
+estiver sistematicamente acima, é sub-registro.
 
 Enquanto a pergunta estiver aberta, o indicador sai como descritiva tarjada,
-com nota sobre a validação do denominador e a interpretação pendente, e não
-entra em modelo. Detalhamento, variantes testadas e o registro do
-diagnóstico refutado ficam em `RESTRICOES_SEGMENTACAO.md`, restrição R1;
-evidência em `analises/tabelas/tabSEG_05b_ocupacao_internacao_acima_100.csv`
-e `tabSEG_05c_variantes_ocupacao_internacao.csv`.
+com nota de que a natureza do excesso é indeterminada, e não entra em modelo.
+Detalhamento, testes de linhagem, variantes e o registro das duas versões
+anteriores deste diagnóstico ficam em `RESTRICOES_SEGMENTACAO.md`, restrição
+R1; evidência em
+`analises/tabelas/tabSEG_05b_ocupacao_internacao_acima_100.csv` e
+`tabSEG_05c_variantes_ocupacao_internacao.csv`.
+
+**Hipótese derivada, com trava (R5 em `RESTRICOES_SEGMENTACAO.md`):** se o
+excesso for sobrecarga real, pressão assistencial vira mecanismo candidato
+entre gestão e desfecho — mas é **variável pós-tratamento**, e incluí-la como
+covariável em modelos de mortalidade ou TMP bloquearia o canal causal que se
+quer medir. Mesmo erro de *bad control* que descartou `pct_alta_complex` como
+estrato. Só em análise de mediação formal, com desenho próprio.

@@ -32,10 +32,12 @@ e tabSEG_05d_composicao_faixa_e3.csv.
 NOTA sobre ocupacao_internacao (R1, 27/07/2026): 15,5% das observações têm
 ocupação acima de 100%, impossível frente à capacidade cadastrada, com
 incidência diferencial por categoria — 29,3% no OSS contra 3,9% na Direta.
-O DENOMINADOR FOI VALIDADO contra fonte independente (contagem de leitos do
-arquivo Barcelona): não é subdeclaração, e o excesso sobrevive à troca de
-denominador. O que o excesso mede — artefato do numerador ou sobrecarga
-real — está pendente com o Alberto (PENDENCIAS.md §9).
+A NATUREZA DO EXCESSO É INDETERMINADA. Todos os campos de leito disponíveis
+— leitos_sus, leitos_internacao, total_leitos e a contagem do arquivo
+Barcelona — são de linhagem CNES, e a concordância entre eles não é
+validação externa: um CNES que sub-registra leito SUS sub-registra em todos
+ao mesmo tempo. Não se sabe se o excesso é sobrecarga real ou sub-registro,
+e estes dados não distinguem. Pendente com o Alberto (PENDENCIAS.md §9).
 
 Consequência para esta tabela: o indicador SAI COMO DESCRITIVA TARJADA e
 não entra em modelo na Etapa 4. Os valores abaixo são a versão original e

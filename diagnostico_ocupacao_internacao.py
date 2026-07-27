@@ -12,18 +12,31 @@ O problema (identificado por João, 27/07/2026)
 ocupacao_internacao = 100 × diarias_internacao / (leitos_sus × 365), onde
 leitos_sus é o leito de internação declarado ao SUS no CNES.
 
-Ocupação acima de 100% é fisicamente impossível: significa mais diárias do
-que leito-dia disponível. Não é hospital operando mais cheio — é leitos_sus
-subdeclarado frente ao leito efetivamente operado. E a subdeclaração não é
-aleatória: concentra-se em OSS e Público Municipal.
+Ocupação acima de 100% significa mais diárias do que leito-dia disponível
+segundo a capacidade CADASTRADA, e ocorre em 15,5% das observações, de forma
+fortemente diferencial: 29,3% no OSS contra 3,9% na Direta.
 
-É a mesma classe de erro corrigida na ETAPA 1 para a UTI — indicador com
-denominador estrutural mal especificado e viés diferencial por categoria de
-gestão — mas com o sinal invertido. Na UTI o artefato DEPRIMIA o
-Filantrópico; aqui ele INFLA o OSS. Sem tratamento, o modelo de ocupação de
-internação da ETAPA 4 produziria um coeficiente OSS fortemente positivo que
-é artefato de cadastro, com a mesma aparência de resultado que o da UTI
-tinha antes de ser corrigido.
+ATENÇÃO — LEITURA REVISADA (27/07/2026, duas vezes no mesmo dia). Este
+script foi escrito sob a hipótese de que leitos_sus estaria sub-registrado
+frente ao leito efetivamente operado, na mesma classe de erro corrigida na
+ETAPA 1 para a UTI. ESSA HIPÓTESE NÃO ESTÁ ESTABELECIDA, e tampouco foi
+refutada: ficou NÃO TESTADA.
+
+Todos os campos de leito disponíveis — leitos_sus, leitos_internacao,
+total_leitos e a contagem do arquivo de classificação Barcelona — são de
+linhagem CNES. A concordância entre eles não é validação externa: um CNES
+que sub-registra leito SUS sub-registra em todos ao mesmo tempo. O teste
+decisivo está no Privado, onde leitos_sus é 6,7% de total_leitos e a coluna
+Barcelona ainda assim dá razão 1,000 contra leitos_sus.
+
+Não se sabe se o excesso é sobrecarga assistencial real ou sub-registro
+cadastral, e estes dados não conseguem distinguir. A única evidência que não
+depende do CNES é o padrão episódico medido no fim deste script, que
+favorece a leitura de sobrecarga sem estabelecê-la.
+
+Consequência: o indicador fica FORA da estimação na ETAPA 4 e sai como
+descritiva tarjada. Ver RESTRICOES_SEGMENTACAO.md (R1) e PENDENCIAS.md §9,
+onde a pergunta está com o Alberto.
 
 As três variantes
 -----------------
@@ -40,10 +53,13 @@ As três variantes
      100 × diarias_internacao / (leitos_internacao × 365). É o análogo
      exato do que a UTI já faz (uti_total ⊇ uti_sus; leitos_internacao ⊇
      leitos_sus). MUDA A DEFINIÇÃO DO INDICADOR: passa a medir ocupação da
-     capacidade instalada total, não da capacidade contratada ao SUS. É
-     matéria de ratificação, não de patch.
+     capacidade instalada total, não da capacidade contratada ao SUS. E não
+     escapa do problema de linhagem: leitos_internacao vem do mesmo CNES.
 
-Nenhuma é obviamente certa. Ver RESTRICOES_SEGMENTACAO.md, restrição R1.
+NENHUMA DEVE SER APLICADA antes da resposta do Alberto. As três pressupõem
+que o excesso é erro a corrigir; se for sobrecarga real, censurar em 100 ou
+marcar como missing apagaria justamente o achado. Ver
+RESTRICOES_SEGMENTACAO.md, restrição R1.
 
 Saídas
 ------

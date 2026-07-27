@@ -13,17 +13,24 @@ indicadores, sem ocupação de internação — e sai em branch próprio.
 
 ---
 
-## R1 — Ocupação de internação: denominador validado, natureza do excesso em aberto
+## R1 — Ocupação de internação: natureza do excesso indeterminada
 
 **Status: FORA DA ESTIMAÇÃO NA ETAPA 4, mantido como descritiva tarjada.
 Pergunta aberta com o Alberto. Ver PENDENCIAS.md §9.**
 
-> **Revisão de 27/07/2026, no mesmo dia da abertura.** Este item foi aberto
-> como "subdeclaração de `leitos_sus`" e **essa hipótese foi refutada** por
-> teste contra fonte independente, algumas horas depois. O registro do
-> diagnóstico refutado fica preservado abaixo, porque o caminho importa: a
-> hipótese motivou uma recomendação de bloquear o indicador, e bloquear com
-> base em diagnóstico refutado seria pior que o problema original.
+> **Item revisado duas vezes em 27/07/2026, no dia da abertura.** Foi aberto
+> como "subdeclaração de `leitos_sus`", com recomendação de bloquear o
+> indicador. A hipótese foi então dada por **refutada** contra a contagem de
+> leitos do arquivo Barcelona. Na segunda revisão, verificou-se que essa
+> contagem **não é fonte independente** — é de linhagem CNES, como todos os
+> demais campos de leito do projeto. A hipótese, portanto, não foi refutada:
+> **ficou não testada**.
+>
+> As duas versões anteriores ficam registradas abaixo porque o caminho
+> importa. Ambas afirmaram estrutura a partir de checagem correlacional em
+> dados de linhagem única, com confiança que os dados não sustentavam. A
+> decisão operacional — indicador fora da estimação — sobreviveu às três
+> versões, mas por justificativas diferentes, e só a terceira é defensável.
 
 ### O que foi verificado e continua valendo
 
@@ -43,64 +50,92 @@ diferencial por categoria de gestão:
 
 Dentro de E3 o desequilíbrio é maior: **OSS 35,5% contra Direta 2,9%**.
 
-### A hipótese de subdeclaração foi REFUTADA
+### A hipótese de sub-registro NÃO FOI REFUTADA — ficou NÃO TESTADA
 
-A leitura inicial foi que `leitos_sus` estaria subdeclarado frente ao leito
-efetivamente operado, com subdeclaração maior em OSS e Público Municipal —
-a mesma classe de erro corrigida na Etapa 1 para a UTI, com o sinal
-invertido. **Não é isso.**
+A leitura inicial foi que `leitos_sus` estaria sub-registrado frente ao leito
+efetivamente operado, com sub-registro maior em OSS e Público Municipal — a
+mesma classe de erro corrigida na Etapa 1 para a UTI, com o sinal invertido.
 
-Teste contra fonte independente de contagem de leitos: a coluna `Leitos` do
-arquivo de classificação Barcelona (`20260303 - Classificação
-Hospitais.xlsx`, do Alberto), que não deriva do SIH. Todos os 289 CNES do
-painel têm correspondência.
+Essa hipótese foi dada por refutada com base na contagem de leitos do arquivo
+de classificação Barcelona (`20260303 - Classificação Hospitais.xlsx`), que
+concorda com `leitos_sus` e sob a qual o excesso sobrevive: OSS 24,4% contra
+Direta 1,8%. **A refutação não se sustenta, porque a contagem Barcelona não é
+fonte independente.**
 
-| categoria | `leitos_sus` / `Leitos` Barcelona | % > 100% com denominador Barcelona | % > 100% original |
-|---|---|---|---|
-| OSS | 1,00 | 24,4 | 29,3 |
-| Público Municipal | 0,98 | 19,6 | 26,0 |
-| Filantrópico | 1,00 | 9,4 | 11,3 |
-| Direta | 1,00 | 1,8 | 3,9 |
-| Privado | 1,00 | 0,0 | 3,0 |
+Quatro testes de linhagem, todos na mesma direção:
 
-Três fontes independentes de leito concordam — `leitos_sus`,
-`leitos_internacao` e o cadastro Barcelona dão razão 1,00 nas categorias
-onde o excesso se concentra. E trocando o denominador para a contagem
-Barcelona, **o excesso do OSS sobrevive quase inteiro**: 24,4% contra 1,8%
-da Direta, diferencial ainda mais nítido que o original. Dentro de E3: OSS
-30,1% contra Direta 2,4%.
+**1. O Privado é decisivo.** Ali `leitos_sus` é 6,7% de `total_leitos`. Uma
+contagem independente de leito *hospitalar* daria razão ~15 contra
+`leitos_sus` e ~1 contra `total_leitos`. Os valores observados:
 
-**O denominador está certo. Não é subdeclaração de leito.**
+| categoria | Barcelona / `leitos_sus` | `leitos_sus` / `total_leitos` |
+|---|---|---|
+| Direta | 1,000 | 0,845 |
+| OSS | 1,000 | 0,853 |
+| Público Municipal | 1,023 | 0,836 |
+| Filantrópico | 1,000 | 0,632 |
+| **Privado** | **1,000** | **0,067** |
 
-Limite desta validação, que precisa ficar dito: o arquivo Barcelona é um
-retrato único (março de 2026), enquanto o painel tem onze anos de contagens
-que variam. A concordância observação a observação é de apenas 24% a 40%.
-A validação estabelece que **não há subdeclaração diferencial por categoria
-de gestão** — que é a hipótese que estava em teste — mas não valida a
-contagem de um ano específico.
+**2. Distância absoluta.** Nas 3.040 observações em que `leitos_sus` difere de
+`total_leitos`: |Barcelona − `leitos_sus`| tem mediana de **6** leitos;
+contra `leitos_internacao`, 22; contra `total_leitos`, **38**.
 
-### O que a refutação implica
+**3. A coluna `UTI` do mesmo arquivo repete a assinatura.** `bc_uti/uti_sus`
+= 1,000 nas cinco categorias, inclusive no Privado, onde `uti_sus/uti_total`
+= 0,625 e `bc_uti/uti_total` = 0,312. Duas colunas, mesma linhagem.
 
-Se o denominador está certo, o excesso está no **numerador**
-(`diarias_internacao`) ou é **real**. E "real" aqui tem significado
-substantivo: hospital operando acima da capacidade nominal cadastrada, com
-leito extra, maca em corredor ou leito de observação contabilizado como
-diária. É o que se espera de hospital de porta aberta em região de alta
-demanda.
+**4. A concordância cresce monotonicamente com o ano**, de 9,3% em 2015 a
+**69,6% em 2025** — perfil de retrato do campo CNES tomado perto do fim do
+período (o arquivo é de março de 2026). Isto também explica a concordância
+observação a observação de 24% a 40% registrada antes: era deriva temporal,
+não discordância de medida.
 
-O teste de persistência abaixo, levantado como agravante, aponta na mesma
-direção: subdeclaração cadastral seria **estável** — leito subdeclarado fica
-subdeclarado. O padrão encontrado é o oposto, e é assinatura de **pico de
-demanda**, não de erro de cadastro.
+**A coluna `Leitos` do arquivo Barcelona é, ou deriva de, o mesmo campo de
+leitos SUS do CNES que alimenta `leitos_sus`.** Não são três fontes
+independentes: é uma fonte contada de três maneiras. Um CNES que sub-registra
+leito SUS sub-registra nos três campos ao mesmo tempo, e a concordância entre
+eles não constitui validação externa.
+
+### Posição correta
+
+**Não se sabe se o excesso é sobrecarga real ou sub-registro, e os dados
+disponíveis não conseguem distinguir.** Todos os campos de leito do projeto
+— `leitos_sus`, `leitos_internacao`, `total_leitos`, contagem Barcelona —
+são de linhagem CNES.
+
+Se o denominador estiver certo, o excesso está no **numerador**
+(`diarias_internacao`) ou é **real** — hospital operando acima da capacidade
+cadastrada, com leito extra, maca em corredor ou leito de observação
+contabilizado como diária, o que se espera de hospital de porta aberta em
+região de alta demanda. Mas isso é a hipótese alternativa, não a conclusão.
+
+Sobra **um** argumento que não depende do CNES: o padrão episódico registrado
+abaixo. Sub-registro cadastral estável produziria excesso persistente, e o
+observado é mediana de 3 anos em 11. O argumento favorece a leitura de pico
+de demanda **sem estabelecê-la** — um hospital pode sub-registrar leito
+justamente nos anos em que expande.
+
+### Uma fonte genuinamente independente existe
+
+Os contratos de gestão no portal **CGCSS/SES-SP** estipulam número de leitos
+contratualizados, e isso não vem do CNES. Cobre apenas OSS — que é
+exatamente onde o excesso se concentra.
+
+- Se o leito contratualizado bater com `leitos_sus`, a leitura de sobrecarga
+  real ganha muita força.
+- Se estiver sistematicamente acima, o sub-registro ganha.
+
+Entra como pergunta 3 ao Alberto, com a pergunta 4 sobre a procedência da
+própria coluna Barcelona. Ver `PENDENCIAS.md` §9.
 
 ### As três variantes: nenhuma responde à pergunta que restou
 
 Estão no painel como colunas paralelas (`ocup_int_censura100`,
 `ocup_int_missing100`, `ocup_int_leitos_int`). **Nenhuma foi escolhida, e
-com a refutação nenhuma deve ser.** As três tratam sintoma: foram desenhadas
-para corrigir um erro de denominador que não existe. Se o excesso for
-sobrecarga real, censurar em 100 ou marcar como missing apagaria justamente
-o achado.
+nenhuma deve ser antes da resposta do Alberto.** As três pressupõem que o
+excesso é erro a corrigir. Se for sobrecarga real, censurar em 100 ou marcar
+como missing apagaria justamente o achado; se for sub-registro, nenhuma das
+três o mede — V3 em particular usa outro campo da mesma linhagem.
 
 O diagnóstico de cada uma fica registrado porque continua informativo sobre
 a estrutura dos dados:
@@ -138,18 +173,23 @@ Por categoria, entre os afetados: OSS 23 CNES com mediana de 4 anos acima,
 Público Municipal 39 com 3, Filantrópico 55 com 2, Direta 5 com 1.
 
 Este padrão foi lido primeiro como agravante — o efeito fixo de CNES não
-absorveria um artefato que varia dentro do hospital. Com a refutação da
-subdeclaração, ele vira **evidência a favor da interpretação substantiva**:
-é assinatura de pico de demanda. As duas leituras têm a mesma consequência
-operacional, por caminhos opostos: não se estima sobre o indicador antes de
-saber o que ele mede.
+absorveria um artefato que varia dentro do hospital.
+
+Depois da segunda revisão, ele é **a única evidência disponível que não
+depende do CNES**, e favorece a leitura de pico de demanda: sub-registro
+cadastral estável produziria excesso persistente. Mas é sugestivo, não
+conclusivo — um hospital pode sub-registrar leito exatamente nos anos em que
+expande, e nesse caso o padrão episódico apareceria do mesmo jeito.
+
+As duas leituras têm a mesma consequência operacional, por caminhos opostos:
+não se estima sobre o indicador antes de saber o que ele mede.
 
 ### Situação na Etapa 4
 
 O modelo de ocupação de internação **fica fora da estimação**, e o indicador
-**não é bloqueado**: sai como descritiva tarjada, com nota de que o
-denominador foi validado contra fonte independente e a interpretação do
-excesso está pendente. Os outros indicadores não dependem disto.
+**não é bloqueado**: sai como descritiva tarjada, com nota de que a natureza
+do excesso está indeterminada e que todos os campos de leito disponíveis são
+de linhagem CNES. Os outros indicadores não dependem disto.
 
 A pergunta que decide não é estatística e não é da equipe de análise —
 é do Alberto, e está em `PENDENCIAS.md` §9:
@@ -157,12 +197,17 @@ A pergunta que decide não é estatística e não é da equipe de análise —
 1. As diárias do SIH incluem permanência em leito extra ou de observação
    não cadastrado?
 2. O cadastro CNES de leitos SUS exclui leito extra operado?
+3. O leito contratualizado nos contratos de gestão do portal CGCSS/SES-SP
+   bate com `leitos_sus`, ou está sistematicamente acima? É a única fonte
+   de leito que não vem do CNES, e cobre justamente as OSS.
+4. A coluna `Leitos` do arquivo de classificação Barcelona foi extraída do
+   CNES?
 
-**Se ambas forem sim, ocupação acima de 100% é medida válida de sobrecarga
-assistencial e vira achado, não bug** — e possivelmente um dos mais
-interessantes do trabalho, porque separa OSS e Público Municipal de Direta e
-Filantrópico numa dimensão de pressão sobre a qual o projeto ainda não disse
-nada.
+**Se 1 e 2 forem sim e 3 bater, ocupação acima de 100% é medida válida de
+sobrecarga assistencial e vira achado, não bug** — e possivelmente um dos
+mais interessantes do trabalho, porque separa OSS e Público Municipal de
+Direta e Filantrópico numa dimensão de pressão sobre a qual o projeto ainda
+não disse nada. Se 3 estiver sistematicamente acima, é sub-registro.
 
 ---
 
@@ -258,21 +303,66 @@ sensibilidade que o exclui.
 
 ---
 
+## R5 — Pressão assistencial como mediador: hipótese guardada, com trava
+
+**Status: HIPÓTESE REGISTRADA. NÃO IMPLEMENTAR sem desenho próprio.**
+
+Se a resposta a R1 for que o excesso de ocupação mede sobrecarga real, então
+pressão assistencial deixa de ser problema de indicador e passa a ser
+mecanismo candidato entre modelo de gestão e desfecho — por que uma OSS
+teria mortalidade ou TMP diferente.
+
+**A trava, que vai colada à hipótese:** pressão assistencial, se for real, é
+**variável pós-tratamento** — causada pelo modelo de gestão e causadora do
+desfecho. Incluí-la como covariável nos modelos de mortalidade ou de TMP
+**bloquearia justamente o canal causal que se quer medir**. É o mesmo erro de
+*bad control* que descartou `pct_alta_complex` como candidato a estrato no
+início do desenho.
+
+Só entra como mediador em **análise de mediação formal, com desenho próprio**
+— e mesmo assim frágil, porque a identificação repousa sobre cinco switchers,
+dos quais apenas dois têm pós-tratamento de mais de um ano.
+
+Ninguém deve implementar isto a partir da hipótese sozinha.
+
+---
+
 ## Nota de método — a ordem em que R1 foi levantada
 
 Registrada por decisão de João, 27/07/2026.
 
-R1 foi aberta com uma hipótese — subdeclaração de leito — e uma recomendação
-forte apoiada nela: não aprovar a Etapa 4. A hipótese não sobreviveu ao
-primeiro teste contra fonte independente, feito horas depois. **A checagem
-contra o arquivo do Alberto deveria ter vindo antes da recomendação, não
-depois.**
+R1 foi reescrita duas vezes no dia em que foi aberta. As três versões
+afirmaram estrutura com confiança, a partir de checagem correlacional em
+dados de **linhagem única**, e as duas primeiras estavam erradas:
+
+1. **"É sub-registro de leito"** — hipótese apresentada como diagnóstico,
+   com recomendação de bloquear a Etapa 4, antes de qualquer teste contra
+   fonte externa.
+2. **"O denominador está validado contra fonte independente"** — a fonte não
+   era independente. O sinal estava na própria saída que a produziu (Privado
+   com `bc/total_leitos` = 0,08), e foi lido como corroboração em vez de
+   como assinatura de linhagem comum.
+3. **"Não se sabe, e estes dados não distinguem"** — a versão que está no
+   documento.
+
+Três lições, em ordem de importância:
+
+- **Concordância entre campos da mesma fonte não é validação.** Foi o erro
+  central da segunda versão, e a checagem que o teria evitado é barata: pedir
+  a uma fonte candidata que discorde de outra coluna onde as duas deveriam
+  divergir. O Privado era esse teste e estava disponível desde o início.
+- **A checagem contra fonte externa precede a recomendação**, não a segue.
+- **Errar junto não dilui.** A conta do arquivo Barcelona foi reproduzida
+  fielmente e o detalhe do Filantrópico foi reportado com precisão; a
+  inferência errada a partir dele foi de ambos os lados. Reprodução fiel de
+  um cálculo não é verificação da inferência que se tira dele.
 
 O que funcionou, e vale como procedimento: o diagnóstico das variantes
 recusou-se a escolher uma e devolveu a decisão à equipe. Foi essa recusa que
-deixou a refutação barata — nenhuma variante tinha sido aplicada ao painel,
-nenhum resultado dependia dela, e reverter custou uma reescrita de registro
-em vez de uma reestimação.
+deixou as duas reversões baratas — nenhuma variante tinha sido aplicada ao
+painel, nenhum resultado dependia delas, e reverter custou reescrita de
+registro em vez de reestimação. A decisão operacional (indicador fora da
+estimação) sobreviveu às três versões.
 
 Vale também para R2: a formulação original do mecanismo ("os hospitais de
 complexidade máxima de E3 são todos Direta") estava errada e foi corrigida
