@@ -22,6 +22,15 @@
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
 
+% Sumário: só o primeiro nível, uma linha por seção e por apêndice.
+% Os marcadores do PDF, porém, mantêm a hierarquia inteira --- é o que
+% torna a Seção 16, com as suas seis subseções e dezessete
+% subsubseções, navegável no leitor de PDF sem poluir o índice
+% impresso. bookmarksdepth é independente de tocdepth e precisa ser
+% declarado explicitamente, senão o hyperref o herda de tocdepth.
+\setcounter{tocdepth}{1}
+\hypersetup{bookmarksdepth=3, bookmarksnumbered=true, bookmarksopen=false}
+
 \captionsetup{font=small, labelfont=bf}
 \captionsetup[sub]{font=footnotesize}
 
