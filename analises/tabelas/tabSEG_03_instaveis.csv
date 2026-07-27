@@ -1,0 +1,30 @@
+﻿cnes,nome_fantasia,municipio,modelo_gestao_proxy,anos_com_uti,anos_sem_uti,uti_sus_min,uti_sus_max,uti_sus_mediana,faixa_mediana,estrato,estrato_rotulo
+2078414,Santa Casa De Guaira,Guaira,Filantrópico,3,8,0,10,0.0,3.0,E1,sem_uti_sus
+2791749,Santa Casa De Pederneiras,Pederneiras,Filantrópico,3,8,0,10,0.0,3.0,E1,sem_uti_sus
+2023474,Hospital Municipal Walter Ferrari,Jaguariuna,Público Municipal,4,7,0,15,0.0,3.0,E1,sem_uti_sus
+2077582,Hospital Nossa Senhora Da Piedade,Lencois Paulista,Filantrópico,4,7,0,6,0.0,3.0,E1,sem_uti_sus
+2079097,Santa Casa De Capao Bonito,Capao Bonito,Filantrópico,4,7,0,10,0.0,3.0,E1,sem_uti_sus
+2079593,Hospital Sao Joao Registro,Registro,Filantrópico,4,7,0,10,0.0,3.0,E1,sem_uti_sus
+2079704,Hospital Dr Renato Silva De Socorro,Socorro,Filantrópico,4,7,0,7,0.0,3.0,E1,sem_uti_sus
+2082721,Hospital E Maternidade Sotero De Souza,Sao Roque,Filantrópico,4,7,0,8,0.0,3.0,E1,sem_uti_sus
+2084422,Santa Casa De Sao Pedro,Sao Pedro,Filantrópico,4,7,0,10,0.0,3.0,E1,sem_uti_sus
+2087219,Hospital De Clinicas Campo Limpo Paulista,Campo Limpo Paulista,Público Municipal,4,7,0,10,0.0,3.0,E1,sem_uti_sus
+2087715,Hospital E Maternidade Municipal Governador Mario Covas,Hortolandia,Público Municipal,4,7,0,10,0.0,3.0,E1,sem_uti_sus
+2088487,Santa Casa De Novo Horizonte,Novo Horizonte,Filantrópico,4,7,0,8,0.0,3.0,E1,sem_uti_sus
+2698471,Secao Hospital Municipal Dr Arthur Domingues Pinto,Santos,Público Municipal,4,7,0,7,0.0,3.0,E1,sem_uti_sus
+2748568,Santa Casa De Capivari,Capivari,Filantrópico,4,7,0,7,0.0,3.0,E1,sem_uti_sus
+2751623,Hospital Francisco Rosas,Espirito Santo Do Pinhal,Filantrópico,4,7,0,10,0.0,3.0,E1,sem_uti_sus
+5366828,Santa Casa De Atibaia,Atibaia,Filantrópico,4,7,0,6,0.0,3.0,E1,sem_uti_sus
+5586348,Hospital Universt Da Ufscar Prof Dr Horacio C Panepucci,Sao Carlos,Privado,4,7,0,20,0.0,3.0,E1,sem_uti_sus
+2087804,Hospital Regional Jorge Rossmann De Itanhaem,Itanhaem,OSS,5,6,0,27,0.0,4.0,E1,sem_uti_sus
+2083019,Unidade Integrada De Saude De Mirandopolis,Mirandopolis,OSS,7,4,0,10,10.0,3.0,E2,uti_baixa_complex
+7573162,Hospital Regional De Jundiai,Jundiai,OSS,8,3,0,16,10.0,3.0,E2,uti_baixa_complex
+2082322,Hospital Dona Balbina,Porto Ferreira,Filantrópico,9,2,0,4,4.0,3.0,E2,uti_baixa_complex
+2096498,Hospital Municipal Dr Tabajara Ramos,Mogi Guacu,Público Municipal,9,2,0,10,5.0,3.0,E2,uti_baixa_complex
+7473702,Hosp Mun De Mogi Das Cruzes Pref Waldemar Costa Filho,Mogi Das Cruzes,Público Municipal,9,2,0,10,10.0,3.0,E2,uti_baixa_complex
+2082845,Santa Casa De Olimpia,Olimpia,Filantrópico,10,1,0,5,5.0,3.0,E2,uti_baixa_complex
+2083051,Santa Casa De Aparecida,Aparecida,Filantrópico,10,1,0,9,9.0,3.0,E2,uti_baixa_complex
+2790564,Hospital De Reabilitacao De Anomalias Craniofaciais Bauru,Bauru,Direta,10,1,0,6,6.0,2.0,E2,uti_baixa_complex
+2790580,Maternidade Santa Isabel,Bauru,OSS,10,1,0,17,17.0,3.0,E2,uti_baixa_complex
+7580770,Hospital Estadual De Caieiras,Caieiras,Direta,10,1,0,6,6.0,2.0,E2,uti_baixa_complex
+7711980,Hosp Mun Gilson De Cassia Marques De Carvalho,Sao Paulo,Público Municipal,7,4,0,40,20.0,4.0,E3,uti_alta_complex

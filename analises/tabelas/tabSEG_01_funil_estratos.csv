@@ -1,0 +1,25 @@
+﻿estrato,estrato_rotulo,modelo_gestao_proxy,n_cnes,n_hospital_ano
+E1,sem_uti_sus,Direta,1,11
+E1,sem_uti_sus,OSS,2,22
+E1,sem_uti_sus,Público Municipal,9,99
+E1,sem_uti_sus,Filantrópico,54,594
+E1,sem_uti_sus,Privado,1,11
+E1,sem_uti_sus,TOTAL,67,737
+E2,uti_baixa_complex,Direta,6,65
+E2,uti_baixa_complex,OSS,7,67
+E2,uti_baixa_complex,Público Municipal,16,176
+E2,uti_baixa_complex,Filantrópico,67,737
+E2,uti_baixa_complex,Privado,2,22
+E2,uti_baixa_complex,TOTAL,97,1067
+E3,uti_alta_complex,Direta,20,208
+E3,uti_alta_complex,OSS,28,276
+E3,uti_alta_complex,Público Municipal,31,341
+E3,uti_alta_complex,Filantrópico,50,550
+E3,uti_alta_complex,Privado,0,0
+E3,uti_alta_complex,TOTAL,125,1375
+TOTAL,todos,Direta,27,284
+TOTAL,todos,OSS,37,365
+TOTAL,todos,Público Municipal,56,616
+TOTAL,todos,Filantrópico,171,1881
+TOTAL,todos,Privado,3,33
+TOTAL,todos,TOTAL,289,3179

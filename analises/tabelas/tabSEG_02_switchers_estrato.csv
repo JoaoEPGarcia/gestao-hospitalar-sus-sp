@@ -1,0 +1,6 @@
+﻿cnes,nome_curto,nome_fantasia,municipio,ano_conversao,modelo_gestao_proxy,uti_sus_mediana,uti_sus_min,uti_sus_max,faixa_mediana,estrato,estrato_rotulo,estrato_esperado,confere,estrato_instavel
+2081695,Sorocaba,Conjunto Hospitalar Sorocaba,Sorocaba,2019,OSS,45.0,39,55,5.0,E3,uti_alta_complex,E3,True,False
+2078287,Pérola,Centro De Referencia Da Saude Da Mulher Sao Paulo,Sao Paulo,2023,OSS,7.0,7,7,4.0,E3,uti_alta_complex,E3,True,False
+2082225,Taipas,Hospital Katia De Souza Rodrigues Taipas Sao Paulo,Sao Paulo,2025,OSS,19.0,12,29,4.0,E3,uti_alta_complex,E3,True,False
+2091755,Vila Penteado,Hospital Geral De Vila Penteado Dr Jose Pangella Sao Paulo,Sao Paulo,2025,OSS,26.0,26,35,4.0,E3,uti_alta_complex,E3,True,False
+2750511,Odilo Antunes,Hospital Estadual Dr Odilo Antunes De Siqueira P Prudente,Presidente Prudente,2025,OSS,4.0,4,4,2.0,E2,uti_baixa_complex,E2,True,False
