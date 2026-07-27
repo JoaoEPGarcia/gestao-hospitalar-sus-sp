@@ -274,11 +274,18 @@ seleção, e reconciliar a Seção 16 e o Apêndice B.
 
 ---
 
-## 6. Data de conversão do Hospital Estadual de Presidente Prudente
+## 6. Data exata e OSS do Hospital Estadual de Presidente Prudente
 
 **Aberta em:** 27/07/2026
 **Decisão de:** João (pesquisa documental)
-**Situação:** aberta
+**Situação:** aberta — reduzida em 27/07/2026
+
+O **ano** de conversão deixou de ser lacuna: é **2025**, derivado do
+próprio painel (a classificação assistencial do SIH para o CNES 2750511
+é Direta em todos os anos até 2024 e OSS em 2025). A Subseção 7.1 agora
+registra esse ano e declara explicitamente que ele vem do painel, não de
+fonte documental. O que permanece em aberto é a **data exata da assunção
+e a OSS contratada**.
 
 A Subseção 7.1 documenta as datas de assunção das cinco conversões. Duas
 estão confirmadas e duas são aproximadas:
@@ -289,16 +296,19 @@ estão confirmadas e duas são aproximadas:
 | 2078287 | CRSM / Pérola Byington | Seconci-SP | set/2022 | confirmada |
 | 2082225 | H. Geral de Taipas | IRSSL / Sírio-Libanês | ~set/2024 | **aproximada** |
 | 2091755 | H. Geral de Vila Penteado | IRSSL / Sírio-Libanês | ~set/2024 | **aproximada** |
-| 2750511 | H. Est. de Presidente Prudente | **não localizada** | **não localizada** | — |
+| 2750511 | H. Est. de Presidente Prudente | **não identificada** | ano 2025 (do painel); mês **não identificado** | ano do painel |
 
 As datas aproximadas foram inferidas de reportagem de 08/10/2024 que
-noticiava os "primeiros trinta dias de contrato". A do Presidente
-Prudente não foi localizada, e a OSS responsável também não.
+noticiava os "primeiros trinta dias de contrato". Para Presidente
+Prudente, o ano vem da mudança de classificação do SIH entre 2024 e
+2025; o mês e a OSS responsável seguem não identificados.
 
 **Por que importa.** A data de assunção determina quantos meses de cada
 ano pertencem a cada regime, e a Subseção 7.1 argumenta que os anos
-parciais **atenuam** o contraste medido. Sem a data de Presidente
-Prudente, esse argumento vale para quatro dos cinco conversores.
+parciais **atenuam** o contraste medido. Sem o mês de Presidente
+Prudente, não se sabe quantos meses de 2025 correram sob cada regime,
+de modo que esse argumento continua quantificável para quatro dos cinco
+conversores.
 
 **Nota sobre as fontes.** As datas, os nomes das organizações sociais e
 as circunstâncias das conversões descritas na Subseção 7.1 vêm de
