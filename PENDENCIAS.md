@@ -67,12 +67,28 @@ Exceção única: remissão a número já impresso antes, no mesmo trecho de
 leitura, com o ponteiro explícito. Não vale para resumos de fim de seção
 que enunciam conclusões novas.
 
-A varredura de 27/07/2026 encontrou nove casos e resolveu seis. Um caso
-segue aberto: a Seção 15 diz que a Translog é "preferida ao Cobb Douglas
-por larga margem" e a razão de verossimilhança correspondente **não
-existe em nenhuma tabela do repositório** — teria de sair do log do R da
-fase 2. Enquanto não sair, a formulação não deve ganhar número
-inventado.
+A varredura de 27/07/2026 encontrou nove casos e resolveu **todos**. O
+último — a Seção 15 dizendo que a Translog é "preferida ao Cobb Douglas
+por larga margem" — foi dado como sem solução numa primeira análise,
+por engano: a varredura tinha procurado apenas em `analises/tabelas/` e
+nos CSVs da fase 2. O número está em
+`resultados_fase2/RELATORIO_EXECUCAO.md`, linha 74 (LR de 567,0 com 6
+graus de liberdade, p da ordem de 1e−119).
+
+**Lição de método incorporada à triagem:** a busca por número de apoio
+deve cobrir também os **relatórios em markdown** da fase 2, não só as
+tabelas CSV. Um resultado documentado em prosa continua sendo um
+resultado documentado.
+
+**Erro de classe 1 encontrado no mesmo passo.** A mesma frase da Seção
+15 afirmava que "94% da variância composta" é atribuída à ineficiência,
+enquanto `tabS_fronteira_bc95.csv` traz `gamma = 0,9548` e o
+`RELATORIO_EXECUCAO.md` registra "gamma = 0,955 (EP 0,006)" — ou seja,
+**95,5%**. Corrigido. Este é o primeiro erro de classe 1 encontrado
+depois das Camadas 1 e 2 da triagem automatizada, e ele escapou por um
+motivo instrutivo: a triagem indexava `analises/tabelas/`, e este número
+vive em `resultados_fase2/tabelas/`. Indexar as tabelas da fase 2 é
+pré-requisito para fechar o item 1.
 
 ---
 
