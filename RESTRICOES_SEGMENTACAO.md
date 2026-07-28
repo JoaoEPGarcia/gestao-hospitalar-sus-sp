@@ -12,7 +12,9 @@ Etapa 4 (reestimação) foi executada em 28/07/2026 no branch
 `feat/etapa4-reestimacao-segmentada`, com **cinco indicadores** e as três
 famílias previstas — CRE/Mundlak, DEA e hierárquico. Resultados e restrições
 de leitura em **R9**. A Etapa 5 (refazer os modelos de ocupação da Fase 2
-pelos defeitos de R8) permanece aberta.
+pelos defeitos de R8) foi executada no mesmo dia, em
+`feat/etapa5-ocupacao-fase2`: o achado publicado sobrevive atenuado, e o que
+muda é registrado em **R10**.
 
 ## Ratificação de escopo da Etapa 4
 
@@ -592,7 +594,9 @@ cabeçalho de `descritivas_segmentadas.py`, em vez de somadas sob o rótulo
 
 ## R8 — Três defeitos nos modelos de ocupação da Fase 2 já rodada
 
-**Status: REGISTRADA COMO ESCOPO DA ETAPA 5. NÃO EXECUTAR NA ETAPA 4.**
+**Status: EXECUTADA NA ETAPA 5, em 28/07/2026. Os três defeitos foram
+corrigidos e reestimados. A consequência prevista abaixo — "o achado não
+sobrevive como está" — NÃO se confirmou: ele sobrevive, atenuado. Ver R10.**
 
 Os modelos de ocupação em `fase2_bayes.R` e `fase2_robustez.R` têm três
 defeitos **independentes** entre si:
@@ -613,9 +617,16 @@ defeitos **independentes** entre si:
    excesso acima de 100% como ruído, quando ele é a assinatura da
    superlotação (R1 v4, R6). Apaga o achado.
 
-**Consequência: o achado de ocupação que está no `principal.tex` não sobrevive
-como está.** A Etapa 5 refará esses modelos já na forma correta. Isto é
-correção de resultado publicado, não refinamento.
+**Consequência prevista em 28/07/2026, ANTES de reestimar:** "o achado de
+ocupação que está no `principal.tex` não sobrevive como está". A Etapa 5
+refará esses modelos já na forma correta.
+
+> **A previsão acima ficou ERRADA e é preservada.** A Etapa 5 rodou no mesmo
+> dia e o achado sobrevive, atenuado: intensidade de UTI de +30,4% para
+> +26,7%, ainda excluindo o zero; ocupação de internação de +12,5% para
+> +11,5%, ainda cruzando o zero. Os três defeitos são reais — o erro foi
+> supor que um defeito bem diagnosticado tem efeito grande. Sete observações
+> em 2.489 não movem coeficiente. Ver R10.
 
 ---
 
@@ -726,6 +737,108 @@ Registradas porque divergem de convenções anteriores do projeto:
 
 ---
 
+## R10 — Etapa 5: o achado de ocupação SOBREVIVE, atenuado
+
+**Status: EXECUTADA EM 28/07/2026. R8 FECHADA quanto à correção; a
+consequência que ela previu não se confirmou na forma prevista.**
+
+Saídas em `tabE5_ocupacao_antes_depois.csv` e `tabE5_ocupacao_variantes.csv`.
+Scripts: `preparo_fase2_corrigido.R` e `fase2_ocupacao_corrigido.R`. Os
+originais não foram tocados.
+
+### A trava de reprodução veio antes da conclusão
+
+Antes de corrigir qualquer coisa, o script reestima as especificações
+**originais, com os defeitos**, e aborta se não casar com o publicado. Casou
+na quinta casa em todas as oito células — as duas do modelo principal
+(`+0,11802` e `+0,26514`) e as seis de variante de
+`tabR_frente1_variantes.csv`. Sem isso, qualquer diferença observada depois
+poderia ser do pipeline e não da correção.
+
+### O veredito
+
+**R8 dizia: "o achado de ocupação que está no `principal.tex` não sobrevive
+como está". Isso está ERRADO na direção, e certo no detalhe.**
+
+| quantidade | publicado | corrigido | conclusão |
+|---|---|---|---|
+| Intensidade de UTI | +30,4% \[+5,8%, +60,7%\] | **+26,7%** \[+6,7%, +50,4%\] | **sobrevive**, atenuado |
+| Ocupação de internação | +12,5%, cruza o zero | **+11,5%**, cruza o zero | **sobrevive**, inalterado |
+| Sem conversores, internação | 0,118 → 0,235, passa a excluir o zero | 0,108 → **0,218**, passa a excluir o zero | **sobrevive** |
+
+As três correções mexem nas magnitudes na primeira casa decimal e **não
+invertem nem anulam nenhuma conclusão publicada**. A frase da Seção 15 — a
+ocupação aponta na mesma direção com magnitude menor, com intervalo que cruza
+o zero na especificação hierárquica — continua correta com os números
+corrigidos.
+
+**O que R8 acertou** foi o mecanismo, não a consequência: os três defeitos
+são reais, a winsorização da UTI era mesmo artefato do bug da Etapa 1, e a
+amostra da UTI condicionava mesmo no desfecho. Só que o efeito líquido de
+corrigi-los é pequeno. **Sete observações em 2.489 não movem um coeficiente**,
+e o limiar de winsorização de 171,2 contra 180,5 atinge 1% da amostra.
+
+Registro da lição, que é a mesma de R1 v2 com o sinal trocado: *diagnosticar
+corretamente um defeito não permite prever a magnitude do seu efeito.* A
+Etapa 5 precisou ser rodada para saber, e teria sido igualmente errado
+declarar o achado morto a partir do diagnóstico quanto declará-lo salvo sem
+reestimar.
+
+### O que MUDA de verdade, e não é o que R8 previa
+
+**1. A parte que a winsorização escondia não é magnitude, é uma pergunta
+separada.** O modelo publicado tem UM coeficiente de ocupação de internação,
+que mistura *com que frequência o hospital entra em superlotação* com *quão
+cheio opera quando não está*. Separadas (R6), as duas partes dizem coisas
+diferentes:
+
+- **Parte B** (contínua ≤ 100): +11,5%, cruza o zero. É o que o número
+  publicado essencialmente já media.
+- **Parte A** (binário de superlotação): +3,27 no logito **sem conversores**,
+  IC \[+1,39, +5,16\] — e −0,25 com IC \[−2,36, +1,86\] no principal.
+
+Essa inversão não é instabilidade: é a diferença entre **between e within**.
+No principal, o termo de Mundlak absorve o contraste entre redes e sobra a
+identificação pelos cinco conversores — que quase não entram em superlotação
+(Sorocaba 3 anos em 11, Pérola 1, Vila Penteado 1, Taipas nenhum). Sem
+conversores, o Mundlak sai e o coeficiente passa a ser o contraste bruto
+entre redes, que é enorme porque o excesso é de 29,3% no OSS contra 3,9% na
+Direta.
+
+**Consequência de leitura, e é uma restrição:** o gap de superlotação entre
+redes é grande e bem medido, mas **não é efeito causal de gestão** — não há
+within que o sustente. O EP de 1,08 no principal é a medida honesta de quanto
+os conversores informam sobre isto: quase nada. Isto é coerente com a Etapa 4,
+onde o mesmo binário em E3 deu +0,74 com EP 0,97.
+
+**2. `uti_parte1` publicado é um número degenerado.** Em
+`tabB_modelos_hierarquicos.csv` está `-58,958032` com erro-padrão **NaN** —
+separação, não estimativa. Não aparece citado no `principal.tex`, mas está
+numa tabela publicada. A versão corrigida da mesma quantidade (opera, dado
+que tem capacidade) **não converge**, e fica reportada como falha: na
+subamostra de capacidade sobram só 7 zeros. A pergunta não é estimável com
+estes dados, e o registro deve dizer isso em vez de exibir −58,96.
+
+**3. Uma frase do Apêndice A precisa de ajuste.** Ela diz que a ocupação de
+internação é "modelada no logaritmo **sem truncar em 100%**". É literalmente
+verdade e materialmente enganoso: não trunca em 100, mas **winsoriza em
+125,1**, o que corta exatamente a cauda de superlotação. A redação sugere que
+o excesso foi preservado quando ele foi parcialmente aparado.
+
+### Pendências que a Etapa 5 abre
+
+- Ajustar a frase do Apêndice A sobre truncamento (item 3 acima).
+- Decidir se `uti_parte1` sai de `tabB_modelos_hierarquicos.csv` ou fica com
+  tarja de não-estimável. **É decisão editorial, não estatística** — o número
+  está publicado.
+- Se a parte A da internação entrar no texto, ela entra como **descritivo
+  entre redes**, jamais como efeito de gestão.
+
+Nada disto exige reestimar mais nada. A propagação ao `principal.tex`
+continua dependendo de leitura da Priscilla, como já registrado.
+
+---
+
 ## Nota de método — a ordem em que R1 foi levantada
 
 Registrada por decisão de João, 27/07/2026. Ampliada em 28/07/2026, quando a
@@ -806,8 +919,11 @@ definitivo de 289 CNES**, e nele o achado é mais forte, não mais fraco.
 
 Registradas, não executadas:
 
-- **Etapa 5 — refazer os modelos de ocupação da Fase 2** pelos três defeitos
-  de R8. É correção de resultado publicado, não refinamento.
+- ~~**Etapa 5 — refazer os modelos de ocupação da Fase 2**~~ — **feita em
+  28/07/2026**. Ver R10. Deixou três pendências menores: ajustar a frase do
+  Apêndice A sobre truncamento, decidir o destino editorial do `uti_parte1`
+  degenerado em `tabB_modelos_hierarquicos.csv`, e a regra de que a parte A
+  da internação só entra no texto como descritivo entre redes.
 - Propagação da correção da ocupação de UTI (Etapa 1) para as seções já
   escritas do `principal.tex` — depende de leitura da Priscilla, pois inverte
   um achado publicado e faz o Filantrópico passar de último a primeiro.
