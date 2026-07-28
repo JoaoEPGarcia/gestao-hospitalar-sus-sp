@@ -29,20 +29,44 @@ Não invalida a estratificação — é por isso que complexidade_estrutural
 permanece como covariável dentro do estrato. Ver RESTRICOES_SEGMENTACAO.md
 e tabSEG_05d_composicao_faixa_e3.csv.
 
-NOTA sobre ocupacao_internacao (R1, 27/07/2026): 15,5% das observações têm
-ocupação acima de 100%, impossível frente à capacidade cadastrada, com
-incidência diferencial por categoria — 29,3% no OSS contra 3,9% na Direta.
-A NATUREZA DO EXCESSO É INDETERMINADA. Todos os campos de leito disponíveis
-— leitos_sus, leitos_internacao, total_leitos e a contagem do arquivo
-Barcelona — são de linhagem CNES, e a concordância entre eles não é
-validação externa: um CNES que sub-registra leito SUS sub-registra em todos
-ao mesmo tempo. Não se sabe se o excesso é sobrecarga real ou sub-registro,
-e estes dados não distinguem. Pendente com o Alberto (PENDENCIAS.md §9).
+NOTA sobre ocupacao_internacao (R1 v4, 28/07/2026 — ITEM RESOLVIDO)
+--------------------------------------------------------------------
+15,5% das observações têm ocupação acima de 100%, com incidência fortemente
+diferencial por categoria — 29,3% no OSS contra 3,9% na Direta. A natureza
+do excesso ESTÁ ESTABELECIDA e não é erro de nenhum dos dois sistemas:
 
-Consequência para esta tabela: o indicador SAI COMO DESCRITIVA TARJADA e
-não entra em modelo na Etapa 4. Os valores abaixo são a versão original e
-não devem ser lidos como taxa de ocupação no sentido usual enquanto a
-pergunta estiver aberta. Ver diagnostico_ocupacao_internacao.py.
+  - o CNES registra estritamente capacidade instalada e HABILITADA, e exclui
+    por definição qualquer leito extra efetivamente operado;
+  - o SIH fatura diária e gera AIH primária para maca e leito de observação
+    quando a permanência ultrapassa 24 horas (a "regra das 24 horas"), o que
+    configura leito extra por superlotação.
+
+Ocupação acima de 100% é a ASSINATURA ARITMÉTICA DA SUPERLOTAÇÃO: o
+numerador conta permanência em leito extra, o denominador exclui leito extra.
+Os dois campos estão corretos segundo as próprias definições.
+
+Consequência para esta tabela: o indicador NÃO é descritiva tarjada. Ele
+entra na estimação da Etapa 4 em MODELO DE DUAS PARTES (R6) — binário de
+superlotação (>100) e contínua condicional (<=100) —, nunca como contínua
+winsorizada, que apagaria o sinal. A média bruta desta tabela CONFLACIONA as
+duas partes e não deve ser lida como "quão cheio o hospital opera": parte da
+diferença entre categorias é frequência de superlotação, não nível de
+ocupação. Ver RESTRICOES_SEGMENTACAO.md (R1, R6).
+
+NOTA sobre uti_sus == 0 (R7, 28/07/2026)
+-----------------------------------------
+As observações com uti_sus == 0 NÃO são todas ausência de UTI. Das 688 do
+painel definitivo, 650 são ausência real (76 CNES) e 38 são PISCAR CADASTRAL
+com operação ativa (26 CNES): uti_sus zerado e diarias_uti > 0. É suspensão e
+limpeza de cadastro — por exemplo inativação temporária por falta de
+intensivista —, não demolição de ala.
+
+Isso reforça a estratificação fixa por mediana: a capacidade subjacente é
+estável e o cadastro é que pisca, de modo que a mediana dos onze anos é o
+estimador certo. Não muda a ETAPA 1 — a razão segue indefinida com
+denominador zero e essas 38 observações saem do modelo de qualquer forma,
+via ocupacao_uti_valida. Muda o motivo registrado. Ver
+verificar_piscar_cadastral.py e tabSEG_09_piscar_cadastral.csv.
 
 Faturamento
 -----------

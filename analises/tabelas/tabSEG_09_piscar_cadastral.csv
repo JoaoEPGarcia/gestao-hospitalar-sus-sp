@@ -1,0 +1,39 @@
+cnes,nome_fantasia,ano,modelo_gestao_proxy,estrato,estrato_rotulo,uti_sus,uti_total,diarias_uti,uti_sus_mediana,estrato_instavel
+2082845,,2017,Filantrópico,E2,uti_baixa_complex,0,7,775,5.0,True
+2077582,Hospital Nossa Senhora Da Piedade,2020,Filantrópico,E1,sem_uti_sus,0,5,237,0.0,True
+2079097,Santa Casa De Capao Bonito,2020,Filantrópico,E1,sem_uti_sus,0,0,67,0.0,True
+2082721,Hospital E Maternidade Sotero De Souza,2020,Filantrópico,E1,sem_uti_sus,0,0,433,0.0,True
+2084422,Santa Casa De Sao Pedro,2020,Filantrópico,E1,sem_uti_sus,0,0,164,0.0,True
+2087715,Hospital E Maternidade Municipal Governador Mario Covas,2020,Público Municipal,E1,sem_uti_sus,0,0,212,0.0,True
+2087804,Hospital Regional Jorge Rossmann De Itanhaem,2020,OSS,E1,sem_uti_sus,0,25,341,0.0,True
+2088487,Santa Casa De Novo Horizonte,2020,Filantrópico,E1,sem_uti_sus,0,4,705,0.0,True
+2698471,Secao Hospital Municipal Dr Arthur Domingues Pinto,2020,Público Municipal,E1,sem_uti_sus,0,0,15,0.0,True
+2699915,Santa Casa De Vinhedo,2020,Filantrópico,E1,sem_uti_sus,0,18,233,0.0,False
+2702193,Santa Casa De Misericordia De Ubatuba,2020,Filantrópico,E1,sem_uti_sus,0,0,307,0.0,False
+2751623,Hospital Francisco Rosas,2020,Filantrópico,E1,sem_uti_sus,0,0,639,0.0,True
+2791749,Santa Casa De Pederneiras,2020,Filantrópico,E1,sem_uti_sus,0,0,395,0.0,True
+5586348,Hospital Universt Da Ufscar Prof Dr Horacio C Panepucci,2020,Privado,E1,sem_uti_sus,0,0,57,0.0,True
+2023016,Casa De Caridade Sao Vicente De Paulo Cajuru,2021,Filantrópico,E1,sem_uti_sus,0,0,1395,0.0,False
+2023474,Hospital Municipal Walter Ferrari,2021,Público Municipal,E1,sem_uti_sus,0,0,2950,0.0,True
+2076896,Hospital Sao Luiz Gonzaga,2021,Filantrópico,E1,sem_uti_sus,0,6,1092,0.0,False
+2077582,Hospital Nossa Senhora Da Piedade,2021,Filantrópico,E1,sem_uti_sus,0,10,1928,0.0,True
+2078414,Santa Casa De Guaira,2021,Filantrópico,E1,sem_uti_sus,0,0,19,0.0,True
+2079097,Santa Casa De Capao Bonito,2021,Filantrópico,E1,sem_uti_sus,0,0,751,0.0,True
+2079593,Hospital Sao Joao Registro,2021,Filantrópico,E1,sem_uti_sus,0,0,2041,0.0,True
+2079704,Hospital Dr Renato Silva De Socorro,2021,Filantrópico,E1,sem_uti_sus,0,0,1347,0.0,True
+2082586,Santa Casa De Misericordia De Osvaldo Cruz,2021,Filantrópico,E1,sem_uti_sus,0,0,1524,0.0,False
+2082721,Hospital E Maternidade Sotero De Souza,2021,Filantrópico,E1,sem_uti_sus,0,0,976,0.0,True
+2083175,Santa Casa Piedade,2021,Filantrópico,E1,sem_uti_sus,0,0,618,0.0,False
+2084422,Santa Casa De Sao Pedro,2021,Filantrópico,E1,sem_uti_sus,0,0,1421,0.0,True
+2087219,Hospital De Clinicas Campo Limpo Paulista,2021,Público Municipal,E1,sem_uti_sus,0,0,481,0.0,True
+2087715,Hospital E Maternidade Municipal Governador Mario Covas,2021,Público Municipal,E1,sem_uti_sus,0,0,408,0.0,True
+2088487,Santa Casa De Novo Horizonte,2021,Filantrópico,E1,sem_uti_sus,0,1,1778,0.0,True
+2698471,Secao Hospital Municipal Dr Arthur Domingues Pinto,2021,Público Municipal,E1,sem_uti_sus,0,0,672,0.0,True
+2699915,Santa Casa De Vinhedo,2021,Filantrópico,E1,sem_uti_sus,0,18,1223,0.0,False
+2702193,Santa Casa De Misericordia De Ubatuba,2021,Filantrópico,E1,sem_uti_sus,0,0,692,0.0,False
+2748568,Santa Casa De Capivari,2021,Filantrópico,E1,sem_uti_sus,0,0,161,0.0,True
+2751038,Santa Casa De Presidente Epitacio,2021,Filantrópico,E1,sem_uti_sus,0,0,1185,0.0,False
+2751623,Hospital Francisco Rosas,2021,Filantrópico,E1,sem_uti_sus,0,0,2274,0.0,True
+2791749,Santa Casa De Pederneiras,2021,Filantrópico,E1,sem_uti_sus,0,0,1442,0.0,True
+5586348,Hospital Universt Da Ufscar Prof Dr Horacio C Panepucci,2021,Privado,E1,sem_uti_sus,0,0,1869,0.0,True
+2790564,,2025,Direta,E2,uti_baixa_complex,0,6,152,6.0,True

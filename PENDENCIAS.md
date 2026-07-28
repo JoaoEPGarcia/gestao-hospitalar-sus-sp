@@ -492,9 +492,41 @@ Registrado também no README, seção "Preâmbulo do `principal.tex`".
 ## 9. Ocupação de internação — natureza do excesso acima de 100%
 
 **Aberta em:** 27/07/2026
-**Decisão de:** Alberto
-**Situação:** aberta — mantém o indicador fora da estimação na Etapa 4 da
-segmentação por estratos; não bloqueia os demais indicadores
+**RESOLVIDA em:** 28/07/2026, em mecanismo
+**Situação:** **FECHADA quanto à natureza do excesso.** O indicador VOLTA para
+dentro da estimação na Etapa 4, em modelo de duas partes. Duas asserções de
+apoio permanecem verificáveis e não verificadas (itens 3 e 4 abaixo), mas
+nenhuma delas decide a questão.
+
+### Resolução (28/07/2026)
+
+O excesso **não é erro de nenhum dos dois sistemas**. O **CNES** registra
+estritamente capacidade instalada e **habilitada**, excluindo por definição
+leito extra efetivamente operado. O **SIH** fatura diária e gera AIH primária
+para maca e leito de observação quando a permanência ultrapassa 24 horas — a
+"regra das 24 horas" —, o que configura leito extra por superlotação.
+
+Ocupação acima de 100% é a **assinatura aritmética da superlotação**: o
+numerador conta permanência em leito extra, o denominador a exclui. Os dois
+campos estão corretos segundo as próprias definições.
+
+O leito pactuado nos contratos SES-SP com as OSS é sistematicamente maior que
+o do CNES e seria melhor denominador de capacidade *operacional* — o que não
+torna o CNES errado. Contrato estipula capacidade operacional, CNES registra
+capacidade habilitada: conceitos distintos, não medidas discordantes.
+
+**O critério de decisão pré-especificado falhou.** Ele dizia que se o
+contratualizado estivesse sistematicamente acima de `leitos_sus`, o
+sub-registro ganharia. O contratualizado está acima e a conclusão correta é a
+oposta: o critério montava dicotomia falsa entre "cadastro errado" e
+"sobrecarga real", quando o cadastro está certo *e por isso* o excesso mede
+sobrecarga. Preservado sem correção retroativa, em
+`RESTRICOES_SEGMENTACAO.md` (R1).
+
+O diagnóstico abaixo é a **versão v3, preservada**. A evidência de linhagem
+que ele levanta continua válida; a conclusão de indeterminação, não.
+
+---
 
 `ocupacao_internacao = 100 × diarias_internacao / (leitos_sus × 365)`,
 identidade conferida com aderência exata nos onze anos. **15,5% das
@@ -537,26 +569,33 @@ capacidade nominal cadastrada — leito extra, maca em corredor, leito de
 observação contabilizado como diária. Isso é a hipótese alternativa, não a
 conclusão.
 
-**Perguntas para o Alberto:**
+**Perguntas para o Alberto — situação em 28/07/2026:**
 
-1. As diárias do SIH incluem permanência em leito extra ou de observação não
-   cadastrado?
-2. O cadastro CNES de leitos SUS exclui leito extra operado?
-3. O número de leitos contratualizados nos contratos de gestão do portal
-   **CGCSS/SES-SP** bate com `leitos_sus`, ou está sistematicamente acima?
-   É a única fonte de contagem de leito que não vem do CNES, e cobre
-   exatamente as OSS, onde o excesso se concentra.
-4. A coluna `Leitos` do arquivo de classificação Barcelona foi extraída do
-   CNES?
+1. **RESPONDIDA (sim).** As diárias do SIH incluem permanência em leito extra
+   ou de observação não cadastrado, pela regra das 24 horas.
+2. **RESPONDIDA (sim).** O cadastro CNES de leitos SUS exclui leito extra
+   operado: registra capacidade habilitada.
+3. **ABERTA, como asserção não medida.** O leito contratualizado no portal
+   **CGCSS/SES-SP** está acima de `leitos_sus` segundo o Alberto. O portal não
+   está no painel, e isto **não** decide entre sobrecarga e sub-registro,
+   porque contrato e CNES medem conceitos distintos de capacidade.
+4. **ABERTA, como asserção não verificada.** A coluna `Leitos` do arquivo
+   Barcelona derivar do `ST_LEITO` é verificável contra o histórico DataSUS.
+   A linhagem CNES do arquivo já está estabelecida por evidência própria
+   (teste do Privado, coluna `UTI`, deriva 9,3% → 69,6%), independentemente
+   desta asserção.
 
-**Se 1 e 2 forem sim e o leito contratualizado de 3 bater com `leitos_sus`,
-o indicador mede sobrecarga assistencial real e é citável como achado**, não
-como bug — e separa OSS e Público Municipal de Direta e Filantrópico numa
-dimensão de pressão que o projeto ainda não explorou. Se o contratualizado
-estiver sistematicamente acima, é sub-registro.
+As duas linhas de apoio ficam registradas com estatutos distintos de propósito:
+uma se sustenta sozinha, a outra não.
 
-Enquanto a pergunta estiver aberta, o indicador sai como descritiva tarjada,
-com nota de que a natureza do excesso é indeterminada, e não entra em modelo.
+**Ocupação acima de 100% mede sobrecarga assistencial e é citável como
+achado**, não como bug — e separa OSS e Público Municipal de Direta e
+Filantrópico numa dimensão de pressão que o projeto ainda não explorou.
+
+O indicador entra na Etapa 4 em **modelo de duas partes** (R6): binário de
+superlotação e contínua condicional a ≤ 100. Nunca como contínua winsorizada,
+que apagaria o sinal. Os modelos de ocupação já rodados na Fase 2 têm três
+defeitos independentes e serão refeitos na **Etapa 5** — ver R8.
 Detalhamento, testes de linhagem, variantes e o registro das duas versões
 anteriores deste diagnóstico ficam em `RESTRICOES_SEGMENTACAO.md`, restrição
 R1; evidência em

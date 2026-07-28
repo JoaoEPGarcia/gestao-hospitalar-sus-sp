@@ -8,29 +8,127 @@ das quatro decisões abaixo são do tipo que, se não ficar escrito antes,
 vira racionalização depois.
 
 Estado das etapas: 1, 2, 3 e 3b concluídas e commitadas em `master`. A
-Etapa 4 (reestimação) foi aprovada em 27/07/2026 com recorte — quatro
-indicadores, sem ocupação de internação — e sai em branch próprio.
+Etapa 4 (reestimação) sai em branch próprio, com **cinco indicadores**.
+
+## Ratificação de escopo da Etapa 4
+
+Ratificado por **João Eduardo Pastori Garcia** em **27/07/2026**, no exercício
+da sua responsabilidade como estatístico do projeto e com a confiança expressa
+da PI. Registrado aqui porque o protocolo do projeto nomeia a **PI (Priscilla)**
+para decisões de escopo, e a trilha de auditoria precisa dizer de quem partiu
+cada decisão. Isto é registro factual, não objeção.
+
+As três decisões ratificadas:
+
+1. **Ocupação de internação permanece entre os indicadores estimados**, em
+   nova forma funcional — modelo em duas partes, ver R6. Não é rebaixada a
+   descritiva. Isto reverte o recorte de quatro indicadores registrado na
+   versão anterior deste documento, e o motivo da reversão é R1 v4: o
+   mecanismo do excesso foi esclarecido.
+2. `complexidade_pond_mort` fica **fora**; `complexidade_estrutural` é a única
+   covariável de complexidade em todos os modelos, inclusive TMP e custo.
+3. **Operacionalização dos estratos aprovada** — mediana de `uti_sus`, faixa
+   Barcelona ≥ 4, classificação fixa no período — com ciência de que 48 das
+   108 células ficam tarjadas por n < 10, o Privado desaparece de E3, e E3 é
+   o único estrato com comparação viável.
 
 ---
 
-## R1 — Ocupação de internação: natureza do excesso indeterminada
+## R1 — Ocupação de internação: RESOLVIDA em mecanismo
 
-**Status: FORA DA ESTIMAÇÃO NA ETAPA 4, mantido como descritiva tarjada.
-Pergunta aberta com o Alberto. Ver PENDENCIAS.md §9.**
+**Status: DENTRO DA ESTIMAÇÃO NA ETAPA 4, em modelo de duas partes (R6).
+Quarta versão do item, 28/07/2026.**
 
-> **Item revisado duas vezes em 27/07/2026, no dia da abertura.** Foi aberto
-> como "subdeclaração de `leitos_sus`", com recomendação de bloquear o
-> indicador. A hipótese foi então dada por **refutada** contra a contagem de
-> leitos do arquivo Barcelona. Na segunda revisão, verificou-se que essa
-> contagem **não é fonte independente** — é de linhagem CNES, como todos os
-> demais campos de leito do projeto. A hipótese, portanto, não foi refutada:
-> **ficou não testada**.
->
-> As duas versões anteriores ficam registradas abaixo porque o caminho
-> importa. Ambas afirmaram estrutura a partir de checagem correlacional em
-> dados de linhagem única, com confiança que os dados não sustentavam. A
-> decisão operacional — indicador fora da estimação — sobreviveu às três
-> versões, mas por justificativas diferentes, e só a terceira é defensável.
+> **Item revisado três vezes em 27/07/2026 e resolvido em 28/07/2026.** As
+> três versões anteriores ficam registradas abaixo, rotuladas, porque o
+> caminho importa — e porque as duas primeiras estavam erradas. Esta quarta
+> versão é a única que identifica o mecanismo, e ela **inverte a decisão
+> operacional** que havia sobrevivido às três anteriores: o indicador volta
+> para dentro da estimação.
+
+### O mecanismo: os dois sistemas estão certos
+
+O excesso acima de 100% **não é erro de nenhum dos dois sistemas**. É o que se
+obtém quando se divide um numerador e um denominador que respondem a
+definições diferentes de "leito":
+
+- O **CNES registra estritamente capacidade instalada e habilitada**, e
+  exclui por definição qualquer leito extra efetivamente operado.
+- O **SIH fatura diária e gera AIH primária** para maca e leito de observação
+  quando a permanência ultrapassa 24 horas — a **regra das 24 horas** —, o que
+  configura leito extra por superlotação.
+
+Ocupação acima de 100% é, portanto, a **assinatura aritmética da
+superlotação**: o numerador conta permanência em leito extra, o denominador
+exclui leito extra. Os dois campos estão corretos segundo as próprias
+definições, e é o quociente entre eles que carrega a informação.
+
+O leito pactuado nos contratos SES-SP com as OSS é sistematicamente **maior**
+que o registrado no CNES, e seria melhor denominador de capacidade
+*operacional*. Isso **não torna o CNES errado**: contrato estipula capacidade
+operacional, CNES registra capacidade habilitada. São conceitos distintos, não
+medidas discordantes.
+
+### O critério de decisão pré-especificado FALHOU — registro obrigatório
+
+O critério registrado na terceira versão dizia, textualmente: *"Se o
+contratualizado estiver sistematicamente acima, é sub-registro."*
+
+**O contratualizado está acima, e a conclusão correta é a oposta.**
+
+O critério montava uma **dicotomia falsa** entre "cadastro errado" e
+"sobrecarga real", quando o mecanismo verdadeiro é que o cadastro está certo
+*e é exatamente por isso* que o excesso mede sobrecarga. Um critério
+pré-especificado sobre a dicotomia errada não protege contra nada: ele apenas
+compromete de antemão com a leitura errada dos dois desfechos possíveis.
+
+O critério falho fica preservado aqui, sem correção retroativa. Pré-especificar
+disciplina a análise; não a torna correta.
+
+### Calibragem de confiança — o que é medido e o que é asserção
+
+As duas linhas de apoio deste item **não têm o mesmo estatuto**, e ficam
+separadas de propósito:
+
+| Afirmação | Estatuto | Situação |
+|---|---|---|
+| Contratos CGCSS/SES-SP acima de `leitos_sus` | **Asserção do Alberto**, não medida nestes dados | O portal não está no painel. Pendência verificável, não perseguida agora. |
+| Coluna `Leitos` do arquivo Barcelona derivar do `ST_LEITO` | **Asserção**, verificável cruzando com o histórico DataSUS | Não verificada. |
+
+A **linhagem CNES do arquivo Barcelona já está estabelecida por evidência
+própria**, independentemente da asserção sobre o `ST_LEITO`: o teste do
+Privado, a assinatura repetida na coluna `UTI` e a deriva de concordância de
+9,3% em 2015 para 69,6% em 2025. As duas linhas de apoio ficam distintas
+porque uma se sustenta sozinha e a outra não.
+
+### Consequência para a Etapa 4
+
+O indicador **volta para dentro da estimação**, em modelo de duas partes
+(R6) — e não como contínua winsorizada, que destruiria justamente o sinal.
+Os três defeitos dos modelos de ocupação já rodados na Fase 2 ficam em R8,
+como escopo da Etapa 5.
+
+---
+
+### Versões anteriores, preservadas
+
+**v1 (27/07/2026) — "É sub-registro de `leitos_sus`."** Hipótese apresentada
+como diagnóstico, com recomendação de bloquear a Etapa 4, antes de qualquer
+teste contra fonte externa.
+
+**v2 (27/07/2026) — "O denominador está validado contra fonte independente."**
+A fonte não era independente. O sinal estava na própria saída que a produziu
+(Privado com `bc/total_leitos` = 0,08) e foi lido como corroboração em vez de
+como assinatura de linhagem comum.
+
+**v3 (27/07/2026) — "Não se sabe, e estes dados não distinguem."** Correta no
+que negava, e é o corpo do texto que segue abaixo. Errada no critério de
+decisão que propôs, e incompleta: tratava como indeterminado um mecanismo que
+as definições dos dois sistemas já determinavam. Faltava perguntar o que cada
+sistema define como leito, não qual dos dois estava errado.
+
+O texto de v3 segue integralmente abaixo, porque a evidência de linhagem que
+ele levanta continua válida e é ela que sustenta a calibragem acima.
 
 ### O que foi verificado e continua valendo
 
@@ -96,7 +194,9 @@ independentes: é uma fonte contada de três maneiras. Um CNES que sub-registra
 leito SUS sub-registra nos três campos ao mesmo tempo, e a concordância entre
 eles não constitui validação externa.
 
-### Posição correta
+### Posição de v3 — SUPERADA pelo mecanismo, preservada
+
+*Correta na negação, incompleta na pergunta. Ver o mecanismo no topo do item.*
 
 **Não se sabe se o excesso é sobrecarga real ou sub-registro, e os dados
 disponíveis não conseguem distinguir.** Todos os campos de leito do projeto
@@ -115,27 +215,36 @@ observado é mediana de 3 anos em 11. O argumento favorece a leitura de pico
 de demanda **sem estabelecê-la** — um hospital pode sub-registrar leito
 justamente nos anos em que expande.
 
-### Uma fonte genuinamente independente existe
+### Uma fonte genuinamente independente existe — e o critério que ela alimentava falhou
 
 Os contratos de gestão no portal **CGCSS/SES-SP** estipulam número de leitos
 contratualizados, e isso não vem do CNES. Cobre apenas OSS — que é
 exatamente onde o excesso se concentra.
 
+O critério pré-especificado em v3 era:
+
 - Se o leito contratualizado bater com `leitos_sus`, a leitura de sobrecarga
   real ganha muita força.
 - Se estiver sistematicamente acima, o sub-registro ganha.
 
-Entra como pergunta 3 ao Alberto, com a pergunta 4 sobre a procedência da
-própria coluna Barcelona. Ver `PENDENCIAS.md` §9.
+**Este critério falhou.** O contratualizado está acima — asserção do Alberto,
+não medida nestes dados — e a conclusão correta é a oposta da que o critério
+previa, pelo motivo registrado no topo do item: contrato e CNES medem
+conceitos diferentes de capacidade, e a diferença entre eles não é erro de
+nenhum dos dois. Preservado sem correção retroativa.
 
-### As três variantes: nenhuma responde à pergunta que restou
+### As três variantes: PERMANECEM INERTES, e agora sabe-se por quê
 
 Estão no painel como colunas paralelas (`ocup_int_censura100`,
-`ocup_int_missing100`, `ocup_int_leitos_int`). **Nenhuma foi escolhida, e
-nenhuma deve ser antes da resposta do Alberto.** As três pressupõem que o
-excesso é erro a corrigir. Se for sobrecarga real, censurar em 100 ou marcar
-como missing apagaria justamente o achado; se for sub-registro, nenhuma das
-três o mede — V3 em particular usa outro campo da mesma linhagem.
+`ocup_int_missing100`, `ocup_int_leitos_int`). **Nenhuma foi escolhida e
+nenhuma será aplicada.** As três foram desenhadas contra um erro que não
+existe: pressupõem que o excesso é artefato a corrigir, quando ele é o sinal.
+Censurar em 100 ou marcar como missing apagaria exatamente o achado.
+
+Foi mantê-las sem aplicar que tornou baratas duas reversões de diagnóstico —
+nenhuma tinha tocado o painel, nenhum resultado dependia delas, e reverter
+custou reescrita de registro em vez de reestimação. Continuam no painel pelo
+mesmo motivo: como registro do que foi considerado e recusado.
 
 O diagnóstico de cada uma fica registrado porque continua informativo sobre
 a estrutura dos dados:
@@ -173,41 +282,46 @@ Por categoria, entre os afetados: OSS 23 CNES com mediana de 4 anos acima,
 Público Municipal 39 com 3, Filantrópico 55 com 2, Direta 5 com 1.
 
 Este padrão foi lido primeiro como agravante — o efeito fixo de CNES não
-absorveria um artefato que varia dentro do hospital.
+absorveria um artefato que varia dentro do hospital. Na segunda revisão virou
+a única evidência não dependente do CNES, favorecendo pico de demanda sem
+estabelecê-lo.
 
-Depois da segunda revisão, ele é **a única evidência disponível que não
-depende do CNES**, e favorece a leitura de pico de demanda: sub-registro
-cadastral estável produziria excesso persistente. Mas é sugestivo, não
-conclusivo — um hospital pode sub-registrar leito exatamente nos anos em que
-expande, e nesse caso o padrão episódico apareceria do mesmo jeito.
-
-As duas leituras têm a mesma consequência operacional, por caminhos opostos:
-não se estima sobre o indicador antes de saber o que ele mede.
+Sob o mecanismo de v4 ele deixa de ser evidência disputada e passa a ser
+**descrição do fenômeno**: superlotação é episódica por natureza. Um hospital
+opera acima da capacidade habilitada nos anos em que a demanda excede a
+oferta, não em todos. A mediana de 3 anos em 11 é o que se espera de pressão
+assistencial intermitente — e é o que dá variação *within* suficiente para o
+binário de superlotação ser estimável com efeito fixo de CNES (ver R6).
 
 ### Situação na Etapa 4
 
-O modelo de ocupação de internação **fica fora da estimação**, e o indicador
-**não é bloqueado**: sai como descritiva tarjada, com nota de que a natureza
-do excesso está indeterminada e que todos os campos de leito disponíveis são
-de linhagem CNES. Os outros indicadores não dependem disto.
+O modelo de ocupação de internação **entra na estimação**, em duas partes
+(R6). Não é descritiva tarjada e não é contínua winsorizada.
 
-A pergunta que decide não é estatística e não é da equipe de análise —
-é do Alberto, e está em `PENDENCIAS.md` §9:
+As perguntas 1 e 2 abaixo, que estavam com o Alberto, estão **respondidas
+pelas definições dos dois sistemas** e é isso que constitui o mecanismo de
+v4. As perguntas 3 e 4 permanecem abertas, agora como **asserções não
+medidas** e não como critério de decisão — ver a calibragem de confiança no
+topo do item, e `PENDENCIAS.md` §9.
 
-1. As diárias do SIH incluem permanência em leito extra ou de observação
-   não cadastrado?
-2. O cadastro CNES de leitos SUS exclui leito extra operado?
-3. O leito contratualizado nos contratos de gestão do portal CGCSS/SES-SP
-   bate com `leitos_sus`, ou está sistematicamente acima? É a única fonte
-   de leito que não vem do CNES, e cobre justamente as OSS.
-4. A coluna `Leitos` do arquivo de classificação Barcelona foi extraída do
-   CNES?
+1. **RESPONDIDA — sim.** As diárias do SIH incluem permanência em leito extra
+   ou de observação não cadastrado: o SIH fatura diária e gera AIH primária
+   quando a permanência ultrapassa 24 horas.
+2. **RESPONDIDA — sim.** O cadastro CNES de leitos SUS registra estritamente
+   capacidade instalada e habilitada, e exclui leito extra operado.
+3. **ABERTA, como asserção.** O leito contratualizado no CGCSS/SES-SP está
+   acima de `leitos_sus` segundo o Alberto. Não medido nestes dados — o
+   portal não está no painel. Isto **não** decide entre sobrecarga e
+   sub-registro, porque contrato e CNES medem conceitos distintos.
+4. **ABERTA, como asserção.** A coluna `Leitos` do arquivo Barcelona derivar
+   do `ST_LEITO` é verificável contra o histórico DataSUS, e não foi
+   verificada. A linhagem CNES do arquivo já está estabelecida por evidência
+   própria, independentemente disto.
 
-**Se 1 e 2 forem sim e 3 bater, ocupação acima de 100% é medida válida de
-sobrecarga assistencial e vira achado, não bug** — e possivelmente um dos
-mais interessantes do trabalho, porque separa OSS e Público Municipal de
-Direta e Filantrópico numa dimensão de pressão sobre a qual o projeto ainda
-não disse nada. Se 3 estiver sistematicamente acima, é sub-registro.
+**Ocupação acima de 100% é medida válida de sobrecarga assistencial e é
+achado, não bug** — e possivelmente um dos mais interessantes do trabalho,
+porque separa OSS e Público Municipal de Direta e Filantrópico numa dimensão
+de pressão sobre a qual o projeto ainda não disse nada.
 
 ---
 
@@ -259,18 +373,32 @@ O que a restrição proíbe é citar a diferença bruta como se fosse achado.
 E1 é "sem UTI SUS" pela **mediana**, não pela série inteira: 71 dos seus 737
 hospital-ano têm leito habilitado, em 18 CNES.
 
-Redação **correta**, a ser usada em qualquer texto:
+Redação **correta**, a ser usada em qualquer texto (revisada em 28/07/2026,
+quando a causa foi estabelecida):
 
 > As observações de E1 com leito de UTI SUS concentram-se a partir de 2021:
 > nenhuma até 2020, uma em 2021 e dezesseis dos dezoito CNES entrando
-> simultaneamente em 2022. A simultaneidade indica evento administrativo de
-> habilitação, cuja causa não foi determinada.
+> simultaneamente em 2022. A simultaneidade é efeito direto de política
+> pública: a conversão em bloco de leitos emergenciais de UTI COVID em leitos
+> definitivos de UTI Adulto SUS, que atingiu especialmente Santas Casas e
+> hospitais municipais.
 
-Redação **incorreta**, a evitar: descrever essas entradas como "habilitações
-transitórias da pandemia". São **posteriores** à fase aguda, provavelmente
-permanentes, e podem ser mudança de registro em vez de habilitação nova. A
-conclusão prática não muda — o modelo de ocupação de UTI segue não-aplicável
-em E1 — mas a causa não está estabelecida e não se deve afirmá-la.
+Duas precisões que a redação precisa preservar:
+
+- A conversão é **relacionada à pandemia, mas permanente**. Não é habilitação
+  transitória, e por isso a entrada em 2022 é posterior à fase aguda: é a
+  consolidação do leito emergencial, não a resposta a ela.
+- Redação **incorreta**, a evitar: "habilitações transitórias da pandemia".
+  Erra nos dois termos — não são transitórias e não são da fase aguda.
+
+A conclusão prática não muda: o modelo de ocupação de UTI segue não-aplicável
+em E1, porque a classificação é por mediana dos onze anos e três anos de UTI
+no fim da série não movem a mediana.
+
+*Versão anterior deste item, preservada:* a redação dizia "evento
+administrativo de habilitação, cuja causa não foi determinada", e advertia
+que podia ser mudança de registro em vez de habilitação nova. A cautela era
+correta enquanto a causa não estava estabelecida; agora está.
 
 Hospitais envolvidos: predominantemente Santas Casas do interior (Guaíra,
 Pederneiras, Capão Bonito, Capivari, São Pedro, Novo Horizonte, Atibaia,
@@ -305,12 +433,19 @@ sensibilidade que o exclui.
 
 ## R5 — Pressão assistencial como mediador: hipótese guardada, com trava
 
-**Status: HIPÓTESE REGISTRADA. NÃO IMPLEMENTAR sem desenho próprio.**
+**Status: HIPÓTESE REGISTRADA. NÃO IMPLEMENTAR sem desenho próprio.
+A TRAVA FICA MAIS IMPORTANTE, NÃO MENOS, DEPOIS DE R1 v4.**
 
-Se a resposta a R1 for que o excesso de ocupação mede sobrecarga real, então
-pressão assistencial deixa de ser problema de indicador e passa a ser
-mecanismo candidato entre modelo de gestão e desfecho — por que uma OSS
-teria mortalidade ou TMP diferente.
+A condição desta hipótese era: *"se a resposta a R1 for que o excesso de
+ocupação mede sobrecarga real"*. **Ela foi satisfeita em 28/07/2026.** O
+excesso mede sobrecarga assistencial, e pressão assistencial deixa de ser
+problema de indicador e passa a ser mecanismo candidato entre modelo de
+gestão e desfecho — por que uma OSS teria mortalidade ou TMP diferente.
+
+É justamente por isso que a trava abaixo precisa ser lida agora com mais
+atenção do que quando foi escrita. Enquanto o indicador estava sob suspeita,
+ninguém seria tentado a colocá-lo como covariável; agora que ele é achado
+legítimo, a tentação existe — e é exatamente aí que ela é errada.
 
 **A trava, que vai colada à hipótese:** pressão assistencial, se for real, é
 **variável pós-tratamento** — causada pelo modelo de gestão e causadora do
@@ -327,13 +462,156 @@ Ninguém deve implementar isto a partir da hipótese sozinha.
 
 ---
 
+## R6 — Ocupação de internação em duas partes: IMPLEMENTADA na Etapa 4
+
+**Status: IMPLEMENTADA. Pré-especificada em 28/07/2026, antes de ver
+coeficiente.**
+
+*Nota de registro:* este item **não existia neste documento** antes de
+28/07/2026 — o documento ia de R1 a R5. Ele entra já no estado "implementada".
+A instrução de trabalho o descrevia como promoção de uma proposta anteriormente
+marcada "não implementar"; esse estado anterior não consta deste arquivo nem
+de nenhum outro do repositório, e por isso não é afirmado aqui. O que se
+registra é o que se pode verificar: a forma em duas partes entra agora, e o
+motivo é R1 v4.
+
+### A forma funcional
+
+A ocupação de internação entra em **duas partes**, nunca como contínua
+winsorizada:
+
+- **Parte A — binário de superlotação.** `sobrecarga = 1` se
+  `ocupacao_internacao > 100`. Modelo logístico com estrutura CRE/Mundlak,
+  erros-padrão clusterizados por CNES.
+- **Parte B — contínua condicional.** `ocupacao_internacao` restrita a
+  `≤ 100`. Mesmo conjunto de covariáveis. **Não há winsorização na parte B**:
+  o teto é 100 por construção.
+
+As duas são reportadas e interpretadas **conjuntamente**. Não se somam e não
+se colapsam em índice único — são duas perguntas distintas: *com que
+frequência o hospital entra em superlotação* e *quão cheio ele opera quando
+não está superlotado*.
+
+### Por que não a contínua winsorizada
+
+Porque ela **destrói justamente o sinal**. Winsorizar o excesso acima de 100%
+trata como ruído de cauda aquilo que R1 v4 identificou como a assinatura
+aritmética da superlotação. O indicador contínuo bruto, por sua vez,
+**conflaciona** as duas perguntas numa média só.
+
+O tamanho da conflação, medido na base de referência de 314 CNES: o gap bruto
+OSS−Direta em E3 era de ~27,4 pontos, e a parte contínua guarda ~16,6. Cerca
+de **40% da diferença que aparecia como "OSS mais cheio" era OSS mais
+frequentemente em superlotação**, misturado na mesma média. São ordens de
+grandeza a confirmar no painel definitivo, não valores a reproduzir.
+
+### Assimetria com a UTI — registrada antes de rodar
+
+Ocupação de **UTI continua contínua**, winsorizada em p99 da subamostra
+válida, com **limiar único para o painel inteiro**. A justificativa da
+assimetria é empírica e verificável: em internação o excesso acima de 100% é
+fortemente **diferencial** entre as categorias do contraste principal; em UTI
+ele é **não-diferencial**, praticamente idêntico entre OSS e Direta. Se o
+diferencial aparecer em UTI no painel definitivo, a justificativa cai e a
+assimetria precisa ser reaberta.
+
+---
+
+## R7 — Piscar cadastral de UTI
+
+**Status: NOVA, verificada no painel definitivo em 28/07/2026.
+Ver `verificar_piscar_cadastral.py` e `tabSEG_09_piscar_cadastral.csv`.**
+
+A oscilação de `uti_sus` entre anos é **suspensão e limpeza cadastral** — por
+exemplo inativação temporária por falta de intensivista — e **não** construção
+ou demolição de ala. A capacidade subjacente é estável; o cadastro é que
+pisca.
+
+### Isto REFORÇA a estratificação fixa
+
+O estrato é atribuído por CNES, pela mediana de `uti_sus` nos onze anos, e
+fica fixo no período. Se as oscilações fossem obra física, a classificação
+fixa apagaria mudança real de tecnologia de produção. Sendo piscar cadastral,
+a mediana é o estimador **certo** da capacidade subjacente: ignora os anos em
+que o registro caiu sem que a ala fechasse.
+
+### Consequência verificável, e verificada
+
+Se o cadastro pisca enquanto a ala opera, devem existir observações com
+`uti_sus = 0` **e produção de UTI ativa**. Existem, e o controle da internação
+sai limpo:
+
+| medida | referência (314 CNES) | painel definitivo (289 CNES) |
+|---|---|---|
+| observações com `uti_sus = 0` e `diarias_uti > 0` | 39 | **38** |
+| CNES envolvidos | 27 | **26** |
+| mediana de diárias no Filantrópico | 775 | **763** |
+| anos de concentração | 2017, 2020, 2021, 2025 | **2017, 2020, 2021, 2025** |
+| casos análogos em internação | 0 | **0** |
+
+Distribuição no painel definitivo: 2021 com 23 casos, 2020 com 13, 2017 e
+2025 com 1 cada — a concentração em 2020–2021 é coerente com sobrecarga e
+remanejamento cadastral no período pandêmico. Por categoria: Filantrópico 28
+observações em 19 CNES, Público Municipal 6 em 4, Privado 2 em 1, Direta e
+OSS 1 cada. Por estrato: 36 em E1 e 2 em E2.
+
+**29 CNES** têm `uti_sus` ora zero ora positivo; destes, **19** têm produção
+ativa em ano zerado. O controle da internação — `leitos_sus = 0` com
+`diarias_internacao > 0` — dá **zero casos**, como esperado: leito de
+internação não é habilitação que se suspenda do mesmo modo.
+
+### O que isto NÃO muda
+
+**A Etapa 1 continua válida.** A razão segue indefinida com denominador zero,
+e essas 38 observações saem do modelo de qualquer forma — é para isso que
+existe `ocupacao_uti_valida`, definida apenas onde `uti_sus > 0`.
+
+O que muda é o **motivo registrado**. Das 688 observações com `uti_sus = 0`,
+**650 são ausência real** de UTI (76 CNES) e **38 são piscar cadastral com
+operação ativa** (26 CNES). As duas ficam distinguidas no registro e no
+cabeçalho de `descritivas_segmentadas.py`, em vez de somadas sob o rótulo
+único de "sem UTI".
+
+---
+
+## R8 — Três defeitos nos modelos de ocupação da Fase 2 já rodada
+
+**Status: REGISTRADA COMO ESCOPO DA ETAPA 5. NÃO EXECUTAR NA ETAPA 4.**
+
+Os modelos de ocupação em `fase2_bayes.R` e `fase2_robustez.R` têm três
+defeitos **independentes** entre si:
+
+1. **Winsorização contaminada.** `preparo_fase2.R` winsoriza ambas as
+   ocupações no p99 do **painel completo**, incluindo os zeros estruturais.
+   Para `ocupacao_uti` isso dá limiar de ~164 contra ~179 sobre a subamostra
+   válida — ou seja, **o limiar é ele próprio artefato do bug corrigido na
+   Etapa 1**.
+
+2. **Condicionamento no desfecho.** `fase2_bayes.R` restringe o modelo de UTI
+   a `ocupacao_uti > 0`, o que condiciona **no desfecho** e não na capacidade.
+   Exclui hospitais com UTI habilitada e zero diárias no ano — seleção pela
+   variável dependente. É problema **distinto** do corrigido na Etapa 1, e
+   ainda não corrigido.
+
+3. **Sinal apagado por winsorização.** O modelo de internação winsoriza o
+   excesso acima de 100% como ruído, quando ele é a assinatura da
+   superlotação (R1 v4, R6). Apaga o achado.
+
+**Consequência: o achado de ocupação que está no `principal.tex` não sobrevive
+como está.** A Etapa 5 refará esses modelos já na forma correta. Isto é
+correção de resultado publicado, não refinamento.
+
+---
+
 ## Nota de método — a ordem em que R1 foi levantada
 
-Registrada por decisão de João, 27/07/2026.
+Registrada por decisão de João, 27/07/2026. Ampliada em 28/07/2026, quando a
+quarta versão fechou o item.
 
-R1 foi reescrita duas vezes no dia em que foi aberta. As três versões
-afirmaram estrutura com confiança, a partir de checagem correlacional em
-dados de **linhagem única**, e as duas primeiras estavam erradas:
+R1 foi reescrita duas vezes no dia em que foi aberta, e uma quarta vez no dia
+seguinte. As três primeiras versões afirmaram estrutura com confiança, a
+partir de checagem correlacional em dados de **linhagem única**, e as duas
+primeiras estavam erradas:
 
 1. **"É sub-registro de leito"** — hipótese apresentada como diagnóstico,
    com recomendação de bloquear a Etapa 4, antes de qualquer teste contra
@@ -342,8 +620,26 @@ dados de **linhagem única**, e as duas primeiras estavam erradas:
    era independente. O sinal estava na própria saída que a produziu (Privado
    com `bc/total_leitos` = 0,08), e foi lido como corroboração em vez de
    como assinatura de linhagem comum.
-3. **"Não se sabe, e estes dados não distinguem"** — a versão que está no
-   documento.
+3. **"Não se sabe, e estes dados não distinguem"** — correta no que negava,
+   e a evidência de linhagem que ela levantou continua de pé.
+4. **"Os dois sistemas estão certos, e o excesso é a assinatura da
+   superlotação"** — a versão que fecha o item, 28/07/2026.
+
+**A quarta versão inverteu a decisão operacional.** As três primeiras
+mantinham o indicador fora da estimação, por justificativas diferentes; a
+quarta o traz de volta, em forma nova. Isto desfaz a leitura tranquilizadora
+que a nota original registrava — a de que a decisão operacional tinha
+sobrevivido a todas as reversões de diagnóstico. Ela sobreviveu a três e caiu
+na quarta. Uma decisão que resiste a várias mudanças de justificativa não
+está por isso validada: pode estar apenas sendo reencontrada por caminhos
+igualmente errados.
+
+**A lição específica da quarta versão:** as três primeiras discutiam *qual dos
+dois sistemas estava errado*, e a pergunta certa era *o que cada sistema
+define como leito*. A dicotomia estava embutida no critério pré-especificado
+de v3, que por isso comprometia com a leitura errada em qualquer um dos dois
+desfechos possíveis — ver o registro do critério falho em R1. Pré-especificar
+não protege contra a pergunta errada; só contra a resposta oportunista.
 
 Três lições, em ordem de importância:
 
@@ -361,8 +657,10 @@ O que funcionou, e vale como procedimento: o diagnóstico das variantes
 recusou-se a escolher uma e devolveu a decisão à equipe. Foi essa recusa que
 deixou as duas reversões baratas — nenhuma variante tinha sido aplicada ao
 painel, nenhum resultado dependia delas, e reverter custou reescrita de
-registro em vez de reestimação. A decisão operacional (indicador fora da
-estimação) sobreviveu às três versões.
+registro em vez de reestimação. Esse procedimento se pagou uma terceira vez
+na quarta versão, que **inverteu** a decisão operacional: se alguma variante
+tivesse sido aplicada, a inversão exigiria reconstruir o painel, e o sinal de
+superlotação já teria sido apagado do arquivo.
 
 Vale também para R2: a formulação original do mecanismo ("os hospitais de
 complexidade máxima de E3 são todos Direta") estava errada e foi corrigida
@@ -385,9 +683,19 @@ definitivo de 289 CNES**, e nele o achado é mais forte, não mais fraco.
 
 Registradas, não executadas:
 
+- **Etapa 5 — refazer os modelos de ocupação da Fase 2** pelos três defeitos
+  de R8. É correção de resultado publicado, não refinamento.
 - Propagação da correção da ocupação de UTI (Etapa 1) para as seções já
   escritas do `principal.tex` — depende de leitura da Priscilla, pois inverte
-  um achado publicado.
+  um achado publicado e faz o Filantrópico passar de último a primeiro.
+- Verificação da coluna `Leitos` do arquivo Barcelona contra o histórico
+  `ST_LEITO` do DataSUS — asserção registrada em R1, não perseguida.
+- Comparação do leito contratualizado CGCSS/SES-SP com `leitos_sus` —
+  asserção registrada em R1, não medida.
+- Números e datas exatas de contrato dos cinco switchers, para citação formal.
 - Reclassificação geográfica (Santos, Cotia, Guarulhos) — aguarda Priscilla e
-  Alberto.
+  Alberto; bloqueia o algoritmo de seleção do bloco de entrevistas.
 - Forma funcional de `complexidade_pond_mort` — aguarda Priscilla.
+- Figuras `fig_ae_09` em valores reais, conversão monetária das Seções 2 e 9,
+  regeneração dos eixos de densidade.
+- Leitura humana do PDF compilado, para coerência de prosa entre seções.
