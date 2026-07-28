@@ -8,7 +8,11 @@ das quatro decisões abaixo são do tipo que, se não ficar escrito antes,
 vira racionalização depois.
 
 Estado das etapas: 1, 2, 3 e 3b concluídas e commitadas em `master`. A
-Etapa 4 (reestimação) sai em branch próprio, com **cinco indicadores**.
+Etapa 4 (reestimação) foi executada em 28/07/2026 no branch
+`feat/etapa4-reestimacao-segmentada`, com **cinco indicadores** e as três
+famílias previstas — CRE/Mundlak, DEA e hierárquico. Resultados e restrições
+de leitura em **R9**. A Etapa 5 (refazer os modelos de ocupação da Fase 2
+pelos defeitos de R8) permanece aberta.
 
 ## Ratificação de escopo da Etapa 4
 
@@ -612,6 +616,113 @@ defeitos **independentes** entre si:
 **Consequência: o achado de ocupação que está no `principal.tex` não sobrevive
 como está.** A Etapa 5 refará esses modelos já na forma correta. Isto é
 correção de resultado publicado, não refinamento.
+
+---
+
+## R9 — Resultados da Etapa 4: o que pode e o que não pode ser dito
+
+**Status: REGISTRADO EM 28/07/2026, depois de rodar as três famílias.**
+
+Registrado aqui porque a tabela sozinha convida a leituras que os dados não
+sustentam. Saídas em `tabSEG_10` a `tabSEG_15`, `figSEG_04` e `figSEG_05`.
+
+### O que está estimado
+
+Três famílias, cinco indicadores, três estratos. CRE/Mundlak
+(`estimacao_segmentada.py`), DEA com fronteira por estrato
+(`etapa4_dea_segmentado.R`) e hierárquico glmmTMB
+(`etapa4_bayes_segmentado.R`).
+
+Em **E3**, o único estrato com identificação within (coeficiente de OSS contra
+Direta, CRE/Mundlak, EP agrupado por CNES):
+
+| indicador | efeito | IC95% | p |
+|---|---|---|---|
+| Mortalidade geral | −0,281 (logito) | [−0,442, −0,121] | 0,001 |
+| TMP | **−11,8%** | [−17,6%, −5,6%] | 0,000 |
+| Faturamento real/saída | −9,2% | [−25,2%, +10,4%] | 0,332 |
+| Ocupação de UTI (PPML) | +25,5% | [−18,4%, +93,0%] | 0,300 |
+| Superlotação (parte A) | +0,74 (logito) | [−1,17, +2,64] | 0,448 |
+| Ocupação ≤100 (parte B) | +27,0% | [−1,8%, +64,3%] | 0,068 |
+
+O **hierárquico concorda onde ambos estimam**, e a concordância é estreita:
+TMP −0,1254 no CRE/Mundlak contra −0,1255 no hierárquico; mortalidade −0,281
+contra −0,258; ocupação de UTI +0,227 contra +0,231. Isso é consistência
+entre estimadores, **não** evidência independente: os dois usam os mesmos
+dados e a mesma identificação.
+
+O **DEA** em E3 põe o OSS acima da Direta em eficiência técnica corrigida de
+viés (0,747 contra 0,687), e a segunda etapa truncada dá coeficiente de OSS
+de −0,601, IC95% [−1,065, −0,169] — negativo é mais eficiente. Escores de
+estratos diferentes **não são comparáveis entre si**: cada fronteira é a do
+próprio estrato.
+
+### O que NÃO pode ser dito
+
+**1. Nada causal fora de E3.** E1 não tem nenhum conversor: ali o termo de
+Mundlak é colinear com a própria dummy de categoria e foi removido, o que a
+saída anuncia. E2 tem um só. Os coeficientes de E1 e E2 são comparação entre
+grupos e saem tarjados; em `figSEG_04` estão em cinza por isso. O
+−72,9% de TMP em E1 é o contraste de **2 CNES OSS contra 1 CNES Direta** e
+não é achado.
+
+**2. O within de E3 é mais fino do que o IC sugere.** A identificação vem de
+quatro hospitais, e **dois deles contribuem um único ano**: Taipas e Vila
+Penteado convertem em 2025. Pérola tem 3 anos, Sorocaba tem 7. Na prática
+Sorocaba domina, e é o caso com endogeneidade de conversão documentada. O
+IC de Wald não sabe disso. Nenhum efeito de E3 deve ser citado sem a
+qualificação de que repousa sobre Sorocaba e Pérola.
+
+**3. A mortalidade de E3 pede cuidado extra, por R2.** O coeficiente
+modelado **não** é o par descritivo proibido — controla
+`complexidade_estrutural` contínua, que é justamente a razão pela qual R2 diz
+que a estratificação não fica invalidada. Mas o mecanismo de R2 continua
+presente nos dados: a assimetria de cauda de 2 CNES em faixa 6. O
+coeficiente é citável **com** o controle explicitado; o par bruto, não.
+
+**4. O Privado não é interpretado em nenhum estrato**, inclusive no DEA, onde
+aparece com 1 a 2 CNES por estrato e escore de 0,257 em E2.
+
+**5. O IC do OSS no DEA de E1 repousa sobre 490 das 1.000 réplicas.** Com 2
+CNES OSS, mais da metade das reamostragens por hospital não sorteia nenhum.
+A tabela traz réplicas válidas por termo para que isso não passe.
+
+### Onde a estimação falhou, e por quê
+
+Falha reportada é resultado, não lacuna a preencher depois:
+
+- **Superlotação (parte A) em E1 e E2: separação.** O logito não é
+  identificado — em E1 o coeficiente diverge mesmo sem dummies de ano. O
+  número **não é reportado**. O hierárquico recusa as mesmas duas células,
+  por matriz singular. Duas rotas independentes, mesmo diagnóstico.
+- **Ocupação de UTI em E1: NÃO-APLICÁVEL.** E1 é "sem UTI SUS" pela mediana;
+  as 71 observações com UTI ativa são piscar cadastral (R7). Estimar ali
+  seria rodar sobre o artefato.
+
+### Divergência entre famílias que fica registrada
+
+Ocupação de UTI em **E2**: o CRE/Mundlak em PPML dá +61,9% com IC que exclui
+zero; o hierárquico em Tweedie dá +39,2% com IC que o inclui. Mesmo sinal,
+conclusões diferentes sobre significância. A diferença é de família e de
+efeito aleatório, não de dados. **Em E2 não há identificação causal de todo
+modo**, então isto não muda conclusão nenhuma — mas não deve ser apresentado
+como se as duas famílias concordassem.
+
+### Três decisões de forma funcional tomadas na execução
+
+Registradas porque divergem de convenções anteriores do projeto:
+
+1. **Mortalidade em logito fracionário**, não no Beta com inflação em zero de
+   `estimacao.py`. Dentro de estrato o componente de inflação é inestimável
+   por separação: E3 não tem nenhum zero, E1 tem três.
+2. **Ocupação de UTI em PPML** (e Tweedie no hierárquico), não em log-MQO. A
+   subamostra válida tem 7 zeros — UTI habilitada com zero diárias no ano.
+   Descartá-los para tomar o log seria condicionar no desfecho, que é o
+   defeito 2 de R8. Não se corrige um defeito num script e se reproduz o
+   mesmo defeito no outro.
+3. **Guarda de separação no binário**: coeficiente acima de 15 em módulo
+   dispara reajuste sem dummies de ano e, persistindo, o número não é
+   reportado.
 
 ---
 
