@@ -608,24 +608,31 @@ def figuras(d: pd.DataFrame, tab: pd.DataFrame) -> None:
                              sharey=False)
     if len(inds) == 1:
         axes = [axes]
+    ORDEM = ["E1", "E2", "E3"]
     for ax, ind in zip(axes, inds):
-        s = pr[pr["indicador"] == ind].set_index("estrato").reindex(
-            ["E1", "E2", "E3"]).dropna(subset=["coef_oss"])
-        y = np.arange(len(s))
-        # E3 é o único com identificação within: cor cheia; os demais, apagados
-        cores = ["#0f9b8e" if e == "E3" else "#c9c7c4" for e in s.index]
-        # ecolor não aceita lista: uma barra por ponto, para colorir por estrato
-        for yi, (_, row), cor in zip(y, s.iterrows(), cores):
-            ax.errorbar(row["coef_oss"], yi,
+        # posição vertical FIXA por estrato: painel com estrato ausente deixa
+        # a linha vazia em vez de subir os demais, senão E3 apareceria em
+        # alturas diferentes de painel para painel e a leitura se perde
+        s = pr[pr["indicador"] == ind].set_index("estrato").reindex(ORDEM)
+        for i, est in enumerate(ORDEM):
+            row = s.loc[est]
+            if not np.isfinite(row.get("coef_oss", np.nan)):
+                ax.text(.5, i, "não estimado", transform=ax.get_yaxis_transform(),
+                        ha="center", va="center", fontsize=7.5, color="#b8b6b3")
+                continue
+            cor = "#0f9b8e" if est == "E3" else "#c9c7c4"
+            ax.errorbar(row["coef_oss"], i,
                         xerr=[[row["coef_oss"] - row["ic95_lo"]],
                               [row["ic95_hi"] - row["coef_oss"]]],
                         fmt="none", ecolor=cor, elinewidth=2.2, capsize=3)
-        ax.scatter(s["coef_oss"], y, color=cores, s=46, zorder=3)
+            ax.scatter([row["coef_oss"]], [i], color=cor, s=46, zorder=3)
         ax.axvline(0, color="#0b0b0b", lw=.9, ls="--")
-        ax.set_yticks(y)
-        ax.set_yticklabels(s.index)
+        ax.set_yticks(range(len(ORDEM)))
+        ax.set_yticklabels(ORDEM)
+        ax.set_ylim(-.6, len(ORDEM) - .4)
         ax.set_title(ind, fontsize=9.5)
-        ax.set_xlabel(s["escala"].iloc[0] if len(s) else "")
+        esc = s["escala"].dropna()
+        ax.set_xlabel(esc.iloc[0] if len(esc) else "")
         ax.invert_yaxis()
     fig.suptitle("Efeito OSS vs Direta por estrato — CRE/Mundlak, "
                  "IC95% com EP agrupado por CNES", fontsize=11)
@@ -644,6 +651,7 @@ def figuras(d: pd.DataFrame, tab: pd.DataFrame) -> None:
                  "Público Municipal": "#5598e7", "Filantrópico": "#6a51c7",
                  "Privado": "#898781"}
     fig, ax = plt.subplots(figsize=(9.4, 4.8))
+    ax.set_axisbelow(True)          # grade atrás das barras, não por cima
     ordem = [c for c in cores_cat if c in set(d["modelo_gestao_proxy"])]
     larg, ests = .26, ["E1", "E2", "E3"]
     for i, est in enumerate(ests):

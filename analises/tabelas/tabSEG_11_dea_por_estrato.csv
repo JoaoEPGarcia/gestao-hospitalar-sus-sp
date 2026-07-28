@@ -1,0 +1,69 @@
+"bloco","estrato","categoria","termo","n_obs","n_cnes","tarja","te_bcc","te_bcc_corrigido","ef_escala","coef","ic95_lo","ic95_hi"
+"escores_medianos","E1","Direta",NA,11,1,"[n<10]",1,0.7971,0.7503,NA,NA,NA
+"escores_medianos","E1","Filantrópico",NA,594,54,"",0.7917,0.746,0.9752,NA,NA,NA
+"escores_medianos","E1","OSS",NA,22,2,"[n<10]",0.8741,0.7986,0.945,NA,NA,NA
+"escores_medianos","E1","Privado",NA,11,1,"[n<10]",0.7591,0.725,0.9722,NA,NA,NA
+"escores_medianos","E1","Público Municipal",NA,99,9,"[n<10]",0.8195,0.7694,0.9891,NA,NA,NA
+"escores_medianos","E2","Direta",NA,65,6,"[n<10]",0.9651,0.7647,0.977,NA,NA,NA
+"escores_medianos","E2","Filantrópico",NA,735,67,"",0.6662,0.6173,0.9651,NA,NA,NA
+"escores_medianos","E2","OSS",NA,67,7,"[n<10]",0.8523,0.7896,0.9896,NA,NA,NA
+"escores_medianos","E2","Privado",NA,22,2,"[n<10]",0.2812,0.2571,0.7875,NA,NA,NA
+"escores_medianos","E2","Público Municipal",NA,176,16,"",0.7559,0.6929,0.9626,NA,NA,NA
+"escores_medianos","E3","Direta",NA,208,20,"",0.7544,0.6873,0.9566,NA,NA,NA
+"escores_medianos","E3","Filantrópico",NA,550,50,"",0.6574,0.6127,0.9294,NA,NA,NA
+"escores_medianos","E3","OSS",NA,276,28,"",0.8037,0.7473,0.937,NA,NA,NA
+"escores_medianos","E3","Público Municipal",NA,341,31,"",0.7282,0.6786,0.9494,NA,NA,NA
+"segunda_etapa_truncada","E1",NA,"(Intercept)",NA,NA,NA,NA,NA,NA,1.35779,-3.24084,2.70429
+"segunda_etapa_truncada","E1",NA,"categoriaOSS",NA,NA,NA,NA,NA,NA,-1.74533,-4.99502,-0.17996
+"segunda_etapa_truncada","E1",NA,"categoriaPúblico Municipal",NA,NA,NA,NA,NA,NA,-0.72145,-1.44444,2.5999
+"segunda_etapa_truncada","E1",NA,"categoriaFilantrópico",NA,NA,NA,NA,NA,NA,-0.77377,-1.77114,1.86838
+"segunda_etapa_truncada","E1",NA,"categoriaPrivado",NA,NA,NA,NA,NA,NA,-1.34508,-3.20428,1.16896
+"segunda_etapa_truncada","E1",NA,"cplx_z",NA,NA,NA,NA,NA,NA,1.19755,-0.33139,3.76614
+"segunda_etapa_truncada","E1",NA,"porte_fixoGrande Porte",NA,NA,NA,NA,NA,NA,-1.0292,-4.42641,0.25326
+"segunda_etapa_truncada","E1",NA,"ano_f2016",NA,NA,NA,NA,NA,NA,0.01273,-0.20842,0.23557
+"segunda_etapa_truncada","E1",NA,"ano_f2017",NA,NA,NA,NA,NA,NA,-0.00687,-0.56983,0.48595
+"segunda_etapa_truncada","E1",NA,"ano_f2018",NA,NA,NA,NA,NA,NA,0.13489,-0.38495,0.75127
+"segunda_etapa_truncada","E1",NA,"ano_f2019",NA,NA,NA,NA,NA,NA,0.28361,-0.17625,1.03231
+"segunda_etapa_truncada","E1",NA,"ano_f2020",NA,NA,NA,NA,NA,NA,1.17343,0.42984,3.09394
+"segunda_etapa_truncada","E1",NA,"ano_f2021",NA,NA,NA,NA,NA,NA,1.61506,0.63317,3.99123
+"segunda_etapa_truncada","E1",NA,"ano_f2022",NA,NA,NA,NA,NA,NA,0.88336,0.24097,2.59593
+"segunda_etapa_truncada","E1",NA,"ano_f2023",NA,NA,NA,NA,NA,NA,0.69246,0.03114,2.45366
+"segunda_etapa_truncada","E1",NA,"ano_f2024",NA,NA,NA,NA,NA,NA,1.17575,0.34287,3.37588
+"segunda_etapa_truncada","E1",NA,"ano_f2025",NA,NA,NA,NA,NA,NA,1.33214,0.45039,3.68236
+"segunda_etapa_truncada","E1",NA,"sigma",NA,NA,NA,NA,NA,NA,0.7322,0.3612,1.27579
+"segunda_etapa_truncada","E2",NA,"(Intercept)",NA,NA,NA,NA,NA,NA,-5.14265,-14.30148,0.28853
+"segunda_etapa_truncada","E2",NA,"categoriaOSS",NA,NA,NA,NA,NA,NA,0.80801,-5.5719,4.18704
+"segunda_etapa_truncada","E2",NA,"categoriaPúblico Municipal",NA,NA,NA,NA,NA,NA,1.58786,-0.27359,4.59341
+"segunda_etapa_truncada","E2",NA,"categoriaFilantrópico",NA,NA,NA,NA,NA,NA,3.12356,0.71673,7.5008
+"segunda_etapa_truncada","E2",NA,"categoriaPrivado",NA,NA,NA,NA,NA,NA,7.45435,2.73002,15.15075
+"segunda_etapa_truncada","E2",NA,"cplx_z",NA,NA,NA,NA,NA,NA,-1.31266,-4.98212,1.42209
+"segunda_etapa_truncada","E2",NA,"porte_fixoGrande Porte",NA,NA,NA,NA,NA,NA,-0.22386,-2.39016,0.76446
+"segunda_etapa_truncada","E2",NA,"ano_f2016",NA,NA,NA,NA,NA,NA,1.18109,0.21691,2.74937
+"segunda_etapa_truncada","E2",NA,"ano_f2017",NA,NA,NA,NA,NA,NA,1.24245,0.16264,3.28987
+"segunda_etapa_truncada","E2",NA,"ano_f2018",NA,NA,NA,NA,NA,NA,1.4221,0.28098,3.40723
+"segunda_etapa_truncada","E2",NA,"ano_f2019",NA,NA,NA,NA,NA,NA,0.84624,-0.0124,2.17776
+"segunda_etapa_truncada","E2",NA,"ano_f2020",NA,NA,NA,NA,NA,NA,0.83006,-0.06889,2.38306
+"segunda_etapa_truncada","E2",NA,"ano_f2021",NA,NA,NA,NA,NA,NA,2.58145,0.80863,4.92923
+"segunda_etapa_truncada","E2",NA,"ano_f2022",NA,NA,NA,NA,NA,NA,0.67505,-0.23809,2.30921
+"segunda_etapa_truncada","E2",NA,"ano_f2023",NA,NA,NA,NA,NA,NA,0.66912,-0.15929,2.36522
+"segunda_etapa_truncada","E2",NA,"ano_f2024",NA,NA,NA,NA,NA,NA,1.48669,0.27785,3.60685
+"segunda_etapa_truncada","E2",NA,"ano_f2025",NA,NA,NA,NA,NA,NA,0.10859,-0.7069,1.78556
+"segunda_etapa_truncada","E2",NA,"sigma",NA,NA,NA,NA,NA,NA,1.40989,0.64258,2.04616
+"segunda_etapa_truncada","E3",NA,"(Intercept)",NA,NA,NA,NA,NA,NA,1.0184,0.42992,1.4315
+"segunda_etapa_truncada","E3",NA,"categoriaOSS",NA,NA,NA,NA,NA,NA,-0.60052,-1.06526,-0.16889
+"segunda_etapa_truncada","E3",NA,"categoriaPúblico Municipal",NA,NA,NA,NA,NA,NA,-0.1356,-0.50314,0.21104
+"segunda_etapa_truncada","E3",NA,"categoriaFilantrópico",NA,NA,NA,NA,NA,NA,0.08656,-0.22446,0.39209
+"segunda_etapa_truncada","E3",NA,"cplx_z",NA,NA,NA,NA,NA,NA,-0.3056,-0.49992,-0.07563
+"segunda_etapa_truncada","E3",NA,"porte_fixoGrande Porte",NA,NA,NA,NA,NA,NA,0.45963,0.13035,0.86679
+"segunda_etapa_truncada","E3",NA,"porte_fixoEspecial",NA,NA,NA,NA,NA,NA,0.83059,-0.41511,1.52665
+"segunda_etapa_truncada","E3",NA,"ano_f2016",NA,NA,NA,NA,NA,NA,0.19016,0.12291,0.28056
+"segunda_etapa_truncada","E3",NA,"ano_f2017",NA,NA,NA,NA,NA,NA,0.17442,0.08941,0.2849
+"segunda_etapa_truncada","E3",NA,"ano_f2018",NA,NA,NA,NA,NA,NA,0.15164,0.06172,0.25828
+"segunda_etapa_truncada","E3",NA,"ano_f2019",NA,NA,NA,NA,NA,NA,0.1188,0.01432,0.24368
+"segunda_etapa_truncada","E3",NA,"ano_f2020",NA,NA,NA,NA,NA,NA,0.02572,-0.14087,0.30413
+"segunda_etapa_truncada","E3",NA,"ano_f2021",NA,NA,NA,NA,NA,NA,0.44487,0.20596,0.80402
+"segunda_etapa_truncada","E3",NA,"ano_f2022",NA,NA,NA,NA,NA,NA,0.02901,-0.11133,0.18432
+"segunda_etapa_truncada","E3",NA,"ano_f2023",NA,NA,NA,NA,NA,NA,0.06465,-0.08486,0.24356
+"segunda_etapa_truncada","E3",NA,"ano_f2024",NA,NA,NA,NA,NA,NA,0.18609,0.02317,0.40713
+"segunda_etapa_truncada","E3",NA,"ano_f2025",NA,NA,NA,NA,NA,NA,0.10778,-0.05394,0.30493
+"segunda_etapa_truncada","E3",NA,"sigma",NA,NA,NA,NA,NA,NA,0.55083,0.41359,0.69891
