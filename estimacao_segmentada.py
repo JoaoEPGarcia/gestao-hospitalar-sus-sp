@@ -2,12 +2,43 @@
 """
 ETAPA 4 — Reestimação segmentada por estrato estrutural (CRE/Mundlak).
 
-Modo piloto
------------
-    python estimacao_segmentada.py --piloto
+Modos
+-----
+    python estimacao_segmentada.py --piloto     # só tmp em E3, e para
+    python estimacao_segmentada.py --completo   # cinco indicadores × estratos
 
-Roda SOMENTE `tmp` em E3, imprime a saída e PARA. É o ponto de parada
-obrigatório da Etapa 4: o escopo completo não roda sem aval explícito.
+O piloto foi o ponto de parada obrigatório da Etapa 4 e foi aprovado em
+28/07/2026; o escopo completo ficou liberado a partir daí.
+
+CINCO INDICADORES
+-----------------
+`mort_all`, `tmp`, `custo_real` (deflacionado por fator IPCA anual),
+`ocupacao_uti_valida` (winsorizada, limiar único) e `ocupacao_internacao`
+(duas partes, R6).
+
+Forma funcional de cada um, e por que:
+
+  mort_all      logito fracionário (GLM Binomial, quasi-verossimilhança).
+                Diverge do Beta com inflação em zero de `estimacao.py`: dentro
+                de estrato o componente de inflação fica inestimável por
+                separação (E3 não tem NENHUM zero; E1 tem 3). O logito
+                fracionário acomoda zeros sem componente extra e é consistente
+                sob má-especificação da variância. Divergência registrada.
+  tmp           log, MQO.
+  custo_real    log, MQO.
+  ocup. UTI     log da winsorizada, MQO, na subamostra VÁLIDA (`uti_sus > 0`).
+                NÃO condiciona em `ocupacao_uti > 0` — isso seria condicionar
+                no desfecho, que é o defeito 2 de R8.
+  ocup. intern. parte A logito do binário; parte B log da contínua ≤ 100.
+
+SENSIBILIDADES PRÉ-ESPECIFICADAS (R4)
+-------------------------------------
+  R4.1  E2+E3 agrupados, SOMENTE mortalidade. Motivo: `mort_all` mediana
+        empata entre E2 e E3 — a mortalidade separa "sem UTI" do resto, não
+        baixa de alta complexidade. Nos outros indicadores os estratos ordenam
+        monotonicamente e agrupar destruiria informação.
+  R4.2  Excluir o Hospital Gilson de Cássia (7711980), único CNES instável
+        alocado em E3, mantido no principal pela regra da mediana.
 
 RESTRIÇÕES DE INTERPRETAÇÃO — leia antes de citar qualquer coeficiente
 ======================================================================
@@ -79,6 +110,15 @@ que não existe.
 
 Ver `verificar_prespecificacoes_etapa4.py` (premissas) e
 `RESTRICOES_SEGMENTACAO.md` (R1 a R8).
+
+Saídas do escopo completo
+-------------------------
+  analises/tabelas/tabSEG_10_cre_mundlak_por_estrato.csv
+  analises/tabelas/tabSEG_13_winsorizacao_uti.csv
+  analises/tabelas/tabSEG_14_sobrecarga_binario.csv
+  analises/tabelas/tabSEG_15_ocupacao_condicional.csv
+  analises/figuras_segmentacao/figSEG_04_coef_oss_por_estrato.png
+  analises/figuras_segmentacao/figSEG_05_sobrecarga_por_categoria.png
 """
 
 from __future__ import annotations
@@ -89,6 +129,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import statsmodels.api as sm
 import statsmodels.formula.api as smf
 
 RAIZ = Path(__file__).resolve().parent
@@ -192,7 +233,8 @@ def identificacao(estrato: str, d: pd.DataFrame) -> str:
 
 
 def cre_mundlak(d: pd.DataFrame, col: str, estrato: str, *,
-                log: bool = False, binario: bool = False) -> dict:
+                log: bool = False, binario: bool = False,
+                fracionario: bool = False, ppml: bool = False) -> dict:
     """CRE/Mundlak dentro de um estrato, EP agrupados por CNES.
 
     Fórmula: y ~ categoria + complexidade_estrutural + porte + C(ano)
@@ -207,6 +249,9 @@ def cre_mundlak(d: pd.DataFrame, col: str, estrato: str, *,
     if d.empty:
         return {"erro": "amostra vazia"}
 
+    if log and (d[col] <= 0).any():
+        return {"erro": f"{int((d[col] <= 0).sum())} zeros em {col} — log "
+                        "indefinido; use ppml em vez de descartar (R8-2)"}
     d["y"] = np.log(d[col]) if log else d[col]
 
     # porte e categoria só entram com variação; em estrato pequeno podem
@@ -217,10 +262,15 @@ def cre_mundlak(d: pd.DataFrame, col: str, estrato: str, *,
     else:
         print(f"    [{estrato}] porte_fixo sem variação "
               f"({d['porte_fixo'].iloc[0]}) — termo excluído")
-    if d["media_oss"].nunique() == 1:
+    # O termo de Mundlak só é estimável se houver SWITCHER na subamostra.
+    # Sem conversor, media_oss ∈ {0, 1} é perfeitamente colinear com a própria
+    # dummy de categoria OSS (matriz singular): não há between a separar do
+    # within porque não há within nenhum.
+    tem_switcher = bool(d["media_oss"].between(0.001, 0.999).any())
+    if not tem_switcher:
         termos.remove("media_oss")
-        print(f"    [{estrato}] media_oss sem variação — Mundlak inestimável; "
-              f"SEM identificação within")
+        print(f"    [{estrato}] sem conversor na subamostra — media_oss "
+              f"colinear com a dummy OSS; Mundlak removido, SEM within")
 
     f = "y ~ " + " + ".join(termos)
     try:
@@ -229,6 +279,39 @@ def cre_mundlak(d: pd.DataFrame, col: str, estrato: str, *,
                 disp=0, maxiter=200, method="bfgs",
                 cov_type="cluster", cov_kwds={"groups": d["cnes"]})
             conv = res.mle_retvals.get("converged", True)
+            # separação: coeficientes divergem sem que a verossimilhança
+            # tenha máximo interior. Tenta sem as dummies de ano, como em
+            # estimacao.py; se persistir, NÃO reporta o número.
+            if np.abs(res.params).max() > 15 and "C(ano)" in termos:
+                print(f"    [{estrato}] separação com dummies de ano "
+                      f"(|coef| máx {np.abs(res.params).max():.0f}) — "
+                      f"reajustando sem C(ano)")
+                f = f.replace(" + C(ano)", "")
+                res = smf.logit(f, data=d).fit(
+                    disp=0, maxiter=200, method="bfgs",
+                    cov_type="cluster", cov_kwds={"groups": d["cnes"]})
+                conv = res.mle_retvals.get("converged", True)
+            if np.abs(res.params).max() > 15:
+                return {"erro": "SEPARAÇÃO — logito não identificado "
+                                f"(|coef| máx {np.abs(res.params).max():.0f}); "
+                                "coeficiente não reportado"}
+        elif ppml:
+            # Poisson de pseudo-máxima verossimilhança, link log. Escolhido
+            # porque PRESERVA OS ZEROS: descartá-los seria condicionar no
+            # desfecho, que é exatamente o defeito 2 de R8. Consistente para
+            # a média condicional sob má-especificação da variância; o
+            # coeficiente lê-se como efeito proporcional, igual ao log-MQO.
+            res = smf.glm(f, data=d, family=sm.families.Poisson()).fit(
+                cov_type="cluster", cov_kwds={"groups": d["cnes"]})
+            conv = bool(getattr(res, "converged", True))
+        elif fracionario:
+            # logito fracionário: GLM Binomial em resposta contínua em [0,1].
+            # Consistente sob má-especificação da variância; acomoda os zeros
+            # sem componente de inflação, que é inestimável dentro de estrato.
+            res = smf.glm(f, data=d,
+                          family=sm.families.Binomial()).fit(
+                cov_type="cluster", cov_kwds={"groups": d["cnes"]})
+            conv = bool(getattr(res, "converged", True))
         else:
             res = smf.ols(f, data=d).fit(
                 cov_type="cluster", cov_kwds={"groups": d["cnes"]})
@@ -245,8 +328,14 @@ def cre_mundlak(d: pd.DataFrame, col: str, estrato: str, *,
             "n_cnes": d["cnes"].nunique(), "coef_oss": coef, "ep_oss": ep,
             "z": coef / ep, "p": float(res.pvalues[alvo[0]]),
             "ic_baixo": coef - 1.96 * ep, "ic_alto": coef + 1.96 * ep,
-            "convergiu": conv, "log": log, "binario": binario,
+            "convergiu": conv, "log": log or ppml,
+            "binario": binario or fracionario,
+            "escala": ("logito" if (binario or fracionario)
+                       else "log (PPML)" if ppml else "log" if log
+                       else "nível"),
             "identificacao": identificacao(estrato, d),
+            "n_cnes_oss": int(d.loc[d["modelo_gestao_proxy"] == "OSS",
+                                    "cnes"].nunique()),
             "tarja": tarja(int(d.loc[d["modelo_gestao_proxy"] == "OSS",
                                      "cnes"].nunique()))}
 
@@ -261,7 +350,7 @@ def imprimir(r: dict, rotulo: str) -> None:
     print(f"    identificação: {r['identificacao']}")
     if not r["convergiu"]:
         print("    ATENÇÃO: o modelo NÃO convergiu")
-    esc = "log" if r["log"] else ("logito" if r["binario"] else "nível")
+    esc = r["escala"]
     print(f"    OSS vs Direta: {r['coef_oss']:+.4f} ({esc}), "
           f"EP agrupado {r['ep_oss']:.4f}")
     print(f"    IC95%: [{r['ic_baixo']:+.4f}, {r['ic_alto']:+.4f}]   "
@@ -315,17 +404,296 @@ def piloto(p: pd.DataFrame) -> None:
     print("=" * 72)
 
 
+# ══════════════════════════════════════════════════════════════════════
+# ESCOPO COMPLETO
+# ══════════════════════════════════════════════════════════════════════
+
+# (rótulo, coluna, kwargs do estimador, só_em_estratos_com_uti)
+INDICADORES = [
+    ("Mortalidade geral",        "mort_all",            {"fracionario": True}, False),
+    ("TMP (dias)",               "tmp",                 {"log": True},         False),
+    ("Faturamento real/saída",   "custo_real",          {"log": True},         False),
+    ("Ocupação UTI (winsor.)",   "ocup_uti_w",          {"ppml": True},        True),
+    ("Superlot. internação (A)", "sobrecarga",          {"binario": True},     False),
+    ("Ocupação intern. ≤100 (B)", "ocup_int_cond",      {"log": True},         False),
+]
+
+
+def linha_tabela(r: dict, indicador: str, estrato: str,
+                 recorte: str = "principal") -> dict:
+    """Uma linha de tabSEG_10, com tarja e rótulo de identificação."""
+    base = {"indicador": indicador, "estrato": estrato, "recorte": recorte}
+    if "erro" in r:
+        return {**base, "situacao": f"FALHOU: {r['erro']}"}
+    pct = (100 * (np.exp(r["coef_oss"]) - 1)) if r["log"] else np.nan
+    return {**base,
+            "situacao": "estimado" if r["convergiu"] else "NÃO CONVERGIU",
+            "n_obs": r["n_obs"], "n_cnes": r["n_cnes"],
+            "n_cnes_oss": r["n_cnes_oss"], "tarja": r["tarja"],
+            "identificacao": r["identificacao"], "escala": r["escala"],
+            "coef_oss": round(r["coef_oss"], 5),
+            "ep_cluster": round(r["ep_oss"], 5),
+            "ic95_lo": round(r["ic_baixo"], 5),
+            "ic95_hi": round(r["ic_alto"], 5),
+            "z": round(r["z"], 3), "p_valor": round(r["p"], 5),
+            "efeito_pct": round(pct, 2) if np.isfinite(pct) else np.nan}
+
+
+def escopo_completo(p: pd.DataFrame) -> None:
+    d = amostra_desfecho(p)
+    linhas: list[dict] = []
+
+    print("\n" + "=" * 72)
+    print("ESCOPO COMPLETO — CRE/Mundlak, cinco indicadores × três estratos")
+    print("=" * 72)
+
+    for estrato in ("E1", "E2", "E3"):
+        sub = d[d["estrato"] == estrato]
+        print(f"\n{'─' * 72}\n{estrato} — {sub['estrato_rotulo'].iloc[0]}: "
+              f"{len(sub)} obs, {sub['cnes'].nunique()} CNES")
+        print(f"  identificação: {identificacao(estrato, sub)}")
+        print("─" * 72)
+
+        for rotulo, col, kw, exige_uti in INDICADORES:
+            if exige_uti and estrato == "E1":
+                print(f"\n  {rotulo} — NÃO-APLICÁVEL em E1")
+                print("    E1 é 'sem UTI SUS' pela mediana. As 71 observações "
+                      "com UTI ativa\n    são piscar cadastral (R7); estimar "
+                      "aqui seria rodar sobre o artefato.")
+                linhas.append({"indicador": rotulo, "estrato": estrato,
+                               "recorte": "principal",
+                               "situacao": "NÃO-APLICÁVEL (E1 sem UTI SUS)"})
+                continue
+            r = cre_mundlak(sub, col, estrato, **kw)
+            imprimir(r, f"{rotulo} — {estrato}")
+            linhas.append(linha_tabela(r, rotulo, estrato))
+
+    # ── R4.1: E2+E3 agrupados, SOMENTE mortalidade ────────────────────
+    print(f"\n{'=' * 72}")
+    print("SENSIBILIDADE R4.1 — E2+E3 agrupados, SOMENTE mortalidade")
+    print("Motivo pré-especificado: mort_all empata entre E2 e E3; a "
+          "mortalidade\nsepara 'sem UTI' do resto, não baixa de alta "
+          "complexidade.")
+    print("=" * 72)
+    e23 = d[d["estrato"].isin(["E2", "E3"])]
+    med = e23.groupby("estrato")["mort_all"].median()
+    print(f"  mediana mort_all: E2 {med.get('E2', np.nan):.4f}, "
+          f"E3 {med.get('E3', np.nan):.4f}  (o empate que motiva o "
+          f"agrupamento)")
+    print(f"  CNES: OSS {e23.loc[e23['modelo_gestao_proxy'] == 'OSS', 'cnes'].nunique()}, "
+          f"Direta {e23.loc[e23['modelo_gestao_proxy'] == 'Direta', 'cnes'].nunique()}")
+    r = cre_mundlak(e23, "mort_all", "E2+E3", fracionario=True)
+    imprimir(r, "Mortalidade geral — E2+E3")
+    linhas.append(linha_tabela(r, "Mortalidade geral", "E2+E3",
+                               "sensib. R4.1 (agrupado)"))
+
+    # ── R4.2: excluir o Gilson de Cássia (7711980) ────────────────────
+    print(f"\n{'=' * 72}")
+    print("SENSIBILIDADE R4.2 — excluir Hospital Gilson de Cássia (7711980)")
+    print("Único CNES instável alocado em E3, mantido no principal pela "
+          "regra da mediana.")
+    print("=" * 72)
+    e3_sem = d[(d["estrato"] == "E3") & (d["cnes"] != 7711980)]
+    presente = 7711980 in set(d.loc[d["estrato"] == "E3", "cnes"])
+    print(f"  CNES 7711980 presente em E3: {'sim' if presente else 'NÃO'}"
+          f" — E3 vai de {d[d['estrato'] == 'E3']['cnes'].nunique()} para "
+          f"{e3_sem['cnes'].nunique()} CNES")
+    for rotulo, col, kw, exige_uti in INDICADORES:
+        r = cre_mundlak(e3_sem, col, "E3", **kw)
+        imprimir(r, f"{rotulo} — E3 sem 7711980")
+        linhas.append(linha_tabela(r, rotulo, "E3", "sensib. R4.2 (sem 7711980)"))
+
+    # ── tabSEG_10 ─────────────────────────────────────────────────────
+    tab = pd.DataFrame(linhas)
+    _grava(tab, "tabSEG_10_cre_mundlak_por_estrato.csv")
+
+    tabelas_ocupacao(d)
+    figuras(d, tab)
+
+
+def tabelas_ocupacao(d: pd.DataFrame) -> None:
+    """tabSEG_13 (winsorização UTI), tabSEG_14 (binário) e tabSEG_15 (contínua)."""
+    # tabSEG_13 — winsorização da UTI, limiar único
+    valida = d[d["ocupacao_uti_valida"].notna()]
+    p99 = float(np.percentile(valida["ocupacao_uti_valida"], 99))
+    l13 = []
+    for est in sorted(valida["estrato"].unique()):
+        s = valida[valida["estrato"] == est]
+        for cat in sorted(s["modelo_gestao_proxy"].unique()):
+            sc = s[s["modelo_gestao_proxy"] == cat]
+            n_w = int((sc["ocupacao_uti_valida"] > p99).sum())
+            l13.append({
+                "estrato": est, "categoria": cat, "n_obs": len(sc),
+                "n_cnes": sc["cnes"].nunique(), "tarja": tarja(sc["cnes"].nunique()),
+                "limiar_unico": round(p99, 2), "n_winsorizadas": n_w,
+                "pct_winsorizadas": round(100 * n_w / len(sc), 2),
+                "p99_do_estrato_NAO_USADO": round(
+                    float(np.percentile(s["ocupacao_uti_valida"], 99)), 2),
+                "mediana": round(float(sc["ocupacao_uti_valida"].median()), 2)})
+    _grava(pd.DataFrame(l13), "tabSEG_13_winsorizacao_uti.csv")
+
+    # tabSEG_14 — parte A, binário de superlotação
+    l14 = []
+    for est in ("E1", "E2", "E3"):
+        s = d[d["estrato"] == est]
+        for cat in sorted(s["modelo_gestao_proxy"].unique()):
+            sc = s[s["modelo_gestao_proxy"] == cat]
+            nc = sc["cnes"].nunique()
+            within = int(sc.groupby("cnes")["sobrecarga"].nunique().gt(1).sum())
+            l14.append({
+                "estrato": est, "categoria": cat, "n_obs": len(sc),
+                "n_cnes": nc, "tarja": tarja(nc),
+                "n_acima_100": int(sc["sobrecarga"].sum()),
+                "pct_superlotacao": round(100 * sc["sobrecarga"].mean(), 2),
+                "cnes_com_variacao_within": within,
+                "pct_cnes_com_within": round(100 * within / nc, 1) if nc else np.nan})
+    _grava(pd.DataFrame(l14), "tabSEG_14_sobrecarga_binario.csv")
+
+    # tabSEG_15 — parte B, contínua condicional a <= 100
+    l15 = []
+    for est in ("E1", "E2", "E3"):
+        s = d[(d["estrato"] == est) & d["ocup_int_cond"].notna()]
+        bruto = d[d["estrato"] == est]
+        for cat in sorted(s["modelo_gestao_proxy"].unique()):
+            sc = s[s["modelo_gestao_proxy"] == cat]
+            bc = bruto[bruto["modelo_gestao_proxy"] == cat]
+            l15.append({
+                "estrato": est, "categoria": cat,
+                "n_obs_condicional": len(sc), "n_obs_bruto": len(bc),
+                "n_cnes": sc["cnes"].nunique(),
+                "tarja": tarja(sc["cnes"].nunique()),
+                "mediana_condicional": round(float(sc["ocup_int_cond"].median()), 2),
+                "media_condicional": round(float(sc["ocup_int_cond"].mean()), 2),
+                "mediana_bruta_conflaciona": round(
+                    float(bc["ocupacao_internacao"].median()), 2)})
+    t15 = pd.DataFrame(l15)
+    _grava(t15, "tabSEG_15_ocupacao_condicional.csv")
+
+    # decomposição do gap em E3, para o registro
+    e3 = d[d["estrato"] == "E3"]
+    gb = e3.groupby("modelo_gestao_proxy")["ocupacao_internacao"].median()
+    gc = (e3[e3["ocup_int_cond"].notna()]
+          .groupby("modelo_gestao_proxy")["ocup_int_cond"].median())
+    gap_b = float(gb["OSS"] - gb["Direta"])
+    gap_c = float(gc["OSS"] - gc["Direta"])
+    print(f"\n  Decomposição do gap OSS−Direta em E3 (mediana):")
+    print(f"    bruto {gap_b:+.1f} | contínua {gap_c:+.1f} | "
+          f"frequência de superlotação responde por "
+          f"{100 * (1 - gap_c / gap_b):.0f}% do gap")
+
+
+def _grava(df: pd.DataFrame, nome: str) -> None:
+    caminho = RAIZ / "analises" / "tabelas" / nome
+    caminho.parent.mkdir(parents=True, exist_ok=True)
+    df.to_csv(caminho, index=False, encoding="utf-8-sig")
+    print(f"  [TAB] {nome}  ({len(df)} linhas)")
+
+
+def figuras(d: pd.DataFrame, tab: pd.DataFrame) -> None:
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    pasta = RAIZ / "analises" / "figuras_segmentacao"
+    pasta.mkdir(parents=True, exist_ok=True)
+    plt.rcParams.update({"axes.spines.top": False, "axes.spines.right": False,
+                         "font.size": 10.5, "axes.grid": True,
+                         "grid.color": "#e9e7e4", "grid.linewidth": .6})
+
+    # ── figSEG_04 — coeficiente de OSS por estrato ────────────────────
+    pr = tab[(tab["recorte"] == "principal")
+             & (tab["situacao"] == "estimado")].copy()
+    inds = [i for i in pr["indicador"].unique()]
+    fig, axes = plt.subplots(1, len(inds), figsize=(3.1 * len(inds), 4.6),
+                             sharey=False)
+    if len(inds) == 1:
+        axes = [axes]
+    for ax, ind in zip(axes, inds):
+        s = pr[pr["indicador"] == ind].set_index("estrato").reindex(
+            ["E1", "E2", "E3"]).dropna(subset=["coef_oss"])
+        y = np.arange(len(s))
+        # E3 é o único com identificação within: cor cheia; os demais, apagados
+        cores = ["#0f9b8e" if e == "E3" else "#c9c7c4" for e in s.index]
+        # ecolor não aceita lista: uma barra por ponto, para colorir por estrato
+        for yi, (_, row), cor in zip(y, s.iterrows(), cores):
+            ax.errorbar(row["coef_oss"], yi,
+                        xerr=[[row["coef_oss"] - row["ic95_lo"]],
+                              [row["ic95_hi"] - row["coef_oss"]]],
+                        fmt="none", ecolor=cor, elinewidth=2.2, capsize=3)
+        ax.scatter(s["coef_oss"], y, color=cores, s=46, zorder=3)
+        ax.axvline(0, color="#0b0b0b", lw=.9, ls="--")
+        ax.set_yticks(y)
+        ax.set_yticklabels(s.index)
+        ax.set_title(ind, fontsize=9.5)
+        ax.set_xlabel(s["escala"].iloc[0] if len(s) else "")
+        ax.invert_yaxis()
+    fig.suptitle("Efeito OSS vs Direta por estrato — CRE/Mundlak, "
+                 "IC95% com EP agrupado por CNES", fontsize=11)
+    fig.text(.5, .005,
+             "Somente E3 tem identificação within (4 conversores). E1 e E2 "
+             "em cinza: comparação entre grupos, NÃO efeito causal.",
+             ha="center", fontsize=8.5, color="#898781")
+    fig.tight_layout(rect=(0, .035, 1, .96))
+    fig.savefig(pasta / "figSEG_04_coef_oss_por_estrato.png", dpi=150,
+                bbox_inches="tight", facecolor="white")
+    plt.close(fig)
+    print("  [FIG] figSEG_04_coef_oss_por_estrato.png")
+
+    # ── figSEG_05 — superlotação por categoria e estrato ──────────────
+    cores_cat = {"Direta": "#0d366b", "OSS": "#0f9b8e",
+                 "Público Municipal": "#5598e7", "Filantrópico": "#6a51c7",
+                 "Privado": "#898781"}
+    fig, ax = plt.subplots(figsize=(9.4, 4.8))
+    ordem = [c for c in cores_cat if c in set(d["modelo_gestao_proxy"])]
+    larg, ests = .26, ["E1", "E2", "E3"]
+    for i, est in enumerate(ests):
+        s = d[d["estrato"] == est]
+        for j, cat in enumerate(ordem):
+            sc = s[s["modelo_gestao_proxy"] == cat]
+            if sc.empty:
+                continue
+            pct = 100 * sc["sobrecarga"].mean()
+            x = j + (i - 1) * larg
+            ax.bar(x, pct, larg * .92, color=cores_cat[cat],
+                   alpha=[.38, .66, 1.0][i],
+                   edgecolor="white", linewidth=.6)
+            if sc["cnes"].nunique() < PISO_CNES:
+                ax.text(x, pct + 1, "n<10", ha="center", fontsize=6.5,
+                        color="#898781")
+    ax.set_xticks(range(len(ordem)))
+    ax.set_xticklabels(ordem, fontsize=9)
+    ax.set_ylabel("% das observações com ocupação > 100%")
+    ax.set_title("Superlotação de internação por categoria e estrato\n"
+                 "(parte A do modelo em duas partes — R6)", fontsize=11)
+    from matplotlib.patches import Patch
+    ax.legend(handles=[Patch(facecolor="#5a5a5a", alpha=a, label=e)
+                       for a, e in zip([.38, .66, 1.0], ests)],
+              title="estrato", frameon=False, fontsize=9)
+    fig.text(.5, .002, "Ocupação > 100% é a assinatura aritmética da "
+             "superlotação: o SIH fatura leito extra, o CNES não o cadastra "
+             "(R1 v4).", ha="center", fontsize=8.5, color="#898781")
+    fig.tight_layout(rect=(0, .04, 1, 1))
+    fig.savefig(pasta / "figSEG_05_sobrecarga_por_categoria.png", dpi=150,
+                bbox_inches="tight", facecolor="white")
+    plt.close(fig)
+    print("  [FIG] figSEG_05_sobrecarga_por_categoria.png")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--piloto", action="store_true",
                     help="roda somente tmp em E3 e para")
+    ap.add_argument("--completo", action="store_true",
+                    help="cinco indicadores × três estratos + sensibilidades")
     args = ap.parse_args()
 
     p = preparar()
     if args.piloto:
         piloto(p)
-        return
-    sys.exit("escopo completo ainda não liberado — rode com --piloto")
+    elif args.completo:
+        escopo_completo(p)
+    else:
+        sys.exit("informe --piloto ou --completo")
 
 
 if __name__ == "__main__":

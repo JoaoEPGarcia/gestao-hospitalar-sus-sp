@@ -1,0 +1,26 @@
+﻿indicador,estrato,recorte,situacao,n_obs,n_cnes,n_cnes_oss,tarja,identificacao,escala,coef_oss,ep_cluster,ic95_lo,ic95_hi,z,p_valor,efeito_pct
+Mortalidade geral,E1,principal,estimado,737.0,67.0,2.0,[n<10],ENTRE GRUPOS — NÃO É EFEITO CAUSAL,logito,1.38566,0.26386,0.86849,1.90282,5.251,0.0,
+TMP (dias),E1,principal,estimado,737.0,67.0,2.0,[n<10],ENTRE GRUPOS — NÃO É EFEITO CAUSAL,log,-1.3065,0.36256,-2.01712,-0.59588,-3.604,0.00031,-72.92
+Faturamento real/saída,E1,principal,estimado,737.0,67.0,2.0,[n<10],ENTRE GRUPOS — NÃO É EFEITO CAUSAL,log,-0.48433,0.15664,-0.79134,-0.17732,-3.092,0.00199,-38.39
+Ocupação UTI (winsor.),E1,principal,NÃO-APLICÁVEL (E1 sem UTI SUS),,,,,,,,,,,,,
+Superlot. internação (A),E1,principal,FALHOU: SEPARAÇÃO — logito não identificado (|coef| máx 18); coeficiente não reportado,,,,,,,,,,,,,
+Ocupação intern. ≤100 (B),E1,principal,estimado,730.0,67.0,2.0,[n<10],ENTRE GRUPOS — NÃO É EFEITO CAUSAL,log,0.64337,0.27911,0.09632,1.19042,2.305,0.02116,90.29
+Mortalidade geral,E2,principal,estimado,1065.0,97.0,7.0,[n<10],within FRACA (1 conversor) — NÃO INTERPRETAR COMO CAUSAL,logito,0.03706,0.03741,-0.03626,0.11039,0.991,0.32184,
+TMP (dias),E2,principal,estimado,1065.0,97.0,7.0,[n<10],within FRACA (1 conversor) — NÃO INTERPRETAR COMO CAUSAL,log,0.09235,0.02369,0.0459,0.13879,3.897,0.0001,9.67
+Faturamento real/saída,E2,principal,estimado,1065.0,97.0,7.0,[n<10],within FRACA (1 conversor) — NÃO INTERPRETAR COMO CAUSAL,log,-0.0363,0.0241,-0.08354,0.01093,-1.506,0.13194,-3.57
+Ocupação UTI (winsor.),E2,principal,estimado,1047.0,97.0,7.0,[n<10],within FRACA (1 conversor) — NÃO INTERPRETAR COMO CAUSAL,log (PPML),0.4819,0.06929,0.34609,0.6177,6.955,0.0,61.91
+Superlot. internação (A),E2,principal,FALHOU: SEPARAÇÃO — logito não identificado (|coef| máx 95); coeficiente não reportado,,,,,,,,,,,,,
+Ocupação intern. ≤100 (B),E2,principal,estimado,966.0,97.0,7.0,[n<10],within FRACA (1 conversor) — NÃO INTERPRETAR COMO CAUSAL,log,0.15785,0.0723,0.01614,0.29956,2.183,0.02902,17.1
+Mortalidade geral,E3,principal,estimado,1375.0,125.0,28.0,,within (4 conversores),logito,-0.28138,0.08194,-0.44198,-0.12078,-3.434,0.00059,
+TMP (dias),E3,principal,estimado,1375.0,125.0,28.0,,within (4 conversores),log,-0.12545,0.03479,-0.19363,-0.05727,-3.606,0.00031,-11.79
+Faturamento real/saída,E3,principal,estimado,1375.0,125.0,28.0,,within (4 conversores),log,-0.09694,0.09983,-0.29261,0.09873,-0.971,0.33153,-9.24
+Ocupação UTI (winsor.),E3,principal,estimado,1371.0,125.0,28.0,,within (4 conversores),log (PPML),0.2273,0.21942,-0.20276,0.65735,1.036,0.30024,25.52
+Superlot. internação (A),E3,principal,estimado,1375.0,125.0,28.0,,within (4 conversores),logito,0.73639,0.97077,-1.16633,2.6391,0.759,0.44812,
+Ocupação intern. ≤100 (B),E3,principal,estimado,989.0,122.0,28.0,,within (4 conversores),log,0.2391,0.13119,-0.01804,0.49623,1.822,0.06838,27.01
+Mortalidade geral,E2+E3,sensib. R4.1 (agrupado),estimado,2440.0,222.0,35.0,,within FRACA (5 conversor) — NÃO INTERPRETAR COMO CAUSAL,logito,-0.2984,0.10701,-0.50813,-0.08866,-2.789,0.00529,
+Mortalidade geral,E3,sensib. R4.2 (sem 7711980),estimado,1364.0,124.0,28.0,,within (4 conversores),logito,-0.27541,0.08164,-0.43543,-0.11539,-3.373,0.00074,
+TMP (dias),E3,sensib. R4.2 (sem 7711980),estimado,1364.0,124.0,28.0,,within (4 conversores),log,-0.12399,0.03482,-0.19224,-0.05575,-3.561,0.00037,-11.66
+Faturamento real/saída,E3,sensib. R4.2 (sem 7711980),estimado,1364.0,124.0,28.0,,within (4 conversores),log,-0.09449,0.09995,-0.29039,0.10142,-0.945,0.34449,-9.02
+Ocupação UTI (winsor.),E3,sensib. R4.2 (sem 7711980),estimado,1364.0,124.0,28.0,,within (4 conversores),log (PPML),0.22599,0.21987,-0.20494,0.65693,1.028,0.30401,25.36
+Superlot. internação (A),E3,sensib. R4.2 (sem 7711980),estimado,1364.0,124.0,28.0,,within (4 conversores),logito,0.75887,0.96427,-1.1311,2.64883,0.787,0.43129,
+Ocupação intern. ≤100 (B),E3,sensib. R4.2 (sem 7711980),estimado,983.0,121.0,28.0,,within (4 conversores),log,0.24949,0.12688,0.00081,0.49816,1.966,0.04925,28.34
