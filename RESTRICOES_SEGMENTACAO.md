@@ -499,11 +499,23 @@ trata como ruído de cauda aquilo que R1 v4 identificou como a assinatura
 aritmética da superlotação. O indicador contínuo bruto, por sua vez,
 **conflaciona** as duas perguntas numa média só.
 
-O tamanho da conflação, medido na base de referência de 314 CNES: o gap bruto
-OSS−Direta em E3 era de ~27,4 pontos, e a parte contínua guarda ~16,6. Cerca
-de **40% da diferença que aparecia como "OSS mais cheio" era OSS mais
-frequentemente em superlotação**, misturado na mesma média. São ordens de
-grandeza a confirmar no painel definitivo, não valores a reproduzir.
+O tamanho da conflação, **medido no painel definitivo em 28/07/2026** (medianas
+em E3, descritivo bruto sem controles): gap bruto OSS−Direta de **+27,4
+pontos**, gap da parte contínua de **+21,1 pontos**. Ou seja, **cerca de 23%
+da diferença que aparecia como "OSS mais cheio" era OSS mais frequentemente em
+superlotação**, misturado na mesma média.
+
+*Divergência frente à referência, registrada:* a instrução de trabalho previa
+~16,6 pontos na parte contínua e cerca de 40% de conflação, a partir da base
+de 314 CNES. O gap bruto reproduz exatamente (27,4), mas a parte contínua não:
+o observado é 21,1, e a conflação é **23%, não 40%**. O valor de 21,1 é
+coerente com o registro já existente da variante V2 no diagnóstico de R1
+(V0 27,4 | V1 27,4 | V2 21,1 | V3 28,4) — restringir a ≤ 100 é, em mediana, a
+mesma operação de V2. Prevalece o observado.
+
+A conclusão qualitativa não se move: a maior parte do gap é nível, uma parte
+material é frequência, e a média bruta não distingue as duas. Verificação em
+`verificar_prespecificacoes_etapa4.py`.
 
 ### Assimetria com a UTI — registrada antes de rodar
 
