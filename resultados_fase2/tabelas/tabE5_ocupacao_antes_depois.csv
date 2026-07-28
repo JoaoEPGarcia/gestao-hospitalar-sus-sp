@@ -1,0 +1,7 @@
+"bloco","modelo","n","situacao","coef_oss","ep","ic_lo","ic_hi","efeito_pct"
+"A_original_defeituoso","ORIG ocupacao_internacao (winsor. p99 painel)",3177,"estimado",0.11802,0.0811,-0.04094,0.27697,12.53
+"A_original_defeituoso","ORIG uti_parte2 (winsor. contaminada, amostra por desfecho)",2482,"estimado",0.26514,0.10664,0.05613,0.47415,30.36
+"B_corrigido","CORR internacao parte A (binário de superlotação)",3177,"estimado",-0.24746,1.07557,-2.35557,1.86066,NA
+"B_corrigido","CORR internacao parte B (contínua <=100, sem winsor.)",2685,"estimado",0.10849,0.09112,-0.0701,0.28708,11.46
+"B_corrigido","CORR uti intensidade (Tweedie, zeros preservados)",2489,"estimado",0.23627,0.08762,0.06455,0.408,26.65
+"B_corrigido","CORR uti parte 1 (opera | tem capacidade)",2489,"FALHOU: não convergiu ou matriz singular",NA,NA,NA,NA,NA
