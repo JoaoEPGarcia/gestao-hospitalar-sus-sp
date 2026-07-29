@@ -45,8 +45,10 @@ def frases_com(padrao, arquivos=None, janela=260):
 # ----------------------------------------------------------------------
 cab("2d. Toda mencao a SFA esta sob a mesma regra de tarja?")
 
-TARJA = (r"n[aã]o [eé] cit[aá]vel|n[aã]o cit[aá]vel|degenera|n[aã]o comparáve"
-         r"|n[aã]o interpret|vale a ordem")
+# inclui as formas "nenhum ... e citavel" e "nem ... citaveis", escritas na
+# correcao de 29/07/2026, que a versao anterior desta regex nao enxergava.
+TARJA = (r"cit[aá]ve|degenera|n[aã]o comparáve|n[aã]o interpret"
+         r"|diagn[oó]stico, n[aã]o medida|tarjad")
 hits = frases_com(r"\bSFA\b|fronteira estoc[aá]stica")
 print(f"{len(hits)} mencoes a SFA / fronteira estocastica\n")
 sem_tarja = []
@@ -94,13 +96,19 @@ cab("4. As cinco declaracoes de limitacao")
 CINCO = {
     "a) cinco switchers com confundidor":
         r"cinco conversores|cinco switchers|cinco hospitais que",
-    "b) os cinco foram para o mesmo operador":
-        r"mesmo tipo de operador|mesmo operador",
+    # a formulacao correta e sobre os DOIS conversores com janela posterior
+    # utilizavel, nao sobre os cinco: a OSS de Presidente Prudente nunca foi
+    # identificada e Taipas e Vila Penteado foram para outra organizacao. A
+    # regex antiga procurava "mesmo tipo de operador", que era justamente a
+    # frase errada da sec13b, corrigida em 29/07/2026.
+    "b) os dois com janela utilizavel foram para a mesma organizacao":
+        r"mesma organiza[cç][aã]o|mesmo operador|Seconci",
     "c) Privado n=3 nao interpretavel":
         r"3 hospitais|3 CNES|tr[eê]s hospitais",
     "d) nenhum coeficiente da SFA e citavel":
-        r"SFA n[aã]o [eé] cit[aá]vel|n[aã]o [eé] cit[aá]vel.{0,40}SFA|"
-        r"NÍVEL\s+da efici[eê]ncia das OSS na SFA n[aã]o [eé] cit[aá]vel",
+        r"nenhum[a]?\s+(?:coeficiente|valor|n[ií]vel)[^.]{0,80}cit[aá]ve|"
+        r"(?:SFA|fronteira estoc[aá]stica)[^.]{0,80}n[aã]o [eé] cit[aá]ve|"
+        r"n[aã]o [eé] cit[aá]ve[^.]{0,60}(?:SFA|fronteira estoc)",
     "e) modelo_gestao_proxy mede categoria administrativa":
         r"modelo\\_gestao\\_proxy|classifica[cç][aã]o assistencial do SIH",
 }

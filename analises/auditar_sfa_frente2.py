@@ -127,7 +127,13 @@ def achar(padrao, rot):
 
 l_coef = achar(r"5\{,\}454|5,454", "coeficiente -5,454 (Publico Municipal)")
 l_mono = achar(r"94\{,\}9|94,9", "violacao de monotonicidade em 94,9%")
-achar(r"n[aã]o [eé] cit[aá]vel", "declaracao 'nao e citavel'")
+# a regex antiga era so `nao e citavel` e devolvia zero depois que a correcao
+# de 29/07/2026 passou a escrever "nenhum coeficiente ... e citavel", que e a
+# forma mais forte. Instrumento que nao enxerga a correcao mede o proprio
+# vocabulario, nao o documento.
+achar(r"n[aã]o (?:é|e|s[aã]o) cit[aá]ve|nenhum[a]?\s+\w+(?:\s+\w+){0,6}\s+"
+      r"[eé]\s+cit[aá]ve|nem\s+.{0,40}cit[aá]ve",
+      "declaracao de nao-citabilidade (qualquer forma)")
 
 if l_coef and l_mono:
     d = min(abs(a - b) for a in l_coef for b in l_mono)
