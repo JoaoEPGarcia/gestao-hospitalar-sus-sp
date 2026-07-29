@@ -621,12 +621,23 @@ defeitos **independentes** entre si:
 ocupação que está no `principal.tex` não sobrevive como está". A Etapa 5
 refará esses modelos já na forma correta.
 
-> **A previsão acima ficou ERRADA e é preservada.** A Etapa 5 rodou no mesmo
-> dia e o achado sobrevive, atenuado: intensidade de UTI de +30,4% para
-> +26,7%, ainda excluindo o zero; ocupação de internação de +12,5% para
-> +11,5%, ainda cruzando o zero. Os três defeitos são reais — o erro foi
-> supor que um defeito bem diagnosticado tem efeito grande. Sete observações
-> em 2.489 não movem coeficiente. Ver R10.
+> **A previsão acima é preservada, e o veredito é por defeito, não em bloco.**
+> A Etapa 5 rodou no mesmo dia. O achado sobrevive, atenuado: intensidade de
+> UTI de +30,4% para +26,7%, ainda excluindo o zero; ocupação de internação
+> de +12,5% para +11,5%, ainda cruzando o zero.
+>
+> - **Defeito 1 — previsão errada.** Corrigir o limiar move +0,0005.
+> - **Defeito 2 — errada quanto ao coeficiente, certa quanto ao princípio.**
+>   As 7 observações movem −0,0026 diretamente, mas a correção força a troca
+>   de família (a Gama não admite zero), e a troca move −0,0268. Age por um
+>   canal que a previsão não antecipou.
+> - **Defeito 3 — previsão CERTA.** Winsorizar destruía mesmo o sinal de
+>   sobrecarga, e a resposta nunca foi um coeficiente que muda: é o modelo em
+>   duas partes, que mostrou que o número publicado misturava frequência de
+>   superlotação com intensidade de ocupação. Isto é o defeito se
+>   confirmando.
+>
+> Ver R10 para a decomposição completa.
 
 ---
 
@@ -757,32 +768,150 @@ poderia ser do pipeline e não da correção.
 
 ### O veredito
 
-**R8 dizia: "o achado de ocupação que está no `principal.tex` não sobrevive
-como está". Isso está ERRADO na direção, e certo no detalhe.**
-
 | quantidade | publicado | corrigido | conclusão |
 |---|---|---|---|
-| Intensidade de UTI | +30,4% \[+5,8%, +60,7%\] | **+26,7%** \[+6,7%, +50,4%\] | **sobrevive**, atenuado |
+| Intensidade de UTI | +30,4% \[+5,6%, +60,8%\] | **+30,4%** \[+5,6%, +60,8%\] (hurdle) | **sobrevive intacto** |
 | Ocupação de internação | +12,5%, cruza o zero | **+11,5%**, cruza o zero | **sobrevive**, inalterado |
 | Sem conversores, internação | 0,118 → 0,235, passa a excluir o zero | 0,108 → **0,218**, passa a excluir o zero | **sobrevive** |
 
-As três correções mexem nas magnitudes na primeira casa decimal e **não
-invertem nem anulam nenhuma conclusão publicada**. A frase da Seção 15 — a
-ocupação aponta na mesma direção com magnitude menor, com intervalo que cruza
-o zero na especificação hierárquica — continua correta com os números
-corrigidos.
+Nenhuma conclusão publicada inverte ou cai. A frase da Seção 15 — a ocupação
+aponta na mesma direção com magnitude menor, com intervalo que cruza o zero
+na especificação hierárquica — continua correta com os números corrigidos.
 
-**O que R8 acertou** foi o mecanismo, não a consequência: os três defeitos
-são reais, a winsorização da UTI era mesmo artefato do bug da Etapa 1, e a
-amostra da UTI condicionava mesmo no desfecho. Só que o efeito líquido de
-corrigi-los é pequeno. **Sete observações em 2.489 não movem um coeficiente**,
-e o limiar de winsorização de 171,2 contra 180,5 atinge 1% da amostra.
+**A frase que vai ao texto sobre a intensidade de UTI:** corrigir o
+condicionamento no desfecho, com especificação que preserva a função de
+variância, **deixa o achado publicado intacto** (+30,4%). Sob famílias
+alternativas o efeito varia entre +25,9% e +30,4%, mantendo direção nas cinco
+e significância em quatro — a família é a sensibilidade principal, e a
+amplitude de 4,5 pontos é menor que a largura do próprio intervalo de
+confiança.
 
-Registro da lição, que é a mesma de R1 v2 com o sinal trocado: *diagnosticar
-corretamente um defeito não permite prever a magnitude do seu efeito.* A
-Etapa 5 precisou ser rodada para saber, e teria sido igualmente errado
-declarar o achado morto a partir do diagnóstico quanto declará-lo salvo sem
-reestimar.
+### Efeito ISOLADO de cada defeito — e a atribuição correta da atenuação
+
+Ver `tabE5_decomposicao_defeitos.csv` e `fase2_ocupacao_decomposicao.R`. A
+UTI foi decomposta em fatorial 2×2 (limiar × amostra) com a **família mantida
+fixa** em Tweedie, porque a Gama do original não admite zero: trocar a
+amostra para capacidade obrigaria a trocar de família junto, e o efeito do
+defeito 2 ficaria confundido com o da família.
+
+| fonte | obs tocadas | Δ coeficiente (log) |
+|---|---|---|
+| R8-1 limiar da UTI (171,3 → 180,5) | 32 mudam de valor, 7 deixam de ser aparadas | **+0,0005** |
+| R8-2 amostra da UTI (desfecho → capacidade) | 7 entram | **−0,0026** |
+| R8-3a tirar a winsorização da internação | 32 aparadas | **−0,0002** |
+| R8-3b mudar para a forma em duas partes | reorganiza as 492 acima de 100 | **−0,0093** |
+| **Gama → Tweedie (família)** | — | **−0,0268** |
+
+Dentro de família fixa, os defeitos movem a terceira e a quarta casa decimal.
+A atenuação passa pela troca de família. Isso levantou a pergunta seguinte, e
+a resposta dela **derrubou a leitura intermediária deste item**.
+
+### A família NÃO é forçada — e o achado publicado sobrevive intacto
+
+Ver `tabE5_sensibilidade_familias.csv` e `fase2_ocupacao_familias.R`.
+
+Chegou-se a registrar aqui que a troca de família era **consequência forçada**
+de corrigir R8-2 — "manter os zeros exige família que os admita, e a Gama não
+admite". A primeira metade é verdadeira; a conclusão não segue. **Existe
+família que admite zero e preserva a função de variância da Gama: o hurdle.**
+
+| especificação | n | efeito | IC95% |
+|---|---|---|---|
+| Gama, sem os zeros (**publicada**) | 2.482 | **+30,4%** | \[+5,6%, +60,8%\] |
+| **ziGamma / hurdle, com os zeros** | 2.489 | **+30,4%** | \[+5,6%, +60,8%\] |
+| Tweedie, sem os zeros | 2.482 | +27,0% | \[+7,6%, +49,8%\] |
+| Tweedie, com os zeros | 2.489 | +26,7% | \[+6,7%, +50,4%\] |
+| lognormal, sem os zeros | 2.482 | +25,9% | \[−0,3%, +59,0%\] |
+
+**O hurdle corrige R8-2 integralmente — os 7 zeros ficam na amostra, não há
+condicionamento no desfecho — e devolve +30,4%, idêntico ao publicado até a
+quarta casa decimal.** Logo: corrigir o defeito 2 **não** atenua o achado. O
++26,7% foi consequência de escolher Tweedie, que é decisão de modelagem
+independente, não imposição do defeito.
+
+### O teste decisivo: os zeros ou a função de variância?
+
+A massa em zero é de **7 observações em 2.489 — 0,281% da amostra**. São
+hospitais com UTI habilitada e nenhuma diária no ano (o CNES 7580770, da
+Direta, em dois anos seguidos; dois OSS; três Filantrópicos).
+
+Rodando Tweedie sobre **exatamente a mesma amostra da Gama publicada**, a
+única diferença entre as duas passa a ser a função de variância:
+
+| decomposição da atenuação | Δ (log) | participação |
+|---|---|---|
+| efeito dos **zeros** (Tweedie com − Tweedie sem) | −0,00265 | **9%** |
+| efeito da **função de variância** (Tweedie sem − Gama sem) | −0,02649 | **91%** |
+
+Confirma a suspeita que motivou o teste: **sete observações não movem o
+número; a função de variância move.** `V(μ) = μ²` na Gama contra `V(μ) = μᵖ`
+na Tweedie repondera as 2.489 inteiras. Deixar 0,281% da amostra escolher a
+família para os outros 99,7% seria inverter a ordem de importância.
+
+### A família é a sensibilidade principal, e o achado é robusto a ela
+
+Amplitude entre as cinco especificações: **+25,9% a +30,4%, 4,5 pontos
+percentuais**. Quatro das cinco excluem o zero no IC95%. A exceção é a
+lognormal, cujo limite inferior é −0,0035 em pontos de log — cruza o zero por
+uma margem que não é distinguível de tocá-lo.
+
+**Direção idêntica nas cinco, significância em quatro, magnitude entre 26% e
+30%: isto é resultado robusto e reportável.** A família é a decisão de
+modelagem que mais move o número, e por isso a amplitude deve acompanhar o
+achado sempre que ele for citado — não como ressalva defensiva, mas porque
+4,5 pontos é a incerteza real de especificação, e ela é menor que a largura
+do próprio IC.
+
+### Sobre o modelo em duas partes aqui
+
+Avaliado, não implementado como principal. **Não dispensa a escolha de
+família: relocaliza-a, e nesse caso específico é o bastante.**
+
+A forma em duas partes tira do conjunto de famílias a exigência "precisa
+admitir zero", porque a massa em zero vai para um componente binário próprio.
+Isso libera a Gama para a parte contínua — que é exatamente o que o hurdle
+faz, e por isso ele recupera o +30,4%. Mas a escolha **entre** famílias para
+a parte positiva permanece inteira, e é ali que vivem os 4,5 pontos de
+amplitude. Resolve o problema dos zeros; não resolve o da função de
+variância.
+
+Há ainda um limite prático: a **primeira parte não é estimável** com
+covariáveis. Sete zeros não sustentam um binômio, e ele não converge — o
+mesmo motivo pelo qual `uti_parte1` é degenerada. A versão com intercepto
+apenas converge, e é precisamente o ziGamma da tabela acima. Ou seja, o
+modelo em duas partes viável aqui **já está reportado**; o que não existe é
+uma primeira parte com conteúdo substantivo.
+
+### O que R8 previu certo e o que previu errado — por defeito
+
+R8 dizia, em bloco, que "o achado não sobrevive como está". Avaliada por
+defeito, a previsão se divide:
+
+- **R8-1 (winsorização contaminada): previsão ERRADA.** O defeito é real — o
+  limiar antigo era mesmo artefato do bug da Etapa 1 — mas corrigi-lo move
+  +0,0005. Nada depende disso.
+- **R8-2 (condicionamento no desfecho): previsão ERRADA quanto ao
+  coeficiente, CERTA quanto ao princípio.** As 7 observações movem −0,0026, e
+  corrigido pelo hurdle — que preserva a função de variância — o coeficiente
+  volta a +30,4%, o publicado. O defeito é real e a correção é obrigatória
+  por princípio: condicionar no desfecho está errado mesmo quando não muda
+  nada. Mas ele **não atenua o achado**. Chegou-se a registrar que forçava a
+  troca de família; não força — ver a seção da família acima.
+- **R8-3 (sinal apagado por winsorização): previsão CERTA.** E é a única que
+  se confirma na forma em que foi feita. A resposta a este defeito nunca foi
+  um coeficiente que muda — tirar o corte mantendo o modelo único move
+  −0,0002, praticamente nada. A resposta é o **modelo em duas partes**, que
+  mostrou que o número publicado misturava *frequência de superlotação* com
+  *intensidade de ocupação*. O modelo antigo não tinha como responder à
+  primeira pergunta; o novo tem, e é a parte A. Isso é o defeito 3 se
+  confirmando, não se refutando.
+
+**A lição, que é a de R1 v2 com o sinal trocado:** diagnosticar corretamente
+um defeito não permite prever a magnitude do seu efeito, **nem o canal por
+onde ele age**. R8-2 agiu por um canal que ninguém antecipou (a família), e
+R8-3 agiu não sobre o valor do coeficiente mas sobre a pergunta que o modelo
+consegue responder. Declarar o achado morto a partir do diagnóstico teria
+sido tão errado quanto declará-lo salvo sem reestimar.
 
 ### O que MUDA de verdade, e não é o que R8 previa
 
@@ -798,41 +927,72 @@ diferentes:
   IC \[+1,39, +5,16\] — e −0,25 com IC \[−2,36, +1,86\] no principal.
 
 Essa inversão não é instabilidade: é a diferença entre **between e within**.
-No principal, o termo de Mundlak absorve o contraste entre redes e sobra a
-identificação pelos cinco conversores — que quase não entram em superlotação
-(Sorocaba 3 anos em 11, Pérola 1, Vila Penteado 1, Taipas nenhum). Sem
-conversores, o Mundlak sai e o coeficiente passa a ser o contraste bruto
-entre redes, que é enorme porque o excesso é de 29,3% no OSS contra 3,9% na
-Direta.
+No principal, o termo de Mundlak absorve o contraste entre redes e a
+identificação de `d_oss` passa a vir só dos hospitais que **trocam de
+categoria**. Sem conversores, o Mundlak sai e o coeficiente passa a ser o
+contraste bruto entre redes, que é enorme porque o excesso é de 29,3% no OSS
+contra 3,9% na Direta.
 
-**Consequência de leitura, e é uma restrição:** o gap de superlotação entre
-redes é grande e bem medido, mas **não é efeito causal de gestão** — não há
-within que o sustente. O EP de 1,08 no principal é a medida honesta de quanto
-os conversores informam sobre isto: quase nada. Isto é coerente com a Etapa 4,
-onde o mesmo binário em E3 deu +0,74 com EP 0,97.
+**Quantos hospitais sustentam cada estimativa within** — informação que
+precisa acompanhar todo coeficiente within deste projeto:
 
-**2. `uti_parte1` publicado é um número degenerado.** Em
-`tabB_modelos_hierarquicos.csv` está `-58,958032` com erro-padrão **NaN** —
-separação, não estimativa. Não aparece citado no `principal.tex`, mas está
-numa tabela publicada. A versão corrigida da mesma quantidade (opera, dado
-que tem capacidade) **não converge**, e fica reportada como falha: na
-subamostra de capacidade sobram só 7 zeros. A pergunta não é estimável com
-estes dados, e o registro deve dizer isso em vez de exibir −58,96.
+| estimativa | switchers que a sustentam |
+|---|---|
+| contínuas (intensidade, TMP, custo, mortalidade) | **5 de 5** — todos variam |
+| **binário de superlotação, painel inteiro** | **4 de 5** — Taipas nunca entra em superlotação |
+| binário de superlotação, dentro de E3 (Etapa 4) | **3 de 4** — Odilo Antunes está em E2 |
 
-**3. Uma frase do Apêndice A precisa de ajuste.** Ela diz que a ocupação de
-internação é "modelada no logaritmo **sem truncar em 100%**". É literalmente
-verdade e materialmente enganoso: não trunca em 100, mas **winsoriza em
-125,1**, o que corta exatamente a cauda de superlotação. A redação sugere que
-o excesso foi preservado quando ele foi parcialmente aparado.
+E o quanto cada um contribui é desigual: Sorocaba tem 7 anos como OSS e 3 em
+superlotação; Pérola 3 e 1; Vila Penteado 1 e 1; Odilo Antunes 1 e 4; Taipas
+1 e nenhum.
+
+**Redação obrigatória para o binário — o nulo não é evidência de ausência.**
+A formulação anterior deste item dizia que o gap "não é efeito causal de
+gestão", o que atribui ao nulo mais força do que ele tem. A redação correta,
+que é a mesma já usada para o coeficiente de mortalidade:
+
+> O gap de superlotação entre as redes é grande e bem medido. A estimativa
+> within é nula, mas repousa sobre 4 hospitais e **não distingue "sem efeito"
+> de "sem potência"**. O erro-padrão de 1,08 no logito é a medida honesta de
+> quão pouco os conversores informam sobre esta quantidade: o intervalo
+> \[−2,36, +1,86\] cobre desde uma redução enorme até um aumento enorme.
+
+Não se deve escrever que a gestão não afeta a superlotação, nem que afeta.
+Estes dados não decidem. O que se pode dizer é que o **contraste descritivo
+entre redes é grande**, e que a evidência causal disponível é insuficiente
+para atribuí-lo à gestão em qualquer direção.
+
+Isto é coerente com a Etapa 4, onde o mesmo binário em E3 deu +0,74 com EP
+0,97 — outro intervalo que cobre tudo.
+
+**2. `uti_parte1` publicado é um número degenerado — REMOVIDO da tabela.** Em
+`tabB_modelos_hierarquicos.csv` estava `-58,958032` com erro-padrão **NaN**:
+separação, não estimativa. É da **mesma classe do termo `d_oss` da SFA**, já
+documentado no projeto como não citável, e recebe o mesmo tratamento — sai da
+tabela publicada, permanece na documentação com o motivo. Não é decisão de
+estilo. A versão corrigida da mesma quantidade (opera, dado que tem
+capacidade) **também não converge**: na subamostra de capacidade sobram só 7
+zeros. A pergunta não é estimável com estes dados, nem antes nem depois da
+correção.
+
+**3. A frase do Apêndice A era enganosa e ficou pior — CORRIGIDA.** Ela dizia
+que a ocupação de internação é "modelada no logaritmo **sem truncar em
+100%**". Literalmente verdadeira e materialmente enganosa: não trunca em 100,
+mas **winsoriza em 125,1**. Depois desta etapa a gravidade aumenta, porque
+125,1 é precisamente onde começa a cauda de superlotação que agora se sabe
+carregar sinal próprio — a frase sugeria preservação do excesso justamente
+onde ele era aparado. A redação nova declara o limiar efetivo e o que ele
+remove.
 
 ### Pendências que a Etapa 5 abre
 
-- Ajustar a frase do Apêndice A sobre truncamento (item 3 acima).
-- Decidir se `uti_parte1` sai de `tabB_modelos_hierarquicos.csv` ou fica com
-  tarja de não-estimável. **É decisão editorial, não estatística** — o número
-  está publicado.
-- Se a parte A da internação entrar no texto, ela entra como **descritivo
-  entre redes**, jamais como efeito de gestão.
+- Se a parte A da internação entrar no texto, ela entra com a redação
+  obrigatória acima: **contraste descritivo entre redes**, com a nulidade
+  within declarada como falta de potência e não como ausência de efeito.
+- Reexecutar `fase2_bayes.R` regeneraria `tabB_modelos_hierarquicos.csv` com
+  a linha `uti_parte1` de volta. A remoção está registrada em
+  `tabB_uti_parte1_removida.md`, ao lado da tabela, para que quem reexecutar
+  saiba o que refazer.
 
 Nada disto exige reestimar mais nada. A propagação ao `principal.tex`
 continua dependendo de leitura da Priscilla, como já registrado.
