@@ -196,10 +196,58 @@ dos escores por observação em `resultados_fase2/dea/` e `resultados_fase2/sfa/
 Indexar essas três fontes derrubaria a taxa de falso positivo de 62,5% para
 perto de zero, e é pré-requisito comum ao item 3 abaixo.
 
-**Camada 3, pendente.** 48 PNGs únicos, em 8 seções que declaram valores
-impressos na figura (`sec01` a `sec06`, `sec08`, `sec11`) — a estimativa
-inicial de 25 a 40 estava baixa. Subdividir: piloto em `sec08` e `sec04`
-(10 PNGs, com base de comparação já conhecida) → validação → resto.
+**Camada 3 — EXECUTADA em 29/07/2026. Quatro erros encontrados, todos
+corrigidos, e três deles da mesma origem.**
+
+O inventário dizia 48 PNGs em 8 seções. São **44 PNGs em 7 seções**: o
+`sec01` não referencia nenhuma figura. A varredura leu os PNGs e comparou
+com o texto da mesma página.
+
+| # | seção | classe | o que o texto dizia | o que a figura e a fonte dizem |
+|---|---|---|---|---|
+| 1 | `sec02` | 2 | ocupação de UTI com **"21,9% de zeros"** | **21,6% não-aplicáveis** (688 obs) e **0,3% de zeros** (7 obs) entre as 2.491 válidas |
+| 2 | `sec06` | 2 | UTI atinge **"86,1% em 2021"** | **100,8%** — a figura imprime 101 |
+| 3 | `sec08` | 1 e 2 | as duas ocupações correlacionam **"0,54"** | **0,305** na fonte, **0,30** na figura |
+| 4 | `sec05` | 3 | **"33 dos 43"** hospitais da faixa 2 não operam UTI | **34** sem UTI SUS pela mediana; **32** sem nenhuma diária. Nenhuma definição do projeto devolve 33 |
+
+**Os três primeiros são o mesmo erro, e a proveniência foi reproduzida
+exatamente.** Os valores 21,9%, 86,1% e 0,54 são os que se obtêm com a
+**definição antiga** da ocupação de UTI, em que as 688 observações sem UTI
+SUS entravam como **zero estrutural** em vez de não-aplicável:
+
+- 21,9% = **695** zeros sobre 3.179, e 695 = 688 estruturais + 7 verdadeiros;
+- 86,1% = mediana de 2021 com os zeros dentro, contra 100,8% sem eles;
+- 0,54 é a correlação inflada pelos mesmos zeros, contra 0,305.
+
+Cada um foi recalculado nas duas definições antes de ser corrigido, e o
+valor antigo bateu na casa decimal em todos. **Não é coincidência de
+arredondamento: é resíduo da Etapa 1.**
+
+**O que isto diz sobre o Bloco A.** O §11 registra que o escopo real da
+propagação era `sec02`, `sec04` e `sec08` — medido, não presumido. As três
+seções foram tocadas, e ainda assim **duas delas guardavam um número
+antigo cada**, e o `sec06`, que não estava na lista, guardava um terceiro.
+A medição de escopo estava certa quanto a *quais seções*, e incompleta
+quanto a *quais números dentro delas*. O `sec08` é o caso mais instrutivo:
+o parágrafo corrigido explica, três linhas abaixo do erro, que aquele par
+"foi recalculado sobre o domínio corrigido da ocupação de UTI".
+
+**Por que nenhuma camada anterior os pegaria.** A Camada 1 testa
+pertinência do token contra os CSVs de `analises/tabelas/`, e 21,9%, 86,1%
+e 0,54 **existiram** como valores legítimos — só que na base anterior.
+Pertinência não tem noção de tempo. Só a comparação contra a figura
+regerada, que é o que a Camada 3 faz, separa o valor certo do valor
+vencido.
+
+**As demais conferências passaram.** Foram lidos e batidos contra o texto:
+os seis mapas de composição do `sec04` (20 dos 26 da Direta, 29 dos 33 das
+OSS, 32 dos 43 da faixa 2, os zeros de faixa 5 e 6), a escada completa do
+`sec05` (R\$ 631 → R\$ 3.780; TMP 3,16 → 6,30; alta complexidade 0 →
+22,5%; mortalidade 3,20% → 6,52% com recuo a 5,43%), os zeros por
+categoria e por faixa do `sec03` (37,5% e 10,7%; 80,1% e 0,0%), a
+mortalidade anual do `sec06` (5,31% → 6,28%) e a ocupação de internação de
+2020 (64,5%), e as anotações dos histogramas do `sec02` (massa em zero de
+0,9% na mortalidade e 31,3% na alta complexidade, máximo de 875%).
 
 ---
 
@@ -1048,9 +1096,7 @@ A10: não eram trabalho, eram insumo ausente.
 1. **Datas exatas de contrato e OSS responsável** dos cinco conversores
    (item 6). O mês de Presidente Prudente e a OSS contratada seguem não
    identificados.
-2. **Camada 3 da varredura de consistência** (item 1): 48 PNGs em 8 seções
-   que declaram valores impressos na figura, nunca conferidos.
-3. **Os quatro achados da varredura de `resultados_fase2/tabelas/`**
+2. **Os quatro achados da varredura de `resultados_fase2/tabelas/`**
    (item 0-bis), todos abertos: a equação de ineficiência da SFA ausente do
    documento, a violação de monotonicidade do insumo de UTI não reportada, o
    "todas as amostras" da Seção 15 e a cobertura de
@@ -1062,7 +1108,7 @@ A10: não eram trabalho, eram insumo ausente.
    *Este item tem uma metade em cada lista:* ampliar ou não é decisão
    editorial; ampliar, se decidido, é trabalho.
 
-*Itens retirados em 29/07/2026, ambos por medição e não por decisão:*
+*Itens retirados em 29/07/2026, todos por execução ou medição:*
 
 - **Eixo "Densidade" dos histogramas** (item 7): o código já estava
   convertido, os PNGs já estavam regerados e o `.tex` já não trazia a
@@ -1071,6 +1117,10 @@ A10: não eram trabalho, eram insumo ausente.
   (`verificar_contagens_inteiras.py`), 209 afirmações de contagem testadas,
   90 casadas contra o painel e as demais inspecionadas. Um achado — a regra
   de contagem não declarada na tabela da Seção 13b —, corrigido. Ver §3.
+- **Camada 3 da varredura** (item 1): 44 PNGs em 7 seções, lidos e
+  comparados com o texto da mesma página. **Quatro erros, todos
+  corrigidos**, e três deles resíduos da Etapa 1 com proveniência
+  reproduzida. Ver §1.
 
 ---
 
