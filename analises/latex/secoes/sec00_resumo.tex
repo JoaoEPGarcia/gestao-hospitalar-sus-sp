@@ -1,0 +1,112 @@
+% Sumário executivo. Deliberadamente NÃO numerado (\section*), para não
+% deslocar a numeração das demais seções, que é referida em comentários do
+% principal.tex e em conversas do projeto. Entra no índice à mão.
+\section*{Sumário executivo}
+\addcontentsline{toc}{section}{Sumário executivo}
+\label{sec:resumo}
+
+\noindent Este documento compara o desempenho dos cinco arranjos
+institucionais que administram hospitais do SUS no estado de São Paulo,
+sobre um painel de \textbf{289 hospitais acompanhados ano a ano de 2015 a
+2025} (3.179 observações, sem buracos), destilado de 830 estabelecimentos
+da base bruta do SIH/SUS. As categorias são Filantrópico, Público
+Municipal, gestão por Organização Social de Saúde (OSS), administração
+Direta e Privado.
+
+\noindent\textbf{A resposta curta é que não há um vencedor, e que a
+pergunta se decompõe em três.} Quem opera com mais intensidade, quem
+converte insumo em produto com menos desperdício e quem \emph{causa}
+melhor desfecho ao mudar de gestão são perguntas diferentes, com respostas
+diferentes e com graus de evidência muito diferentes. O que segue está
+ordenado pela firmeza da evidência, não pela ordem dos métodos.
+
+\subsection*{O que se sustenta}
+
+\textbf{As OSS operam um regime assistencial mais intenso.} Descontados
+complexidade, porte e ano, produzem \textbf{43,7\% mais saídas}, com
+ocupação de internação \textbf{22,7\% maior} e uso de UTI \textbf{19,3\%
+maior} entre os hospitais que a possuem (Seção~\ref{sec:resultados}); a
+segunda fase, com amostra definida pela capacidade instalada, estima a
+intensidade de UTI em \textbf{30,4\%} acima da Direta e a mantém sob cinco
+famílias de distribuição (Seção~\ref{sec:fase2}). O contraste aparece
+também na produção física por leito, que não usa dinheiro nenhum: 55
+saídas por leito nas OSS contra 36 na Direta.
+
+\textbf{As OSS estão mais próximas da fronteira de melhores práticas.}
+Pela análise envoltória de dados corrigida de viés, a eficiência técnica
+mediana do período é de \textbf{0,733} nas OSS, contra 0,634 na
+administração Direta, 0,632 no Público Municipal e 0,595 no Filantrópico:
+três patamares, não quatro, com Direta e Município empatados no meio. A
+vantagem das OSS equivale a cerca de \textbf{25\% menos distância à
+fronteira} e sobrevive à retirada dos conversores
+(Seção~\ref{sec:fase2}). Os dois traços acima são características
+\emph{da rede}, medidas entre hospitais distintos, e não efeitos de
+conversão.
+
+\subsection*{O que é sugestivo, e o que não se sustenta}
+
+\textbf{Sugestivo:} o tempo médio de permanência cai cerca de
+\textbf{10\%} sob gestão por OSS, medido dentro do mesmo hospital. Resiste
+ao teste de tendências anteriores e ao estimador de Callaway e Sant'Anna,
+e fica sem corroboração nos três testes cujo poder é limitado pelo número
+de hospitais tratados. É evidência sugestiva forte, não fato demonstrado
+(Seções~\ref{sec:efeitogestao} e~\ref{sec:inferenciafinal}).
+
+\textbf{Não se sustenta:} a queda de mortalidade após a conversão.
+Visível nos dados brutos, ela desaparece no controle sintético e some por
+inteiro quando os cinco conversores saem da amostra. \textbf{Nada neste
+documento autoriza a afirmação de que a gestão por OSS reduz a
+mortalidade} (Seções~\ref{sec:fase2} e~\ref{sec:conclusao}).
+
+\textbf{Sem diferença em método nenhum:} o faturamento real por saída,
+com a ressalva de que as OSS são custeadas por contrato de gestão e não
+por reembolso de AIH, de modo que o valor por saída pode refletir o regime
+de pagamento em vez do uso de recursos.
+
+\subsection*{Dois achados de método, que valem por si}
+
+\textbf{Ocupação acima de 100\% não é erro de cadastro: é superlotação.}
+Ela ocorre em 15,5\% das observações, e o mecanismo está identificado: o
+CNES registra capacidade habilitada e o SIH fatura diária de leito extra.
+Separado em duas perguntas, o indicador mostra que parte do que parecia
+``a OSS opera mais cheia'' era ``a OSS entra em superlotação com muito
+mais frequência'' (Seção~\ref{sec:segmentacao}).
+
+\textbf{Só um terço da rede sustenta comparação entre redes.} Separados os
+hospitais por capacidade instalada em três estratos, dois deles têm
+pouquíssimos hospitais de cada lado (1 e 6 da Direta contra 2 e 7 das
+OSS). A análise agregada escondia essa limitação
+(Seção~\ref{sec:segmentacao}).
+
+\subsection*{As cinco limitações que condicionam tudo acima}
+
+\begin{enumerate}[nosep,leftmargin=*]
+\item \textbf{A identificação causal repousa em cinco hospitais
+  convertidos}, três deles com um único ano de dados posterior. Nenhum é
+  caso limpo: uma conversão respondeu a uma crise de gestão, outra veio
+  junto com prédio novo, dois hospitais já tinham serviços terceirizados
+  antes, e os dois únicos com janela longa foram para a
+  \textbf{mesma organização social} (Subseção~\ref{sub:oqueforam}).
+\item \textbf{Nenhum coeficiente da fronteira estocástica é citável.} A
+  forma Translog estimada tem a monotonicidade violada em \textbf{94,9\%}
+  das observações e não se comporta como função de produção. Ela
+  permanece no documento como diagnóstico dessa inadequação; todas as
+  conclusões de eficiência apoiam-se no DEA (Seção~\ref{sec:fase2}).
+\item \textbf{O grupo Privado tem 3 hospitais} e nunca é interpretado:
+  entra nos modelos apenas para não contaminar as demais comparações.
+\item \textbf{A categoria de gestão é a classificação assistencial do
+  SIH} (a variável \texttt{modelo\_gestao\_proxy}), uma definição de
+  trabalho da equipe, e \textbf{não} um cruzamento jurídico depurado caso
+  a caso.
+\item \textbf{Não há ajuste de gravidade clínica.} O SIH não traz DRG, e a
+  complexidade foi suprida por um escore de estrutura física e
+  tecnológica, substituto imperfeito para a gravidade do caso.
+\end{enumerate}
+
+\vspace{.4em}
+\noindent\textbf{Uso indicado.} Os resultados foram construídos para serem
+lidos em conjunto e com o contexto metodológico completo. Isolado desse
+contexto, qualquer número aqui é vulnerável ao uso indevido. O que a
+pesquisa oferece com segurança é um retrato do regime operacional e da
+eficiência produtiva das redes; o que ela expressamente não oferece é um
+veredito causal sobre qual modelo de gestão salva mais vidas.

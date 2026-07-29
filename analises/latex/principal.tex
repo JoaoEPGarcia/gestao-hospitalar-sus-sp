@@ -97,6 +97,13 @@
 \tableofcontents
 \clearpage
 
+% Sumário executivo. Entra ANTES da seção 1 e é deliberadamente NÃO
+% numerado (\section* com \addcontentsline à mão), para que a numeração de
+% todas as seções seguintes permaneça a que o projeto já usa: a sec13b
+% continua saindo como Seção 14, e nenhuma referência cruzada se move.
+\input{secoes/sec00_resumo}
+\clearpage
+
 % Cada seção começa em página nova (\clearpage também descarrega qualquer
 % figura pendente antes da quebra), para o documento paginar limpo.
 \input{secoes/sec01_painel}
