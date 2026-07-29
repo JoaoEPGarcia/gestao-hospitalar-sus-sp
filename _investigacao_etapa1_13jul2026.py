@@ -299,9 +299,9 @@ def item_1_7():
                      encoding="utf-8-sig")
     print("\ntab_est_wild_bootstrap.csv (inferência robusta, 5 clusters tratados):")
     print(wb.to_string(index=False))
-    bay = PASTA_FASE2 / "tabB_comparacao_freq_bayes.csv"
+    bay = PASTA_FASE2 / "tabB_comparacao_cre_hierarquico.csv"
     if bay.exists():
-        print("\ntabB_comparacao_freq_bayes.csv (linha custo, se houver):")
+        print("\ntabB_comparacao_cre_hierarquico.csv (linha custo, se houver):")
         t = pd.read_csv(bay)
         col0 = t.columns[0]
         print(t[t[col0].astype(str).str.contains("usto", na=False)]

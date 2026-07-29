@@ -432,7 +432,7 @@ migraram para o Apêndice A no item C de 27/07/2026; os violinos ficaram
 no corpo, com a legenda explicando que a largura mostra concentração e
 não percentual.
 
-As `figB01_ppcheck_*` **não estão no documento** — existem em
+As `figB01_checagem_preditiva_*` **não estão no documento** — existem em
 `resultados_fase2/figuras/` e nunca foram referenciadas. Não há o que
 migrar.
 
@@ -615,7 +615,8 @@ estrato. Só em análise de mediação formal, com desenho próprio.
 
 **Aberta em:** 29/07/2026
 **Decisão de:** João
-**Situação:** aberta — a Etapa 4 foi renomeada, a Fase 2 **não**
+**Situação:** **RESOLVIDA em 29/07/2026 — renomeado o projeto inteiro.**
+Uma exceção declarada, no fim do item.
 
 ### O achado
 
@@ -634,7 +635,7 @@ LOO, sensibilidade de especificação no lugar de sensibilidade de priors — qu
 
 **A documentação é impecável. O rótulo é que não acompanhou.** O pacote
 continua se intitulando "Bayesiana hierárquica" no título do relatório, no
-README de `resultados_fase2/`, e no nome de `fase2_bayes.R`, `fase2_bayes_boot.R`
+README de `resultados_fase2/`, e no nome de `fase2_hierarquico.R`, `fase2_hierarquico_boot.R`
 e do diretório `bayes/`.
 
 ### Por que isto importa mais do que parece
@@ -663,7 +664,7 @@ Renomear a Fase 2 é operação de natureza diferente da da Etapa 4:
 - os resultados foram **publicados** sob o rótulo, inclusive no
   `principal.tex`;
 - envolve nomes de arquivo, de diretório (`bayes/`), de tabela
-  (`tabB_comparacao_freq_bayes.csv`) e o título do relatório;
+  (`tabB_comparacao_cre_hierarquico.csv`) e o título do relatório;
 - e há uma pendência já registrada de **migrar para brms/Stan** num ambiente
   com toolchain (Seção 8 do `RELATORIO_EXECUCAO.md`). Se essa migração for
   feita, o rótulo passa a estar certo, e a renomeação teria sido trabalho
@@ -681,5 +682,66 @@ Renomear a Fase 2 é operação de natureza diferente da da Etapa 4:
    alto, exige Rtools e reestimação, mas é a única que fecha a pendência da
    Seção 8 no mesmo movimento.
 
-Nenhuma foi escolhida. A opção 1 é a mais barata e a mais reversível; a 3 é a
-única que resolve a pendência de fundo.
+### A decisão: opção 2, renomear tudo — João, 29/07/2026
+
+**Não é escolha entre três saídas.** Manter a Etapa 4 renomeada e a Fase 2 não
+renomeada produziria **contradição interna entre seções**, que é a classe 4 da
+triagem deste projeto (item 0). Trocaríamos um erro por outro da mesma
+família. E o argumento do pacote autocontido pesa na direção **contrária** à
+que este item supunha: é pior mandar para revisão externa com o rótulo errado
+do que refazer os nomes antes de mandar.
+
+**Registro de responsabilidade.** A decisão é de João, que a assume. Priscilla
+precisa saber, e entra na comunicação a ela como item — mas **não é dela
+ratificar**: é fato estatístico, não escolha metodológica. Intervalo de Wald
+de máxima verossimilhança não é intervalo de credibilidade, e isso não depende
+de preferência de ninguém.
+
+**O que foi renomeado:**
+
+| antes | depois |
+|---|---|
+| `fase2_bayes.R` | `fase2_hierarquico.R` |
+| `fase2_bayes_boot.R` | `fase2_hierarquico_boot.R` |
+| `bayes/` (13 objetos `.rds`) | `hierarquico/` |
+| `tabB_comparacao_freq_bayes.csv` | `tabB_comparacao_cre_hierarquico.csv` |
+| `figB01_ppcheck_*.png` (6 figuras) | `figB01_checagem_preditiva_*.png` |
+| título do `RELATORIO_EXECUCAO.md` | "hierárquica por máxima verossimilhança" |
+| `etapa4_bayes_segmentado.R` | `etapa4_hierarquico_segmentado.R` (feito antes) |
+| `tabSEG_12_bayes_por_estrato.csv` | `tabSEG_12_hierarquico_por_estrato.csv` (idem) |
+
+**No documento, uma única frase era falsa.** `sec17_conclusao.tex` anunciava
+"validação por modelos **bayesianos** hierárquicos". Em todos os outros pontos
+o texto já dizia apenas "hierárquico", que está **correto** — o modelo é
+hierárquico, só não é bayesiano. A varredura por `posterior`, `credibilidade`
+e `priori` no `.tex` devolveu 29 ocorrências e **todas as demais eram falsos
+positivos**: "janela posterior", "anos posteriores" e "melhora posterior" são
+temporais, "prioritários" casa com `priori`, e "teste de credibilidade" na
+Seção 12 é o teste de tendências pré-conversão, no sentido corrente da
+palavra.
+
+**Nenhum número mudou.** Nenhum coeficiente, nenhum intervalo, nenhuma
+conclusão substantiva. Os `.rds` de modelo são os mesmos arquivos noutro
+diretório.
+
+**O motivo de usar hierárquico continua inteiro.** Encolhimento e *pooling*
+parcial são propriedades do modelo de efeitos aleatórios, não do paradigma, e
+existem em máxima verossimilhança. Nada do que justificava a camada cai.
+
+**A migração para brms/Stan continua pendência legítima** (seção 8 do
+`RELATORIO_EXECUCAO.md`) e agora fica honesta: é trabalho futuro, não
+descrição do presente.
+
+### A exceção declarada: `preparo_fase2.R`
+
+A linha 2 desse arquivo diz `# Preparo comum da fase 2 (Bayesiana
+hierárquica, DEA e SFA).` e **não foi corrigida**, porque `preparo_fase2.R`
+está na lista de arquivos que o protocolo de trabalho proíbe editar, ao lado
+de `painel_definitivo.csv`, `construir_painel_definitivo.py` e
+`analise_sih.py`.
+
+A edição seria de **comentário apenas**, sem efeito sobre execução. Mesmo
+assim ela não foi feita: a proteção existe justamente para que ninguém decida
+caso a caso que a sua edição é inócua. Fica registrada como a única ocorrência
+remanescente do rótulo antigo em código, aguardando dispensa explícita da
+regra 4.

@@ -38,7 +38,7 @@
 #
 # CORREÇÕES FRENTE AOS MODELOS DA FASE 2 (R8)
 # -------------------------------------------
-# Defeito 2 de R8 — `fase2_bayes.R` restringe a UTI a `ocupacao_uti > 0`, o
+# Defeito 2 de R8 — `fase2_hierarquico.R` restringe a UTI a `ocupacao_uti > 0`, o
 # que condiciona NO DESFECHO. Aqui a amostra de UTI é definida pela
 # CAPACIDADE (`uti_sus > 0`, isto é `ocupacao_uti_valida` não faltante) e os
 # zeros PERMANECEM, acomodados por família Tweedie (contínua não-negativa com
@@ -51,7 +51,7 @@
 # Defeito 3 de R8 — a ocupação de internação NÃO é winsorizada: entra em duas
 # partes (R6), binário de superlotação e contínua condicional a <= 100.
 #
-# Este script não altera `preparo_fase2.R`, `fase2_bayes.R` nem qualquer saída
+# Este script não altera `preparo_fase2.R`, `fase2_hierarquico.R` nem qualquer saída
 # da Fase 2. O preparo é replicado sobre `painel_segmentado.csv`.
 #
 # RESTRIÇÕES DE LEITURA
@@ -266,4 +266,4 @@ cat(sprintf("  estimados: %d | falhas/não convergiu: %d | não-aplicável: %d\n
             sum(grepl("NÃO-APLICÁVEL", tab$situacao))))
 print(tab[, c("indicador", "estrato", "n_obs", "tarja", "situacao",
               "coef_oss", "efeito_pct")], row.names = FALSE)
-cat("\n[etapa4-bayes] Concluída.\n")
+cat("\n[etapa4-hierarquico] Concluída.\n")

@@ -599,7 +599,7 @@ corrigidos e reestimados. A consequência prevista abaixo — "o achado não
 sobrevive como está" — NÃO se confirmou: sob a especificação de mudança
 mínima (ziGamma/hurdle) o achado sobrevive **intacto**, em +30,4%. Ver R10.**
 
-Os modelos de ocupação em `fase2_bayes.R` e `fase2_robustez.R` têm três
+Os modelos de ocupação em `fase2_hierarquico.R` e `fase2_robustez.R` têm três
 defeitos **independentes** entre si:
 
 1. **Winsorização contaminada.** `preparo_fase2.R` winsoriza ambas as
@@ -608,7 +608,7 @@ defeitos **independentes** entre si:
    válida — ou seja, **o limiar é ele próprio artefato do bug corrigido na
    Etapa 1**.
 
-2. **Condicionamento no desfecho.** `fase2_bayes.R` restringe o modelo de UTI
+2. **Condicionamento no desfecho.** `fase2_hierarquico.R` restringe o modelo de UTI
    a `ocupacao_uti > 0`, o que condiciona **no desfecho** e não na capacidade.
    Exclui hospitais com UTI habilitada e zero diárias no ano — seleção pela
    variável dependente. É problema **distinto** do corrigido na Etapa 1, e
@@ -683,8 +683,9 @@ verossimilhança** (`etapa4_hierarquico_segmentado.R`).
 > desceu a **mesma** escada, pelo mesmo motivo — sem Rtools, sem toolchain de
 > compilação — e também roda em glmmTMB por máxima verossimilhança
 > (`RELATORIO_EXECUCAO.md`, seção 3, que documenta a degradação linha a
-> linha). Ainda assim o pacote se intitula "Bayesiana hierárquica" no título
-> do relatório, no README e no nome de `fase2_bayes.R`.
+> linha). Ainda assim o pacote se intitulava "Bayesiana hierárquica" no
+> título do relatório, no README e nos nomes de `fase2_bayes.R`,
+> `fase2_bayes_boot.R` e do diretório `bayes/`.
 >
 > **Consequência que precisa ficar explícita antes de qualquer texto:** os
 > dois são o **mesmo estimador**. Não são famílias inferenciais distintas, e
@@ -693,9 +694,15 @@ verossimilhança** (`etapa4_hierarquico_segmentado.R`).
 > o contrário no `principal.tex` introduziria erro novo em vez de corrigir o
 > existente.
 >
-> A renomeação da Fase 2 **não foi feita**: mexe em nomes de arquivo de um
-> pacote já circulado para revisão externa e em resultados publicados sob
-> esse rótulo. É decisão de João, registrada em `PENDENCIAS.md`.
+> **Resolvido em 29/07/2026, por decisão de João: o projeto inteiro foi
+> renomeado.** Manter a Etapa 4 corrigida e a Fase 2 não corrigida produziria
+> contradição interna entre seções — classe 4 da própria triagem do projeto —,
+> e mandar o pacote para revisão externa com o rótulo errado é pior do que
+> refazer os nomes antes. No `principal.tex` havia **uma única** frase falsa,
+> em `sec17_conclusao.tex`; nas demais seções o texto já dizia apenas
+> "hierárquico", que está correto. **Nenhum número mudou.** Detalhamento,
+> tabela de renomeações e a exceção de `preparo_fase2.R` em `PENDENCIAS.md`
+> item 10.
 
 Em **E3**, o único estrato com identificação within (coeficiente de OSS contra
 Direta, CRE/Mundlak, EP agrupado por CNES):
@@ -1395,7 +1402,7 @@ remove.
 - Se a parte A da internação entrar no texto, ela entra com a redação
   obrigatória acima: **contraste descritivo entre redes**, com a nulidade
   within declarada como falta de potência e não como ausência de efeito.
-- Reexecutar `fase2_bayes.R` regeneraria `tabB_modelos_hierarquicos.csv` com
+- Reexecutar `fase2_hierarquico.R` regeneraria `tabB_modelos_hierarquicos.csv` com
   a linha `uti_parte1` de volta. A remoção está registrada em
   `tabB_uti_parte1_removida.md`, ao lado da tabela, para que quem reexecutar
   saiba o que refazer.

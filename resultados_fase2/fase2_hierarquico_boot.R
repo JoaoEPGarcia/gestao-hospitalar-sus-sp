@@ -1,4 +1,4 @@
-# fase2_bayes_boot.R
+# fase2_hierarquico_boot.R
 # Bootstrap paramétrico do contraste OSS vs Direta no modelo
 # hierárquico de mortalidade (Beta inflada em zero), previsto pelo
 # protocolo como acompanhamento da descida para glmmTMB: simula da
@@ -18,7 +18,7 @@ B <- 100
 
 painel <- preparar_painel()
 d <- amostra_desfecho(painel)
-m <- readRDS(file.path(BASE, "bayes", "modB_mortalidade.rds"))
+m <- readRDS(file.path(BASE, "hierarquico", "modB_mortalidade.rds"))
 
 # a chamada é refeita explicitamente (update() reavaliaria a chamada
 # original, cujos argumentos eram variáveis locais de um helper);
@@ -45,7 +45,7 @@ for (b in seq_len(B)) {
   if (b %% 10 == 0) {
     cat(sprintf("  réplica %d de %d (%.1f min)\n", b, B,
                 as.numeric(difftime(Sys.time(), t0, units = "mins"))))
-    saveRDS(res, file.path(BASE, "bayes", "boot_mortalidade.rds"))
+    saveRDS(res, file.path(BASE, "hierarquico", "boot_mortalidade.rds"))
   }
 }
 validas <- sum(!is.na(res))
@@ -60,5 +60,5 @@ write.csv(data.frame(estatistica = c("coef_oss", "ep_bootstrap",
                      valor = c(fe0, ep_boot, ic[1], ic[2], validas)),
           file.path(BASE, "tabelas", "tabB_bootstrap_mortalidade.csv"),
           row.names = FALSE, fileEncoding = "UTF-8")
-saveRDS(res, file.path(BASE, "bayes", "boot_mortalidade.rds"))
+saveRDS(res, file.path(BASE, "hierarquico", "boot_mortalidade.rds"))
 cat("[boot] Concluído.\n")

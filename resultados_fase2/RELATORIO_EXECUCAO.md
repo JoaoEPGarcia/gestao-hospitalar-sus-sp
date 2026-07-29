@@ -1,6 +1,46 @@
-# Relatório de execução da fase 2: Bayesiana hierárquica, DEA e SFA
+# Relatório de execução da fase 2: hierárquica por máxima verossimilhança, DEA e SFA
 
 Pacote de resultados da fase 2 da estimação (hospitais SUS/SP, painel de 289 CNES por 11 anos, 3.179 observações — pós-ETAPA F de 15/07/2026; pacote reexecutado integralmente em 16-17/07/2026), produzido para revisão externa. Todos os scripts desta pasta são reexecutáveis; nenhum artefato do pipeline original foi alterado. Sementes fixadas em 20260706 em tudo que é estocástico.
+
+> ## Correção de nomenclatura — 29/07/2026
+>
+> **Este pacote chamava-se "Bayesiana hierárquica" e não há nada bayesiano
+> nele.** A Frente 1 desceu a escada `brms` → `rstan` → `glmmTMB` por ausência
+> de toolchain de compilação, e o que rodou foi **máxima verossimilhança com
+> efeitos aleatórios** — a degradação está documentada linha a linha na seção
+> 3, e sempre esteve. O que faltava era o rótulo acompanhar a documentação.
+>
+> Renomeados: o título acima, `fase2_bayes.R` → `fase2_hierarquico.R`,
+> `fase2_bayes_boot.R` → `fase2_hierarquico_boot.R`, o diretório `bayes/` →
+> `hierarquico/`, `tabB_comparacao_freq_bayes.csv` →
+> `tabB_comparacao_cre_hierarquico.csv`, e as seis figuras
+> `figB01_ppcheck_*` → `figB01_checagem_preditiva_*`.
+>
+> **Por que cada nome estava errado, e não apenas impreciso:**
+>
+> - Intervalo de Wald de máxima verossimilhança **não é** intervalo de
+>   credibilidade. A interpretação probabilística é diferente.
+> - `ppcheck` abrevia *posterior predictive check*. Não há posterior aqui:
+>   as figuras são checagem preditiva por **simulação do modelo ajustado**
+>   (30 réplicas), que é um procedimento frequentista legítimo com outro nome.
+> - `tabB_comparacao_freq_bayes` opunha "frequentista" a "bayesiano" quando
+>   **os dois lados são frequentistas**. O contraste real é entre CRE/Mundlak
+>   e a especificação hierárquica, e é isso que o nome novo diz.
+>
+> **Nenhum número mudou.** Nenhum coeficiente, nenhum intervalo, nenhuma
+> conclusão substantiva. A operação é inteiramente de rótulo, e os `.rds` de
+> modelo são os mesmos arquivos, apenas noutro diretório.
+>
+> **O motivo de usar modelo hierárquico continua inteiro.** Encolhimento e
+> *pooling* parcial são propriedades do modelo de efeitos aleatórios, não do
+> paradigma bayesiano, e existem em máxima verossimilhança — ver o item de
+> encolhimento na seção 3. O que se perdeu na descida da escada está listado
+> ali como degradação, e não como equivalência.
+>
+> A migração para `brms`/Stan permanece pendência legítima (seção 8) e agora
+> fica honesta: é **trabalho futuro**, não descrição do presente.
+>
+> Decisão de João, 29/07/2026, registrada em `PENDENCIAS.md` item 10.
 
 ## 1. Ambiente e versões
 
@@ -29,9 +69,9 @@ A escada prevista era brms com cmdstanr, depois rstan, depois glmmTMB. O ambient
 
 A migração para brms/Stan fica listada como pendência para ambiente com toolchain (Seção 8).
 
-**Modelos ajustados** (todos com intercepto aleatório por hospital, dummies de ano, complexidade estrutural padronizada, porte fixo, termo de longa permanência apenas quando há variação (nenhuma no painel de 289) e Mundlak): mortalidade geral e ajustada em Beta com inflação em zero (componente de zeros com complexidade e porte; a categoria fica fora do componente de zeros por separação perfeita, OSS e Municipal não têm zeros); TMP e faturamento real em lognormal (Gama comparada por AIC e derrotada nos dois casos: faturamento 44.890 contra 44.936; TMP 6.488 contra 6.498); produção em Binomial Negativa com log de leitos; ocupação de internação em lognormal da razão winsorizada; UTI em duas partes (Bernoulli e Gama nos positivos). Objetos .rds em bayes/.
+**Modelos ajustados** (todos com intercepto aleatório por hospital, dummies de ano, complexidade estrutural padronizada, porte fixo, termo de longa permanência apenas quando há variação (nenhuma no painel de 289) e Mundlak): mortalidade geral e ajustada em Beta com inflação em zero (componente de zeros com complexidade e porte; a categoria fica fora do componente de zeros por separação perfeita, OSS e Municipal não têm zeros); TMP e faturamento real em lognormal (Gama comparada por AIC e derrotada nos dois casos: faturamento 44.890 contra 44.936; TMP 6.488 contra 6.498); produção em Binomial Negativa com log de leitos; ocupação de internação em lognormal da razão winsorizada; UTI em duas partes (Bernoulli e Gama nos positivos). Objetos .rds em hierarquico/.
 
-**Contrastes OSS vs Direta (hierárquicos)**, tabela completa em tabelas/tabB_modelos_hierarquicos.csv e comparação com o frequentista em tabB_comparacao_freq_bayes.csv:
+**Contrastes OSS vs Direta (hierárquicos)**, tabela completa em tabelas/tabB_modelos_hierarquicos.csv e comparação com o frequentista em tabB_comparacao_cre_hierarquico.csv:
 
 | Modelo | Coef. | EP | IC95 | Efeito |
 |---|---|---|---|---|

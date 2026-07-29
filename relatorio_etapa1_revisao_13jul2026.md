@@ -1,5 +1,8 @@
 # Relatório da ETAPA 1 — Revisão da reunião de 13/07/2026
 
+> **Correção de nomenclatura aplicada em 29/07/2026.** Onde este relatório dizia "Bayes" ou "bayesiano" para a Frente 1 da Fase 2, leia-se **hierárquico (máxima verossimilhança)**. Não há modelagem bayesiana no projeto: a frente desceu a escada `brms` → `rstan` → `glmmTMB` por ausência de toolchain de compilação, e o rótulo não acompanhou. O texto abaixo foi corrigido; **nenhum número mudou**. Ver `PENDENCIAS.md` item 10.
+
+
 **Caráter:** investigação somente-leitura. Nenhum arquivo do pipeline foi alterado.
 **Única exceção autorizada pelo encaminhamento:** registro documental do item 1.9 em `criterios_construcao_painel.md` (§7, novo item 4).
 **Scripts de investigação (reprodutíveis):** `_investigacao_etapa1_13jul2026.py` e `_investigacao_etapa1_13jul2026_anexo.py` (ambos apenas leem dados e imprimem no terminal).
@@ -33,10 +36,10 @@
 | Onde | Arquivos |
 |---|---|
 | Python (dicionários de rótulos e prints) | `analise_sih.py` (ROTULOS), `analise_exploratoria.py` (ROT), `estimacao.py`, `inferencia_robusta.py`, `selecao_entrevistas.py` |
-| R (rótulos de tabelas fase 2) | `fase2_bayes.R` ("Custo real por saída (log)") |
+| R (rótulos de tabelas fase 2) | `fase2_hierarquico.R` ("Custo real por saída (log)") |
 | LaTeX | `sec01, 02, 03, 04, 05, 06, 07, 08, 10, 11, 12, 14, 16, 17`, `apendiceA_diagnosticos.tex`, `roteiro_entrevistas.tex` |
 | Markdown/relatórios | `analises/estimacao.md`, `analises/analise_exploratoria.md`, `resultados_fase2/RELATORIO_EXECUCAO.md`, `analises/LEIAME_painel_definitivo.txt` |
-| CSVs com rótulo embutido (regenerar, não editar) | `tab_est_resumo_oss.csv`, `tab_est_wild_bootstrap.csv`, `tab_est_cs_att.csv`, `tab_est_cs_evento.csv`, `tabB_comparacao_freq_bayes.csv` |
+| CSVs com rótulo embutido (regenerar, não editar) | `tab_est_resumo_oss.csv`, `tab_est_wild_bootstrap.csv`, `tab_est_cs_att.csv`, `tab_est_cs_evento.csv`, `tabB_comparacao_cre_hierarquico.csv` |
 | Figuras com o termo no título/eixo | `fig_ae_01/03/04/05/06/07/08/09_*custo*`, `fig_est_01_evento_custo_real`, `fig_est_03_contraste_oss_direta`, figuras fase 2 |
 
 ---
@@ -71,7 +74,7 @@ Nas **médias** de UTI o efeito é maior (53,3 → 50,0 no Filantrópico; agrega
   - (a) **cortar o eixo Y em 120** — tecnicamente inócuo: o eixo ficaria 4× maior que o dado máximo e *comprimiria* a leitura em vez de melhorá-la;
   - (b) **winsorizar/anotar outliers** — sem objeto: não há outliers acima de 120.
 - **Recomendação (a decidir por vocês):** escala linear com teto **fixo em 35 dias** para o painel definitivo (cobre o teto de 30,5 com folga) — ou 45 dias se o gráfico incluir a base bruta — em vez de 120. Se a decisão da reunião for literal, o teto de 120 pode ser aplicado, mas o gráfico perde resolução.
-- Confirmado: mudança **apenas de visualização**; a variável `tmp` dos modelos (CRE/Mundlak, Bayes, DEA, SFA) não é tocada.
+- Confirmado: mudança **apenas de visualização**; a variável `tmp` dos modelos (CRE/Mundlak, hierárquico, DEA, SFA) não é tocada.
 
 **Adendo (C2, veredito de 14/07/2026) — o achado principal deste item não é a escala, é a censura:** o teto de ~30,5 dias é **censura à direita** da base, não ausência de outliers. Assinatura: 80 hospital-ano do painel em [30,0; 30,5] e zero acima; na base bruta inteira (7.016 obs), p99,9 = 30,50 e o único estabelecimento que ultrapassa o teto em toda a década é um hospital-dia (tipo 62, regime próprio de AIH, fora do painel). Os ~18 CNES de longa permanência (TMP mediano > 20, incluindo as duas "Casas da Criança" do item 1.10) estão empilhados no teto — o TMP deles mede o teto, não a permanência. **Item retido**: nenhuma decisão de eixo antes da resposta de Alberto sobre a regra de diárias por AIH (Pergunta 1 do memorando de 14/07/2026).
 
@@ -109,7 +112,7 @@ Trajetória do CNES 2081695 (faixa Barcelona 5, complexidade estrutural 675 — 
 ## 1.7 — Os −6,7% no faturamento: **origem localizada; IC95% já existe e cruza zero — nada precisa ser reestimado para reportar**
 
 - **Fonte primária:** `tab_est_custo_fe.csv` (`estimacao.py` — log de `custo_real`, efeitos fixos de hospital e ano, EP agrupado por CNES, n = 3.452): coef OSS = **−0,0696 log-pontos**, EP = 0,095, p = 0,464 → efeito = **−6,73%**, **IC95% = [−22,6%, +12,4%]**. Já descrito por extenso em `analises/estimacao.md`.
-- Réplicas do mesmo número: `tab_est_resumo_oss.csv` (efeito_pct −6,72); `tabB_comparacao_freq_bayes.csv` (hierárquico bayesiano: −0,0696 ± 0,0604, IC [−17,1%, +5,0%]); `tabR_frente1_variantes.csv` (CRE/Mundlak: −6,7%, IC [−17,1%, +5,0%]; sem_pandemia −6,3%; sem_switchers −17,1% com IC ainda mais largo); `tab_est_wild_bootstrap.csv` (p wild-cluster = **0,68**, o mais conservador dado que só 5 clusters são tratados).
+- Réplicas do mesmo número: `tab_est_resumo_oss.csv` (efeito_pct −6,72); `tabB_comparacao_cre_hierarquico.csv` (hierárquico (máxima verossimilhança): −0,0696 ± 0,0604, IC [−17,1%, +5,0%]); `tabR_frente1_variantes.csv` (CRE/Mundlak: −6,7%, IC [−17,1%, +5,0%]; sem_pandemia −6,3%; sem_switchers −17,1% com IC ainda mais largo); `tab_est_wild_bootstrap.csv` (p wild-cluster = **0,68**, o mais conservador dado que só 5 clusters são tratados).
 - **Leitura:** todos os ICs cruzam zero em todas as especificações e métodos — o −6,7% é ponto central de um efeito **estatisticamente indistinguível de zero**. O texto deve reportá-lo sempre com o IC.
 - **"Reflete piora no atendimento?" (enquadramento corrigido no veredito de 14/07/2026):** a premissa da pergunta não se sustenta — o −6,7% é ponto central de um efeito não significativo (IC95% cruzando zero em todas as especificações; wild-cluster p = 0,68; a variante sem switchers dá −17,1% com IC ainda mais largo) e não deve circular como achado. Além disso, há uma **explicação alternativa que compete de igual para igual** com qualquer leitura assistencial: hospitais OSS são custeados por contrato de gestão com **orçamento global**, não por reembolso de AIH — o valor registrado por saída é, para eles, produção sem consequência financeira direta, e o próprio −6,7% pode ser artefato do regime de pagamento, exatamente a variável cujo efeito se quer medir. O número, quando citado, deve vir sempre com o IC e com essa ressalva na mesma frase. Os demais indicadores do período (TMP −10,2%, produção +45,4%, mortalidade −1,12 p.p., complexidade atendida sem queda) seguem valendo como contexto descritivo — mas não convertem o −6,7% em evidência sobre qualidade, em nenhuma direção.
 - **Nota:** após os itens 1.10/1.11/1.12 o painel muda; a reestimação completa (já prevista) atualizará o número — este item deve ser refeito **no painel novo** (item 11 da ordem da Etapa 2).
@@ -182,7 +185,7 @@ Os 3 da aba "Pediátrico" do Alberto (2071371, 2078325, 2080427) são subconjunt
 - `complexidade_pond_mort`: só `construir_painel_definitivo.py` (calcular_escores_complexidade).
 
 **Quem consome (código):**
-- `mort_sem_excl`: `analise_exploratoria.py` (painéis de mistura/inflação, medianas), `estimacao.py` (ZIB "ajustada" → `tab_est_mort_zib_ajustada.csv`), `fase2_bayes.R` (modelo de sensibilidade `f_morta`), `verificacao_pos_patch.py`, `verificacoes_revisao.py`.
+- `mort_sem_excl`: `analise_exploratoria.py` (painéis de mistura/inflação, medianas), `estimacao.py` (ZIB "ajustada" → `tab_est_mort_zib_ajustada.csv`), `fase2_hierarquico.R` (modelo de sensibilidade `f_morta`), `verificacao_pos_patch.py`, `verificacoes_revisao.py`.
 - `complexidade_pond_mort`: `diagnostico_painel_definitivo.py` (figD06), `fase2_dea.R` (ajuste de output `qtde_adj_pond` — variante do DEA), `verificacao_pos_patch.py` (checagem de correlação).
 
 **Ponto central para a decisão:** **nenhum modelo de nenhum indicador usa `complexidade_pond_mort` como covariável** — Fase 1 (`estimacao.py`) e Fase 2 (`preparo_fase2.R` → `cplx_z`) usam exclusivamente `complexidade_estrutural`. O único uso "de modelo" é o **ajuste de output do DEA** (variante ponderada, comparada em `tabE_spearman_ajuste_output.csv`). Portanto a lista de "modelos a reestimar só por causa da pond_mort" reduz-se ao DEA (variante); todo o resto será reestimado pelos itens 1.10/1.11 de qualquer forma. `complexidade_estrutural` permanece como métrica única — nada muda nela.

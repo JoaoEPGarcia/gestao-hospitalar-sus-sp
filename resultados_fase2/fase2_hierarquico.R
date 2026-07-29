@@ -1,4 +1,4 @@
-# fase2_bayes.R
+# fase2_hierarquico.R
 # Frente 1 da fase 2: contrastes principais sob especificação
 # hierárquica (efeito aleatório de intercepto por hospital, Mundlak,
 # dummies de ano). Escada prevista no protocolo: brms com cmdstanr;
@@ -13,7 +13,7 @@ source("C:/ProjetoPosDoc/resultados_fase2/preparo_fase2.R")
 BASE <- "C:/ProjetoPosDoc/resultados_fase2"
 FIG  <- file.path(BASE, "figuras")
 TAB  <- file.path(BASE, "tabelas")
-RDS  <- file.path(BASE, "bayes")
+RDS  <- file.path(BASE, "hierarquico")
 
 # cores da casa (paleta fria do projeto)
 COR_SERIE <- "#2a78d6"; COR_APOIO <- "#0d366b"; COR_OSS <- "#0f9b8e"
@@ -77,7 +77,7 @@ extrair_oss <- function(m) {
 ppcheck <- function(m, y_obs, nome, rotulo, log_x = FALSE) {
   ok <- try({
     sims <- simulate(m, nsim = 30, seed = 20260706)
-    png(file.path(FIG, paste0("figB01_ppcheck_", nome, ".png")),
+    png(file.path(FIG, paste0("figB01_checagem_preditiva_", nome, ".png")),
         width = 1120, height = 660, res = 150)
     par(mar = c(4, 4, 3, 1))
     tr <- if (log_x) function(x) log(x[x > 0]) else function(x) x
@@ -93,7 +93,7 @@ ppcheck <- function(m, y_obs, nome, rotulo, log_x = FALSE) {
            col = c(COR_APOIO, COR_SERIE), lwd = c(2.2, 1), bty = "n",
            cex = .85)
     dev.off()
-    cat("  [FIG] figB01_ppcheck_", nome, ".png\n", sep = "")
+    cat("  [FIG] figB01_checagem_preditiva_", nome, ".png\n", sep = "")
   }, silent = TRUE)
   if (inherits(ok, "try-error")) {
     cat("  [aviso] ppcheck indisponível para ", nome, ": ",
@@ -199,9 +199,9 @@ names(comp) <- c("chave", "modelo_relatorio", "coef_freq", "ep_freq",
                  "efeito_pct_hier")
 comp$ic95_lo_freq <- comp$coef_freq - 1.96 * comp$ep_freq
 comp$ic95_hi_freq <- comp$coef_freq + 1.96 * comp$ep_freq
-write.csv(comp, file.path(TAB, "tabB_comparacao_freq_bayes.csv"),
+write.csv(comp, file.path(TAB, "tabB_comparacao_cre_hierarquico.csv"),
           row.names = FALSE, fileEncoding = "UTF-8")
-cat("[TAB] tabB_comparacao_freq_bayes.csv\n")
+cat("[TAB] tabB_comparacao_cre_hierarquico.csv\n")
 
 # ── encolhimento: categoria como efeito aleatório (partial pooling) ──
 # sem pooling: dummies fixas de categoria; com pooling: (1|categoria).
@@ -258,7 +258,7 @@ write.csv(enc, file.path(TAB, "tabB_encolhimento.csv"),
 # ── sensibilidade da mortalidade (substituto documentado das priors) ─
 # sem priors no glmmTMB, a sensibilidade testa a especificação:
 # (a) sem o termo de Mundlak; (b) com efeito aleatório de ano;
-# o bootstrap paramétrico roda em script próprio (fase2_bayes_boot.R).
+# o bootstrap paramétrico roda em script próprio (fase2_hierarquico_boot.R).
 m_sem_mundlak <- glmmTMB(as.formula(paste0(
                            "mort_all ~ categoria + cplx_z + porte_fixo",
                            TERMO_LP, " + ano_f + (1 | cnes_f)")),

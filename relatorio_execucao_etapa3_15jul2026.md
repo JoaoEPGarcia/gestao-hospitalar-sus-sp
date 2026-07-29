@@ -1,5 +1,8 @@
 # Relatório de execução — Etapa 3/4 do ciclo de revisão (15/07/2026)
 
+> **Correção de nomenclatura aplicada em 29/07/2026.** Onde este relatório dizia "Bayes" ou "bayesiano" para a Frente 1 da Fase 2, leia-se **hierárquico (máxima verossimilhança)**. Não há modelagem bayesiana no projeto: a frente desceu a escada `brms` → `rstan` → `glmmTMB` por ausência de toolchain de compilação, e o rótulo não acompanhou. O texto abaixo foi corrigido; **nenhum número mudou**. Ver `PENDENCIAS.md` item 10.
+
+
 **De:** João Eduardo Pastori Garcia (estatística do projeto)
 **Data:** 15/07/2026
 **Assunto:** exclusão final (ETAPA F), reexecução única do pipeline e reconciliação — fechamento das três perguntas do memorando de 14/07/2026
@@ -56,7 +59,7 @@ Medianas (todos os anos, painel novo): mortalidade Direta 0,0584 vs OSS 0,0494 �
 
 ## 7. Impacto a jusante (sinalizações — não executado nesta rodada)
 
-1. **Fase 2 (CRE/Mundlak, Bayesiano hierárquico, DEA, SFA — `fase2_*.R`):** estimada sobre o painel de **314**; **precisa ser reestimada** sobre o painel de 289 antes de qualquer resultado voltar a circular. Ciclo separado.
+1. **Fase 2 (CRE/Mundlak, hierárquico (máxima verossimilhança), DEA, SFA — `fase2_*.R`):** estimada sobre o painel de **314**; **precisa ser reestimada** sobre o painel de 289 antes de qualquer resultado voltar a circular. Ciclo separado.
 2. **Fase 1 (`estimacao.py`, `analise_exploratoria.py`, `inferencia_robusta.py`, gráficos):** mesmo status — resultados atuais refletem o painel de 314.
 3. **Seleção de entrevistas da fase qualitativa** (`tab_selecao_entrevistas.csv`, `tab_sel_conversores_trajetoria.csv`): depende do painel atualizado e **deve ser refeita depois da reestimação**, não em paralelo.
 4. **Documentos com N antigo** (README, LaTeX `sec01_painel.tex` e seções de resultados, rótulos do `diagnostico_painel_definitivo.py`): o enunciado do painel será reconciliado em edição própria; as seções de **resultados** só devem ser atualizadas junto com a reestimação, para não misturar N novo com estimativas antigas.

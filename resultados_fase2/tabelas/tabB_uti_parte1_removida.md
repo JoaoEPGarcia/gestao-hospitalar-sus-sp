@@ -46,9 +46,9 @@ O que muda é que agora se sabe **por quê**.
 
 ## Atenção a quem reexecutar
 
-`fase2_bayes.R` **não foi alterado** — os resultados publicados continuam
+`fase2_hierarquico.R` **não foi alterado** — os resultados publicados continuam
 reproduzíveis a partir do arquivo que os produziu. Consequência: reexecutar
-`fase2_bayes.R` regenera `tabB_modelos_hierarquicos.csv` **com a linha
+`fase2_hierarquico.R` regenera `tabB_modelos_hierarquicos.csv` **com a linha
 `uti_parte1` de volta**. Quem reexecutar precisa remover a linha de novo e
 manter este arquivo ao lado.
 

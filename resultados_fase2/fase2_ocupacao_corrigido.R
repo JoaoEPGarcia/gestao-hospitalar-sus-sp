@@ -2,7 +2,7 @@
 # ETAPA 5 — Reestimação dos modelos de ocupação da Fase 2, com os três
 # defeitos de R8 corrigidos.
 #
-# Não altera `fase2_bayes.R`, `fase2_robustez.R` nem `preparo_fase2.R`. Os
+# Não altera `fase2_hierarquico.R`, `fase2_robustez.R` nem `preparo_fase2.R`. Os
 # resultados publicados continuam reproduzíveis a partir dos arquivos que os
 # produziram; este script produz os corrigidos ao lado deles, para que a
 # comparação seja auditável em vez de substitutiva.
