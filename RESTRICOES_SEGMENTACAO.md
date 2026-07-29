@@ -730,9 +730,24 @@ efeitos aleatórios numericamente igual ao within. É resultado algébrico
 conhecido, não achado deste trabalho, e a igualdade é **exata em painel
 linear e balanceado**.
 
-As duas condições importam, e a segunda foi encontrada por verificação —
-a formulação inicial da correção dizia "nos indicadores log-lineares os dois
-coincidem", o que é **largo demais**. Medido em `tabSEG_16`:
+As duas condições importam, e a segunda foi encontrada por verificação.
+
+> **Formulação refutada, preservada e atribuída (29/07/2026).** A instrução de
+> trabalho que abriu este item, escrita por **João**, dizia: *"nos indicadores
+> log-lineares os dois estimadores produzem o mesmo ponto por construção"*.
+> **É largo demais.** A ocupação de internação parte B é log-linear e **não**
+> coincide — 0,23910 contra 0,21112, distância de 0,028 —, porque o painel
+> dela é desbalanceado. A condição verdadeira é *linear no link **e** painel
+> balanceado*, e a parte B é o contraexemplo que a estabelece.
+>
+> Fica registrado de quem partiu a formulação larga pelo mesmo motivo que as
+> versões refutadas de R1 ficam: o registro deste projeto preserva erro
+> rotulado, e rótulo sem autoria transfere o erro para quem o encontrou.
+> A verificação que a derrubou é `verificar_identidade_cre_hierarquico.py`,
+> escrita para testar a afirmação antes de gravá-la — e foi o teste, não a
+> leitura, que separou a condição certa da errada.
+
+Medido em `tabSEG_16`:
 
 | indicador | link | painel | CRE/Mundlak | hierárquico | \|dif\| |
 |---|---|---|---|---|---|
