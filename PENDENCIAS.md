@@ -1100,7 +1100,8 @@ O escopo real do Bloco A, medido e não presumido, é **sec02, sec04 e sec08**.
 O fechamento mesclou as Etapas 4 e 5 e a repaginação em `master`, renomeou
 o rótulo bayesiano em todo o projeto, propagou a correção do domínio da
 ocupação de UTI ao documento e escreveu a seção da reestimação segmentada.
-O documento vai de 113 a **127 páginas**, com compile limpo em três passes.
+O documento vai de 113 a **127 páginas** no fechamento, e a **129** ao fim do
+Bloco 6 (29/07/2026), com compile limpo em três passes nos dois estados.
 
 O que segue aberto está separado em **duas listas**, porque são coisas
 diferentes e misturá-las esconde qual delas depende de alguém decidir.
@@ -1263,6 +1264,27 @@ o outro**, nas duas direções, antes de olhar as 18 seções. O teste é barato
 os dois arquivos cabem numa leitura — e nenhuma das camadas 1, 2 ou 3 da
 triagem o faz, porque todas elas comparam *texto contra fonte de dados*, e
 aqui os dois lados são texto.
+
+**Ampliação do achado, ao fim do Bloco 6 (29/07/2026).** A doença não fica
+entre os dois arquivos: ela aparece **dentro de cada um**. No mesmo dia, o
+§7 deste arquivo descrevia com precisão um defeito de eixo de figura que já
+estava corrigido havia dois dias, e o §1 afirmava uma previsão sobre a
+triagem que a calibração nula do próprio instrumento refutou. Nenhum dos
+dois é contradição com outro documento: é registro que envelheceu sem que
+ninguém o reexecutasse.
+
+O que separa os casos pegos dos casos que teriam passado é sempre o mesmo:
+**alguém rodou.** O §7 caiu quando o `analise_exploratoria.py` foi
+reexecutado; o §1 caiu quando o índice foi calibrado contra placebo; os três
+resíduos da Etapa 1 caíram quando os PNGs foram abertos. Ler o registro
+nunca teria derrubado nenhum deles — o registro estava internamente
+coerente em todos os casos.
+
+**Regra de leitura, para toda auditoria futura deste projeto:** um item de
+pendência que descreve um defeito **não é evidência de que o defeito existe
+hoje**. Antes de trabalhar sobre um item, reproduza o defeito. Se ele não
+reproduzir, o trabalho é fechar o item, não consertar o que já está
+consertado.
 
 **Candidato não corrigido, deixado para conferência humana.** A mesma lista
 final do `RESTRICOES_SEGMENTACAO.md` traz *"Propagação da correção da ocupação
