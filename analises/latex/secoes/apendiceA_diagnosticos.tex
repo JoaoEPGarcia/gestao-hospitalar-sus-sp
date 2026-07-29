@@ -40,9 +40,22 @@ molde mais simples para contagens, a Poisson, supõe que a variação entre
 unidades seja comparável à média, e aqui a variação é milhares de vezes
 maior (razão de 6.249 no agregado e de 102 mesmo comparando cada
 hospital só consigo mesmo ao longo dos anos). A \textbf{ocupação de
-internação} é modelada no logaritmo sem truncar em 100\%, e a
+internação} é modelada no logaritmo, e aqui é preciso ser preciso sobre
+o corte: o modelo \emph{não} trunca em 100\%, mas \textbf{winsoriza no
+percentil 99, que corresponde a 125,1\%} --- ou seja, as 32 observações
+mais altas são rebaixadas a esse teto. O ponto merece destaque porque
+essa faixa não é ruído: ocupação acima de 100\% é a assinatura
+aritmética da \textbf{superlotação}, já que o cadastro CNES registra
+apenas a capacidade habilitada e exclui o leito extra, enquanto o SIH
+fatura diária para maca e leito de observação a partir de vinte e quatro
+horas de permanência. A winsorização apara justamente o topo dessa
+cauda. Dizer que o modelo ``não trunca em 100\%'' seria literalmente
+verdadeiro e materialmente enganoso, porque sugere que o excesso foi
+preservado quando ele foi parcialmente aparado. A
 \textbf{ocupação de UTI} usa um modelo em duas partes, primeiro se o
-hospital tem UTI ativa, depois com que intensidade a usa.
+hospital tem UTI ativa, depois com que intensidade a usa; a primeira
+parte é degenerada por separação e não é citável (ver
+\texttt{tabB\_uti\_parte1\_removida.md}).
 
 \subsection*{A mortalidade como mistura de duas Betas}
 
@@ -95,6 +108,7 @@ soma de duas Betas foi reconstruída separando de fato os hospitais nos
 dois grupos observados no painel (baixo óbito estrutural e demais), pela
 mortalidade mediana de cada hospital.}
 
+\newpage
 \subsection*{Escolha do molde de cada indicador}
 
 Faturamento por saída e TMP são valores positivos com cauda à direita, e
@@ -352,6 +366,7 @@ diferenças fixas entre hospitais e entre anos.}
 cada hospital comparado consigo mesmo embaixo), agora para a mortalidade
 na escala logito, a escala interna em que o modelo trabalha proporções.}
 
+\newpage
 \subsection*{Resíduos quantílicos dos modelos estimados}
 
 A fase de estimação prometeu que a escolha das famílias de distribuição
