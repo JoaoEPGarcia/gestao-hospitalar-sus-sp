@@ -1,0 +1,15 @@
+﻿estrato,categoria,n_obs,n_cnes,tarja,n_acima_100,pct_superlotacao,cnes_com_variacao_within,pct_cnes_com_within
+E1,Direta,11,1,[n<10],0,0.0,0,0.0
+E1,Filantrópico,594,54,,2,0.34,2,3.7
+E1,OSS,22,2,[n<10],2,9.09,1,50.0
+E1,Privado,11,1,[n<10],1,9.09,1,100.0
+E1,Público Municipal,99,9,[n<10],2,2.02,2,22.2
+E2,Direta,65,6,[n<10],5,7.69,2,33.3
+E2,Filantrópico,735,67,,53,7.21,23,34.3
+E2,OSS,67,7,[n<10],7,10.45,2,28.6
+E2,Privado,22,2,[n<10],0,0.0,0,0.0
+E2,Público Municipal,176,16,,34,19.32,10,62.5
+E3,Direta,208,20,,6,2.88,6,30.0
+E3,Filantrópico,550,50,,158,28.73,28,56.0
+E3,OSS,276,28,,98,35.51,18,64.3
+E3,Público Municipal,341,31,,124,36.36,26,83.9

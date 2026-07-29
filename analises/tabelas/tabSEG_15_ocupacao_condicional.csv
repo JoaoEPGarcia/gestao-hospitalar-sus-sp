@@ -1,0 +1,15 @@
+﻿estrato,categoria,n_obs_condicional,n_obs_bruto,n_cnes,tarja,mediana_condicional,media_condicional,mediana_bruta_conflaciona
+E1,Direta,11,11,1,[n<10],27.88,24.81,27.88
+E1,Filantrópico,592,594,54,,39.32,41.79,39.35
+E1,OSS,20,22,2,[n<10],84.88,80.07,85.67
+E1,Privado,10,11,1,[n<10],52.58,59.57,54.68
+E1,Público Municipal,97,99,9,[n<10],48.99,54.11,49.14
+E2,Direta,60,65,6,[n<10],56.73,54.67,58.01
+E2,Filantrópico,682,735,67,,63.89,63.11,66.36
+E2,OSS,60,67,7,[n<10],56.24,59.22,58.91
+E2,Privado,22,22,2,[n<10],35.04,39.91,35.04
+E2,Público Municipal,142,176,16,,70.77,69.07,76.41
+E3,Direta,202,208,20,,67.88,68.46,68.5
+E3,Filantrópico,392,550,48,,83.55,78.53,89.86
+E3,OSS,178,276,28,,88.99,85.84,95.89
+E3,Público Municipal,217,341,30,,86.52,83.41,94.45
