@@ -105,9 +105,12 @@ cinco hospitais que trocaram de rede no período.
 \subsection{A segmentação captura gradiente estrutural real}
 
 Antes de usar os estratos, vale verificar se eles significam alguma coisa. A
-resposta é sim: \textbf{em cinco dos seis indicadores, as medianas dos três
-estratos ordenam monotonicamente}: E1, depois E2, depois E3, sem
-inversões.
+resposta é sim: \textbf{em cinco dos seis indicadores, as medianas ordenam
+monotonicamente}, E1, depois E2, depois E3, sem inversões. Em quatro
+deles a ordenação atravessa os três estratos; no quinto, a ocupação de
+UTI, ela compara apenas E2 e E3, porque o indicador não é definido em E1
+(o estrato é definido por não ter leito de UTI, e a razão não existe
+ali).
 
 \begin{table}[H]
 \centering
@@ -153,6 +156,16 @@ distribuição completa; à direita, a evolução ano a ano.}
 esquerda para a direita sem se cruzar; é isso que significa ``ordena''. No
 painel da mortalidade, as caixas de E2 e E3 ficam praticamente na mesma
 altura.}
+
+\comofeito{à esquerda, um painel de boxplots por indicador: o eixo
+horizontal traz os três estratos estruturais (E1, E2 e E3) e o vertical, o
+valor do indicador; a linha dentro da caixa é a mediana, a caixa vai do
+primeiro ao terceiro quartil e os pontos soltos são observações extremas.
+À direita, um painel de séries: o eixo horizontal traz o ano (2015 a 2025)
+e o vertical, a mediana do indicador naquele ano, uma linha por estrato. A
+unidade é o hospital-ano, e todas as categorias de gestão entram juntas em
+cada estrato. O painel da ocupação de UTI não tem curva para E1, porque o
+estrato é definido por não ter leito de UTI e a razão é indefinida ali.}
 
 \subsection{Os resultados em E3}
 
@@ -222,9 +235,12 @@ E os dois têm confundidor documentado. Em Sorocaba, a conversão foi
 motivada por crise assistencial, o que significa que o hospital estava
 piorando quando trocou de gestão, e a comparação antes-depois mistura efeito
 de gestão com retorno ao patamar normal. No Pérola Byington, a conversão
-coincidiu com mudança de prédio. Some-se a isso que \textbf{as cinco
-conversões foram para o mesmo tipo de operador}, de modo que o que se mede é
-o efeito daquele arranjo, não do modelo OSS em geral.
+coincidiu com mudança de prédio. Some-se a isso que \textbf{os dois foram
+para a mesma organização social}, o Seconci-SP
+(Subseção~\ref{sub:oqueforam}), de modo que o que se mede é o efeito
+daquele operador específico, não do modelo OSS em geral. Dos outros três
+conversores, dois foram para uma segunda organização, e de um deles não se
+identificou nem a data exata da assunção nem a OSS contratada.
 
 O intervalo de confiança não sabe nada disso. Ele mede incerteza amostral,
 não incerteza de desenho. \textbf{Não é um desenho limpo; é o desenho
@@ -232,8 +248,11 @@ disponível}, e os números desta seção devem ser lidos com essa frase colada.
 
 \subsubsection*{E1 e E2 não são interpretados}
 
-Os coeficientes de E1 e E2 constam das tabelas de origem \textbf{tarjados},
-e não são narrados aqui. O motivo é estrutural e não de cautela retórica:
+Os coeficientes de E1 e E2 foram estimados e ficaram \textbf{tarjados nas
+tabelas de trabalho da segmentação} (os arquivos \texttt{tabSEG} do
+repositório, que não são reproduzidos neste documento justamente por não
+serem interpretáveis). Não são narrados aqui, e o motivo é estrutural, não
+de cautela retórica:
 \textbf{E1 não tem nenhum hospital que trocou de rede} e E2 tem um só. Sem
 conversores, o coeficiente de OSS deixa de ser efeito e passa a ser
 \textbf{comparação entre grupos distintos de hospitais}, a mesma coisa que
@@ -278,6 +297,17 @@ cinza são as tarjadas, sem identificação within. À direita, a frequência de
 superlotação por categoria de gestão dentro de cada estrato.}
 \label{fig:e3coef}
 \end{figure}
+
+\comofeito{à esquerda, um gráfico de pontos com barras de intervalo: o
+eixo vertical traz o estrato e o horizontal, o \textbf{efeito estimado da
+gestão por OSS contra a administração Direta} naquele estrato, com o
+intervalo de 95\% de erros-padrão agrupados por hospital. As barras em
+cinza são E1 e E2, tarjadas porque não têm conversores suficientes para
+identificar efeito \emph{within}: o ponto ali é contraste entre grupos
+distintos de hospitais, não efeito de mudança de gestão. À direita, um
+gráfico de barras: para cada estrato, a \textbf{proporção de
+hospitais-ano em que a ocupação de internação passa de 100\%}, uma barra
+por categoria de gestão. A unidade é o hospital-ano.}
 
 \subsection{A ocupação de internação eram duas perguntas, não uma}
 

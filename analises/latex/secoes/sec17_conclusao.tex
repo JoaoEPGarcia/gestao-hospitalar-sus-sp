@@ -58,9 +58,12 @@ que não usa dinheiro nenhum (55 saídas por leito nas OSS contra 36 na
 Direta) e replicado em todos os métodos, inclusive sem os conversores.
 A esse traço soma-se a \textbf{maior eficiência produtiva das OSS}
 (Seção~\ref{sec:fase2}), cerca de 25\% menos distância à fronteira que
-a Direta, concordante entre DEA e SFA e igualmente estável à retirada
+a Direta, medida pelo DEA e igualmente estável à retirada
 dos conversores (o coeficiente vai de 0,293 para 0,331 negativo, com
-intervalo inteiro abaixo do zero): como a intensidade operacional, é uma característica
+intervalo inteiro abaixo do zero). A fronteira estocástica põe as OSS na
+mesma ponta, mas \textbf{não conta como confirmação}: a monotonicidade
+dela está violada em 94,9\% das observações e nenhum coeficiente seu é
+citável, de modo que este achado se apoia no DEA e apenas nele. Como a intensidade operacional, é uma característica
 \emph{da rede}, medida na comparação entre hospitais distintos, e não um
 efeito de conversão.
 
@@ -110,7 +113,7 @@ Seção~\ref{sec:fase2} mostrou seu efeito aparente encolher quase 90\%
 assim que o modelo pondera a evidência pelo tamanho do grupo.
 
 \textbf{Limitações do projeto como um todo.} Para além das ressalvas
-técnicas discutidas seção a seção, quatro limitações operam no nível do
+técnicas discutidas seção a seção, seis limitações operam no nível do
 projeto e condicionam toda leitura dos resultados. A primeira, e a mais
 importante, é que \textbf{toda a identificação causal repousa em apenas
 cinco conversores}, três deles com um único ano de dados após a mudança
@@ -130,9 +133,20 @@ documentada na Subseção~\ref{sub:oqueforam}: \textbf{as cinco conversões
 não são casos limpos}. Uma foi decidida em resposta a uma crise de
 gestão, outra veio junto com mudança de prédio, duas já tinham serviços
 terceirizados antes da mudança formal, e os dois únicos casos com janela
-posterior utilizável foram para a mesma organização social. O desenho
+posterior utilizável foram para a mesma organização social, o Seconci-SP.
+O desenho
 mede menos o efeito do modelo de gestão em abstrato do que o que
 aconteceu nestes cinco hospitais específicos.
+
+E uma sexta, sobre um dos instrumentos: \textbf{nenhum coeficiente e
+nenhum nível da fronteira estocástica é citável}, em nenhuma categoria de
+gestão. A forma Translog estimada tem a monotonicidade violada em 94,9\%
+das observações, de 93,6\% no Filantrópico a 99,3\% na própria
+administração Direta, e uma fronteira violada em quase toda a amostra não
+se comporta como função de produção. A SFA permanece no documento como
+diagnóstico dessa inadequação, que é ela própria um achado sobre a
+tecnologia de produção hospitalar; \textbf{todas as conclusões de
+eficiência apoiam-se no DEA} (Seção~\ref{sec:fase2}).
 
 \textbf{Contribuição.} Com essas fronteiras claras, o que o projeto
 entrega é, ao que se sabe, o \textbf{primeiro comparativo institucional
@@ -157,13 +171,29 @@ entre redes} (Seção~\ref{sec:segmentacao}). Nos outros dois, a administração
 Direta tem 1 e 6 hospitais contra 2 e 7 das OSS: a análise agregada
 escondia essa limitação ao somar num contraste único hospitais sem
 correspondente na rede oposta. No estrato comparável, os achados centrais se
-mantêm: o tempo de permanência 11,8\% menor e a mortalidade menor no
-logito, ambos excluindo o zero, e o faturamento sem diferença.
+mantêm: o tempo de permanência 11,8\% menor, o faturamento sem diferença,
+e a mortalidade 0,281 menor no logito, os dois primeiros excluindo o zero.
+\textbf{A linha da mortalidade ali não contradiz o parágrafo acima, e
+precisa ser lida com a mesma ressalva}: o coeficiente é do modelo que
+controla a complexidade Barcelona, é identificado pelos mesmos quatro
+conversores presentes no estrato, e a diferença bruta de mortalidade entre
+as redes dentro dele \textbf{não é citável}, por estar em parte comprada
+por composição de casuística (Seção~\ref{sec:segmentacao}). A segmentação
+mostra onde há comparação viável; ela não converte o achado de mortalidade
+em efeito de rede.
 
 \textbf{O achado mais forte resiste ao exame de especificação.} A
-intensidade de uso da UTI fica em 30,4\% acima da administração Direta, com
-intervalo entre $+5{,}7\%$ e $+60{,}8\%$; sob cinco famílias de distribuição
-o efeito varia entre 25,9\% e 30,4\%, mantendo a direção em todas e a
+intensidade de uso da UTI foi estimada duas vezes, por caminhos
+diferentes, e as duas estimativas apontam na mesma direção com magnitudes
+distintas: \textbf{19,3\% acima da administração Direta} no modelo
+transversal da Seção~\ref{sec:resultados} ($p$ igual a 0,003), citado mais
+acima, e \textbf{30,4\%} no modelo em duas partes da segunda fase, com
+intervalo entre $+5{,}7\%$ e $+60{,}8\%$. As duas não são o mesmo número
+medido duas vezes: a segunda define a amostra pela capacidade instalada em
+vez do uso e modela a massa em zero num componente próprio, o que a torna
+a estimativa preferida, e a primeira é a que se compara com o restante da
+Seção~\ref{sec:resultados}. Sob cinco famílias de distribuição o efeito da
+segunda varia entre 25,9\% e 30,4\%, mantendo a direção em todas e a
 significância em quatro (Subseção~\ref{sub:etapa5}).
 
 \newpage
