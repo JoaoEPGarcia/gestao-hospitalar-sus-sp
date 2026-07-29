@@ -16,9 +16,14 @@ tempo de permanência (0,52), e as duas ocupações entre si (0,54). A
 complexidade, 0,62 com ocupação de internação, 0,58 com faturamento, 0,60 com
 TMP e 0,25 com mortalidade, o retrato numérico do papel de grande
 divisor que a Seção~\ref{sec:complexidadeporte} descreveu. Já a
-mortalidade se associa mais à ocupação de UTI (0,36) do que à de
+mortalidade se associa mais à ocupação de UTI (0,26) do que à de
 internação (0,22), na direção esperada: onde a casuística é mais grave,
-usa-se mais UTI e morre-se mais.
+usa-se mais UTI e morre-se mais. A margem, porém, é estreita — 0,04 —, e
+não sustenta muito peso: as duas associações são fracas e praticamente
+equivalentes. Este par foi recalculado sobre o domínio corrigido da
+ocupação de UTI (Seção~\ref{sec:categorias}); na definição antiga a
+correlação aparecia como 0,36, e a folga entre as duas parecia três vezes
+maior do que é.
 
 \comoler{procure a linha de um indicador e percorra as colunas: cada
 célula diz o quanto aquele par anda junto (0 sem relação, 1 relação
@@ -47,14 +52,24 @@ Spearman por captar relações de ordem sem exigir forma linear.}
 A Figura~\ref{fig:variancia} e a Tabela~\ref{tab:variancia} respondem a
 outra pergunta essencial: \textbf{quando um indicador varia, essa
 variação vem de comparar hospitais diferentes ou do mesmo hospital
-mudando ao longo dos anos?} A resposta é contundente: a variação vem
-quase toda das diferenças entre hospitais. Na fração de alta complexidade,
-\textbf{apenas 4,5\% da variação total acontece dentro do mesmo hospital}
-ao longo da década; no faturamento são 8,3\%, no tempo de permanência
-13,1\%, na mortalidade 16,0\%, na ocupação de internação 16,7\%, e só a
-ocupação de UTI passa de um terço (38,2\%).
-Em termos de gestão: \textbf{cada hospital é muito parecido consigo
-mesmo, ano após ano, e muito diferente dos vizinhos}. Os indicadores
+mudando ao longo dos anos?} A resposta se divide, e a divisão é nítida.
+Em \textbf{seis dos sete indicadores} a variação vem quase toda das
+diferenças entre hospitais. Na fração de alta complexidade, \textbf{apenas
+4,5\% da variação total acontece dentro do mesmo hospital} ao longo da
+década; no faturamento são 8,3\%, no tempo de permanência 13,1\%, nas duas
+mortalidades — geral e ajustada — 16,0\% em cada, e na ocupação de
+internação 16,7\%.
+
+\textbf{A ocupação de UTI é a exceção, e é uma exceção grande: 66,3\% da
+sua variação acontece dentro do próprio hospital.} Ela
+não fica um pouco acima dos demais — fica em outro regime. Enquanto os
+outros seis se movem entre 4\% e 17\%, a ocupação de UTI passa de dois
+terços, e é o único indicador do painel em que o mesmo hospital difere mais
+de si mesmo ao longo do tempo do que difere dos vizinhos.
+
+Em termos de gestão, portanto: \textbf{em quase tudo, cada hospital é muito
+parecido consigo mesmo, ano após ano, e muito diferente dos vizinhos --- mas
+o uso da UTI não segue essa regra}. Os demais indicadores
 têm forte inércia institucional, e mudanças reais dentro de um hospital
 são eventos raros e valiosos de observar, o que dá ainda mais peso aos
 cinco casos de conversão da Seção~\ref{sec:conversores}.
@@ -76,7 +91,7 @@ TMP                    & 13,1 & 86,9 \\
 Mortalidade geral      & 16,0 & 84,0 \\
 Mortalidade ajustada   & 16,0 & 84,0 \\
 Ocupação internação    & 16,7 & 83,3 \\
-Ocupação UTI           & 38,2 & 61,8 \\
+Ocupação UTI           & 66,3 & 33,7 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -90,8 +105,9 @@ indicador nessas duas componentes.}
 \comoler{quanto menor a barra, mais estável o indicador dentro de cada
 hospital e mais as diferenças observadas são traço permanente da
 instituição. A fração de alta complexidade, com 5\%, é quase uma
-impressão digital do hospital; a ocupação de UTI, com 38\%, é a que mais
-responde ao tempo, em boa parte por causa da pandemia.}
+impressão digital do hospital; a ocupação de UTI, com 66\%, está no
+extremo oposto e é a única barra que passa da metade, em boa parte por
+causa da pandemia.}
 
 \begin{figure}[H]
 \centering

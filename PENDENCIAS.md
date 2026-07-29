@@ -745,3 +745,61 @@ assim ela não foi feita: a proteção existe justamente para que ninguém decid
 caso a caso que a sua edição é inócua. Fica registrada como a única ocorrência
 remanescente do rótulo antigo em código, aguardando dispensa explícita da
 regra 4.
+
+---
+
+## 11. Duas fórmulas de decomposição de variância convivendo no projeto
+
+**Aberta em:** 29/07/2026
+**Decisão de:** João
+**Situação:** aberta — a escolha desta rodada está registrada; a
+convivência das duas, não resolvida
+
+Ao propagar a correção do domínio da ocupação de UTI (Bloco A), a parcela de
+variação *within* desse indicador foi recalculada por **duas fórmulas
+diferentes, que devolveram valores diferentes**:
+
+| fórmula | valor | onde vive |
+|---|---|---|
+| decomposição de `analise_exploratoria.py` | **66,3%** | pipeline publicado, gera `tab_ae_variancia_within_between.csv` |
+| soma de quadrados dentro/total, cálculo próprio | 66,9% | `analises/verificar_alcance_correcao_uti.py` |
+
+**Foi usado o 66,3%,** e o motivo é de método, não de preferência: é a mesma
+fórmula que produziu o **38,2%** publicado. Trocar de fórmula no mesmo passo
+em que se troca o domínio misturaria dois efeitos, e ninguém saberia depois
+qual dos dois moveu o número. A comparação 38,2% → 66,3% isola a correção do
+domínio, que é o que se queria medir.
+
+**O que fica pendente** é a convivência em si. Duas fórmulas de decomposição
+no mesmo repositório, sem registro de qual é a canônica, é exatamente o
+mecanismo pelo qual `ocupacao_uti_valida` acabou morando em duas bases com
+domínios diferentes — o defeito que o Bloco A corrigiu. Convém decidir qual é
+a definição do projeto e deixar a outra explicitamente rotulada como
+diagnóstico auxiliar, ou eliminá-la.
+
+### O prompt do fechamento nomeava a Seção 11 como afetada. A medição refutou.
+
+**Registrado para que ninguém "corrija" a Seção 11 daqui a três meses e
+introduza o erro que não existia.**
+
+A instrução de trabalho do Bloco A listava `sec11_resultados_indicadores.tex`
+entre as seções a propagar. **Ela não é afetada pelo defeito da Etapa 1**, e o
+motivo é verificável em `estimacao.py`:
+
+- A parte positiva do modelo de UTI condiciona em `ocupacao_uti > 0`
+  (`estimacao.py:622`). Como as 688 observações sem UTI SUS entravam no painel
+  com ocupação **zero**, esse filtro **já as removia todas** — a amostra
+  publicada tem 2.484 observações, contra 2.491 do domínio correto.
+- A diferença de **7 observações** não é o defeito da Etapa 1: são hospitais
+  com UTI habilitada e nenhuma diária no ano, isto é, o **defeito 2 de R8**,
+  que é condicionar no desfecho em vez da capacidade. Problema distinto, já
+  registrado, e cuja correção pela mudança mínima devolve o valor publicado
+  (R10).
+
+Logo: **o +19,3% da Seção 11 nunca esteve contaminado pelos zeros
+estruturais.** O que a correção do domínio de fato afeta na estimação é a
+**primeira** parte do modelo (`uti_ativa`, `estimacao.py:618`), que conflaciona
+"hospital sem UTI" com "hospital com UTI e sem uso" — e essa parte não é
+citada na Seção 11.
+
+O escopo real do Bloco A, medido e não presumido, é **sec02, sec04 e sec08**.

@@ -21,7 +21,8 @@ $pastas = @(
     'figuras_analise_exploratoria',
     'figuras_estimacao',
     'figuras_fase2',
-    'figuras_selecao_entrevistas'
+    'figuras_selecao_entrevistas',
+    'figuras_segmentacao'
 )
 
 foreach ($p in $pastas) {

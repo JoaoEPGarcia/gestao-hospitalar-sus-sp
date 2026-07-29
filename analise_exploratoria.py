@@ -39,6 +39,7 @@ from scipy import stats
 from scipy.optimize import minimize
 
 import analise_sih as base                      # embrulha stdout no encoding do terminal
+import dominio_ocupacao_uti                     # domínio da ocupação de UTI (Etapa 1)
 
 # ══════════════════════════════════════════════════════════════════════════════
 # A. CONSTANTES E ESTILO
@@ -216,6 +217,24 @@ def carregar_e_verificar() -> pd.DataFrame:
     if not ok:
         raise SystemExit("[0] PAINEL NÃO CONFERE COM O ESPERADO. PARANDO.")
     print("[0] Verificação OK: 289 CNES, 3.179 observações, painel balanceado.")
+
+    # Domínio da ocupação de UTI (Etapa 1, propagado ao documento em
+    # 29/07/2026). A razão é INDEFINIDA onde `uti_sus = 0`, e no painel essas
+    # 688 observações estavam como zero estrutural em vez de não-aplicável.
+    # Hospital SEM UTI SUS contava como hospital com UTI 0% ocupada, e a
+    # penalização era proporcional à fração de hospitais sem UTI de cada
+    # categoria — daí a inversão do ordenamento entre categorias.
+    #
+    # A restrição vem de `dominio_ocupacao_uti.py`, não de coluna de painel:
+    # é definição, não medição. `verificar_equivalencia` aborta se a função
+    # divergir de `ocupacao_uti_valida` do `painel_segmentado.csv`, para que
+    # as duas definições não voltem a andar separadas.
+    dominio_ocupacao_uti.verificar_equivalencia(painel)
+    painel["ocupacao_uti"] = dominio_ocupacao_uti.ocupacao_uti_valida(painel)
+    print(f"[0] Domínio da ocupação de UTI aplicado: "
+          f"{int(painel['ocupacao_uti'].notna().sum())} observações válidas, "
+          f"{int(painel['ocupacao_uti'].isna().sum())} não-aplicáveis "
+          f"(sem UTI SUS cadastrada).")
 
     # porte FIXO por CNES: mediana de total_leitos com os cortes oficiais
     # (até 50 HPP; 51 a 150 médio; 151 a 500 grande; acima de 500 especial).

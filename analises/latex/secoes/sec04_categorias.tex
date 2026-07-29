@@ -41,6 +41,78 @@ mundo à parte}: faturamento mediano de R\$~16.262 e 98,4\% de alta
 complexidade, perfil de centros especializados; com só 3 hospitais,
 serve de registro, não de comparação.
 
+\subsection*{A ocupação de UTI estava medida sobre hospitais que não têm
+UTI}
+
+Este é o único ponto do documento em que a revisão de julho de 2026
+\textbf{inverteu} uma leitura, e ele merece ser lido com atenção porque o
+erro era de definição, não de conta.
+
+A ocupação de UTI é a razão entre as diárias de UTI utilizadas e a
+capacidade instalada. Onde o hospital \textbf{não tem leito de UTI SUS
+cadastrado}, essa razão não existe — divide-se por zero. O painel, porém,
+registrava esses casos como ocupação \textbf{zero}, como se fossem UTIs
+vazias. São 688 observações, ou 21,6\% do painel, e a consequência é
+direta: cada categoria era puxada para baixo na exata proporção em que
+concentra hospitais sem UTI.
+
+E essa proporção é muito desigual. Entre os Filantrópicos, \textbf{29,4\%
+das observações são de hospitais sem UTI SUS}; na administração Direta, são
+4,6\%. O Filantrópico levava, portanto, seis vezes mais diluição que a
+Direta — não por operar pior, mas por ter mais hospitais que sequer
+disputam esse indicador.
+
+Corrigido o domínio, \textbf{o ordenamento entre as categorias se inverte}:
+
+\begin{itemize}
+\item Pela \textbf{média}, o Filantrópico sai do \textbf{último} para o
+  \textbf{primeiro} lugar entre as quatro categorias públicas e
+  filantrópicas: de 57,1\% para \textbf{80,9\%}, enquanto a Direta vai de
+  58,8\% para 61,6\%. É a maior correção do painel, de 23,7 pontos
+  percentuais.
+\item Pela \textbf{mediana}, que é o que a Tabela~\ref{tab:categorias}
+  imprime, o movimento é do \textbf{segundo} para o \textbf{primeiro}: de
+  70,2\% para \textbf{80,2\%}, passando à frente das OSS (76,1\%).
+\end{itemize}
+
+\noindent Nos dois casos o Filantrópico assume a ponta. O tamanho do salto
+depende de qual estatística se usa, e por isso ela é sempre nomeada aqui.
+
+\textbf{O que isso significa para a gestão.} A leitura antiga sugeria que
+os Filantrópicos usavam mal a UTI que têm. O que os dados dizem, medido
+apenas onde a pergunta faz sentido, é o contrário: \textbf{entre os
+hospitais filantrópicos que têm UTI SUS, ela é a mais cheia da rede}. O que
+distingue a categoria não é subutilizar UTI — é ter muitos hospitais de
+menor porte que não têm UTI nenhuma. São dois fatos diferentes, e o
+indicador antigo os somava num número só.
+
+\textbf{Uma precisão sobre o que é "não ter UTI".} Das 688 observações sem
+leito de UTI SUS, \textbf{650 são ausência real} de UTI, em 76 hospitais. As
+outras \textbf{38 são oscilação de cadastro em hospitais que seguiam
+operando} — 26 hospitais que num dado ano aparecem com zero leito
+cadastrado e mesmo assim registram diárias de UTI. Isso é suspensão
+administrativa de habilitação, tipicamente por falta de intensivista, e não
+fechamento de ala. As duas situações saem do cálculo pelo mesmo motivo — a
+razão continua indefinida —, mas não são o mesmo fenômeno, e a distinção
+importa para quem for interpretar a capacidade instalada da rede.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{figSEG_00_ocupacao_uti_antes_depois.png}
+\caption{Ocupação média de UTI por categoria de gestão, antes e depois da
+correção do domínio. As barras claras usam a definição antiga, que contava
+hospitais sem UTI SUS como ocupação zero; as escuras, a definição correta,
+restrita aos hospitais que têm leito de UTI SUS cadastrado. A altura da
+diferença em cada par é proporcional à fração de hospitais sem UTI da
+categoria.}
+\label{fig:utiantesdepois}
+\end{figure}
+
+\comoler{compare os dois pares de barras nas extremidades. Na
+administração Direta as duas alturas são quase iguais, porque quase todos os
+seus hospitais têm UTI. No Filantrópico a diferença é a maior do gráfico, e
+é ela que produz a inversão do ordenamento.}
+
 \begin{table}[H]
 \centering
 \caption{Medianas por categoria de gestão, período completo
@@ -56,11 +128,11 @@ Seção~\ref{sec:tendencia}).}
 Categoria & Mortalidade & TMP & Faturamento real & Alta complex. &
 Ocup.\ int.\ (\%) & Ocup.\ UTI (\%) \\
 \midrule
-Direta            & 0,0584 & 6,01 & 1.366,65  & 0,0213 & 64,1 & 58,5 \\
-OSS               & 0,0494 & 4,74 & 1.438,03  & 0,0242 & 92,6 & 73,9 \\
-Público Municipal & 0,0574 & 4,82 & 1.292,71  & 0,0010 & 86,9 & 69,5 \\
-Filantrópico      & 0,0565 & 3,98 & 1.303,22  & 0,0018 & 65,5 & 70,2 \\
-Privado           & 0,0256 & 4,24 & 16.262,04 & 0,9836 & 40,5 & 3,5  \\
+Direta            & 0,0584 & 6,01 & 1.366,65  & 0,0213 & 64,1 & 61,3 \\
+OSS               & 0,0494 & 4,74 & 1.438,03  & 0,0242 & 92,6 & 76,1 \\
+Público Municipal & 0,0574 & 4,82 & 1.292,71  & 0,0010 & 86,9 & 73,9 \\
+Filantrópico      & 0,0565 & 3,98 & 1.303,22  & 0,0018 & 65,5 & \textbf{80,2} \\
+Privado           & 0,0256 & 4,24 & 16.262,04 & 0,9836 & 40,5 & 4,8  \\
 \bottomrule
 \end{tabular}
 \end{table}

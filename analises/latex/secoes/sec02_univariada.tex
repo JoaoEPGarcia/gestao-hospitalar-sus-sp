@@ -59,9 +59,18 @@ TMP (dias)             & 4,65   & 1,92   & 4,29   & 6,73   & 24,79  & 2,40 & 0,0
 Faturamento real (R\$ dez/2025) & 1.833,34 & 2.253,90 & 1.327,62 & 3.171,65 & 41.996,85 & 7,62 & 0\% \\
 Fração alta complex.   & 0,0759 & 0,1563 & 0,0029 & 0,2234 & 1,0000 & 3,39 & 31,3\% \\
 Ocupação internação (\%) & 70,84 & 28,17 & 72,70 & 104,26 & 236,61 & -0,01 & 0\% \\
-Ocupação UTI (\%)      & 59,84  & 44,89  & 69,38  & 96,67  & 875,21 & 2,95 & 21,9\% \\
+Ocupação UTI (\%)\textsuperscript{a} & 76,36  & 36,18  & 76,50  & 98,68  & 875,21 & 6,98 & 0,3\% \\
 \bottomrule
 \end{tabular}
+
+\vspace{2pt}
+{\footnotesize \textsuperscript{a}~A ocupação de UTI é calculada sobre as
+\textbf{2.491 observações de hospitais com leito de UTI SUS cadastrado}, e
+não sobre as 3.179 do painel. A razão não é definida onde não há leito de
+UTI: as 688 observações restantes são \textbf{não-aplicável}, não zero.
+Tratá-las como zero — como se fazia antes — media hospital sem UTI junto com
+hospital de UTI vazia, e penalizava cada categoria na proporção em que ela
+concentra hospitais sem UTI. Ver a Seção~\ref{sec:categorias}.\par}
 \end{table}
 
 \comofeito{cada linha é um indicador e as colunas são estatísticas
