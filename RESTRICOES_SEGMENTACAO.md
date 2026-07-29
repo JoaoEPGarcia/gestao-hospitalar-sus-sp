@@ -836,6 +836,90 @@ conversores e não distingue "sem efeito" de "sem potência".
 constava como +10,4% e confere (+10,38%). Conferido em
 `verificar_identidade_cre_hierarquico.py`.
 
+### Três qualificações de amostra que precisam acompanhar os coeficientes
+
+**Registradas em 29/07/2026, antes de virarem texto.** Nenhuma das três é
+visível na tabela publicada, e as três mudam o que o coeficiente ao lado
+significa. Verificação em `verificar_qualificacoes_r9.py`, saída em
+`tabSEG_17_qualificacoes_amostra.csv`.
+
+**A. A parte B roda sobre uma amostra que exclui quem mais superlota.**
+
+A ocupação condicional a ≤ 100 em E3 é estimada sobre **989 observações e 122
+CNES**, não sobre as 1.375 e 125 do estrato. A restrição não apara caudas de
+modo difuso: ela elimina **3 CNES inteiros**, que são exatamente os que estão
+acima de 100% em **todos os onze anos**.
+
+| CNES | hospital | categoria | anos > 100% | mediana |
+|---|---|---|---|---|
+| 2077396 | Hospital de Base de São José do Rio Preto | Filantrópico | 11/11 | 124,0% |
+| 2786435 | HCSVP — Hospital São Vicente | Filantrópico | 11/11 | 152,3% |
+| 2786680 | Hosp. Mun. Fernando Mauro Pires da Rocha | Público Municipal | 11/11 | 108,0% |
+
+Entre os 125 CNES de E3: 45 nunca passam de 100%, 77 passam em 1 a 10 anos, e
+esses 3 passam nos 11. **A parte B é condicional a uma amostra da qual os
+cronicamente superlotados foram removidos**, e isso precisa acompanhar o
+coeficiente em vez de ficar implícito no `n`.
+
+*Precisão que a leitura fácil erraria:* **nenhum dos três é OSS ou Direta.**
+São dois Filantrópicos e um Público Municipal, e o contraste principal do
+estrato não perde nenhum hospital das duas categorias comparadas. A restrição
+é real e muda o universo de inferência — a parte B fala sobre hospitais que
+operam abaixo do teto, não sobre o estrato inteiro —, mas ela **não** desfalca
+o contraste OSS × Direta. Registrar só a primeira metade exageraria o
+problema; registrar só a segunda o esconderia.
+
+**B. A significância da parte B na sensibilidade R4.2 é frágil, e não pode ser
+citada sozinha.**
+
+| recorte | n | coef | p | IC95% | zero |
+|---|---|---|---|---|---|
+| principal | 989/122 | +0,23910 | 0,068 | [−0,01804, +0,49623] | cruza |
+| sensib. R4.2 (sem 7711980) | 983/121 | +0,24949 | **0,049** | [**+0,00081**, +0,49816] | exclui |
+
+Remover **um único hospital** leva o p de 0,068 a 0,049 e o limite inferior
+para **+8,1×10⁻⁴** — a uma distância do zero que não é distinguível de tocá-lo.
+**É proibido escrever "significativa na sensibilidade"** sem esta qualificação
+colada na mesma frase. A sensibilidade R4.2 não confirma a parte B: ela mostra
+que o veredito da parte B depende de um hospital.
+
+**C. Dos switchers que sustentam o binário, só dois têm superlotação do lado
+que identifica.**
+
+R10 já registra que o binário de superlotação repousa sobre 4 dos 5
+conversores, porque Taipas nunca entra em superlotação. O refinamento é mais
+severo do que isso: dos 4, apenas **2 têm superlotação depois da conversão**.
+
+| CNES | hospital | estrato | 1º ano OSS | pré: anos (sup) | pós: anos (sup) | sup. pós-conversão |
+|---|---|---|---|---|---|---|
+| 2081695 | Conjunto Hospitalar de Sorocaba | E3 | 2019 | 4 (1) | 7 (**2**) | **sim** |
+| 2078287 | CRSM / Pérola Byington | E3 | 2023 | 8 (0) | 3 (**1**) | **sim** |
+| 2091755 | H. Geral de Vila Penteado | E3 | 2025 | 10 (1) | 1 (0) | não |
+| 2750511 | H. Est. Dr. Odilo Antunes de Siqueira | E2 | 2025 | 10 (4) | 1 (0) | não |
+| 2082225 | H. Katia de Souza Rodrigues (Taipas) | E3 | 2025 | 10 (0) | 1 (0) | não |
+
+Em Vila Penteado e Odilo Antunes **toda** a superlotação observada é anterior
+à conversão. A variação existe, mas é quase toda "superlotava antes" — e o
+lado que identifica o efeito da gestão é o pós-conversão, onde a massa total
+são **3 hospital-ano em 2 hospitais**.
+
+Isto **reforça a redação obrigatória de R10** — o nulo do binário não
+distingue "sem efeito" de "sem potência" — e a reforça mais do que o registro
+atual deixa ver: o registro contava switchers, e a contagem relevante é de
+switchers com variação **do lado certo da conversão**.
+
+*Duas notas de nomenclatura, para que ninguém conte errado:*
+
+- **`Odilo Antunes` e `Presidente Prudente` são o mesmo hospital**, CNES
+  2750511 — `PENDENCIAS.md` §6 usa o nome do município e R10 usa o nome
+  oficial. Não são seis conversores; são cinco.
+- **O ano de conversão derivado do painel é posterior à data de assunção
+  documentada** em quatro dos cinco casos (Sorocaba assume em 11/2018 e o SIH
+  o classifica como OSS a partir de 2019; Pérola 09/2022 → 2023; Taipas e Vila
+  Penteado 09/2024 → 2025). A tabela acima usa o **primeiro ano classificado
+  como OSS**, que é a fronteira que a estimação enxerga. É coerente com o
+  argumento de `PENDENCIAS.md` §6 de que os anos parciais atenuam o contraste.
+
 ### Onde a estimação falhou, e por quê
 
 Falha reportada é resultado, não lacuna a preencher depois:
@@ -1237,6 +1321,21 @@ precisa acompanhar todo coeficiente within deste projeto:
 E o quanto cada um contribui é desigual: Sorocaba tem 7 anos como OSS e 3 em
 superlotação; Pérola 3 e 1; Vila Penteado 1 e 1; Odilo Antunes 1 e 4; Taipas
 1 e nenhum.
+
+> **Desambiguação obrigatória, 29/07/2026.** O segundo número de cada par é a
+> contagem de anos em superlotação **na série inteira**, não dentro dos anos
+> como OSS. A leitura natural da frase é a outra, e ela está errada: dos 7
+> anos de Sorocaba como OSS, **2** são de superlotação e o terceiro é
+> anterior à conversão. O caso de Odilo Antunes denuncia a ambiguidade
+> sozinho — "1 e 4" seria impossível sob a leitura natural, já que ele tem um
+> único ano como OSS.
+>
+> **A contagem que de fato importa para identificação é a do lado
+> pós-conversão, e ela é menor:** apenas **2 dos 4** switchers têm
+> superlotação depois de virarem OSS (Sorocaba 2, Pérola 1), somando **3
+> hospital-ano**. Em Vila Penteado e Odilo Antunes toda a superlotação
+> observada é anterior à conversão. Ver a qualificação C em R9, com a tabela
+> completa e a verificação.
 
 **Redação obrigatória para o binário — o nulo não é evidência de ausência.**
 A formulação anterior deste item dizia que o gap "não é efeito causal de

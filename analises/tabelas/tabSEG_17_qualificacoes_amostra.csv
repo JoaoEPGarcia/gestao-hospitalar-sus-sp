@@ -1,0 +1,11 @@
+verificacao,cnes,nome,categoria,anos_acima_100,anos_total,mediana_ocupacao,coef,p_valor,ic95_lo,cruza_zero,ano_conversao,anos_pre,sup_pre,anos_pos,sup_pos,tem_sup_pos_conversao
+1-perda_amostra_parte_B,2077396,nan,Filantrópico,11.0,11.0,124.0,,,,,,,,,,
+1-perda_amostra_parte_B,2786435,nan,Filantrópico,11.0,11.0,152.3,,,,,,,,,,
+1-perda_amostra_parte_B,2786680,nan,Público Municipal,11.0,11.0,108.0,,,,,,,,,,
+2-fragilidade_R4.2,principal,Ocupação intern. ≤100 (B),,,,,0.2391,0.06838,-0.01804,True,,,,,,
+2-fragilidade_R4.2,sensib. R4.2 (sem 7711980),Ocupação intern. ≤100 (B),,,,,0.24949,0.04925,0.00081,False,,,,,,
+3-switchers_binario,2078287,nan,E3,,,,,,,,2023.0,8.0,0.0,3.0,1.0,True
+3-switchers_binario,2081695,nan,E3,,,,,,,,2019.0,4.0,1.0,7.0,2.0,True
+3-switchers_binario,2082225,nan,E3,,,,,,,,2025.0,10.0,0.0,1.0,0.0,False
+3-switchers_binario,2091755,nan,E3,,,,,,,,2025.0,10.0,1.0,1.0,0.0,False
+3-switchers_binario,2750511,nan,E2,,,,,,,,2025.0,10.0,4.0,1.0,0.0,False
