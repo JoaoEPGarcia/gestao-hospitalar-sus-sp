@@ -12,7 +12,7 @@ resultados, com scripts, diagnósticos e um relatório de execução
 auditável, está na pasta resultados\_fase2 do repositório; aqui ficam
 os achados que mudam ou reforçam a leitura do documento.
 
-\textbf{O que a camada hierárquica confirma.} Reestimados com um
+\textbf{O que a camada hierárquica confirma.} Estimados com um
 efeito próprio para cada hospital, o tempo de permanência e o faturamento
 real reproduzem quase exatamente os resultados da
 Seção~\ref{sec:resultados} (queda de 10,2\% no TMP; faturamento sem
@@ -218,14 +218,12 @@ mantém nesse patamar mais alto até 2025, sem tendência adicional, um
 degrau que coincide com o início da pandemia, não uma trajetória
 ascendente ao longo da década.
 
-\textbf{A equação de ineficiência, que até aqui só aparecia pelo que
-tem de defeituoso.} A fronteira estocástica estima, em paralelo à
-produção, uma segunda equação que explica \emph{quanta} ineficiência
-cada hospital carrega. O coeficiente das OSS ali é o número degenerado
-já discutido, e é o único que este documento vinha citando, mas a
-equação tem outros seis, e quatro deles são fortemente significativos.
-Como a variável explicada é a ineficiência, \textbf{sinal negativo
-significa mais eficiente}:
+\textbf{A equação de ineficiência.} A fronteira estocástica estima, em
+paralelo à produção, uma segunda equação que explica \emph{quanta}
+ineficiência cada hospital carrega. O coeficiente das OSS ali é o número
+degenerado já discutido; a equação tem outros seis, e quatro deles são
+fortemente significativos. Como a variável explicada é a ineficiência,
+\textbf{sinal negativo significa mais eficiente}:
 
 \begin{table}[H]
 \centering
@@ -287,77 +285,47 @@ Quanto mais a nuvem sobe da esquerda para a direita, mais os dois métodos
 verde colada no topo é a degeneração das OSS descrita no texto.}
 
 \newpage
-\subsection*{Os modelos de ocupação tinham três defeitos. Corrigidos, o
-achado sobrevive}
+\subsection*{Como os modelos de ocupação estão especificados}
 \label{sub:etapa5}
 
-Uma revisão posterior encontrou \textbf{três defeitos independentes} nos
-modelos de ocupação desta fase. Os três foram corrigidos e os modelos
-reestimados. O resultado desta subseção é o que sobrou depois disso.
+Os modelos de ocupação desta fase tomam três decisões de especificação que
+convém declarar, porque nas três havia alternativa plausível e a escolha
+muda o que o número significa.
 
-\textbf{Os defeitos.} O primeiro é de \emph{limiar}: a aparagem da cauda
-superior usava o percentil 99 do painel completo, que incluía os zeros
-estruturais da ocupação de UTI: o limiar era, ele próprio, artefato do
-erro corrigido na Seção~\ref{sec:categorias}. O segundo é de \emph{amostra}:
-o modelo de UTI restringia-se às observações com ocupação positiva, o que
-seleciona pela \textbf{variável que se quer explicar} em vez de pela
-capacidade instalada; o critério correto é ter leito de UTI habilitado,
-independentemente de tê-lo usado. O terceiro é de \emph{forma}: a ocupação
-de internação era aparada acima de 100\%, tratando como ruído de cauda
-exatamente o excesso que a Seção~\ref{sec:segmentacao} identificou como
-assinatura da superlotação.
+\textbf{O limiar de aparagem} da cauda superior é o percentil 99 da
+subamostra em que a ocupação de UTI é \emph{definida}, e não do painel
+completo. Calculado sobre o painel completo, o limiar seria contaminado
+pelas observações de hospitais sem UTI, que não são ocupação baixa: são
+ausência de ocupação (Seção~\ref{sec:categorias}).
 
-\subsubsection*{O critério de correção, fixado antes de estimar}
+\textbf{A amostra} do modelo de UTI é definida pela capacidade instalada,
+isto é, ter leito de UTI habilitado, independentemente de tê-lo usado no
+ano. O critério alternativo --- restringir às observações com ocupação
+positiva --- selecionaria a amostra pela própria variável que se quer
+explicar.
 
-\textbf{A ordem em que esta subseção está escrita é deliberada, e ela
-importa.} O critério vem primeiro; o número que ele produziu vem depois. O
-motivo está no fim.
+\textbf{A ocupação de internação não é aparada acima de 100\%}, porque esse
+excesso não é ruído de cauda: é a assinatura aritmética da superlotação
+descrita na Seção~\ref{sec:segmentacao}. Apará-lo apagaria o sinal.
 
-Corrigir o segundo defeito significa manter na amostra as observações com
-UTI habilitada e nenhuma diária no ano. Isso obriga a uma decisão de
-modelagem, porque a família Gama usada originalmente não admite valor zero.
-Entre as especificações capazes de acomodar essas observações, a escolhida
-foi a que constitui a \textbf{mudança mínima} frente ao modelo publicado:
-corrigir o defeito e \textbf{não alterar mais nada}; em particular, não
-alterar a função de variância da Gama original.
+Definir a amostra pela capacidade mantém dentro dela as observações de
+hospitais com UTI habilitada e nenhuma diária no ano. Como a família Gama
+não admite valor zero, a especificação principal é o \textbf{modelo em duas
+partes com Gama na parte contínua}, que acomoda essa massa em zero num
+componente próprio e preserva a função de variância da Gama.
 
-Uma única especificação satisfaz as duas condições ao mesmo tempo: o modelo
-em duas partes com Gama na parte contínua, que acomoda a massa em zero num
-componente próprio e preserva a estrutura de variância original. As demais
-candidatas ou não corrigem o defeito, permanecendo na subamostra
-selecionada pelo desfecho, ou o corrigem trocando a função de variância
-junto.
-
-\textbf{Esse critério é uma propriedade da forma das especificações, não dos
-seus resultados.} Ele estaria decidido do mesmo jeito se nenhuma delas
-tivesse sido estimada.
-
-\subsubsection*{O que a correção devolveu}
-
-\textbf{O achado publicado sobre a intensidade de uso da UTI sobrevive
-intacto: as OSS operam a UTI 30,4\% mais intensamente que a administração
-Direta}, com intervalo de 95\% entre $+5{,}7\%$ e $+60{,}8\%$. O coeficiente
-corrigido é 0,26548, contra 0,26541 do publicado: uma diferença na quinta
-casa decimal.
-
-A ocupação de internação também sobrevive, e sem mudança de leitura: de
-$+12{,}5\%$ para $+11{,}5\%$, com o intervalo continuando a cruzar o zero,
-como já dizia o texto acima.
-
-\textbf{Registrado explicitamente, porque é a objeção mais fácil de fazer
-contra este trabalho: a especificação não foi escolhida por reproduzir o
-resultado publicado.} Foi escolhida por ser a mudança mínima que corrige o
-defeito preservando a estrutura da especificação original. Se tivesse
-devolvido 20\% ou 40\%, continuaria sendo a principal pelo mesmo critério, e
-o que teria mudado é o achado, não a especificação. Escrever a coincidência
-antes do critério converteria um argumento de princípio em seleção de
-modelo pelo resultado.
+\textbf{O resultado.} As OSS operam a UTI \textbf{30,4\% mais
+intensamente} que a administração Direta, com intervalo de 95\% entre
+$+5{,}7\%$ e $+60{,}8\%$. A ocupação de internação aponta na mesma direção,
+$+11{,}5\%$, mas com o intervalo cruzando o zero, de modo que ali não se
+pode afirmar diferença.
 
 \subsubsection*{A escolha de família move mais o número do que os defeitos}
 
-A decisão de modelagem que mais desloca a estimativa não é nenhum dos três
-defeitos: é a \textbf{família de distribuição}. Por isso as cinco
-especificações consideradas são reportadas juntas.
+Entre todas as decisões de modelagem, a que mais desloca a estimativa é a
+\textbf{família de distribuição} --- mais do que qualquer das três decisões
+de especificação acima. Por isso as cinco especificações consideradas são
+reportadas juntas.
 
 \begin{table}[H]
 \centering
@@ -370,7 +338,7 @@ cinco especificações. Efeito e intervalo em percentual.}
 Especificação & $n$ & Efeito & IC 95\% & Zero \\
 \midrule
 \textbf{Duas partes, Gama (principal)} & 2.489 & $\mathbf{+30{,}4\%}$ & $[+5{,}7\%;\ +60{,}8\%]$ & exclui \\
-Gama sem os zeros (publicada)          & 2.482 & $+30{,}4\%$ & $[+5{,}7\%;\ +60{,}8\%]$ & exclui \\
+Gama, apenas os positivos              & 2.482 & $+30{,}4\%$ & $[+5{,}7\%;\ +60{,}8\%]$ & exclui \\
 Tweedie sem os zeros                   & 2.482 & $+27{,}0\%$ & $[+7{,}6\%;\ +49{,}8\%]$ & exclui \\
 Tweedie com os zeros                   & 2.489 & $+26{,}7\%$ & $[+6{,}7\%;\ +50{,}4\%]$ & exclui \\
 \textbf{Lognormal sem os zeros}        & 2.482 & $+25{,}9\%$ & $[-0{,}3\%;\ +59{,}0\%]$ & \textbf{cruza} \\

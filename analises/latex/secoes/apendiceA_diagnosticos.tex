@@ -60,42 +60,31 @@ hospital tem UTI ativa, depois com que intensidade a usa; a primeira
 parte é degenerada por separação e não é citável (ver
 \texttt{tabB\_uti\_parte1\_removida.md}).
 
-\subsubsection*{Nota de reestimação: os três defeitos e o que sobrou}
+\subsubsection*{Nota técnica: onde mora a incerteza de especificação}
 
-Os modelos de ocupação descritos acima foram reestimados depois que uma
-revisão identificou três defeitos independentes neles: limiar de
-winsorização contaminado pelos zeros estruturais, seleção da amostra de UTI
-pelo desfecho em vez da capacidade, e aparagem do excesso de ocupação de
-internação acima de 100\%. A
-Subseção~\ref{sub:etapa5} reporta o resultado; aqui ficam três notas
-técnicas que ele deixa.
+Duas notas sobre os modelos de ocupação, ambas úteis a quem for reestimar.
 
-\textbf{Primeira: a magnitude dos defeitos foi medida, e é pequena dentro de
-família fixa.} Isolados num arranjo fatorial com a família mantida
-constante, o limiar move o coeficiente em $+0{,}0005$, a troca da amostra
-para o critério de capacidade move $-0{,}0026$, e retirar a winsorização da
-internação mantendo o modelo único move $-0{,}0002$. Todos na terceira ou
-quarta casa decimal. A escolha de família, por contraste, move $-0{,}0268$,
-\textbf{um decimal a mais}. Isto é registro sobre onde mora a incerteza de
-especificação, e a resposta não é onde a revisão supunha.
+\textbf{Primeira: a família de distribuição pesa mais que as decisões de
+amostra e de limiar.} Num arranjo fatorial com a família mantida constante,
+o limiar de aparagem move o coeficiente em $+0{,}0005$, o critério de
+amostra move $-0{,}0026$ e a aparagem da internação move $-0{,}0002$: todos
+na terceira ou quarta casa decimal. A escolha de família move $-0{,}0268$,
+\textbf{um decimal a mais}. A incerteza de especificação está na família,
+e é por isso que a Subseção~\ref{sub:etapa5} reporta as cinco.
 
-\textbf{Segunda: sete observações não decidem a família.} A massa em zero
-que motivou a discussão de família é de 7 observações em 2.489, ou 0,28\% da
-amostra: hospitais com UTI habilitada e nenhuma diária no ano. Rodando duas
-famílias sobre \emph{exatamente a mesma amostra}, de modo que a única
-diferença entre elas seja a função de variância, a decomposição atribui
-\textbf{9\% da diferença aos zeros e 91\% à função de variância}. Deixar
-0,28\% da amostra escolher a família para os outros 99,7\% inverteria a
-ordem de importância.
+Vale a precisão sobre o que decide essa escolha: a massa em zero em torno
+da qual ela gira é de 7 observações em 2.489, ou 0,28\% da amostra. Rodando
+duas famílias sobre \emph{exatamente a mesma amostra}, de modo que a única
+diferença seja a função de variância, a decomposição atribui \textbf{9\% da
+diferença aos zeros e 91\% à função de variância}. Não são os zeros que
+movem o número.
 
-\textbf{Terceira: a primeira parte continua não estimável, antes e depois.}
-A versão corrigida da mesma quantidade (opera, dado que tem capacidade)
-\textbf{também não converge}: na subamostra definida por capacidade sobram
-os mesmos 7 zeros, que não sustentam um binômio com covariáveis. A pergunta
-não é respondível com estes dados, e a correção do defeito não a torna
-respondível. O modelo em duas partes que de fato funciona aqui é o da
-Subseção~\ref{sub:etapa5}, cuja primeira parte tem intercepto apenas e
-nenhum conteúdo substantivo a interpretar.
+\textbf{Segunda: a primeira parte do modelo de UTI não é estimável.} Na
+subamostra definida por capacidade instalada há 7 observações com zero
+diárias, e elas não sustentam um binômio com covariáveis. A pergunta
+``opera, dado que tem capacidade'' não é respondível com estes dados. A
+primeira parte do modelo em duas partes da Subseção~\ref{sub:etapa5} tem
+intercepto apenas, e nenhum conteúdo substantivo a interpretar.
 
 \subsection*{A mortalidade como mistura de duas Betas}
 
