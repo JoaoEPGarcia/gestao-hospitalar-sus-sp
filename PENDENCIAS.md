@@ -842,9 +842,13 @@ O documento vai de 113 a **127 páginas**, com compile limpo em três passes.
 O que segue aberto está separado em **duas listas**, porque são coisas
 diferentes e misturá-las esconde qual delas depende de alguém decidir.
 
-### A. Pendente por DECISÃO HUMANA — o trabalho está pronto ou não se aplica
+### A. Pendente por DECISÃO HUMANA ou INSUMO EXTERNO — não destravável por trabalho nosso
 
-Nenhum destes é destravado por mais análise.
+Nenhum destes é destravado por mais análise. *Rótulo ampliado em 29/07/2026:*
+a lista dizia apenas "DECISÃO HUMANA", e os itens 9 e 10 abaixo não são
+decisão de ninguém — são dados que não estão em disco. O critério que une a
+lista é o correto e é mais largo do que o nome antigo: **nada aqui avança
+porque alguém se esforce mais.**
 
 1. **Leitura humana do PDF por João.** Nenhuma auditoria numérica substitui.
    As 138 conferências automáticas testam texto contra fonte; não testam se
@@ -896,32 +900,104 @@ Nenhum destes é destravado por mais análise.
    seguem alcançáveis e nunca serão coletados. Foi por isso que os SHAs
    entraram aqui antes de a operação ser executada, e não depois.
 
+9. **Verificação da coluna `Leitos` do arquivo Barcelona contra o histórico
+   `ST_LEITO` do DataSUS.** *Reclassificada da lista B para cá em
+   29/07/2026.* Asserção registrada em R1, nunca medida — e **não mensurável
+   com o que está em disco**: o histórico do DataSUS não está no
+   repositório, e o README registra que as fontes brutas não são versionadas.
+
+   **O motivo pelo qual isto não é trabalho pendente é de método, não de
+   logística.** O único arquivo Barcelona presente é o
+   `20260303 - Classificação Hospitais.xlsx` — que é *exatamente o objeto sob
+   suspeita de linhagem*. Conferi-lo contra si mesmo não é verificação. A
+   linhagem CNES do arquivo já está estabelecida por evidência própria (teste
+   do Privado, coluna `UTI`, deriva 9,3% → 69,6%); o que falta é uma fonte
+   externa, e ela não está aqui. Sem o `ST_LEITO`, qualquer coisa que se
+   rodasse produziria concordância por construção — que é precisamente o erro
+   de R1 v2, registrado como a lição central deste projeto.
+10. **Comparação do leito contratualizado CGCSS/SES-SP com `leitos_sus`.**
+    *Reclassificada da lista B para cá em 29/07/2026.* Asserção do Alberto,
+    nunca medida. O portal **não está no painel** e não há dado do CGCSS em
+    lugar nenhum do repositório — R1 já registrava isso, e a reclassificação
+    apenas põe o item na lista coerente com o próprio registro. Depende de
+    acesso externo, não de execução.
+
 ### B. Pendente por TRABALHO NÃO FEITO — ninguém precisa decidir nada
 
-Estes só dependem de alguém executá-los.
+Estes só dependem de alguém executá-los. *Lista reduzida de nove para sete em
+29/07/2026*, com os dois primeiros itens antigos reclassificados para A9 e
+A10: não eram trabalho, eram insumo ausente.
 
-1. **Verificação da coluna `Leitos` do arquivo Barcelona** contra o histórico
-   `ST_LEITO` do DataSUS. Asserção registrada em R1, nunca medida.
-2. **Comparação do leito contratualizado CGCSS/SES-SP com `leitos_sus`.**
-   Asserção do Alberto, nunca medida. O portal não está no painel.
-3. **Datas exatas de contrato e OSS responsável** dos cinco conversores
+1. **Datas exatas de contrato e OSS responsável** dos cinco conversores
    (item 6). O mês de Presidente Prudente e a OSS contratada seguem não
    identificados.
-4. **Eixo "Densidade" dos histogramas** (item 7): a decisão entre remover a
+2. **Eixo "Densidade" dos histogramas** (item 7): a decisão entre remover a
    curva KDE ou reescalá-la já está formulada; falta executar.
-5. **Camada 3 da varredura de consistência** (item 1): 48 PNGs em 8 seções
+3. **Camada 3 da varredura de consistência** (item 1): 48 PNGs em 8 seções
    que declaram valores impressos na figura, nunca conferidos.
-6. **Contagens inteiras** (item 3): 412 inteiros, 188 anos e 89 códigos CNES
+4. **Contagens inteiras** (item 3): 412 inteiros, 188 anos e 89 códigos CNES
    sem verificação. A auditoria de 29/07 cobriu as contagens do texto novo,
    não as do documento antigo.
-7. **Os quatro achados da varredura de `resultados_fase2/tabelas/`**
+5. **Os quatro achados da varredura de `resultados_fase2/tabelas/`**
    (item 0-bis), todos abertos: a equação de ineficiência da SFA ausente do
    documento, a violação de monotonicidade do insumo de UTI não reportada, o
    "todas as amostras" da Seção 15 e a cobertura de
    `tabS_sensibilidade.csv`.
-8. **Indexar `painel_definitivo.csv`, `resultados_fase2/dea/` e
+6. **Indexar `painel_definitivo.csv`, `resultados_fase2/dea/` e
    `resultados_fase2/sfa/`** na triagem automatizada — pré-requisito comum
    dos itens 1 e 3.
-9. **`estimacao.md` cobre só as seções 1 a 3 de `estimacao.py`** (item 2).
+7. **`estimacao.md` cobre só as seções 1 a 3 de `estimacao.py`** (item 2).
    *Este item tem uma metade em cada lista:* ampliar ou não é decisão
    editorial; ampliar, se decidido, é trabalho.
+
+---
+
+## 13. As inconsistências deste projeto se concentram num par de arquivos
+
+**Registrado em:** 29/07/2026
+**Situação:** achado de método — muda o procedimento de auditoria
+
+Três erros de **classe 4** foram encontrados em 29/07/2026, e os três estão
+no mesmo par: **`PENDENCIAS.md` × `RESTRICOES_SEGMENTACAO.md`**. Não é
+coincidência de amostra pequena; é consequência de como os dois arquivos são
+escritos — cada etapa acrescenta ao registro que tem à mão, e ninguém relê o
+outro para conferir se ele ainda diz a mesma coisa.
+
+**Os três casos, e as duas direções:**
+
+| # | onde | direção | estado |
+|---|---|---|---|
+| 1 | `PENDENCIAS.md` §8 dizia a branch `repaginacao-jul2026` "vazia e atrás de `master`" | pendência **fechada** que constava como **aberta** | corrigido |
+| 2 | §12.A.8 nomeava uma branch residual quando eram quatro | **subcontagem** de item | corrigido |
+| 3 | lista final do `RESTRICOES_SEGMENTACAO.md` trazia `fig_ae_09` e a conversão monetária como pendentes | pendência **fechada** que constava como **aberta** | corrigido |
+
+**As duas direções importam e são erros diferentes.** Pendência fechada que
+consta como aberta faz alguém refazer trabalho pronto — custo em horas.
+Pendência aberta que consta como fechada faz alguém **não fazer** trabalho
+necessário e declarar o estado bom — custo em credibilidade do registro. A
+segunda é a pior, e é a que a auditoria tende a não procurar, porque ninguém
+audita o que acredita estar resolvido.
+
+**Por que este par pesa mais do que qualquer seção.** Uma seção errada engana
+o leitor do documento. Um documento de controle errado engana **quem for
+corrigir a seção** — e os dois arquivos aqui são justamente os que arbitram o
+resto: `PENDENCIAS.md` decide o que está aberto e de quem é a decisão,
+`RESTRICOES_SEGMENTACAO.md` decide o que pode e o que não pode ser escrito.
+Contradição entre eles não é erro de conteúdo, é erro de árbitro.
+
+**Procedimento incorporado, a partir de 29/07/2026:** toda auditoria de
+consistência deste projeto confere os **dois documentos de controle um contra
+o outro**, nas duas direções, antes de olhar as 18 seções. O teste é barato —
+os dois arquivos cabem numa leitura — e nenhuma das camadas 1, 2 ou 3 da
+triagem o faz, porque todas elas comparam *texto contra fonte de dados*, e
+aqui os dois lados são texto.
+
+**Candidato não corrigido, deixado para conferência humana.** A mesma lista
+final do `RESTRICOES_SEGMENTACAO.md` traz *"Propagação da correção da ocupação
+de UTI (Etapa 1) para as seções já escritas do `principal.tex` — depende de
+leitura da Priscilla"*. O Bloco A **aplicou** essa propagação (commits
+`7e3ee35` e `834cade`, escopo real sec02, sec04 e sec08, medido em §11), e o
+§12 registra o fechamento. Mas a leitura da Priscilla, que a linha também
+menciona, **continua pendente** — de modo que a linha está meio certa e meio
+desatualizada, e desfazer o nó exige decidir o que ela quis dizer. Fica aqui
+nomeado em vez de corrigido por conta própria.
