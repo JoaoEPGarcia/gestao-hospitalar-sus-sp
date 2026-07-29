@@ -1,0 +1,21 @@
+"variante","modelo_base","versao","modelo","n","situacao","coef_oss","ep","ic_lo","ic_hi","efeito_pct"
+"principal","ORIG_ocupacao","original","principal | ORIG_ocupacao",3177,"estimado",0.11802,0.0811,-0.04094,0.27697,12.53
+"principal","ORIG_uti","original","principal | ORIG_uti",2482,"estimado",0.26514,0.10664,0.05613,0.47415,30.36
+"principal","int_parteA","corrigido","principal | int_parteA",3177,"estimado",-0.24746,1.07557,-2.35557,1.86066,NA
+"principal","int_parteB","corrigido","principal | int_parteB",2685,"estimado",0.10849,0.09112,-0.0701,0.28708,11.46
+"principal","uti_intensidade","corrigido","principal | uti_intensidade",2489,"estimado",0.23627,0.08762,0.06455,0.408,26.65
+"sem_pandemia","ORIG_ocupacao","original","sem_pandemia | ORIG_ocupacao",2601,"estimado",0.09173,0.08605,-0.07694,0.26039,9.61
+"sem_pandemia","ORIG_uti","original","sem_pandemia | ORIG_uti",2039,"estimado",0.26184,0.11065,0.04496,0.47871,29.93
+"sem_pandemia","int_parteA","corrigido","sem_pandemia | int_parteA",2601,"estimado",-0.23296,1.07918,-2.34815,1.88222,NA
+"sem_pandemia","int_parteB","corrigido","sem_pandemia | int_parteB",2183,"estimado",0.09291,0.09755,-0.0983,0.28412,9.74
+"sem_pandemia","uti_intensidade","corrigido","sem_pandemia | uti_intensidade",2046,"estimado",0.25205,0.08081,0.09366,0.41044,28.67
+"sem_switchers","ORIG_ocupacao","original","sem_switchers | ORIG_ocupacao",3122,"estimado",0.23517,0.10752,0.02443,0.44591,26.51
+"sem_switchers","ORIG_uti","original","sem_switchers | ORIG_uti",2427,"estimado",0.18732,0.08489,0.02094,0.3537,20.6
+"sem_switchers","int_parteA","corrigido","sem_switchers | int_parteA",3122,"estimado",3.2744,0.96359,1.38577,5.16303,NA
+"sem_switchers","int_parteB","corrigido","sem_switchers | int_parteB",2639,"estimado",0.2176,0.10674,0.00839,0.4268,24.31
+"sem_switchers","uti_intensidade","corrigido","sem_switchers | uti_intensidade",2434,"estimado",0.17799,0.08016,0.02089,0.3351,19.48
+"suporte_comum","ORIG_ocupacao","original","suporte_comum | ORIG_ocupacao",2431,"estimado",0.2882,0.10599,0.08046,0.49594,33.4
+"suporte_comum","ORIG_uti","original","suporte_comum | ORIG_uti",2114,"estimado",0.49785,0.13525,0.23277,0.76293,64.52
+"suporte_comum","int_parteA","corrigido","suporte_comum | int_parteA",2431,"estimado",1.69185,1.83977,-1.91411,5.29781,NA
+"suporte_comum","int_parteB","corrigido","suporte_comum | int_parteB",2028,"estimado",0.23708,0.11514,0.01141,0.46274,26.75
+"suporte_comum","uti_intensidade","corrigido","suporte_comum | uti_intensidade",2119,"estimado",0.43578,0.1212,0.19824,0.67333,54.62

@@ -12,7 +12,9 @@ Etapa 4 (reestimação) foi executada em 28/07/2026 no branch
 `feat/etapa4-reestimacao-segmentada`, com **cinco indicadores** e as três
 famílias previstas — CRE/Mundlak, DEA e hierárquico. Resultados e restrições
 de leitura em **R9**. A Etapa 5 (refazer os modelos de ocupação da Fase 2
-pelos defeitos de R8) permanece aberta.
+pelos defeitos de R8) foi executada no mesmo dia, em
+`feat/etapa5-ocupacao-fase2`: sob a especificação de mudança mínima o achado
+publicado **sobrevive intacto**, e o que muda é registrado em **R10**.
 
 ## Ratificação de escopo da Etapa 4
 
@@ -592,7 +594,10 @@ cabeçalho de `descritivas_segmentadas.py`, em vez de somadas sob o rótulo
 
 ## R8 — Três defeitos nos modelos de ocupação da Fase 2 já rodada
 
-**Status: REGISTRADA COMO ESCOPO DA ETAPA 5. NÃO EXECUTAR NA ETAPA 4.**
+**Status: EXECUTADA NA ETAPA 5, em 28/07/2026. Os três defeitos foram
+corrigidos e reestimados. A consequência prevista abaixo — "o achado não
+sobrevive como está" — NÃO se confirmou: sob a especificação de mudança
+mínima (ziGamma/hurdle) o achado sobrevive **intacto**, em +30,4%. Ver R10.**
 
 Os modelos de ocupação em `fase2_bayes.R` e `fase2_robustez.R` têm três
 defeitos **independentes** entre si:
@@ -613,9 +618,41 @@ defeitos **independentes** entre si:
    excesso acima de 100% como ruído, quando ele é a assinatura da
    superlotação (R1 v4, R6). Apaga o achado.
 
-**Consequência: o achado de ocupação que está no `principal.tex` não sobrevive
-como está.** A Etapa 5 refará esses modelos já na forma correta. Isto é
-correção de resultado publicado, não refinamento.
+**Consequência prevista em 28/07/2026, ANTES de reestimar:** "o achado de
+ocupação que está no `principal.tex` não sobrevive como está". A Etapa 5
+refará esses modelos já na forma correta.
+
+> **A previsão acima é preservada, e o veredito é por defeito, não em bloco.**
+> A Etapa 5 rodou no mesmo dia. Sob a especificação de mudança mínima
+> (ziGamma/hurdle) o achado **sobrevive intacto**: intensidade de UTI em
+> **+30,4%**, o mesmo valor publicado; ocupação de internação de +12,5% para
+> +11,5%, ainda cruzando o zero.
+>
+> - **Defeito 1 — previsão errada.** Corrigir o limiar move +0,0005.
+> - **Defeito 2 — errada quanto ao coeficiente, certa quanto ao princípio.**
+>   As 7 observações movem −0,0026 diretamente, e corrigido pelo hurdle o
+>   coeficiente volta a +30,4%. A correção é obrigatória por princípio —
+>   condicionar no desfecho está errado mesmo quando não muda nada —, mas
+>   ela **não atenua o achado**.
+> - **Defeito 3 — previsão CERTA.** Winsorizar destruía mesmo o sinal de
+>   sobrecarga, e a resposta nunca foi um coeficiente que muda: é o modelo em
+>   duas partes, que mostrou que o número publicado misturava frequência de
+>   superlotação com intensidade de ocupação. Isto é o defeito se
+>   confirmando.
+>
+> **Veredito intermediário, REFUTADO e preservado (29/07/2026).** Este bloco
+> dizia: *"O achado sobrevive, atenuado: intensidade de UTI de +30,4% para
+> +26,7%, ainda excluindo o zero"*, e atribuía a atenuação ao defeito 2, que
+> *"força a troca de família (a Gama não admite zero), e a troca move
+> −0,0268. Age por um canal que a previsão não antecipou"*. As duas
+> afirmações caem pelo mesmo teste. O +26,7% é o Tweedie — uma das cinco
+> famílias, e não a mudança mínima. E a troca de família não é forçada: o
+> hurdle admite a massa em zero preservando a função de variância da Gama. A
+> decomposição atribui **9% da atenuação aos zeros e 91% à função de
+> variância**, de modo que o canal não é o defeito, é uma escolha de
+> modelagem nossa. Ver R10.
+>
+> Ver R10 para a decomposição completa.
 
 ---
 
@@ -630,8 +667,35 @@ sustentam. Saídas em `tabSEG_10` a `tabSEG_15`, `figSEG_04` e `figSEG_05`.
 
 Três famílias, cinco indicadores, três estratos. CRE/Mundlak
 (`estimacao_segmentada.py`), DEA com fronteira por estrato
-(`etapa4_dea_segmentado.R`) e hierárquico glmmTMB
-(`etapa4_bayes_segmentado.R`).
+(`etapa4_dea_segmentado.R`) e **modelo hierárquico por máxima
+verossimilhança** (`etapa4_hierarquico_segmentado.R`).
+
+> **Correção de nome, 29/07/2026.** O terceiro script chamava-se
+> `etapa4_bayes_segmentado.R` e escrevia `tabSEG_12_bayes_por_estrato.csv`.
+> **Nada nele é bayesiano.** O backend é glmmTMB — máxima verossimilhança com
+> efeito aleatório, sem priors, sem posterior, sem diagnóstico de cadeia, com
+> intervalos de Wald e não críveis. O cabeçalho do script sempre declarou
+> isso; o **nome** dizia o contrário, e é o nome que sobrevive em citação e em
+> índice de pasta. Script e tabela renomeados; a coluna `backend` da tabela já
+> trazia `glmmTMB (ML, NÃO posterior)` e não precisou mudar.
+>
+> **O mesmo defeito existe na Fase 2, e é maior.** A Frente 1 da Fase 2
+> desceu a **mesma** escada, pelo mesmo motivo — sem Rtools, sem toolchain de
+> compilação — e também roda em glmmTMB por máxima verossimilhança
+> (`RELATORIO_EXECUCAO.md`, seção 3, que documenta a degradação linha a
+> linha). Ainda assim o pacote se intitula "Bayesiana hierárquica" no título
+> do relatório, no README e no nome de `fase2_bayes.R`.
+>
+> **Consequência que precisa ficar explícita antes de qualquer texto:** os
+> dois são o **mesmo estimador**. Não são famílias inferenciais distintas, e
+> a proximidade entre os pontos da Etapa 4 e os da Fase 2 **não** é
+> convergência entre paradigmas — não há dois paradigmas envolvidos. Escrever
+> o contrário no `principal.tex` introduziria erro novo em vez de corrigir o
+> existente.
+>
+> A renomeação da Fase 2 **não foi feita**: mexe em nomes de arquivo de um
+> pacote já circulado para revisão externa e em resultados publicados sob
+> esse rótulo. É decisão de João, registrada em `PENDENCIAS.md`.
 
 Em **E3**, o único estrato com identificação within (coeficiente de OSS contra
 Direta, CRE/Mundlak, EP agrupado por CNES):
@@ -640,16 +704,75 @@ Direta, CRE/Mundlak, EP agrupado por CNES):
 |---|---|---|---|
 | Mortalidade geral | −0,281 (logito) | [−0,442, −0,121] | 0,001 |
 | TMP | **−11,8%** | [−17,6%, −5,6%] | 0,000 |
-| Faturamento real/saída | −9,2% | [−25,2%, +10,4%] | 0,332 |
+| Faturamento real/saída | −9,2% | [−25,4%, +10,4%] | 0,332 |
 | Ocupação de UTI (PPML) | +25,5% | [−18,4%, +93,0%] | 0,300 |
 | Superlotação (parte A) | +0,74 (logito) | [−1,17, +2,64] | 0,448 |
 | Ocupação ≤100 (parte B) | +27,0% | [−1,8%, +64,3%] | 0,068 |
 
-O **hierárquico concorda onde ambos estimam**, e a concordância é estreita:
-TMP −0,1254 no CRE/Mundlak contra −0,1255 no hierárquico; mortalidade −0,281
-contra −0,258; ocupação de UTI +0,227 contra +0,231. Isso é consistência
-entre estimadores, **não** evidência independente: os dois usam os mesmos
-dados e a mesma identificação.
+### A concordância com o hierárquico é IDENTIDADE ALGÉBRICA onde ela é estreita
+
+**Corrigido em 29/07/2026. A formulação anterior fica preservada abaixo,
+porque o erro é instrutivo.** Este bloco dizia: *"o hierárquico concorda onde
+ambos estimam, e a concordância é estreita: TMP −0,1254 no CRE/Mundlak contra
+−0,1255 no hierárquico"*, e listava faturamento do mesmo modo.
+
+**Não são dois números.** TMP em E3 é **−0,12545** nos dois estimadores, e o
+par "−0,1254 contra −0,1255" é o mesmo valor arredondado para lados
+diferentes. Faturamento é **−0,09694** nos dois, idêntico até a quinta casa.
+Apresentá-los como duas estimativas próximas sugere corroboração onde há
+coincidência por construção. A ressalva que o texto já trazia — "não é
+evidência independente" — estava certa e era insuficiente: o problema não é
+que as duas estimativas sejam dependentes, é que **não são duas**.
+
+**A comparação não é informativa nesses dois indicadores.** Incluir as médias
+por hospital (Mundlak) num modelo de efeitos aleatórios torna o estimador de
+efeitos aleatórios numericamente igual ao within. É resultado algébrico
+conhecido, não achado deste trabalho, e a igualdade é **exata em painel
+linear e balanceado**.
+
+As duas condições importam, e a segunda foi encontrada por verificação.
+
+> **Formulação refutada, preservada e atribuída (29/07/2026).** A instrução de
+> trabalho que abriu este item, escrita por **João**, dizia: *"nos indicadores
+> log-lineares os dois estimadores produzem o mesmo ponto por construção"*.
+> **É largo demais.** A ocupação de internação parte B é log-linear e **não**
+> coincide — 0,23910 contra 0,21112, distância de 0,028 —, porque o painel
+> dela é desbalanceado. A condição verdadeira é *linear no link **e** painel
+> balanceado*, e a parte B é o contraexemplo que a estabelece.
+>
+> Fica registrado de quem partiu a formulação larga pelo mesmo motivo que as
+> versões refutadas de R1 ficam: o registro deste projeto preserva erro
+> rotulado, e rótulo sem autoria transfere o erro para quem o encontrou.
+> A verificação que a derrubou é `verificar_identidade_cre_hierarquico.py`,
+> escrita para testar a afirmação antes de gravá-la — e foi o teste, não a
+> leitura, que separou a condição certa da errada.
+
+Medido em `tabSEG_16`:
+
+| indicador | link | painel | CRE/Mundlak | hierárquico | \|dif\| |
+|---|---|---|---|---|---|
+| Mortalidade geral | logito | balanceado | −0,28138 | −0,25750 | 0,02388 |
+| **TMP** | **log** | **balanceado** | **−0,12545** | **−0,12545** | **0,00000** |
+| **Faturamento** | **log** | **balanceado** | **−0,09694** | **−0,09694** | **0,00000** |
+| Ocupação de UTI | log (PPML) | desbal. 1.371/125 | +0,22730 | +0,23089 | 0,00359 |
+| Superlotação (A) | logito | balanceado | +0,73639 | +0,36912 | 0,36727 |
+| Ocupação ≤100 (B) | log | desbal. 989/122 | +0,23910 | +0,21112 | 0,02798 |
+
+A parte B é log-linear e **não** coincide, porque o painel dela é
+desbalanceado — a restrição a ≤ 100 tira 386 observações e 3 CNES inteiros.
+A regra "linear no link **e** balanceado ⇔ idêntico" acerta nos **seis de
+seis**; a regra "log-linear ⇔ idêntico" erraria na parte B.
+
+**Onde os dois de fato diferem é no erro-padrão**, e ali a diferença é
+material e decide um veredito — ver o item seguinte. Verificação em
+`verificar_identidade_cre_hierarquico.py`.
+
+*Onde a concordância é informativa:* mortalidade (−0,281 contra −0,258) e
+ocupação de UTI (+0,227 contra +0,231) têm link não-linear, não há identidade,
+e a proximidade é concordância empírica genuína entre especificações
+distintas. Continua não sendo evidência independente — os dois usam os mesmos
+dados e a mesma identificação —, mas ali a comparação ao menos diz alguma
+coisa.
 
 O **DEA** em E3 põe o OSS acima da Direta em eficiência técnica corrigida de
 viés (0,747 contra 0,687), e a segunda etapa truncada dá coeficiente de OSS
@@ -687,6 +810,131 @@ aparece com 1 a 2 CNES por estrato e escore de 0,257 em E2.
 CNES OSS, mais da metade das reamostragens por hospital não sorteia nenhum.
 A tabela traz réplicas válidas por termo para que isso não passe.
 
+*Nota de 29/07/2026:* a coluna `replicas_validas` estava sendo calculada e
+impressa no console, mas **não** chegava ao CSV — `bloco_seg` a omitia ao
+montar a tabela. A salvaguarda descrita nesta linha existiu só no log
+efêmero entre 28 e 29/07/2026. Corrigida no commit `791c4e8`, com o 490
+reproduzido na regeneração; as contagens dos demais estratos são E2
+996/1.000 e E3 1.000/1.000.
+
+**6. Faturamento em E3 CRUZA O ZERO. O erro-padrão válido é o
+cluster-robusto.** Este é o único ponto em que os dois estimadores dão
+vereditos **opostos**, e ele não estava registrado.
+
+O coeficiente é o mesmo nos dois — **−0,09694**, pela identidade da seção
+anterior. O que difere é a precisão:
+
+| estimador | erro-padrão | IC95% (log) | IC95% (%) | zero |
+|---|---|---|---|---|
+| **CRE/Mundlak, cluster por CNES** | **0,09983** | [−0,29261, +0,09873] | **[−25,4%, +10,4%]** | **cruza** |
+| hierárquico, baseado no modelo | 0,04884 | [−0,19265, −0,00122] | [−17,5%, −0,1%] | exclui |
+
+O cluster-robusto é **2,04× maior**, e é ele que vale.
+
+**O motivo, que é de princípio e não de preferência:** o erro-padrão
+cluster-robusto é agnóstico quanto à estrutura de correlação intra-hospital;
+o baseado no modelo só é válido **se a especificação de efeitos aleatórios
+estiver correta**. Com 125 CNES em E3 há clusters de sobra para o robusto ser
+confiável — bem acima de qualquer regra prática de 30 a 50. **O intervalo mais
+estreito não é informação adicional: é uma suposição.** Quando um estimador
+entrega mais precisão por impor mais estrutura, a precisão extra é a
+estrutura, não os dados.
+
+**Consequência de redação:** não se pode escrever que o OSS fatura menos por
+saída em E3. A estimativa pontual é −9,2%, a direção é negativa nas duas
+especificações, e o intervalo válido vai de −25,4% a +10,4%. É resultado nulo,
+e nulo com a mesma advertência do binário — repousa sobre os mesmos quatro
+conversores e não distingue "sem efeito" de "sem potência".
+
+*Correção de escala no mesmo passo:* o limite inferior constava como
+**−25,2%** e está **−25,4%**. `exp(−0,29261) − 1 = −25,37%`. O limite superior
+constava como +10,4% e confere (+10,38%). Conferido em
+`verificar_identidade_cre_hierarquico.py`.
+
+### Três qualificações de amostra que precisam acompanhar os coeficientes
+
+**Registradas em 29/07/2026, antes de virarem texto.** Nenhuma das três é
+visível na tabela publicada, e as três mudam o que o coeficiente ao lado
+significa. Verificação em `verificar_qualificacoes_r9.py`, saída em
+`tabSEG_17_qualificacoes_amostra.csv`.
+
+**A. A parte B roda sobre uma amostra que exclui quem mais superlota.**
+
+A ocupação condicional a ≤ 100 em E3 é estimada sobre **989 observações e 122
+CNES**, não sobre as 1.375 e 125 do estrato. A restrição não apara caudas de
+modo difuso: ela elimina **3 CNES inteiros**, que são exatamente os que estão
+acima de 100% em **todos os onze anos**.
+
+| CNES | hospital | categoria | anos > 100% | mediana |
+|---|---|---|---|---|
+| 2077396 | Hospital de Base de São José do Rio Preto | Filantrópico | 11/11 | 124,0% |
+| 2786435 | HCSVP — Hospital São Vicente | Filantrópico | 11/11 | 152,3% |
+| 2786680 | Hosp. Mun. Fernando Mauro Pires da Rocha | Público Municipal | 11/11 | 108,0% |
+
+Entre os 125 CNES de E3: 45 nunca passam de 100%, 77 passam em 1 a 10 anos, e
+esses 3 passam nos 11. **A parte B é condicional a uma amostra da qual os
+cronicamente superlotados foram removidos**, e isso precisa acompanhar o
+coeficiente em vez de ficar implícito no `n`.
+
+*Precisão que a leitura fácil erraria:* **nenhum dos três é OSS ou Direta.**
+São dois Filantrópicos e um Público Municipal, e o contraste principal do
+estrato não perde nenhum hospital das duas categorias comparadas. A restrição
+é real e muda o universo de inferência — a parte B fala sobre hospitais que
+operam abaixo do teto, não sobre o estrato inteiro —, mas ela **não** desfalca
+o contraste OSS × Direta. Registrar só a primeira metade exageraria o
+problema; registrar só a segunda o esconderia.
+
+**B. A significância da parte B na sensibilidade R4.2 é frágil, e não pode ser
+citada sozinha.**
+
+| recorte | n | coef | p | IC95% | zero |
+|---|---|---|---|---|---|
+| principal | 989/122 | +0,23910 | 0,068 | [−0,01804, +0,49623] | cruza |
+| sensib. R4.2 (sem 7711980) | 983/121 | +0,24949 | **0,049** | [**+0,00081**, +0,49816] | exclui |
+
+Remover **um único hospital** leva o p de 0,068 a 0,049 e o limite inferior
+para **+8,1×10⁻⁴** — a uma distância do zero que não é distinguível de tocá-lo.
+**É proibido escrever "significativa na sensibilidade"** sem esta qualificação
+colada na mesma frase. A sensibilidade R4.2 não confirma a parte B: ela mostra
+que o veredito da parte B depende de um hospital.
+
+**C. Dos switchers que sustentam o binário, só dois têm superlotação do lado
+que identifica.**
+
+R10 já registra que o binário de superlotação repousa sobre 4 dos 5
+conversores, porque Taipas nunca entra em superlotação. O refinamento é mais
+severo do que isso: dos 4, apenas **2 têm superlotação depois da conversão**.
+
+| CNES | hospital | estrato | 1º ano OSS | pré: anos (sup) | pós: anos (sup) | sup. pós-conversão |
+|---|---|---|---|---|---|---|
+| 2081695 | Conjunto Hospitalar de Sorocaba | E3 | 2019 | 4 (1) | 7 (**2**) | **sim** |
+| 2078287 | CRSM / Pérola Byington | E3 | 2023 | 8 (0) | 3 (**1**) | **sim** |
+| 2091755 | H. Geral de Vila Penteado | E3 | 2025 | 10 (1) | 1 (0) | não |
+| 2750511 | H. Est. Dr. Odilo Antunes de Siqueira | E2 | 2025 | 10 (4) | 1 (0) | não |
+| 2082225 | H. Katia de Souza Rodrigues (Taipas) | E3 | 2025 | 10 (0) | 1 (0) | não |
+
+Em Vila Penteado e Odilo Antunes **toda** a superlotação observada é anterior
+à conversão. A variação existe, mas é quase toda "superlotava antes" — e o
+lado que identifica o efeito da gestão é o pós-conversão, onde a massa total
+são **3 hospital-ano em 2 hospitais**.
+
+Isto **reforça a redação obrigatória de R10** — o nulo do binário não
+distingue "sem efeito" de "sem potência" — e a reforça mais do que o registro
+atual deixa ver: o registro contava switchers, e a contagem relevante é de
+switchers com variação **do lado certo da conversão**.
+
+*Duas notas de nomenclatura, para que ninguém conte errado:*
+
+- **`Odilo Antunes` e `Presidente Prudente` são o mesmo hospital**, CNES
+  2750511 — `PENDENCIAS.md` §6 usa o nome do município e R10 usa o nome
+  oficial. Não são seis conversores; são cinco.
+- **O ano de conversão derivado do painel é posterior à data de assunção
+  documentada** em quatro dos cinco casos (Sorocaba assume em 11/2018 e o SIH
+  o classifica como OSS a partir de 2019; Pérola 09/2022 → 2023; Taipas e Vila
+  Penteado 09/2024 → 2025). A tabela acima usa o **primeiro ano classificado
+  como OSS**, que é a fronteira que a estimação enxerga. É coerente com o
+  argumento de `PENDENCIAS.md` §6 de que os anos parciais atenuam o contraste.
+
 ### Onde a estimação falhou, e por quê
 
 Falha reportada é resultado, não lacuna a preencher depois:
@@ -723,6 +971,437 @@ Registradas porque divergem de convenções anteriores do projeto:
 3. **Guarda de separação no binário**: coeficiente acima de 15 em módulo
    dispara reajuste sem dummies de ano e, persistindo, o número não é
    reportado.
+
+---
+
+## R10 — Etapa 5: o achado de ocupação SOBREVIVE INTACTO
+
+**Status: EXECUTADA EM 28/07/2026, veredito consolidado em 29/07/2026. R8
+FECHADA quanto à correção; a consequência que ela previu não se confirmou.**
+
+> **Nota de contradição interna, resolvida em 29/07/2026.** Este item chegou
+> a coexistir com um veredito anterior — "o achado sobrevive **atenuado**,
+> de +30,4% para +26,7%" — que aparecia no cabeçalho do documento, no status
+> de R8, no bloco de veredito de R8 e no próprio título desta seção,
+> enquanto a tabela de veredito abaixo já dizia "+30,4%, sobrevive intacto".
+> O registro afirmava e negava a mesma coisa em quatro lugares. **Vale a
+> tabela**, porque é a única das duas afirmações amparada por saída
+> reproduzível (`tabE5_sensibilidade_familias.csv`). As quatro ocorrências
+> do veredito antigo foram corrigidas e ficam preservadas e rotuladas onde
+> apareciam, no mesmo padrão usado para as versões refutadas de R1.
+
+Saídas em `tabE5_ocupacao_antes_depois.csv` e `tabE5_ocupacao_variantes.csv`.
+Scripts: `preparo_fase2_corrigido.R` e `fase2_ocupacao_corrigido.R`. Os
+originais não foram tocados.
+
+### A trava de reprodução veio antes da conclusão
+
+Antes de corrigir qualquer coisa, o script reestima as especificações
+**originais, com os defeitos**, e aborta se não casar com o publicado. Casou
+na quinta casa em todas as oito células — as duas do modelo principal
+(`+0,11802` e `+0,26514`) e as seis de variante de
+`tabR_frente1_variantes.csv`. Sem isso, qualquer diferença observada depois
+poderia ser do pipeline e não da correção.
+
+### O veredito
+
+| quantidade | publicado | corrigido | conclusão |
+|---|---|---|---|
+| Intensidade de UTI | +30,4% \[+5,7%, +60,8%\] | **+30,4%** \[+5,7%, +60,8%\] (hurdle) | **sobrevive intacto** |
+| Ocupação de internação | +12,5%, cruza o zero | **+11,5%**, cruza o zero | **sobrevive**, inalterado |
+| Sem conversores, internação | 0,118 → 0,235, passa a excluir o zero | 0,108 → **0,218**, passa a excluir o zero | **sobrevive** |
+
+Nenhuma conclusão publicada inverte ou cai. A frase da Seção 15 — a ocupação
+aponta na mesma direção com magnitude menor, com intervalo que cruza o zero
+na especificação hierárquica — continua correta com os números corrigidos.
+
+**A frase que vai ao texto sobre a intensidade de UTI:** corrigir o
+condicionamento no desfecho pela **mudança mínima** — a especificação que
+preserva a função de variância da Gama publicada — **deixa o achado
+intacto** (+30,4%). Sob famílias alternativas o efeito varia entre +25,9% e
++30,4%, mantendo direção nas cinco e significância em quatro. **A exceção é
+a lognormal** (+25,9%, IC \[−0,3%, +59,0%\]), que não discorda em ponto —
+está a 0,0087 em pontos de log do Tweedie de mesma amostra — mas estima a
+mediana condicional em vez da média, com erro-padrão 41% maior. A família é
+a sensibilidade principal, e a amplitude de 4,5 pontos é menor que a largura
+do próprio intervalo de confiança.
+
+### Efeito ISOLADO de cada defeito — e a atribuição correta da atenuação
+
+Ver `tabE5_decomposicao_defeitos.csv` e `fase2_ocupacao_decomposicao.R`. A
+UTI foi decomposta em fatorial 2×2 (limiar × amostra) com a **família mantida
+fixa** em Tweedie, porque a Gama do original não admite zero: **mantida a
+forma de modelo único**, trocar a amostra para capacidade obrigaria a trocar
+de família junto, e o efeito do defeito 2 ficaria confundido com o da
+família.
+
+O qualificador em negrito é o que torna esta frase verdadeira, e foi
+acrescentado em 29/07/2026. A obrigação vale **dentro da forma de modelo
+único**, não em geral: o hurdle mantém a Gama e admite a massa em zero num
+componente próprio, de modo que a troca de família deixa de ser necessária
+assim que se sai do modelo único. O desenho do 2×2 continua correto — para
+isolar o defeito 2 com família fixa, era preciso fixá-la —, mas ele não
+autoriza a conclusão de que corrigir o defeito 2 obrigue a trocar de
+família. Ver a seção da especificação principal, adiante.
+
+| fonte | obs tocadas | Δ coeficiente (log) |
+|---|---|---|
+| R8-1 limiar da UTI (171,3 → 180,5) | 32 mudam de valor, 7 deixam de ser aparadas | **+0,0005** |
+| R8-2 amostra da UTI (desfecho → capacidade) | 7 entram | **−0,0026** |
+| R8-3a tirar a winsorização da internação | 32 aparadas | **−0,0002** |
+| R8-3b mudar para a forma em duas partes | reorganiza as 492 acima de 100 | **−0,0093** |
+| **Gama → Tweedie (família)** | — | **−0,0268** |
+
+Dentro de família fixa, os defeitos movem a terceira e a quarta casa decimal.
+**Sob a forma de modelo único**, a atenuação passa pela troca de família.
+Isso levantou a pergunta seguinte, e a resposta dela **derrubou a leitura
+intermediária deste item**: fora do modelo único a troca deixa de ser
+necessária, e com ela desaparece a atenuação.
+
+### A especificação principal é a ziGamma/hurdle — critério antes do resultado
+
+**Decisão de 29/07/2026. A ordem em que esta seção está escrita é
+deliberada** — primeiro o critério, depois o número que ele produziu — **e
+não deve ser invertida em nenhuma reescrita.** O motivo está no fim da
+seção.
+
+**O critério, decidível antes de estimar.** Entre as especificações que
+corrigem o defeito 2 — isto é, que mantêm na amostra as 7 observações com
+UTI habilitada e zero diárias, em vez de condicionar no desfecho —, a
+principal é a que constitui a **mudança mínima** frente à especificação
+publicada. Mudança mínima quer dizer: corrigir o defeito e **não alterar
+mais nada**; em particular, não alterar a função de variância `V(μ) = μ²`
+da Gama original.
+
+A `ziGamma`/hurdle é a única das cinco que satisfaz as duas condições ao
+mesmo tempo: acomoda a massa em zero num componente próprio e mantém a Gama
+na parte contínua. As outras quatro ou não corrigem o defeito (permanecem na
+subamostra por desfecho) ou corrigem trocando a função de variância junto.
+
+Este critério é uma propriedade da **forma** das especificações, não dos
+seus resultados. Ele estaria decidido do mesmo jeito se nenhuma delas
+tivesse sido estimada.
+
+**A consequência, que não é o motivo.** Estimada, a ziGamma devolve
+**+30,4%** — o valor publicado. Coeficiente **0,26548** contra **0,26541**
+da Gama publicada: diferença de **7×10⁻⁵** em pontos de log, coincidente até
+a **terceira** casa decimal.
+
+*Correção de registro (29/07/2026).* Uma versão anterior desta seção dizia
+"idêntico ao publicado até a quarta casa decimal". Está errado: 0,26541 e
+0,26548 arredondam a 0,2654 e 0,2655, e divergem justamente na quarta. A
+precisão importa aqui mais do que em outros pontos do documento, pelo motivo
+do parágrafo seguinte.
+
+**Registrado explicitamente, porque é a crítica mais fácil de fazer contra
+este trabalho: a ziGamma não foi escolhida por reproduzir o publicado.** Foi
+escolhida por ser a mudança mínima que corrige o defeito 2 preservando a
+estrutura de variância da especificação original. Se tivesse devolvido +20%
+ou +40%, continuaria sendo a principal pelo mesmo critério, e o que teria
+mudado é o achado, não a especificação. Escrever a coincidência antes do
+critério — ou exagerá-la de três para quatro casas decimais — converteria um
+argumento de princípio em seleção de especificação pelo resultado, que é
+exatamente a acusação que esta linha de trabalho passou inteira evitando.
+
+### A família NÃO é forçada
+
+Ver `tabE5_sensibilidade_familias.csv` e `fase2_ocupacao_familias.R`.
+
+Chegou-se a registrar aqui que a troca de família era **consequência forçada**
+de corrigir R8-2 — "manter os zeros exige família que os admita, e a Gama não
+admite". A primeira metade é verdadeira; a conclusão não segue. **Existe
+família que admite zero e preserva a função de variância da Gama: o hurdle.**
+
+| especificação | n | coef (log) | EP | efeito | IC95% |
+|---|---|---|---|---|---|
+| **ziGamma / hurdle, com os zeros — PRINCIPAL** | 2.489 | **0,26548** | 0,1070 | **+30,4%** | \[+5,7%, +60,8%\] |
+| Gama, sem os zeros (publicada) | 2.482 | 0,26541 | 0,1070 | +30,4% | \[+5,7%, +60,8%\] |
+| Tweedie, sem os zeros | 2.482 | 0,23892 | 0,0844 | +27,0% | \[+7,6%, +49,8%\] |
+| Tweedie, com os zeros | 2.489 | 0,23627 | 0,0876 | +26,7% | \[+6,7%, +50,4%\] |
+| lognormal, sem os zeros | 2.482 | 0,23024 | 0,1192 | +25,9% | \[−0,3%, +59,0%\] |
+
+*Correção de escala (29/07/2026).* O limite inferior das duas primeiras
+linhas constava como **+5,6%** e está **+5,7%**. O valor antigo vinha de ler
+o limite em pontos de log (0,05569, registrado como "0,056" no
+`RELATORIO_EXECUCAO.md`) diretamente como percentual, enquanto o limite
+superior da mesma linha já era exponenciado — a linha misturava duas
+escalas. `exp(0,05569) − 1 = +5,73%`. As outras três famílias estavam
+corretas. Conferido em `verificar_familias_e5.py`.
+
+**O hurdle corrige R8-2 integralmente — os 7 zeros ficam na amostra, não há
+condicionamento no desfecho — e devolve o coeficiente publicado.** Logo:
+corrigir o defeito 2 **não** atenua o achado. O +26,7% foi consequência de
+escolher Tweedie, que é decisão de modelagem independente, não imposição do
+defeito.
+
+### O teste decisivo: os zeros ou a função de variância?
+
+A massa em zero é de **7 observações em 2.489 — 0,281% da amostra**. São
+hospitais com UTI habilitada e nenhuma diária no ano (o CNES 7580770, da
+Direta, em dois anos seguidos; dois OSS; três Filantrópicos).
+
+Rodando Tweedie sobre **exatamente a mesma amostra da Gama publicada**, a
+única diferença entre as duas passa a ser a função de variância:
+
+| decomposição da atenuação | Δ (log) | participação |
+|---|---|---|
+| efeito dos **zeros** (Tweedie com − Tweedie sem) | −0,00265 | **9%** |
+| efeito da **função de variância** (Tweedie sem − Gama sem) | −0,02649 | **91%** |
+
+Confirma a suspeita que motivou o teste: **sete observações não movem o
+número; a função de variância move.** `V(μ) = μ²` na Gama contra `V(μ) = μᵖ`
+na Tweedie repondera as 2.489 inteiras. Deixar 0,281% da amostra escolher a
+família para os outros 99,7% seria inverter a ordem de importância.
+
+### A família é a sensibilidade principal, e o achado é robusto a ela
+
+Amplitude entre as cinco especificações: **+25,9% a +30,4%, 4,5 pontos
+percentuais**. Quatro das cinco excluem o zero no IC95%.
+
+**A quinta é a lognormal, e ela precisa ser nomeada.** "Significativo em 4
+de 5" sem dizer qual é a exceção não é robustez reportada. A especificação
+é a lognormal sem os zeros: **coeficiente 0,23024, erro-padrão 0,11923,
+IC95% \[−0,00345, +0,46394\] em pontos de log**, isto é **+25,9%
+\[−0,3%, +59,0%\]**, sobre n = 2.482.
+
+**Por que ela se afasta: ela não se afasta.** O ponto está praticamente
+colado no das demais — 0,23024 contra 0,23892 do Tweedie estimado sobre
+**exatamente a mesma amostra**, uma distância de **0,0087 em pontos de log**,
+menor que a diferença entre quaisquer duas das outras famílias. O que muda é
+a **precisão**: o erro-padrão da lognormal é **41% maior que o do Tweedie**
+(0,11923 contra 0,08440) e **11% maior que o da Gama** (contra 0,10700). Ela
+perde a significância por variância, não por deslocamento, e por uma margem
+mínima — o limite inferior é −0,00345 em pontos de log, que cruza o zero por
+uma distância não distinguível de tocá-lo.
+
+A razão é que a lognormal **estima outra quantidade**. As outras quatro usam
+link log sobre a média condicional, `log E[y]`; a lognormal modela
+`E[log y]`, que é a mediana condicional. Sob assimetria à direita — que é a
+forma desta distribuição — o efeito sobre a mediana é sistematicamente mais
+atenuado e menos preciso que o efeito sobre a média. **É estimando
+diferente, não estimativa discordante.**
+
+Isso **fortalece** a leitura de robustez em vez de qualificá-la: a única
+especificação que não atinge significância é também a única que não está
+estimando a mesma quantidade que as outras, e mesmo assim entrega ponto
+equivalente. Não há, entre as cinco, nenhuma que estime a média condicional
+e discorde.
+
+*Nota sobre o AIC, para que ninguém o leia ao contrário:* a lognormal
+aparece com AIC de **2.135,4** contra **21.608 a 22.695** das demais. Isso
+**não** significa ajuste melhor — o AIC dela é calculado sobre `log y` e as
+outras sobre `y`, escalas diferentes da resposta, o que torna os valores
+não comparáveis entre si. O AIC é comparável **dentro** de cada escala,
+nunca entre elas.
+
+**Direção idêntica nas cinco, significância em quatro, magnitude entre 26% e
+30%: isto é resultado robusto e reportável.** A família é a decisão de
+modelagem que mais move o número, e por isso a amplitude deve acompanhar o
+achado sempre que ele for citado — não como ressalva defensiva, mas porque
+4,5 pontos é a incerteza real de especificação, e ela é menor que a largura
+do próprio IC.
+
+### Por que os dois indicadores de ocupação recebem tratamento diferente
+
+**Registrado em 29/07/2026, lado a lado, porque a pergunta é inevitável:
+ocupação de internação entra em modelo de duas partes e ocupação de UTI não,
+e as duas justificativas precisam ser lidas juntas para que a assimetria não
+pareça arbitrária.** As duas metades já existiam separadas — a da internação
+em R6, a da UTI abaixo — e é a separação que criava a aparência de
+inconsistência.
+
+| | ocupação de **internação** | ocupação de **UTI** |
+|---|---|---|
+| massa no componente binário | **492 obs acima de 100%** — 15,5% do painel | **7 zeros** em 2.489 — 0,281% |
+| variação *within* no binário | real: em E3, **64,3% dos CNES OSS** e 30,0% dos da Direta alternam entre anos | nenhuma que sustente estimação |
+| primeira parte, estimada | **converge e informa** | **não converge** com covariáveis |
+| excesso por categoria | **fortemente diferencial**: OSS 29,3% contra Direta 3,9% (em E3, 35,5% contra 2,9%) | **não-diferencial**: ao limiar de 180,5, **zero** observações OSS aparadas nos três estratos, contra 2 da Direta |
+| forma adotada | **duas partes** (R6) | **contínua**, ziGamma como principal |
+
+**A leitura das duas colunas.** Na internação o binário de superlotação é
+uma pergunta com conteúdo próprio — *com que frequência o hospital entra em
+superlotação* —, tem massa para ser estimada e varia dentro do hospital, que
+é o que permite identificá-la com efeito fixo de CNES. Separar as duas
+perguntas é o que revelou que o número publicado conflacionava frequência
+com intensidade.
+
+Na UTI a mesma forma é **degenerada**. Sete zeros não sustentam um binômio:
+a primeira parte não converge com covariáveis, e a versão que converge é a
+de intercepto apenas — que é precisamente a ziGamma já reportada. O modelo
+em duas partes da UTI **já está na tabela**, sob outro nome; o que não
+existe é uma primeira parte com conteúdo substantivo para interpretar.
+
+E a assimetria não é escolha de conveniência: ela acompanha uma assimetria
+empírica **nos dados**, pré-registrada em R6 antes de rodar. O excesso de
+ocupação é diferencial por categoria na internação — é ali que ele carrega
+sinal de gestão — e não-diferencial na UTI, onde a categoria que mais
+interessa ao contraste principal não tem sequer uma observação na região
+aparada. Se o diferencial tivesse aparecido também na UTI, R6 previa
+reabrir a assimetria. Não apareceu.
+
+### Sobre o modelo em duas partes aqui
+
+Avaliado, não implementado como principal. **Não dispensa a escolha de
+família: relocaliza-a, e nesse caso específico é o bastante.**
+
+A forma em duas partes tira do conjunto de famílias a exigência "precisa
+admitir zero", porque a massa em zero vai para um componente binário próprio.
+Isso libera a Gama para a parte contínua — que é exatamente o que o hurdle
+faz, e por isso ele recupera o +30,4%. Mas a escolha **entre** famílias para
+a parte positiva permanece inteira, e é ali que vivem os 4,5 pontos de
+amplitude. Resolve o problema dos zeros; não resolve o da função de
+variância.
+
+Há ainda um limite prático: a **primeira parte não é estimável** com
+covariáveis. Sete zeros não sustentam um binômio, e ele não converge — o
+mesmo motivo pelo qual `uti_parte1` é degenerada. A versão com intercepto
+apenas converge, e é precisamente o ziGamma da tabela acima. Ou seja, o
+modelo em duas partes viável aqui **já está reportado**; o que não existe é
+uma primeira parte com conteúdo substantivo.
+
+### O que R8 previu certo e o que previu errado — por defeito
+
+R8 dizia, em bloco, que "o achado não sobrevive como está". Avaliada por
+defeito, a previsão se divide:
+
+- **R8-1 (winsorização contaminada): previsão ERRADA.** O defeito é real — o
+  limiar antigo era mesmo artefato do bug da Etapa 1 — mas corrigi-lo move
+  +0,0005. Nada depende disso.
+- **R8-2 (condicionamento no desfecho): ACERTOU o princípio, ERROU a
+  magnitude e o canal.** O princípio está certo, e é por ele que a correção
+  é obrigatória: condicionar no desfecho em vez de na capacidade está errado
+  **mesmo quando não muda nada**, e aqui quase não muda. A magnitude está
+  errada — as 7 observações movem −0,0026, terceira casa decimal. E o canal
+  está errado **duas vezes**: na previsão original, que anunciava um achado
+  que não sobreviveria sem dizer por onde; e na leitura intermediária deste
+  próprio registro, que atribuiu a atenuação ao canal da troca de família.
+  Corrigido pelo hurdle — que preserva a função de variância — o coeficiente
+  volta a **+30,4%**, o publicado. R8-2 **não atenua o achado por canal
+  nenhum**. Ver a seção da especificação principal e a da família, acima.
+- **R8-3 (sinal apagado por winsorização): previsão CERTA.** E é a única que
+  se confirma na forma em que foi feita. A resposta a este defeito nunca foi
+  um coeficiente que muda — tirar o corte mantendo o modelo único move
+  −0,0002, praticamente nada. A resposta é o **modelo em duas partes**, que
+  mostrou que o número publicado misturava *frequência de superlotação* com
+  *intensidade de ocupação*. O modelo antigo não tinha como responder à
+  primeira pergunta; o novo tem, e é a parte A. Isso é o defeito 3 se
+  confirmando, não se refutando.
+
+**A lição, que é a de R1 v2 com o sinal trocado:** diagnosticar corretamente
+um defeito não permite prever a magnitude do seu efeito, **nem o canal por
+onde ele age**. R8-2, corrigido pela especificação de mudança mínima, devolve
+o coeficiente publicado e não age por canal nenhum; R8-3 agiu não sobre o
+valor do coeficiente mas sobre a pergunta que o modelo consegue responder.
+Declarar o achado morto a partir do diagnóstico teria sido tão errado quanto
+declará-lo salvo sem reestimar.
+
+*Formulação intermediária, refutada e preservada (29/07/2026):* chegou-se a
+escrever aqui que **"R8-2 agiu por um canal que ninguém antecipou (a
+família)"**. Não agiu. A troca de família foi decisão de modelagem nossa,
+independente do defeito, e atribuí-la a R8-2 confundia uma escolha do
+analista com uma consequência do defeito diagnosticado. É a mesma classe de
+erro de R1 v2, onde uma propriedade da nossa própria saída foi lida como se
+viesse dos dados — com a diferença de que ali o erro inflava a confiança e
+aqui ele inflava a gravidade.
+
+### O que MUDA de verdade, e não é o que R8 previa
+
+**1. A parte que a winsorização escondia não é magnitude, é uma pergunta
+separada.** O modelo publicado tem UM coeficiente de ocupação de internação,
+que mistura *com que frequência o hospital entra em superlotação* com *quão
+cheio opera quando não está*. Separadas (R6), as duas partes dizem coisas
+diferentes:
+
+- **Parte B** (contínua ≤ 100): +11,5%, cruza o zero. É o que o número
+  publicado essencialmente já media.
+- **Parte A** (binário de superlotação): +3,27 no logito **sem conversores**,
+  IC \[+1,39, +5,16\] — e −0,25 com IC \[−2,36, +1,86\] no principal.
+
+Essa inversão não é instabilidade: é a diferença entre **between e within**.
+No principal, o termo de Mundlak absorve o contraste entre redes e a
+identificação de `d_oss` passa a vir só dos hospitais que **trocam de
+categoria**. Sem conversores, o Mundlak sai e o coeficiente passa a ser o
+contraste bruto entre redes, que é enorme porque o excesso é de 29,3% no OSS
+contra 3,9% na Direta.
+
+**Quantos hospitais sustentam cada estimativa within** — informação que
+precisa acompanhar todo coeficiente within deste projeto:
+
+| estimativa | switchers que a sustentam |
+|---|---|
+| contínuas (intensidade, TMP, custo, mortalidade) | **5 de 5** — todos variam |
+| **binário de superlotação, painel inteiro** | **4 de 5** — Taipas nunca entra em superlotação |
+| binário de superlotação, dentro de E3 (Etapa 4) | **3 de 4** — Odilo Antunes está em E2 |
+
+E o quanto cada um contribui é desigual: Sorocaba tem 7 anos como OSS e 3 em
+superlotação; Pérola 3 e 1; Vila Penteado 1 e 1; Odilo Antunes 1 e 4; Taipas
+1 e nenhum.
+
+> **Desambiguação obrigatória, 29/07/2026.** O segundo número de cada par é a
+> contagem de anos em superlotação **na série inteira**, não dentro dos anos
+> como OSS. A leitura natural da frase é a outra, e ela está errada: dos 7
+> anos de Sorocaba como OSS, **2** são de superlotação e o terceiro é
+> anterior à conversão. O caso de Odilo Antunes denuncia a ambiguidade
+> sozinho — "1 e 4" seria impossível sob a leitura natural, já que ele tem um
+> único ano como OSS.
+>
+> **A contagem que de fato importa para identificação é a do lado
+> pós-conversão, e ela é menor:** apenas **2 dos 4** switchers têm
+> superlotação depois de virarem OSS (Sorocaba 2, Pérola 1), somando **3
+> hospital-ano**. Em Vila Penteado e Odilo Antunes toda a superlotação
+> observada é anterior à conversão. Ver a qualificação C em R9, com a tabela
+> completa e a verificação.
+
+**Redação obrigatória para o binário — o nulo não é evidência de ausência.**
+A formulação anterior deste item dizia que o gap "não é efeito causal de
+gestão", o que atribui ao nulo mais força do que ele tem. A redação correta,
+que é a mesma já usada para o coeficiente de mortalidade:
+
+> O gap de superlotação entre as redes é grande e bem medido. A estimativa
+> within é nula, mas repousa sobre 4 hospitais e **não distingue "sem efeito"
+> de "sem potência"**. O erro-padrão de 1,08 no logito é a medida honesta de
+> quão pouco os conversores informam sobre esta quantidade: o intervalo
+> \[−2,36, +1,86\] cobre desde uma redução enorme até um aumento enorme.
+
+Não se deve escrever que a gestão não afeta a superlotação, nem que afeta.
+Estes dados não decidem. O que se pode dizer é que o **contraste descritivo
+entre redes é grande**, e que a evidência causal disponível é insuficiente
+para atribuí-lo à gestão em qualquer direção.
+
+Isto é coerente com a Etapa 4, onde o mesmo binário em E3 deu +0,74 com EP
+0,97 — outro intervalo que cobre tudo.
+
+**2. `uti_parte1` publicado é um número degenerado — REMOVIDO da tabela.** Em
+`tabB_modelos_hierarquicos.csv` estava `-58,958032` com erro-padrão **NaN**:
+separação, não estimativa. É da **mesma classe do termo `d_oss` da SFA**, já
+documentado no projeto como não citável, e recebe o mesmo tratamento — sai da
+tabela publicada, permanece na documentação com o motivo. Não é decisão de
+estilo. A versão corrigida da mesma quantidade (opera, dado que tem
+capacidade) **também não converge**: na subamostra de capacidade sobram só 7
+zeros. A pergunta não é estimável com estes dados, nem antes nem depois da
+correção.
+
+**3. A frase do Apêndice A era enganosa e ficou pior — CORRIGIDA.** Ela dizia
+que a ocupação de internação é "modelada no logaritmo **sem truncar em
+100%**". Literalmente verdadeira e materialmente enganosa: não trunca em 100,
+mas **winsoriza em 125,1**. Depois desta etapa a gravidade aumenta, porque
+125,1 é precisamente onde começa a cauda de superlotação que agora se sabe
+carregar sinal próprio — a frase sugeria preservação do excesso justamente
+onde ele era aparado. A redação nova declara o limiar efetivo e o que ele
+remove.
+
+### Pendências que a Etapa 5 abre
+
+- Se a parte A da internação entrar no texto, ela entra com a redação
+  obrigatória acima: **contraste descritivo entre redes**, com a nulidade
+  within declarada como falta de potência e não como ausência de efeito.
+- Reexecutar `fase2_bayes.R` regeneraria `tabB_modelos_hierarquicos.csv` com
+  a linha `uti_parte1` de volta. A remoção está registrada em
+  `tabB_uti_parte1_removida.md`, ao lado da tabela, para que quem reexecutar
+  saiba o que refazer.
+
+Nada disto exige reestimar mais nada. A propagação ao `principal.tex`
+continua dependendo de leitura da Priscilla, como já registrado.
 
 ---
 
@@ -792,6 +1471,66 @@ o motivo dela, não.
 
 ---
 
+## Nota de método — separabilidade computacional não é separabilidade narrativa
+
+Registrada em 29/07/2026, ao decidir a ordem de merge das Etapas 4 e 5.
+
+A Etapa 5 foi construída sobre a branch da Etapa 4, e não sobre `master`. O
+plano de fechamento supunha as duas branches independentes, com a Etapa 5
+mesclável sozinha enquanto a Etapa 4 aguardava revisão. A verificação mostrou
+o contrário, e mostrou-o de um jeito que vale guardar:
+
+- **Em código e dados, as duas são separáveis.** Nenhum script da Etapa 5 lê
+  qualquer arquivo criado pela Etapa 4. As duas rodam sobre bases distintas —
+  Fase 2 contra painel segmentado — e não trocam um único arquivo. Um
+  `cherry-pick` da Etapa 5 sobre `master` teria aplicado sem conflito.
+- **Em conteúdo, não são.** As duas escrevem no mesmo registro, e **R10 cita
+  R9** como corroboração cruzada: a contagem de switchers do binário em E3 e
+  o +0,74 com EP 0,97. Mesclar a Etapa 5 sozinha produziria um R10 citando um
+  R9 que não existe no destino.
+
+**A lição.** O teste de dependência que o versionamento sabe fazer é o de
+arquivo, e ele teria dado luz verde. A dependência real era de **citação**, e
+só aparece na leitura. Num repositório cujo produto é um registro
+argumentativo, e não apenas código, **a ordem de merge é decidida pelo que os
+documentos afirmam um do outro, não pelo grafo de arquivos** — e é uma falha
+que passa em todo teste técnico.
+
+Procedimento para as próximas decisões de branch deste projeto: antes de
+mesclar uma etapa sozinha, conferir se o registro dela cita resultado de
+etapa ainda não mesclada.
+
+---
+
+## Nota de método — verificação sobre diretório de trabalho sujo
+
+Registrada em 29/07/2026.
+
+O fechamento da Etapa 5 trazia, como estado verificado, "compile limpo em três
+passes com **116 páginas**". A compilação foi refeita sobre a branch limpa e
+deu **113 páginas**, igualmente limpa em três passes. A diferença são **19
+inserções de `\newpage`** que estavam no diretório de trabalho sem commit —
+trabalho de repaginação de João — e que foram medidas junto sem que se
+soubesse.
+
+Nenhum resultado foi afetado: quebra de página não toca estimativa. E o estado
+de qualidade se confirmou nos dois casos — zero erros fatais, zero referências
+indefinidas, zero caixas *overfull* ou *underfull*. O que estava errado era a
+**atribuição**: uma propriedade do diretório de trabalho foi registrada como
+propriedade da branch.
+
+**A lição** é da mesma família do erro do "canal" corrigido em R10 e do de R1
+v2: uma propriedade do nosso próprio aparato lida como propriedade do objeto
+medido. Aqui na forma mais simples possível — **verificação sobre diretório
+sujo mede o diretório, não o commit.** Antes de registrar estado verificado de
+uma branch, conferir `git status`.
+
+As 19 quebras foram para commit próprio em `repaginacao-jul2026` (`bbe3a57`),
+onde levam o documento de 113 a 116 páginas mantendo o compile limpo, com
+baseline medido para comparação.
+
+---
+
 ## Nota de procedimento — base dos números
 
 O diagnóstico original de R1 foi levantado sobre `painel_definitivo_ANTES.csv`
@@ -806,8 +1545,14 @@ definitivo de 289 CNES**, e nele o achado é mais forte, não mais fraco.
 
 Registradas, não executadas:
 
-- **Etapa 5 — refazer os modelos de ocupação da Fase 2** pelos três defeitos
-  de R8. É correção de resultado publicado, não refinamento.
+- ~~**Etapa 5 — refazer os modelos de ocupação da Fase 2**~~ — **feita em
+  28/07/2026**, veredito consolidado em 29/07/2026. Ver R10. Das três
+  pendências menores que deixou, duas foram fechadas: a frase do Apêndice A
+  sobre truncamento (commit `4696e6c`, limiar real de 125,1% declarado) e o
+  destino editorial do `uti_parte1` degenerado (commit `b89d2d8`, retirado da
+  tabela publicada e documentado à parte). **Permanece** a regra de que a
+  parte A da internação só entra no texto como descritivo entre redes, com a
+  nulidade within declarada como falta de potência.
 - Propagação da correção da ocupação de UTI (Etapa 1) para as seções já
   escritas do `principal.tex` — depende de leitura da Priscilla, pois inverte
   um achado publicado e faz o Filantrópico passar de último a primeiro.

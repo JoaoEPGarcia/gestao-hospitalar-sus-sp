@@ -214,7 +214,8 @@ bloco_esc <- data.frame(
   n_obs = agg$n_obs, n_cnes = agg$n_cnes, tarja = agg$tarja,
   te_bcc = round(agg$te_bcc, 4), te_bcc_corrigido = round(agg$te_bcc_vc, 4),
   ef_escala = round(agg$ef_escala, 4),
-  coef = NA_real_, ic95_lo = NA_real_, ic95_hi = NA_real_)
+  coef = NA_real_, ic95_lo = NA_real_, ic95_hi = NA_real_,
+  replicas_validas = NA_integer_)
 
 bloco_seg <- data.frame(
   bloco = "segunda_etapa_truncada", estrato = tab_seg$estrato,
@@ -222,7 +223,13 @@ bloco_seg <- data.frame(
   n_obs = NA_integer_, n_cnes = NA_integer_, tarja = NA_character_,
   te_bcc = NA_real_, te_bcc_corrigido = NA_real_, ef_escala = NA_real_,
   coef = round(tab_seg$coef, 5), ic95_lo = round(tab_seg$ic95_lo, 5),
-  ic95_hi = round(tab_seg$ic95_hi, 5))
+  ic95_hi = round(tab_seg$ic95_hi, 5),
+  # a contagem de réplicas válidas POR TERMO é a salvaguarda de leitura do IC
+  # (R9, item 5): com 2 CNES OSS em E1, mais da metade das reamostragens por
+  # hospital não sorteia nenhum, e o IC daquele termo se apoia em menos
+  # réplicas do que as B_SEGUNDA nominais. Sem esta coluna a advertência
+  # existiria só no console, e não no arquivo publicado.
+  replicas_validas = tab_seg$replicas_validas)
 
 saida <- rbind(bloco_esc, bloco_seg)
 write.csv(saida, file.path(TAB, "tabSEG_11_dea_por_estrato.csv"),

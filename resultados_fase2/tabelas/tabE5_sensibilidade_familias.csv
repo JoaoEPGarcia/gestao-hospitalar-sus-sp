@@ -1,0 +1,8 @@
+"especificacao","nota","n","situacao","coef_oss","ep","ic_lo","ic_hi","efeito_pct","aic"
+"G_semzero  Gama(log)","especificação PUBLICADA (n exclui os 7 zeros)",2482,"estimado",0.26541,0.107,0.05569,0.47514,30.4,22596.4
+"LN_semzero lognormal","âncora clássica alternativa",2482,"estimado",0.23024,0.11923,-0.00345,0.46394,25.89,2135.4
+"T_semzero  Tweedie(log)","TESTE DECISIVO: mesma amostra da Gama, só muda V(mu)",2482,"estimado",0.23892,0.0844,0.0735,0.40434,26.99,21607.6
+"T_comzero  Tweedie(log)","especificação ATUAL da Etapa 5",2489,"estimado",0.23627,0.08762,0.06455,0.408,26.65,21828.7
+"ZIG_comzero ziGamma(log), zi=~1","hurdle: massa em zero modelada à parte",2489,"estimado",0.26548,0.107,0.05575,0.4752,30.41,22694.6
+"H_parte1   binomial P(y>0)","parte 1: opera, dado que tem capacidade",2489,"FALHOU",NA,NA,NA,NA,NA,NA
+"H_parte2   Gama(log) em y>0","parte 2: intensidade condicional (= G_semzero)",2482,"estimado",0.26541,0.107,0.05569,0.47514,30.4,22596.4

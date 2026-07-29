@@ -1,0 +1,10 @@
+"modelo","nota","n","situacao","coef_oss","ep","ic_lo","ic_hi","efeito_pct"
+"T00 limiar contaminado + amostra por DESFECHO","os dois defeitos presentes (referência Tweedie)",2482,"estimado",0.23838,0.08354,0.07464,0.40212,26.92
+"T10 limiar CORRIGIDO + amostra por desfecho","isola R8-1 (limiar): 32 obs mudam de valor",2482,"estimado",0.23892,0.0844,0.0735,0.40434,26.99
+"T01 limiar contaminado + amostra por CAPACIDADE","isola R8-2 (amostra): 7 obs entram",2489,"estimado",0.23579,0.08677,0.06571,0.40586,26.59
+"T11 limiar CORRIGIDO + amostra por CAPACIDADE","os dois corrigidos",2489,"estimado",0.23627,0.08762,0.06455,0.408,26.65
+"G00 Gama, limiar contaminado, amostra por desfecho","reproduz o publicado (+0,26514)",2482,"estimado",0.26514,0.10664,0.05613,0.47415,30.36
+"I0 log winsorizado em 125,1 (original)","reproduz o publicado (+0,11802)",3177,"estimado",0.11802,0.0811,-0.04094,0.27697,12.53
+"I1 log SEM winsorização, modelo único","isola R8-3a: só tira o corte, mantém a forma",3177,"estimado",0.11781,0.08184,-0.0426,0.27823,12.5
+"I2a duas partes — A: binário de superlotação","isola R8-3b: a forma nova, parte A",3177,"estimado",-0.24746,1.07557,-2.35557,1.86066,NA
+"I2b duas partes — B: contínua <= 100","isola R8-3b: a forma nova, parte B",2685,"estimado",0.10849,0.09112,-0.0701,0.28708,11.46

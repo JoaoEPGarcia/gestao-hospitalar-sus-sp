@@ -1,9 +1,19 @@
-# etapa4_bayes_segmentado.R
-# ETAPA 4 — Especificação hierárquica por estrato (intercepto aleatório de
-# hospital, Mundlak, dummies de ano), cinco indicadores.
+# etapa4_hierarquico_segmentado.R
+# ETAPA 4 — MODELO HIERÁRQUICO POR MÁXIMA VEROSSIMILHANÇA, por estrato
+# (intercepto aleatório de hospital, Mundlak, dummies de ano), cinco
+# indicadores.
 #
-# HONESTIDADE SOBRE O BACKEND — leia antes de chamar isto de "bayesiano"
-# ---------------------------------------------------------------------
+# O NOME DESTE ARQUIVO FOI CORRIGIDO EM 29/07/2026
+# ------------------------------------------------
+# Chamava-se `etapa4_bayes_segmentado.R` e produzia
+# `tabSEG_12_bayes_por_estrato.csv`. Nada aqui é bayesiano, e o cabeçalho
+# abaixo sempre disse isso — mas o NOME dizia o contrário, e é o nome que
+# sobrevive em citação, em índice de pasta e em conversa. Rótulo que
+# contradiz o próprio conteúdo é erro que um parecerista de estatística
+# encontra na primeira leitura.
+#
+# HONESTIDADE SOBRE O BACKEND — este NÃO é um modelo bayesiano
+# ------------------------------------------------------------
 # A escada prevista no protocolo é brms com cmdstanr; senão rstan; senão
 # glmmTMB. Este ambiente NÃO tem toolchain de compilação (Rtools), condição
 # verificada e impressa abaixo. O que roda aqui é glmmTMB: máxima
@@ -11,6 +21,15 @@
 # priors, não há posterior, não há diagnóstico de cadeia. Os intervalos são
 # de Wald, não críveis. A degradação é a mesma já documentada na Fase 2 e é
 # repetida aqui em vez de silenciada.
+#
+# CUIDADO AO COMPARAR COM A FASE 2: a Frente 1 da Fase 2 desceu a MESMA
+# escada, pelo mesmo motivo, e também roda em glmmTMB por máxima
+# verossimilhança (ver `resultados_fase2/RELATORIO_EXECUCAO.md`, seção 3).
+# Os dois são o mesmo estimador. A proximidade entre eles NÃO é convergência
+# entre paradigmas inferenciais, porque não há dois paradigmas envolvidos.
+# O rótulo "Bayesiana hierárquica" que a Fase 2 ainda carrega em título e
+# README tem o mesmo defeito que este arquivo tinha, e a decisão sobre
+# renomeá-lo está pendente — ver PENDENCIAS.md.
 #
 # CONDICIONAL POR DESENHO: o prompt da Etapa 4 põe esta família como
 # condicional — entra só onde convergir. Falha de convergência é REPORTADA na
@@ -44,7 +63,7 @@
 #
 # Saída
 # -----
-#   analises/tabelas/tabSEG_12_bayes_por_estrato.csv
+#   analises/tabelas/tabSEG_12_hierarquico_por_estrato.csv
 
 .libPaths(c(file.path(Sys.getenv("LOCALAPPDATA"), "R", "win-library", "4.6"),
             .libPaths()))
@@ -238,9 +257,9 @@ for (e in estratos) {
 
 tab <- do.call(rbind, resultados)
 tab$backend <- if (tem_rtools) "stan" else "glmmTMB (ML, NÃO posterior)"
-write.csv(tab, file.path(TAB, "tabSEG_12_bayes_por_estrato.csv"),
+write.csv(tab, file.path(TAB, "tabSEG_12_hierarquico_por_estrato.csv"),
           row.names = FALSE, fileEncoding = "UTF-8")
-cat(sprintf("\n[TAB] tabSEG_12_bayes_por_estrato.csv (%d linhas)\n", nrow(tab)))
+cat(sprintf("\n[TAB] tabSEG_12_hierarquico_por_estrato.csv (%d linhas)\n", nrow(tab)))
 cat(sprintf("  estimados: %d | falhas/não convergiu: %d | não-aplicável: %d\n",
             sum(tab$situacao == "estimado"),
             sum(grepl("FALHOU|NÃO CONVERGIU", tab$situacao)),
