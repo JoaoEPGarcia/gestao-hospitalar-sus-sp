@@ -58,7 +58,7 @@ print("=" * 78)
 proibido("R2 par bruto 0,0698", r"0[,{]?,?698|0,0698")
 proibido("R2 par bruto 0,0536", r"0[,{]?,?536|0,0536")
 obrigatorio("R2 o controle é explicitado junto ao coeficiente",
-            r"controla a complexidade estrutural|com esse controle explicitado")
+            r"controla a complexidade Barcelona|com esse controle explicitado")
 obrigatorio("R2 a proibição do par bruto é declarada",
             r"diferenca bruta de mortalidade .{0,40}nao e citavel")
 

@@ -74,7 +74,7 @@ ROT = {
     "pct_alta_complex":    "Fração alta complexidade",
     "ocupacao_internacao": "Ocupação internação (%)",
     "ocupacao_uti":        "Ocupação UTI (%)",
-    "complexidade_estrutural": "Complexidade estrutural",
+    "complexidade_estrutural": "Complexidade Barcelona",
 }
 # mort_sem_excl exclui óbitos fetais, maternos e neonatais; o rótulo
 # "Mortalidade ajustada" foi adotado por ser mais intuitivo nas figuras

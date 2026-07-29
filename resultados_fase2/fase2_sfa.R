@@ -3,7 +3,7 @@
 # especificação Battese e Coelli (1995): fronteira Translog (testada
 # contra Cobb Douglas por razão de verossimilhança) com dummies de ano
 # na fronteira e equação de ineficiência com categoria de gestão,
-# complexidade estrutural, porte e tendência.
+# complexidade Barcelona, porte e tendência.
 #
 # DECISÕES DOCUMENTADAS
 # Inputs em log CENTRADO (as elasticidades na média viram os próprios

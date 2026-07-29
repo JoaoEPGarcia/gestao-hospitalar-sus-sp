@@ -153,7 +153,7 @@ def _renomear(nome: str) -> str:
         "C(cat_zero, Treatment('Pública'))[T.": "",
         "C(ano)[T.": "ano ",
         "Intercept": "constante",
-        "complexidade_estrutural": "complexidade estrutural",
+        "complexidade_estrutural": "complexidade Barcelona",
         "longa_perm": "longa permanência",
         "media_oss": "média OSS (Mundlak)",
         "log_leitos": "log leitos",

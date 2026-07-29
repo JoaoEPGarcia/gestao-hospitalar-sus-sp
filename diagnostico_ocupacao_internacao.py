@@ -397,7 +397,7 @@ piv_dc = tab05d.pivot(index="modelo_gestao_proxy", columns="faixa_barcelona",
 print("\nCNES por faixa:")
 print(piv_dc.to_string())
 
-print("\ncomplexidade estrutural média dentro de E3:")
+print("\ncomplexidade Barcelona média dentro de E3:")
 for c in cats:
     bloco = e3[e3["modelo_gestao_proxy"] == c]
     if len(bloco):

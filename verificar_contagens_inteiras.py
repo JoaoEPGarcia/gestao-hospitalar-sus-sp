@@ -157,7 +157,7 @@ PISTAS = [
 # abaixo saiu de um falso positivo real da primeira execução.
 ANTIPISTAS = [
     "figura", "tabela", "secao", "apendice", "pagina", "nota",
-    "posicao", "rank", "leitos contra", "complexidade estrutural",
+    "posicao", "rank", "leitos contra", "complexidade barcelona",
     "faixa barcelona", "no dea", "na sfa",
 ]
 

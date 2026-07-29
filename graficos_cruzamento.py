@@ -502,8 +502,8 @@ def fig06(df):
     ax.set_xlabel("Longitude")
     ax.set_ylabel("Latitude")
     ax.set_title("Os 314 hospitais do painel no mapa de SP — cor = categoria "
-                 "administrativa, tamanho = complexidade estrutural "
-                 "(Barcelona)", fontsize=12.5)
+                 "administrativa, tamanho = complexidade Barcelona",
+                 fontsize=12.5)
     ax.legend(fontsize=9, loc="lower left")
     fig.tight_layout(rect=[0, .01, 1, 1])
     _selo(fig)

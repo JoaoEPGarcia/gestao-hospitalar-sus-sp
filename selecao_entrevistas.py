@@ -721,8 +721,7 @@ produção sem consequência financeira direta; a diferença de faturamento
 pode refletir o próprio regime de pagamento, a variável cujo efeito se
 busca medir, e não uso de recursos ou qualidade assistencial. Toda
 leitura de mortalidade nesta fase usa a
-complexidade estrutural como referência de perfil, nunca a complexidade
-ponderada pela mortalidade, para evitar circularidade.
+complexidade Barcelona como referência de perfil.
 
 A seleção de entrevistados segue seis blocos amostrais descritos na
 Seção~\ref{sec:selecao}: os 5 conversores Direta$\to$OSS (obrigatórios),
@@ -779,7 +778,7 @@ entrevistado antes da resposta.
                         f"({_tex_escapar(r['municipio'])}, "
                         f"{r['geografia']}; {_tex_escapar(r['porte'])}, "
                         f"faixa Barcelona {r['faixa_barcelona']}, "
-                        f"complexidade estrutural "
+                        f"complexidade Barcelona "
                         f"{_pt(r['complexidade_estrutural'])}). "
                         f"{_tex_escapar(r['justificativa'])}\\par\\medskip\n")
     sec2 = "".join(sec2)
@@ -969,7 +968,7 @@ exemplo, o documento, a rotina --- não aceitar declaração de princípios.
              "argumento? [seleção de casos; perfil de demanda]",
              "eficiência alta pode ser gestão ou seleção de pacientes "
              "mais leves; a pergunta confronta a hipótese de seleção "
-             "--- ler junto com a complexidade estrutural do hospital."),
+             "--- ler junto com a complexidade Barcelona do hospital."),
         ]),
         ("Módulo C --- Desviantes negativos (bloco c)", r"""
 Simétrico ao módulo B, mas centrado nas restrições percebidas. O tom não
