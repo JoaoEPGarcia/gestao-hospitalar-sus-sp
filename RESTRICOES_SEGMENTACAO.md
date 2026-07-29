@@ -1571,6 +1571,22 @@ Registradas, não executadas:
 - Reclassificação geográfica (Santos, Cotia, Guarulhos) — aguarda Priscilla e
   Alberto; bloqueia o algoritmo de seleção do bloco de entrevistas.
 - Forma funcional de `complexidade_pond_mort` — aguarda Priscilla.
-- Figuras `fig_ae_09` em valores reais, conversão monetária das Seções 2 e 9,
-  regeneração dos eixos de densidade.
+- ~~Figuras `fig_ae_09` em valores reais~~ e ~~conversão monetária das Seções
+  2 e 9~~ — **fechadas em 27/07/2026**, commit `08f8648`. As cinco
+  `fig_ae_09_conversor_*_custo_real.png` estão no repositório e a Seção 7 as
+  exibe; `tab_ae_univariada.csv` e `tab_ae_outliers.csv` passaram a ser
+  calculadas sobre `custo_real`. **Permanece aberta** a terceira parte da
+  linha: a **regeneração dos eixos de densidade**, que é item próprio e
+  depende de alterar `analise_exploratoria.py`, não só o `.tex`.
 - Leitura humana do PDF compilado, para coerência de prosa entre seções.
+
+> *Formulação anterior desta lista, de 28/07/2026, preservada e rotulada:*
+> «Figuras `fig_ae_09` em valores reais, conversão monetária das Seções 2 e 9,
+> regeneração dos eixos de densidade.» As três estavam na mesma linha e duas
+> já estavam fechadas havia um dia quando a linha foi escrita.
+>
+> **Erro de classe 4, terceira ocorrência no mesmo par de documentos, e na
+> direção oposta às duas anteriores.** O `PENDENCIAS.md` §4 registrava o
+> fechamento corretamente desde 27/07/2026 enquanto esta lista continuava
+> declarando as duas pendentes. Ver a nota de método no `PENDENCIAS.md` §13
+> sobre a concentração das inconsistências neste par.
