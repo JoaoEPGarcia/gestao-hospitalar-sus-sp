@@ -9,12 +9,12 @@ não deveriam estar sendo comparados de jeito nenhum?}
 
 \subsection{O caso que motivou a pergunta}
 
-O gatilho foi concreto e está na Seção~\ref{sec:categorias}. A média de
-ocupação de UTI da rede incluía hospitais \textbf{que não têm UTI}, contados
-como ocupação zero. Corrigido o domínio, o ordenamento entre categorias se
-inverteu.
+O gatilho foi concreto e está na Seção~\ref{sec:categorias}. A ocupação de
+UTI só é definida onde há leito de UTI, e medi-la sobre a rede inteira
+somaria hospitais \textbf{que não têm UTI} a hospitais de UTI vazia, que são
+coisas diferentes.
 
-O erro ali era de definição, mas ele expõe um problema mais geral. Um
+Ali o problema é de definição, mas ele expõe um problema mais geral. Um
 hospital de pequeno porte do interior, sem UTI e sem alta complexidade, e um
 hospital-escola de mil leitos com UTI e transplante não fazem a mesma coisa.
 Medi-los pelos mesmos seis indicadores e descontar a diferença com uma
