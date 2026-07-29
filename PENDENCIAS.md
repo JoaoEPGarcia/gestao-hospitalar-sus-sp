@@ -227,7 +227,71 @@ provavelmente Priscilla, que é leitora da versão em prosa e não do LaTeX.
 
 **Aberta em:** 26/07/2026
 **Decisão de:** João
-**Situação:** aberta, sem decisão de quando resolver
+**Situação:** **EXECUTADA em 29/07/2026.** Mecanismo próprio construído
+(`verificar_contagens_inteiras.py`); **um** achado, corrigido.
+
+### Resultado (29/07/2026)
+
+O script reconta do painel, a cada execução, toda contagem inteira que o
+documento afirma — nenhum número é copiado de prosa (regra 7). Ele varre as
+20 seções, isola os inteiros que o texto apresenta **como contagem** e testa
+cada um contra o conjunto recontado.
+
+**209 afirmações de contagem; 90 casam com uma contagem do painel.** As 119
+restantes foram inspecionadas e nenhuma é erro: são contagens do **funil
+anterior ao painel** (830 estabelecimentos da base bruta, os 25 excluídos por
+incomparabilidade), valores monetários, rótulos de percentil (p90) e
+subconjuntos declarados. As contagens de cabeça conferem todas:
+
+| afirmação | seção | recontagem |
+|---|---|---|
+| 289 CNES, 3.179 observações, 11 anos | sec01 | **confere** |
+| 171 Filantrópicos, 56 Municipais, 37 OSS, 27 Direta, 3 Privados | sec04 | **confere** pela regra "alguma vez", que a própria seção declara |
+| 26 Direta e 33 OSS | sec04 | **confere** pela regra "categoria dominante", também declarada ali |
+| 159 médios, 120 grandes, 10 especiais | sec01 | **confere** (soma 289) |
+| 35 de baixo óbito estrutural, 254 demais | sec03 | **confere** (soma 289) |
+| 5 conversores | várias | **confere** |
+| 67 / 97 / 125 CNES em E1 / E2 / E3 | sec13b | **confere** |
+
+### O achado: a Seção 13b misturava as duas regras de contagem
+
+O projeto usa **duas regras legítimas** e a diferença entre elas é exatamente
+o número de conversores, porque um hospital que trocou de gestão pertenceu de
+fato às duas categorias:
+
+- **categoria dominante** — cada CNES conta uma vez, onde passou a maior
+  parte do período. Soma **289**.
+- **alguma vez na categoria** — o conversor conta nas duas. Soma **294**.
+
+A Seção 4 usa as duas e **declara ambas**, com a conta de reconciliação
+escrita ("por isso a soma das categorias excede em cinco o total de 289").
+A tabela do funil de estratos da Seção 13b usava **células pela segunda
+regra e totais pela primeira**, com legenda dizendo "Distribuição dos 289
+hospitais" e "cada célula traz hospitais distintos" — de modo que nenhuma
+coluna fechava:
+
+| estrato | CNES distintos | conversores | soma das células |
+|---|---|---|---|
+| E1 | 67 | 0 | 67 |
+| E2 | 97 | 1 | **98** |
+| E3 | 125 | 4 | **129** |
+| TOTAL | 289 | 5 | **294** |
+
+**Nenhum número da tabela está errado, e nenhum foi alterado.** As células
+são a contagem certa para o que a estimação faz — `tabSEG_10` reporta
+`n_cnes` 125 e `n_cnes_oss` 28 em E3, e as duas estão corretas ao mesmo
+tempo, porque 3 dos 125 hospitais aparecem nas duas categorias. O que
+faltava era a **declaração da regra**, que a Seção 4 já trazia e a 13b não.
+Corrigido na legenda.
+
+**Classe do erro: 4.** Duas seções usando a mesma convenção, uma declarando
+e a outra não — e a que não declarava afirmava na legenda algo incompatível
+com as próprias células. Nenhuma camada da triagem o pegaria: cada número,
+isolado, está certo.
+
+---
+
+*Diagnóstico original de 26/07/2026, preservado:*
 
 A Camada 1 da varredura (item 1) testou 520 dos 1.209 tokens numéricos das 18
 seções. Ficaram **sem qualquer verificação** 412 inteiros, 188 anos e 89
@@ -986,25 +1050,27 @@ A10: não eram trabalho, eram insumo ausente.
    identificados.
 2. **Camada 3 da varredura de consistência** (item 1): 48 PNGs em 8 seções
    que declaram valores impressos na figura, nunca conferidos.
-3. **Contagens inteiras** (item 3): 412 inteiros, 188 anos e 89 códigos CNES
-   sem verificação. A auditoria de 29/07 cobriu as contagens do texto novo,
-   não as do documento antigo.
-4. **Os quatro achados da varredura de `resultados_fase2/tabelas/`**
+3. **Os quatro achados da varredura de `resultados_fase2/tabelas/`**
    (item 0-bis), todos abertos: a equação de ineficiência da SFA ausente do
    documento, a violação de monotonicidade do insumo de UTI não reportada, o
    "todas as amostras" da Seção 15 e a cobertura de
    `tabS_sensibilidade.csv`.
-5. **Indexar `painel_definitivo.csv`, `resultados_fase2/dea/` e
+4. **Indexar `painel_definitivo.csv`, `resultados_fase2/dea/` e
    `resultados_fase2/sfa/`** na triagem automatizada — pré-requisito comum
    dos itens 1 e 3.
-6. **`estimacao.md` cobre só as seções 1 a 3 de `estimacao.py`** (item 2).
+5. **`estimacao.md` cobre só as seções 1 a 3 de `estimacao.py`** (item 2).
    *Este item tem uma metade em cada lista:* ampliar ou não é decisão
    editorial; ampliar, se decidido, é trabalho.
 
-*Item retirado em 29/07/2026:* **Eixo "Densidade" dos histogramas** (item 7)
-saiu da lista — não por decisão, mas por medição: o código já estava
-convertido, os PNGs já estavam regerados e o `.tex` já não trazia a palavra.
-Ver §7, com a verificação e a formulação refutada atribuída.
+*Itens retirados em 29/07/2026, ambos por medição e não por decisão:*
+
+- **Eixo "Densidade" dos histogramas** (item 7): o código já estava
+  convertido, os PNGs já estavam regerados e o `.tex` já não trazia a
+  palavra. Ver §7, com a verificação e a formulação refutada atribuída.
+- **Contagens inteiras** (item 3): mecanismo próprio construído e executado
+  (`verificar_contagens_inteiras.py`), 209 afirmações de contagem testadas,
+  90 casadas contra o painel e as demais inspecionadas. Um achado — a regra
+  de contagem não declarada na tabela da Seção 13b —, corrigido. Ver §3.
 
 ---
 
