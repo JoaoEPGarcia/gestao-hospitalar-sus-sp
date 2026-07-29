@@ -677,7 +677,7 @@ Direta, CRE/Mundlak, EP agrupado por CNES):
 |---|---|---|---|
 | Mortalidade geral | −0,281 (logito) | [−0,442, −0,121] | 0,001 |
 | TMP | **−11,8%** | [−17,6%, −5,6%] | 0,000 |
-| Faturamento real/saída | −9,2% | [−25,2%, +10,4%] | 0,332 |
+| Faturamento real/saída | −9,2% | [−25,4%, +10,4%] | 0,332 |
 | Ocupação de UTI (PPML) | +25,5% | [−18,4%, +93,0%] | 0,300 |
 | Superlotação (parte A) | +0,74 (logito) | [−1,17, +2,64] | 0,448 |
 | Ocupação ≤100 (parte B) | +27,0% | [−1,8%, +64,3%] | 0,068 |
@@ -767,6 +767,47 @@ aparece com 1 a 2 CNES por estrato e escore de 0,257 em E2.
 **5. O IC do OSS no DEA de E1 repousa sobre 490 das 1.000 réplicas.** Com 2
 CNES OSS, mais da metade das reamostragens por hospital não sorteia nenhum.
 A tabela traz réplicas válidas por termo para que isso não passe.
+
+*Nota de 29/07/2026:* a coluna `replicas_validas` estava sendo calculada e
+impressa no console, mas **não** chegava ao CSV — `bloco_seg` a omitia ao
+montar a tabela. A salvaguarda descrita nesta linha existiu só no log
+efêmero entre 28 e 29/07/2026. Corrigida no commit `791c4e8`, com o 490
+reproduzido na regeneração; as contagens dos demais estratos são E2
+996/1.000 e E3 1.000/1.000.
+
+**6. Faturamento em E3 CRUZA O ZERO. O erro-padrão válido é o
+cluster-robusto.** Este é o único ponto em que os dois estimadores dão
+vereditos **opostos**, e ele não estava registrado.
+
+O coeficiente é o mesmo nos dois — **−0,09694**, pela identidade da seção
+anterior. O que difere é a precisão:
+
+| estimador | erro-padrão | IC95% (log) | IC95% (%) | zero |
+|---|---|---|---|---|
+| **CRE/Mundlak, cluster por CNES** | **0,09983** | [−0,29261, +0,09873] | **[−25,4%, +10,4%]** | **cruza** |
+| hierárquico, baseado no modelo | 0,04884 | [−0,19265, −0,00122] | [−17,5%, −0,1%] | exclui |
+
+O cluster-robusto é **2,04× maior**, e é ele que vale.
+
+**O motivo, que é de princípio e não de preferência:** o erro-padrão
+cluster-robusto é agnóstico quanto à estrutura de correlação intra-hospital;
+o baseado no modelo só é válido **se a especificação de efeitos aleatórios
+estiver correta**. Com 125 CNES em E3 há clusters de sobra para o robusto ser
+confiável — bem acima de qualquer regra prática de 30 a 50. **O intervalo mais
+estreito não é informação adicional: é uma suposição.** Quando um estimador
+entrega mais precisão por impor mais estrutura, a precisão extra é a
+estrutura, não os dados.
+
+**Consequência de redação:** não se pode escrever que o OSS fatura menos por
+saída em E3. A estimativa pontual é −9,2%, a direção é negativa nas duas
+especificações, e o intervalo válido vai de −25,4% a +10,4%. É resultado nulo,
+e nulo com a mesma advertência do binário — repousa sobre os mesmos quatro
+conversores e não distingue "sem efeito" de "sem potência".
+
+*Correção de escala no mesmo passo:* o limite inferior constava como
+**−25,2%** e está **−25,4%**. `exp(−0,29261) − 1 = −25,37%`. O limite superior
+constava como +10,4% e confere (+10,38%). Conferido em
+`verificar_identidade_cre_hierarquico.py`.
 
 ### Onde a estimação falhou, e por quê
 
