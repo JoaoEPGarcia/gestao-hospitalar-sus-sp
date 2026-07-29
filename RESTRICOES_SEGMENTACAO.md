@@ -13,8 +13,8 @@ Etapa 4 (reestimação) foi executada em 28/07/2026 no branch
 famílias previstas — CRE/Mundlak, DEA e hierárquico. Resultados e restrições
 de leitura em **R9**. A Etapa 5 (refazer os modelos de ocupação da Fase 2
 pelos defeitos de R8) foi executada no mesmo dia, em
-`feat/etapa5-ocupacao-fase2`: o achado publicado sobrevive atenuado, e o que
-muda é registrado em **R10**.
+`feat/etapa5-ocupacao-fase2`: sob a especificação de mudança mínima o achado
+publicado **sobrevive intacto**, e o que muda é registrado em **R10**.
 
 ## Ratificação de escopo da Etapa 4
 
@@ -596,7 +596,8 @@ cabeçalho de `descritivas_segmentadas.py`, em vez de somadas sob o rótulo
 
 **Status: EXECUTADA NA ETAPA 5, em 28/07/2026. Os três defeitos foram
 corrigidos e reestimados. A consequência prevista abaixo — "o achado não
-sobrevive como está" — NÃO se confirmou: ele sobrevive, atenuado. Ver R10.**
+sobrevive como está" — NÃO se confirmou: sob a especificação de mudança
+mínima (ziGamma/hurdle) o achado sobrevive **intacto**, em +30,4%. Ver R10.**
 
 Os modelos de ocupação em `fase2_bayes.R` e `fase2_robustez.R` têm três
 defeitos **independentes** entre si:
@@ -622,20 +623,34 @@ ocupação que está no `principal.tex` não sobrevive como está". A Etapa 5
 refará esses modelos já na forma correta.
 
 > **A previsão acima é preservada, e o veredito é por defeito, não em bloco.**
-> A Etapa 5 rodou no mesmo dia. O achado sobrevive, atenuado: intensidade de
-> UTI de +30,4% para +26,7%, ainda excluindo o zero; ocupação de internação
-> de +12,5% para +11,5%, ainda cruzando o zero.
+> A Etapa 5 rodou no mesmo dia. Sob a especificação de mudança mínima
+> (ziGamma/hurdle) o achado **sobrevive intacto**: intensidade de UTI em
+> **+30,4%**, o mesmo valor publicado; ocupação de internação de +12,5% para
+> +11,5%, ainda cruzando o zero.
 >
 > - **Defeito 1 — previsão errada.** Corrigir o limiar move +0,0005.
 > - **Defeito 2 — errada quanto ao coeficiente, certa quanto ao princípio.**
->   As 7 observações movem −0,0026 diretamente, mas a correção força a troca
->   de família (a Gama não admite zero), e a troca move −0,0268. Age por um
->   canal que a previsão não antecipou.
+>   As 7 observações movem −0,0026 diretamente, e corrigido pelo hurdle o
+>   coeficiente volta a +30,4%. A correção é obrigatória por princípio —
+>   condicionar no desfecho está errado mesmo quando não muda nada —, mas
+>   ela **não atenua o achado**.
 > - **Defeito 3 — previsão CERTA.** Winsorizar destruía mesmo o sinal de
 >   sobrecarga, e a resposta nunca foi um coeficiente que muda: é o modelo em
 >   duas partes, que mostrou que o número publicado misturava frequência de
 >   superlotação com intensidade de ocupação. Isto é o defeito se
 >   confirmando.
+>
+> **Veredito intermediário, REFUTADO e preservado (29/07/2026).** Este bloco
+> dizia: *"O achado sobrevive, atenuado: intensidade de UTI de +30,4% para
+> +26,7%, ainda excluindo o zero"*, e atribuía a atenuação ao defeito 2, que
+> *"força a troca de família (a Gama não admite zero), e a troca move
+> −0,0268. Age por um canal que a previsão não antecipou"*. As duas
+> afirmações caem pelo mesmo teste. O +26,7% é o Tweedie — uma das cinco
+> famílias, e não a mudança mínima. E a troca de família não é forçada: o
+> hurdle admite a massa em zero preservando a função de variância da Gama. A
+> decomposição atribui **9% da atenuação aos zeros e 91% à função de
+> variância**, de modo que o canal não é o defeito, é uma escolha de
+> modelagem nossa. Ver R10.
 >
 > Ver R10 para a decomposição completa.
 
@@ -748,10 +763,21 @@ Registradas porque divergem de convenções anteriores do projeto:
 
 ---
 
-## R10 — Etapa 5: o achado de ocupação SOBREVIVE, atenuado
+## R10 — Etapa 5: o achado de ocupação SOBREVIVE INTACTO
 
-**Status: EXECUTADA EM 28/07/2026. R8 FECHADA quanto à correção; a
-consequência que ela previu não se confirmou na forma prevista.**
+**Status: EXECUTADA EM 28/07/2026, veredito consolidado em 29/07/2026. R8
+FECHADA quanto à correção; a consequência que ela previu não se confirmou.**
+
+> **Nota de contradição interna, resolvida em 29/07/2026.** Este item chegou
+> a coexistir com um veredito anterior — "o achado sobrevive **atenuado**,
+> de +30,4% para +26,7%" — que aparecia no cabeçalho do documento, no status
+> de R8, no bloco de veredito de R8 e no próprio título desta seção,
+> enquanto a tabela de veredito abaixo já dizia "+30,4%, sobrevive intacto".
+> O registro afirmava e negava a mesma coisa em quatro lugares. **Vale a
+> tabela**, porque é a única das duas afirmações amparada por saída
+> reproduzível (`tabE5_sensibilidade_familias.csv`). As quatro ocorrências
+> do veredito antigo foram corrigidas e ficam preservadas e rotuladas onde
+> apareciam, no mesmo padrão usado para as versões refutadas de R1.
 
 Saídas em `tabE5_ocupacao_antes_depois.csv` e `tabE5_ocupacao_variantes.csv`.
 Scripts: `preparo_fase2_corrigido.R` e `fase2_ocupacao_corrigido.R`. Os
@@ -770,7 +796,7 @@ poderia ser do pipeline e não da correção.
 
 | quantidade | publicado | corrigido | conclusão |
 |---|---|---|---|
-| Intensidade de UTI | +30,4% \[+5,6%, +60,8%\] | **+30,4%** \[+5,6%, +60,8%\] (hurdle) | **sobrevive intacto** |
+| Intensidade de UTI | +30,4% \[+5,7%, +60,8%\] | **+30,4%** \[+5,7%, +60,8%\] (hurdle) | **sobrevive intacto** |
 | Ocupação de internação | +12,5%, cruza o zero | **+11,5%**, cruza o zero | **sobrevive**, inalterado |
 | Sem conversores, internação | 0,118 → 0,235, passa a excluir o zero | 0,108 → **0,218**, passa a excluir o zero | **sobrevive** |
 
@@ -779,20 +805,33 @@ aponta na mesma direção com magnitude menor, com intervalo que cruza o zero
 na especificação hierárquica — continua correta com os números corrigidos.
 
 **A frase que vai ao texto sobre a intensidade de UTI:** corrigir o
-condicionamento no desfecho, com especificação que preserva a função de
-variância, **deixa o achado publicado intacto** (+30,4%). Sob famílias
-alternativas o efeito varia entre +25,9% e +30,4%, mantendo direção nas cinco
-e significância em quatro — a família é a sensibilidade principal, e a
-amplitude de 4,5 pontos é menor que a largura do próprio intervalo de
-confiança.
+condicionamento no desfecho pela **mudança mínima** — a especificação que
+preserva a função de variância da Gama publicada — **deixa o achado
+intacto** (+30,4%). Sob famílias alternativas o efeito varia entre +25,9% e
++30,4%, mantendo direção nas cinco e significância em quatro. **A exceção é
+a lognormal** (+25,9%, IC \[−0,3%, +59,0%\]), que não discorda em ponto —
+está a 0,0087 em pontos de log do Tweedie de mesma amostra — mas estima a
+mediana condicional em vez da média, com erro-padrão 41% maior. A família é
+a sensibilidade principal, e a amplitude de 4,5 pontos é menor que a largura
+do próprio intervalo de confiança.
 
 ### Efeito ISOLADO de cada defeito — e a atribuição correta da atenuação
 
 Ver `tabE5_decomposicao_defeitos.csv` e `fase2_ocupacao_decomposicao.R`. A
 UTI foi decomposta em fatorial 2×2 (limiar × amostra) com a **família mantida
-fixa** em Tweedie, porque a Gama do original não admite zero: trocar a
-amostra para capacidade obrigaria a trocar de família junto, e o efeito do
-defeito 2 ficaria confundido com o da família.
+fixa** em Tweedie, porque a Gama do original não admite zero: **mantida a
+forma de modelo único**, trocar a amostra para capacidade obrigaria a trocar
+de família junto, e o efeito do defeito 2 ficaria confundido com o da
+família.
+
+O qualificador em negrito é o que torna esta frase verdadeira, e foi
+acrescentado em 29/07/2026. A obrigação vale **dentro da forma de modelo
+único**, não em geral: o hurdle mantém a Gama e admite a massa em zero num
+componente próprio, de modo que a troca de família deixa de ser necessária
+assim que se sai do modelo único. O desenho do 2×2 continua correto — para
+isolar o defeito 2 com família fixa, era preciso fixá-la —, mas ele não
+autoriza a conclusão de que corrigir o defeito 2 obrigue a trocar de
+família. Ver a seção da especificação principal, adiante.
 
 | fonte | obs tocadas | Δ coeficiente (log) |
 |---|---|---|
@@ -803,10 +842,57 @@ defeito 2 ficaria confundido com o da família.
 | **Gama → Tweedie (família)** | — | **−0,0268** |
 
 Dentro de família fixa, os defeitos movem a terceira e a quarta casa decimal.
-A atenuação passa pela troca de família. Isso levantou a pergunta seguinte, e
-a resposta dela **derrubou a leitura intermediária deste item**.
+**Sob a forma de modelo único**, a atenuação passa pela troca de família.
+Isso levantou a pergunta seguinte, e a resposta dela **derrubou a leitura
+intermediária deste item**: fora do modelo único a troca deixa de ser
+necessária, e com ela desaparece a atenuação.
 
-### A família NÃO é forçada — e o achado publicado sobrevive intacto
+### A especificação principal é a ziGamma/hurdle — critério antes do resultado
+
+**Decisão de 29/07/2026. A ordem em que esta seção está escrita é
+deliberada** — primeiro o critério, depois o número que ele produziu — **e
+não deve ser invertida em nenhuma reescrita.** O motivo está no fim da
+seção.
+
+**O critério, decidível antes de estimar.** Entre as especificações que
+corrigem o defeito 2 — isto é, que mantêm na amostra as 7 observações com
+UTI habilitada e zero diárias, em vez de condicionar no desfecho —, a
+principal é a que constitui a **mudança mínima** frente à especificação
+publicada. Mudança mínima quer dizer: corrigir o defeito e **não alterar
+mais nada**; em particular, não alterar a função de variância `V(μ) = μ²`
+da Gama original.
+
+A `ziGamma`/hurdle é a única das cinco que satisfaz as duas condições ao
+mesmo tempo: acomoda a massa em zero num componente próprio e mantém a Gama
+na parte contínua. As outras quatro ou não corrigem o defeito (permanecem na
+subamostra por desfecho) ou corrigem trocando a função de variância junto.
+
+Este critério é uma propriedade da **forma** das especificações, não dos
+seus resultados. Ele estaria decidido do mesmo jeito se nenhuma delas
+tivesse sido estimada.
+
+**A consequência, que não é o motivo.** Estimada, a ziGamma devolve
+**+30,4%** — o valor publicado. Coeficiente **0,26548** contra **0,26541**
+da Gama publicada: diferença de **7×10⁻⁵** em pontos de log, coincidente até
+a **terceira** casa decimal.
+
+*Correção de registro (29/07/2026).* Uma versão anterior desta seção dizia
+"idêntico ao publicado até a quarta casa decimal". Está errado: 0,26541 e
+0,26548 arredondam a 0,2654 e 0,2655, e divergem justamente na quarta. A
+precisão importa aqui mais do que em outros pontos do documento, pelo motivo
+do parágrafo seguinte.
+
+**Registrado explicitamente, porque é a crítica mais fácil de fazer contra
+este trabalho: a ziGamma não foi escolhida por reproduzir o publicado.** Foi
+escolhida por ser a mudança mínima que corrige o defeito 2 preservando a
+estrutura de variância da especificação original. Se tivesse devolvido +20%
+ou +40%, continuaria sendo a principal pelo mesmo critério, e o que teria
+mudado é o achado, não a especificação. Escrever a coincidência antes do
+critério — ou exagerá-la de três para quatro casas decimais — converteria um
+argumento de princípio em seleção de especificação pelo resultado, que é
+exatamente a acusação que esta linha de trabalho passou inteira evitando.
+
+### A família NÃO é forçada
 
 Ver `tabE5_sensibilidade_familias.csv` e `fase2_ocupacao_familias.R`.
 
@@ -815,19 +901,27 @@ de corrigir R8-2 — "manter os zeros exige família que os admita, e a Gama nã
 admite". A primeira metade é verdadeira; a conclusão não segue. **Existe
 família que admite zero e preserva a função de variância da Gama: o hurdle.**
 
-| especificação | n | efeito | IC95% |
-|---|---|---|---|
-| Gama, sem os zeros (**publicada**) | 2.482 | **+30,4%** | \[+5,6%, +60,8%\] |
-| **ziGamma / hurdle, com os zeros** | 2.489 | **+30,4%** | \[+5,6%, +60,8%\] |
-| Tweedie, sem os zeros | 2.482 | +27,0% | \[+7,6%, +49,8%\] |
-| Tweedie, com os zeros | 2.489 | +26,7% | \[+6,7%, +50,4%\] |
-| lognormal, sem os zeros | 2.482 | +25,9% | \[−0,3%, +59,0%\] |
+| especificação | n | coef (log) | EP | efeito | IC95% |
+|---|---|---|---|---|---|
+| **ziGamma / hurdle, com os zeros — PRINCIPAL** | 2.489 | **0,26548** | 0,1070 | **+30,4%** | \[+5,7%, +60,8%\] |
+| Gama, sem os zeros (publicada) | 2.482 | 0,26541 | 0,1070 | +30,4% | \[+5,7%, +60,8%\] |
+| Tweedie, sem os zeros | 2.482 | 0,23892 | 0,0844 | +27,0% | \[+7,6%, +49,8%\] |
+| Tweedie, com os zeros | 2.489 | 0,23627 | 0,0876 | +26,7% | \[+6,7%, +50,4%\] |
+| lognormal, sem os zeros | 2.482 | 0,23024 | 0,1192 | +25,9% | \[−0,3%, +59,0%\] |
+
+*Correção de escala (29/07/2026).* O limite inferior das duas primeiras
+linhas constava como **+5,6%** e está **+5,7%**. O valor antigo vinha de ler
+o limite em pontos de log (0,05569, registrado como "0,056" no
+`RELATORIO_EXECUCAO.md`) diretamente como percentual, enquanto o limite
+superior da mesma linha já era exponenciado — a linha misturava duas
+escalas. `exp(0,05569) − 1 = +5,73%`. As outras três famílias estavam
+corretas. Conferido em `verificar_familias_e5.py`.
 
 **O hurdle corrige R8-2 integralmente — os 7 zeros ficam na amostra, não há
-condicionamento no desfecho — e devolve +30,4%, idêntico ao publicado até a
-quarta casa decimal.** Logo: corrigir o defeito 2 **não** atenua o achado. O
-+26,7% foi consequência de escolher Tweedie, que é decisão de modelagem
-independente, não imposição do defeito.
+condicionamento no desfecho — e devolve o coeficiente publicado.** Logo:
+corrigir o defeito 2 **não** atenua o achado. O +26,7% foi consequência de
+escolher Tweedie, que é decisão de modelagem independente, não imposição do
+defeito.
 
 ### O teste decisivo: os zeros ou a função de variância?
 
@@ -851,9 +945,43 @@ família para os outros 99,7% seria inverter a ordem de importância.
 ### A família é a sensibilidade principal, e o achado é robusto a ela
 
 Amplitude entre as cinco especificações: **+25,9% a +30,4%, 4,5 pontos
-percentuais**. Quatro das cinco excluem o zero no IC95%. A exceção é a
-lognormal, cujo limite inferior é −0,0035 em pontos de log — cruza o zero por
-uma margem que não é distinguível de tocá-lo.
+percentuais**. Quatro das cinco excluem o zero no IC95%.
+
+**A quinta é a lognormal, e ela precisa ser nomeada.** "Significativo em 4
+de 5" sem dizer qual é a exceção não é robustez reportada. A especificação
+é a lognormal sem os zeros: **coeficiente 0,23024, erro-padrão 0,11923,
+IC95% \[−0,00345, +0,46394\] em pontos de log**, isto é **+25,9%
+\[−0,3%, +59,0%\]**, sobre n = 2.482.
+
+**Por que ela se afasta: ela não se afasta.** O ponto está praticamente
+colado no das demais — 0,23024 contra 0,23892 do Tweedie estimado sobre
+**exatamente a mesma amostra**, uma distância de **0,0087 em pontos de log**,
+menor que a diferença entre quaisquer duas das outras famílias. O que muda é
+a **precisão**: o erro-padrão da lognormal é **41% maior que o do Tweedie**
+(0,11923 contra 0,08440) e **11% maior que o da Gama** (contra 0,10700). Ela
+perde a significância por variância, não por deslocamento, e por uma margem
+mínima — o limite inferior é −0,00345 em pontos de log, que cruza o zero por
+uma distância não distinguível de tocá-lo.
+
+A razão é que a lognormal **estima outra quantidade**. As outras quatro usam
+link log sobre a média condicional, `log E[y]`; a lognormal modela
+`E[log y]`, que é a mediana condicional. Sob assimetria à direita — que é a
+forma desta distribuição — o efeito sobre a mediana é sistematicamente mais
+atenuado e menos preciso que o efeito sobre a média. **É estimando
+diferente, não estimativa discordante.**
+
+Isso **fortalece** a leitura de robustez em vez de qualificá-la: a única
+especificação que não atinge significância é também a única que não está
+estimando a mesma quantidade que as outras, e mesmo assim entrega ponto
+equivalente. Não há, entre as cinco, nenhuma que estime a média condicional
+e discorde.
+
+*Nota sobre o AIC, para que ninguém o leia ao contrário:* a lognormal
+aparece com AIC de **2.135,4** contra **21.608 a 22.695** das demais. Isso
+**não** significa ajuste melhor — o AIC dela é calculado sobre `log y` e as
+outras sobre `y`, escalas diferentes da resposta, o que torna os valores
+não comparáveis entre si. O AIC é comparável **dentro** de cada escala,
+nunca entre elas.
 
 **Direção idêntica nas cinco, significância em quatro, magnitude entre 26% e
 30%: isto é resultado robusto e reportável.** A família é a decisão de
@@ -861,6 +989,44 @@ modelagem que mais move o número, e por isso a amplitude deve acompanhar o
 achado sempre que ele for citado — não como ressalva defensiva, mas porque
 4,5 pontos é a incerteza real de especificação, e ela é menor que a largura
 do próprio IC.
+
+### Por que os dois indicadores de ocupação recebem tratamento diferente
+
+**Registrado em 29/07/2026, lado a lado, porque a pergunta é inevitável:
+ocupação de internação entra em modelo de duas partes e ocupação de UTI não,
+e as duas justificativas precisam ser lidas juntas para que a assimetria não
+pareça arbitrária.** As duas metades já existiam separadas — a da internação
+em R6, a da UTI abaixo — e é a separação que criava a aparência de
+inconsistência.
+
+| | ocupação de **internação** | ocupação de **UTI** |
+|---|---|---|
+| massa no componente binário | **492 obs acima de 100%** — 15,5% do painel | **7 zeros** em 2.489 — 0,281% |
+| variação *within* no binário | real: em E3, **64,3% dos CNES OSS** e 30,0% dos da Direta alternam entre anos | nenhuma que sustente estimação |
+| primeira parte, estimada | **converge e informa** | **não converge** com covariáveis |
+| excesso por categoria | **fortemente diferencial**: OSS 29,3% contra Direta 3,9% (em E3, 35,5% contra 2,9%) | **não-diferencial**: ao limiar de 180,5, **zero** observações OSS aparadas nos três estratos, contra 2 da Direta |
+| forma adotada | **duas partes** (R6) | **contínua**, ziGamma como principal |
+
+**A leitura das duas colunas.** Na internação o binário de superlotação é
+uma pergunta com conteúdo próprio — *com que frequência o hospital entra em
+superlotação* —, tem massa para ser estimada e varia dentro do hospital, que
+é o que permite identificá-la com efeito fixo de CNES. Separar as duas
+perguntas é o que revelou que o número publicado conflacionava frequência
+com intensidade.
+
+Na UTI a mesma forma é **degenerada**. Sete zeros não sustentam um binômio:
+a primeira parte não converge com covariáveis, e a versão que converge é a
+de intercepto apenas — que é precisamente a ziGamma já reportada. O modelo
+em duas partes da UTI **já está na tabela**, sob outro nome; o que não
+existe é uma primeira parte com conteúdo substantivo para interpretar.
+
+E a assimetria não é escolha de conveniência: ela acompanha uma assimetria
+empírica **nos dados**, pré-registrada em R6 antes de rodar. O excesso de
+ocupação é diferencial por categoria na internação — é ali que ele carrega
+sinal de gestão — e não-diferencial na UTI, onde a categoria que mais
+interessa ao contraste principal não tem sequer uma observação na região
+aparada. Se o diferencial tivesse aparecido também na UTI, R6 previa
+reabrir a assimetria. Não apareceu.
 
 ### Sobre o modelo em duas partes aqui
 
@@ -890,13 +1056,17 @@ defeito, a previsão se divide:
 - **R8-1 (winsorização contaminada): previsão ERRADA.** O defeito é real — o
   limiar antigo era mesmo artefato do bug da Etapa 1 — mas corrigi-lo move
   +0,0005. Nada depende disso.
-- **R8-2 (condicionamento no desfecho): previsão ERRADA quanto ao
-  coeficiente, CERTA quanto ao princípio.** As 7 observações movem −0,0026, e
-  corrigido pelo hurdle — que preserva a função de variância — o coeficiente
-  volta a +30,4%, o publicado. O defeito é real e a correção é obrigatória
-  por princípio: condicionar no desfecho está errado mesmo quando não muda
-  nada. Mas ele **não atenua o achado**. Chegou-se a registrar que forçava a
-  troca de família; não força — ver a seção da família acima.
+- **R8-2 (condicionamento no desfecho): ACERTOU o princípio, ERROU a
+  magnitude e o canal.** O princípio está certo, e é por ele que a correção
+  é obrigatória: condicionar no desfecho em vez de na capacidade está errado
+  **mesmo quando não muda nada**, e aqui quase não muda. A magnitude está
+  errada — as 7 observações movem −0,0026, terceira casa decimal. E o canal
+  está errado **duas vezes**: na previsão original, que anunciava um achado
+  que não sobreviveria sem dizer por onde; e na leitura intermediária deste
+  próprio registro, que atribuiu a atenuação ao canal da troca de família.
+  Corrigido pelo hurdle — que preserva a função de variância — o coeficiente
+  volta a **+30,4%**, o publicado. R8-2 **não atenua o achado por canal
+  nenhum**. Ver a seção da especificação principal e a da família, acima.
 - **R8-3 (sinal apagado por winsorização): previsão CERTA.** E é a única que
   se confirma na forma em que foi feita. A resposta a este defeito nunca foi
   um coeficiente que muda — tirar o corte mantendo o modelo único move
@@ -908,10 +1078,20 @@ defeito, a previsão se divide:
 
 **A lição, que é a de R1 v2 com o sinal trocado:** diagnosticar corretamente
 um defeito não permite prever a magnitude do seu efeito, **nem o canal por
-onde ele age**. R8-2 agiu por um canal que ninguém antecipou (a família), e
-R8-3 agiu não sobre o valor do coeficiente mas sobre a pergunta que o modelo
-consegue responder. Declarar o achado morto a partir do diagnóstico teria
-sido tão errado quanto declará-lo salvo sem reestimar.
+onde ele age**. R8-2, corrigido pela especificação de mudança mínima, devolve
+o coeficiente publicado e não age por canal nenhum; R8-3 agiu não sobre o
+valor do coeficiente mas sobre a pergunta que o modelo consegue responder.
+Declarar o achado morto a partir do diagnóstico teria sido tão errado quanto
+declará-lo salvo sem reestimar.
+
+*Formulação intermediária, refutada e preservada (29/07/2026):* chegou-se a
+escrever aqui que **"R8-2 agiu por um canal que ninguém antecipou (a
+família)"**. Não agiu. A troca de família foi decisão de modelagem nossa,
+independente do defeito, e atribuí-la a R8-2 confundia uma escolha do
+analista com uma consequência do defeito diagnosticado. É a mesma classe de
+erro de R1 v2, onde uma propriedade da nossa própria saída foi lida como se
+viesse dos dados — com a diferença de que ali o erro inflava a confiança e
+aqui ele inflava a gravidade.
 
 ### O que MUDA de verdade, e não é o que R8 previa
 
@@ -1080,10 +1260,13 @@ definitivo de 289 CNES**, e nele o achado é mais forte, não mais fraco.
 Registradas, não executadas:
 
 - ~~**Etapa 5 — refazer os modelos de ocupação da Fase 2**~~ — **feita em
-  28/07/2026**. Ver R10. Deixou três pendências menores: ajustar a frase do
-  Apêndice A sobre truncamento, decidir o destino editorial do `uti_parte1`
-  degenerado em `tabB_modelos_hierarquicos.csv`, e a regra de que a parte A
-  da internação só entra no texto como descritivo entre redes.
+  28/07/2026**, veredito consolidado em 29/07/2026. Ver R10. Das três
+  pendências menores que deixou, duas foram fechadas: a frase do Apêndice A
+  sobre truncamento (commit `4696e6c`, limiar real de 125,1% declarado) e o
+  destino editorial do `uti_parte1` degenerado (commit `b89d2d8`, retirado da
+  tabela publicada e documentado à parte). **Permanece** a regra de que a
+  parte A da internação só entra no texto como descritivo entre redes, com a
+  nulidade within declarada como falta de potência.
 - Propagação da correção da ocupação de UTI (Etapa 1) para as seções já
   escritas do `principal.tex` — depende de leitura da Priscilla, pois inverte
   um achado publicado e faz o Filantrópico passar de último a primeiro.
