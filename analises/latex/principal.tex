@@ -125,6 +125,14 @@
 \clearpage
 \input{secoes/sec13_robustez_diagnostico}
 \clearpage
+% Reestimação segmentada (Etapa 4). O arquivo se chama sec13b porque entra
+% entre o 13 e o 14 já existentes; o LaTeX numera sozinho e ela sai impressa
+% como Seção 14, deslocando as seguintes. Renomear os quatro arquivos
+% posteriores traria risco sem ganho: todas as referências cruzadas do
+% documento são simbólicas (\ref{sec:...}), e por isso acompanham o
+% deslocamento automaticamente.
+\input{secoes/sec13b_segmentacao_estrutural}
+\clearpage
 \input{secoes/sec14_inferencia_final}
 \clearpage
 \input{secoes/sec15_fase2_eficiencia}

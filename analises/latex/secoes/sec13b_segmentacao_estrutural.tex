@@ -1,0 +1,377 @@
+\section{Hospitais que não são comparáveis entre si: a reestimação
+segmentada}
+\label{sec:segmentacao}
+
+Todos os resultados até aqui compararam hospitais de uma rede com
+hospitais de outra, descontando complexidade e porte por regressão. Esta
+seção faz uma pergunta anterior a essa: \textbf{há hospitais no painel que
+não deveriam estar sendo comparados de jeito nenhum?}
+
+\subsection{O caso que motivou a pergunta}
+
+O gatilho foi concreto e está na Seção~\ref{sec:categorias}. A média de
+ocupação de UTI da rede incluía hospitais \textbf{que não têm UTI}, contados
+como ocupação zero. Corrigido o domínio, o ordenamento entre categorias se
+inverteu.
+
+O erro ali era de definição, mas ele expõe um problema mais geral. Um
+hospital de pequeno porte do interior, sem UTI e sem alta complexidade, e um
+hospital-escola de mil leitos com UTI e transplante não fazem a mesma coisa.
+Medi-los pelos mesmos seis indicadores e descontar a diferença com uma
+covariável de complexidade supõe que a diferença entre eles é de
+\emph{grau}. Boa parte dela é de \emph{gênero}: há indicadores que
+simplesmente não se aplicam a um dos dois.
+
+A resposta natural seria cruzar duas dimensões — ter ou não UTI, fazer ou
+não alta complexidade — e obter quatro grupos. \textbf{Esse cruzamento
+degenera.} A célula ``sem UTI, mas faz alta complexidade'' é
+\textbf{vazia}: no painel de 289 hospitais não existe um único caso. Alta
+complexidade sem terapia intensiva não é uma combinação rara — é uma
+combinação que a organização assistencial não produz.
+
+O que sobra, portanto, não são quatro grupos: é uma \textbf{escada de três
+degraus}, ordenada por capacidade instalada.
+
+\subsection{Os três estratos, e por que ficam fixos}
+
+\begin{itemize}
+\item \textbf{E1 — sem UTI SUS.} Mediana de leitos de UTI SUS igual a zero
+  nos onze anos.
+\item \textbf{E2 — com UTI, baixa complexidade.} Mediana de UTI positiva e
+  faixa Barcelona abaixo de 4.
+\item \textbf{E3 — com UTI, alta complexidade.} Mediana de UTI positiva e
+  faixa Barcelona 4 ou mais.
+\end{itemize}
+
+A classificação é \textbf{fixa para todo o período}, e essa escolha precisa
+de justificativa porque um hospital pode, em princípio, mudar de degrau ao
+longo de onze anos. Duas verificações sustentam a fixação.
+
+A primeira é direta: \textbf{a faixa Barcelona não varia dentro de nenhum
+CNES do painel}. Ela é atributo estrutural, e não há o que fixar — já é
+fixa.
+
+A segunda é menos óbvia e mais interessante. O número de leitos de UTI
+\emph{oscila} entre anos, e à primeira vista isso pediria classificação
+anual. Mas a oscilação não é obra física: é \textbf{suspensão e limpeza de
+cadastro}, tipicamente inativação temporária por falta de intensivista. A
+evidência é que existem 38 observações, em 26 hospitais, com \textbf{zero
+leito de UTI cadastrado e diárias de UTI registradas no mesmo ano} — a ala
+operando enquanto o registro está zerado. O controle equivalente na
+internação, leito zerado com diária registrada, dá \textbf{zero casos}, como
+se espera de um leito comum, que não é habilitação que se suspenda. Sendo o
+cadastro que pisca e não a capacidade que muda, \textbf{a mediana dos onze
+anos é o estimador certo} da capacidade subjacente: ela ignora os anos em
+que o registro caiu sem que a ala fechasse.
+
+\subsection{O funil}
+
+\begin{table}[H]
+\centering
+\caption{Distribuição dos 289 hospitais pelos três estratos estruturais,
+por categoria de gestão. Cada célula traz hospitais distintos (CNES).}
+\label{tab:funilestratos}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Categoria & E1 (sem UTI) & E2 (UTI, baixa) & E3 (UTI, alta) & Total \\
+\midrule
+Direta            &  1 &  6 &  20 &  27 \\
+OSS               &  2 &  7 &  28 &  37 \\
+Público Municipal &  9 & 16 &  31 &  56 \\
+Filantrópico      & 54 & 67 &  50 & 171 \\
+Privado           &  1 &  2 &   0 &   3 \\
+\midrule
+\textbf{Total}    & \textbf{67} & \textbf{97} & \textbf{125} & \textbf{289} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A tabela já entrega o principal achado estrutural da segmentação, e ele é
+sobre \textbf{quem pode ser comparado com quem}. Em E1 e E2, a administração
+Direta tem 1 e 6 hospitais, e as OSS têm 2 e 7. \textbf{Nesses dois estratos
+não há base para comparação entre redes}, e é por isso que os resultados de
+E1 e E2 aparecem tarjados em todas as tabelas desta seção.
+
+É só em \textbf{E3} que existe comparação viável: \textbf{28 hospitais OSS
+contra 20 da administração Direta}. E é também em E3 que estão quatro dos
+cinco hospitais que trocaram de rede no período.
+
+\subsection{A segmentação captura gradiente estrutural real}
+
+Antes de usar os estratos, vale verificar se eles significam alguma coisa. A
+resposta é sim: \textbf{em cinco dos seis indicadores, as medianas dos três
+estratos ordenam monotonicamente} — E1, depois E2, depois E3, sem
+inversões.
+
+\begin{table}[H]
+\centering
+\caption{Mediana de cada indicador por estrato, todas as categorias
+reunidas. A ordenação é sempre pela mediana.}
+\label{tab:gradienteestratos}
+\small
+\begin{tabular}{lrrrl}
+\toprule
+Indicador & E1 & E2 & E3 & Ordena? \\
+\midrule
+Ocupação de internação (\%)   & 41,0   & 66,1   & 90,2   & sim \\
+Faturamento real por saída (R\$) & 658    & 1.294  & 1.821  & sim \\
+TMP (dias)                    & 3,19   & 3,84   & 5,25   & sim \\
+Fração de alta complexidade   & 0,000  & 0,001  & 0,054  & sim \\
+Ocupação de UTI (\%)          & ---    & 76,1   & 77,3   & sim \\
+Mortalidade geral             & 0,0438 & 0,0585 & 0,0587 & \textbf{empata} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A exceção é a \textbf{mortalidade}, e ela é informativa. Entre E2 e E3 as
+medianas são 0,0585 e 0,0587 — \textbf{empate}. A mortalidade separa bem
+``sem UTI'' de ``com UTI'', mas não distingue baixa de alta complexidade.
+Isto é coerente com o que se espera: a presença de terapia intensiva muda o
+perfil de gravidade dos pacientes atendidos; a faixa de complexidade, dentro
+de quem já tem UTI, muda mais o \emph{tipo} de procedimento do que o risco
+de morte.
+
+A ocupação de UTI não tem valor em E1 por construção — o estrato é definido
+por não ter UTI, e a razão é indefinida ali.
+
+\begin{figure}[H]
+\centering
+\subfig{figSEG_01_boxplots_por_estrato.png}{Distribuição por estrato}
+\subfig{figSEG_02_series_por_estrato.png}{Séries anuais por estrato}
+\caption{Os seis indicadores nos três estratos estruturais. À esquerda, a
+distribuição completa; à direita, a evolução ano a ano.}
+\label{fig:estratos}
+\end{figure}
+
+\comoler{nos boxplots, procure se as três caixas de cada painel sobem da
+esquerda para a direita sem se cruzar — é isso que significa ``ordena''. No
+painel da mortalidade, as caixas de E2 e E3 ficam praticamente na mesma
+altura.}
+
+\subsection{Os resultados em E3}
+
+Todos os coeficientes abaixo são de OSS contra administração Direta, no
+estrato E3, com efeitos aleatórios correlacionados de Mundlak e erros-padrão
+agrupados por hospital. \textbf{São 125 hospitais, dos quais 28 OSS e 20 da
+Direta.}
+
+\begin{table}[H]
+\centering
+\caption{Efeito estimado da gestão por OSS no estrato E3, contra a
+administração Direta. Erros-padrão agrupados por hospital.}
+\label{tab:e3resultados}
+\small
+\begin{tabular}{lrrr}
+\toprule
+Indicador & Efeito & IC 95\% & $p$ \\
+\midrule
+Mortalidade geral         & $-0{,}281$ (logito) & $[-0{,}442;\ -0{,}121]$ & 0,001 \\
+TMP                       & $\mathbf{-11{,}8\%}$ & $[-17{,}6\%;\ -5{,}6\%]$ & $<0{,}001$ \\
+Faturamento real/saída    & $-9{,}2\%$          & $[-25{,}4\%;\ +10{,}4\%]$ & 0,332 \\
+Ocupação de UTI           & $+25{,}5\%$         & $[-18{,}4\%;\ +93{,}0\%]$ & 0,300 \\
+Superlotação (parte A)    & $+0{,}74$ (logito)  & $[-1{,}17;\ +2{,}64]$ & 0,448 \\
+Ocupação $\leq$100 (parte B) & $+27{,}0\%$      & $[-1{,}8\%;\ +64{,}3\%]$ & 0,068 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Dois resultados excluem o zero: o tempo de permanência e a
+mortalidade.} O TMP é 11,8\% menor nas OSS, e a mortalidade sai 0,281 menor
+no logito. Os outros quatro têm intervalos que cobrem o zero, e não
+sustentam afirmação de diferença em nenhuma direção.
+
+Sobre o faturamento, cabe uma nota de leitura. O intervalo vai de $-25{,}4\%$
+a $+10{,}4\%$ e \textbf{cruza o zero}: não se pode dizer que as OSS faturam
+menos por saída em E3. Um segundo estimador, hierárquico, produz
+\emph{exatamente o mesmo coeficiente} e um intervalo mais estreito que
+excluiria o zero — mas esse intervalo depende de a estrutura de efeitos
+aleatórios estar corretamente especificada, enquanto o intervalo adotado aqui
+não depende disso. Com 125 hospitais há clusters de sobra para preferir o
+mais conservador. \textbf{O intervalo mais estreito não é informação
+adicional; é uma suposição.}
+
+Sobre a mortalidade, cabe uma nota mais forte. O coeficiente da tabela
+\textbf{controla a complexidade estrutural} como escore contínuo, e é
+citável com esse controle explicitado. \textbf{A diferença bruta de
+mortalidade entre OSS e Direta dentro de E3 não é citável}, e não aparece
+neste documento: ela está em parte comprada por composição de casuística
+\emph{dentro} do próprio estrato — a Direta concentra hospital-ano na faixa
+de complexidade máxima que as OSS não têm, e a assimetria vem de dois
+hospitais.
+
+\subsubsection*{Sobre o que estas estimativas repousam}
+
+\textbf{Esta é a qualificação mais importante da seção, e ela vale para
+todos os seis coeficientes.}
+
+O efeito é identificado pelos hospitais que \emph{mudaram} de rede dentro do
+período — os demais contribuem para a precisão, não para o efeito. Em E3 são
+\textbf{quatro} hospitais, e a contribuição deles é muito desigual: dois
+convertem em 2025 e trazem \textbf{um único ano} de observação pós-conversão
+cada. Na prática, \textbf{a identificação repousa sobre o Conjunto
+Hospitalar de Sorocaba e o Pérola Byington}, os únicos com janela posterior
+longa.
+
+E os dois têm confundidor documentado. Em Sorocaba, a conversão foi
+motivada por crise assistencial, o que significa que o hospital estava
+piorando quando trocou de gestão — a comparação antes-depois mistura efeito
+de gestão com retorno ao patamar normal. No Pérola Byington, a conversão
+coincidiu com mudança de prédio. Some-se a isso que \textbf{as cinco
+conversões foram para o mesmo tipo de operador}, de modo que o que se mede é
+o efeito daquele arranjo, não do modelo OSS em geral.
+
+O intervalo de confiança não sabe nada disso. Ele mede incerteza amostral,
+não incerteza de desenho. \textbf{Não é um desenho limpo; é o desenho
+disponível}, e os números desta seção devem ser lidos com essa frase colada.
+
+\subsubsection*{E1 e E2 não são interpretados}
+
+Os coeficientes de E1 e E2 constam das tabelas de origem \textbf{tarjados},
+e não são narrados aqui. O motivo é estrutural e não de cautela retórica:
+\textbf{E1 não tem nenhum hospital que trocou de rede} e E2 tem um só. Sem
+conversores, o coeficiente de OSS deixa de ser efeito e passa a ser
+\textbf{comparação entre grupos distintos de hospitais} — a mesma coisa que
+a segmentação existe para não fazer.
+
+Um exemplo do que isso produz: o TMP em E1 aparece 72,9\% menor nas OSS. Esse
+número é o contraste entre \textbf{dois hospitais OSS e um da Direta}. Não é
+achado; é ruído com tarja, e não recebe prosa.
+
+O \textbf{Privado não é interpretado em nenhum estrato}, aqui como no resto
+do documento: são 3 hospitais no painel inteiro, e nenhum em E3.
+
+\subsubsection*{A eficiência técnica, medida dentro do estrato}
+
+A mesma pergunta foi refeita por análise envoltória de dados, com uma
+diferença importante em relação à Seção~\ref{sec:fase2}: aqui a
+\textbf{fronteira de melhores práticas é construída separadamente dentro de
+cada estrato}, de modo que cada hospital é comparado apenas com hospitais da
+sua própria escala tecnológica.
+
+Em E3, as OSS ficam \textbf{mais próximas da fronteira do estrato} do que a
+administração Direta: eficiência técnica mediana, corrigida de viés, de
+\textbf{0,747} contra \textbf{0,687}. A regressão de segunda etapa, com
+reamostragem por hospital, dá coeficiente de OSS de \textbf{$-0{,}601$},
+intervalo de 95\% entre $-1{,}065$ e $-0{,}169$; nessa parametrização o
+sinal negativo indica \emph{mais} eficiente, e o intervalo exclui o zero.
+
+Duas advertências acompanham esses números. A primeira: \textbf{escores de
+estratos diferentes não são comparáveis entre si}. Cada fronteira é a do
+próprio estrato, e um valor de 0,90 em E1 significa ``perto da fronteira do
+seu grupo'', não ``tão eficiente quanto'' um 0,90 em E3. A segunda: o
+resultado do DEA \textbf{não é evidência independente} do resultado da
+tabela anterior. Os dois usam os mesmos dados e a mesma comparação entre as
+mesmas redes; o que muda é a técnica, não a informação.
+
+\begin{figure}[H]
+\centering
+\subfig{figSEG_04_coef_oss_por_estrato.png}{Efeito por estrato}
+\subfig{figSEG_05_sobrecarga_por_categoria.png}{Superlotação por categoria}
+\caption{À esquerda, o coeficiente de OSS em cada estrato; as barras em
+cinza são as tarjadas, sem identificação within. À direita, a frequência de
+superlotação por categoria de gestão dentro de cada estrato.}
+\label{fig:e3coef}
+\end{figure}
+
+\subsection{A ocupação de internação eram duas perguntas, não uma}
+
+O último resultado da seção é o que mais muda a leitura de um número já
+publicado, e não porque o número esteja errado — porque ele respondia a duas
+perguntas ao mesmo tempo.
+
+\subsubsection*{Por que ocupação acima de 100\% não é erro}
+
+Em 15,5\% das observações do painel a ocupação de internação passa de 100\%,
+o que parece impossível. Não é, e o mecanismo é a chave de tudo que segue.
+
+\textbf{Os dois sistemas de informação definem ``leito'' de maneiras
+diferentes, e ambos estão certos.} O CNES registra estritamente a capacidade
+\emph{habilitada} e exclui, por definição, qualquer leito extra em operação.
+O SIH, por sua vez, fatura diária e gera autorização de internação para maca
+e leito de observação sempre que a permanência ultrapassa vinte e quatro
+horas. O numerador conta permanência em leito extra; o denominador exclui
+leito extra.
+
+Ocupação acima de 100\% é, portanto, \textbf{a assinatura aritmética da
+superlotação} — e é achado, não defeito de cadastro.
+
+\subsubsection*{As duas perguntas, separadas}
+
+Se o excesso mede superlotação, então a média de ocupação mistura duas
+coisas distintas: \emph{com que frequência} o hospital entra em
+superlotação, e \emph{quão cheio} ele opera quando não está superlotado. O
+indicador foi separado nessas duas partes.
+
+\begin{table}[H]
+\centering
+\caption{As duas perguntas da ocupação de internação em E3, por categoria.
+A última coluna é a mediana bruta, que mistura as duas.}
+\label{tab:duaspartes}
+\small
+\begin{tabular}{lrrr}
+\toprule
+Categoria em E3 & \% de anos em & Ocupação mediana & Mediana bruta \\
+                & superlotação  & quando $\leq$100 & (conflaciona) \\
+\midrule
+Direta            &  2,9 & 67,9 & 68,5 \\
+Filantrópico      & 28,7 & 83,6 & 89,9 \\
+OSS               & 35,5 & 89,0 & 95,9 \\
+Público Municipal & 36,4 & 86,5 & 94,5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A separação mostra que \textbf{as duas coisas andam juntas, mas não são a
+mesma}. A distância entre a mediana bruta e a mediana condicional é de 0,6
+ponto na Direta e de 6,9 pontos nas OSS: \textbf{parte do que aparecia como
+``OSS opera mais cheio'' era, na verdade, ``OSS entra em superlotação com
+muito mais frequência''}.
+
+\subsubsection*{O que os dados não decidem}
+
+Aqui é preciso ser explícito sobre um limite, porque a tabela acima convida a
+uma conclusão que ela não sustenta.
+
+\textbf{A diferença de superlotação entre as redes é grande e bem medida}:
+2,9\% dos anos na Direta contra 35,5\% nas OSS, dentro do mesmo estrato
+estrutural. \textbf{Isso é descrição, e é sólida.}
+
+O que \emph{não} se pode dizer é que a gestão por OSS \emph{cause} essa
+diferença. A estimativa que tentaria medir isso — a parte A da tabela de
+resultados, $+0{,}74$ no logito — repousa sobre os hospitais que trocaram de
+rede, e ali o material é escasso ao ponto de não decidir nada. \textbf{São
+quatro hospitais no painel inteiro que sustentam essa estimativa}, e o exame
+detalhado é ainda menos animador: \textbf{apenas dois deles registram
+superlotação do lado posterior à conversão} — o lado que efetivamente
+identifica o efeito. Nos outros dois, toda a superlotação observada é
+anterior à troca de gestão.
+
+O intervalo resultante vai de $-1{,}17$ a $+2{,}64$ no logito: ele cobre
+desde uma redução enorme até um aumento enorme. \textbf{Uma estimativa nula
+sobre quatro hospitais não é evidência de que não há efeito — é evidência de
+que estes dados não têm potência para detectá-lo.} Não se deve escrever que
+a gestão não afeta a superlotação, nem que afeta.
+
+\subsection{O que a segmentação acrescenta}
+
+Três coisas, em ordem de importância.
+
+\textbf{Primeira: ela delimita onde há evidência.} Dos três estratos,
+\textbf{apenas um} sustenta comparação entre redes. Isso não é limitação
+introduzida pela segmentação — é limitação que já existia e que a análise
+agregada escondia, ao somar num único contraste hospitais que não têm
+correspondente na rede oposta.
+
+\textbf{Segunda: ela confirma que a partição é real.} O gradiente monotônico
+em cinco dos seis indicadores mostra que os três degraus capturam diferença
+estrutural de fato, e não um recorte arbitrário.
+
+\textbf{Terceira: ela separou duas perguntas que estavam somadas} no
+indicador de ocupação, e mostrou que a distância entre as redes se distribui
+diferentemente entre elas.
+
+O que a segmentação \emph{não} faz é resolver o problema de desenho. Em E3,
+como no painel inteiro, a identificação causal continua repousando sobre
+poucos hospitais convertidos, com confundidores documentados e um único tipo
+de operador.
