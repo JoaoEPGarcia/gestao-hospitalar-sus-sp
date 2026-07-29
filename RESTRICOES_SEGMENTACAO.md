@@ -682,11 +682,55 @@ Direta, CRE/Mundlak, EP agrupado por CNES):
 | Superlotação (parte A) | +0,74 (logito) | [−1,17, +2,64] | 0,448 |
 | Ocupação ≤100 (parte B) | +27,0% | [−1,8%, +64,3%] | 0,068 |
 
-O **hierárquico concorda onde ambos estimam**, e a concordância é estreita:
-TMP −0,1254 no CRE/Mundlak contra −0,1255 no hierárquico; mortalidade −0,281
-contra −0,258; ocupação de UTI +0,227 contra +0,231. Isso é consistência
-entre estimadores, **não** evidência independente: os dois usam os mesmos
-dados e a mesma identificação.
+### A concordância com o hierárquico é IDENTIDADE ALGÉBRICA onde ela é estreita
+
+**Corrigido em 29/07/2026. A formulação anterior fica preservada abaixo,
+porque o erro é instrutivo.** Este bloco dizia: *"o hierárquico concorda onde
+ambos estimam, e a concordância é estreita: TMP −0,1254 no CRE/Mundlak contra
+−0,1255 no hierárquico"*, e listava faturamento do mesmo modo.
+
+**Não são dois números.** TMP em E3 é **−0,12545** nos dois estimadores, e o
+par "−0,1254 contra −0,1255" é o mesmo valor arredondado para lados
+diferentes. Faturamento é **−0,09694** nos dois, idêntico até a quinta casa.
+Apresentá-los como duas estimativas próximas sugere corroboração onde há
+coincidência por construção. A ressalva que o texto já trazia — "não é
+evidência independente" — estava certa e era insuficiente: o problema não é
+que as duas estimativas sejam dependentes, é que **não são duas**.
+
+**A comparação não é informativa nesses dois indicadores.** Incluir as médias
+por hospital (Mundlak) num modelo de efeitos aleatórios torna o estimador de
+efeitos aleatórios numericamente igual ao within. É resultado algébrico
+conhecido, não achado deste trabalho, e a igualdade é **exata em painel
+linear e balanceado**.
+
+As duas condições importam, e a segunda foi encontrada por verificação —
+a formulação inicial da correção dizia "nos indicadores log-lineares os dois
+coincidem", o que é **largo demais**. Medido em `tabSEG_16`:
+
+| indicador | link | painel | CRE/Mundlak | hierárquico | \|dif\| |
+|---|---|---|---|---|---|
+| Mortalidade geral | logito | balanceado | −0,28138 | −0,25750 | 0,02388 |
+| **TMP** | **log** | **balanceado** | **−0,12545** | **−0,12545** | **0,00000** |
+| **Faturamento** | **log** | **balanceado** | **−0,09694** | **−0,09694** | **0,00000** |
+| Ocupação de UTI | log (PPML) | desbal. 1.371/125 | +0,22730 | +0,23089 | 0,00359 |
+| Superlotação (A) | logito | balanceado | +0,73639 | +0,36912 | 0,36727 |
+| Ocupação ≤100 (B) | log | desbal. 989/122 | +0,23910 | +0,21112 | 0,02798 |
+
+A parte B é log-linear e **não** coincide, porque o painel dela é
+desbalanceado — a restrição a ≤ 100 tira 386 observações e 3 CNES inteiros.
+A regra "linear no link **e** balanceado ⇔ idêntico" acerta nos **seis de
+seis**; a regra "log-linear ⇔ idêntico" erraria na parte B.
+
+**Onde os dois de fato diferem é no erro-padrão**, e ali a diferença é
+material e decide um veredito — ver o item seguinte. Verificação em
+`verificar_identidade_cre_hierarquico.py`.
+
+*Onde a concordância é informativa:* mortalidade (−0,281 contra −0,258) e
+ocupação de UTI (+0,227 contra +0,231) têm link não-linear, não há identidade,
+e a proximidade é concordância empírica genuína entre especificações
+distintas. Continua não sendo evidência independente — os dois usam os mesmos
+dados e a mesma identificação —, mas ali a comparação ao menos diz alguma
+coisa.
 
 O **DEA** em E3 põe o OSS acima da Direta em eficiência técnica corrigida de
 viés (0,747 contra 0,687), e a segunda etapa truncada dá coeficiente de OSS

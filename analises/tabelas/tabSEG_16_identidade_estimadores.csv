@@ -1,0 +1,7 @@
+indicador,escala,linear_no_link,painel_balanceado,n_obs,n_cnes,coef_cre_mundlak,coef_hierarquico,dif_absoluta,identicos_5_casas,ep_cluster_robusto,ep_baseado_no_modelo,ic95_lo_pct,ic95_hi_pct
+Mortalidade geral,logito,False,True,1375,125,-0.28138,-0.2575,0.02388,False,0.08194,0.05713,,
+TMP (dias),log,True,True,1375,125,-0.12545,-0.12545,0.0,True,0.03479,0.03752,,
+Faturamento real/saída,log,True,True,1375,125,-0.09694,-0.09694,0.0,True,0.09983,0.04884,-25.37,10.38
+Ocupação UTI (winsor.),log (PPML),False,False,1371,125,0.2273,0.23089,0.00359,False,0.21942,0.08047,,
+Superlot. internação (A),logito,False,True,1375,125,0.73639,0.36912,0.36727,False,0.97077,1.23169,,
+Ocupação intern. ≤100 (B),log,True,False,989,122,0.2391,0.21112,0.02798,False,0.13119,0.10039,,
