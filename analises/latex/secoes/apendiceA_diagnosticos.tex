@@ -45,7 +45,7 @@ maior (razão de 6.249 no agregado e de 102 mesmo comparando cada
 hospital só consigo mesmo ao longo dos anos). A \textbf{ocupação de
 internação} é modelada no logaritmo, e aqui é preciso ser preciso sobre
 o corte: o modelo \emph{não} trunca em 100\%, mas \textbf{winsoriza no
-percentil 99, que corresponde a 125,1\%} --- ou seja, as 32 observações
+percentil 99, que corresponde a 125,1\%}: ou seja, as 32 observações
 mais altas são rebaixadas a esse teto. O ponto merece destaque porque
 essa faixa não é ruído: ocupação acima de 100\% é a assinatura
 aritmética da \textbf{superlotação}, já que o cadastro CNES registra
@@ -63,7 +63,7 @@ parte é degenerada por separação e não é citável (ver
 \subsubsection*{Nota de reestimação: os três defeitos e o que sobrou}
 
 Os modelos de ocupação descritos acima foram reestimados depois que uma
-revisão identificou três defeitos independentes neles — limiar de
+revisão identificou três defeitos independentes neles: limiar de
 winsorização contaminado pelos zeros estruturais, seleção da amostra de UTI
 pelo desfecho em vez da capacidade, e aparagem do excesso de ocupação de
 internação acima de 100\%. A
@@ -75,13 +75,13 @@ família fixa.} Isolados num arranjo fatorial com a família mantida
 constante, o limiar move o coeficiente em $+0{,}0005$, a troca da amostra
 para o critério de capacidade move $-0{,}0026$, e retirar a winsorização da
 internação mantendo o modelo único move $-0{,}0002$. Todos na terceira ou
-quarta casa decimal. A escolha de família, por contraste, move $-0{,}0268$ —
+quarta casa decimal. A escolha de família, por contraste, move $-0{,}0268$,
 \textbf{um decimal a mais}. Isto é registro sobre onde mora a incerteza de
 especificação, e a resposta não é onde a revisão supunha.
 
 \textbf{Segunda: sete observações não decidem a família.} A massa em zero
 que motivou a discussão de família é de 7 observações em 2.489, ou 0,28\% da
-amostra — hospitais com UTI habilitada e nenhuma diária no ano. Rodando duas
+amostra: hospitais com UTI habilitada e nenhuma diária no ano. Rodando duas
 famílias sobre \emph{exatamente a mesma amostra}, de modo que a única
 diferença entre elas seja a função de variância, a decomposição atribui
 \textbf{9\% da diferença aos zeros e 91\% à função de variância}. Deixar
@@ -89,7 +89,7 @@ diferença entre elas seja a função de variância, a decomposição atribui
 ordem de importância.
 
 \textbf{Terceira: a primeira parte continua não estimável, antes e depois.}
-A versão corrigida da mesma quantidade — opera, dado que tem capacidade —
+A versão corrigida da mesma quantidade (opera, dado que tem capacidade)
 \textbf{também não converge}: na subamostra definida por capacidade sobram
 os mesmos 7 zeros, que não sustentam um binômio com covariáveis. A pergunta
 não é respondível com estes dados, e a correção do defeito não a torna

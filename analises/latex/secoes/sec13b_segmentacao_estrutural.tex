@@ -22,11 +22,11 @@ covariável de complexidade supõe que a diferença entre eles é de
 \emph{grau}. Boa parte dela é de \emph{gênero}: há indicadores que
 simplesmente não se aplicam a um dos dois.
 
-A resposta natural seria cruzar duas dimensões — ter ou não UTI, fazer ou
-não alta complexidade — e obter quatro grupos. \textbf{Esse cruzamento
+A resposta natural seria cruzar duas dimensões, ter ou não UTI e fazer ou
+não alta complexidade, e obter quatro grupos. \textbf{Esse cruzamento
 degenera.} A célula ``sem UTI, mas faz alta complexidade'' é
 \textbf{vazia}: no painel de 289 hospitais não existe um único caso. Alta
-complexidade sem terapia intensiva não é uma combinação rara — é uma
+complexidade sem terapia intensiva não é uma combinação rara: é uma
 combinação que a organização assistencial não produz.
 
 O que sobra, portanto, não são quatro grupos: é uma \textbf{escada de três
@@ -35,11 +35,11 @@ degraus}, ordenada por capacidade instalada.
 \subsection{Os três estratos, e por que ficam fixos}
 
 \begin{itemize}
-\item \textbf{E1 — sem UTI SUS.} Mediana de leitos de UTI SUS igual a zero
+\item \textbf{E1, sem UTI SUS.} Mediana de leitos de UTI SUS igual a zero
   nos onze anos.
-\item \textbf{E2 — com UTI, baixa complexidade.} Mediana de UTI positiva e
+\item \textbf{E2, com UTI, baixa complexidade.} Mediana de UTI positiva e
   faixa Barcelona abaixo de 4.
-\item \textbf{E3 — com UTI, alta complexidade.} Mediana de UTI positiva e
+\item \textbf{E3, com UTI, alta complexidade.} Mediana de UTI positiva e
   faixa Barcelona 4 ou mais.
 \end{itemize}
 
@@ -48,7 +48,7 @@ de justificativa porque um hospital pode, em princípio, mudar de degrau ao
 longo de onze anos. Duas verificações sustentam a fixação.
 
 A primeira é direta: \textbf{a faixa Barcelona não varia dentro de nenhum
-CNES do painel}. Ela é atributo estrutural, e não há o que fixar — já é
+CNES do painel}. Ela é atributo estrutural, e não há o que fixar: já é
 fixa.
 
 A segunda é menos óbvia e mais interessante. O número de leitos de UTI
@@ -56,7 +56,7 @@ A segunda é menos óbvia e mais interessante. O número de leitos de UTI
 anual. Mas a oscilação não é obra física: é \textbf{suspensão e limpeza de
 cadastro}, tipicamente inativação temporária por falta de intensivista. A
 evidência é que existem 38 observações, em 26 hospitais, com \textbf{zero
-leito de UTI cadastrado e diárias de UTI registradas no mesmo ano} — a ala
+leito de UTI cadastrado e diárias de UTI registradas no mesmo ano}: a ala
 operando enquanto o registro está zerado. O controle equivalente na
 internação, leito zerado com diária registrada, dá \textbf{zero casos}, como
 se espera de um leito comum, que não é habilitação que se suspenda. Sendo o
@@ -106,7 +106,7 @@ cinco hospitais que trocaram de rede no período.
 
 Antes de usar os estratos, vale verificar se eles significam alguma coisa. A
 resposta é sim: \textbf{em cinco dos seis indicadores, as medianas dos três
-estratos ordenam monotonicamente} — E1, depois E2, depois E3, sem
+estratos ordenam monotonicamente}: E1, depois E2, depois E3, sem
 inversões.
 
 \begin{table}[H]
@@ -130,14 +130,14 @@ Mortalidade geral             & 0,0438 & 0,0585 & 0,0587 & \textbf{empata} \\
 \end{table}
 
 A exceção é a \textbf{mortalidade}, e ela é informativa. Entre E2 e E3 as
-medianas são 0,0585 e 0,0587 — \textbf{empate}. A mortalidade separa bem
+medianas são 0,0585 e 0,0587: \textbf{empate}. A mortalidade separa bem
 ``sem UTI'' de ``com UTI'', mas não distingue baixa de alta complexidade.
 Isto é coerente com o que se espera: a presença de terapia intensiva muda o
 perfil de gravidade dos pacientes atendidos; a faixa de complexidade, dentro
 de quem já tem UTI, muda mais o \emph{tipo} de procedimento do que o risco
 de morte.
 
-A ocupação de UTI não tem valor em E1 por construção — o estrato é definido
+A ocupação de UTI não tem valor em E1 por construção: o estrato é definido
 por não ter UTI, e a razão é indefinida ali.
 
 \begin{figure}[H]
@@ -150,7 +150,7 @@ distribuição completa; à direita, a evolução ano a ano.}
 \end{figure}
 
 \comoler{nos boxplots, procure se as três caixas de cada painel sobem da
-esquerda para a direita sem se cruzar — é isso que significa ``ordena''. No
+esquerda para a direita sem se cruzar; é isso que significa ``ordena''. No
 painel da mortalidade, as caixas de E2 e E3 ficam praticamente na mesma
 altura.}
 
@@ -190,7 +190,7 @@ Sobre o faturamento, cabe uma nota de leitura. O intervalo vai de $-25{,}4\%$
 a $+10{,}4\%$ e \textbf{cruza o zero}: não se pode dizer que as OSS faturam
 menos por saída em E3. Um segundo estimador, hierárquico, produz
 \emph{exatamente o mesmo coeficiente} e um intervalo mais estreito que
-excluiria o zero — mas esse intervalo depende de a estrutura de efeitos
+excluiria o zero, mas esse intervalo depende de a estrutura de efeitos
 aleatórios estar corretamente especificada, enquanto o intervalo adotado aqui
 não depende disso. Com 125 hospitais há clusters de sobra para preferir o
 mais conservador. \textbf{O intervalo mais estreito não é informação
@@ -201,7 +201,7 @@ Sobre a mortalidade, cabe uma nota mais forte. O coeficiente da tabela
 citável com esse controle explicitado. \textbf{A diferença bruta de
 mortalidade entre OSS e Direta dentro de E3 não é citável}, e não aparece
 neste documento: ela está em parte comprada por composição de casuística
-\emph{dentro} do próprio estrato — a Direta concentra hospital-ano na faixa
+\emph{dentro} do próprio estrato: a Direta concentra hospital-ano na faixa
 de complexidade máxima que as OSS não têm, e a assimetria vem de dois
 hospitais.
 
@@ -211,7 +211,7 @@ hospitais.
 todos os seis coeficientes.}
 
 O efeito é identificado pelos hospitais que \emph{mudaram} de rede dentro do
-período — os demais contribuem para a precisão, não para o efeito. Em E3 são
+período; os demais contribuem para a precisão, não para o efeito. Em E3 são
 \textbf{quatro} hospitais, e a contribuição deles é muito desigual: dois
 convertem em 2025 e trazem \textbf{um único ano} de observação pós-conversão
 cada. Na prática, \textbf{a identificação repousa sobre o Conjunto
@@ -220,7 +220,7 @@ longa.
 
 E os dois têm confundidor documentado. Em Sorocaba, a conversão foi
 motivada por crise assistencial, o que significa que o hospital estava
-piorando quando trocou de gestão — a comparação antes-depois mistura efeito
+piorando quando trocou de gestão, e a comparação antes-depois mistura efeito
 de gestão com retorno ao patamar normal. No Pérola Byington, a conversão
 coincidiu com mudança de prédio. Some-se a isso que \textbf{as cinco
 conversões foram para o mesmo tipo de operador}, de modo que o que se mede é
@@ -236,7 +236,7 @@ Os coeficientes de E1 e E2 constam das tabelas de origem \textbf{tarjados},
 e não são narrados aqui. O motivo é estrutural e não de cautela retórica:
 \textbf{E1 não tem nenhum hospital que trocou de rede} e E2 tem um só. Sem
 conversores, o coeficiente de OSS deixa de ser efeito e passa a ser
-\textbf{comparação entre grupos distintos de hospitais} — a mesma coisa que
+\textbf{comparação entre grupos distintos de hospitais}, a mesma coisa que
 a segmentação existe para não fazer.
 
 Um exemplo do que isso produz: o TMP em E1 aparece 72,9\% menor nas OSS. Esse
@@ -282,8 +282,8 @@ superlotação por categoria de gestão dentro de cada estrato.}
 \subsection{A ocupação de internação eram duas perguntas, não uma}
 
 O último resultado da seção é o que mais muda a leitura de um número já
-publicado, e não porque o número esteja errado — porque ele respondia a duas
-perguntas ao mesmo tempo.
+publicado, e não porque o número esteja errado, mas porque ele respondia a
+duas perguntas ao mesmo tempo.
 
 \subsubsection*{Por que ocupação acima de 100\% não é erro}
 
@@ -299,7 +299,7 @@ horas. O numerador conta permanência em leito extra; o denominador exclui
 leito extra.
 
 Ocupação acima de 100\% é, portanto, \textbf{a assinatura aritmética da
-superlotação} — e é achado, não defeito de cadastro.
+superlotação}, e é achado, não defeito de cadastro.
 
 \subsubsection*{As duas perguntas, separadas}
 
@@ -343,18 +343,18 @@ uma conclusão que ela não sustenta.
 estrutural. \textbf{Isso é descrição, e é sólida.}
 
 O que \emph{não} se pode dizer é que a gestão por OSS \emph{cause} essa
-diferença. A estimativa que tentaria medir isso — a parte A da tabela de
-resultados, $+0{,}74$ no logito — repousa sobre os hospitais que trocaram de
+diferença. A estimativa que tentaria medir isso (a parte A da tabela de
+resultados, $+0{,}74$ no logito) repousa sobre os hospitais que trocaram de
 rede, e ali o material é escasso ao ponto de não decidir nada. \textbf{São
 quatro hospitais no painel inteiro que sustentam essa estimativa}, e o exame
 detalhado é ainda menos animador: \textbf{apenas dois deles registram
-superlotação do lado posterior à conversão} — o lado que efetivamente
+superlotação do lado posterior à conversão}, o lado que efetivamente
 identifica o efeito. Nos outros dois, toda a superlotação observada é
 anterior à troca de gestão.
 
 O intervalo resultante vai de $-1{,}17$ a $+2{,}64$ no logito: ele cobre
 desde uma redução enorme até um aumento enorme. \textbf{Uma estimativa nula
-sobre quatro hospitais não é evidência de que não há efeito — é evidência de
+sobre quatro hospitais não é evidência de que não há efeito: é evidência de
 que estes dados não têm potência para detectá-lo.} Não se deve escrever que
 a gestão não afeta a superlotação, nem que afeta.
 
@@ -364,7 +364,7 @@ Três coisas, em ordem de importância.
 
 \textbf{Primeira: ela delimita onde há evidência.} Dos três estratos,
 \textbf{apenas um} sustenta comparação entre redes. Isso não é limitação
-introduzida pela segmentação — é limitação que já existia e que a análise
+introduzida pela segmentação: é limitação que já existia e que a análise
 agregada escondia, ao somar num único contraste hospitais que não têm
 correspondente na rede oposta.
 

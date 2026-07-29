@@ -189,7 +189,7 @@ as OSS ficam tão coladas à fronteira paramétrica que o coeficiente
 delas na equação de ineficiência perde identificação (o análogo da
 separação perfeita da Seção~\ref{sec:estrategia}), e por isso o NÍVEL
 da eficiência das OSS na SFA não é citável, vale a ordem, não o
-número --- e a não-identificação aparece igual nas quatro amostras e nas
+número, e a não-identificação aparece igual nas quatro amostras e nas
 três sensibilidades, com o ponto oscilando entre $-772$ e $-1.971$ e o
 erro-padrão entre 400 e 1.896, que é a assinatura do problema e não uma
 faixa de estimativas;\footnote{Numa das amostras (sem o biênio
@@ -200,7 +200,7 @@ interpretação. Um $p$ pequeno sobre um parâmetro degenerado mede o
 formato da aproximação, não o dado.} \textbf{o insumo de UTI é mal
 comportado na forma Translog}, com a monotonicidade violada em
 \textbf{94,9\% das observações} (97,8\% entre as que têm UTI ativa),
-contra 99,7\% de respeito para leitos e 99,6\% para valor --- herança
+contra 99,7\% de respeito para leitos e 99,6\% para valor: herança
 do logaritmo de um mais UTI com 19\% de zeros e da colinearidade alta
 com leitos totais e valor, e o motivo pelo qual qualquer leitura fina
 de UTI nesta fronteira precisa da sensibilidade que a remove; e, na
@@ -222,7 +222,7 @@ ascendente ao longo da década.
 tem de defeituoso.} A fronteira estocástica estima, em paralelo à
 produção, uma segunda equação que explica \emph{quanta} ineficiência
 cada hospital carrega. O coeficiente das OSS ali é o número degenerado
-já discutido, e é o único que este documento vinha citando --- mas a
+já discutido, e é o único que este documento vinha citando, mas a
 equação tem outros seis, e quatro deles são fortemente significativos.
 Como a variável explicada é a ineficiência, \textbf{sinal negativo
 significa mais eficiente}:
@@ -251,7 +251,7 @@ Tendência linear         & $-0{,}010$ & 0,023 & 0,668 \\
 
 Três leituras, e a primeira é a que faltava ao documento. \textbf{O
 Público Municipal sai significativamente menos ineficiente que a
-Direta} na mesma equação em que as OSS degeneram --- resultado que
+Direta} na mesma equação em que as OSS degeneram, resultado que
 sustenta, por dentro do modelo paramétrico, a ordem das redes que a
 Seção vinha afirmando só pelas médias de eficiência técnica. Segunda:
 \textbf{o Filantrópico não se distingue da Direta} ($p$ de 0,134),
@@ -261,7 +261,7 @@ $+7{,}401$ de ineficiência frente ao médio, o maior coeficiente da
 tabela e quase três vezes o do Grande Porte, enquanto a complexidade
 anda no sentido oposto ($-2{,}159$): hospitais estruturalmente mais
 complexos aparecem \emph{menos} ineficientes, e hospitais maiores,
-mais. Não há tendência temporal ($p$ de 0,668) --- a ineficiência
+mais. Não há tendência temporal ($p$ de 0,668): a ineficiência
 medida não encolhe ao longo da década.
 
 \comoler{quanto mais a nuvem sobe da esquerda para a direita, mais os
@@ -297,7 +297,7 @@ reestimados. O resultado desta subseção é o que sobrou depois disso.
 
 \textbf{Os defeitos.} O primeiro é de \emph{limiar}: a aparagem da cauda
 superior usava o percentil 99 do painel completo, que incluía os zeros
-estruturais da ocupação de UTI — o limiar era, ele próprio, artefato do
+estruturais da ocupação de UTI: o limiar era, ele próprio, artefato do
 erro corrigido na Seção~\ref{sec:categorias}. O segundo é de \emph{amostra}:
 o modelo de UTI restringia-se às observações com ocupação positiva, o que
 seleciona pela \textbf{variável que se quer explicar} em vez de pela
@@ -318,7 +318,7 @@ UTI habilitada e nenhuma diária no ano. Isso obriga a uma decisão de
 modelagem, porque a família Gama usada originalmente não admite valor zero.
 Entre as especificações capazes de acomodar essas observações, a escolhida
 foi a que constitui a \textbf{mudança mínima} frente ao modelo publicado:
-corrigir o defeito e \textbf{não alterar mais nada} — em particular, não
+corrigir o defeito e \textbf{não alterar mais nada}; em particular, não
 alterar a função de variância da Gama original.
 
 Uma única especificação satisfaz as duas condições ao mesmo tempo: o modelo
@@ -337,7 +337,7 @@ tivesse sido estimada.
 \textbf{O achado publicado sobre a intensidade de uso da UTI sobrevive
 intacto: as OSS operam a UTI 30,4\% mais intensamente que a administração
 Direta}, com intervalo de 95\% entre $+5{,}7\%$ e $+60{,}8\%$. O coeficiente
-corrigido é 0,26548, contra 0,26541 do publicado — uma diferença na quinta
+corrigido é 0,26548, contra 0,26541 do publicado: uma diferença na quinta
 casa decimal.
 
 A ocupação de internação também sobrevive, e sem mudança de leitura: de
@@ -386,17 +386,17 @@ nas cinco, e \textbf{quatro excluem o zero}.
 ``significativo em quatro de cinco'' sem dizer qual é a exceção não é
 robustez reportada. \textbf{E ela não discorda.} O ponto dela está a
 \textbf{0,0087} em pontos de logaritmo do Tweedie estimado sobre exatamente
-a mesma amostra — distância menor que a que separa quaisquer duas das
+a mesma amostra, distância menor que a que separa quaisquer duas das
 outras famílias. O que muda é a \textbf{precisão}: o erro-padrão da
 lognormal é 41\% maior que o do Tweedie e 11\% maior que o da Gama.
 \textbf{Ela perde a significância por variância, não por deslocamento}, e
-por margem mínima — o limite inferior fica a três milésimos do zero.
+por margem mínima: o limite inferior fica a três milésimos do zero.
 
 A razão é que a lognormal \textbf{estima outra quantidade}. As demais
 modelam a média condicional; a lognormal modela a mediana condicional. Sob
 assimetria à direita, que é a forma desta distribuição, o efeito sobre a
 mediana é sistematicamente mais atenuado e menos preciso que o efeito sobre
-a média. É \emph{estimar diferente}, não \emph{estimativa discordante} — e
+a média. É \emph{estimar diferente}, não \emph{estimativa discordante}, e
 isso fortalece a leitura de robustez em vez de qualificá-la: a única
 especificação que não atinge significância é também a única que não está
 medindo a mesma coisa que as outras, e ainda assim entrega ponto
@@ -418,9 +418,9 @@ regime operacional resiste a quê. \textbf{Produção e intensidade de uso
 da UTI excluem o zero nas quatro amostras}, inclusive sem os
 conversores (produção de $+0{,}26$ a $+0{,}49$ em pontos de log;
 intensidade de UTI de $+0{,}19$ a $+0{,}50$). \textbf{A ocupação de
-internação, não:} o intervalo cruza o zero em duas das quatro --- na
+internação, não:} o intervalo cruza o zero em duas das quatro, na
 especificação principal ($-0{,}041$ a $+0{,}277$) e sem o biênio
-pandêmico ($-0{,}077$ a $+0{,}260$) ---, e só o exclui sem os
+pandêmico ($-0{,}077$ a $+0{,}260$), e só o exclui sem os
 conversores e no suporte comum. Escrever que o regime operacional
 inteiro é robusto ``em todas as amostras'' seria estender à ocupação
 uma robustez que ela não tem, e que as duas passagens anteriores desta
