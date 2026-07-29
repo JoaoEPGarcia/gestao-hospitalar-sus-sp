@@ -845,8 +845,32 @@ Nenhum destes é destravado por mais análise.
    verdadeiro. É decisão de escopo, não de trabalho pendente.
 6. **Qual fórmula de decomposição de variância é a canônica** (item 11).
 7. **Forma funcional de `complexidade_pond_mort`** — aguarda Priscilla.
-8. **Branch `reconciliacao-etapaF-jul2026`**, resíduo já mesclado, deixada
-   para depois do fechamento por decisão de João.
+8. **As quatro branches locais residuais — APAGADAS em 29/07/2026**, por
+   decisão de João, com os SHAs de topo registrados abaixo.
+
+   *Correção de subcontagem, 29/07/2026.* Este item nomeava **uma** branch
+   (`reconciliacao-etapaF-jul2026`) quando **quatro** estavam no mesmo
+   estado. A formulação anterior, preservada: *"Branch
+   `reconciliacao-etapaF-jul2026`, resíduo já mesclado, deixada para depois
+   do fechamento por decisão de João."* Subcontagem numa lista de pendências
+   é a mesma classe de defeito que a lista existe para evitar, e por isso a
+   correção fica rotulada em vez de sobrescrever.
+
+   As quatro estavam a **zero commits à frente de `master`** — conteúdo já
+   mesclado, ponteiro é ruído:
+
+   | branch | SHA de topo | commit |
+   |---|---|---|
+   | `feat/etapa4-reestimacao-segmentada` | `f60f69b` | R9 — resultados da Etapa 4 |
+   | `feat/etapa5-ocupacao-fase2` | `0e93604` | formulação larga do item 1.2 atribuída |
+   | `reconciliacao-etapaF-jul2026` | `da333a4` | p-valores do teste de tendências paralelas |
+   | `repaginacao-jul2026` | `bbe3a57` | 19 quebras de página, 113 → 116 |
+
+   **A operação é reversível:** `git branch <nome> <sha>` recria qualquer
+   uma. E é reversível *em definitivo*, não por uma janela de reflog: as
+   quatro pontas são **ancestrais de `master`**, de modo que os objetos
+   seguem alcançáveis e nunca serão coletados. Foi por isso que os SHAs
+   entraram aqui antes de a operação ser executada, e não depois.
 
 ### B. Pendente por TRABALHO NÃO FEITO — ninguém precisa decidir nada
 
