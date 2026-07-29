@@ -746,7 +746,8 @@ foi mesclado em `master` pelo merge `dfb0f7e`. `bbe3a57` é hoje **ancestral
 de `master`**, verificável por `git merge-base --is-ancestor`. A branch
 `repaginacao-jul2026` foi apagada em 29/07/2026 junto com as outras três
 residuais (item 12.A.8), com o SHA registrado lá. O documento está hoje em
-**127 páginas**, depois dos Blocos A a 5.
+**132 páginas**, depois da auditoria editorial (§14); ver a nota de
+contagem no §12, que reconcilia os números que este arquivo já afirmou.
 
 > *Formulação anterior, de 27/07/2026, preservada e rotulada:* «a branch
 > `repaginacao-jul2026` existe, está vazia e atrás de `master`.» Era
@@ -1103,6 +1104,14 @@ ocupação de UTI ao documento e escreveu a seção da reestimação segmentada.
 O documento vai de 113 a **127 páginas** no fechamento, e a **129** ao fim do
 Bloco 6 (29/07/2026), com compile limpo em três passes nos dois estados.
 
+> *Atualização de 29/07/2026, ao fim da auditoria editorial (§14).* A
+> passagem tipográfica e os cortes A1 a A6 devolveram o documento a **127
+> páginas**, e a auditoria editorial, que acrescentou o sumário executivo e
+> as tarjas, o levou a **132**. Compile limpo em três passes (0/0/0/0) em
+> todos esses estados. Esta linha existe porque o §8 e este §12 chegaram a
+> afirmar contagens diferentes ao mesmo tempo, que é a classe 4 do §13
+> dentro de um único documento de controle.
+
 O que segue aberto está separado em **duas listas**, porque são coisas
 diferentes e misturá-las esconde qual delas depende de alguém decidir.
 
@@ -1117,6 +1126,14 @@ porque alguém se esforce mais.**
 1. **Leitura humana do PDF por João.** Nenhuma auditoria numérica substitui.
    As 138 conferências automáticas testam texto contra fonte; não testam se
    o texto está bem escrito nem se a argumentação se sustenta.
+
+   *Reduzida, não fechada, em 29/07/2026.* A auditoria editorial do §14
+   cobriu a camada que faltava: prosa, argumento e coerência entre seções,
+   nas cinco frentes, com doze achados corrigidos. **Continua aberta** por
+   dois motivos: uma leitura de máquina não substitui julgamento sobre
+   ênfase, ordem de exposição e o que interessa a Priscilla e Alberto; e o
+   §14 deixou uma decisão explicitamente para o João, a densidade de
+   negrito da `sec13b`.
 2. **Reclassificação geográfica** (item 5, e a verificação em `0d2f1f8`). A
    composição oficial foi conferida contra as duas leis complementares e o
    código já está correto. O que resta é escolher entre três estratos
@@ -1185,6 +1202,21 @@ porque alguém se esforce mais.**
     lugar nenhum do repositório — R1 já registrava isso, e a reclassificação
     apenas põe o item na lista coerente com o próprio registro. Depende de
     acesso externo, não de execução.
+11. **Refazer a seleção do bloco c só sobre o DEA.** *Aberta em 29/07/2026,
+    pela auditoria editorial (§14).* Reproduzido em
+    `analises/auditar_selecao_sem_sfa.py`: **dois dos três** hospitais do
+    bloco c mudam quando o critério é reexecutado sem a fronteira
+    estocástica, cujos valores R11 tornou não citáveis. Na Direta o CNES
+    2028840 dá lugar ao 2083094; no Filantrópico o 2078465 dá lugar ao
+    2077655. O bloco b **não muda em nenhuma das quatro categorias**, e por
+    isso se resolveu por redação.
+
+    **Está aqui, e não na lista B, pelo mesmo motivo do item 5:** trocar
+    entrevistado é decisão da pesquisadora principal, não ajuste editorial.
+    O documento declara a lista do bloco c como **provisória** em vez de
+    substituí-la por conta própria. Se Priscilla e Alberto preferirem manter
+    os hospitais atuais, basta declarar o critério antigo como
+    exploratório; se preferirem a lista só-DEA, o script já a produz.
 
 ### B. Pendente por TRABALHO NÃO FEITO — ninguém precisa decidir nada
 
@@ -1285,6 +1317,125 @@ pendência que descreve um defeito **não é evidência de que o defeito existe
 hoje**. Antes de trabalhar sobre um item, reproduza o defeito. Se ele não
 reproduzir, o trabalho é fechar o item, não consertar o que já está
 consertado.
+
+---
+
+## 14. Auditoria editorial das cinco frentes (29/07/2026)
+
+**Executada em:** 29/07/2026
+**Situação:** **FECHADA** quanto aos doze achados; deixa **uma pendência
+nova**, registrada em 12.A.11.
+
+A primeira auditoria do projeto a olhar **prosa, argumento e coerência entre
+seções** em vez de número contra fonte. As 138 conferências do Bloco 5, as 209
+recontagens do Bloco 6 e os 44 PNGs da Camada 3 não são refeitos aqui: o objeto
+é o que nenhuma verificação automática testa.
+
+### O que a auditoria confirmou funcionando
+
+Registrado porque ausência de achado, quando a checagem tinha chance de
+discordar, é resultado. A **Regra B** (nenhum adjetivo de resultado sem número)
+está sendo cumprida: 25 candidatos varridos, todos falsos positivos exceto um.
+Ordenamento sem estatística nomeada: 38 candidatos, dois substantivos. A
+`sec07` resolve sozinha a exigência de honestidade sobre os cinco conversores,
+com fonte atribuída em nota e a direção do viés declarada. O Bloco C é a melhor
+escrita nova do documento: declara o critério antes do resultado e explica por
+que a ordem inversa converteria princípio em seleção pelo resultado.
+
+### Os achados, por classe
+
+**Classe 1 (texto contra a própria tabela).** A `sec15` afirmava que a equação
+de ineficiência tem "outros seis" termos e "quatro" fortemente significativos.
+São **sete** e **cinco**, e a tabela que os mostra está oito linhas abaixo. O
+"cinco" já estava corrigido no §0-bis deste arquivo desde o mesmo dia e **nunca
+foi propagado ao `.tex`**; o "seis" nunca fora corrigido em lugar nenhum.
+
+**Classe 2 (texto contra a figura da mesma página).** O `\comoler` da figura de
+eficiência mandava o leitor ver OSS e Município acima de Direta e Filantrópico
+"nos dois painéis". No painel do DEA isso é falso: o Município marca 0,632 e a
+Direta 0,634, e a própria Seção admite o empate 35 linhas antes.
+
+**Classe 3 e 5 (omissão com viés direcional).** O nível SFA do Público
+Municipal (0,912, contra 0,787 da Direta) não existia em nenhum `.tex`. O
+documento citava da SFA só o par que empata e depois usava o coeficiente de
+−5,454 como corroboração de uma ordem que ele contraria. Detalhado em R11,
+emenda de 29/07/2026.
+
+**Classe 4 (seção contra seção).** Quatro casos:
+
+1. A `sec13b` afirmava que "as cinco conversões foram para o mesmo tipo de
+   operador". A `sec07` documenta que a OSS de Presidente Prudente **não foi
+   identificada**, e que Taipas e Vila Penteado foram para uma organização
+   diferente da de Sorocaba e do Pérola. A `sec07` e a `sec17` fazem a
+   afirmação correta e restrita (os **dois** com janela utilizável, ambos
+   Seconci-SP); a `sec13b` era a única das três a exagerar, e chegava à
+   conclusão certa pela evidência errada.
+2. A `sec17` listava "a mortalidade menor no logito, excluindo o zero" entre os
+   achados que se mantêm em E3, enquanto a mesma seção diz três vezes que o
+   achado de mortalidade não se sustenta e que nada autoriza afirmar que a
+   gestão por OSS a reduz. A `sec13b` é cuidadosa no ponto (citável só com o
+   controle de complexidade explicitado, diferença bruta não citável); a
+   conclusão citava o resultado e largava a qualificação.
+3. A `sec17` dava duas magnitudes para a intensidade de uso da UTI, 19,3% e
+   30,4%, ambas chamadas do achado mais forte, a 110 linhas uma da outra, sem
+   dizer que são estimadores diferentes sobre amostras diferentes. **Os dois
+   números estão certos na fonte**; faltava a frase que os reconcilia.
+4. A `sec17` chamava a maior eficiência das OSS de "concordante entre DEA e
+   SFA", apoiando-se num escore que a `sec15` declara não citável.
+
+**Termo não definido.** A `sec15` imprimia "97,8% entre as que têm UTI ativa"
+sem definir o termo. Reproduz sob capacidade instalada (`uti_total > 0` ou
+`uti_sus > 0`); sob a leitura natural, ter registrado diária, dá **96,9%**.
+
+**Ponteiro que não resolve.** A `sec13b` mandava conferir "as tabelas de
+origem" tarjadas, sem `\ref`, e essas tabelas não estão no documento.
+
+### Os dois achados de forma, mensuráveis
+
+A `sec13b` traía a origem em marcas objetivas, e as duas foram corrigidas:
+
+| marca | medida | estado |
+|---|---|---|
+| figura sem `\comofeito` | **única seção do documento** com figura (2) e nenhum `\comofeito`; as outras treze têm | dois `\comofeito` escritos |
+| travessão `---` | a passagem tipográfica de `b4b888a` removeu o travessão do documento inteiro e **deixou-o só nas duas seções novas** (3 em `sec15`, o do `sec13b` é célula de tabela) | convertidos |
+
+Fica também registrado, **sem correção**, que a densidade de negrito da
+`sec13b` é de **17,0 por 100 linhas** (65 em 382), a maior entre as seções
+analíticas e 57% acima da `sec14`, que é vizinha e do mesmo gênero. É escolha
+de estilo, não erro, e a decisão de aparar ou não é do João.
+
+### O erro estrutural: não havia sumário executivo
+
+O documento ia da capa ao índice e direto à Seção 1, cuja primeira frase
+anuncia "esta parte do documento apresenta a Análise Exploratória", que são as
+seções 1 a 9 de 18. Em 127 páginas, o leitor só descobria o que o trabalho
+conclui na página 94.
+
+Foi escrito um **sumário executivo** (`secoes/sec00_resumo.tex`), deliberadamente
+**não numerado** (`\section*` com `\addcontentsline` à mão), para que a
+numeração de todas as seções seguintes permaneça a que o projeto usa: a
+`sec13b` continua saindo como Seção 14 e nenhuma referência cruzada se move.
+Ele não introduz nenhuma afirmação nova: é síntese do que a `sec17` já conclui,
+com as cinco limitações em lista, e todos os seus números foram reproduzidos.
+
+O documento vai de 127 a **132 páginas**, com compile limpo em três passes.
+
+### A lição desta auditoria
+
+Os quatro erros de classe 4 e a omissão do 0,912 têm a mesma assinatura, e não
+é a das auditorias anteriores. **Nenhum deles é um número errado.** Cada valor
+citado confere com a sua fonte; o que não fecha é a relação entre eles, ou
+entre o número e a frase que o apresenta. A triagem de pertinência não os vê
+por construção, a recontagem de inteiros não os vê, e a leitura de PNG não os
+vê. O que os pegou foi **ler o argumento de ponta a ponta perguntando se ele se
+sustenta** — e, no caso do bloco c, **rodar o contrafactual** em vez de aceitar
+a frase que a própria auditoria tinha rascunhado.
+
+Esse último ponto merece registro próprio, porque é a lição de R1 v2 outra vez:
+a primeira redação da correção do `sec16` afirmava que a lista de entrevistados
+não mudava sem a SFA. **A afirmação foi escrita antes de ser testada, e o teste
+a refutou** em dois dos três hospitais do bloco c. Ela não chegou ao documento
+porque a regra 7 exigiu rodar. Sem a regra, teria entrado como fato.
 
 **Candidato não corrigido, deixado para conferência humana.** A mesma lista
 final do `RESTRICOES_SEGMENTACAO.md` traz *"Propagação da correção da ocupação

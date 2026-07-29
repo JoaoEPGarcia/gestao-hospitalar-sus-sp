@@ -1746,3 +1746,129 @@ diagnóstico da fronteira e não do hospital.
 O **DEA** permanece integralmente citável, inclusive a segunda etapa truncada
 de R9 (coeficiente de OSS de −0,601, IC95% [−1,065, −0,169]). A restrição é
 sobre a fronteira paramétrica, não sobre a envoltória.
+
+---
+
+## R11 — emenda de 29/07/2026, na leitura editorial das cinco frentes
+
+**Status: R11 confirmada e aplicada ao documento. Três correções ao próprio
+registro e um achado novo que amplia o alcance da regra.**
+
+Toda a medição de R11 foi **reproduzida rodando** antes desta emenda, nos três
+scripts versionados. As tabelas de monotonicidade (99,7 / 94,9 / 99,6; as cinco
+categorias; os três estratos; os três portes), as oito células do confronto
+DEA e as três distâncias no `.tex` **conferem todas**, sem exceção. O que segue
+não corrige número: corrige leitura.
+
+### Correção 1 — "uniforme" vale entre categorias, não entre estratos
+
+R11 conclui que a violação é uniforme a partir da amplitude **por categoria**:
+5,7 pontos, de 93,6% no Filantrópico a 99,3% na Direta. Correto. Mas a mesma
+execução mede, **por estrato**, uma amplitude de **11,8 pontos** (E1 86,2%, E2
+98,0%, E3 97,2%), mais que o dobro. A conclusão de fundo não muda — é defeito
+geral da forma funcional, e a categoria mais violada continua sendo a Direta,
+que é a referência do contraste — mas **"uniforme" sem nomear a dimensão não se
+sustenta**, e o E1 se comporta visivelmente melhor que os outros dois estratos.
+
+### Correção 2 — R11 violava a regra que ela própria institui
+
+A regra transversal que R11 estabelece é que todo ordenamento nomeie escore e
+estatística. Ao resumir os estratos, R11 escreve "E1 põe acima (+0,0562)". Isso
+é `te_bcc_vc` **na média**. Em `te_bcc`, o E1 põe o Público Municipal
+**abaixo** da Direta por −0,0766 na média e −0,1979 na mediana. O resumo de um
+número por estrato esconde exatamente a dependência de escore que R11 exige
+declarar.
+
+### Achado novo — o nível SFA do Público Municipal nunca esteve no documento
+
+Reproduzido de `resultados_fase2/tabelas/tabS_te_categoria_ano.csv`. Os níveis
+de eficiência técnica da SFA por categoria são:
+
+| categoria | média | mediana |
+|---|---|---|
+| OSS | 0,9994 | 0,9994 |
+| **Público Municipal** | **0,9120** | **0,9104** |
+| Direta | 0,7872 | 0,7911 |
+| Filantrópico | 0,7842 | 0,7830 |
+| Privado | 0,3070 | 0,3112 |
+
+O documento imprimia da SFA **apenas o par que empata** (Direta 0,788 e
+Filantrópico 0,784) e o valor degenerado das OSS. O **0,912 do Público
+Municipal, 0,125 acima da Direta, não aparecia em nenhum `.tex`** — conferido
+por busca em todas as seções.
+
+Isso é o que faltava para a tarja poder dizer *por quê*. A SFA é internamente
+coerente: o nível de 0,912 e o coeficiente de −5,454 dizem a mesma coisa. Quem
+era incoerente era o documento, que apresentava a SFA como corroboradora do
+ordenamento do DEA citando só onde os dois concordam. **As duas ordens são:**
+
+- DEA (mediana `te_bcc_vc`): OSS, **Direta, Público Municipal**, Filantrópico, Privado
+- SFA: OSS, **Público Municipal, Direta**, Filantrópico, Privado
+
+Concordam nas pontas e trocam a segunda e a terceira posições.
+
+### Achado novo, e o mais consequente — a seleção de entrevistados do bloco c depende da SFA
+
+R11 registrava que o **bloco e** do apêndice de seleção era "o único que R11
+não resolve por redação". **Está incompleto: o bloco c também não se resolve.**
+
+Reproduzido em `analises/auditar_selecao_sem_sfa.py`, que reconstrói o `eleg`
+de `selecao_entrevistas.py` a partir das fontes e roda o critério de
+`_selecionar_extremos` nas duas versões, com o mesmo desempate geográfico. A
+reprodução **bate nas oito células publicadas** antes de qualquer contrafactual
+ser lido, incluindo o swap de `307ef29` no Filantrópico do bloco c.
+
+| bloco | categoria | com SFA | sem SFA | |
+|---|---|---|---|---|
+| b | OSS | 7573162 | 7573162 | igual |
+| b | Direta | 6164366 | 6164366 | igual |
+| b | Público Municipal | 5718368 | 5718368 | igual |
+| b | Filantrópico | 2076896 | 2076896 | igual |
+| c | Direta | 2028840 | **2083094** | **MUDA** |
+| c | Público Municipal | 2698471 | 2698471 | igual |
+| c | Filantrópico | 2078465 | **2077655** | **MUDA** |
+
+**O bloco b não deve nada à SFA e se resolve por redação. O bloco c deve dois
+dos três hospitais a ela.** O motivo é estrutural e vale registrar: o quartil
+**superior** tem poucos candidatos (2 a 17 por categoria) e o DEA decide
+sozinho; o quartil **inferior** é largo (até 37 candidatos no Filantrópico) e
+ali o desempate por `pct_comb`, que é a média dos percentis de DEA e de SFA,
+passa a decidir.
+
+**Consequência:** a lista do bloco c é **provisória** e precisa ser refeita só
+sobre o DEA antes de qualquer agendamento. Isso ficou declarado no documento,
+não corrigido por conta própria — trocar entrevistado é decisão da pesquisadora
+principal, pelo mesmo motivo registrado no item 5 do `PENDENCIAS.md`.
+
+### O que foi aplicado ao documento em 29/07/2026
+
+Todos os itens abaixo foram escritos no `.tex`, com compile limpo em três
+passes (0/0/0/0):
+
+1. **`sec15`**: a contagem "outros seis / quatro fortemente significativos"
+   estava errada contra a própria tabela impressa oito linhas abaixo. São
+   **sete** termos além do `d_oss` e **cinco** com $p \leq 3{,}2\times10^{-11}$.
+   O "cinco em vez de quatro" já constava do `PENDENCIAS.md` §0-bis desde 29/07
+   e nunca tinha sido propagado; o "seis" nunca fora corrigido em lugar nenhum.
+2. **`sec15`**: a tarja passou para **antes** da tabela, na mesma unidade de
+   texto, com a violação de 94,9% repetida ali e a declaração explícita de que
+   nenhum coeficiente é interpretável como magnitude nem entra em conclusão. A
+   distância de 37 linhas entre coeficiente e violação está desfeita. A legenda
+   da tabela carrega a tarja por si.
+3. **`sec15`**: o parágrafo que dizia que o coeficiente "sustenta a ordem das
+   redes que a Seção vinha afirmando só pelas médias" foi refeito. A Seção
+   imprime **medianas**, e por elas a Direta está à frente do Município: a
+   frase era verdadeira sob uma estatística ausente e falsa sob a presente.
+4. **`sec15`**: o 0,912 entrou, e com ele a declaração de que os dois métodos
+   trocam a segunda e a terceira posições.
+5. **`sec15`**: "a concordância entre os dois métodos" virou "a semelhança
+   entre os dois procedimentos", com a nota de que semelhança não é
+   corroboração. Idem no `\comoler`, na legenda dos violinos e na da dispersão.
+6. **`sec16`**: a tarja das seis tabelas cobria só as linhas OSS; passou a
+   cobrir todas as linhas e todas as categorias.
+7. **`apendiceB`**, bloco e: estatuto rebaixado. A divergência DEA×SFA passa a
+   ser lida como diagnóstico da fronteira, não do hospital, e o bloco fica
+   nomeado como o primeiro a sair se houver corte por teto de esforço.
+8. **`sec17`**: "concordante entre DEA e SFA" saiu; a não-citabilidade da SFA
+   entrou como a **sexta limitação** do projeto, onde o leitor da conclusão a
+   encontra.
