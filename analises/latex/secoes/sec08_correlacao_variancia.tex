@@ -4,10 +4,7 @@
 A Figura~\ref{fig:correlacao} resume, num único mapa, o quanto cada par
 de indicadores anda junto. A medida usada (correlação de Spearman) vai
 de 0, quando dois indicadores não têm relação, a 1, quando crescem
-sempre juntos. A mortalidade ajustada foi retirada do mapa por ser
-estatisticamente idêntica à mortalidade geral (correlação de 1,000
-após arredondamento entre as duas; todas as demais relações coincidem
-casa a casa).
+sempre juntos.
 
 Os pares mais fortes fazem sentido imediato para a gestão:
 \textbf{faturamento por saída e fração de alta complexidade (0,77)}, faturamento e
@@ -47,7 +44,7 @@ todos os valores estão impressos.}
 \end{figure}
 
 \comofeito{mapa de calor. Nos dois eixos aparecem os mesmos itens (os
-sete indicadores, as duas taxas de ocupação e a complexidade estrutural) e cada célula traz a \textbf{correlação de Spearman} entre o par
+seis indicadores e a complexidade estrutural) e cada célula traz a \textbf{correlação de Spearman} entre o par
 correspondente, medida que vai de 0 (sem relação de ordem) a 1 (crescem
 sempre juntos). Azul mais escuro indica relação mais forte; a diagonal
 vale sempre 1 porque compara cada item consigo mesmo. Escolheu-se
@@ -58,17 +55,16 @@ A Figura~\ref{fig:variancia} e a Tabela~\ref{tab:variancia} respondem a
 outra pergunta essencial: \textbf{quando um indicador varia, essa
 variação vem de comparar hospitais diferentes ou do mesmo hospital
 mudando ao longo dos anos?} A resposta se divide, e a divisão é nítida.
-Em \textbf{seis dos sete indicadores} a variação vem quase toda das
+Em \textbf{cinco dos seis indicadores} a variação vem quase toda das
 diferenças entre hospitais. Na fração de alta complexidade, \textbf{apenas
 4,5\% da variação total acontece dentro do mesmo hospital} ao longo da
-década; no faturamento são 8,3\%, no tempo de permanência 13,1\%, nas duas
-mortalidades (geral e ajustada) 16,0\% em cada, e na ocupação de
-internação 16,7\%.
+década; no faturamento são 8,3\%, no tempo de permanência 13,1\%, na
+mortalidade 16,0\%, e na ocupação de internação 16,7\%.
 
 \textbf{A ocupação de UTI é a exceção, e é uma exceção grande: 66,3\% da
 sua variação acontece dentro do próprio hospital.} Ela
 não fica um pouco acima dos demais: fica em outro regime. Enquanto os
-outros seis se movem entre 4\% e 17\%, a ocupação de UTI passa de dois
+outros cinco se movem entre 4\% e 17\%, a ocupação de UTI passa de dois
 terços, e é o único indicador do painel em que o mesmo hospital difere mais
 de si mesmo ao longo do tempo do que difere dos vizinhos.
 
@@ -94,7 +90,6 @@ Fração alta complex.   & 4,5  & 95,5 \\
 Faturamento por saída        & 8,3  & 91,7 \\
 TMP                    & 13,1 & 86,9 \\
 Mortalidade geral      & 16,0 & 84,0 \\
-Mortalidade ajustada   & 16,0 & 84,0 \\
 Ocupação internação    & 16,7 & 83,3 \\
 Ocupação UTI           & 66,3 & 33,7 \\
 \bottomrule

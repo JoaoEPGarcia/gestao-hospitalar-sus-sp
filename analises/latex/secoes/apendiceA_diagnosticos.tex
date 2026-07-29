@@ -468,11 +468,11 @@ Normal no eixo horizontal, resíduos quantílicos ordenados no vertical,
 diagonal de referência), para os modelos de produção (Binomial Negativa)
 e da parte positiva da ocupação de UTI.}
 
-\comoler{estes são os quatro modelos restantes, cujos valores de
+\comoler{estes são os três modelos restantes, cujos valores de
 aderência o texto acima cita: faturamento e tempo de permanência na
-especificação de efeitos fixos, ocupação de internação e a versão
-ajustada da mortalidade. Em todos, os pontos acompanham a diagonal na
-maior parte do trajeto, descolando apenas nas caudas.}
+especificação de efeitos fixos, e ocupação de internação. Em todos, os
+pontos acompanham a diagonal na maior parte do trajeto, descolando
+apenas nas caudas.}
 
 \begin{figure}[H]
 \centering
@@ -491,18 +491,12 @@ de tempo de permanência, ambos estimados com efeitos fixos de hospital.}
 
 \begin{figure}[H]
 \centering
-\subfig{fig_est_04_qq_ocup_internacao.png}{Ocupação de internação}
-\subfig{fig_est_04_qq_mort_ajustada_zib.png}{Mortalidade ajustada,
-modelo Beta com inflação em zero}
-\caption{Resíduos quantílicos da ocupação de internação e da versão
-ajustada da mortalidade.}
+\includegraphics[width=.62\textwidth]{fig_est_04_qq_ocup_internacao.png}
+\caption{Resíduos quantílicos do modelo de ocupação de internação.}
 \label{fig:qqquarta}
 \end{figure}
 
-\comofeito{mesma construção, para o modelo de ocupação de internação e
-para a versão da mortalidade que exclui os óbitos fetais, maternos e
-neonatais, esta última é a que sustenta a verificação de robustez da
-Seção~\ref{sec:robustez}.}
+\comofeito{mesma construção, para o modelo de ocupação de internação.}
 
 \comoler{compare com o painel (b) da figura anterior: os pontos que
 antes despencavam da linha tracejada na ponta esquerda agora a
