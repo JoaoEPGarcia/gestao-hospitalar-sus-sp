@@ -1593,3 +1593,156 @@ Registradas, não executadas:
 > fechamento corretamente desde 27/07/2026 enquanto esta lista continuava
 > declarando as duas pendentes. Ver a nota de método no `PENDENCIAS.md` §13
 > sobre a concentração das inconsistências neste par.
+
+---
+
+## R11 — Nenhum coeficiente da SFA é citável. A tarja vale por critério, não por categoria
+
+**Status: REGRA NOVA, registrada em 29/07/2026, na auditoria editorial.
+Substitui a tarja por categoria que vigorava até aqui.**
+
+### A regra
+
+**Nenhum coeficiente da fronteira estocástica é citável** — nem o nível de
+eficiência técnica, nem os coeficientes da equação de ineficiência, em
+nenhuma categoria de gestão. A SFA **permanece no documento**, como
+diagnóstico da própria inadequação da fronteira. **As conclusões de
+eficiência apoiam-se no DEA.**
+
+### O raciocínio
+
+O documento reporta que o Público Municipal sai significativamente menos
+ineficiente que a Direta (**−5,454**, EP 1,020, **p = 9,0×10⁻⁸**), e no mesmo
+item consta a **monotonicidade violada em 94,9% das observações**.
+
+Violação de monotonicidade em quase toda a amostra significa que a fronteira
+estimada **não se comporta como função de produção**. Significância mede
+precisão da estimativa, não validade da estrutura de onde ela sai. Coeficiente
+preciso extraído de fronteira mal-comportada é preciso sobre um objeto que não
+é o que o nome diz.
+
+**Remover, porém, seria pior.** O achado só entrou no documento porque estava
+sendo omitido — era um dos quatro achados do item 0-bis — e resultado que some
+depois de reportado é omissão com viés direcional, uma das cinco classes de
+erro editorial do projeto. O coeficiente **fica, tarjado**.
+
+**A violação em 94,9% é ela própria achado:** diz que a Translog não descreve
+bem esta tecnologia de produção.
+
+### Por que a tarja passa a valer por critério
+
+Até aqui a SFA estava tarjada **para as OSS** (degeneração do `d_oss`, escore
+colado em 0,999) e **não** para as demais categorias. Isso dá a impressão de
+tarja aplicada onde o resultado incomoda. A regra passa a ser uma só, e vale
+para as cinco categorias.
+
+### A violação é UNIFORME, não concentrada — medido em 29/07/2026
+
+Pergunta da auditoria: a violação se concentra em alguma categoria? **Não.**
+Reproduzido em `resultados_fase2/auditar_monotonicidade_frente2.R`, que
+recalcula as elasticidades da Translog observação a observação a partir de
+`modS_translog.rds`:
+
+| categoria | n | violadas | % |
+|---|---|---|---|
+| **Direta** | 284 | 282 | **99,3** |
+| OSS | 365 | 354 | 97,0 |
+| Privado | 33 | 32 | 97,0 |
+| Público Municipal | 616 | 589 | 95,6 |
+| **Filantrópico** | 1.879 | 1.759 | **93,6** |
+
+Por estrato: E1 86,2%, E2 98,0%, E3 97,2%. Por porte: Especial 90,0%, Grande
+96,4%, Médio 94,1%.
+
+**A amplitude entre categorias é de 5,7 pontos numa base de 93,6%.** Isto é
+defeito geral da forma funcional, não patologia de uma categoria — e a
+categoria com a violação **mais alta é a Direta**, que é a referência do
+contraste. A tarja, portanto, **não pode** ser redigida como se a violação
+explicasse especificamente o coeficiente do Público Municipal: ela desqualifica
+a fronteira inteira.
+
+Os três números que o documento já publicava reproduzem exatos: **99,7%** de
+respeito para leitos, **94,9%** de violação para UTI, **99,6%** para valor. O
+"97,8% entre as que têm UTI ativa" também confere, sob a definição
+`uti_total > 0` ou `uti_sus > 0` (não `diarias_uti > 0`, que dá 96,9%).
+
+### O DEA corrobora? Depende do escore, e isso precisa ser dito
+
+Pergunta da auditoria: o DEA ordena o Público Municipal acima da Direta? **Os
+escores discordam entre si**, e a resposta muda com a estatística e com o
+estrato. Reproduzido em `analises/auditar_sfa_frente2.py`.
+
+Painel inteiro, Público Municipal contra Direta:
+
+| escore | média | mediana |
+|---|---|---|
+| `te_bcc` | PM acima (+0,0097) | **PM abaixo** (−0,0103) |
+| `te_bcc_vc` (corrigido de viés) | PM acima (+0,0242) | **PM abaixo** (−0,0014) |
+| `te_ccr` | PM acima (+0,0563) | PM acima (+0,0706) |
+| `ef_escala` | PM acima (+0,0670) | PM acima (+0,0863) |
+
+Ano a ano, no escore corrigido de viés, **o Público Municipal fica acima da
+Direta em 6 dos 11 anos** — e os seis são **2020 a 2025**, contra cinco anos
+abaixo de 2015 a 2019. Contagem por escore: `te_bcc` 5/11, `te_bcc_vc` 6/11,
+`te_ccr` 8/11, `ef_escala` 11/11.
+
+Por estrato, no escore corrigido de viés: **E3 põe o PM acima** (+0,0437 na
+média, +0,0277 na mediana), **E2 põe o PM abaixo** (−0,0791), E1 põe acima
+(+0,0562).
+
+**Consequência de redação.** Não se pode escrever que o DEA corrobora o achado
+da SFA sem qualificação, e não se pode escrever que o refuta. A redação
+honesta é: no estrato comparável (E3) e no período recente o DEA põe o Público
+Municipal à frente da Direta; no painel inteiro o veredito **depende de qual
+escore e de qual estatística**, e a mediana dos dois escores BCC o põe atrás.
+Todo ordenamento citado precisa nomear o escore e a estatística — é a regra
+transversal do projeto, e aqui ela é decisiva, não formal.
+
+### Onde a tarja falha hoje: a violação está a 37 linhas do coeficiente
+
+Medido em `analises/auditar_sfa_frente2.py`. Em `sec15_fase2_eficiencia.tex`:
+
+- o coeficiente **−5,454** está na **linha 239**, dentro da tabela
+  `tab:equacaoinef` (linhas 228–248);
+- a violação de **94,9%** está na **linha 202**, no parágrafo corrido anterior;
+- **distância: 37 linhas de fonte**, e — o que é pior — os dois estão em
+  **unidades de texto diferentes**: a violação num parágrafo, o coeficiente
+  numa tabela, com a leitura da tabela intermediada por três parágrafos.
+
+A única declaração de "não é citável" em toda a seção está na **linha 191**, e
+é sobre as OSS: *"o NÍVEL da eficiência das OSS na SFA não é citável"*. **Não
+há nenhuma declaração equivalente para o Público Municipal.**
+
+### Menções à SFA que hoje NÃO estão sob a regra
+
+Varredura em `analises/auditar_frentes_3_4_5.py`: 57 menções a SFA ou fronteira
+estocástica. As que citam número de SFA fora da tarja das OSS:
+
+1. **`sec15:111`** — cita níveis de SFA para Direta e Filantrópico ("0,788
+   contra 0,784") como se fossem medida.
+2. **`sec15:213`** — a correlação de ordem de 0,62 entre DEA e SFA é
+   apresentada como **"concordância entre os dois métodos"**, isto é, a SFA
+   funcionando como instrumento corroborador independente. Sob R11 ela não é.
+3. **`sec15:239`** — a linha do Público Municipal na `tab:equacaoinef`, sem
+   tarja.
+4. **`sec17:61`** — o achado de eficiência das OSS é dito **"concordante entre
+   DEA e SFA"**. Mesma objeção do item 2.
+5. **`sec16:177–180`, `206–209`** — escores medianos de SFA usados como
+   **critério de seleção de entrevistados** para Direta (0,908 e 0,409),
+   Público Municipal (0,962 e 0,717) e Filantrópico (0,928 e 0,504). A tarja
+   das seis tabelas (`sec16:123–129`) cobre **apenas as linhas OSS**.
+6. **`apendiceB:237–266`** — o **bloco e** seleciona cinco hospitais
+   inteiramente pelo critério de **divergência entre DEA e SFA** ("posição 57
+   no DEA contra 273 na SFA"). Se nenhum coeficiente da SFA é citável, o
+   critério de seleção deste bloco fica sem base — e este é o caso mais sério
+   da lista, porque a SFA ali não ilustra: ela **decide**.
+
+O item 6 é o único que R11 não resolve por redação. Ou o bloco e passa a ser
+justificado por outro critério, ou passa a declarar que a divergência é
+diagnóstico da fronteira e não do hospital.
+
+### O que R11 não muda
+
+O **DEA** permanece integralmente citável, inclusive a segunda etapa truncada
+de R9 (coeficiente de OSS de −0,601, IC95% [−1,065, −0,169]). A restrição é
+sobre a fronteira paramétrica, não sobre a envoltória.
