@@ -1,5 +1,5 @@
 # preparo_fase2.R
-# Preparo comum da fase 2 (Bayesiana hierárquica, DEA e SFA).
+# Preparo comum da fase 2 (hierárquica por máxima verossimilhança, DEA e SFA).
 # Replica as regras vigentes do projeto: verificação do painel com
 # aborto, custo e valor reais pelo IPCA a preços de 2025, porte fixo
 # pela mediana de leitos, flag e exclusão do denominador frágil, dummy
