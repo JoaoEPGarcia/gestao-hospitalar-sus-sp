@@ -803,3 +803,77 @@ estruturais.** O que a correção do domínio de fato afeta na estimação é a
 citada na Seção 11.
 
 O escopo real do Bloco A, medido e não presumido, é **sec02, sec04 e sec08**.
+
+---
+
+## 12. Estado ao fim do fechamento de 29/07/2026
+
+**Consolidado em:** 29/07/2026
+
+O fechamento mesclou as Etapas 4 e 5 e a repaginação em `master`, renomeou
+o rótulo bayesiano em todo o projeto, propagou a correção do domínio da
+ocupação de UTI ao documento e escreveu a seção da reestimação segmentada.
+O documento vai de 113 a **127 páginas**, com compile limpo em três passes.
+
+O que segue aberto está separado em **duas listas**, porque são coisas
+diferentes e misturá-las esconde qual delas depende de alguém decidir.
+
+### A. Pendente por DECISÃO HUMANA — o trabalho está pronto ou não se aplica
+
+Nenhum destes é destravado por mais análise.
+
+1. **Leitura humana do PDF por João.** Nenhuma auditoria numérica substitui.
+   As 138 conferências automáticas testam texto contra fonte; não testam se
+   o texto está bem escrito nem se a argumentação se sustenta.
+2. **Reclassificação geográfica** (item 5, e a verificação em `0d2f1f8`). A
+   composição oficial foi conferida contra as duas leis complementares e o
+   código já está correto. O que resta é escolher entre três estratos
+   (Baixada junto com a RMSP, respeitando o piso de 15) e quatro (Baixada
+   isolada, com 10 hospitais, abaixo do piso). **Aguarda Priscilla e
+   Alberto.**
+3. **Seção 16 e Apêndice B**, que dependem da decisão anterior. O item 4.4
+   do fechamento pedia que a Seção 16 refletisse a seleção regenerada; ela
+   **não foi regenerada**, porque isso pressupõe a decisão de estratificação.
+   Escrever a seção sobre uma seleção que não existe seria inventar
+   resultado.
+4. **Comunicação à Priscilla**, com quatro conteúdos: o achado confirmado e
+   mais forte (intensidade de UTI, +30,4%, estável em cinco famílias); o
+   achado decomposto em dois (ocupação de internação); os erros editoriais
+   corrigidos; e a inversão do ordenamento da Etapa 1.
+5. **A renomeação da Fase 2 já foi feita** (item 10), mas a **migração para
+   `brms`/Stan** continua sendo a única saída que torna o rótulo original
+   verdadeiro. É decisão de escopo, não de trabalho pendente.
+6. **Qual fórmula de decomposição de variância é a canônica** (item 11).
+7. **Forma funcional de `complexidade_pond_mort`** — aguarda Priscilla.
+8. **Branch `reconciliacao-etapaF-jul2026`**, resíduo já mesclado, deixada
+   para depois do fechamento por decisão de João.
+
+### B. Pendente por TRABALHO NÃO FEITO — ninguém precisa decidir nada
+
+Estes só dependem de alguém executá-los.
+
+1. **Verificação da coluna `Leitos` do arquivo Barcelona** contra o histórico
+   `ST_LEITO` do DataSUS. Asserção registrada em R1, nunca medida.
+2. **Comparação do leito contratualizado CGCSS/SES-SP com `leitos_sus`.**
+   Asserção do Alberto, nunca medida. O portal não está no painel.
+3. **Datas exatas de contrato e OSS responsável** dos cinco conversores
+   (item 6). O mês de Presidente Prudente e a OSS contratada seguem não
+   identificados.
+4. **Eixo "Densidade" dos histogramas** (item 7): a decisão entre remover a
+   curva KDE ou reescalá-la já está formulada; falta executar.
+5. **Camada 3 da varredura de consistência** (item 1): 48 PNGs em 8 seções
+   que declaram valores impressos na figura, nunca conferidos.
+6. **Contagens inteiras** (item 3): 412 inteiros, 188 anos e 89 códigos CNES
+   sem verificação. A auditoria de 29/07 cobriu as contagens do texto novo,
+   não as do documento antigo.
+7. **Os quatro achados da varredura de `resultados_fase2/tabelas/`**
+   (item 0-bis), todos abertos: a equação de ineficiência da SFA ausente do
+   documento, a violação de monotonicidade do insumo de UTI não reportada, o
+   "todas as amostras" da Seção 15 e a cobertura de
+   `tabS_sensibilidade.csv`.
+8. **Indexar `painel_definitivo.csv`, `resultados_fase2/dea/` e
+   `resultados_fase2/sfa/`** na triagem automatizada — pré-requisito comum
+   dos itens 1 e 3.
+9. **`estimacao.md` cobre só as seções 1 a 3 de `estimacao.py`** (item 2).
+   *Este item tem uma metade em cada lista:* ampliar ou não é decisão
+   editorial; ampliar, se decidido, é trabalho.
