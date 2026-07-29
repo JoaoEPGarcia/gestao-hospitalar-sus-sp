@@ -608,3 +608,78 @@ entre gestão e desfecho — mas é **variável pós-tratamento**, e incluí-la 
 covariável em modelos de mortalidade ou TMP bloquearia o canal causal que se
 quer medir. Mesmo erro de *bad control* que descartou `pct_alta_complex` como
 estrato. Só em análise de mediação formal, com desenho próprio.
+
+---
+
+## 10. O rótulo "Bayesiana hierárquica" da Fase 2 não descreve o que foi estimado
+
+**Aberta em:** 29/07/2026
+**Decisão de:** João
+**Situação:** aberta — a Etapa 4 foi renomeada, a Fase 2 **não**
+
+### O achado
+
+A Etapa 4 tinha um script chamado `etapa4_bayes_segmentado.R` que não é
+bayesiano. Ele foi renomeado para `etapa4_hierarquico_segmentado.R`, e a
+tabela `tabSEG_12` junto, no fechamento de 29/07/2026.
+
+Ao levantar o alcance dessa renomeação, descobriu-se que **o mesmo defeito
+existe na Fase 2, e lá é maior**. O `RELATORIO_EXECUCAO.md`, seção 3,
+documenta com precisão que a Frente 1 desceu a escada brms → rstan → glmmTMB
+porque o ambiente não tem toolchain de compilação, e lista as cinco
+degradações resultantes: intervalos de Wald no lugar de credibilidade,
+checagem por simulação no lugar de `pp_check` de posteriori, AIC no lugar de
+LOO, sensibilidade de especificação no lugar de sensibilidade de priors — que
+"não existem aqui" —, e encolhimento por *partial pooling* clássico.
+
+**A documentação é impecável. O rótulo é que não acompanhou.** O pacote
+continua se intitulando "Bayesiana hierárquica" no título do relatório, no
+README de `resultados_fase2/`, e no nome de `fase2_bayes.R`, `fase2_bayes_boot.R`
+e do diretório `bayes/`.
+
+### Por que isto importa mais do que parece
+
+**Não há modelagem bayesiana em lugar nenhum do projeto.** A premissa de que a
+Etapa 4 precisava ser renomeada *para não se confundir com a Fase 2 bayesiana*
+é falsa: as duas rodam o mesmo estimador, glmmTMB por máxima verossimilhança,
+pelo mesmo motivo, com a mesma degradação documentada.
+
+Duas consequências práticas:
+
+1. **Para o texto.** Não se pode escrever no `principal.tex` que a Etapa 4 e a
+   Fase 2 são famílias inferenciais distintas, nem que a proximidade dos
+   pontos é convergência entre paradigmas. Não há dois paradigmas. Escrever
+   isso introduziria erro novo em vez de corrigir o existente.
+2. **Para a Seção 15 e o Apêndice.** Qualquer trecho que descreva a Frente 1
+   como bayesiana precisa ser conferido contra a seção 3 do
+   `RELATORIO_EXECUCAO.md`. Não foi conferido nesta sessão.
+
+### Por que não foi corrigido junto
+
+Renomear a Fase 2 é operação de natureza diferente da da Etapa 4:
+
+- o pacote `resultados_fase2/` foi montado **autocontido para revisão
+  externa** e pode já ter circulado sob esses nomes;
+- os resultados foram **publicados** sob o rótulo, inclusive no
+  `principal.tex`;
+- envolve nomes de arquivo, de diretório (`bayes/`), de tabela
+  (`tabB_comparacao_freq_bayes.csv`) e o título do relatório;
+- e há uma pendência já registrada de **migrar para brms/Stan** num ambiente
+  com toolchain (Seção 8 do `RELATORIO_EXECUCAO.md`). Se essa migração for
+  feita, o rótulo passa a estar certo, e a renomeação teria sido trabalho
+  jogado fora.
+
+**As três saídas possíveis**, em ordem de custo crescente:
+
+1. **Manter os nomes e corrigir só a prosa**, deixando explícito em cada
+   ocorrência que a estimação é por máxima verossimilhança e que "bayesiano"
+   sobreviveu como nome do plano, não do que rodou. Custo baixo, resolve o
+   risco de leitura, deixa nomes de arquivo enganosos.
+2. **Renomear tudo**, como foi feito na Etapa 4. Custo médio, e refaz o pacote
+   de revisão externa.
+3. **Executar a migração para brms/Stan** e tornar o rótulo verdadeiro. Custo
+   alto, exige Rtools e reestimação, mas é a única que fecha a pendência da
+   Seção 8 no mesmo movimento.
+
+Nenhuma foi escolhida. A opção 1 é a mais barata e a mais reversível; a 3 é a
+única que resolve a pendência de fundo.

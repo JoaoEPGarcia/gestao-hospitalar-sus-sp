@@ -667,8 +667,35 @@ sustentam. Saídas em `tabSEG_10` a `tabSEG_15`, `figSEG_04` e `figSEG_05`.
 
 Três famílias, cinco indicadores, três estratos. CRE/Mundlak
 (`estimacao_segmentada.py`), DEA com fronteira por estrato
-(`etapa4_dea_segmentado.R`) e hierárquico glmmTMB
-(`etapa4_bayes_segmentado.R`).
+(`etapa4_dea_segmentado.R`) e **modelo hierárquico por máxima
+verossimilhança** (`etapa4_hierarquico_segmentado.R`).
+
+> **Correção de nome, 29/07/2026.** O terceiro script chamava-se
+> `etapa4_bayes_segmentado.R` e escrevia `tabSEG_12_bayes_por_estrato.csv`.
+> **Nada nele é bayesiano.** O backend é glmmTMB — máxima verossimilhança com
+> efeito aleatório, sem priors, sem posterior, sem diagnóstico de cadeia, com
+> intervalos de Wald e não críveis. O cabeçalho do script sempre declarou
+> isso; o **nome** dizia o contrário, e é o nome que sobrevive em citação e em
+> índice de pasta. Script e tabela renomeados; a coluna `backend` da tabela já
+> trazia `glmmTMB (ML, NÃO posterior)` e não precisou mudar.
+>
+> **O mesmo defeito existe na Fase 2, e é maior.** A Frente 1 da Fase 2
+> desceu a **mesma** escada, pelo mesmo motivo — sem Rtools, sem toolchain de
+> compilação — e também roda em glmmTMB por máxima verossimilhança
+> (`RELATORIO_EXECUCAO.md`, seção 3, que documenta a degradação linha a
+> linha). Ainda assim o pacote se intitula "Bayesiana hierárquica" no título
+> do relatório, no README e no nome de `fase2_bayes.R`.
+>
+> **Consequência que precisa ficar explícita antes de qualquer texto:** os
+> dois são o **mesmo estimador**. Não são famílias inferenciais distintas, e
+> a proximidade entre os pontos da Etapa 4 e os da Fase 2 **não** é
+> convergência entre paradigmas — não há dois paradigmas envolvidos. Escrever
+> o contrário no `principal.tex` introduziria erro novo em vez de corrigir o
+> existente.
+>
+> A renomeação da Fase 2 **não foi feita**: mexe em nomes de arquivo de um
+> pacote já circulado para revisão externa e em resultados publicados sob
+> esse rótulo. É decisão de João, registrada em `PENDENCIAS.md`.
 
 Em **E3**, o único estrato com identificação within (coeficiente de OSS contra
 Direta, CRE/Mundlak, EP agrupado por CNES):

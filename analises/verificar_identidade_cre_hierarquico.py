@@ -37,7 +37,7 @@ cre = pd.read_csv(TAB / "tabSEG_10_cre_mundlak_por_estrato.csv")
 cre.columns = [c.lstrip("﻿") for c in cre.columns]
 cre = cre[(cre["recorte"] == "principal") & (cre["estrato"] == "E3")]
 
-hie = pd.read_csv(TAB / "tabSEG_12_bayes_por_estrato.csv")
+hie = pd.read_csv(TAB / "tabSEG_12_hierarquico_por_estrato.csv")
 hie = hie[hie["estrato"] == "E3"]
 
 # o rótulo difere entre as duas tabelas em três dos seis indicadores
