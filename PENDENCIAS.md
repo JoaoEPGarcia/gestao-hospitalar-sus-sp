@@ -474,8 +474,32 @@ pertencia ao cabeçalho do `roteiro_entrevistas.tex`, não ao
 `hos-pi-ta-lar mor-ta-li-dade com-ple-xi-dade fi-lan-tró-pico`. Os
 zeros de overfull e underfull no log são resultado real, não supressão
 por `\sloppy`. Uma tarefa de repaginação chegou a ser aberta sobre a
-premissa errada e foi interrompida; a branch `repaginacao-jul2026`
-existe, está vazia e atrás de `master`.
+premissa errada e foi interrompida.
+
+**Estado da repaginação em 29/07/2026 — atualizado.** A tarefa foi
+retomada e concluída: o commit `bbe3a57` traz **19 quebras de página em 11
+seções**, levando o documento de 113 a 116 páginas com o compile limpo, e
+foi mesclado em `master` pelo merge `dfb0f7e`. `bbe3a57` é hoje **ancestral
+de `master`**, verificável por `git merge-base --is-ancestor`. A branch
+`repaginacao-jul2026` foi apagada em 29/07/2026 junto com as outras três
+residuais (item 12.A.8), com o SHA registrado lá. O documento está hoje em
+**127 páginas**, depois dos Blocos A a 5.
+
+> *Formulação anterior, de 27/07/2026, preservada e rotulada:* «a branch
+> `repaginacao-jul2026` existe, está vazia e atrás de `master`.» Era
+> **verdadeira quando escrita** — `bbe3a57` ainda não existia — e ficou
+> desatualizada com o merge de 29/07. Não é erro na origem; é registro que
+> o tempo passou por cima.
+>
+> **Por que a correção não é cosmética.** Este arquivo e o
+> `RESTRICOES_SEGMENTACAO.md` afirmavam coisas opostas sobre o mesmo
+> objeto: a nota de método de 29/07 daquele documento registra `bbe3a57` e
+> as 116 páginas, enquanto este continuava declarando a branch vazia.
+> É a **classe 4** da triagem do item 0 — texto que discorda de outra
+> fonte, sem que nenhum dos dois lados discorde da sua própria evidência —
+> e ela é **pior entre documentos de controle do que entre seções**, porque
+> são estes dois que arbitram o resto. Uma seção errada engana o leitor; um
+> documento de controle errado engana quem for corrigir a seção.
 
 **O problema tipográfico real** é a mancha: `left=1cm, right=1cm` produz
 cerca de 100 caracteres por linha a 12pt, contra os 65 a 72
