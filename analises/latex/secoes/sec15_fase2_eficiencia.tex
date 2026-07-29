@@ -184,12 +184,27 @@ com folga larga: a estatística de razão de verossimilhança entre as duas
 formas é de 567,0 com 6 graus de liberdade, com p da ordem de
 $10^{-119}$; e 95,5\% da variância composta é atribuída à ineficiência)
 confirma
-a ordem das redes na ponta de cima, com duas honestidades a registrar:
+a ordem das redes na ponta de cima, com três honestidades a registrar:
 as OSS ficam tão coladas à fronteira paramétrica que o coeficiente
 delas na equação de ineficiência perde identificação (o análogo da
 separação perfeita da Seção~\ref{sec:estrategia}), e por isso o NÍVEL
 da eficiência das OSS na SFA não é citável, vale a ordem, não o
-número; e, na outra ponta, Direta (0,788) e Filantrópico (0,784)
+número --- e a não-identificação aparece igual nas quatro amostras e nas
+três sensibilidades, com o ponto oscilando entre $-772$ e $-1.971$ e o
+erro-padrão entre 400 e 1.896, que é a assinatura do problema e não uma
+faixa de estimativas;\footnote{Numa das amostras (sem o biênio
+pandêmico) o valor sai com $p$ de $8{,}3\times10^{-7}$. Isso \emph{não}
+é precisão: sob separação a verossimilhança é praticamente plana numa
+região distante de zero, e o intervalo de Wald calculado ali não tem
+interpretação. Um $p$ pequeno sobre um parâmetro degenerado mede o
+formato da aproximação, não o dado.} \textbf{o insumo de UTI é mal
+comportado na forma Translog}, com a monotonicidade violada em
+\textbf{94,9\% das observações} (97,8\% entre as que têm UTI ativa),
+contra 99,7\% de respeito para leitos e 99,6\% para valor --- herança
+do logaritmo de um mais UTI com 19\% de zeros e da colinearidade alta
+com leitos totais e valor, e o motivo pelo qual qualquer leitura fina
+de UTI nesta fronteira precisa da sensibilidade que a remove; e, na
+outra ponta, Direta (0,788) e Filantrópico (0,784)
 praticamente empatam em ponto estimado, a mesma proximidade que o DEA
 mostra entre Direta e Município (sem intervalo de confiança calculado
 em nenhum dos dois métodos para confirmar ou afastar sobreposição). O
@@ -202,6 +217,52 @@ A concordância não cresce de forma gradual: fica achatada entre 0,50 e
 mantém nesse patamar mais alto até 2025, sem tendência adicional, um
 degrau que coincide com o início da pandemia, não uma trajetória
 ascendente ao longo da década.
+
+\textbf{A equação de ineficiência, que até aqui só aparecia pelo que
+tem de defeituoso.} A fronteira estocástica estima, em paralelo à
+produção, uma segunda equação que explica \emph{quanta} ineficiência
+cada hospital carrega. O coeficiente das OSS ali é o número degenerado
+já discutido, e é o único que este documento vinha citando --- mas a
+equação tem outros seis, e quatro deles são fortemente significativos.
+Como a variável explicada é a ineficiência, \textbf{sinal negativo
+significa mais eficiente}:
+
+\begin{table}[H]
+\centering
+\caption{Equação de ineficiência da fronteira estocástica (Battese e
+Coelli 1995). Referência: administração Direta, porte médio.
+Coeficiente negativo indica \emph{menos} ineficiência.}
+\label{tab:equacaoinef}
+\small
+\begin{tabular}{lrrr}
+\toprule
+Termo & Coeficiente & Erro-padrão & $p$ \\
+\midrule
+Público Municipal        & $-5{,}454$ & 1,020 & $9{,}0\times10^{-8}$ \\
+Filantrópico             & $-0{,}244$ & 0,163 & 0,134 \\
+Privado                  & $+2{,}474$ & 0,396 & $4{,}2\times10^{-10}$ \\
+Complexidade (padronizada) & $-2{,}159$ & 0,325 & $3{,}2\times10^{-11}$ \\
+Grande Porte             & $+2{,}470$ & 0,333 & $1{,}3\times10^{-13}$ \\
+Especial                 & $+7{,}401$ & 0,917 & $7{,}0\times10^{-16}$ \\
+Tendência linear         & $-0{,}010$ & 0,023 & 0,668 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Três leituras, e a primeira é a que faltava ao documento. \textbf{O
+Público Municipal sai significativamente menos ineficiente que a
+Direta} na mesma equação em que as OSS degeneram --- resultado que
+sustenta, por dentro do modelo paramétrico, a ordem das redes que a
+Seção vinha afirmando só pelas médias de eficiência técnica. Segunda:
+\textbf{o Filantrópico não se distingue da Direta} ($p$ de 0,134),
+coerente com o empate de 0,788 contra 0,784 registrado acima. Terceira:
+\textbf{o porte pesa mais que a rede}. Um hospital Especial carrega
+$+7{,}401$ de ineficiência frente ao médio, o maior coeficiente da
+tabela e quase três vezes o do Grande Porte, enquanto a complexidade
+anda no sentido oposto ($-2{,}159$): hospitais estruturalmente mais
+complexos aparecem \emph{menos} ineficientes, e hospitais maiores,
+mais. Não há tendência temporal ($p$ de 0,668) --- a ineficiência
+medida não encolhe ao longo da década.
 
 \comoler{quanto mais a nuvem sobe da esquerda para a direita, mais os
 dois métodos concordam sobre quem é eficiente. A faixa verde colada no
@@ -352,8 +413,18 @@ das outras sobre a resposta, escalas diferentes. O critério é comparável
 \textbf{O que fica para a leitura do documento.} A segunda fase não
 altera nenhuma conclusão; ela redistribui os pesos. O \textbf{regime
 operacional mais intenso e a eficiência produtiva maior das OSS são
-traços robustos da rede}, visíveis em todos os métodos e em todas as
-amostras, inclusive sem os conversores; o \textbf{TMP menor} reaparece
+traços robustos da rede}, mas é preciso dizer \emph{qual} componente do
+regime operacional resiste a quê. \textbf{Produção e intensidade de uso
+da UTI excluem o zero nas quatro amostras}, inclusive sem os
+conversores (produção de $+0{,}26$ a $+0{,}49$ em pontos de log;
+intensidade de UTI de $+0{,}19$ a $+0{,}50$). \textbf{A ocupação de
+internação, não:} o intervalo cruza o zero em duas das quatro --- na
+especificação principal ($-0{,}041$ a $+0{,}277$) e sem o biênio
+pandêmico ($-0{,}077$ a $+0{,}260$) ---, e só o exclui sem os
+conversores e no suporte comum. Escrever que o regime operacional
+inteiro é robusto ``em todas as amostras'' seria estender à ocupação
+uma robustez que ela não tem, e que as duas passagens anteriores desta
+mesma Seção já haviam registrado; o \textbf{TMP menor} reaparece
 com a mesma magnitude na especificação hierárquica, o que confirma que
 o resultado não dependia da forma do modelo, mas não altera a
 limitação que vem dos cinco conversores, e ele segue sem corroboração

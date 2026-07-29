@@ -11,7 +11,66 @@ de abertura, a evidência que o motivou e de quem é a decisão.
 
 **Aberta em:** 27/07/2026
 **Decisão de:** João, com Priscilla onde indicado
-**Situação:** aberta — relatório apenas, nada corrigido
+**Situação:** **FECHADA em 29/07/2026 — os quatro achados tratados.** Todos
+os números foram relidos das fontes antes de virar texto (regra 7).
+
+### Como cada um foi fechado
+
+**(A) Equação de ineficiência da SFA — INCORPORADA.** A Seção 15 ganhou a
+Tabela~`tab:equacaoinef` com os sete coeficientes `Z_` citáveis e três
+leituras. O achado que o documento nunca mostrava está agora explícito: **o
+Público Municipal sai significativamente menos ineficiente que a Direta**
+($-5{,}454$, EP 1,020, $p = 9{,}0\times10^{-8}$), sustentando por dentro do
+modelo paramétrico a ordem das redes que a Seção afirmava só pelas médias de
+eficiência técnica. Junto entraram o Filantrópico indistinguível da Direta
+($p = 0{,}134$, coerente com o empate 0,788 × 0,784 já impresso), o Privado
+($+2{,}474$), a complexidade ($-2{,}159$), o Grande Porte ($+2{,}470$), o
+Especial ($+7{,}401$) e a ausência de tendência ($p = 0{,}668$).
+
+*Correção ao próprio inventário:* este item listava **quatro** coeficientes
+fortemente significativos. São **cinco** — `Z_cplx_z` ($-2{,}159$,
+$p = 3{,}2\times10^{-11}$) tinha sido omitido da contagem.
+
+**(B) Monotonicidade do insumo de UTI — REPORTADA.** Entrou na mesma
+passagem da Seção 15, como a terceira das "honestidades a registrar":
+violação em **94,9%** das observações (97,8% entre as com UTI ativa), contra
+99,7% de respeito para leitos e 99,6% para valor. O inventário arredondava
+para "95%"; vale o 94,9% do `RELATORIO_EXECUCAO.md`.
+
+**(C) "Todas as amostras" — CORRIGIDA, em duas seções.** A frase agora
+decompõe o "regime operacional": produção e intensidade de UTI excluem o
+zero nas quatro amostras; a ocupação de internação cruza o zero em duas
+(principal $-0{,}041$ a $+0{,}277$; sem pandemia $-0{,}077$ a $+0{,}260$).
+A **Seção 16 trazia a mesma afirmação** e não constava deste inventário —
+foi corrigida junto, senão a correção da 15 abriria classe 4 contra a 16.
+
+**(D) Cobertura de `tabS_sensibilidade` e `tabR_frente3` — TRATADA, e a
+leitura deste item fica REFUTADA.**
+
+> **Formulação refutada, preservada.** Este item dizia que na variante sem
+> pandemia o coeficiente sai "com erro padrão 400,0 ($p = 8{,}3\times
+> 10^{-7}$), **ou seja, precisamente estimado**", e concluía que "a
+> afirmação de que o coeficiente 'perde identificação' vale para a
+> principal, não para todas as variantes".
+>
+> **Não é precisão.** Sob separação a verossimilhança fica praticamente
+> plana numa região distante de zero, e o intervalo de Wald calculado ali
+> não tem interpretação — um $p$ pequeno sobre um parâmetro degenerado mede
+> o formato da aproximação, não o dado. A evidência de que o problema é o
+> mesmo nas quatro amostras está na **instabilidade do ponto**: $-772$,
+> $-902$, $-1.298$, $-1.971$, com erro-padrão de 400 a 1.896. Um parâmetro
+> identificado não varia por fator de 2,6 entre subamostras da mesma base.
+> A não-identificação vale para **todas** as variantes, e é isso que o
+> texto novo declara, com a faixa impressa e o $p$ pequeno explicado em
+> nota de rodapé para que ninguém o releia como precisão.
+
+Nenhuma célula das duas tabelas virou número citável no corpo, o que
+continua **coerente** com a decisão travada de não citar o contraste OSS da
+SFA. O que mudou é que a razão agora está escrita.
+
+---
+
+*Diagnóstico original de 27/07/2026, preservado:*
 
 Primeira checagem de completude fonte × texto sobre
 `resultados_fase2/tabelas/` (22 CSVs) e os relatórios em markdown, pastas
@@ -1096,15 +1155,10 @@ A10: não eram trabalho, eram insumo ausente.
 1. **Datas exatas de contrato e OSS responsável** dos cinco conversores
    (item 6). O mês de Presidente Prudente e a OSS contratada seguem não
    identificados.
-2. **Os quatro achados da varredura de `resultados_fase2/tabelas/`**
-   (item 0-bis), todos abertos: a equação de ineficiência da SFA ausente do
-   documento, a violação de monotonicidade do insumo de UTI não reportada, o
-   "todas as amostras" da Seção 15 e a cobertura de
-   `tabS_sensibilidade.csv`.
-4. **Indexar `painel_definitivo.csv`, `resultados_fase2/dea/` e
+2. **Indexar `painel_definitivo.csv`, `resultados_fase2/dea/` e
    `resultados_fase2/sfa/`** na triagem automatizada — pré-requisito comum
    dos itens 1 e 3.
-5. **`estimacao.md` cobre só as seções 1 a 3 de `estimacao.py`** (item 2).
+3. **`estimacao.md` cobre só as seções 1 a 3 de `estimacao.py`** (item 2).
    *Este item tem uma metade em cada lista:* ampliar ou não é decisão
    editorial; ampliar, se decidido, é trabalho.
 
@@ -1121,6 +1175,11 @@ A10: não eram trabalho, eram insumo ausente.
   comparados com o texto da mesma página. **Quatro erros, todos
   corrigidos**, e três deles resíduos da Etapa 1 com proveniência
   reproduzida. Ver §1.
+- **Os quatro achados de `resultados_fase2/tabelas/`** (item 0-bis): a
+  equação de ineficiência da SFA entrou na Seção 15 como tabela própria, a
+  violação de monotonicidade foi reportada, o "todas as amostras" foi
+  decomposto em duas seções e a leitura de (D) sobre "precisamente
+  estimado" ficou refutada e preservada. Ver §0-bis.
 
 ---
 
