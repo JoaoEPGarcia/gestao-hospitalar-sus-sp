@@ -1245,6 +1245,66 @@ o motivo dela, não.
 
 ---
 
+## Nota de método — separabilidade computacional não é separabilidade narrativa
+
+Registrada em 29/07/2026, ao decidir a ordem de merge das Etapas 4 e 5.
+
+A Etapa 5 foi construída sobre a branch da Etapa 4, e não sobre `master`. O
+plano de fechamento supunha as duas branches independentes, com a Etapa 5
+mesclável sozinha enquanto a Etapa 4 aguardava revisão. A verificação mostrou
+o contrário, e mostrou-o de um jeito que vale guardar:
+
+- **Em código e dados, as duas são separáveis.** Nenhum script da Etapa 5 lê
+  qualquer arquivo criado pela Etapa 4. As duas rodam sobre bases distintas —
+  Fase 2 contra painel segmentado — e não trocam um único arquivo. Um
+  `cherry-pick` da Etapa 5 sobre `master` teria aplicado sem conflito.
+- **Em conteúdo, não são.** As duas escrevem no mesmo registro, e **R10 cita
+  R9** como corroboração cruzada: a contagem de switchers do binário em E3 e
+  o +0,74 com EP 0,97. Mesclar a Etapa 5 sozinha produziria um R10 citando um
+  R9 que não existe no destino.
+
+**A lição.** O teste de dependência que o versionamento sabe fazer é o de
+arquivo, e ele teria dado luz verde. A dependência real era de **citação**, e
+só aparece na leitura. Num repositório cujo produto é um registro
+argumentativo, e não apenas código, **a ordem de merge é decidida pelo que os
+documentos afirmam um do outro, não pelo grafo de arquivos** — e é uma falha
+que passa em todo teste técnico.
+
+Procedimento para as próximas decisões de branch deste projeto: antes de
+mesclar uma etapa sozinha, conferir se o registro dela cita resultado de
+etapa ainda não mesclada.
+
+---
+
+## Nota de método — verificação sobre diretório de trabalho sujo
+
+Registrada em 29/07/2026.
+
+O fechamento da Etapa 5 trazia, como estado verificado, "compile limpo em três
+passes com **116 páginas**". A compilação foi refeita sobre a branch limpa e
+deu **113 páginas**, igualmente limpa em três passes. A diferença são **19
+inserções de `\newpage`** que estavam no diretório de trabalho sem commit —
+trabalho de repaginação de João — e que foram medidas junto sem que se
+soubesse.
+
+Nenhum resultado foi afetado: quebra de página não toca estimativa. E o estado
+de qualidade se confirmou nos dois casos — zero erros fatais, zero referências
+indefinidas, zero caixas *overfull* ou *underfull*. O que estava errado era a
+**atribuição**: uma propriedade do diretório de trabalho foi registrada como
+propriedade da branch.
+
+**A lição** é da mesma família do erro do "canal" corrigido em R10 e do de R1
+v2: uma propriedade do nosso próprio aparato lida como propriedade do objeto
+medido. Aqui na forma mais simples possível — **verificação sobre diretório
+sujo mede o diretório, não o commit.** Antes de registrar estado verificado de
+uma branch, conferir `git status`.
+
+As 19 quebras foram para commit próprio em `repaginacao-jul2026` (`bbe3a57`),
+onde levam o documento de 113 a 116 páginas mantendo o compile limpo, com
+baseline medido para comparação.
+
+---
+
 ## Nota de procedimento — base dos números
 
 O diagnóstico original de R1 foi levantado sobre `painel_definitivo_ANTES.csv`
