@@ -255,6 +255,45 @@ dos escores por observação em `resultados_fase2/dea/` e `resultados_fase2/sfa/
 Indexar essas três fontes derrubaria a taxa de falso positivo de 62,5% para
 perto de zero, e é pré-requisito comum ao item 3 abaixo.
 
+> **Previsão REFUTADA em 29/07/2026, preservada e atribuída.** A frase acima
+> — "derrubaria a taxa de falso positivo de 62,5% para perto de zero" — foi
+> escrita neste arquivo em 26/07/2026 e **está errada na interpretação**,
+> ainda que acerte o número. O índice foi construído
+> (`indexar_fontes_triagem.py`) e os candidatos caem de **13 para zero**.
+> Mas a **calibração nula** que o script agora roda mostra o que essa queda
+> significa:
+>
+> | casas decimais | tokens reais que casam | valores SORTEADOS que casam |
+> |---|---|---|
+> | 0 | 100% | 22,1% |
+> | 1 | 100% | **100,0%** |
+> | 2 | 100% | 25,8% |
+> | 3 | 100% | 65,5% |
+> | 4 | 100% | **94,2%** |
+>
+> Com o índice completo, um número **inventado** de quatro casas decimais no
+> intervalo dos escores tem 94% de chance de "pertencer". A queda de
+> candidatos não é o documento ficando limpo: é o índice ficando **denso
+> demais para discriminar**. Os escores do DEA cobrem [0,1] com 21.723
+> valores; depois de indexá-los, pertinência de quatro casas ali não é
+> teste. **Zero candidatos não é um documento limpo; é um teste que parou de
+> testar.**
+>
+> **A lição, que é a de R1 v2 outra vez, e agora sobre o nosso próprio
+> instrumento:** concordância só é evidência se a checagem tivesse alguma
+> chance de discordar. Ninguém tinha perguntado com o que a pertinência
+> *não* concordaria. O placebo era barato e estava disponível desde o
+> início.
+>
+> **Consequência para o método.** Pertinência não sustenta a Camada 1
+> sozinha. Os quatro erros de 29/07/2026 saíram de **recontagem própria** e
+> de **leitura de figura**; **nenhum** saiu de pertinência — e os três de
+> resíduo da Etapa 1 eram invisíveis a ela por construção, porque 21,9%,
+> 86,1% e 0,54 existiram como valores legítimos na base anterior e
+> pertinência não tem noção de tempo. O índice continua útil para
+> **localizar a fonte** de um número e para dar crédito por fonte. Não é
+> teste de correção.
+
 **Camada 3 — EXECUTADA em 29/07/2026. Quatro erros encontrados, todos
 corrigidos, e três deles da mesma origem.**
 
@@ -1155,10 +1194,7 @@ A10: não eram trabalho, eram insumo ausente.
 1. **Datas exatas de contrato e OSS responsável** dos cinco conversores
    (item 6). O mês de Presidente Prudente e a OSS contratada seguem não
    identificados.
-2. **Indexar `painel_definitivo.csv`, `resultados_fase2/dea/` e
-   `resultados_fase2/sfa/`** na triagem automatizada — pré-requisito comum
-   dos itens 1 e 3.
-3. **`estimacao.md` cobre só as seções 1 a 3 de `estimacao.py`** (item 2).
+2. **`estimacao.md` cobre só as seções 1 a 3 de `estimacao.py`** (item 2).
    *Este item tem uma metade em cada lista:* ampliar ou não é decisão
    editorial; ampliar, se decidido, é trabalho.
 
@@ -1180,6 +1216,11 @@ A10: não eram trabalho, eram insumo ausente.
   violação de monotonicidade foi reportada, o "todas as amostras" foi
   decomposto em duas seções e a leitura de (D) sobre "precisamente
   estimado" ficou refutada e preservada. Ver §0-bis.
+- **Indexar as três fontes na triagem**: feito
+  (`indexar_fontes_triagem.py`), com as cinco famílias de fonte e os
+  relatórios em markdown. **A previsão que motivava o item foi refutada
+  pela calibração nula do próprio script** — ver o bloco em §1. O índice
+  fica como ferramenta de localização de fonte, não como teste de correção.
 
 ---
 
