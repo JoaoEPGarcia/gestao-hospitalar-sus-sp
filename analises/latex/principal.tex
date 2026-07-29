@@ -143,8 +143,17 @@
 
 \clearpage
 \appendix
-\input{secoes/apendiceA_diagnosticos}
-\clearpage
+% Ordem dos apêndices: a seleção da fase qualitativa vem primeiro e os
+% diagnósticos de ajuste depois. Os nomes de arquivo guardam as letras
+% da ordem antiga, de modo que apendiceB_selecao sai impresso como
+% Apêndice A e apendiceA_diagnosticos como Apêndice B. Renomear os dois
+% arquivos traria risco sem ganho, pelo mesmo motivo já registrado para
+% o sec13b: as referências cruzadas são simbólicas (\ref{ap:...}) e
+% acompanham o deslocamento, e o prefixo de figura e tabela de cada
+% apêndice usa \thesection, de modo que a numeração dos flutuantes
+% também segue a posição sozinha.
 \input{secoes/apendiceB_selecao}
+\clearpage
+\input{secoes/apendiceA_diagnosticos}
 
 \end{document}
