@@ -1575,9 +1575,12 @@ Registradas, não executadas:
   2 e 9~~ — **fechadas em 27/07/2026**, commit `08f8648`. As cinco
   `fig_ae_09_conversor_*_custo_real.png` estão no repositório e a Seção 7 as
   exibe; `tab_ae_univariada.csv` e `tab_ae_outliers.csv` passaram a ser
-  calculadas sobre `custo_real`. **Permanece aberta** a terceira parte da
-  linha: a **regeneração dos eixos de densidade**, que é item próprio e
-  depende de alterar `analise_exploratoria.py`, não só o `.tex`.
+  calculadas sobre `custo_real`. A terceira parte da linha — a **regeneração
+  dos eixos de densidade** — **também está fechada**, verificado em
+  29/07/2026 por reprodução: `analise_exploratoria.py` não tem nenhuma
+  ocorrência de `density=True`, reexecutá-lo não altera um único PNG, e os
+  eixos imprimem "Hospitais-ano". A linha inteira estava desatualizada, não
+  duas de suas três partes. Ver `PENDENCIAS.md` §7.
 - Leitura humana do PDF compilado, para coerência de prosa entre seções.
 
 > *Formulação anterior desta lista, de 28/07/2026, preservada e rotulada:*

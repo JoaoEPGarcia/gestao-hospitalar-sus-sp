@@ -398,7 +398,54 @@ externa.
 
 **Aberta em:** 27/07/2026
 **Decisão de:** João
-**Situação:** legendas corrigidas; conversão do código depende de Python
+**Situação:** **FECHADA em 29/07/2026 — o trabalho já estava feito e o
+registro é que não acompanhou.** Verificada por reprodução, não por leitura.
+
+### O fechamento (29/07/2026), e a afirmação que ele refuta
+
+> **Formulação refutada, preservada e atribuída.** A instrução de trabalho
+> que abriu o Bloco 6, escrita por **João**, dizia: *"regeneração dos eixos
+> de densidade — essa segue aberta e é o item 1 do bloco"*, e mandava
+> substituir o eixo "por quantidade de observações nas figuras
+> remanescentes". **Não há figura remanescente.** Fica atribuída pelo mesmo
+> motivo que a formulação larga do item 1.2 e as versões refutadas de R1:
+> este registro preserva erro rotulado, e rótulo sem autoria transfere o
+> erro para quem o encontrou.
+
+Quatro medições, todas reproduzidas em 29/07/2026 antes de este parágrafo
+ser escrito:
+
+| verificação | resultado |
+|---|---|
+| `density=True` em `analise_exploratoria.py` | **nenhuma ocorrência** |
+| `analise_exploratoria.py` reexecutado sobre a árvore limpa | **zero alteração** em PNG ou tabela — o disco já é a saída do código atual |
+| eixo Y dos PNGs, aberto e lido | `fig_ae_01_hist_mort_all`, `fig_ae_03_hist_log_custo_real` e `fig_ae_12_mistura_mort_all` imprimem **"Hospitais-ano"** |
+| `densidade` como palavra isolada em `analises/latex/` | **nenhuma ocorrência** (as buscas anteriores casavam com *intensidade*) |
+
+**As duas listas abaixo foram resolvidas de modos diferentes, e nenhuma como
+o inventário previa.** A Lista 1 foi pela opção 1 — a curva KDE saiu, e o
+comentário em `analise_exploratoria.py:293-296` registra o motivo. A Lista 2,
+que o inventário dava como **não conversível**, foi convertida pela opção 2:
+`_escala_contagem()` (linha 167) multiplica a densidade ajustada por *n* e
+pela largura do *bin*, de modo que as curvas Beta e a mistura continuam
+sobre um histograma de contagem. Ou seja, as duas opções que o inventário
+punha como alternativas excludentes foram ambas usadas, cada uma onde cabia.
+
+**A única ocorrência sobrevivente em todo o projeto** é
+`resultados_fase2/fase2_hierarquico.R:87` (`ylab = "Densidade"`), que gera as
+`figB01_checagem_preditiva_*`. Elas **não estão no documento** — verificado:
+`figB01`, `checagem_preditiva` e `ppcheck` não aparecem em nenhum `.tex`.
+Continua não havendo o que migrar, exatamente como este item já dizia.
+
+**Lição de método, que é a do próprio §13.** Este item descrevia com
+precisão um defeito que já tinha sido corrigido, e sobreviveu três dias
+descrevendo um estado inexistente. Nenhuma camada da triagem o pegaria:
+todas comparam texto contra dado, e aqui o texto errado era o do *registro*,
+não o do documento. O que o pegou foi rodar o script.
+
+O diagnóstico original segue abaixo, preservado.
+
+---
 
 Uma leitora não-estatística lê o eixo "Densidade" como percentual, e ele
 não é. O inventário de 27/07/2026 separou as figuras em duas listas.
@@ -445,6 +492,12 @@ Y dos PNGs continua escrito "Densidade" — conferido abrindo
 texto ↔ figura que pretendia remover, e ela ficou no documento de 25/07
 a 27/07/2026. Enquanto o código não for ajustado, o texto e as legendas
 passam a dizer "densidade", que é o que a figura de fato mostra.
+
+> *Estado deste parágrafo em 29/07/2026:* **já não descreve o repositório.**
+> O código foi ajustado e os PNGs regerados — `fig_ae_01_hist_mort_all.png`
+> imprime "Hospitais-ano". A contradição texto ↔ figura que ele registra
+> existiu de 25/07 a 27/07/2026 e está desfeita nos dois lados. Preservado
+> porque a lição abaixo continua valendo, e porque foi ele que a produziu.
 
 **Lição para a triagem:** correção de eixo de figura exige alterar o
 script e regerar o PNG. Alterar só o `.tex` cria erro de classe 2.
@@ -931,24 +984,27 @@ A10: não eram trabalho, eram insumo ausente.
 1. **Datas exatas de contrato e OSS responsável** dos cinco conversores
    (item 6). O mês de Presidente Prudente e a OSS contratada seguem não
    identificados.
-2. **Eixo "Densidade" dos histogramas** (item 7): a decisão entre remover a
-   curva KDE ou reescalá-la já está formulada; falta executar.
-3. **Camada 3 da varredura de consistência** (item 1): 48 PNGs em 8 seções
+2. **Camada 3 da varredura de consistência** (item 1): 48 PNGs em 8 seções
    que declaram valores impressos na figura, nunca conferidos.
-4. **Contagens inteiras** (item 3): 412 inteiros, 188 anos e 89 códigos CNES
+3. **Contagens inteiras** (item 3): 412 inteiros, 188 anos e 89 códigos CNES
    sem verificação. A auditoria de 29/07 cobriu as contagens do texto novo,
    não as do documento antigo.
-5. **Os quatro achados da varredura de `resultados_fase2/tabelas/`**
+4. **Os quatro achados da varredura de `resultados_fase2/tabelas/`**
    (item 0-bis), todos abertos: a equação de ineficiência da SFA ausente do
    documento, a violação de monotonicidade do insumo de UTI não reportada, o
    "todas as amostras" da Seção 15 e a cobertura de
    `tabS_sensibilidade.csv`.
-6. **Indexar `painel_definitivo.csv`, `resultados_fase2/dea/` e
+5. **Indexar `painel_definitivo.csv`, `resultados_fase2/dea/` e
    `resultados_fase2/sfa/`** na triagem automatizada — pré-requisito comum
    dos itens 1 e 3.
-7. **`estimacao.md` cobre só as seções 1 a 3 de `estimacao.py`** (item 2).
+6. **`estimacao.md` cobre só as seções 1 a 3 de `estimacao.py`** (item 2).
    *Este item tem uma metade em cada lista:* ampliar ou não é decisão
    editorial; ampliar, se decidido, é trabalho.
+
+*Item retirado em 29/07/2026:* **Eixo "Densidade" dos histogramas** (item 7)
+saiu da lista — não por decisão, mas por medição: o código já estava
+convertido, os PNGs já estavam regerados e o `.tex` já não trazia a palavra.
+Ver §7, com a verificação e a formulação refutada atribuída.
 
 ---
 
