@@ -1320,6 +1320,104 @@ consertado.
 
 ---
 
+## 15. Mortalidade ajustada nas figuras, e a descritiva ampliada por estrato (29/07/2026)
+
+**Executadas em:** 29/07/2026
+**Situação:** **FECHADAS**, com uma não-ação deliberada registrada abaixo.
+
+### A. A mortalidade ajustada saiu das figuras
+
+O commit `1b42a89` tirou a métrica de todo o **texto** em 29/07/2026. Não
+tocou nos **PNGs**, que é exatamente o modo de falha que o §7 deste arquivo
+documenta: alterar só o `.tex` cria erro de classe 2.
+
+**Uma única figura tinha a métrica como componente:**
+`fig_ae_14_variancia_within.png`, na Seção 8. Trazia **sete barras**, com
+"Mortalidade ajustada" em 16%, sob um texto que diz "em **cinco dos seis**
+indicadores". Agora traz seis, com os demais valores idênticos (66, 17, 16,
+13, 8, 5).
+
+**A correção foi feita na origem.** `analise_sih.py` define a lista de
+indicadores e está na lista de protegidos da regra 4: ficou intacto, e o
+filtro entrou em `analise_exploratoria.py`, com o motivo no comentário.
+
+**Prova de que nada além da métrica mudou.** As onze tabelas afetadas foram
+comparadas contra `HEAD` removendo do lado antigo apenas as linhas e colunas
+da ajustada. As onze deram **idêntico**. Mais 12 PNGs órfãos apagados.
+
+**Achado colateral, da mesma classe.** Regerar as figuras mostrou que
+`fig_ae_10_correlacao_spearman.png` imprimia **"Complexidade estrutural"** no
+eixo, enquanto a legenda da mesma página diz "complexidade Barcelona". O
+commit `6d1598c` (A2) renomeou no script e nos `.tex` e **não regerou o
+PNG**. Latente desde então; corrigido junto.
+
+### A não-ação deliberada: `estimacao.py`
+
+`estimacao.py` roda a mortalidade ajustada como checagem e produz
+`fig_est_04_qq_mort_ajustada_zib.png`, que **não está no documento** desde
+`1b42a89`. A remoção foi tentada, medida e **revertida**:
+
+- o gerador aleatório dos resíduos quantílicos é **único e sequencial**
+  (`default_rng(20260704)`), de modo que retirar um modelo desloca os
+  sorteios de todos os seguintes;
+- isso moveu a quarta casa de dois outros modelos e levou o r do QQ da fração
+  de alta complexidade de **0,9906 para 0,9905** — e o Apêndice cita "0,991",
+  que passaria a ficar sobre a fronteira de arredondamento;
+- e reescreveu 34 tabelas e 19 figuras, 22 delas numericamente idênticas.
+
+**Mover um valor publicado para apagar um gráfico que ninguém vê é mau
+negócio.** Fica registrada a dependência de ordem no RNG como defeito de
+desenho a corrigir num passo próprio, com decisão do João, porque a correção
+honesta (um gerador por modelo) muda os três r de QQ que o Apêndice imprime.
+
+### B. Descritiva ampliada por estrato: `descritivas_estratos_ampliada.py`
+
+O `descritivas_segmentadas.py` cobria seis indicadores. O script novo cruza
+os três estratos com **as 27 variáveis do painel que admitem leitura
+descritiva**, mais nove derivadas, e entra no documento como a
+Subseção 14.5. Saídas: `tabSEG_20` a `tabSEG_25` e `figSEG_10` a `figSEG_13`.
+
+**A decisão de método que estrutura o script.** O estrato é fixo por CNES.
+Para *descrever* os estratos o hospital-ano serve; para *comparar* não serve,
+porque trata onze medidas do mesmo hospital como independentes e infla
+qualquer teste por um fator próximo de onze. O script reporta as duas coisas
+sem misturá-las: descritiva em hospital-ano, teste e tamanho de efeito em
+CNES (*n* igual a 289).
+
+**A salvaguarda contra circularidade.** Sete das 27 variáveis são
+**definicionais** — o corte é construído com a mediana de `uti_sus` e a faixa
+Barcelona. Um $\eta^2$ de 0,71 na faixa Barcelona não é achado, é a definição
+reaparecendo. Ficam hachuradas na figura e marcadas na tabela, e fora de toda
+leitura substantiva. Sem essa marca o ranking inteiro seria circular no topo.
+
+**O achado.** O estrato explica de **23% a 43%** da variância entre hospitais
+em escala, volume, faturamento e ocupação, e **6%** na mortalidade — onde
+sequer ordena (E2 0,059 contra E3 0,058, *p* de 0,391). A escada de
+complexidade organiza fortemente a estrutura e quase não organiza o desfecho.
+Três padrões menores: a produtividade por leito **satura em E2** (43,8 → 61,9
+→ 59,0, *p* de 0,736 entre os dois últimos); a proporção de leitos SUS **não
+segue a escada** (80,5% → 63,7% → 81,2%); e a pandemia entrou **pela ponta de
+baixo** (9,8% → 8,7% → 5,2% de saídas por COVID), o único ordenamento
+invertido do levantamento.
+
+**Erro de classe 5 corrigido no caminho.** A Subseção do gradiente afirmava
+que a ocupação de UTI "não tem valor em E1 por construção". Não é isso:
+`tabSEG_04` já reportava mediana de 66,2% para **18 CNES e 71 hospitais-ano**
+de E1. E1 é definido pela *mediana* de `uti_sus` igual a zero, não por
+ausência de UTI em todos os anos, e esses 18 são o piscar cadastral de R7. A
+fonte trazia mais do que o texto reportava, e a justificativa dada estava
+errada. Corrigido nos três lugares em que aparecia, incluindo um `\comofeito`
+escrito nesta mesma sessão, que tinha propagado a imprecisão.
+
+**Segunda vez que a regra 7 pegou a própria auditoria.** A primeira redação
+da leitura temporal afirmava que o E2 ultrapassa o E3 nas saídas por leito
+"a partir de 2022". A tabela por ano refuta: em 2022 o E3 ainda está à frente
+(61,1 contra 59,7). O correto é seis dos onze anos, inclusive os três
+últimos. A frase foi escrita a partir da leitura do gráfico e corrigida pela
+tabela.
+
+---
+
 ## 14. Auditoria editorial das cinco frentes (29/07/2026)
 
 **Executada em:** 29/07/2026
