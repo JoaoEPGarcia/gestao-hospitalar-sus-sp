@@ -1,3 +1,2 @@
 ﻿indicador,n_interior,beta_unica_a,beta_unica_b,aic_beta_unica,convergiu,w_comp1,a1,b1,media_comp1,a2,b2,media_comp2,aic_mistura,ganho_aic
 mort_all,3150,2.1921,37.2935,-12917.0014,True,0.1093,1.9804,270.6402,0.0073,5.7454,87.3276,0.0617,-13866.3014,949.3
-mort_sem_excl,3147,2.215,37.6569,-12921.9769,True,0.1074,2.0988,290.8246,0.0072,5.7116,86.9213,0.0617,-13860.125,938.148

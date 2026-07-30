@@ -47,9 +47,21 @@ import dominio_ocupacao_uti                     # domínio da ocupação de UTI 
 
 PASTA_FIG_AE = base.PASTA_ANALISES / "figuras_analise_exploratoria"
 
-INDICADORES = base.INDICADORES                  # 5 indicadores oficiais
+# A1 (decisão de 29/07/2026): a MORTALIDADE AJUSTADA (`mort_sem_excl`, que
+# exclui óbitos fetais, maternos e neonatais) saiu do documento inteiro. Ela
+# correlaciona 1,000 em Spearman com a mortalidade geral e nunca sustentou
+# achado próprio: mantê-la duplicava uma linha em toda tabela e uma barra em
+# toda figura, sem acrescentar informação.
+#
+# A remoção é feita AQUI e não em `analise_sih.py`, que define a lista
+# original, porque aquele arquivo está na lista de protegidos do protocolo de
+# trabalho (regra 4), ao lado de `painel_definitivo.csv` e
+# `construir_painel_definitivo.py`. A lista de lá permanece intacta; esta
+# camada descritiva filtra ao consumi-la.
+MORT_AJUSTADA = "mort_sem_excl"
+INDICADORES = [c for c in base.INDICADORES if c != MORT_AJUSTADA]  # 4 oficiais
 OCUPACOES   = ["ocupacao_internacao", "ocupacao_uti"]
-IND7        = INDICADORES + OCUPACOES
+IND7        = INDICADORES + OCUPACOES           # 6 indicadores descritivos
 
 # Item 1.5 (decisão de 14/07/2026): a camada descritiva usa o faturamento
 # REAL (custo_real = custo_saida × fator IPCA, preços de 2025). Nas FIGURAS
@@ -330,7 +342,7 @@ def univariada(painel: pd.DataFrame):
 
 def distribucional_taxas(painel: pd.DataFrame):
     print("\n[2a] TAXAS: adequação de Beta/ZOIB (inflação em zero e em um)")
-    taxas = ["mort_all", "mort_sem_excl", "pct_alta_complex"]
+    taxas = ["mort_all", "pct_alta_complex"]        # A1: sem a ajustada
     linhas = []
     for c in taxas:
         x = painel[c].dropna()
@@ -411,7 +423,7 @@ def distribucional_mistura_mortalidade(painel: pd.DataFrame):
           "decomposição por subpopulação real")
 
     linhas, ajustes = [], {}
-    for c in ["mort_all", "mort_sem_excl"]:
+    for c in ["mort_all"]:                          # A1: sem a ajustada
         x = painel[c][(painel[c] > 0) & (painel[c] < 1)].to_numpy()
         a, b, _, _ = stats.beta.fit(x, floc=0, fscale=1)
         aic1 = 4 - 2 * np.sum(stats.beta.logpdf(x, a, b))
@@ -455,8 +467,8 @@ def distribucional_mistura_mortalidade(painel: pd.DataFrame):
     tab = pd.DataFrame(linhas).set_index("indicador").round(4)
     _tab(tab, "tab_ae_mistura_mortalidade.csv")
 
-    rotulos_pan = {c: ROT[c] for c in ["mort_all", "mort_sem_excl"]}
-    for c in ["mort_all", "mort_sem_excl"]:
+    rotulos_pan = {c: ROT[c] for c in ["mort_all"]}   # A1: sem a ajustada
+    for c in ["mort_all"]:
         x, (a, b), par = ajustes[c]
         fig, ax = plt.subplots(figsize=(7, 4.5))
         cont, bordas, _ = ax.hist(x, bins=60, color=COR_SERIE,
@@ -1033,10 +1045,13 @@ def correlacoes(painel: pd.DataFrame):
     print("[7] CORRELAÇÕES DE SPEARMAN (complexidade: versão estrutural, "
           "salvaguarda de circularidade)")
     print("=" * 70)
-    cols = [c for c in IND7 if c != "mort_sem_excl"]
-    cols += ["complexidade_estrutural"]
-    print("  Mortalidade ajustada omitida do mapa: correlações idênticas às "
-          "da mortalidade geral (Spearman de 1,000 entre as duas).")
+    # a exclusão da mortalidade ajustada já vem de IND7 desde A1 (29/07/2026);
+    # este mapa a omitia sozinho desde antes, pelo motivo abaixo, que continua
+    # sendo a razão de ela ter saído do documento inteiro.
+    cols = list(IND7) + ["complexidade_estrutural"]
+    print("  Mortalidade ajustada fora do documento (A1): correlações "
+          "idênticas às da mortalidade geral (Spearman de 1,000 entre as "
+          "duas).")
     corr = painel[cols].corr(method="spearman").round(3)
     _tab(corr, "tab_ae_correlacao_spearman.csv")
     print(corr.to_string())

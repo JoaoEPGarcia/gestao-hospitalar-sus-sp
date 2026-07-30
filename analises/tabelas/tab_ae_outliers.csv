@@ -1,6 +1,5 @@
 ﻿indicador,lim_sup_3iiq,n_acima,n_abaixo,p99,max
 mort_all,0.172,18,0,0.1484,0.2602
-mort_sem_excl,0.1718,18,0,0.1484,0.2602
 tmp,11.6954,33,0,11.8444,24.7876
 custo_real,5117.7385,90,0,11440.7393,41996.8488
 pct_alta_complex,0.3505,178,0,0.8997,1.0

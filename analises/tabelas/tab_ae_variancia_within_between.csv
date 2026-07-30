@@ -1,6 +1,5 @@
 ﻿indicador,var_between,var_within,pct_within,icc_between
 mort_all,0.0008,0.0001,0.1599,0.8401
-mort_sem_excl,0.0008,0.0001,0.1598,0.8402
 tmp,3.208,0.4838,0.131,0.869
 custo_saida,2685816.8716,241610.5434,0.0825,0.9175
 pct_alta_complex,0.0234,0.0011,0.0453,0.9547
