@@ -1,0 +1,36 @@
+﻿variavel,rotulo,familia,situacao,observacao
+total_leitos,Leitos totais,Estrutura,incluída,
+leitos_sus,Leitos SUS,Estrutura,incluída,
+leitos_internacao,Leitos de internação,Estrutura,incluída,
+uti_total,Leitos de UTI (todos),Estrutura,"incluída, DEFINICIONAL",consequência direta do corte de UTI
+uti_sus,Leitos de UTI SUS,Estrutura,"incluída, DEFINICIONAL",define o corte (E1 é mediana zero)
+share_uti,UTI como % dos leitos,Estrutura,"incluída, DEFINICIONAL",consequência direta do corte de UTI
+share_sus,Leitos SUS como % do total,Estrutura,incluída,
+qtde,Saídas hospitalares,Produção,incluída,
+qtde_sem_covid,"Saídas, excluindo COVID",Produção,incluída,
+diarias_internacao,Diárias de internação,Produção,incluída,
+diarias_uti,Diárias de UTI,Produção,"incluída, DEFINICIONAL",consequência direta do corte de UTI
+qtde_alta_complex,Saídas de alta complexidade,Produção,incluída,
+pct_alta_complex,Fração de alta complexidade,Produção,incluída,
+saidas_por_leito,Saídas por leito SUS,Produção,incluída,
+mort_all,Mortalidade geral,Desfecho,incluída,
+tmp,TMP (dias),Desfecho,incluída,
+custo_real,Faturamento real por saída (R$),Financeiro,incluída,
+valor_real_total,Faturamento real total (R$ mil),Financeiro,incluída,
+valor_por_leito,Faturamento real por leito SUS (R$),Financeiro,incluída,
+ocupacao_internacao,Ocupação de internação (%),Uso,incluída,conflaciona nível e superlotação (R1/R6)
+ocup_int_ate100,Ocupação de internação <= 100 (%),Uso,incluída,
+pct_anos_superlot,% de anos em superlotação,Uso,incluída,
+ocupacao_uti_valida,Ocupação de UTI (%),Uso,"incluída, DEFINICIONAL",só existe onde o corte já separou
+complexidade_estrutural,Complexidade Barcelona (escore),Complexidade,"incluída, DEFINICIONAL",define o corte (a faixa é o seu binning)
+faixa_barcelona,Faixa Barcelona,Complexidade,"incluída, DEFINICIONAL",define o corte (E3 é faixa >= 4)
+complexidade_pond_mort,Complexidade ponderada por mortalidade,Complexidade,incluída,"TARJADA: construída com mortalidade, circular"
+pct_covid,% de saídas por COVID (2020-21),Pandemia,incluída,
+mort_sem_excl,,,excluída,"mortalidade ajustada, retirada do documento em A1 (Spearman 1,000 com a mortalidade geral)"
+pont_barcelona,,,excluída,idêntica a complexidade_estrutural (conferido: iguais)
+dias_perm,,,excluída,idêntica a diarias_internacao (conferido: iguais)
+*_com_covid,,,excluída,o documento usa sempre as versões que excluem COVID
+n_linhas_*,,,excluída,"contadores de linha da extração, não medem hospital"
+cnes / ano / municipio / cod_ibge / nome_fantasia,,,excluída,identificadores
+estrato* / faixa_mediana / uti_sus_mediana,,,excluída,definem o próprio corte
+class_assistencial / modelo_gestao_proxy / porte_hospital,,,excluída,"categóricas, entram como eixo de cruzamento e não como métrica"

@@ -1,0 +1,28 @@
+﻿familia,variavel,rotulo,n_cnes,mediana_E1,mediana_E2,mediana_E3,ordena,kruskal_H,kruskal_p,eta2,p_E1xE2,p_E2xE3,p_E1xE3,definicional,tarja
+Complexidade,faixa_barcelona,Faixa Barcelona,289,2.0,3.0,4.0,crescente,244.998578,0.0,0.705856,0.0,0.0,0.0,define o corte (E3 é faixa >= 4),
+Estrutura,share_uti,UTI como % dos leitos,289,0.0,10.588235,14.199029,crescente,138.965982,0.0,0.538437,0.0,0.000159,0.0,consequência direta do corte de UTI,
+Complexidade,complexidade_pond_mort,Complexidade ponderada por mortalidade,289,217.093566,361.937065,827.206413,crescente,206.102136,0.0,0.444557,0.0,0.0,0.0,,"TARJADA: construída com mortalidade, circular"
+Uso,ocupacao_internacao,Ocupação de internação (%),289,39.240349,65.951819,90.585094,crescente,123.157762,0.0,0.431556,0.0,0.0,0.0,,conflaciona nível e superlotação (R1/R6)
+Produção,qtde,Saídas hospitalares,289,2211.0,4266.0,10457.0,crescente,190.338928,0.0,0.427969,0.0,0.0,0.0,,
+Produção,qtde_sem_covid,"Saídas, excluindo COVID",289,2206.0,4266.0,10457.0,crescente,189.315684,0.0,0.426223,0.0,0.0,0.0,,
+Uso,ocup_int_ate100,Ocupação de internação <= 100 (%),286,39.240349,63.761066,87.602665,crescente,117.257437,0.0,0.419714,0.0,0.0,0.0,,
+Produção,diarias_internacao,Diárias de internação,289,7179.0,16446.0,53195.0,crescente,210.555862,0.0,0.41471,0.0,0.0,0.0,,
+Complexidade,complexidade_estrutural,Complexidade Barcelona (escore),289,109.0,176.0,404.0,crescente,224.607009,0.0,0.413401,0.0,0.0,0.0,define o corte (a faixa é o seu binning),
+Estrutura,uti_sus,Leitos de UTI SUS,289,0.0,9.0,28.0,crescente,229.267226,0.0,0.371914,0.0,0.0,0.0,define o corte (E1 é mediana zero),
+Produção,diarias_uti,Diárias de UTI,289,0.0,2301.0,8017.0,crescente,232.964067,0.0,0.365769,0.0,0.0,0.0,consequência direta do corte de UTI,
+Estrutura,leitos_sus,Leitos SUS,289,53.0,71.0,175.0,crescente,201.464864,0.0,0.331381,0.0,0.0,0.0,,
+Estrutura,total_leitos,Leitos totais,289,63.0,111.0,231.0,crescente,211.017112,0.0,0.323612,0.0,0.0,0.0,,
+Estrutura,uti_total,Leitos de UTI (todos),289,0.0,10.0,34.0,crescente,204.468966,0.0,0.323527,0.0,0.0,0.0,consequência direta do corte de UTI,
+Estrutura,leitos_internacao,Leitos de internação,289,63.0,97.0,191.0,crescente,197.768384,0.0,0.308207,0.0,0.0,0.0,,
+Financeiro,valor_real_total,Faturamento real total (R$ mil),289,1340.851685,5295.110693,18904.358553,crescente,211.14759,0.0,0.229507,0.0,0.0,0.0,,
+Financeiro,valor_por_leito,Faturamento real por leito SUS (R$),289,27765.355019,76572.277828,113100.231414,crescente,144.823187,0.0,0.168555,0.0,1e-05,0.0,,
+Desfecho,tmp,TMP (dias),289,3.153399,3.800487,5.265961,crescente,110.291624,0.0,0.161878,1.8e-05,0.0,0.0,,
+Uso,pct_anos_superlot,% de anos em superlotação,289,0.0,0.0,0.0,crescente,42.266528,0.0,0.146759,0.241932,3e-06,8e-06,,
+Produção,qtde_alta_complex,Saídas de alta complexidade,289,0.0,4.0,479.0,crescente,139.72727,0.0,0.146369,0.0,0.0,0.0,,
+Produção,saidas_por_leito,Saídas por leito SUS,289,43.8,61.944444,59.024648,não ordena,34.003843,0.0,0.124037,1e-06,0.736066,0.0,,
+Financeiro,custo_real,Faturamento real por saída (R$),289,647.338655,1296.553607,1821.114795,crescente,160.166928,0.0,0.098187,0.0,0.0,0.0,,
+Estrutura,share_sus,Leitos SUS como % do total,289,80.487805,63.736264,81.192661,não ordena,19.397611,6.1e-05,0.083809,0.000184,0.00099,0.239597,,
+Produção,pct_alta_complex,Fração de alta complexidade,289,0.0,0.001025,0.053936,crescente,118.837552,0.0,0.072466,0.0,0.0,0.0,,
+Desfecho,mort_all,Mortalidade geral,289,0.042965,0.059357,0.058039,não ordena,23.198554,9e-06,0.063556,0.009308,0.391215,0.0,,
+Pandemia,pct_covid,% de saídas por COVID (2020-21),289,9.786897,8.714214,5.227236,decrescente,27.505065,1e-06,0.039231,0.094983,0.01063,0.0,,
+Uso,ocupacao_uti_valida,Ocupação de UTI (%),240,66.193738,75.225049,76.611391,crescente,3.692774,0.157806,0.018368,0.191237,0.78095,0.153349,só existe onde o corte já separou,indefinida onde uti_sus = 0; em E1 só o piscar (R7)

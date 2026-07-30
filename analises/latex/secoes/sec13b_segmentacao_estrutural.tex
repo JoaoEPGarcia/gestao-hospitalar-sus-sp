@@ -108,9 +108,8 @@ Antes de usar os estratos, vale verificar se eles significam alguma coisa. A
 resposta é sim: \textbf{em cinco dos seis indicadores, as medianas ordenam
 monotonicamente}, E1, depois E2, depois E3, sem inversões. Em quatro
 deles a ordenação atravessa os três estratos; no quinto, a ocupação de
-UTI, ela compara apenas E2 e E3, porque o indicador não é definido em E1
-(o estrato é definido por não ter leito de UTI, e a razão não existe
-ali).
+UTI, ela compara apenas E2 e E3, pelo motivo registrado logo abaixo da
+tabela.
 
 \begin{table}[H]
 \centering
@@ -140,8 +139,15 @@ perfil de gravidade dos pacientes atendidos; a faixa de complexidade, dentro
 de quem já tem UTI, muda mais o \emph{tipo} de procedimento do que o risco
 de morte.
 
-A ocupação de UTI não tem valor em E1 por construção: o estrato é definido
-por não ter UTI, e a razão é indefinida ali.
+\textbf{Sobre a célula vazia da ocupação de UTI em E1, que não é bem uma
+célula vazia.} E1 é definido pela \emph{mediana} dos onze anos de leitos de
+UTI SUS igual a zero, e não por ausência de UTI em todos os anos. Dos 67
+hospitais do estrato, \textbf{18 registram UTI SUS em algum ano}, num total
+de 71 hospitais-ano, e para eles a razão existe e vale 66,2\% na mediana.
+São o \emph{piscar cadastral} descrito acima: a ala opera e o registro cai.
+A célula fica fora da tabela porque 71 observações em 18 hospitais não
+descrevem o estrato, \textbf{não porque a razão seja indefinida ali}. O
+valor está em \texttt{tabSEG\_22}, tarjado.
 
 \begin{figure}[H]
 \centering
@@ -164,8 +170,200 @@ primeiro ao terceiro quartil e os pontos soltos são observações extremas.
 À direita, um painel de séries: o eixo horizontal traz o ano (2015 a 2025)
 e o vertical, a mediana do indicador naquele ano, uma linha por estrato. A
 unidade é o hospital-ano, e todas as categorias de gestão entram juntas em
-cada estrato. O painel da ocupação de UTI não tem curva para E1, porque o
-estrato é definido por não ter leito de UTI e a razão é indefinida ali.}
+cada estrato. O painel da ocupação de UTI tem curva rala em E1, porque ali
+só existem os 71 hospitais-ano do piscar cadastral.}
+
+\subsection{O que os estratos separam, e o que eles não separam}
+\label{sub:ampliada}
+
+A tabela anterior responde a uma pergunta binária: a mediana ordena ou não.
+Ela não diz \emph{quanto} os estratos separam, nem em quais dimensões
+separam muito e em quais quase nada. Esta subseção responde isso cruzando os
+três estratos com \textbf{as 27 variáveis do painel que admitem leitura
+descritiva}, e não apenas com os seis indicadores do estudo.
+
+\subsubsection*{Duas decisões que precisam vir antes dos números}
+
+\textbf{Primeira: a unidade é o hospital, não o hospital-ano.} O estrato é
+fixo por CNES, de modo que as onze observações de um hospital são o mesmo
+hospital medido onze vezes. Para \emph{descrever} os estratos o hospital-ano
+serve, e é o que a tabela anterior usa; para \emph{comparar} os estratos ele
+não serve, porque trata como independentes onze medidas do mesmo objeto e
+infla qualquer teste por um fator próximo de onze. Os testes desta subseção
+usam uma linha por hospital (a mediana dos onze anos), com $n$ igual a 289.
+
+\textbf{Segunda: sete das 27 variáveis são definicionais e não contam.} O
+corte em E1, E2 e E3 é construído a partir da mediana de leitos de UTI SUS e
+da faixa Barcelona. Encontrar que os estratos separam bem a faixa Barcelona
+($\eta^2$ de 0,71) ou a proporção de leitos de UTI ($\eta^2$ de 0,54) não é
+achado: é a definição do corte reaparecendo. Essas sete estão marcadas na
+figura e na tabela-fonte, e ficam fora de toda leitura substantiva.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.74\textwidth]{figSEG_11_eta2_ranking.png}
+\caption{Parcela da variância \emph{entre hospitais} que o estrato explica,
+em cada uma das 27 variáveis. As barras hachuradas em cinza são as
+definicionais: o corte é construído com elas.}
+\label{fig:eta2estratos}
+\end{figure}
+
+\comoler{quanto mais comprida a barra, mais o perfil de complexidade do
+hospital determina aquela variável. Leia de cima para baixo pulando as
+barras hachuradas, que são a definição do corte. O que interessa é o
+contraste entre o topo e o fundo da lista.}
+
+\comofeito{gráfico de barras horizontais. Cada barra é uma variável do
+painel, e o comprimento é o $\eta^2$: a parcela da soma de quadrados total
+que fica \emph{entre} as médias dos três estratos, calculada sobre uma
+linha por hospital (mediana dos onze anos, $n$ igual a 289). A cor traz o
+$p$ do teste de Kruskal e Wallis entre os três grupos, também em CNES. As
+barras hachuradas são as variáveis com que o próprio corte é construído.}
+
+\subsubsection*{O achado central: o gradiente é estrutural, quase não é clínico}
+
+\begin{table}[H]
+\centering
+\caption{As duas pontas do ordenamento, entre as 20 variáveis não
+definicionais. Medianas por hospital; $\eta^2$ é a parcela da variância
+entre hospitais explicada pelo estrato; $p$ é de Kruskal e Wallis, e
+$p_{23}$ do contraste E2 contra E3 com correção de Holm.}
+\label{tab:eta2estratos}
+\small
+\begin{tabular}{lrrrrrl}
+\toprule
+Variável & E1 & E2 & E3 & $\eta^2$ & $p_{23}$ & Ordena? \\
+\midrule
+\multicolumn{7}{l}{\emph{o que o estrato explica}}\\
+Ocupação de internação (\%)      & 39,2 & 66,0 & 90,6 & 0,43 & $<$0,001 & sim \\
+Saídas hospitalares              & 2.211 & 4.266 & 10.460 & 0,43 & $<$0,001 & sim \\
+Diárias de internação            & 7.179 & 16.450 & 53.200 & 0,41 & $<$0,001 & sim \\
+Leitos SUS                       & 53 & 71 & 175 & 0,33 & $<$0,001 & sim \\
+Faturamento real total (R\$ mil) & 1.341 & 5.295 & 18.900 & 0,23 & $<$0,001 & sim \\
+TMP (dias)                       & 3,15 & 3,80 & 5,27 & 0,16 & $<$0,001 & sim \\
+\midrule
+\multicolumn{7}{l}{\emph{o que ele quase não explica}}\\
+Faturamento real por saída (R\$) & 647 & 1.297 & 1.821 & 0,10 & $<$0,001 & sim \\
+Leitos SUS como \% do total      & 80,5 & 63,7 & 81,2 & 0,08 & 0,001 & \textbf{não} \\
+Fração de alta complexidade      & 0,000 & 0,001 & 0,054 & 0,07 & $<$0,001 & sim \\
+\textbf{Mortalidade geral}       & 0,043 & 0,059 & 0,058 & \textbf{0,06} & \textbf{0,391} & \textbf{não} \\
+\% de saídas por COVID (2020-21) & 9,8 & 8,7 & 5,2 & 0,04 & 0,011 & \textbf{invertida} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+O contraste entre as duas metades da tabela é o achado desta subseção, e ele
+é nítido. \textbf{O estrato explica de 23\% a 43\% do que separa dois
+hospitais em escala, volume e uso da capacidade}, e cai para
+\textbf{6\%} na mortalidade, que é o desfecho. Dito de outro modo: saber em
+qual degrau da escada um hospital está permite prever com folga quantos
+leitos ele tem, quantas saídas produz, quanto fatura e quão cheio opera, e
+quase não permite prever quantos dos seus pacientes morrem.
+
+\textbf{E na mortalidade o ordenamento sequer se sustenta.} As medianas por
+hospital são 4,3\% em E1, 5,9\% em E2 e 5,8\% em E3, e o contraste entre E2
+e E3 tem $p$ de 0,391: \textbf{indistinguíveis}. O que a mortalidade separa
+é ter ou não ter terapia intensiva; dentro de quem tem, a faixa de
+complexidade não move o desfecho. É a mesma leitura que a tabela do
+gradiente já sugeria pelo empate das medianas, agora com o teste feito na
+unidade certa.
+
+\subsubsection*{Três padrões que só aparecem com o painel largo}
+
+\textbf{Primeiro: a produtividade por leito satura em E2.} As saídas por
+leito SUS vão de 43,8 em E1 para 61,9 em E2 e \emph{recuam} para 59,0 em E3,
+com $p$ de 0,736 entre os dois últimos. O ordenamento se quebra aqui, e
+quebra num lugar interessante: toda a estrutura adicional de E3, que é mais
+que o dobro de leitos, \textbf{não compra mais giro por leito}. O que E3
+entrega a mais é volume absoluto e complexidade do caso, não eficiência
+física do leito.
+
+\textbf{Segundo: a composição público-privada não segue a escada.} A
+proporção de leitos SUS sobre o total é de 80,5\% em E1, cai para 63,7\% em
+E2 e volta a 81,2\% em E3. O estrato do meio é o mais misto, e é o único em
+que um terço dos leitos atende fora do SUS. A não-monotonicidade é modesta
+em tamanho ($\eta^2$ de 0,08) mas é sistemática, e vale como advertência: o
+degrau intermediário não é ``E3 menor'', é um objeto de natureza diferente.
+
+\textbf{Terceiro: a pandemia entrou pela ponta de baixo da escada.} A
+fração de saídas por COVID no biênio 2020--2021 é de 9,8\% em E1, 8,7\% em
+E2 e 5,2\% em E3, e é o \textbf{único ordenamento invertido} de todo o
+levantamento. Os hospitais de menor complexidade absorveram
+proporcionalmente mais COVID que os de alta, o que é coerente com uma rede
+que reservou a capacidade de alta complexidade para o caso não pandêmico,
+mas o dado aqui é descritivo e não sustenta afirmação sobre política de
+regulação de leitos.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figSEG_12_estrutura_uso.png}
+\caption{Três leituras do mesmo corte. À esquerda, escala contra
+intensidade tecnológica; ao centro, a ocupação de internação decomposta nas
+suas duas perguntas; à direita, giro contra permanência.}
+\label{fig:estruturauso}
+\end{figure}
+
+\comoler{no painel do meio, compare as barras cinza e verde de cada
+estrato: quando elas se afastam, é porque a mediana bruta está sendo puxada
+pela frequência de superlotação, não pelo nível de ocupação. Em E1 as duas
+coincidem; em E3 há sete pontos entre elas.}
+
+\comofeito{três painéis, todos com uma marca por hospital (mediana dos onze
+anos) e cor por estrato. À esquerda, dispersão de leitos totais (eixo
+horizontal, escala logarítmica) contra a proporção de leitos de UTI. Ao
+centro, barras: para cada estrato, a mediana bruta da ocupação de
+internação, a mediana calculada só sobre os hospitais-ano com ocupação até
+100\%, e a proporção de hospitais-ano acima de 100\%. À direita, dispersão
+de saídas por leito SUS contra tempo médio de permanência.}
+
+\textbf{O painel do meio fecha o argumento da subseção seguinte com número
+próprio.} A mediana bruta de ocupação vai de 41\% em E1 a 90\% em E3, mas
+parte disso não é ocupação: é superlotação entrando no numerador. Separadas
+as duas, o nível de ocupação abaixo de 100\% vai de 41\% a 83\% e a
+frequência de superlotação vai de \textbf{1\% dos hospitais-ano em E1 para
+9\% em E2 e 28\% em E3}. A distância entre a barra cinza e a verde é de zero
+ponto em E1 e de sete pontos em E3.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figSEG_13_estratos_por_ano.png}
+\caption{Os três estratos ano a ano, em seis métricas. A faixa cinza é o
+biênio pandêmico.}
+\label{fig:estratosano}
+\end{figure}
+
+\comoler{procure se as três linhas de cada painel se mantêm paralelas ou se
+encostam. No TMP e no faturamento por saída elas correm em três faixas
+separadas a década inteira; na mortalidade e nas saídas por leito, as linhas
+de E2 e E3 se cruzam mais de uma vez.}
+
+\comofeito{seis painéis, um por métrica. O eixo horizontal traz o ano de
+2015 a 2025 e o vertical, a \textbf{mediana} da métrica naquele ano dentro
+de cada estrato, uma linha por estrato. A unidade é o hospital-ano. A faixa
+cinza marca 2020 e 2021.}
+
+A leitura temporal acrescenta duas coisas. O \textbf{TMP e o faturamento por
+saída} correm em três faixas separadas e paralelas os onze anos inteiros:
+são as métricas em que os estratos são mais estáveis como grupos. Já a
+\textbf{mortalidade e as saídas por leito} mostram E2 e E3 trocando de
+posição repetidamente: na mortalidade as duas curvas se cruzam
+\textbf{seis vezes} em onze anos, e nas saídas por leito o E2 fica acima do
+E3 em \textbf{seis dos onze anos, inclusive nos três últimos}. O gradiente
+estrutural é firme na estrutura e no preço unitário, e frouxo justamente
+onde se mediria desempenho.
+
+\subsubsection*{Onde ficam as tabelas completas}
+
+Esta subseção mostra as duas pontas de um levantamento maior. O material
+completo está em seis tabelas do repositório, todas com a marca de tarja
+onde ela é devida: \texttt{tabSEG\_20} traz o dicionário das 27 variáveis
+incluídas e dos oito grupos excluídos, com o motivo de cada exclusão;
+\texttt{tabSEG\_21} e \texttt{tabSEG\_22} trazem a descritiva completa nas
+duas unidades, hospital-ano e hospital; \texttt{tabSEG\_23} traz o teste, o
+$\eta^2$ e os três contrastes par a par com correção de Holm;
+\texttt{tabSEG\_24} abre por ano e \texttt{tabSEG\_25} cruza estrato com
+categoria de gestão, com a célula de mortalidade de E3 marcada como não
+citável, pela restrição já enunciada.
 
 \subsection{Os resultados em E3}
 
@@ -405,6 +603,16 @@ estrutural de fato, e não um recorte arbitrário.
 \textbf{Terceira: ela separou duas perguntas que estavam somadas} no
 indicador de ocupação, e mostrou que a distância entre as redes se distribui
 diferentemente entre elas.
+
+\textbf{E uma quarta, que o levantamento ampliado da
+Subseção~\ref{sub:ampliada} acrescenta e que é de natureza diferente das
+três:} a escada de complexidade organiza fortemente a \emph{estrutura} dos
+hospitais e quase não organiza o \emph{desfecho}. O estrato explica de 23\%
+a 43\% da variância entre hospitais em leitos, volume, faturamento e
+ocupação, e 6\% na mortalidade, onde nem sequer ordena. Isso é uma
+advertência sobre o próprio instrumento: segmentar por capacidade instalada
+resolve o problema de comparar coisas incomparáveis, mas não deve ser lido
+como se o degrau explicasse a qualidade do que o hospital entrega.
 
 O que a segmentação \emph{não} faz é resolver o problema de desenho. Em E3,
 como no painel inteiro, a identificação causal continua repousando sobre
