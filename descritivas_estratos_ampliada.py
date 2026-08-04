@@ -54,6 +54,9 @@ Saídas
   analises/figuras_segmentacao/figSEG_10_perfil_estratos.png
   analises/figuras_segmentacao/figSEG_11_eta2_ranking.png
   analises/figuras_segmentacao/figSEG_12_estrutura_uso.png
+  analises/figuras_segmentacao/figSEG_12_escala.png
+  analises/figuras_segmentacao/figSEG_12_duas_perguntas.png
+  analises/figuras_segmentacao/figSEG_12_giro.png
   analises/figuras_segmentacao/figSEG_13_estratos_por_ano.png
 """
 
@@ -474,54 +477,74 @@ def fig_perfil(cnes_df, teste):
 
 
 def fig_estrutura_uso(cnes_df, p):
+    """Três leituras do mesmo corte, na tira de três painéis e uma a uma.
+
+    Os três painéis respondem perguntas independentes e sempre foram lidos um
+    de cada vez; juntos numa tira de 14 polegadas, reduzida à largura da
+    mancha, cada um sobrava com pouco mais de cinco centímetros e os rótulos
+    dos eixos ficavam ilegíveis. Desde 01/08/2026 a mesma função de desenho
+    alimenta as duas versões: a tira, que continua servindo à visão de
+    conjunto, e um arquivo por painel, que é o que o relatório publica.
+    """
+    def _escala(ax):
+        for e in ESTRATOS:
+            d = cnes_df[cnes_df["estrato"] == e]
+            ax.scatter(d["total_leitos"], d["share_uti"], s=26,
+                       color=COR_ESTRATO[e], alpha=.75, marker=MARCADOR[e],
+                       edgecolor="white", lw=.4, label=e)
+        ax.set_xscale("log")
+        ax.set_xlabel("Leitos totais (escala log)")
+        ax.set_ylabel("UTI como % dos leitos")
+        ax.set_title("Escala e intensidade tecnológica")
+        ax.legend(fontsize=9.5, frameon=False)
+
+    def _duas_perguntas(ax):
+        larg, pos = .26, np.arange(3)
+        freq = [100 * p.loc[p["estrato"] == e, "superlotado"].mean()
+                for e in ESTRATOS]
+        nivel = [p.loc[p["estrato"] == e, "ocup_int_ate100"].median()
+                 for e in ESTRATOS]
+        bruta = [p.loc[p["estrato"] == e, "ocupacao_internacao"].median()
+                 for e in ESTRATOS]
+        for i, (serie, rot, cor) in enumerate([
+                (bruta, "mediana bruta (conflaciona)", "#c3c2b7"),
+                (nivel, "mediana com ocupação <= 100", "#0f9b8e"),
+                (freq, "% de anos em superlotação", "#0d366b")]):
+            b = ax.bar(pos + (i - 1) * larg, serie, larg, color=cor,
+                       edgecolor="white", lw=.5, label=rot)
+            ax.bar_label(b, labels=[f"{v:.0f}" for v in serie], fontsize=9,
+                         padding=2, color="#52514e")
+        ax.set_xticks(pos, ESTRATOS)
+        ax.set_title("A ocupação de internação são duas perguntas")
+        ax.legend(fontsize=8.8, frameon=False, loc="upper left")
+        ax.grid(axis="x", visible=False)
+
+    def _giro(ax):
+        for e in ESTRATOS:
+            d = cnes_df[cnes_df["estrato"] == e]
+            ax.scatter(d["saidas_por_leito"], d["tmp"], s=26,
+                       color=COR_ESTRATO[e], alpha=.75, marker=MARCADOR[e],
+                       edgecolor="white", lw=.4, label=e)
+        ax.set_xlabel("Saídas por leito SUS")
+        ax.set_ylabel("TMP (dias)")
+        ax.set_title("Giro contra permanência")
+        ax.legend(fontsize=9.5, frameon=False)
+
+    paineis = [("escala", _escala), ("duas_perguntas", _duas_perguntas),
+               ("giro", _giro)]
+
     fig, axes = plt.subplots(1, 3, figsize=(14, 4.4))
-
-    ax = axes[0]
-    for e in ESTRATOS:
-        d = cnes_df[cnes_df["estrato"] == e]
-        ax.scatter(d["total_leitos"], d["share_uti"], s=26,
-                   color=COR_ESTRATO[e], alpha=.75, marker=MARCADOR[e],
-                   edgecolor="white", lw=.4, label=e)
-    ax.set_xscale("log")
-    ax.set_xlabel("Leitos totais (escala log)")
-    ax.set_ylabel("UTI como % dos leitos")
-    ax.set_title("Escala e intensidade tecnológica")
-    ax.legend(fontsize=9.5, frameon=False)
-
-    ax = axes[1]
-    larg, pos = .26, np.arange(3)
-    freq = [100 * p.loc[p["estrato"] == e, "superlotado"].mean()
-            for e in ESTRATOS]
-    nivel = [p.loc[p["estrato"] == e, "ocup_int_ate100"].median()
-             for e in ESTRATOS]
-    bruta = [p.loc[p["estrato"] == e, "ocupacao_internacao"].median()
-             for e in ESTRATOS]
-    for i, (serie, rot, cor) in enumerate([
-            (bruta, "mediana bruta (conflaciona)", "#c3c2b7"),
-            (nivel, "mediana com ocupação <= 100", "#0f9b8e"),
-            (freq, "% de anos em superlotação", "#0d366b")]):
-        b = ax.bar(pos + (i - 1) * larg, serie, larg, color=cor,
-                   edgecolor="white", lw=.5, label=rot)
-        ax.bar_label(b, labels=[f"{v:.0f}" for v in serie], fontsize=9,
-                     padding=2, color="#52514e")
-    ax.set_xticks(pos, ESTRATOS)
-    ax.set_title("A ocupação de internação são duas perguntas")
-    ax.legend(fontsize=8.8, frameon=False, loc="upper left")
-    ax.grid(axis="x", visible=False)
-
-    ax = axes[2]
-    for e in ESTRATOS:
-        d = cnes_df[cnes_df["estrato"] == e]
-        ax.scatter(d["saidas_por_leito"], d["tmp"], s=26,
-                   color=COR_ESTRATO[e], alpha=.75, marker=MARCADOR[e],
-                   edgecolor="white", lw=.4, label=e)
-    ax.set_xlabel("Saídas por leito SUS")
-    ax.set_ylabel("TMP (dias)")
-    ax.set_title("Giro contra permanência")
-    ax.legend(fontsize=9.5, frameon=False)
-
+    for ax, (_, desenhar) in zip(axes, paineis):
+        desenhar(ax)
     fig.tight_layout()
     _salvar(fig, "figSEG_12_estrutura_uso.png")
+
+    for nome, desenhar in paineis:
+        fig, ax = plt.subplots(figsize=(8.6, 5.4))
+        desenhar(ax)
+        ax.title.set_fontsize(13)
+        fig.tight_layout()
+        _salvar(fig, f"figSEG_12_{nome}.png")
 
 
 def fig_por_ano(g):

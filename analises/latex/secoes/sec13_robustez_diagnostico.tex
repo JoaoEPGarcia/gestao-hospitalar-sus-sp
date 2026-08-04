@@ -4,51 +4,63 @@
 Duas baterias de verificação fecham a fase de estimação.
 
 \textbf{Sem o biênio pandêmico.} Todos os modelos foram reestimados
-excluindo 2020 e 2021, os anos em que a casuística, os denominadores e
-o cadastro de leitos sofreram os choques documentados na primeira
+excluindo 2020 e 2021, os anos em que a casuística e os denominadores
+sofreram os choques documentados na primeira
 parte. A Figura~\ref{fig:robustezpandemia} compara os contrastes OSS vs
 Direta nas duas amostras: as diferenças são mínimas (o tempo de
 permanência passa de 10,2\% para 11,4\% de queda, a produção de 43,7\%
 para 44,7\% de alta, e assim por diante). \textbf{Nenhum dos
-contrastes principais depende dos anos de pandemia.} A exclusão do
-biênio também cobre o pior do descasamento de calendário dos leitos
-descrito na Seção~\ref{sec:qualidade}, concentrado em 2020 e 2021.
+contrastes principais depende dos anos de pandemia.}
 
 \begin{table}[H]
 \centering
 \caption{Contraste OSS \emph{versus} Direta estimado no painel completo
-e na amostra que exclui 2020 e 2021, nos sete modelos principais. Os
-coeficientes estão na escala interna de cada modelo e os erros-padrão
-são agrupados por hospital. A leitura pretendida é a comparação entre as
-duas colunas de coeficiente: quanto mais próximas, menos o resultado
-depende dos anos de pandemia.}
+e na amostra que exclui 2020 e 2021, nos sete modelos principais. Cada
+bloco traz o \textbf{efeito} já traduzido para a unidade de leitura, ao
+lado do valor bruto do modelo e da sua margem de erro. A leitura
+pretendida é a comparação entre os dois blocos: quanto mais parecidos,
+menos o resultado depende dos anos de pandemia.}
 \label{tab:sempandemia}
 \small
-\begin{tabular}{lrrrr}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrrr}
 \toprule
-& \multicolumn{2}{c}{Painel completo} & \multicolumn{2}{c}{Sem 2020 e 2021} \\
-\cmidrule(lr){2-3}\cmidrule(lr){4-5}
-Modelo & Coef. & EP & Coef. & EP \\
+& \multicolumn{3}{c}{Painel completo} & \multicolumn{3}{c}{Sem 2020 e 2021} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+Modelo & Efeito & Coef. & EP & Efeito & Coef. & EP \\
 \midrule
-Mortalidade (geral)        & $-0{,}2237$ & 0,1311 & $-0{,}2329$ & 0,1157 \\
-Fração alta complexidade   & $-0{,}2044$ & 0,2348 & $-0{,}1937$ & 0,2333 \\
-Faturamento real por saída & $-0{,}0866$ & 0,0948 & $-0{,}0830$ & 0,0978 \\
-Tempo de permanência       & $-0{,}1080$ & 0,0468 & $-0{,}1207$ & 0,0527 \\
-Produção (saídas)          & $0{,}3629$  & 0,0895 & $0{,}3694$  & 0,0892 \\
-Ocupação de internação     & $0{,}2044$  & 0,0779 & $0{,}2015$  & 0,0753 \\
-Ocupação de UTI            & $0{,}2058$  & 0,0747 & $0{,}2175$  & 0,0723 \\
+Mortalidade (geral)        & 5,8\% $\to$ 4,6\% & $-0{,}2237$ & 0,1311 & 5,6\% $\to$ 4,4\% & $-0{,}2329$ & 0,1157 \\
+Fração alta complexidade   & 8,9\% $\to$ 7,6\% & $-0{,}2044$ & 0,2348 & 8,9\% $\to$ 7,7\% & $-0{,}1937$ & 0,2333 \\
+Faturamento real por saída & $-8{,}3\%$  & $-0{,}0866$ & 0,0948 & $-8{,}0\%$  & $-0{,}0830$ & 0,0978 \\
+Tempo de permanência       & $-10{,}2\%$ & $-0{,}1080$ & 0,0468 & $-11{,}4\%$ & $-0{,}1207$ & 0,0527 \\
+Produção (saídas)          & $+43{,}7\%$ & $0{,}3629$  & 0,0895 & $+44{,}7\%$ & $0{,}3694$  & 0,0892 \\
+Ocupação de internação     & $+22{,}7\%$ & $0{,}2044$  & 0,0779 & $+22{,}3\%$ & $0{,}2015$  & 0,0753 \\
+Ocupação de UTI            & $+19{,}3\%$ & $0{,}1769$  & 0,0603 & $+22{,}1\%$ & $0{,}1995$  & 0,0600 \\
+\quad {\footnotesize cálculo alternativo} & $+22{,}8\%$ & $0{,}2058$ & 0,0747 & $+24{,}3\%$ & $0{,}2175$ & 0,0723 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\comofeito{cada linha é um dos sete modelos principais. O par de colunas
-da esquerda traz o coeficiente do contraste OSS \emph{versus} Direta e o
-seu erro-padrão agrupado por hospital, estimados sobre o painel inteiro;
-o par da direita, os mesmos dois valores estimados depois de retirar as
-observações de 2020 e 2021. Nenhum coeficiente muda de sinal e nenhum
-muda de magnitude de forma relevante, que é o que a figura seguinte
-mostra em forma gráfica.}
-
+\comofeito{cada linha é um dos sete modelos principais, e cada bloco de
+três colunas é uma amostra: à esquerda o painel inteiro, à direita a mesma
+estimação depois de retirar 2020 e 2021. \textbf{Efeito} é o resultado
+traduzido para a unidade que o gestor usa. Nos indicadores de quantidade
+ele é a variação percentual; nos dois que já são taxas, a mortalidade e a
+fração de alta complexidade, ele é o par de taxas que o deslocamento liga,
+e a seta se lê ``sai de'' e ``chega a'', com a taxa de partida sendo a
+média observada da administração Direta naquela amostra. \textbf{Coef.} é o
+mesmo resultado no valor bruto do modelo, que não se lê diretamente, e é
+por isso que a coluna Efeito existe. \textbf{EP} é a margem de erro,
+calculada agrupando as observações por hospital, porque onze anos do mesmo
+hospital não são onze informações independentes. Nenhum efeito muda de
+sinal e nenhum muda de magnitude de forma relevante, que é o que a figura
+seguinte mostra em forma gráfica. A ocupação de UTI aparece em
+\textbf{duas linhas} porque foi calculada de duas maneiras: a primeira é a
+adotada no documento, escolhida depois que os testes de aderência do
+Apêndice~\ref{ap:diagnosticos} mostraram que ela descreve melhor estes
+dados; a segunda usa a mesma conta das outras seis linhas e fica na tabela
+para que a coluna possa ser lida de cima a baixo na mesma régua.}
+\newpage
 \comoler{cada linha traz duas estimativas do mesmo efeito: o círculo
 azul escuro usa todos os anos e o quadrado verde exclui 2020 e 2021.
 Quanto mais próximos os dois símbolos, mais robusto o resultado; aqui
@@ -56,7 +68,7 @@ eles praticamente se sobrepõem em todas as linhas.}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.62\textwidth]{fig_est_05_robustez_sem_pandemia.png}
+\includegraphics[width=.82\textwidth]{fig_est_05_robustez_sem_pandemia.png}
 \caption{Contraste OSS vs Direta estimado no painel completo e na
 amostra sem 2020 e 2021, para os modelos em escala percentual.}
 \label{fig:robustezpandemia}
@@ -69,15 +81,32 @@ estimado no painel completo e outro na amostra que exclui 2020 e 2021.
 Quanto mais próximos os dois símbolos, mais o resultado independe dos
 anos de pandemia.}
 
-\textbf{Validação das famílias de distribuição.} A segunda bateria
-confere se o molde estatístico escolhido para cada indicador de fato
-descreve os dados. O resultado é bom em todos os modelos com uma única
-exceção, a intensidade de ocupação da UTI, reestimada com a família
-Gama na Seção~\ref{sec:inferenciafinal}, com o diagnóstico saltando de
-0,814 para 0,944. O material completo, com os valores de aderência de
-cada modelo e os gráficos correspondentes, está no
-Apêndice~\ref{ap:diagnosticos}.
+\textbf{Aderência dos modelos.} A segunda bateria confere se cada modelo
+de fato descreve os dados que ele resume. Todos passam, e o material
+completo, com o diagnóstico de cada um e os gráficos correspondentes,
+está no Apêndice~\ref{ap:diagnosticos}.
 
+% A terceira bateria, "Descasamento de calendário nos denominadores", saiu
+% daqui em 04/08/2026, a pedido expresso de João, junto com a sua tabela
+% (a antiga Tabela 10, `tab:calendario`) e as duas ressalvas que a fechavam.
+%
+% O QUE ELA MEDIA, para quem precisar reabrir o assunto: as duas ocupações
+% dividem produção acumulada no ano por capacidade cadastrada vezes 365, e
+% quando numerador e denominador não cobrem o mesmo período a razão mede
+% calendário e não desempenho. A bateria não corrigia o problema — ele não é
+% corrigível na granularidade anual —, ela media o TETO dele, reestimando os
+% contrastes sem os conjuntos que continham as observações afetadas. O
+% resultado era tranquilizador em toda a escada: excluir os 30 anos parciais
+% de UTI move o contraste de 19,3% para 19,8% (0,06 erro-padrão), e no degrau
+% mais severo os dois indicadores de ocupação se deslocam em DIREÇÕES
+% OPOSTAS (+0,31 e −0,38 erro-padrão), assinatura de ruído de amostragem e
+% não de viés sistemático, que empurraria ambos para o mesmo lado.
+%
+% Foi por esse resultado que a bateria saiu: ela custava três páginas e uma
+% tabela de dez linhas para concluir que nada do que o documento afirma
+% depende do assunto. Toda ela continua reproduzível por
+% `analises/verificar_bateria_calendario.py` e `auditar_uti_ano_parcial.py`,
+% e o registro da decisão está na seção 21 de PENDENCIAS.md.
 Fecham o quadro as ressalvas permanentes de leitura. A identificação
 do efeito de gestão dentro de hospital repousa em \textbf{cinco
 conversores}, três deles com um único ano após a mudança; as margens

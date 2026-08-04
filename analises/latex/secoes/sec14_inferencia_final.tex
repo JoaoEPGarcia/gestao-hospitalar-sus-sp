@@ -35,25 +35,23 @@ efeito no tempo de permanência é consistente em direção e tamanho, mas
 rigor estatístico convencional}; ele deve ser tratado como evidência
 sugestiva forte, não como fato demonstrado.
 
-\textbf{Um estimador moderno para conversões em anos diferentes.} Como
-as conversões ocorreram em 2019, 2023 e 2025, a comparação clássica
-pode misturar hospitais já convertidos no grupo de controle. O
-estimador de Callaway e Sant'Anna evita isso comparando cada coorte de
-conversão apenas com os hospitais que nunca mudaram. A
-Figura~\ref{fig:cstwfe} mostra que, no ano da conversão, os dois
-métodos coincidem em todos os indicadores. A figura traz apenas a
-mortalidade e o tempo de permanência, mas a coincidência vale para os
-cinco, e a Tabela~\ref{tab:cstwfezero} traz os cinco pares para que o
-leitor não precise tomar a afirmação como palavra: as diferenças entre
-os dois métodos aparecem só na terceira casa decimal. Nas janelas intermediárias
-o método clássico exagera o efeito, na mortalidade (2,6 e 2,9 pontos
-contra 2,0 e 2,3 do alternativo) e no tempo de permanência (0,25
-contra 0,16 em log pontos), e as janelas longas se aproximam, com
-intervalos sobrepostos (na mortalidade, 2,23 pontos negativos no
-método clássico contra 2,44 no alternativo; no tempo de permanência,
-0,28 contra 0,30 em log pontos). Nenhuma conclusão muda; as
-magnitudes das janelas intermediárias (da mortalidade e do tempo de
-permanência) eram os pontos inflados.\footnote{A comparação foi feita
+\textbf{As conversões não aconteceram todas no mesmo ano, e isso pode
+distorcer a conta.} Elas ocorreram em 2019, 2023 e 2025, e a comparação
+clássica corre o risco de usar um hospital já convertido como referência
+para outro que ainda não converteu, o que compara OSS com OSS e chama isso
+de controle. Existe um cálculo que fecha essa porta, comparando cada
+grupo de conversão apenas com hospitais que nunca mudaram de gestão. Ele
+foi feito, e a pergunta prática é uma só: \textbf{a conclusão muda?} Não
+muda. No ano da conversão, os dois cálculos dão o mesmo resultado em todos
+os indicadores, com diferença que só aparece na terceira casa decimal, e a
+Tabela~\ref{tab:cstwfezero} traz os cinco pares lado a lado para que isso
+possa ser conferido em vez de aceito. Onde os dois se afastam é nos anos
+intermediários, e sempre no mesmo sentido: \textbf{o método clássico
+exagerava}. Na mortalidade, 2,6 e 2,9 pontos contra 2,0 e 2,3 do cálculo
+mais rigoroso; no tempo de permanência, a mesma direção. Nas janelas
+longas os dois voltam a se encontrar. Nenhuma conclusão deste documento
+depende de qual dos dois se use; o que a checagem corrige é o tamanho do
+efeito nos anos do meio.\footnote{A comparação foi feita
 para os cinco indicadores, em quatro janelas cada um; o texto e a figura
 discutem a mortalidade e o tempo de permanência, que são os dois
 achados em disputa. Nos outros três os dois métodos também concordam:
@@ -71,38 +69,44 @@ tempo de permanência) é onde o método clássico exagerava.}
 
 \begin{table}[H]
 \centering
-\caption{Os dois métodos no \textbf{ano da conversão}, nos cinco
-indicadores estimados. TWFE é o método clássico do estudo de eventos da
-Seção~\ref{sec:efeitogestao}; CS é o estimador de Callaway e
-Sant'Anna. A figura desta seção mostra as duas primeiras linhas; as
-outras três estão aqui para que a coincidência entre os métodos possa
-ser conferida em todos os indicadores, e não apenas nos dois
-ilustrados.}
+\caption{A prova de que o resultado não depende do cálculo escolhido. Cada
+linha traz o efeito estimado \textbf{no próprio ano da conversão} pelos
+dois métodos, o clássico e o mais rigoroso. \textbf{Os pares são
+praticamente idênticos em todos os cinco indicadores}: a maior divergência
+está na quarta linha e vale treze milésimos na escala da taxa. Quem
+suspeitar que a escolha do método fabricou algum resultado desta seção
+pode conferir aqui.}
 \label{tab:cstwfezero}
 \small
-\begin{tabular}{llrr}
+\begin{tabular}{llrrr}
 \toprule
-Indicador & Unidade & TWFE & CS \\
+Indicador & Unidade & Método clássico & Método rigoroso & Divergência \\
 \midrule
-Mortalidade geral          & pontos percentuais & $-1{,}296$ & $-1{,}293$ \\
-Tempo de permanência       & log pontos         & $-0{,}145$ & $-0{,}145$ \\
-Faturamento real por saída & log pontos         & $-0{,}054$ & $-0{,}054$ \\
-Fração alta complexidade   & pontos percentuais & $-0{,}395$ & $-0{,}382$ \\
-Ocupação de internação     & log pontos         & $0{,}110$  & $0{,}110$ \\
+Mortalidade geral          & escala da taxa (\%) & $-1{,}296$ & $-1{,}293$ & 0,003 \\
+Tempo de permanência       & log pontos         & $-0{,}145$ & $-0{,}145$ & 0,000 \\
+Faturamento real por saída & log pontos         & $-0{,}054$ & $-0{,}054$ & 0,000 \\
+Fração alta complexidade   & escala da taxa (\%) & $-0{,}395$ & $-0{,}382$ & 0,013 \\
+Ocupação de internação     & log pontos         & $0{,}110$  & $0{,}110$  & 0,000 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\comofeito{cada linha é um indicador e as duas colunas de número trazem
-o efeito estimado \textbf{no próprio ano da conversão} (evento zero) por
-cada um dos dois métodos, na unidade indicada. Quanto mais próximos os
-dois valores, menos o resultado daquele indicador depende da escolha do
-estimador.}
+\comofeito{cada linha é um indicador e as duas colunas de número trazem o
+efeito estimado no ano zero, o próprio ano da conversão, por cada um dos
+dois métodos, na unidade indicada. \textbf{Método clássico} é o estudo de
+eventos com efeitos fixos de dois sentidos (TWFE) da
+Seção~\ref{sec:efeitogestao}; \textbf{método rigoroso} é o estimador de
+Callaway e Sant'Anna, que compara cada coorte de conversão apenas com
+hospitais nunca convertidos. \textbf{Divergência} é a distância entre os
+dois em módulo: quanto menor, menos o resultado daquele indicador depende
+da escolha do estimador. ``Log pontos'' é a unidade em que o modelo
+trabalha nos indicadores de escala; para efeitos pequenos, 0,145 em log
+pontos equivale a cerca de 14\% de variação.}
 
 \begin{figure}[H]
 \centering
-\subfig{fig_est_07_cs_twfe_mort.png}{Mortalidade geral, em pontos
-percentuais}
+\subfig{fig_est_07_cs_twfe_mort.png}{Mortalidade geral, na escala da própria
+taxa, que é medida em \%}
 \subfig{fig_est_07_cs_twfe_tmp.png}{Tempo de permanência, em log pontos}
 \caption{Estudo de eventos estimado pelo método clássico (TWFE, com
 intervalo de confiança) e por Callaway e Sant'Anna, que compara cada
@@ -112,7 +116,8 @@ coorte de conversão só com hospitais nunca convertidos.}
 
 \comofeito{estudo de eventos com \textbf{dois estimadores sobrepostos}. O
 eixo horizontal traz os anos desde a conversão e o vertical, o efeito
-estimado (mortalidade em pontos percentuais; TMP em log pontos). Os
+estimado (mortalidade na escala da própria taxa, que é medida em \%;
+TMP em log pontos). Os
 círculos escuros, com intervalo de confiança, são o método clássico
 (TWFE) e os quadrados verdes são o estimador de Callaway e Sant'Anna, que
 compara cada coorte de conversão apenas com hospitais que nunca mudaram
@@ -128,8 +133,8 @@ seu gêmeo depois dela. A Figura~\ref{fig:sintetico} traz o resultado
 para a mortalidade, e ele pede duas honestidades. A primeira:
 \textbf{em Sorocaba não há descolamento}, o gêmeo também cai depois
 de 2019 (confirmando que parte da queda era retorno natural ao
-patamar) e o hospital real fica, em média, \textbf{0,54 ponto
-percentual abaixo do gêmeo}, lacuna que os placebos produzem com
+patamar) e o hospital real fica, em média, \textbf{0,54 abaixo do gêmeo
+na escala da mortalidade, que é medida em \%}, lacuna que os placebos produzem com
 facilidade (p igual a 0,67). A segunda é de robustez, pelo mesmo
 princípio da variante sem conversores da Seção~\ref{sec:fase2}: o
 resultado é sensível a quem entra no pool de doadores. Quando os 25
@@ -212,10 +217,10 @@ produzem lacuna igual ou maior quando submetidos ao mesmo exercício.}
 \toprule
 Hospital & Indicador & Lacuna pós & RMSPE pré & $p$ placebo & Doadores \\
 \midrule
-Sorocaba & Mortalidade (p.p.)        & $-0{,}54$   & 0,00   & 0,67 & 283 \\
+Sorocaba & Mortalidade (\%)         & $-0{,}54$   & 0,00   & 0,67 & 283 \\
 Sorocaba & Permanência (dias)        & $-0{,}24$   & 0,00   & 0,78 & 283 \\
 Sorocaba & Faturamento real (R\$)    & $-56{,}38$  & 0,00   & 0,75 & 283 \\
-Pérola   & Mortalidade (p.p.)        & $-1{,}06$   & 0,29   & 0,32 & 283 \\
+Pérola   & Mortalidade (\%)         & $-1{,}06$   & 0,29   & 0,32 & 283 \\
 Pérola   & Permanência (dias)        & $-0{,}13$   & 0,00   & 0,75 & 283 \\
 Pérola   & Faturamento real (R\$)    & $-353{,}92$ & 0,00   & 0,25 & 283 \\
 \bottomrule
@@ -277,7 +282,7 @@ sintético, construído só com hospitais nunca convertidos.}
 \end{figure}
 
 \comofeito{controle sintético. O eixo horizontal é o ano e o vertical, a
-mortalidade geral (em pontos percentuais). A linha preta é o hospital
+mortalidade geral, medida em \%. A linha preta é o hospital
 real; a azul tracejada é o \textbf{gêmeo sintético}, uma combinação
 ponderada de hospitais que nunca converteram, montada para reproduzir a
 trajetória do hospital \emph{antes} da linha vertical (a conversão).

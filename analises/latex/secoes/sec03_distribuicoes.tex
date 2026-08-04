@@ -36,17 +36,19 @@ Apêndice~\ref{ap:diagnosticos}.
 
 A fração de alta complexidade também é uma proporção, mas com uma
 particularidade dominante: \textbf{um terço das observações vale
-exatamente zero} (hospitais que não realizam alta complexidade) e uma
-pequena parcela vale exatamente um (hospitais que só realizam alta
-complexidade). Esses dois acúmulos nas pontas exigem um tratamento
-estatístico próprio, descrito no Apêndice~\ref{ap:diagnosticos}. Para a
-gestão, o que importa é que \textbf{os zeros não são aleatórios}
-(Figura~\ref{fig:zeros}): a proporção de hospitais sem alta complexidade
-cai de 80,1\% na faixa 2 de complexidade para zero na faixa 6, e de
-37,5\% nos Filantrópicos para 10,7\% nas OSS. Ou seja, saber a
-complexidade, o porte e a categoria do hospital já diz muito sobre a
-chance de ele estar no grupo do zero.
-
+exatamente zero} --- hospitais-ano em que não houve nenhuma internação de
+alta complexidade --- e uma pequena parcela vale exatamente um, os
+hospitais-ano em que toda a produção foi de alta complexidade. Esses dois
+acúmulos nas pontas exigem um tratamento estatístico próprio, descrito no
+Apêndice~\ref{ap:diagnosticos}. Para a gestão, o que importa é que
+\textbf{os zeros não são aleatórios} (Figura~\ref{fig:zeros}): a proporção
+de hospitais-ano sem alta complexidade cai de 80,1\% na faixa 2 de
+complexidade para zero na faixa 6, e de 37,5\% nos Filantrópicos para
+10,7\% nas OSS. Ou seja, saber a complexidade, o porte e a categoria do
+hospital já diz muito sobre a chance de ele estar no grupo do zero. Os 35
+hospitais que \emph{nunca} saem dele, em nenhum dos onze anos, estão
+nomeados no Apêndice~\ref{ap:listaalta}.
+\newpage
 \comoler{cada barra é a proporção de hospitais-ano daquele grupo que
 não realizou nenhuma internação de alta complexidade. A queda das
 barras da esquerda para a direita no painel (b) mostra que o zero é
@@ -85,13 +87,12 @@ denominador frágil da Seção~\ref{sec:qualidade}, regra usada nos
 modelos da fase de estimação; e \textbf{2.482} são as observações com
 UTI ativa depois de retiradas essas duas frágeis. Cada conta foi
 conferida no painel.}, e a leitura prática que interessa à gestão é uma
-só: \textbf{os dois indicadores devem ser analisados em escala
-logarítmica}, e não na escala linear. Na escala linear, um punhado de
-hospitais muito caros ou de permanência muito longa comprime todos os
-demais num bloco só, e a média deixa de descrever o hospital típico. Na
-escala logarítmica cada indicador vira uma distribuição bem comportada,
-e é assim que eles entram em todos os modelos deste documento. A
-comparação formal entre as famílias de distribuição candidatas está no
+só: nos dois, \textbf{um punhado de hospitais muito caros ou de
+permanência muito longa puxa a média para cima} e a afasta do hospital
+típico. É por isso que este documento reporta a \textbf{mediana} sempre
+que descreve o nível de um grupo, e a média só ao lado dela, quando a
+distância entre as duas é ela mesma a informação. O tratamento que os dois
+indicadores exigem nos modelos está no
 Apêndice~\ref{ap:diagnosticos} (Tabela~\ref{tab:familias}).
 
 

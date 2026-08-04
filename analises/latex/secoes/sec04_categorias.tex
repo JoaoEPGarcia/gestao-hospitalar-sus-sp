@@ -10,7 +10,8 @@ Figuras~\ref{fig:composicao} e seguintes, cada hospital recebe
 \textbf{atribuição única pela categoria em que passou a maior parte do
 período} (os quatro conversores tardios como Direta; Sorocaba, com sete
 anos como OSS, como OSS). A
-Tabela~\ref{tab:categorias} traz as medianas de cada grupo e as
+Tabela~\ref{tab:categorias} traz a mediana e a média de cada grupo, a
+Tabela~\ref{tab:agregado} traz o agregado de cada rede e as
 Figuras~\ref{fig:violA} a~\ref{fig:violC} mostram a distribuição
 completa.
 
@@ -79,47 +80,242 @@ importa para quem for interpretar a capacidade instalada da rede.
 
 \begin{table}[H]
 \centering
-\caption{Medianas por categoria de gestão, período completo
-(mortalidade em proporção; ocupações em percentual; faturamento real,
-deflacionado pelo IPCA para R\$ de dez/2025, conforme a regra da
-Seção~\ref{sec:tendencia}).}
+\caption{Mediana e média por categoria de gestão, período completo
+(mortalidade e alta complexidade em proporção; ocupações em percentual;
+faturamento real, deflacionado pelo IPCA para R\$ de dez/2025, conforme a
+regra da Seção~\ref{sec:tendencia}). A \textbf{mediana} descreve o hospital
+típico da rede; a \textbf{média} descreve a rede. Onde as duas se afastam
+muito, como na fração de alta complexidade, a distância entre elas é
+informação de gestão, e não ruído de cálculo: ela mede o quanto a rede
+depende de poucos hospitais.}
 \label{tab:categorias}
 \small
-% sete colunas não cabem na mancha com o espaçamento padrão de 6pt
-\setlength{\tabcolsep}{4pt}
-\begin{tabular}{lrrrrrr}
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{llrrrrrr}
 \toprule
-Categoria & Mortalidade & TMP & Faturamento real & Alta complex. &
-Ocup.\ int.\ (\%) & Ocup.\ UTI (\%) \\
+ & & & TMP & Faturam.\ real & Alta & Ocup.\ int. & Ocup.\ UTI \\
+Categoria & & Mortalidade & (dias) & (R\$) & complex. & (\%) & (\%) \\
 \midrule
-Direta            & 0,0584 & 6,01 & 1.366,65  & 0,0213 & 64,1 & 61,3 \\
-OSS               & 0,0494 & 4,74 & 1.438,03  & 0,0242 & 92,6 & 76,1 \\
-Público Municipal & 0,0574 & 4,82 & 1.292,71  & 0,0010 & 86,9 & 73,9 \\
-Filantrópico      & 0,0565 & 3,98 & 1.303,22  & 0,0018 & 65,5 & \textbf{80,2} \\
-Privado           & 0,0256 & 4,24 & 16.262,04 & 0,9836 & 40,5 & 4,8  \\
+Direta            & mediana & 0,0584 & 6,01 & 1.367 & 0,0213 & 64,1 & 61,3 \\
+                  & média   & 0,0579 & 6,25 & 1.677 & 0,0893 & 65,2 & 61,6 \\
+\addlinespace
+OSS               & mediana & 0,0494 & 4,74 & 1.438 & 0,0242 & \textbf{92,6} & 76,1 \\
+                  & média   & 0,0492 & 4,80 & 1.619 & 0,0672 & \textbf{87,0} & 73,8 \\
+\addlinespace
+Público Municipal & mediana & 0,0574 & 4,82 & 1.293 & 0,0010 & 86,9 & 73,9 \\
+                  & média   & 0,0552 & 4,96 & 1.387 & 0,0216 & 82,4 & 77,5 \\
+\addlinespace
+Filantrópico      & mediana & 0,0565 & 3,98 & 1.303 & 0,0018 & 65,5 & \textbf{80,2} \\
+                  & média   & 0,0564 & 4,29 & 1.825 & 0,0831 & 65,2 & \textbf{80,9} \\
+\addlinespace
+Privado           & mediana & 0,0256 & 4,24 & 16.262 & 0,9836 & 40,5 & 4,8 \\
+                  & média   & 0,0315 & 4,48 & 14.366 & 0,6607 & 48,1 & 10,2 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\comofeito{cada linha é uma categoria de gestão e cada coluna traz a
-\textbf{mediana} daquele indicador entre todas as observações
-(hospital-ano) da categoria, no período completo. Cada observação hospital-ano
-entra na categoria vigente naquele ano; os cinco conversores contribuem
-para as duas categorias, como nas contagens por período do texto.
-Mortalidade e alta complexidade estão em proporção; as ocupações, em
-percentual; o faturamento, em valores reais deflacionados pelo IPCA
-para R\$ de dez/2025.}
+\comofeito{cada categoria ocupa duas linhas, a \textbf{mediana} e a
+\textbf{média} de cada indicador entre todas as observações (hospital-ano)
+da categoria, no período completo. Cada observação hospital-ano entra na
+categoria vigente naquele ano; os cinco conversores contribuem para as duas
+categorias, como nas contagens por período do texto. Mortalidade e alta
+complexidade estão em proporção; as ocupações, em percentual; o
+faturamento, em valores reais deflacionados pelo IPCA para R\$ de dez/2025.
+Tabela-fonte: \texttt{tab\_ae\_por\_categoria.csv}.}
+
+\subsection*{Onde a mediana e a média concordam, e onde elas se separam}
+
+Ter as duas medidas lado a lado responde uma pergunta que a mediana sozinha
+não responde: \textbf{o hospital típico desta rede representa a rede, ou a
+rede é a soma de hospitais muito diferentes entre si?} Onde as duas quase
+coincidem, o hospital do meio da fila é um retrato fiel do grupo. Onde se
+afastam, a rede depende de poucos hospitais, e citar só a mediana esconde
+isso. A Tabela~\ref{tab:razaomediamediana} mede essa distância nas cinco
+redes.
+
+\begin{table}[H]
+\centering
+\caption{Quanto a média se afasta da mediana em cada rede, indicador a
+indicador. O número é a média dividida pela mediana: \textbf{1,00 significa
+que as duas coincidem} e o hospital típico descreve a rede; acima de 1, a
+rede é puxada para cima por poucos hospitais; abaixo de 1, por poucos
+hospitais de valor baixo. O Privado entra só como registro, com 3
+hospitais.}
+\label{tab:razaomediamediana}
+\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lrrrrrr}
+\toprule
+Categoria & Mortalidade & TMP & Faturamento & Alta complex.\ &
+Ocup.\ int.\ & Ocup.\ UTI \\
+\midrule
+Direta            & 0,99 & 1,04 & 1,23 & 4,19  & 1,02 & 1,00 \\
+OSS               & 1,00 & 1,01 & 1,13 & \textbf{2,78}  & 0,94 & 0,97 \\
+Público Municipal & 0,96 & 1,03 & 1,07 & 21,88 & 0,95 & 1,05 \\
+Filantrópico      & 1,00 & 1,08 & \textbf{1,40} & \textbf{45,94} & 0,99 & 1,01 \\
+Privado           & 1,23 & 1,06 & 0,88 & 0,67  & 1,19 & 2,11 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\comofeito{cada célula é a média do indicador naquela categoria dividida
+pela mediana do mesmo indicador na mesma categoria, ambas lidas da
+Tabela~\ref{tab:categorias}. Valor 1,00 indica que as duas medidas de
+centro coincidem; quanto mais longe de 1, mais assimétrica é a distribuição
+daquele indicador dentro daquela rede.}
+
+\textbf{Em quatro dos seis indicadores as duas medidas praticamente
+coincidem em todas as redes.} Mortalidade, tempo de permanência e as duas
+taxas de ocupação ficam entre 0,94 e 1,08 nas quatro redes públicas e
+filantrópicas. Isso é uma boa notícia de leitura: nesses quatro
+indicadores, \textbf{a mediana da Tabela~\ref{tab:categorias} pode ser
+citada sozinha}, porque não há hospital excepcional distorcendo o retrato.
+
+\textbf{Os dois indicadores em que elas se separam são o faturamento e a
+alta complexidade, e a ordem em que se separam é sempre a mesma.} A
+distância entre média e mediana mede o quanto a rede é desigual por dentro,
+e o ordenamento é idêntico nos dois casos: as OSS são a rede mais uniforme,
+o Filantrópico a mais desigual, com Direta e Município no meio. No
+faturamento, a média fica 7,3\% acima da mediana no Público Municipal,
+12,6\% nas OSS, 22,7\% na Direta e \textbf{40,0\% no Filantrópico}. Na alta
+complexidade, a razão vai de 2,78 nas OSS a 45,94 no Filantrópico.
+
+\textbf{A explicação é uma só, e é estrutural: a amplitude de porte de cada
+rede.} Medida pela razão entre o maior e o menor hospital em leitos SUS, as
+OSS vão de 47 a 394 leitos (razão de 8), o Público Municipal de 36 a 318
+(razão de 9), a Direta de 46 a 523 (razão de 11) e o Filantrópico de
+\textbf{8 a 1.247 leitos (razão de 156)}. O Filantrópico é a única rede que
+põe, na mesma linha de tabela, um hospital de 8 leitos e um de 1.247. Não é
+defeito de medida: é o que a categoria é. Mas significa que \textbf{nenhum
+número único descreve a rede filantrópica}, e é por isso que ela precisa das
+três leituras da subseção seguinte.
+
+\textbf{Um achado de gestão que só aparece com as duas medidas juntas: a
+rede OSS é a mais uniforme do painel.} Medindo a dispersão interna de cada
+rede pelo intervalo entre o primeiro e o terceiro quartil, dividido pela
+mediana, as OSS ficam em primeiro lugar em três dos seis indicadores (tempo
+de permanência, alta complexidade e ocupação de internação) e em segundo em
+outros dois, com a melhor posição média entre as quatro redes. Traduzido
+para a decisão: o desempenho mais alto das OSS \textbf{não vem de dois ou
+três hospitais de vitrine puxando a média}. Vem de uma rede em que os
+hospitais se parecem entre si, e essa uniformidade é, em contrato de
+gestão, um resultado tão relevante quanto o nível.
+
+\textbf{E há um caso em que a média está abaixo da mediana, com
+consequência prática.} Na ocupação de internação, a média das OSS (87,0)
+fica \textbf{5,6 pontos abaixo} da mediana (92,6), a maior queda das quatro
+redes. O motivo está identificado: \textbf{46 hospitais-ano abaixo de 60\%
+de ocupação, concentrados em 7 dos 37 hospitais} e espalhados por todos os
+onze anos, o que descarta efeito de pandemia. Sem esses sete, a mediana das
+OSS sobe para 95,9\% e a média para 93,8\%. A consequência é direta:
+\textbf{usar a média em vez da mediana penaliza a rede OSS mais do que
+qualquer outra}, justamente no indicador que sustenta o principal achado do
+documento. Os dois números estão publicados lado a lado para que essa
+escolha seja visível em vez de silenciosa.
+
+\subsection*{Por que a alta complexidade do Filantrópico parece baixa, e não é}
+
+Lida sozinha, a coluna da mediana sugere que o Filantrópico quase não faz
+alta complexidade: 0,0018, o segundo menor número da tabela. A leitura é
+falsa, e a própria tabela mostra por quê. A média da categoria é 0,0831,
+\textbf{quase 46 vezes a sua própria mediana} --- a maior distância entre as
+duas medidas em toda a tabela, contra 4,2 vezes na administração Direta e
+2,8 vezes nas OSS. As duas medidas não se contradizem: elas respondem
+perguntas diferentes, e é justamente o tamanho do vão entre elas que
+descreve esta rede.
+
+A mediana é o hospital do meio da fila de \textbf{171 hospitais}, e essa
+fila é a mais desigual do painel. \textbf{37\% dos hospitais-ano
+filantrópicos não registram nenhuma internação de alta complexidade}, e
+esse contingente de Santas Casas pequenas empurra o meio da fila para
+perto de zero. Basta separar o grupo em dois para o retrato mudar: entre os
+\textbf{117 hospitais filantrópicos que têm UTI SUS}, a mediana de alta
+complexidade é de 4,0\% e a média de 11,7\%; entre os \textbf{54 que não
+têm}, as duas são praticamente zero. E na faixa 6 de complexidade, a mais
+alta, os oito hospitais filantrópicos têm mediana de 20,7\%.
+
+\textbf{O que a rede filantrópica faz, medido em produção e não em
+hospital típico, é o oposto do que a mediana sugere.} A
+Tabela~\ref{tab:agregado} soma o numerador e o denominador de cada rede,
+que é como se mede o desempenho de uma rede e não de um hospital: nela o
+Filantrópico aparece com \textbf{14,0\% das suas internações em alta
+complexidade}, a maior proporção das quatro redes, à frente da Direta
+(10,3\%), das OSS (7,4\%) e do Público Municipal (2,1\%). Em volume, a
+distância é ainda maior: \textbf{71\% de toda a alta complexidade do painel
+sai de hospitais filantrópicos}, cerca de 148 mil internações por ano. Eles
+também detêm \textbf{51,9\% dos leitos de UTI SUS} do painel e respondem
+por \textbf{54,7\% das diárias de UTI}. Não há contradição alguma entre ter
+a UTI mais cheia da rede e ter mediana de alta complexidade perto de zero:
+os hospitais que enchem a UTI e os que puxam a mediana para baixo
+\textbf{não são os mesmos hospitais}.
+
+\begin{table}[H]
+\centering
+\caption{O agregado de cada rede: soma dos numeradores dividida pela soma
+dos denominadores, e não média das taxas dos hospitais. É a leitura em que
+cada hospital pesa pelo que produz, e não um voto cada, e portanto a que
+responde ``quanto desta rede é alta complexidade''. As três últimas colunas
+trazem a fatia da rede no total do painel.}
+\label{tab:agregado}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrrrr}
+\toprule
+& \multicolumn{4}{c}{Taxa da rede} & \multicolumn{3}{c}{Fatia do painel (\%)} \\
+\cmidrule(lr){2-5}\cmidrule(lr){6-8}
+Categoria & Mortal. & TMP & Alta complex. & Ocup.\ UTI (\%) &
+Saídas & Alta complex. & Leitos UTI \\
+\midrule
+Direta            & 0,0638 & 5,95 & 0,1026 & 63,8 & 9,1 & 9,4 & 11,3 \\
+OSS               & 0,0520 & 4,95 & 0,0737 & 74,8 & 19,6 & 14,5 & 16,2 \\
+Público Municipal & 0,0534 & 5,08 & 0,0213 & 73,2 & 20,9 & 4,5 & 19,9 \\
+Filantrópico      & 0,0566 & 4,82 & \textbf{0,1403} & 79,1 & \textbf{50,2} & \textbf{71,0} & \textbf{51,9} \\
+Privado           & 0,0470 & 4,38 & 0,3206 & 11,9 & 0,2 & 0,5 & 0,7 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\comofeito{cada taxa é calculada somando o numerador e o denominador de
+todos os hospitais-ano da categoria, na base sem COVID, e dividindo um pelo
+outro. A mortalidade é o total de óbitos sobre o total de internações
+encerradas; o TMP, o total de dias sobre o total de internações; a alta
+complexidade, o total de internações de alta complexidade sobre o total de
+internações; a ocupação de UTI, o total de diárias sobre o total de
+leito-dia. As colunas de fatia dividem o total da categoria pelo total do
+painel. Tabela-fonte: \texttt{tab\_ae\_por\_categoria\_agregado.csv}.}
+
+\textbf{Como usar as duas tabelas.} Para perguntas sobre o hospital (``o
+hospital típico desta rede faz alta complexidade?''), use a mediana. Para
+perguntas sobre a rede (``de onde sai a alta complexidade do estado?''),
+use o agregado. Trocar as duas produz as duas conclusões erradas de sempre:
+tomar a mediana por retrato da rede subestima o Filantrópico em quase
+oitenta vezes, e tomar o agregado por retrato do hospital sugere que a
+Santa Casa de sessenta leitos faz alta complexidade, o que em geral não é
+verdade.
+\newpage
+\textbf{Uma nota sobre o que os gráficos a seguir mostram, e o que não
+mostram.} \textbf{O grupo Privado não aparece nos violinos.} Ele tem
+\textbf{3 hospitais}, e um violino é o desenho de como um grupo se
+distribui: com três hospitais esse desenho não descreve grupo nenhum, e
+posto ao lado de redes de dezenas a centenas de hospitais ele convida
+exatamente à comparação que não se pode fazer. Havia ainda um efeito
+prático, e ele era o pior: o Privado \emph{esticava o eixo}. No
+faturamento a sua mediana é de R\$~16.262 contra R\$~1.293 a R\$~1.438 das
+outras quatro redes, e as silhuetas que de fato interessam ficavam
+achatadas contra a base do gráfico. Retirá-lo devolve a escala às quatro
+redes comparáveis. \textbf{O Privado não sai da análise}: continua no
+painel, continua nas tabelas por categoria desta seção e continua entrando
+em todos os modelos, sempre sem interpretação própria.
 
 \comoler{a silhueta engorda onde há mais hospitais; as linhas internas
 marcam os quartis e o número é a mediana. Na mortalidade, os violinos
-das quatro categorias públicas e filantrópicas ocupam alturas
-parecidas; no TMP, o violino da Direta está visivelmente deslocado para
-cima.}
+das quatro categorias ocupam alturas parecidas; no TMP, o violino da
+Direta está visivelmente deslocado para cima.}
 
 \begin{figure}[H]
 \centering
 \subfig{fig_ae_04_violino_mort_all.png}{Mortalidade geral}
-\subfig{fig_ae_04_violino_tmp.png}{TMP (escala linear, teto de 35 dias)}
+\subfig{fig_ae_04_violino_tmp.png}{TMP (escala linear, janela de 16 dias)}
 \caption{Distribuição da mortalidade e do TMP por categoria de gestão.
 Cada violino é a silhueta da distribuição do grupo; o número impresso é
 a mediana. Leia a \emph{largura} assim: onde o violino é mais gordo,
@@ -134,18 +330,27 @@ cada categoria, veja a Figura~\ref{fig:composicao}.}
 
 \comofeito{gráfico de violino, um por categoria de gestão. O eixo
 horizontal traz as cinco categorias institucionais e o vertical, o valor
-do indicador (mortalidade em proporção; TMP em dias, em escala linear
-com teto de 35 dias). Cada violino é a silhueta da distribuição
-daquela categoria (engorda onde há mais hospitais), as linhas internas
-marcam os quartis e o número impresso é a mediana do grupo. Cada
-observação hospital-ano entra na categoria vigente naquele ano, como na
-Tabela~\ref{tab:categorias}.}
+do indicador (mortalidade em proporção; TMP em dias, em escala linear).
+Cada violino é a silhueta da distribuição daquela categoria (engorda onde
+há mais hospitais), as linhas internas marcam os quartis e o número
+impresso é a mediana do grupo. Cada observação hospital-ano entra na
+categoria vigente naquele ano, como na Tabela~\ref{tab:categorias}.}
 
-\comoler{no faturamento, os quatro grupos públicos e filantrópicos são
-parecidos e o Privado flutua sozinho lá em cima, uma ordem de grandeza
-acima. Nos Filantrópicos, os violinos mais compridos refletem a enorme
-diversidade interna do grupo, das pequenas Santas Casas aos grandes
-hospitais de referência.}
+\comofeito{\textbf{sobre a janela do eixo vertical.} Quatro destes
+gráficos mostram apenas um trecho do eixo, e dizem qual no canto superior
+direito: a mortalidade vai até 0,16, o TMP até 16 dias, a ocupação de
+internação até 160\% e a de UTI até 200\%. O motivo é de leitura, não de
+cálculo: o máximo da ocupação de UTI é 875\%, e um eixo esticado até lá
+para acomodar uma única observação comprimia os violinos no primeiro
+sexto da altura, tornando impossível comparar as categorias, que é a razão
+de ser da figura. \textbf{Nenhuma observação foi retirada do cálculo}: a
+silhueta é estimada sobre a série inteira, e a nota no canto declara
+quantas observações ficaram acima da janela e qual é o máximo real.}
+
+\comoler{no faturamento, as quatro redes são notavelmente parecidas: as
+medianas cabem todas entre R\$~1.293 e R\$~1.438. Nos Filantrópicos, os
+violinos mais compridos refletem a enorme diversidade interna do grupo,
+das pequenas Santas Casas aos grandes hospitais de referência.}
 
 \begin{figure}[H]
 \centering
@@ -162,12 +367,12 @@ da fração de alta complexidade por categoria de gestão.}
 real por saída (em R\$ de dez/2025, escala logarítmica) e para a fração
 de alta complexidade (proporção entre 0 e 1), com as categorias no eixo
 horizontal e o indicador no vertical.}
-
+\newpage
 \comoler{na ocupação de internação, veja como os violinos de OSS e
 Municipal estão inteiros mais altos que os de Direta e Filantrópico: é
-a diferença de regime operacional em uma imagem. Na UTI, os corpos dos
-violinos são mais parecidos, mas as caudas de zeros (hospitais sem UTI)
-puxam as silhuetas para baixo.}
+a diferença de regime operacional em uma imagem. Na UTI, os quatro corpos
+são mais parecidos entre si, e o do Filantrópico é o mais alto: entre os
+hospitais que têm UTI, a dele é a mais cheia da rede.}
 
 \begin{figure}[H]
 \centering
@@ -180,8 +385,56 @@ internação}
 
 \comofeito{mesma construção dos violinos anteriores, para as duas taxas
 de ocupação (internação e UTI) em escala percentual no eixo vertical,
-por categoria de gestão no eixo horizontal.}
+por categoria de gestão no eixo horizontal, com a mesma janela de leitura
+declarada acima. Na UTI, o violino de cada categoria é desenhado apenas
+sobre os seus hospitais-ano \textbf{com leito de UTI SUS cadastrado}:
+hospital sem UTI não entra como ocupação zero, sai da conta.}
 
+\newpage
+\subsection*{Do que cada rede é feita}
+
+Antes de comparar desempenho, vale perguntar com que \emph{material} cada
+rede opera. Quando alguém diz ``OSS'', está falando de que tipo de
+hospital? A Figura~\ref{fig:composicaoestrutural} responde combinando as
+duas capacidades que mais separam um hospital de outro: ter UTI do SUS e
+fazer alta complexidade. As duas andam juntas na prática --- a UTI é a
+retaguarda do procedimento complexo ---, e é a combinação, mais do que
+cada uma isolada, que descreve o hospital.
+
+\textbf{A resposta é que as redes não operam com o mesmo material.} Nas
+OSS, \textbf{87\% dos hospitais-ano têm as duas coisas}, contra 78\% na
+administração Direta, 68\% no Público Municipal e \textbf{57\% no
+Filantrópico}. E na outra ponta: quase um quarto dos hospitais-ano
+filantrópicos (24\%) não tem nem UTI nem alta complexidade, contra 4\% nas
+OSS e na Direta. Isso não desqualifica comparação nenhuma, mas explica por
+que ela precisa ser feita dentro de grupos de estrutura parecida, que é o
+que a Seção~\ref{sec:segmentacao} faz.
+
+\comoler{cada barra é uma rede e soma 100\%. Os quatro pedaços são
+mutuamente exclusivos: da esquerda para a direita, quem tem UTI e faz alta
+complexidade, quem tem UTI mas não faz, quem faz sem ter UTI, e quem não
+tem nenhuma das duas. Quanto mais escura a barra à esquerda, mais a rede é
+feita de hospital de referência; quanto maior o pedaço claro à direita,
+mais ela é feita de hospital que vive só de produção de não alta
+complexidade.}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{fig_ae_04b_composicao_estrutural.png}
+\caption{Composição estrutural de cada rede: o que os seus hospitais-ano
+oferecem, em UTI do SUS e em alta complexidade, de 2015 a 2025.}
+\label{fig:composicaoestrutural}
+\end{figure}
+
+\comofeito{barras horizontais empilhadas, uma por categoria de gestão. A
+unidade é o \textbf{hospital-ano}, e não o hospital: um hospital que
+habilita UTI no meio do período conta nos dois grupos, cada ano no seu, o
+que é o retrato fiel de uma rede que se move. Um hospital-ano ``tem UTI''
+se registra ao menos um leito de UTI SUS naquele ano, e ``faz alta
+complexidade'' se registra ao menos uma internação de alta complexidade.
+O $n$ à direita de cada barra é o total de hospitais-ano da rede.}
+
+\newpage
 Uma pergunta indispensável antes de comparar categorias:
 \textbf{elas têm hospitais parecidos o bastante para a comparação ser
 justa?} A Figura~\ref{fig:composicao} responde contando os hospitais de
@@ -203,9 +456,9 @@ como comparar. A mancha escura na linha dos Filantrópicos, faixas 2 e
 
 \begin{figure}[H]
 \centering
-\subfig{fig_ae_13_composicao_categoria_faixa.png}{Categoria por faixa
+\subfig[0.50\textwidth]{fig_ae_13_composicao_categoria_faixa.png}{Categoria por faixa
 de complexidade}
-\subfig{fig_ae_13_composicao_categoria_porte.png}{Categoria por porte}
+\subfig[0.50\textwidth]{fig_ae_13_composicao_categoria_porte.png}{Categoria por porte}
 \caption{Quantos hospitais cada categoria tem em cada faixa de
 complexidade e em cada porte (contagem de CNES; azul mais escuro
 indica mais hospitais). Aqui cada hospital conta uma única vez, na
@@ -214,7 +467,6 @@ somam 289, e não a soma por período do texto.}
 \label{fig:composicao}
 \end{figure}
 
-\newpage
 \comofeito{mapa de calor (contagem). No painel (a), o eixo horizontal
 traz as faixas Barcelona de complexidade e, no (b), os portes; o eixo
 vertical traz as categorias de gestão. O número em cada célula é a

@@ -105,9 +105,9 @@ covariáveis de complexidade Barcelona e perfil, e os resíduos
 quantílicos reunidos adiante (r igual a 0,976) comprovam que a Beta
 única condicional basta.
 
-\comoler{no painel da esquerda, compare as duas curvas com as barras: a
+\comoler{no painel de cima, compare as duas curvas com as barras: a
 tracejada passa por cima do vale e erra os dois picos; a escura desenha
-os dois picos. No painel da direita, as curvas tracejadas coloridas são
+os dois picos. No painel de baixo, as curvas tracejadas coloridas são
 os dois grupos de hospitais (baixo óbito à esquerda, demais à direita)
 e a curva preta é a soma dos dois, praticamente idêntica ao histograma:
 a forma estranha da mortalidade é só a mistura de dois perfis de
@@ -118,9 +118,9 @@ hospital.}
 \subfig{fig_ae_12_mistura_mort_all.png}{Um molde só vs a soma de dois}
 \subfig{fig_ae_12_decomposicao_mort_all.png}{Os dois grupos reais de
 hospitais}
-\caption{Mortalidade geral: à esquerda, a curva cinza tracejada é o
+\caption{Mortalidade geral: no painel de cima, a curva cinza tracejada é o
 molde único (que erra o pico perto de zero) e a curva escura é a soma
-de dois moldes, que acompanha o histograma; à direita, a mesma soma
+de dois moldes, que acompanha o histograma; no de baixo, a mesma soma
 reconstruída a partir dos dois grupos reais de hospitais do painel. O
 eixo vertical destes dois painéis é a \textbf{contagem de
 hospitais-ano}; as curvas ajustadas foram reescaladas para a mesma
@@ -131,8 +131,8 @@ diretamente.}
 
 \comofeito{os dois painéis têm no eixo horizontal a mortalidade geral
 (proporção, entre 0 e 1) e no vertical a contagem das 3.179
-observações. À esquerda, sobre o histograma, foram desenhadas duas
-curvas ajustadas: uma Beta única e a soma de duas Betas. À direita, a
+observações. No painel de cima, sobre o histograma, foram desenhadas duas
+curvas ajustadas: uma Beta única e a soma de duas Betas. No de baixo, a
 soma de duas Betas foi reconstruída separando de fato os hospitais nos
 dois grupos observados no painel (baixo óbito estrutural e demais), pela
 mortalidade mediana de cada hospital.}
@@ -187,6 +187,72 @@ ajuste obtida do ajuste de máxima verossimilhança de cada molde (quanto
 menor, melhor); e \textbf{r do QQ} é a correlação entre os pontos do
 gráfico QQ e a reta ideal (quanto mais perto de 1, melhor). Em cada
 amostra os moldes aparecem ordenados do melhor para o pior AIC.}
+
+\subsection*{A escolha de família move mais o número do que os defeitos}
+
+% Bloco transferido da Seção 16 em 01/08/2026, a pedido de João: é
+% material puramente estatístico, sem informação de gestão, e no corpo do
+% texto interrompia a leitura de quem não vai auditar a especificação. A
+% Seção 16 guarda a conclusão em uma frase e remete a este apêndice; nada
+% foi perdido nem alterado no caminho.
+Entre todas as decisões de modelagem tomadas na segunda fase, a que mais
+desloca a estimativa da intensidade de UTI é a \textbf{família de
+distribuição}, mais do que qualquer das três decisões de especificação
+declaradas na Seção~\ref{sec:fase2}. Por isso as cinco especificações
+consideradas são reportadas juntas.
+
+\begin{table}[H]
+\centering
+\caption{Intensidade de uso da UTI, OSS contra administração Direta, sob
+cinco especificações. Efeito e intervalo em percentual.}
+\label{tab:familiasuti}
+\small
+\begin{tabular}{lrrrl}
+\toprule
+Especificação & $n$ & Efeito & IC 95\% & Zero \\
+\midrule
+\textbf{Duas partes, Gama (principal)} & 2.489 & $\mathbf{+30{,}4\%}$ & $[+5{,}7\%;\ +60{,}8\%]$ & exclui \\
+Gama, apenas os positivos              & 2.482 & $+30{,}4\%$ & $[+5{,}7\%;\ +60{,}8\%]$ & exclui \\
+Tweedie sem os zeros                   & 2.482 & $+27{,}0\%$ & $[+7{,}6\%;\ +49{,}8\%]$ & exclui \\
+Tweedie com os zeros                   & 2.489 & $+26{,}7\%$ & $[+6{,}7\%;\ +50{,}4\%]$ & exclui \\
+\textbf{Lognormal sem os zeros}        & 2.482 & $+25{,}9\%$ & $[-0{,}3\%;\ +59{,}0\%]$ & \textbf{cruza} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A amplitude entre as cinco é de \textbf{4,5 pontos}, de $+25{,}9\%$ a
+$+30{,}4\%$, menor que a
+largura do intervalo de confiança de qualquer uma delas. A direção é a mesma
+nas cinco, e \textbf{quatro excluem o zero}.
+
+\textbf{A quinta é a lognormal, e ela precisa ser nomeada}, porque
+``significativo em quatro de cinco'' sem dizer qual é a exceção não é
+robustez reportada. \textbf{E ela não discorda.} O ponto dela está a
+\textbf{0,0087} em pontos de logaritmo do Tweedie estimado sobre exatamente
+a mesma amostra, distância menor que a que separa quaisquer duas das
+outras famílias. O que muda é a \textbf{precisão}: o erro-padrão da
+lognormal é 41\% maior que o do Tweedie e 11\% maior que o da Gama.
+\textbf{Ela perde a significância por variância, não por deslocamento}, e
+por margem mínima: o limite inferior fica a três milésimos do zero.
+
+A razão é que a lognormal \textbf{estima outra quantidade}. As demais
+modelam a média condicional; a lognormal modela a mediana condicional. Sob
+assimetria à direita, que é a forma desta distribuição, o efeito sobre a
+mediana é sistematicamente mais atenuado e menos preciso que o efeito sobre
+a média. É \emph{estimar diferente}, não \emph{estimativa discordante}, e
+isso fortalece a leitura de robustez em vez de qualificá-la: a única
+especificação que não atinge significância é também a única que não está
+medindo a mesma coisa que as outras, e ainda assim entrega ponto
+equivalente.
+
+\comofeito{um alerta sobre a coluna de ajuste que não aparece nesta tabela:
+o critério de informação da lognormal (2.135) é numericamente muito menor
+que o das demais (entre 21.608 e 22.695), e \textbf{isso não significa
+ajuste melhor}. O da lognormal é calculado sobre o logaritmo da resposta e o
+das outras sobre a resposta, escalas diferentes. O critério é comparável
+\emph{dentro} de cada escala, nunca entre elas.}
+
+\subsection*{O molde da fração de alta complexidade}
 
 Para a fração de alta complexidade, a Figura~\ref{fig:betapct} mostra o
 ajuste Beta do miolo (os hospitais que realizam alguma alta

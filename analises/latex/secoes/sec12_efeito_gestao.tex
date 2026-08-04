@@ -15,9 +15,11 @@ afastou do próprio padrão em cada ano antes e depois da conversão.
 As Figuras~\ref{fig:eventomorttmp} e~\ref{fig:eventocustoocup} mostram
 os resultados para quatro indicadores. \textbf{Em termos puramente
 descritivos}, depois da conversão a
-\textbf{mortalidade cai 1,30 ponto percentual já no ano da mudança},
-aprofunda para 2,64 e 2,91 pontos nos dois anos seguintes e estabiliza
-em 2,23 pontos na janela de três ou mais anos; a leitura causal desses
+\textbf{mortalidade cai de 6,1\% para 4,8\% já no ano da mudança},
+chega a 3,5\% e 3,2\% nos dois anos seguintes e estabiliza em 3,9\% na
+janela de três ou mais anos. A taxa de partida é a mortalidade média dos
+cinco hospitais nos anos anteriores à conversão, \textbf{6,1\%}, e é sobre
+ela que cada deslocamento estimado foi aplicado. A leitura causal desses
 números depende do teste de tendências anteriores, examinado logo
 adiante e rejeitado justamente para a mortalidade. O \textbf{tempo de
 permanência} cai de forma crescente até 24,6\% na janela longa. O
@@ -88,9 +90,9 @@ percentual dividida por 100.}
 
 \begin{figure}[H]
 \centering
-\subfig{fig_est_01_evento_mort_all.png}{Mortalidade geral, em pontos
-percentuais}
-\subfig{fig_est_01_evento_tmp.png}{Tempo de permanência, em log pontos
+\subfig[0.72\textwidth]{fig_est_01_evento_mort_all.png}{Mortalidade geral, na escala da
+própria taxa, que é medida em \%}
+\subfig[0.72\textwidth]{fig_est_01_evento_tmp.png}{Tempo de permanência, em log pontos
 (um log ponto equivale, aproximadamente, a 1\% de variação)}
 \caption{Estudo de eventos da conversão para OSS: mortalidade geral e
 tempo de permanência, amostra completa.}
@@ -100,17 +102,17 @@ tempo de permanência, amostra completa.}
 \comofeito{estudo de eventos. O eixo horizontal traz os \textbf{anos
 desde a conversão para OSS} (valores negativos antes, positivos depois,
 com o ano $-1$ de referência) e o vertical, o \textbf{efeito estimado} do
-indicador em relação a esse ano de referência (mortalidade em pontos
-percentuais; TMP em log pontos, que equivalem, aproximadamente, à
-variação percentual dividida por 100). Cada ponto é o desvio médio dos
+indicador em relação a esse ano de referência (mortalidade na escala da
+própria taxa, que é medida em \%; TMP em log pontos, que equivalem,
+aproximadamente, à variação percentual dividida por 100). Cada ponto é o desvio médio dos
 conversores naquele ano em relação ao próprio padrão, controlando ano e
 hospital; a haste vertical é a margem de erro.}
 
 \begin{figure}[H]
 \centering
-\subfig{fig_est_01_evento_custo_real.png}{Faturamento real por saída, em log
+\subfig[0.75\textwidth]{fig_est_01_evento_custo_real.png}{Faturamento real por saída, em log
 pontos}
-\subfig{fig_est_01_evento_ocupacao_internacao_w.png}{Ocupação de
+\subfig[0.75\textwidth]{fig_est_01_evento_ocupacao_internacao_w.png}{Ocupação de
 internação, em log pontos}
 \caption{Estudo de eventos da conversão para OSS: faturamento real por saída
 e ocupação de internação, amostra completa.}
@@ -120,21 +122,22 @@ e ocupação de internação, amostra completa.}
 \comofeito{mesma construção da figura anterior (anos desde a conversão no
 eixo horizontal, efeito estimado no vertical), agora para o faturamento
 real por saída e a ocupação de internação, ambos em log pontos.}
-
+\newpage
 \comoler{mesma leitura das figuras anteriores. Nesta figura, nenhum ponto
 posterior à conversão se firma longe do zero: a mudança de gestão não
 alterou o perfil de complexidade da produção desses hospitais.}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.62\textwidth]{fig_est_01_evento_pct_alta_complex.png}
+\includegraphics[width=.92\textwidth]{fig_est_01_evento_pct_alta_complex.png}
 \caption{Estudo de eventos da conversão para OSS: fração de alta
-complexidade, em pontos percentuais, amostra completa.}
+complexidade: deslocamento da fração, que é medida em \%, amostra
+completa.}
 \label{fig:eventopctalta}
 \end{figure}
 
 \comofeito{mesma construção do estudo de eventos, para a fração de alta
-complexidade em pontos percentuais no eixo vertical, ao longo dos anos
+complexidade no eixo vertical, medida em \%, ao longo dos anos
 desde a conversão no horizontal.}
 
 Como exercício de robustez, o estudo foi refeito na \textbf{região de
@@ -143,23 +146,23 @@ Direta e OSS convivem em número suficiente. Sorocaba (faixa 5) e
 Presidente Prudente (faixa 2) saem dessa amostra, que fica com Pérola
 Byington, Taipas e Vila Penteado. A Figura~\ref{fig:eventosuporte}
 mostra o resultado para mortalidade e tempo de permanência: os efeitos
-posteriores ficam ainda maiores (mortalidade 2,05 pontos menor no ano
-da conversão, tempo de permanência 18,6\% menor), mas o teste dos anos
+posteriores ficam ainda maiores (mortalidade caindo de 7,7\% para 5,7\%
+no ano da conversão, tempo de permanência 18,6\% menor), mas o teste dos anos
 anteriores é rejeitado em todos os cinco indicadores, e com folga (p
 abaixo de 0,001 em todos, com estatística F entre 17,0 e 556,1), e a janela posterior se
 apoia em três hospitais, dois deles com um único ano observado após a
 mudança. Esses números confirmam a direção dos achados, sem
 constituir prova independente.
-
+\newpage
 \comoler{mesma leitura do estudo de eventos anterior, agora só com
 hospitais comparáveis entre si. Note que restam menos anos após a
 conversão: dos três conversores presentes, dois mudaram em 2025.}
 
 \begin{figure}[H]
 \centering
-\subfig{fig_est_02_evento_suporte_mort_all.png}{Mortalidade geral, em
-pontos percentuais}
-\subfig{fig_est_02_evento_suporte_tmp.png}{Tempo de permanência, em log
+\subfig[0.75\textwidth]{fig_est_02_evento_suporte_mort_all.png}{Mortalidade geral, na escala
+da própria taxa, que é medida em \%}
+\subfig[0.75\textwidth]{fig_est_02_evento_suporte_tmp.png}{Tempo de permanência, em log
 pontos}
 \caption{Estudo de eventos na região de suporte comum (faixas 3 e 4,
 portes médio e grande): mortalidade geral e tempo de permanência.}

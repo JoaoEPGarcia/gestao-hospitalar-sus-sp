@@ -82,6 +82,12 @@ Saídas
   analises/tabelas/tabSEG_05_antes_depois_segmentacao.csv
   analises/figuras_segmentacao/figSEG_01_boxplots_por_estrato.png
   analises/figuras_segmentacao/figSEG_02_series_por_estrato.png
+  analises/figuras_segmentacao/figSEG_01_box_<indicador>.png       (6 arquivos)
+  analises/figuras_segmentacao/figSEG_02_serie_<indicador>.png     (6 arquivos)
+
+As duas últimas famílias são os painéis das duas figuras acima, um por
+indicador, para que cada gráfico possa ocupar a largura inteira da página do
+relatório em vez de um sexto dela.
 """
 
 from __future__ import annotations
@@ -318,9 +324,18 @@ for ind in INDICADORES:
 
 # ---------------------------------------------------------------------------
 # figSEG_01 — boxplots por estrato × categoria
+#
+# As duas figuras deste bloco saem em DUAS VERSÕES (decisão de 01/08/2026): a
+# grade de seis painéis, que serve à leitura de conjunto, e um arquivo por
+# indicador, que é o que entra no relatório. O painel de seis, reduzido à
+# largura da mancha de uma folha A4, deixava rótulo de eixo e asterisco de
+# célula tarjada em corpo ilegível; separado, cada gráfico ocupa a página
+# inteira. O desenho de cada painel é o mesmo nos dois casos, porque é a
+# mesma função que o produz: nada diverge entre a versão de conjunto e a
+# individual.
 # ---------------------------------------------------------------------------
-fig, eixos = plt.subplots(2, 3, figsize=(17.5, 10.5))
-for ax, ind in zip(eixos.ravel(), INDICADORES):
+def _painel_boxplot(ax, ind, fonte_x=9.5):
+    """Desenha, num eixo, os boxplots de um indicador por estrato e categoria."""
     pos, dados, cores, rotulos_x, centros, marcados = [], [], [], [], [], []
     passo = len(cats) + 1.4
     for i, e in enumerate(ESTRATOS):
@@ -359,11 +374,17 @@ for ax, ind in zip(eixos.ravel(), INDICADORES):
     if ind in LOG_Y:
         ax.set_yscale("log")
     ax.set_xticks(centros)
-    ax.set_xticklabels(rotulos_x, fontsize=9.5)
+    ax.set_xticklabels(rotulos_x, fontsize=fonte_x)
     ax.set_title(ROT[ind], fontsize=11)
     ax.grid(axis="x", visible=False)
 
+
 maneiras = [plt.Rectangle((0, 0), 1, 1, facecolor=CORES_CAT[c]) for c in cats]
+PASTA_FIG.mkdir(parents=True, exist_ok=True)
+
+fig, eixos = plt.subplots(2, 3, figsize=(17.5, 10.5))
+for ax, ind in zip(eixos.ravel(), INDICADORES):
+    _painel_boxplot(ax, ind)
 fig.legend(maneiras, cats, ncol=len(cats), frameon=False, fontsize=10.5,
            loc="lower center", bbox_to_anchor=(.5, -.005))
 fig.suptitle("Indicadores por estrato estrutural e categoria de gestão\n"
@@ -371,18 +392,34 @@ fig.suptitle("Indicadores por estrato estrutural e categoria de gestão\n"
              f"{PISO_CNES} CNES; faturamento em escala logarítmica",
              fontsize=11.5)
 fig.tight_layout(rect=[0, .035, 1, .97])
-PASTA_FIG.mkdir(parents=True, exist_ok=True)
 fig.savefig(PASTA_FIG / "figSEG_01_boxplots_por_estrato.png", dpi=150,
             bbox_inches="tight", facecolor="white")
 plt.close(fig)
+
+for ind in INDICADORES:
+    fig, ax = plt.subplots(figsize=(9.2, 5.6))
+    _painel_boxplot(ax, ind, fonte_x=11)
+    ax.set_title(f"{ROT[ind]} por estrato estrutural e categoria de gestão\n"
+                 f"caixas sem outliers; * marca célula com menos de "
+                 f"{PISO_CNES} CNES"
+                 + ("; escala logarítmica" if ind in LOG_Y else ""),
+                 fontsize=12.5)
+    fig.legend(maneiras, cats, ncol=len(cats), frameon=False, fontsize=10.5,
+               loc="lower center", bbox_to_anchor=(.5, -.01))
+    fig.tight_layout(rect=[0, .06, 1, 1])
+    fig.savefig(PASTA_FIG / f"figSEG_01_box_{ind}.png", dpi=150,
+                bbox_inches="tight", facecolor="white")
+    plt.close(fig)
 
 
 # ---------------------------------------------------------------------------
 # figSEG_02 — séries temporais por estrato
 # ---------------------------------------------------------------------------
 anos = sorted(df["ano"].unique())
-fig, eixos = plt.subplots(2, 3, figsize=(17.5, 9.5))
-for ax, ind in zip(eixos.ravel(), INDICADORES):
+
+
+def _painel_serie(ax, ind):
+    """Desenha, num eixo, a mediana anual do indicador nos três estratos."""
     ax.axvspan(2020, 2021, color=COR_BANDA, zorder=0)
     for e in ESTRATOS:
         serie = (df[df["estrato"] == e].groupby("ano")[ind]
@@ -401,12 +438,28 @@ for ax, ind in zip(eixos.ravel(), INDICADORES):
     ax.set_xticks(anos[::2])
     ax.legend(frameon=False, fontsize=9)
 
+
+fig, eixos = plt.subplots(2, 3, figsize=(17.5, 9.5))
+for ax, ind in zip(eixos.ravel(), INDICADORES):
+    _painel_serie(ax, ind)
 fig.suptitle("Mediana anual por estrato estrutural, 2015–2025\n"
              "faixa cinza: 2020 e 2021", fontsize=11.5)
 fig.tight_layout(rect=[0, 0, 1, .955])
 fig.savefig(PASTA_FIG / "figSEG_02_series_por_estrato.png", dpi=150,
             bbox_inches="tight", facecolor="white")
 plt.close(fig)
+
+for ind in INDICADORES:
+    fig, ax = plt.subplots(figsize=(9.2, 5.4))
+    _painel_serie(ax, ind)
+    ax.set_title(f"{ROT[ind]}: mediana anual por estrato estrutural, "
+                 f"2015 a 2025\nfaixa cinza: 2020 e 2021", fontsize=12.5)
+    ax.set_xticks(anos)
+    ax.legend(frameon=False, fontsize=10.5)
+    fig.tight_layout()
+    fig.savefig(PASTA_FIG / f"figSEG_02_serie_{ind}.png", dpi=150,
+                bbox_inches="tight", facecolor="white")
+    plt.close(fig)
 
 
 print("\n" + "=" * 78)
@@ -417,3 +470,7 @@ for nome in ("tabelas/tabSEG_04_indicadores_por_estrato.csv",
              "figuras_segmentacao/figSEG_01_boxplots_por_estrato.png",
              "figuras_segmentacao/figSEG_02_series_por_estrato.png"):
     print(f"  analises/{nome}")
+print(f"  analises/figuras_segmentacao/figSEG_01_box_*.png "
+      f"({len(INDICADORES)} arquivos, um por indicador)")
+print(f"  analises/figuras_segmentacao/figSEG_02_serie_*.png "
+      f"({len(INDICADORES)} arquivos, um por indicador)")

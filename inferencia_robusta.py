@@ -447,6 +447,25 @@ def bloco_uti(painel):
                    "coef_oss": c1, "ep_cluster": e1,
                    "efeito_pct": 100 * (np.exp(c1) - 1), "r_qq": r_gama})
 
+    # A mesma Gama sem o biênio pandêmico. A Tabela tab:sempandemia da
+    # Seção 13 traz a UTI no log OLS, que é a escala do modelo principal;
+    # como a família adotada passou a ser a Gama, aquela linha era a única
+    # da seção fora da especificação canônica. Este ajuste dá ao par
+    # completo/sem-pandemia uma casa reproduzível na escala certa.
+    pos_sp = pos[~pos["ano"].isin([2020, 2021])].copy()
+    res_gsp = sm.GLM.from_formula(
+        f, data=pos_sp, family=sm.families.Gamma(link=sm.families.links.Log())
+    ).fit(cov_type="cluster", cov_kwds={"groups": pos_sp["cnes"]})
+    phi_sp = float(res_gsp.scale)
+    mu_sp = np.asarray(res_gsp.predict(pos_sp))
+    u_sp = stats.gamma.cdf(pos_sp["ocupacao_uti_w"].to_numpy(),
+                           a=1 / phi_sp, scale=mu_sp * phi_sp)
+    r_gsp = est._r_qq(stats.norm.ppf(np.clip(u_sp, 1e-7, 1 - 1e-7)))[0]
+    c3, e3 = est._extrair_oss(res_gsp)
+    linhas.append({"modelo": "GLM Gama, sem 2020 e 2021",
+                   "n": int(res_gsp.nobs), "coef_oss": c3, "ep_cluster": e3,
+                   "efeito_pct": 100 * (np.exp(c3) - 1), "r_qq": r_gsp})
+
     # variante com corte mínimo de atividade (ocupação de ao menos 5%)
     corte = 5.0
     pos5 = pos[pos["ocupacao_uti"] >= corte].copy()

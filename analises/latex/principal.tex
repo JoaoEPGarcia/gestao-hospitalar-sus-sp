@@ -15,6 +15,7 @@
 \usepackage{graphicx}
 \usepackage{subcaption}
 \usepackage{booktabs}
+\usepackage{longtable}                 % listas nominais do Apêndice D
 \usepackage{float}
 \usepackage{amsmath}
 \usepackage{caption}
@@ -24,8 +25,8 @@
 
 % Sumário: só o primeiro nível, uma linha por seção e por apêndice.
 % Os marcadores do PDF, porém, mantêm a hierarquia inteira: é o que
-% torna a Seção 16, com as suas seis subseções e dezessete
-% subsubseções, navegável no leitor de PDF sem poluir o índice
+% torna a Seção 17 (a fase qualitativa), com as suas sete subseções e
+% catorze subsubseções, navegável no leitor de PDF sem poluir o índice
 % impresso. bookmarksdepth é independente de tocdepth e precisa ser
 % declarado explicitamente, senão o hyperref o herda de tocdepth.
 \setcounter{tocdepth}{1}
@@ -45,12 +46,15 @@
 \widowpenalty=10000
 \clubpenalty=10000
 
-% subfigura padrão: largura quase total, uma por linha, centralizada
-\newcommand{\subfig}[2]{%
-  \begin{subfigure}[t]{0.62\textwidth}
+% subfigura padrão: largura quase total, uma por linha, centralizada.
+% A largura é opcional: \subfig{arquivo}{legenda} usa 0.62\textwidth, e
+% \subfig[0.50\textwidth]{arquivo}{legenda} permite pares mais estreitos
+% (usado nas composições por faixa e por porte da Seção 4).
+\newcommand{\subfig}[3][0.62\textwidth]{%
+  \begin{subfigure}[t]{#1}
     \centering
-    \includegraphics[width=\linewidth]{#1}
-    \caption{#2}
+    \includegraphics[width=\linewidth]{#2}
+    \caption{#3}
   \end{subfigure}\par\medskip}
 
 % bloco "Como ler": explicação curta e acessível de cada figura
@@ -162,5 +166,16 @@
 \input{secoes/apendiceB_selecao}
 \clearpage
 \input{secoes/apendiceA_diagnosticos}
+\clearpage
+% Apêndice C: o método de eficiência que foi calculado e deu errado. Sai
+% do corpo da Seção 16, que passa a tratar exclusivamente do DEA, e fica
+% aqui como registro auditável do erro. Referenciado por \ref{ap:sfa}.
+\input{secoes/apendiceC_sfa}
+\clearpage
+% Apêndice D: as duas listas nominais que a Seção 2 passou a referenciar —
+% os 35 hospitais que nunca registram alta complexidade e os 49 que nunca
+% tiveram leito de UTI do SUS. Referenciado por \ref{ap:listaalta} e
+% \ref{ap:listauti}.
+\input{secoes/apendiceD_listas_estruturais}
 
 \end{document}

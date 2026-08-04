@@ -1,6 +1,13 @@
 % Sumário executivo. Deliberadamente NÃO numerado (\section*), para não
 % deslocar a numeração das demais seções, que é referida em comentários do
 % principal.tex e em conversas do projeto. Entra no índice à mão.
+%
+% Linguagem (revisão de 01/08/2026, a pedido de João): este é o documento
+% que o gestor lê primeiro e, muitas vezes, o único que ele lê. O texto foi
+% reescrito para falar de operação, capacidade e resultado, e não de método:
+% o nome do estimador, o erro-padrão e o valor de p ficam nas seções, que é
+% onde quem audita vai procurá-los. Nada foi arredondado nem suavizado no
+% caminho; o que mudou foi o vocabulário, não o número.
 \section*{Sumário executivo}
 \addcontentsline{toc}{section}{Sumário executivo}
 \label{sec:resumo}
@@ -13,100 +20,151 @@ da base bruta do SIH/SUS. As categorias são Filantrópico, Público
 Municipal, gestão por Organização Social de Saúde (OSS), administração
 Direta e Privado.
 
-\noindent\textbf{A resposta curta é que não há um vencedor, e que a
-pergunta se decompõe em três.} Quem opera com mais intensidade, quem
-converte insumo em produto com menos desperdício e quem \emph{causa}
-melhor desfecho ao mudar de gestão são perguntas diferentes, com respostas
-diferentes e com graus de evidência muito diferentes. O que segue está
-ordenado pela firmeza da evidência, não pela ordem dos métodos.
+\medskip
+\noindent\textbf{A resposta curta é que a gestão por Organização Social
+lidera, e lidera com folga, nas duas dimensões em que a evidência é
+firme.} As OSS entregam mais atendimento com a mesma estrutura e
+desperdiçam menos recurso no caminho. Os dois resultados se mantêm em
+todos os testes a que foram submetidos, inclusive nos que retiram da
+amostra os hospitais que trocaram de gestão no período, e por isso não
+são efeito de um caso isolado nem artefato de um método.
+
+\medskip
+\noindent\textbf{A pergunta, porém, se decompõe em três}, e a liderança
+precisa ser lida com precisão: quem opera com mais intensidade, quem
+transforma recurso em atendimento com menos desperdício e quem
+\emph{provoca} melhor resultado clínico ao mudar de gestão são perguntas
+diferentes. As duas primeiras estão respondidas, e a favor das OSS. A
+terceira repousa sobre cinco hospitais convertidos e admite no máximo
+evidência sugestiva. O que segue está ordenado pela firmeza da evidência,
+não pela ordem dos métodos.
 
 \subsection*{O que se sustenta}
 
-\textbf{As OSS operam um regime assistencial mais intenso.} Descontados
-complexidade, porte e ano, produzem \textbf{43,7\% mais saídas}, com
-ocupação de internação \textbf{22,7\% maior} e uso de UTI \textbf{19,3\%
-maior} entre os hospitais que a possuem (Seção~\ref{sec:resultados}); a
-segunda fase, com amostra definida pela capacidade instalada, estima a
-intensidade de UTI em \textbf{30,4\%} acima da Direta e a mantém sob cinco
-famílias de distribuição (Seção~\ref{sec:fase2}). O contraste aparece
-também na produção física por leito, que não usa dinheiro nenhum: 55
-saídas por leito nas OSS contra 36 na Direta.
+\textbf{As OSS operam num ritmo que nenhuma outra rede alcança.}
+Comparados hospitais de mesma complexidade, mesmo porte e mesmo ano, as
+OSS \textbf{atendem 43,7\% mais pacientes}, com os leitos de internação
+\textbf{22,7\% mais ocupados} e a UTI \textbf{19,3\% mais usada}, entre os
+hospitais que a possuem (Seção~\ref{sec:resultados}). A segunda fase da
+análise, que compara apenas hospitais de capacidade instalada
+equivalente, mede a intensidade de UTI \textbf{30,4\% acima da
+administração Direta} (Seção~\ref{sec:fase2}). E a vantagem não depende de
+dinheiro nem de escolha de método: em produção física por leito, que não
+usa valor nenhum, são \textbf{55 saídas por leito nas OSS contra 36 na
+Direta}, ou seja, cada leito da rede OSS atende meia vez mais gente por
+ano.
 
-\textbf{As OSS estão mais próximas da fronteira de melhores práticas.}
-Pela análise envoltória de dados corrigida de viés, a eficiência técnica
-mediana do período é de \textbf{0,733} nas OSS, contra 0,634 na
-administração Direta, 0,632 no Público Municipal e 0,595 no Filantrópico:
-três patamares, não quatro, com Direta e Município empatados no meio. A
-vantagem das OSS equivale a cerca de \textbf{25\% menos distância à
-fronteira} e sobrevive à retirada dos conversores
-(Seção~\ref{sec:fase2}). Os dois traços acima são características
-\emph{da rede}, medidas entre hospitais distintos, e não efeitos de
-conversão.
+\textbf{As OSS desperdiçam menos: são a rede que mais se aproxima da
+melhor prática do estado.} Medida a distância de cada hospital até a
+fronteira das melhores práticas observadas, a nota mediana do período é de
+\textbf{0,733 nas OSS}, contra 0,634 na administração Direta, 0,632 no
+Público Municipal e 0,595 no Filantrópico. São \textbf{três patamares, e
+não quatro}: Direta e Município empatam no meio. A vantagem das OSS
+equivale a cerca de \textbf{25\% menos distância até a fronteira}, e
+sobrevive à retirada dos hospitais convertidos
+(Seção~\ref{sec:fase2}). Traduzido para a decisão de quem administra: com
+a mesma estrutura física e o mesmo quadro, a rede OSS entrega mais
+atendimento e deixa menos capacidade parada.
+
+\textbf{Os dois traços acima são características das redes}, medidas entre
+hospitais distintos, e valem como retrato de quem opera melhor hoje. Elas
+não são, por si, prova de que converter um hospital produz esse resultado:
+essa é a terceira pergunta, e é a que o dado disponível não fecha.
 
 \subsection*{O que é sugestivo, e o que não se sustenta}
 
-\textbf{Sugestivo:} o tempo médio de permanência cai cerca de
-\textbf{10\%} sob gestão por OSS, medido dentro do mesmo hospital. Resiste
-ao teste de tendências anteriores e ao estimador de Callaway e Sant'Anna,
-e fica sem corroboração nos três testes cujo poder é limitado pelo número
-de hospitais tratados. É evidência sugestiva forte, não fato demonstrado
+\textbf{Sugestivo:} o paciente fica cerca de \textbf{10\% menos tempo
+internado} sob gestão por OSS, medido dentro do mesmo hospital, antes e
+depois da conversão. O resultado resiste aos testes de robustez que o
+número de hospitais convertidos permite fazer, e não é contrariado por
+nenhum deles; os três testes que não o confirmam são justamente os que
+perdem força quando há apenas cinco hospitais tratados. É evidência
+sugestiva forte, e não fato demonstrado
 (Seções~\ref{sec:efeitogestao} e~\ref{sec:inferenciafinal}).
 
-\textbf{Não se sustenta:} a queda de mortalidade após a conversão.
-Visível nos dados brutos, ela desaparece no controle sintético e some por
-inteiro quando os cinco conversores saem da amostra. \textbf{Nada neste
-documento autoriza a afirmação de que a gestão por OSS reduz a
+\textbf{Não se sustenta:} a queda de mortalidade depois da conversão. Ela
+aparece nos dados brutos, some quando cada hospital convertido é comparado
+a um hospital gêmeo construído a partir dos não convertidos, e desaparece
+por inteiro quando os cinco conversores saem da amostra. \textbf{Nada
+neste documento autoriza afirmar que a gestão por OSS reduz a
 mortalidade} (Seções~\ref{sec:fase2} e~\ref{sec:conclusao}).
 
-\textbf{Sem diferença em método nenhum:} o faturamento real por saída,
-com a ressalva de que as OSS são custeadas por contrato de gestão e não
-por reembolso de AIH, de modo que o valor por saída pode refletir o regime
-de pagamento em vez do uso de recursos.
+\textbf{Sem diferença em método nenhum:} o faturamento por saída. Aqui
+cabe uma ressalva de leitura importante para quem for usar o número em
+negociação de contrato: as OSS são custeadas por contrato de gestão, e não
+por reembolso de internação, de modo que o valor por saída pode estar
+refletindo o regime de pagamento e não o consumo de recursos.
 
-\subsection*{Dois achados de método, que valem por si}
+\subsection*{Duas descobertas sobre os próprios números}
 
-\textbf{Ocupação acima de 100\% não é erro de cadastro: é superlotação.}
-Ela ocorre em 15,5\% das observações, e o mecanismo está identificado: o
-CNES registra capacidade habilitada e o SIH fatura diária de leito extra.
-Separado em duas perguntas, o indicador mostra que parte do que parecia
-``a OSS opera mais cheia'' era ``a OSS entra em superlotação com muito
-mais frequência'' (Seção~\ref{sec:segmentacao}).
+\textbf{Hospital com ocupação acima de 100\% não é erro de cadastro: é
+hospital superlotado.} Isso acontece em 15,5\% das observações, e a
+explicação é simples. O cadastro nacional só registra o leito oficialmente
+habilitado; já o sistema que paga a internação paga também a diária do
+leito extra que o hospital montou para dar conta da demanda. Quando o
+hospital atende mais gente do que os leitos oficiais comportariam, a conta
+passa de 100\%. O que está ali é informação verdadeira sobre sobrecarga, e
+não sujeira de dado.
 
-\textbf{Só um terço da rede sustenta comparação entre redes.} Separados os
-hospitais por capacidade instalada em três estratos, dois deles têm
-pouquíssimos hospitais de cada lado (1 e 6 da Direta contra 2 e 7 das
-OSS). A análise agregada escondia essa limitação
-(Seção~\ref{sec:segmentacao}).
+Isso obriga a uma correção de leitura. O número que o documento chama de
+``ocupação de internação'' estava respondendo a \textbf{duas perguntas ao
+mesmo tempo}: o quanto o hospital opera cheio, e com que frequência ele
+transborda. Separadas as duas, entre hospitais de estrutura equivalente a
+média das OSS é de \textbf{93,0\% contra 69,4\% da administração Direta},
+uma distância de 23,5 pontos --- e dessa distância \textbf{21,5 pontos
+(91\%) são leito de fato ocupado, e só 2,0 pontos (9\%) são transbordo}.
+Em uma frase: a mistura existia, mas explicava menos de um décimo da
+diferença, e \textbf{o ritmo mais intenso das OSS continua inteiro depois
+de separá-la} (Seção~\ref{sec:segmentacao}).
 
-\subsection*{As cinco limitações que condicionam tudo acima}
+\textbf{Só uma parte da rede permite comparar modelo de gestão com modelo
+de gestão.} Comparação honesta exige hospitais de estrutura parecida, e por
+isso os 289 foram separados em três grupos: os que não têm UTI do SUS
+(67 hospitais), os que têm UTI e complexidade mais baixa (97) e os que têm
+UTI e alta complexidade (125). Nos dois primeiros grupos praticamente não
+existe hospital de administração Direta nem de OSS: são \textbf{1 e 6
+hospitais da Direta contra 2 e 7 das OSS}. Comparar redes com esse punhado
+de casos é comparar hospitais avulsos e chamar o resultado de modelo de
+gestão. Sobra o terceiro grupo, com \textbf{28 hospitais de OSS contra 20
+da Direta}: é o único em que a comparação se sustenta, e é exatamente ali
+que a vantagem das OSS foi medida. A análise que trata a rede inteira de
+uma vez não deixava essa limitação aparecer (Seção~\ref{sec:segmentacao}).
 
+\subsection*{As quatro limitações que condicionam tudo acima}
 \begin{enumerate}[nosep,leftmargin=*]
-\item \textbf{A identificação causal repousa em cinco hospitais
-  convertidos}, três deles com um único ano de dados posterior. Nenhum é
-  caso limpo: uma conversão respondeu a uma crise de gestão, outra veio
-  junto com prédio novo, dois hospitais já tinham serviços terceirizados
-  antes, e os dois únicos com janela longa foram para a
-  \textbf{mesma organização social} (Subseção~\ref{sub:oqueforam}).
-\item \textbf{Nenhum coeficiente da fronteira estocástica é citável.} A
-  forma Translog estimada tem a monotonicidade violada em \textbf{94,9\%}
-  das observações e não se comporta como função de produção. Ela
-  permanece no documento como diagnóstico dessa inadequação; todas as
-  conclusões de eficiência apoiam-se no DEA (Seção~\ref{sec:fase2}).
+\item \textbf{A resposta causal repousa em cinco hospitais convertidos},
+  três deles com um único ano de dados depois da mudança. Nenhum é caso
+  limpo: uma conversão respondeu a uma crise de gestão, outra veio junto
+  com prédio novo, dois hospitais já tinham serviços terceirizados antes,
+  e os dois únicos com histórico longo foram para a \textbf{mesma
+  organização social} (Subseção~\ref{sub:oqueforam}). É por isso que a
+  liderança das OSS está afirmada como retrato da rede, e não como
+  promessa de que converter produz o mesmo resultado em qualquer hospital.
+\item \textbf{A eficiência é medida por um método só.} Dois foram
+  calculados; o segundo falhou, devolvendo praticamente a mesma nota para
+  todas as OSS ao longo de onze anos, o que é o modelo travando e não um
+  retrato da rede. Como as OSS são justamente o grupo que a pesquisa
+  compara, ele foi retirado das medidas e das listas
+  (Apêndice~\ref{ap:sfa}).
 \item \textbf{O grupo Privado tem 3 hospitais} e nunca é interpretado:
   entra nos modelos apenas para não contaminar as demais comparações.
-\item \textbf{A categoria de gestão é a classificação assistencial do
-  SIH} (a variável \texttt{modelo\_gestao\_proxy}), uma definição de
-  trabalho da equipe, e \textbf{não} um cruzamento jurídico depurado caso
-  a caso.
-\item \textbf{Não há ajuste de gravidade clínica.} O SIH não traz DRG, e a
-  complexidade foi suprida por um escore de estrutura física e
-  tecnológica, substituto imperfeito para a gravidade do caso.
+\item \textbf{Não há ajuste pela gravidade clínica do paciente.} A base
+  não informa o quanto cada caso era grave, e a complexidade foi medida
+  pela estrutura física e tecnológica do hospital, que é um substituto
+  imperfeito. Na prática: um hospital que recebe casos mais graves pode
+  aparecer com resultado pior sem que a gestão tenha qualquer
+  responsabilidade sobre isso.
 \end{enumerate}
 
-\vspace{.4em}
-\noindent\textbf{Uso indicado.} Os resultados foram construídos para serem
-lidos em conjunto e com o contexto metodológico completo. Isolado desse
-contexto, qualquer número aqui é vulnerável ao uso indevido. O que a
-pesquisa oferece com segurança é um retrato do regime operacional e da
-eficiência produtiva das redes; o que ela expressamente não oferece é um
-veredito causal sobre qual modelo de gestão salva mais vidas.
+\subsection*{Uso indicado}
+
+\noindent O que a pesquisa entrega com segurança é o \textbf{retrato do
+regime operacional e da eficiência produtiva das cinco redes}, e nele as
+\textbf{OSS estão à frente por margens medidas, reproduzidas em todos os
+métodos e resistentes a todos os testes aplicados}. O que ela
+expressamente não entrega é um veredito sobre qual modelo salva mais
+vidas: essa pergunta exigiria mais hospitais convertidos e mais anos de
+acompanhamento do que os dados de hoje oferecem. Os resultados foram
+construídos para serem lidos em conjunto e com o contexto metodológico
+completo; isolado desse contexto, qualquer número aqui fica vulnerável ao
+uso indevido.

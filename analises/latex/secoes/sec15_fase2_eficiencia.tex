@@ -1,13 +1,22 @@
 \section{A segunda camada de evidência: hierarquia e eficiência}
 \label{sec:fase2}
 
-A segunda fase da estimação atacou a mesma pergunta com três famílias
+A segunda fase da estimação atacou a mesma pergunta com duas famílias
 de métodos ainda não usadas no documento: modelos
 \textbf{hierárquicos} (que tratam os 11 anos de cada hospital como
-parentes, não como observações soltas), a análise envoltória de dados
+parentes, não como observações soltas) e a análise envoltória de dados
 (\textbf{DEA}, que constrói uma fronteira de melhores práticas e mede
-a distância de cada hospital até ela) e a fronteira estocástica
-(\textbf{SFA}, a contraparte paramétrica do DEA). O pacote completo de
+a distância de cada hospital até ela). \textbf{Toda a eficiência desta
+seção é medida pelo DEA, e apenas por ele.} Um segundo método de
+eficiência, a fronteira estocástica, chegou a ser calculado por inteiro
+e \textbf{o cálculo deu errado} (o modelo devolveu praticamente a mesma
+nota de eficiência para todas as OSS ao longo dos onze anos, travando
+justamente no grupo que a pesquisa existe para comparar; a fronteira
+estimada viola a monotonicidade em 94,9\% das observações, de modo que
+não se comporta como função de produção; e a lista de insumos entregue a
+ele somava os leitos de UTI ao total de leitos, que já os continha. O
+Apêndice~\ref{ap:sfa} detalha os três defeitos). Nada dele entra como
+medida aqui nem em nenhuma outra seção. O pacote completo de
 resultados, com scripts, diagnósticos e um relatório de execução
 auditável, está na pasta resultados\_fase2 do repositório; aqui ficam
 os achados que mudam ou reforçam a leitura do documento.
@@ -22,9 +31,9 @@ magnitude menor (11,5\%), \textbf{mas com intervalo que cruza o zero na
 especificação hierárquica}, em ambos os casos porque parte do
 contraste entre as redes é absorvida pelo efeito de hospital; e a mortalidade aparece
 \textbf{0,262 menor no logito} (intervalo de 0,410 a 0,114 negativos;
-na escala da própria taxa, isso equivale a cerca de \textbf{1,3
-ponto percentual a menos de mortalidade}, na altura da mediana do
-painel, que é a forma interpretável do mesmo número),
+na escala da própria taxa, isso equivale à mortalidade cair \textbf{de
+5,6\% para 4,3\%}, na altura da mediana do painel, que é a forma
+interpretável do mesmo número),
 com precisão maior que a da
 Seção~\ref{sec:resultados}.\footnote{Duas especificações alternativas
 foram estimadas para esse mesmo coeficiente e não são reportadas aqui
@@ -83,8 +92,8 @@ emprestada a informação das outras, tanto mais quanto menos dados ela
 própria tiver. Quanto menor o grupo, mais o quadrado recua em direção
 ao zero.}
 
-\textbf{Eficiência: a ressalva vem antes do resultado.} O DEA e a SFA
-medem eficiência produtiva: quanto produto (saídas, incluída a alta
+\textbf{Eficiência: a ressalva vem antes do resultado.} O DEA mede
+eficiência produtiva: quanto produto (saídas, incluída a alta
 complexidade) cada hospital extrai dos seus insumos. Um dos insumos é
 o \textbf{valor total real} pago pelo SUS, e ele exige a ressalva de
 primeira ordem desta seção: o valor do SIH é reembolso por produção
@@ -107,17 +116,10 @@ longe do zero). A ressalva fica assim resolvida \textbf{no nível das
 categorias} para a distância entre OSS e as demais: o afastamento da
 OSS na frente não depende do insumo financeiro em nenhuma das
 verificações. Já a ordem interna das outras três categorias é frágil,
-como os números detalhados adiante mostram, e \textbf{os dois métodos
-discordam sobre ela}. No DEA, Direta e Público Municipal ficam separados
-por 0,002 (medianas corrigidas de viés de 0,634 e 0,632), um empate; na
-SFA, quem empata é outro par, Direta e Filantrópico, por 0,004 (0,788
-contra 0,784), enquanto o \textbf{Público Municipal aparece em 0,912},
-isto é, 0,125 acima da Direta. Os dois métodos põem a OSS na frente e o
-Privado no fim, e \textbf{trocam entre si a segunda e a terceira
-posições}. Abaixo da OSS, portanto, o que os dados sustentam é um
-\textbf{empate entre Direta e Público Municipal no DEA} (que é o
-instrumento em que as conclusões de eficiência deste documento se apoiam,
-pelo motivo estabelecido adiante), com o
+como os números detalhados adiante mostram. Direta e Público Municipal
+ficam separados por 0,002 (medianas corrigidas de viés de 0,634 e 0,632),
+que é um empate. Abaixo da OSS, portanto, o que os dados sustentam é um
+\textbf{empate entre Direta e Público Municipal}, com o
 Filantrópico atrás, e não uma hierarquia firme de quatro posições. Ela
 \textbf{não} se estende ao hospital individual: a correlação de ordem
 entre os escores da versão financeira e da versão só com leitos, ambas
@@ -152,27 +154,16 @@ demais praticamente não se movem (correlação de ordem 1,000), porque
 o perfil deles opera longe da fronteira.
 
 \comoler{como nos violinos das seções anteriores: a silhueta engorda
-onde há mais hospitais e o número é a mediana do grupo. Os dois painéis
-concordam nas pontas, com a OSS na frente e o Privado no fim, e
-\textbf{discordam no meio}: no painel (a), do DEA, a Direta (0,634) e o
-Município (0,632) empatam; no painel (b), da fronteira estocástica, o
-Município (0,912) sobe bem acima da Direta (0,788). O painel (b) é
-diagnóstico, não medida: pelo motivo estabelecido adiante, nenhum número
-dele é citável. O Privado aparece só como registro.}
+onde há mais hospitais e o número é a mediana do grupo. A OSS aparece na
+frente e o Privado no fim; a Direta (0,634) e o Município (0,632)
+praticamente empatam no meio. O Privado, com 3 hospitais, entra só como
+registro.}
 
 \begin{figure}[H]
 \centering
-\subfig{figE01_violino_te_categoria.png}{Eficiência DEA corrigida de
-viés}
-\subfig{figS01_te_categoria.png}{Eficiência técnica da fronteira
-estocástica}
-\caption{Eficiência por categoria nos dois métodos. O painel (a), do DEA,
-é a medida em que este documento se apoia. O painel (b), da fronteira
-estocástica, é \textbf{diagnóstico e não medida}: a concentração das OSS
-junto ao valor 1 é uma degeneração numérica do modelo, e a fronteira que
-o gerou tem a monotonicidade violada em 94,9\% das observações, de modo
-que \textbf{nenhum valor do painel (b) é citável, em nenhuma categoria}
-(o texto explica). Como nos violinos da
+\includegraphics[width=.62\textwidth]{figE01_violino_te_categoria.png}
+\caption{Eficiência técnica por categoria de gestão, medida por análise
+envoltória de dados e corrigida de viés. Como nos violinos da
 Seção~\ref{sec:categorias}, onde a silhueta é mais gorda há mais
 hospitais com aquele valor de eficiência; a largura não é percentual nem
 contagem, e não se compara entre categorias.}
@@ -180,180 +171,48 @@ contagem, e não se compara entre categorias.}
 \end{figure}
 
 \comofeito{gráficos de violino, um por categoria de gestão no eixo
-horizontal. O eixo vertical traz a \textbf{eficiência técnica} (entre 0 e
-1, quanto mais perto de 1 mais próximo da fronteira de melhores
-práticas): no painel (a), a eficiência DEA corrigida de viés, e no (b), a
-eficiência da fronteira estocástica (SFA). Cada violino é a distribuição
-da categoria e o número é a mediana. No painel (b) a concentração das OSS
-junto a 1 é uma degeneração numérica do modelo, e nenhum valor do painel
-é citável, em nenhuma categoria, pelo motivo estabelecido no texto.}
+horizontal. O eixo vertical traz a \textbf{eficiência técnica} entre 0 e
+1: quanto mais perto de 1, mais próximo o hospital está da fronteira das
+melhores práticas observadas na própria amostra. Cada violino é a
+distribuição da categoria e o número é a mediana.}
 
 \newpage
-\textbf{A contraparte paramétrica, e o que ela não é.} A
-fronteira estocástica (Translog (uma forma matemática mais flexível
-que a alternativa clássica, Cobb Douglas, por não obrigar os insumos a
-se combinarem sempre na mesma proporção), preferida ao Cobb Douglas
-com folga larga: a estatística de razão de verossimilhança entre as duas
-formas é de 567,0 com 6 graus de liberdade, com p da ordem de
-$10^{-119}$; e 95,5\% da variância composta é atribuída à ineficiência)
-põe as OSS na mesma ponta de cima em que o DEA as põe, e traz
-três honestidades a registrar, que juntas retiram dela o estatuto de
-medida:
-as OSS ficam tão coladas à fronteira paramétrica que o coeficiente
-delas na equação de ineficiência perde identificação (o análogo da
-separação perfeita da Seção~\ref{sec:estrategia}), de modo que nem o
-nível nem a posição das OSS na SFA são citáveis,
-e a não-identificação aparece igual nas quatro amostras e nas
-três sensibilidades, com o ponto oscilando entre $-772$ e $-1.971$ e o
-erro-padrão entre 400 e 1.896, que é a assinatura do problema e não uma
-faixa de estimativas;\footnote{Numa das amostras (sem o biênio
-pandêmico) o valor sai com $p$ de $8{,}3\times10^{-7}$. Isso \emph{não}
-é precisão: sob separação a verossimilhança é praticamente plana numa
-região distante de zero, e o intervalo de Wald calculado ali não tem
-interpretação. Um $p$ pequeno sobre um parâmetro degenerado mede o
-formato da aproximação, não o dado.} \textbf{o insumo de UTI é mal
-comportado na forma Translog}, com a monotonicidade violada em
-\textbf{94,9\% das observações} (97,8\% entre as que têm leito de UTI
-habilitado, tenham-no usado ou não no ano; 96,9\% se o corte for ter
-registrado diária de UTI),
-contra 99,7\% de respeito para leitos e 99,6\% para valor: herança
-do logaritmo de um mais UTI com 19\% de zeros e da colinearidade alta
-com leitos totais e valor, e o motivo pelo qual qualquer leitura fina
-de UTI nesta fronteira precisa da sensibilidade que a remove; e, na
-outra ponta, Direta (0,788) e Filantrópico (0,784)
-praticamente empatam em ponto estimado, a mesma proximidade que o DEA
-mostra entre Direta e Município (sem intervalo de confiança calculado
-em nenhum dos dois métodos para confirmar ou afastar sobreposição). A
-correlação de ordem entre os dois conjuntos de escores é de
-\textbf{0,62} (0,63 excluindo as OSS, de modo que a semelhança não
-depende do grupo problemático). Ela mede quanto os dois procedimentos se
-parecem quando aplicados aos mesmos dados, e \textbf{não é corroboração
-de um pelo outro}: os dois consomem a mesma informação, e um deles, pelo
-motivo estabelecido adiante, não descreve uma função de produção.
-A semelhança não cresce de forma gradual: fica achatada entre 0,50 e
-0,55 de 2015 a 2019, salta para a faixa de 0,66 a 0,74 já em 2020 e se
-mantém nesse patamar mais alto até 2025, sem tendência adicional, um
-degrau que coincide com o início da pandemia, não uma trajetória
-ascendente ao longo da década.
+% Esta subseção vinha da Seção 14 (segmentação estrutural) e foi movida para
+% cá em 04/08/2026, a pedido de João. Lá ela aparecia duas seções antes de o
+% documento explicar o que é análise envoltória de dados, fronteira de
+% melhores práticas ou correção de viés: o leitor recebia o resultado de um
+% método que ainda não conhecia. Aqui ele já leu tudo isso acima.
+\subsection*{A mesma medida, agora dentro de cada grupo de hospitais}
+\label{sub:deaestrato}
 
-\textbf{A equação de ineficiência, e por que nenhum coeficiente dela é
-citável.} A fronteira estocástica estima, em paralelo à produção, uma
-segunda equação que explica \emph{quanta} ineficiência cada hospital
-carrega. O coeficiente das OSS ali é o número degenerado já discutido; a
-equação tem \textbf{outros sete}, e \textbf{cinco} deles são fortemente
-significativos. Como a variável explicada é a ineficiência, sinal
-negativo significa mais eficiente.
+Tudo o que se leu acima compara cada hospital com a \emph{mesma} fronteira,
+construída sobre a rede inteira. A Seção~\ref{sec:segmentacao} mostrou que a
+rede se divide em três grupos de estrutura muito diferente, e isso levanta
+uma objeção justa: um hospital pequeno pode aparecer longe da fronteira
+simplesmente por ser pequeno, e não por operar mal.
 
-A tabela é reproduzida porque omiti-la seria pior: ela contém o único
-resultado desta fase que o documento chegou a não mostrar, e resultado
-que desaparece depois de encontrado é omissão. Mas ela vem com uma
-advertência que vale para cada uma das suas linhas e que precisa ser lida
-\emph{antes} dos números. \textbf{A monotonicidade da fronteira que gerou
-estes coeficientes está violada em 94,9\% das observações}, como o
-parágrafo anterior registrou. Uma fronteira violada em quase toda a
-amostra \textbf{não se comporta como função de produção}, e significância
-mede a precisão de uma estimativa, não a validade da estrutura de onde
-ela sai: coeficiente preciso extraído de fronteira mal-comportada é
-preciso sobre um objeto que não é o que o nome diz. Por isso, e não por
-conveniência de resultado, \textbf{nenhum coeficiente desta tabela é
-interpretável como magnitude de ineficiência, e nenhum entra em conclusão
-alguma deste documento}.
+A medida foi então refeita com uma mudança: \textbf{uma fronteira separada
+dentro de cada grupo}. Cada hospital passa a ser comparado apenas com
+hospitais da sua própria escala --- o pequeno com pequenos, o de referência
+com os de referência. A pergunta deixa de ser ``quão longe este hospital
+está do melhor do estado'' e passa a ser ``quão longe ele está do melhor da
+sua própria categoria''.
 
-A violação também não se concentra em categoria nenhuma, o que impede
-tratá-la como problema de uma linha só: ela vai de 93,6\% no Filantrópico
-a \textbf{99,3\% na administração Direta}, que é justamente a referência
-de todos os contrastes da tabela. Cinco vírgula sete pontos de amplitude
-sobre uma base de 93,6\% é defeito geral da forma funcional. A fronteira
-inteira está desqualificada como medida, não uma parte dela.
+\textbf{A conclusão não muda.} No grupo em que a comparação entre redes é
+viável, as OSS ficam mais próximas da fronteira do seu grupo do que a
+administração Direta: \textbf{0,747 contra 0,687} na mediana corrigida de
+viés. A verificação estatística confirma a distância, com margem que não
+alcança o zero.
 
-\begin{table}[H]
-\centering
-\caption{Equação de ineficiência da fronteira estocástica (Battese e
-Coelli 1995). Referência: administração Direta, porte médio.
-Coeficiente negativo indica \emph{menos} ineficiência.
-\textbf{Tabela tarjada: a monotonicidade da fronteira que produziu estes
-coeficientes está violada em 94,9\% das observações, de 93,6\% no
-Filantrópico a 99,3\% na própria Direta. Nenhum valor desta tabela é
-interpretável como magnitude nem entra em conclusão deste documento; ela
-é diagnóstico da inadequação da forma Translog.}}
-\label{tab:equacaoinef}
-\small
-\begin{tabular}{lrrr}
-\toprule
-Termo & Coeficiente & Erro-padrão & $p$ \\
-\midrule
-Público Municipal        & $-5{,}454$ & 1,020 & $9{,}0\times10^{-8}$ \\
-Filantrópico             & $-0{,}244$ & 0,163 & 0,134 \\
-Privado                  & $+2{,}474$ & 0,396 & $4{,}2\times10^{-10}$ \\
-Complexidade (padronizada) & $-2{,}159$ & 0,325 & $3{,}2\times10^{-11}$ \\
-Grande Porte             & $+2{,}470$ & 0,333 & $1{,}3\times10^{-13}$ \\
-Especial                 & $+7{,}401$ & 0,917 & $7{,}0\times10^{-16}$ \\
-Tendência linear         & $-0{,}010$ & 0,023 & 0,668 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\textbf{O que a tabela mostra, lida como diagnóstico e não como medida.}
-O coeficiente do Público Municipal ($-5{,}454$, $p$ de
-$9{,}0\times10^{-8}$) é o resultado que faltava ao documento, e é também
-o que melhor ilustra a advertência acima. Ele é preciso, e aponta o
-Público Municipal como menos ineficiente que a administração Direta.
-\textbf{O DEA, que é o instrumento adequado, não confirma essa ordem, e
-tampouco a refuta.} Nas medianas corrigidas de viés impressas acima a
-Direta (0,634) fica à frente do Município (0,632); nas médias o Município
-fica à frente (0,644 contra 0,620). Ano a ano, no escore corrigido de
-viés, o Município supera a Direta em seis dos onze anos, e os seis são de
-2020 a 2025. No estrato de alta complexidade da
-Seção~\ref{sec:segmentacao}, que é onde a comparação entre redes é
-viável, o Município fica à frente; no estrato intermediário, atrás.
-\textbf{A ordem entre estas duas redes depende de qual escore e de qual
-estatística se escolhe, e por isso este documento não a afirma em direção
-nenhuma.} O que há é um sinal recorrente e sem corroboração por
-instrumento adequado, o que é diferente tanto de achado quanto de nada.
-
-As demais linhas têm o mesmo estatuto. O Filantrópico não se distingue da
-Direta ($p$ de 0,134). O porte carrega o maior coeficiente da tabela
-(Especial, $+7{,}401$, quase três vezes o do Grande Porte) enquanto a
-complexidade anda no sentido oposto ($-2{,}159$), e não há tendência
-temporal ($p$ de 0,668). Lidos como \emph{ordens de grandeza relativas
-dentro de uma fronteira que se sabe mal especificada}, esses sinais
-sugerem que a estrutura física do hospital move a ineficiência medida
-mais do que a rede que o administra. Lidos como magnitudes, não dizem
-nada, pelo motivo já enunciado.
-
-\textbf{A regra, enunciada uma vez para todo o documento.} Nenhum
-coeficiente e nenhum nível da fronteira estocástica é citável, em nenhuma
-categoria de gestão, nem aqui nem nas seções seguintes. A SFA permanece
-no documento como \textbf{diagnóstico da própria inadequação da forma
-Translog a esta tecnologia de produção}, e a violação em 94,9\% é ela
-mesma um achado: diz que a Translog não descreve bem o modo como estes
-hospitais transformam insumo em produto. \textbf{As conclusões de
-eficiência deste documento apoiam-se no DEA.}
-
-\comoler{quanto mais a nuvem sobe da esquerda para a direita, mais os
-dois procedimentos se parecem ao ordenar os hospitais. A faixa verde
-colada no topo é a degeneração das OSS descrita no texto (o modelo
-paramétrico as coloca todas na fronteira); mesmo descontando essa faixa,
-a semelhança permanece. Semelhança não é confirmação: o eixo vertical vem
-de uma fronteira cuja monotonicidade está violada em 94,9\% das
-observações, e nenhum valor dele é citável.}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.58\textwidth]{figS02_dispersao_sfa_dea.png}
-\caption{Semelhança entre os dois procedimentos de eficiência: cada ponto
-é um hospital num ano, posicionado pelo escore DEA (horizontal) e pela
-eficiência SFA (vertical). O eixo vertical é diagnóstico, não medida:
-nenhum valor de SFA é citável.}
-\label{fig:convergencia}
-\end{figure}
-
-\comofeito{gráfico de dispersão. Cada ponto é um hospital em um ano,
-posicionado pelo \textbf{escore de eficiência DEA} no eixo horizontal e
-pela \textbf{eficiência técnica SFA} no vertical (ambos entre 0 e 1).
-Quanto mais a nuvem sobe da esquerda para a direita, mais os dois métodos
-(de naturezas opostas) concordam sobre quem é eficiente. A faixa
-verde colada no topo é a degeneração das OSS descrita no texto.}
+Duas advertências acompanham esses números, e ambas importam para quem for
+citá-los. A primeira: \textbf{as notas de grupos diferentes não se comparam
+entre si}. Cada uma mede distância até a fronteira do próprio grupo, de modo
+que 0,90 num grupo significa ``perto do melhor da minha categoria'', e não
+``tão eficiente quanto'' um 0,90 em outro. A segunda, e é a mais importante:
+\textbf{este resultado não é uma segunda prova}. Ele usa os mesmos dados e
+compara as mesmas redes que a Seção~\ref{sec:segmentacao}; o que muda é a
+técnica, não a informação. Dois métodos concordando sobre os mesmos dados
+não valem por duas evidências.
 
 \newpage
 \subsection*{Como os modelos de ocupação estão especificados}
@@ -391,62 +250,17 @@ $+5{,}7\%$ e $+60{,}8\%$. A ocupação de internação aponta na mesma direção
 $+11{,}5\%$, mas com o intervalo cruzando o zero, de modo que ali não se
 pode afirmar diferença.
 
-\subsubsection*{A escolha de família move mais o número do que os defeitos}
-
-Entre todas as decisões de modelagem, a que mais desloca a estimativa é a
-\textbf{família de distribuição}, mais do que qualquer das três decisões
-de especificação acima. Por isso as cinco especificações consideradas são
-reportadas juntas.
-
-\begin{table}[H]
-\centering
-\caption{Intensidade de uso da UTI, OSS contra administração Direta, sob
-cinco especificações. Efeito e intervalo em percentual.}
-\label{tab:familiasuti}
-\small
-\begin{tabular}{lrrrl}
-\toprule
-Especificação & $n$ & Efeito & IC 95\% & Zero \\
-\midrule
-\textbf{Duas partes, Gama (principal)} & 2.489 & $\mathbf{+30{,}4\%}$ & $[+5{,}7\%;\ +60{,}8\%]$ & exclui \\
-Gama, apenas os positivos              & 2.482 & $+30{,}4\%$ & $[+5{,}7\%;\ +60{,}8\%]$ & exclui \\
-Tweedie sem os zeros                   & 2.482 & $+27{,}0\%$ & $[+7{,}6\%;\ +49{,}8\%]$ & exclui \\
-Tweedie com os zeros                   & 2.489 & $+26{,}7\%$ & $[+6{,}7\%;\ +50{,}4\%]$ & exclui \\
-\textbf{Lognormal sem os zeros}        & 2.482 & $+25{,}9\%$ & $[-0{,}3\%;\ +59{,}0\%]$ & \textbf{cruza} \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-A amplitude entre as cinco é de \textbf{4,5 pontos percentuais}, menor que a
-largura do intervalo de confiança de qualquer uma delas. A direção é a mesma
-nas cinco, e \textbf{quatro excluem o zero}.
-
-\textbf{A quinta é a lognormal, e ela precisa ser nomeada}, porque
-``significativo em quatro de cinco'' sem dizer qual é a exceção não é
-robustez reportada. \textbf{E ela não discorda.} O ponto dela está a
-\textbf{0,0087} em pontos de logaritmo do Tweedie estimado sobre exatamente
-a mesma amostra, distância menor que a que separa quaisquer duas das
-outras famílias. O que muda é a \textbf{precisão}: o erro-padrão da
-lognormal é 41\% maior que o do Tweedie e 11\% maior que o da Gama.
-\textbf{Ela perde a significância por variância, não por deslocamento}, e
-por margem mínima: o limite inferior fica a três milésimos do zero.
-
-A razão é que a lognormal \textbf{estima outra quantidade}. As demais
-modelam a média condicional; a lognormal modela a mediana condicional. Sob
-assimetria à direita, que é a forma desta distribuição, o efeito sobre a
-mediana é sistematicamente mais atenuado e menos preciso que o efeito sobre
-a média. É \emph{estimar diferente}, não \emph{estimativa discordante}, e
-isso fortalece a leitura de robustez em vez de qualificá-la: a única
-especificação que não atinge significância é também a única que não está
-medindo a mesma coisa que as outras, e ainda assim entrega ponto
-equivalente.
-
-\comofeito{um alerta sobre a coluna de ajuste que não aparece nesta tabela:
-o critério de informação da lognormal (2.135) é numericamente muito menor
-que o das demais (entre 21.608 e 22.695), e \textbf{isso não significa
-ajuste melhor}. O da lognormal é calculado sobre o logaritmo da resposta e o
-das outras sobre a resposta, escalas diferentes. O critério é comparável
-\emph{dentro} de cada escala, nunca entre elas.}
+\textbf{E o número não depende de como o modelo foi montado.} A
+intensidade de UTI foi recalculada sob \textbf{cinco formulações
+estatísticas diferentes}, e todas as cinco apontam na mesma direção, com
+resultados entre $+25{,}9\%$ e $+30{,}4\%$. A distância entre a maior e a
+menor é de 4,5 pontos, menor que a margem de erro de qualquer
+uma delas isoladamente; quatro das cinco descartam a hipótese de que não há
+diferença, e a quinta fica a três milésimos de fazer o mesmo. Para a
+gestão, a leitura é simples: \textbf{a vantagem das OSS no uso da UTI não é
+produto da escolha de método}. O detalhamento das cinco formulações, com o
+motivo pelo qual uma delas mede uma quantidade um pouco distinta das
+demais, está no Apêndice~\ref{ap:diagnosticos}.
 
 \newpage
 \textbf{O que fica para a leitura do documento.} A segunda fase não

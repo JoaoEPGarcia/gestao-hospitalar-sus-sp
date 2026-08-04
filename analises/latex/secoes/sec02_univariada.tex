@@ -17,19 +17,36 @@ permanência, a distribuição é assimétrica à direita, com máximo de
 24,8 dias e \textbf{sem subpopulação de longa permanência}: os
 hospitais de perfil psiquiátrico ou de cuidados prolongados foram
 excluídos na construção do painel, por serem estruturalmente
-incomparáveis com o hospital geral agudo, e não aparecem nos dados. No faturamento, a cauda direita é longa: enquanto a mediana é
+incomparáveis com o hospital geral, e não aparecem nos dados. No faturamento, a cauda direita é longa: enquanto a mediana é
 R\$~1.328, o máximo chega a R\$~41.997, e é por isso que a média
 (R\$~1.833) fica 38\% acima da mediana. A fração de alta complexidade é
 o indicador mais concentrado: \textbf{31,3\% dos hospitais-ano não
-realizam nenhuma internação de alta complexidade}. Na ocupação,
-\textbf{15,5\% das observações de internação ultrapassam 100\%}
-(hospital operando acima da capacidade cadastrada, informação real de
-sobrecarga). Na UTI, \textbf{688 observações (21,6\%) são
-não-aplicáveis}: o hospital não tem UTI SUS cadastrada, e a razão é
-\emph{indefinida}, não zero, conforme a Seção~\ref{sec:categorias}. Entre as 2.491 observações válidas, os
-zeros verdadeiros são apenas \textbf{0,3\%} (sete hospitais-ano com UTI
-habilitada e nenhuma diária no período), e o máximo é um impossível
-875\%, examinado na Seção~\ref{sec:qualidade}.
+realizam nenhuma internação de alta complexidade}, e \textbf{35 hospitais
+nunca realizam, em nenhum dos onze anos} --- eles estão nomeados um a um
+no Apêndice~\ref{ap:listaalta}.
+
+Nas duas ocupações há dois números que pedem explicação, e vale gastar
+duas linhas com cada um. O primeiro: \textbf{15,5\% das observações de
+internação passam de 100\%}. Isso não é erro de conta. Quer dizer que o
+hospital internou, no ano, mais gente do que os leitos registrados no
+cadastro comportariam --- é superlotação, é informação verdadeira, e
+apagá-la seria esconder justamente o que ela mostra.
+
+O segundo é sobre \emph{quem entra na conta} da UTI. De cada dez
+observações do painel, cerca de duas são de hospital que \textbf{não tem
+nenhum leito de UTI do SUS cadastrado} (688 das 3.179, ou 21,6\%). Para
+esses hospitais a taxa de ocupação de UTI \textbf{não existe}: não há
+como calcular o quanto se usou de uma UTI que não há. Eles ficam de fora
+do cálculo, e não entram como zero --- lançar zero seria dizer que o
+hospital tem UTI e a deixa vazia, que é outra coisa completamente
+diferente e penalizaria cada rede na proporção dos hospitais sem UTI que
+ela tem. Os \textbf{49 hospitais que nunca tiveram leito de UTI do SUS}
+em nenhum dos onze anos estão nomeados no Apêndice~\ref{ap:listauti}.
+Sobram \textbf{2.491 observações}, de hospitais que de fato têm UTI, e
+nessas o zero aparece \textbf{sete vezes} (0,3\%): hospital com UTI
+cadastrada e nenhum dia de uso no ano inteiro. O maior valor da série,
+875\%, é um problema de cadastro examinado na
+Seção~\ref{sec:qualidade}.
 
 \begin{table}[H]
 \centering
@@ -83,10 +100,11 @@ indicadores de cauda direita longa (TMP, faturamento e alta complexidade)
 vale a regra usual, com a média acima da mediana; nas duas ocupações a
 média também fica abaixo da mediana, pelo peso dos valores baixos e,
 na UTI, dos zeros.
-
-\comoler{a altura de cada barra é o \textbf{número de hospitais-ano}
-naquele trecho: barra de 400 quer dizer 400 observações de hospital e
-ano ali. Na mortalidade, note as duas corcovas: a da esquerda, perto
+\newpage
+\comoler{a altura de cada barra é a \textbf{fatia do total de
+hospitais-ano} que cai naquele trecho: barra de 5\% quer dizer que 5\%
+das 3.179 observações de hospital e ano estão ali (cerca de 159 delas).
+A soma de todas as barras é 100\%. Na mortalidade, note as duas corcovas: a da esquerda, perto
 de zero, são as maternidades e especializados; a principal fica perto
 de 5,5\%. No TMP, quase todos os hospitais estão entre 3 e 7 dias, com uma cauda
 curta que se estende até cerca de 25 dias, sem nenhum grupo isolado de
@@ -99,9 +117,9 @@ longa permanência.}
 \caption{Distribuição da mortalidade geral e do tempo médio de
 permanência (289 hospitais, 2015 a 2025). Em cada gráfico, a linha
 tracejada vertical é a mediana, com o seu valor escrito ao lado; a
-pontilhada é a média. O eixo vertical é uma \textbf{contagem}: cada
-barra diz \textbf{quantas observações de hospital e ano} caem naquele
-trecho, das 3.179 do painel. Metade dos
+pontilhada é a média. O eixo vertical está em \textbf{percentual do
+total}: cada barra diz \textbf{que fatia das 3.179 observações de
+hospital e ano} do painel cai naquele trecho, e as barras somam 100\%. Metade dos
 hospitais tem mortalidade entre 3,7\% e 7,1\%.}
 \label{fig:univA}
 \end{figure}
@@ -110,17 +128,16 @@ hospitais tem mortalidade entre 3,7\% e 7,1\%.}
 observações do painel (cada observação é um hospital em um ano). O eixo
 horizontal traz o valor do indicador, mortalidade geral como
 proporção de internações que terminam em óbito (já excluídas as
-internações por COVID) e TMP em dias. O eixo vertical traz a
-\textbf{contagem de hospitais-ano}: o número lido no eixo é literalmente
-quantas das 3.179 observações do painel caem naquela faixa. A linha
-tracejada vertical marca a mediana, com o valor rotulado, e a
-pontilhada, a média.}
+internações por COVID) e TMP em dias. O eixo vertical traz o
+\textbf{percentual do total de hospitais-ano}: o número lido no eixo é
+a fração das 3.179 observações do painel que cai naquela faixa,
+calculada dividindo a contagem da faixa por 3.179.}
 
-\comoler{no faturamento, a concentração fica perto de R\$~1.300 e a cauda se
-estica até quase R\$~42.000, o que explica a média (pontilhada) ficar
-bem à direita da mediana (tracejada). Na alta complexidade, a barra
-gigante em zero mostra os 31,3\% de hospitais-ano sem nenhuma
-internação desse tipo.}
+\comoler{no faturamento, a concentração fica perto de R\$~1.300 e a média
+(pontilhada) fica à direita da mediana (tracejada) porque a cauda se
+estica até quase R\$~42.000. Essa cauda \textbf{não} ocupa o eixo: o
+gráfico é desenhado até R\$~6.000, e tudo o que passa disso está na barra
+hachurada da direita, com a contagem escrita.}
 
 \begin{figure}[H]
 \centering
@@ -128,8 +145,8 @@ internação desse tipo.}
 (R\$ de dez/2025)}
 \subfig{fig_ae_01_hist_pct_alta_complex.png}{Fração alta complexidade}
 \caption{Distribuição do faturamento real por saída (R\$ de dez/2025) e da
-fração de alta complexidade. Como na figura anterior, o eixo vertical é
-uma \textbf{contagem de hospitais-ano}. Metade dos hospitais fatura
+fração de alta complexidade. Como na figura anterior, o eixo vertical
+está em \textbf{percentual do total de hospitais-ano}. Metade dos hospitais fatura
 entre R\$~923 e R\$~1.971 por saída.}
 \label{fig:univB}
 \end{figure}
@@ -138,13 +155,14 @@ entre R\$~923 e R\$~1.971 por saída.}
 faturamento real por saída (valor pago por internação encerrada,
 deflacionado pelo IPCA para R\$ de dez/2025) e a
 fração de alta complexidade (proporção das internações classificadas
-como de alta complexidade, entre 0 e 1); no eixo vertical, a contagem
+como de alta complexidade, entre 0 e 1); no eixo vertical, o percentual
 das mesmas 3.179 observações.}
-
+\newpage
 \comoler{a linha pontilhada vertical marca 100\%: tudo à direita dela é
 operação acima da capacidade cadastrada. Na internação, isso ocorre em
-15,5\% das observações. Na UTI, a barra em zero são os hospitais sem
-UTI ativa, e a cauda que se arrasta até 875\% é o problema de cadastro
+15,5\% das observações. Na UTI, o gráfico vai até 200\% e as \textbf{20
+observações (0,8\%)} que passam disso, inclusive o máximo de 875\%,
+estão na barra hachurada da direita; o extremo é o problema de cadastro
 examinado na Seção~\ref{sec:qualidade}.}
 
 \begin{figure}[H]
@@ -153,14 +171,84 @@ examinado na Seção~\ref{sec:qualidade}.}
 \subfig{fig_ae_01_hist_ocupacao_uti.png}{Ocupação de UTI}
 \caption{Distribuição das taxas de ocupação de internação e de UTI, em
 escala percentual. O eixo \emph{horizontal} está em percentual de
-ocupação; o \emph{vertical} é a \textbf{contagem de hospitais-ano}.}
+ocupação; o \emph{vertical}, em \textbf{percentual do total de
+hospitais-ano}. Atenção ao denominador de cada painel: na internação o
+total são as 3.179 observações do painel; na UTI, as \textbf{2.491
+observações com leito de UTI SUS cadastrado}, porque nas 688 restantes a
+razão não é definida. É justamente por isso que o eixo vale mais em
+percentual do que em contagem: as duas alturas passam a ser comparáveis
+apesar de os totais serem diferentes.}
 \label{fig:univC}
 \end{figure}
 
 \comofeito{histogramas das duas taxas de ocupação em escala percentual:
-eixo horizontal em \%, eixo vertical em contagem de hospitais-ano, sobre
-as 3.179
-observações. A ocupação é calculada como diárias sobre a capacidade
-cadastrada de leitos SUS; a linha vertical em 100\% separa a operação
-dentro da capacidade cadastrada (à esquerda) da sobrecarga (à direita).}
+eixo horizontal em \% de ocupação, eixo vertical em \% do total de
+hospitais-ano. O total é o das observações em que o indicador existe:
+3.179 na internação e 2.491 na UTI (as 688 sem leito de UTI cadastrado
+são não-aplicável, não zero, e ficam fora da conta em vez de rebaixarem
+todas as barras). Em cada painel as barras somam 100\%.
+A ocupação é uma regra de três entre o que o hospital
+gerou e o que ele tinha para gerar: somam-se as diárias do ano e
+divide-se pelo leito-dia disponível, que é a \textbf{contagem de leitos
+vezes 365}. Como o SIH registra a permanência de UTI separada da
+permanência de internação, as duas ocupações saem do mesmo cálculo
+aplicado a cada grupo de leito. A linha vertical em 100\% separa a
+operação dentro da capacidade cadastrada (à esquerda) da sobrecarga (à
+direita), e a janela do painel da UTI vai a 200\%, com as 20 observações
+acima disso na barra hachurada.}
+
+\subsection*{Por que a ocupação passa de 100\%, e o que isso obriga a
+distinguir}
+\label{sub:lotacao}
+
+Vale gastar meia página com o número mais contraintuitivo do painel, porque
+ele muda a leitura de \emph{toda} taxa de ocupação deste documento, e não só
+das desta seção.
+
+\textbf{Ocupação acima de 100\% não é erro de cadastro. É superlotação, e o
+mecanismo está identificado.} Os dois sistemas que alimentam a conta
+definem ``leito'' de maneiras diferentes, e os dois estão certos no que
+fazem. O cadastro nacional registra apenas o leito \emph{oficialmente
+habilitado}, e por definição não conta o leito extra que o hospital montou.
+O sistema que paga a internação, por outro lado, paga a diária de qualquer
+paciente que fique mais de vinte e quatro horas --- inclusive na maca do
+corredor e no leito de observação. Resultado: quem está em leito extra entra
+no numerador da conta e não entra no denominador. Quando o hospital atende
+mais gente do que os leitos oficiais comportariam, a razão passa de 100\%.
+
+\textbf{Isso obriga a distinguir duas coisas que a palavra ``ocupação''
+confunde.} Uma \emph{taxa de ocupação}, por definição, não pode passar de
+100\%: ela é a fatia dos leitos que ficou ocupada, e uma fatia nunca é maior
+que o todo. O que este documento calcula e publica é outra coisa, e é
+deliberado: é a \textbf{lotação}, ou seja, \emph{quanto leito o hospital
+precisou} para cada leito que ele tem cadastrado. Essa medida não tem teto,
+e é ela que responde à pergunta de gestão que interessa --- o hospital está
+dando conta da demanda com o que tem?
+
+As duas medidas se relacionam de forma simples. Até 100\%, elas são a mesma
+coisa. Acima de 100\%, a lotação se separa em duas parcelas que somam o
+total: a parte que é \textbf{leito de fato ocupado}, que vai até 100\%, e a
+parte que é \textbf{transbordo}, o que passa disso. Quando um hospital
+aparece com 115\% de ocupação, leia-se: ele encheu todos os leitos
+cadastrados \emph{e} operou 15\% além deles.
+
+\textbf{Nenhum número deste documento muda por causa dessa distinção} --- a
+conta é a mesma de sempre. O que ela acrescenta é a possibilidade de separar
+as duas parcelas quando isso importa, e importa: a
+Seção~\ref{sec:segmentacao} mostra que, na distância entre as redes,
+\textbf{91\% é leito de fato ocupado e 9\% é transbordo}, e que as redes
+transbordam de maneiras bem diferentes umas das outras.
+
+% A mini-seção "O viés que esse denominador carrega" saiu daqui em
+% 04/08/2026, a pedido de João, junto com o destaque alaranjado que ela
+% explicava na figura. Eram 30 observações (1,2%) de abertura ou
+% encerramento de UTI, e o que elas movem nos resultados a Seção 13 mede em
+% 0,06 erro-padrão. A Seção 9 seguia registrando o descasamento de
+% calendário como problema de qualidade de registro, e a bateria de
+% calendário da Seção 13 reestimava os contrastes sem essas observações.
+% ATUALIZAÇÃO de 04/08/2026: essa bateria também saiu do documento, a
+% pedido de João, pelo mesmo motivo. Ela continua reproduzível por
+% `analises/verificar_bateria_calendario.py` e por
+% `analises/auditar_uti_ano_parcial.py`, e o registro está na seção 21 de
+% PENDENCIAS.md.
 

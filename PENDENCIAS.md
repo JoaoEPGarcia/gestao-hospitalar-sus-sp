@@ -653,6 +653,49 @@ descrevendo um estado inexistente. Nenhuma camada da triagem o pegaria:
 todas comparam texto contra dado, e aqui o texto errado era o do *registro*,
 não o do documento. O que o pegou foi rodar o script.
 
+### Revisão de 30/07/2026 — o eixo sai da contagem e vai para percentual
+
+**Decisão de João.** A tabela acima passa a descrever um estado anterior: o
+eixo Y dos histogramas **não imprime mais "Hospitais-ano"**, e sim
+**"% do total de hospitais-ano"**. O motivo é de leitura e não de
+estatística — "400 hospitais-ano" só significa algo para quem carrega o
+denominador na cabeça, e o denominador não é o mesmo em todas as figuras
+(3.179 no painel, 2.491 na ocupação de UTI, 3.150 no interior da
+mortalidade, 2.174 no interior da alta complexidade, 3.178 no TMP). Em
+percentual as alturas ficam comparáveis entre figuras e o número se lê
+sozinho. A forma das barras é idêntica: a conversão é uma divisão pelo *n*
+da amostra.
+
+Alcance, todas as onze figuras regeradas em 30/07/2026: os seis
+`fig_ae_01_hist_*`, os dois `fig_ae_03_hist_log_*`,
+`fig_ae_02_beta_pct_alta_complex`, `fig_ae_12_mistura_mort_all` e
+`fig_ae_12_decomposicao_mort_all`. Em código, `ROT_CONTAGEM` virou
+`ROT_PERCENTUAL`, `_escala_contagem()` virou `_escala_percentual()` — que
+não precisa mais do *n*, porque ele cancela entre a contagem esperada e o
+denominador da conversão — e entrou `_pesos_pct()`, que passa
+`weights=100/n` a cada `ax.hist`. `_eixo_pct()` escreve o sinal de % nos
+rótulos, para a leitura não depender do rótulo do eixo.
+
+Dois efeitos colaterais tratados, e não só o rótulo:
+
+- em `fig_ae_02_beta_pct_alta_complex` o eixo é log e a curva Beta diverge
+  perto de zero (o expoente *a* é 0,33): em percentual ela subiria acima de
+  100% do total, número sem sentido de leitura. O eixo foi cortado em 100%
+  e a curva sai pelo alto, com o `\comofeito` dizendo que isso é
+  propriedade do molde e não leitura dos dados;
+- o `\comofeito` da Figura da mistura afirmava "a contagem das 3.179
+  observações", e o histograma sempre foi o **interior de (0,1)**, que tem
+  **3.150**. O erro é anterior a esta revisão e foi corrigido junto, com o
+  número conferido em `tab_ae_mistura_mortalidade.csv`.
+
+Texto ajustado nos dois lados do documento — `sec02_univariada.tex` (três
+legendas, três `\comofeito` e um `\comoler`) e
+`apendiceA_diagnosticos.tex` (três legendas e três `\comofeito`) —, e as
+legendas das ocupações passam a nomear o denominador de cada painel, que é
+exatamente o que a escala percentual torna comparável. Regra 7 cumprida: os
+onze PNGs foram regerados e três deles abertos e lidos antes deste
+parágrafo.
+
 O diagnóstico original segue abaixo, preservado.
 
 ---
@@ -1217,6 +1260,15 @@ porque alguém se esforce mais.**
     substituí-la por conta própria. Se Priscilla e Alberto preferirem manter
     os hospitais atuais, basta declarar o critério antigo como
     exploratório; se preferirem a lista só-DEA, o script já a produz.
+12. **Em que defeito o veredito de não-citabilidade da SFA se apoia.**
+    *Aberta em 30/07/2026, pela auditoria da §16.* A `sec15` funda a
+    proibição em dois defeitos, e **só um deles sobrevive ao teste**: a
+    degeneração das OSS é real e irreparável, mas a violação de
+    monotonicidade em 94,9% é propriedade do **insumo aninhado**, não da
+    forma Translog. Retirado o insumo de UTI, a violação desaparece e nada
+    substantivo se move (Spearman 0,986). Como é a monotonicidade que
+    estende a proibição das OSS às outras quatro categorias, o **escopo** do
+    veredito depende de qual defeito se declara. Detalhado em §16.
 
 ### B. Pendente por TRABALHO NÃO FEITO — ninguém precisa decidir nada
 
@@ -1416,6 +1468,38 @@ da leitura temporal afirmava que o E2 ultrapassa o E3 nas saídas por leito
 últimos. A frase foi escrita a partir da leitura do gráfico e corrigida pela
 tabela.
 
+**As seis tabelas entraram no documento (30/07/2026).** A Subseção 14.5
+terminava com um parágrafo que apenas *dizia onde as tabelas estavam*, e o
+leitor do PDF ficava sem elas. As seis foram **reproduzidas por extenso**, em
+onze tabelas LaTeX: o dicionário abre em duas (27 incluídas por família, 8
+grupos excluídos com motivo), a descritiva sai nas duas unidades lado a lado,
+o teste sai completo com os três contrastes de Holm, a abertura por ano sai em
+duas tabelas de três métricas, e o cruzamento com categoria sai em uma, com as
+oito células de $n<10$ e a marca R2 impressas. A `figSEG_10`, que o script
+gerava desde 29/07 e **nenhuma seção incluía**, entrou com "Como ler" e "Como
+foi feito". Medido nos dois PDFs: a Seção 14 passou de **11 para 22 páginas**
+(63--73 contra 63--84) e o documento, de **136 para 147**.
+
+**Quatro achados que só apareceram ao reproduzir as fontes**, nenhum deles no
+texto anterior: (i) o preço unitário real caiu **26,7%** em E1 e **11,0%** em
+E2 nos onze anos, e **não caiu** em E3 (+1,3%) — a erosão da tabela de
+pagamento foi proporcionalmente maior no degrau de baixo; (ii) a superlotação
+é **traço de hospital em E3 e evento de ano em E2**: em E3, 28,1% dos
+hospitais-ano contra 26,4% dos hospitais na maioria dos seus anos (quase
+coincidem); em E2, 9,3% contra 2,1% (não coincidem); (iii) **três hospitais de
+E3** têm mediana de ocupação acima de 100% nos onze anos, que é por que a
+linha da ocupação condicional tem 122 CNES e não 125; (iv) dos **81**
+contrastes par a par, **73 rejeitam**, e os 8 que não rejeitam são o mapa de
+onde a escada para de funcionar — três deles são a ocupação de UTI inteira, a
+única variável das 27 que o teste global não distingue ($p$ de 0,158).
+
+**Regra 7 cumprida na direção inversa, e vale registrar.** Nenhum número novo
+foi escrito: todos saíram de `tabSEG_20` a `tabSEG_25` lidas do disco. As duas
+afirmações da leitura temporal que já estavam no texto — seis cruzamentos na
+mortalidade, E2 acima em seis dos onze anos nas saídas por leito — foram
+**reconferidas contra `tabSEG_24` ano a ano** antes de a tabela entrar, e
+confirmaram.
+
 ---
 
 ## 14. Auditoria editorial das cinco frentes (29/07/2026)
@@ -1544,3 +1628,947 @@ leitura da Priscilla"*. O Bloco A **aplicou** essa propagação (commits
 menciona, **continua pendente** — de modo que a linha está meio certa e meio
 desatualizada, e desfazer o nó exige decidir o que ela quis dizer. Fica aqui
 nomeado em vez de corrigido por conta própria.
+
+---
+
+## 17. A SFA sai da análise (31/07/2026)
+
+**Decisão de:** João, 31/07/2026
+**Regra que ele deu:** *"se o SFA for bom e correto podemos usá-lo, caso
+contrário podemos usar apenas o DEA."*
+
+**O veredito sob essa regra: só DEA.** Dos três defeitos que a §16 examinou,
+**um sobrevive** — a degeneração das OSS, constante até a 5ª casa em todas as
+especificações testadas (principal, sem UTI, Mundlak, só leitos). E ele cai
+**exatamente sobre a categoria que a pesquisa existe para comparar**. Uma
+fronteira cujos escores travam nas OSS não serve como medida, por mais
+correta que seja no resto.
+
+### O que saiu do documento
+
+- **`sec15`**: o painel (b) dos violinos, a tabela da equação de ineficiência
+  (`tab:equacaoinef`), a figura de dispersão SFA×DEA (`fig:convergencia`) e
+  toda a passagem técnica da contraparte paramétrica. Nenhuma das três
+  âncoras era referenciada em lugar nenhum — a remoção não quebrou
+  referência.
+- **`sec16` e `apendiceB`**: a coluna SFA das seis tabelas de seleção (18
+  linhas), os escores citados nas fichas e as ressalvas que os
+  acompanhavam.
+- **`sec17`, `sec00`**: as passagens de conclusão e a limitação do sumário.
+- **`NUMEROS_CANONICOS.md`**: as duas linhas de valores da SFA.
+
+### O que entrou no lugar
+
+Uma subseção nova em `sec15`, **"O segundo método que foi tentado, e por que
+ele ficou de fora"** (`\label{sub:sfa}`), escrita **sem estatística** e
+dirigida a administradores hospitalares: explica a diferença entre os dois
+métodos, e os dois defeitos por analogia — a nota igual para todos os
+hospitais de um grupo, que é o modelo travando; e o leito de UTI contado
+duas vezes, "como perguntar quanto custa um carro e depois, na mesma conta,
+quanto custa o motor dele". Todas as demais seções remetem a ela.
+
+### A consequência que muda o campo, e não é editorial
+
+O **Bloco e do Apêndice B** — cinco hospitais sugeridos para entrevista —
+era selecionado **inteiramente pela divergência entre DEA e SFA**. Sem a SFA
+o critério não existe: não é uma coluna que sai, é o bloco que deixa de ter
+razão de ser. Foi removido, junto com o **Módulo E** do roteiro na `sec16`.
+A reserva sugerida cai de dez para seis hospitais.
+
+**Isto é decisão de campo, não de redação.** Fica registrado aqui em
+destaque para que Priscilla e Alberto saibam que a lista encolheu e por quê.
+A remoção é reversível: os cinco hospitais e as suas fichas estão no
+histórico do Git, e o critério antigo continua descrito nesta entrada.
+
+**12.A.11 continua aberta** e agora com mais razão: a lista do bloco c segue
+provisória, e refazê-la só sobre o DEA continua sendo a recomendação.
+
+O documento compila em **134 páginas** (eram 139), três passes, sem erro,
+sem referência indefinida e sem nenhuma caixa mal ajustada.
+
+---
+
+## 16. Em que defeito o veredito de não-citabilidade da SFA se apoia (30/07/2026)
+
+**Executada em:** 30/07/2026
+**Decisão de:** João, com Priscilla onde o escopo da proibição mudar
+**Situação:** **FECHADA em 31/07/2026.** O João decidiu aplicar tudo.
+
+> **Correção de registro, 31/07/2026.** Este campo dizia *"FECHADA em
+> 30/07/2026 [...] Foram aplicadas aos `.tex` as correções [...] C1–C22 [...]
+> e as três de fora do escopo da SFA, R1, R2 e R3. O documento compila em 136
+> páginas"*. **A decisão era real; a aplicação não tinha acontecido.** Em
+> 31/07/2026 os arquivos foram conferidos um a um: `sec15` e `sec17` estavam
+> **byte a byte idênticos ao HEAD**, `sec16` só tinha mudança de fim de linha,
+> a tabela do R2 seguia com cinco colunas e o `n.a.` do R3 seguia na linha 88
+> da `sec11`. A `sec15:254` ainda afirmava em negrito que a fronteira *"não se
+> comporta como função de produção"* — a tese que esta própria §16 refutou.
+>
+> Este é o defeito mais perigoso do repertório do §13: **o documento de
+> controle declarando feito o que não foi**, porque desarma a próxima
+> auditoria. Fica registrado em vez de sobrescrito, pelo mesmo motivo que a
+> subcontagem das branches em 12.A.8.
+
+**Aplicadas de fato em 31/07/2026:** **C1** (sumário executivo, junto com a
+reposição do bloco das cinco limitações, que uma edição não commitada havia
+apagado), **C2–C18** e **C20–C23** (C19 não exigia alteração) e **R3** (o
+`n.a.` da `sec11`, que agora traz o AME de $-1{,}31$ p.p. reproduzido em
+`analises/auditar_efeitos_robustez.py`).
+
+**Não aplicadas, e por quê:** **R1** é decisão editorial sobre a passagem das
+famílias em `sec15`, não correção de fato. **R2** (coluna de efeito na
+`tab:sempandemia`) foi substituída por uma solução diferente: a tabela ganhou
+a linha da UTI em GLM Gama, que é a especificação canônica, porque imprimir
+a coluna de efeito sobre a linha do log perpetuaria a única linha da Seção 13
+fora da escala adotada — ver o registro da bateria de calendário.
+
+**Uma correção ao próprio guia.** A C6 mandava escrever que, retirado o
+insumo aninhado, *"a fronteira volta a ser monótona"*. O
+`auditar_fronteira_sem_uti.R` mostra que o insumo de leitos passa a violar em
+**5,82%** naquela especificação. O texto aplicado diz o que é verdade — *"a
+violação de 94,9% desaparece"* — e não o que era conveniente.
+
+O documento compila em **139 páginas** em três passes, sem erro e sem nenhum
+`Overfull \hbox`. Os números novos foram reproduzidos rodando: aninhamento em
+100% das observações, razão mediana 0,1154, correlação 0,8248 e Spearman
+0,9860.
+**12.A.11 continua aberta**: a lista do bloco c segue provisória, e refazê-la
+só sobre o DEA continua sendo a recomendação — nenhuma destas correções a
+resolve.
+
+Reproduzido em `analises/auditar_sfa_validade.py` e
+`resultados_fase2/auditar_fronteira_sem_uti.R`. Os dois resolvem a raiz a
+partir da própria localização e **não escrevem nada**.
+
+### O que foi conferido primeiro: os números da `sec15` estão certos
+
+Sete valores reproduzidos sem ler nenhum `.rds`, reconstruindo as
+elasticidades de `tabS_fronteira_bc95.csv` + `painel_definitivo.csv`:
+
+| `sec15` | reproduzido |
+|---|---|
+| 94,9% violadas (UTI) | **94,93%** |
+| 97,8% / 96,9% (UTI ativa) | **97,82%** (`uti_total>0`) / **96,90%** (`diarias_uti>0`) |
+| 99,7% / 99,6% (leitos / valor) | **99,72% / 99,59%** |
+| 93,6% → 99,3% por categoria | **93,61%** (Filantrópico) → **99,30%** (Direta) |
+| 0,912 / 0,788 / 0,784 | **0,9120 / 0,7877 / 0,7842** |
+
+E a reestimação da especificação principal devolve `tabS_fronteira_bc95.csv`
+dígito por dígito (−1297,5609; −5,4545; γ 0,9548), o que confirma de passagem
+que o pipeline da Frente 3 é reproduzível a partir do que está em disco.
+
+**Não há erro aritmético.** O que está em questão é a atribuição de causa.
+
+### A estrutura do argumento da `sec15`
+
+A Seção funda a proibição em dois defeitos. Eles não têm o mesmo alcance:
+
+- a **degeneração das OSS** (separação perfeita) alcança **as OSS**;
+- a **violação de monotonicidade** é o que estende a proibição às **outras
+  quatro categorias** — "a fronteira inteira está desqualificada como medida"
+  (linha 267), "nenhum valor, em nenhuma categoria" (linha 174).
+
+Por isso o segundo defeito precisa suportar o peso que carrega.
+
+### O teste que faltava
+
+O próprio `fase2_sfa.R` já estima a fronteira sem o insumo de UTI (linha 159,
+`m_semuti`), mas **não a salva**, **nunca calcula a monotonicidade dela** e só
+lhe extrai o coeficiente das OSS. A pergunta "a fronteira é salvável?" estava
+a uma linha de R de distância e nunca foi feita. Feita agora:
+
+| Especificação | Monotonicidade | δ(OSS) | DP da TE das OSS | δ(Municipal) |
+|---|---|---|---|---|
+| Principal (3 insumos) | UTI **violada 94,9%** | −1.298 (EP 906) | 2×10⁻⁶ | −5,45 (p 9,0e−8) |
+| **Sem UTI** (2 insumos) | leitos 94,2% / valor 99,5% — **violação sumiu** | −1.278 (EP 661) | 4×10⁻⁶ | −5,90 (p 1,7e−9) |
+| **Só leitos** (1 insumo) | **100,00% monótona** | −2.924 (EP 927) | 2×10⁻⁶ | −7,18 (p 5,5e−9) |
+
+Spearman principal × sem UTI = **0,986**; principal × só leitos = 0,821.
+A ordem das categorias é idêntica nas três.
+
+### Achado 1 — a monotonicidade não é defeito da Translog
+
+`uti_total ≤ total_leitos` em **100,00%** das observações, razão mediana
+**0,115**, corr(lc,uc) = **0,825**. Leito de UTI é **subconjunto** de leito
+total, e os dois entram na mesma fronteira. Condicionado ao total de leitos,
+"mais UTI" não é mais capacidade: é composição diferente. E o produto é
+`qtde` (saídas), que cai quando a permanência sobe. **Uma elasticidade
+condicional negativa é o resultado esperado.** Monotonicidade é condição de
+regularidade sobre insumos livres e separáveis; não se aplica a um insumo
+aninhado em outro já no modelo.
+
+E a violação não é curvatura: `b[uc]` = −0,0866 e a mediana de `e_u` é
+−0,0868. Os 94,9% são **o sinal de um coeficiente**. Cobb Douglas com os
+mesmos insumos daria ~100% de violação, não menos — de modo que atribuir o
+defeito à *forma Translog* inverte causa e efeito.
+
+**A frase da linha 328** — *"a violação em 94,9% é ela mesma um achado: diz
+que a Translog não descreve bem o modo como estes hospitais transformam
+insumo em produto"* — **não se sustenta**. Retire o insumo aninhado: a
+violação desaparece e nada substantivo se move.
+
+**O projeto já tinha o diagnóstico certo.** `RELATORIO_EXECUCAO.md` (linha
+117, de 17/07/2026) atribui a violação a "colinearidade alta dos leitos de
+UTI com leitos totais e valor (correlações de 0,82 e 0,84)" — conferem com
+0,825 e 0,836 — e conclui, com escopo correto: *"mais um motivo para a
+leitura da UTI ficar com a sensibilidade sem esse insumo"*, sendo *"a leitura
+válida da frente as ordens das eficiências técnicas e o cruzamento com o
+DEA"*. O escopo largou entre 17/07 e 29/07 **sem nenhum recálculo**:
+`git show --stat 1a9542d` toca um único arquivo, o `.tex`.
+
+### Achado 2 — a degeneração das OSS é o defeito real, e é irreparável
+
+A TE das OSS é constante até a 5ª casa em **todas** as especificações —
+principal, sem UTI, Mundlak e só leitos —, com δ(OSS) entre −1.278 e −2.924.
+Sob Battese e Coelli isso empurra a ineficiência das OSS a zero: a
+verossimilhança fica plana e o Wald calculado ali não tem interpretação.
+**A `sec15` está inteiramente certa sobre este defeito**, e a nota de rodapé
+que explica o *p* de 8,3×10⁻⁷ como formato da aproximação é exemplar.
+
+### Achado 3 — o −5,454 do Municipal sobrevive ao reparo que corrige o defeito alegado
+
+A `sec15` descarta o coeficiente do Público Municipal **pela monotonicidade**
+("nenhum coeficiente desta tabela é interpretável", linha 258). Ele vale
+−5,90 na fronteira reparada e −7,18 na só-leitos, p < 1×10⁻⁸ nas três.
+**A razão escrita para descartá-lo não se aplica.** As outras razões de
+cautela que a Seção também dá — o DEA não confirma a ordem, e a equação é
+estimada em conjunto com um termo degenerado — continuam de pé e são boas.
+
+### Achado 4 — a ressalva do insumo financeiro nunca foi testada na SFA
+
+corr(log `qtde`, log `valor_real`) = **0,877**: o insumo é quase o próprio
+produto. A `sec15` levanta isso como "ressalva de primeira ordem" e a
+resolve **para o DEA** com duas checagens (produção física por leito; DEA só
+com leitos). Para a SFA, nunca — `tabS_sensibilidade.csv` traz principal, sem
+UTI e Mundlak. A variante só-leitos rodada agora **mantém a ordem das
+categorias**, mas a concordância com o DEA no nível do hospital **cai de
+0,617 para 0,416**. Registrado contra a própria tese desta seção: o conteúdo
+*ordinal por categoria* da SFA é estável, o *escore hospital a hospital* não
+é.
+
+### Por que nenhum `.tex` foi tocado
+
+Trocar o defeito em que o veredito se apoia **muda o escopo dele**. Fundado
+na degeneração, o veredito alcança as OSS com folga; a extensão às outras
+quatro categorias passa a exigir argumento próprio — o mais forte disponível
+é que 11,5% da amostra presa na fronteira ancora a fronteira de todo mundo
+na estimação conjunta, e ele é bom, mas é *outro* argumento. E há evidência
+dos dois lados: a ordem sobrevive ao reparo (ρ = 0,986) e o próprio
+`RELATORIO_EXECUCAO.md` verificou Spearman-sem-OSS = 0,629 concluindo que a
+convergência **não** é artefato do grampo das OSS.
+
+Isso cascateia para `sec16`, `sec17`, `NUMEROS_CANONICOS.md` e, sobretudo,
+para **12.A.11** — dois dos três hospitais do bloco c mudaram de entrevistado
+porque a SFA foi declarada não citável. Trocar entrevistado é decisão da
+pesquisadora principal, e a mesma razão que manteve o item 11 na lista A
+mantém este aqui.
+
+**Uma correção é mais estreita que as outras e pode ser feita sozinha:** a
+frase da linha 328 afirma um fato refutado, e retirá-la não afrouxa proibição
+nenhuma. Mas retirá-la isolada deixa "a fronteira inteira está desqualificada
+como medida" sem sustentação no parágrafo, o que troca uma frase errada por
+um não-sequitur. Por isso ela também fica nomeada em vez de corrigida por
+conta própria.
+
+### A lição, que é a de sempre neste projeto
+
+O erro não está em nenhum número — todos conferem. Está na **relação entre
+eles**: um defeito real (94,9%) foi lido como propriedade de uma *forma
+funcional* quando é propriedade de uma *escolha de insumos*, e a leitura
+errada foi o que autorizou generalizar a proibição de uma categoria para
+cinco. É a mesma assinatura da varredura das 18 seções: o que sobrevive à
+auditoria numérica não é número errado, é a relação entre números.
+
+---
+
+## 18. Rodada de legibilidade para gestor (01/08/2026)
+
+**Executada em:** 01/08/2026
+**Situação:** **FECHADA**, com uma decisão editorial de João registrada
+abaixo e uma pergunta dele respondida com dado.
+
+Pedido de João em nove frentes, todas atendidas. O eixo comum é o mesmo das
+rodadas anteriores: o documento é lido por gestores, e o que estava
+atrapalhando não era o número, era a forma de apresentá-lo.
+
+### A. Os violinos estavam fora de escala
+
+`fig_ae_04_violino_*`: o eixo vertical era esticado por um punhado de
+observações extremas e a silhueta, que é a informação do gráfico, encolhia.
+Na ocupação de UTI o eixo ia a **875%** para acomodar UMA observação, e os
+cinco violinos ficavam comprimidos no primeiro sexto da altura.
+
+Corrigido com **janela com prestação de contas**, a mesma solução já usada
+nos histogramas em 31/07/2026 (`JANELA_HIST`). A constante nova é
+`JANELA_VIOL` em `analise_exploratoria.py`, e o desenho passa por
+`_janela_violino`, que recorta o eixo e escreve no canto quantas
+observações ficaram acima e qual é o máximo real:
+
+| Indicador | Janela | Fora | Máximo real |
+|---|---|---|---|
+| Ocupação de UTI | 200% | 20 obs (0,80%) | 875% |
+| Ocupação de internação | 160% | 7 obs (0,22%) | 237% |
+| Mortalidade geral | 0,16 | 21 obs (0,66%) | 0,260 |
+| TMP | 16 dias | 6 obs (0,19%) | 24,8 |
+
+**Nenhuma observação sai do cálculo**: a silhueta segue estimada sobre a
+série inteira; o que muda é o trecho do eixo que a página mostra.
+
+O TMP tinha teto fixo de **35 dias** desde o item 1.4 de 13-14/07/2026, para
+um indicador cujo máximo é 24,8 e cuja massa acaba em 12: um terço da altura
+era branco. A decisão daquele item era manter o TMP em escala LINEAR, e ela
+**permanece**; o que mudou foi o valor do teto.
+
+### B. A alta complexidade do Filantrópico, que parecia baixa e não é
+
+**Pergunta de João:** o Filantrópico tem mediana de alta complexidade de
+0,0018, a segunda menor da tabela, e ao mesmo tempo a UTI mais cheia da
+rede. Isso não fecha. Ele leu errado ou o texto está errado?
+
+**Nenhum dos dois: o texto estava incompleto.** Os dois números estão certos
+e não se contradizem, mas a Tabela 2 só trazia a mediana, e mediana de um
+grupo de **171 hospitais** com 37% de zeros não descreve a rede. Medido pelo
+que a rede produz, o Filantrópico é o oposto do que a mediana sugere:
+
+| Leitura | Filantrópico | Direta | OSS | Município |
+|---|---|---|---|---|
+| Mediana da fração de alta complexidade | 0,0018 | 0,0213 | 0,0242 | 0,0010 |
+| Média | **0,0831** | 0,0893 | 0,0672 | 0,0216 |
+| Agregado da rede | **0,1403** | 0,1026 | 0,0737 | 0,0213 |
+| Fatia da alta complexidade do painel | **71,0%** | 9,4% | 14,5% | 4,5% |
+| Fatia dos leitos de UTI SUS | **51,9%** | 11,3% | 16,2% | 19,9% |
+
+Por dentro do grupo: entre os **117** filantrópicos com UTI SUS a mediana é
+4,0% e a média 11,7%; entre os **54** sem UTI as duas são zero. Na faixa 6, os
+oito filantrópicos têm mediana de 20,7%. Os hospitais que enchem a UTI e os
+que puxam a mediana para baixo **não são os mesmos hospitais**.
+
+Correções: a Tabela 2 passa a trazer **mediana e média** lado a lado, entrou
+a **Tabela 3** com o agregado de cada rede (`tab_ae_por_categoria_agregado.csv`,
+numeradores na base sem COVID e faturamento deflacionado antes de somar), e
+a Seção 4 ganhou a subseção que explica a diferença entre as duas leituras.
+
+### C. Os cinco indicadores oficiais, e o que foi ampliado
+
+A Seção 1 dizia "os **quatro** oficiais do estudo... a eles se somam as duas
+taxas de ocupação". Está errado pelo documento de origem. A proposta de
+pesquisa (`08.05.2025 PROPOSTA DE PESQUISA_PosDOC.docx`, item 2b) lista
+**cinco**: taxa de mortalidade, tempo médio de permanência, custo por saída,
+**taxa de ocupação** e produção ajustada por complexidade.
+
+Os cinco foram analisados, e **um deles foi desdobrado em dois**: a taxa de
+ocupação entra como ocupação de internação e ocupação de UTI, porque o SIH
+registra a permanência de UTI apartada da de enfermaria e as duas
+capacidades obedecem a lógicas de gestão distintas. Daí os seis do
+documento. Corrigido na Seção 1 e na Seção 18.
+
+### D. Figuras densas quebradas em arquivos próprios
+
+Quatro figuras publicavam vários gráficos numa imagem só e, reduzidas à
+largura da mancha, ficavam ilegíveis. Cada painel passa a ter arquivo
+próprio, **desenhado pela mesma função** que alimenta a versão de conjunto,
+de modo que nada diverge entre as duas:
+
+| Origem | Novos arquivos |
+|---|---|
+| `fig_ae_06b_alcance_alta_complex` | `fig_ae_06b_{a_alcance, b_intensidade, c_volume}` |
+| `figSEG_01_boxplots_por_estrato` | `figSEG_01_box_<indicador>` (6) |
+| `figSEG_02_series_por_estrato` | `figSEG_02_serie_<indicador>` (6) |
+| `figSEG_12_estrutura_uso` | `figSEG_12_{escala, duas_perguntas, giro}` |
+
+As versões de conjunto continuam sendo geradas; o que saiu do documento foi
+o uso delas.
+
+### E. Linguagem de gestão em quatro pontos, e um bloco movido
+
+Reescritos em linguagem administrativa, sem alterar número nenhum: o
+**sumário executivo** inteiro, a **Tabela 5** (agora 6) com o contraste OSS
+contra Direta, a **Subseção 14.6** com a **Tabela 11** (agora 12), e a
+**Tabela 13** (agora 14). As tabelas passam a abrir pela coluna que o gestor
+lê e a fechar pelo registro técnico, com as linhas ordenadas pela firmeza da
+evidência em vez do tamanho do efeito.
+
+O bloco **"A escolha de família move mais o número do que os defeitos"**,
+com a tabela das cinco especificações da UTI, saiu do corpo da Seção 16 para
+o **Apêndice B**. É material puramente estatístico; a Seção 16 guarda a
+conclusão de gestão em um parágrafo e remete ao apêndice.
+
+### F. A decisão editorial de João, registrada porque remove ressalva
+
+Duas das cinco limitações do sumário executivo foram **retiradas a pedido
+dele**: a que declarava que a categoria de gestão é a classificação
+assistencial do SIH (definição de trabalho da equipe, não cruzamento
+jurídico), e a menção ao DRG na limitação de gravidade clínica. A limitação
+de gravidade **permanece**, agora sem citar DRG e escrita em consequência
+prática. A tarja sobre a origem da categoria de gestão **segue na Seção 1**,
+que é a seção metodológica; o que mudou foi só o sumário executivo, e a lista
+passou de cinco para quatro itens.
+
+### G. Numeração deslocada
+
+A Tabela 3 nova desloca em um todas as tabelas seguintes: a 5 vira 6, a 11
+vira 12, a 13 vira 14, e a antiga 15 (famílias da UTI) vira **B.2** no
+apêndice. Nenhuma referência quebrou, porque todas são simbólicas
+(`\ref{tab:...}`); a compilação fecha com **zero referência pendente e zero
+`Overfull \hbox`**.
+
+---
+
+## 19. Segunda rodada de legibilidade (01/08/2026)
+
+**Executada em:** 01/08/2026
+**Situação:** **FECHADA**, com uma decisão de unidade tomada por João e
+registrada abaixo, e uma limitação de dado nomeada.
+
+### A. A Tabela 2 tinha "Med." e "Méd." lado a lado
+
+O primeiro desenho da tabela de mediana e média usou colunas pareadas, com
+cabeçalhos que **diferiam por um acento**, em doze colunas numéricas. João
+apontou que ficava confuso e que os números pareciam embaralhados, e tinha
+razão. Refeita: cada categoria ocupa **duas linhas**, rotuladas `mediana` e
+`média` por extenso, e cada coluna volta a ser um indicador só.
+
+### B. A análise de mediana contra média, nas cinco redes
+
+A rodada anterior fez a decomposição só para o Filantrópico. Estendida a
+todas, ela virou achado próprio. A medida é a **razão entre média e
+mediana**, publicada na Tabela 3 nova:
+
+| Rede | Mort. | TMP | Faturam. | Alta cplx. | Ocup. int. | Ocup. UTI |
+|---|---|---|---|---|---|---|
+| Direta | 0,99 | 1,04 | 1,23 | 4,19 | 1,02 | 1,00 |
+| OSS | 1,00 | 1,01 | 1,13 | **2,78** | 0,94 | 0,97 |
+| Município | 0,96 | 1,03 | 1,07 | 21,88 | 0,95 | 1,05 |
+| Filantrópico | 1,00 | 1,08 | **1,40** | **45,94** | 0,99 | 1,01 |
+
+**Três coisas saíram daí, e nenhuma estava no documento:**
+
+1. **Em quatro dos seis indicadores as duas medidas coincidem** (0,94 a
+   1,08 nas quatro redes). A mediana da Tabela 2 pode ser citada sozinha ali,
+   e isso agora está escrito.
+2. **A ordem da desigualdade interna é a mesma nos dois indicadores em que
+   elas se separam**, e a explicação é estrutural: a razão entre o maior e o
+   menor hospital de cada rede em leitos SUS é de 8 nas OSS, 9 no Município,
+   11 na Direta e **156 no Filantrópico** (de 8 a 1.247 leitos). Nenhum
+   número único descreve a rede filantrópica.
+3. **A rede OSS é a mais uniforme do painel.** Pela dispersão relativa
+   (IIQ sobre mediana), fica em primeiro lugar em três dos seis indicadores e
+   tem a melhor posição média entre as quatro redes (1,67 contra 2,25 do
+   Município, 2,83 do Filantrópico e 3,25 da Direta). O desempenho das OSS
+   não vem de hospital de vitrine puxando a média.
+
+**E um caso com consequência prática:** na ocupação de internação a média
+das OSS (87,0) fica **5,6 abaixo** da mediana (92,6), a maior queda das
+quatro redes, por causa de **46 hospitais-ano abaixo de 60\%, concentrados
+em 7 dos 37 hospitais** e espalhados pelos onze anos (não é pandemia). Sem
+esses sete, a mediana vai a 95,9 e a média a 93,8. **Usar média em vez de
+mediana penaliza a rede OSS mais do que qualquer outra**, justamente no
+indicador que carrega o achado principal. Os dois números ficam publicados
+lado a lado para que a escolha seja visível.
+
+### C. A média complexidade, e o que o painel não permite
+
+João pediu a mesma análise da alta complexidade para a média e para "sem
+complexidade alguma". **Uma das duas é possível, a outra não.**
+
+**Não é possível separar média de atenção básica.** O painel guarda
+`qtde_alta_complex` e `qtde`; tudo o que não é alta sai por diferença. O
+campo `COMPLEX` do SIH distingue os três níveis na origem, mas
+`analise_sih.py` só acumulou o bucket da alta (linha 472). Separar exigiria
+reagregar as planilhas anuais brutas do SIH, **que não estão no
+repositório** (só há três `.xlsx`, nenhum deles extração anual do SIH). Por
+isso o documento chama o bloco de **produção não alta**, e nunca de "média
+complexidade": seria afirmar uma separação que o dado não sustenta. Se as
+planilhas voltarem para a pasta do projeto, a separação é reagregável.
+
+**É possível, e valia a pena, descrever a produção não alta.** Ela é
+**20,8 milhões de internações, 90,1% do painel**, e o documento não dizia
+nada sobre ela. A figura espelho exata seria inútil (100% dos hospitais
+fazem produção não alta, todo ano), então as três leituras mudaram de
+pergunta:
+
+| Leitura | Médio | Grande | Especial |
+|---|---|---|---|
+| Dependência (% da produção do porte) | 96,5% | 89,9% | 77,0% |
+| Exclusividade (hospitais que nunca fazem alta) | 33 | 2 | 0 |
+| Volume (internações) | 6,1 mi | 12,4 mi | 2,3 mi |
+
+**Os 35 hospitais que nunca registram alta complexidade em onze anos são
+uma sub-rede coerente**, não uma lista de exceções: 52 leitos contra 100,
+2.181 internações por ano contra 5.850, TMP 3,29 contra 4,39, faturamento
+real R$ 688 contra R$ 1.410, ocupação 50,0% contra 76,3%. São 22
+Filantrópicos, 7 Municipais, 4 da Direta e 2 OSS, com 21 dos 35 na faixa 2.
+A mortalidade menor deles (3,0% contra 5,8%) **não é qualidade**: é
+casuística de outra natureza, e está escrito assim.
+
+**E o ordenamento de intensidade se repete fora da alta complexidade:** em
+internações não alta por leito SUS, a mediana é de **61,9 nas OSS**, 59,3 no
+Município, 51,3 no Filantrópico e **39,1 na Direta**. O regime mais intenso
+das OSS não é fenômeno da alta complexidade.
+
+### D. A decisão de unidade: p.p. sai do documento
+
+João pediu que tudo ficasse em `%`, porque o texto alternava `%` e `p.p.`.
+A troca direta da sigla **imprimiria número errado**: −1,16 p.p. de
+mortalidade não é −1,16%, é a taxa caindo de 5,8% para 4,6%, o que em
+relativo é −20%. E a conversão para relativo não é única: o mesmo −1,31 p.p.
+da alta complexidade vira −14,7%, −17,3% ou −61,5% conforme a base.
+
+**Decisão de João, entre três opções apresentadas:** escrever **as duas
+taxas em %**. A sigla `p.p.` e a expressão "ponto percentual" **não existem
+mais no documento** (verificado por varredura). Onde havia deslocamento de
+taxa, agora há o par de percentuais que ele liga, com a base declarada:
+
+| Onde | Antes | Agora | Base |
+|---|---|---|---|
+| Tabela 8, mortalidade | −1,16 p.p. | de 5,8% para 4,6% | média da Direta |
+| Tabela 8, alta complex. | −1,31 p.p. | de 8,9% para 7,6% | média da Direta |
+| Seção 12, evento | −1,30 p.p. | de 6,1% para 4,8% | média pré-conversão dos 5 |
+| Seção 12, suporte comum | −2,05 p.p. | de 7,7% para 5,7% | média pré dos 3 |
+| Seção 16, hierárquico | −1,3 p.p. | de 5,6% para 4,3% | mediana do painel |
+| Seção 15, calendário | −25,8 p.p. | de 76,8% para 51,0% | ano cheio seguinte |
+
+Entrou também um parágrafo no guia de leitura da Seção 1 enunciando a regra:
+variação de **quantidade** se lê em por cento; variação de **taxa** se
+escreve como as duas taxas. Nenhum número mudou de valor; mudou a forma de
+escrevê-lo.
+
+---
+
+## 20. Terceira rodada de legibilidade, e as duas listas nominais (04/08/2026)
+
+**Executada em:** 04/08/2026
+**Situação:** **FECHADA**. Onze pedidos de João, todos aplicados; um deles
+abriu material novo (o Apêndice D), e um outro exigiu decidir entre reescrever
+e retirar. O critério em toda a rodada foi o mesmo das duas anteriores: o
+gestor é o leitor, e explicação que só o estatístico entende não é explicação.
+
+### A. O que saiu do texto, e por quê
+
+Cinco cortes, todos por excesso de explicação e nenhum por número errado.
+
+| O que saiu | De onde | Motivo dado |
+|---|---|---|
+| A frase da barra de zeros da alta complexidade | `Como ler` da Figura 2 | desnecessária; a barra já se rotula sozinha |
+| "Dois recursos de leitura…" | `Como foi feito` da Figura 2 | explicava a barra hachurada e a de zeros, que o gráfico já declara |
+| "As barras alaranjadas…" | `Como ler` da Figura 3 | acompanha a saída do destaque na figura (item C) |
+| "Uma regra de unidade…" | guia de leitura da Seção 1 | treze linhas para uma convenção que o texto já cumpre sozinho |
+| "O viés que esse denominador carrega" | fim da Seção 2 | ver item D |
+
+O parágrafo da regra de unidade era o que a Seção 19-D deste documento tinha
+acabado de acrescentar. **A convenção continua valendo**, e continua
+registrada com os pares publicados um a um no item 1d de
+`analises/NUMEROS_CANONICOS.md`, que é onde ela é de fato usada. Saiu a
+explicação, não a prática — e é por isso que a Seção 19 não precisa ser
+reaberta.
+
+### B. Duas trocas de vocabulário, valendo para o documento inteiro
+
+**"Hospital geral agudo" perde o "agudo"** (Seções 1 e 2): ninguém da área
+fala assim. **"Custo por saída" está banido**: o termo correto é
+**faturamento por saída**, e ele já era o rótulo de toda figura e toda tabela;
+o que sobrevivia eram duas ocorrências em prosa na Seção 1, uma delas na
+lista dos cinco indicadores oficiais. Varredura confirma zero ocorrências das
+duas expressões no documento. As que permanecem são nomes internos de arquivo
+e de rótulo (`fig_ae_..._custo_real.png`, `\label{tab:custoreal}`), invisíveis
+ao leitor, e renomeá-las traria risco sem ganho.
+
+### C. Duas figuras refeitas
+
+**Ocupação de UTI.** Saiu o destaque alaranjado dos anos de abertura e
+encerramento de UTI, e com ele a linha de legenda dentro do gráfico. Eram 30
+observações (1,2%) gastando uma cor e uma linha de texto na figura mais lida
+da Seção 2, para um efeito que a Seção 13 mede em **0,06 erro-padrão**. A
+marcação continua sendo calculada em `carregar_e_verificar` e continua saindo
+no log da execução; o que saiu foi a tinta.
+
+**Mortalidade geral.** Ganhou a barra da massa em zero, que a alta
+complexidade já tinha. Os zeros da mortalidade são 0,9% e não alcançavam o
+piso de 5% que dispara a barra, mas eles são o extremo da corcova de
+maternidades e especializados, e o gestor precisa lê-los no eixo e não numa
+nota no canto do gráfico. O gatilho passou a admitir exceção nomeada
+(`ZERO_SEMPRE_DESTACADO` em `analise_exploratoria.py`), e o rótulo da barra
+baixa ganhou margem própria porque, centrado sobre uma barra de 0,9%, ele
+invadia as primeiras barras do histograma. **A figura da alta complexidade
+não mudou um pixel**: a geometria antiga é o ramo `rotulo_dentro`.
+
+### D. A decisão que a rodada exigiu: reescrever ou retirar
+
+João pediu duas coisas que se tocam. A primeira: que a fatia de anos parciais
+saísse da figura de UTI **e do texto**, por ser pequena demais para o espaço
+que ocupava. A segunda, sobre a mini-seção que explicava exatamente essa
+fatia: reescrever em linguagem acessível, "aliás, se os resultados não forem
+tão impactantes assim, penso em até retirar".
+
+**Os resultados não são impactantes, e a mini-seção saiu.** Excluir as 30
+observações desloca o contraste OSS × Direta na intensidade de UTI de 19,3%
+para 19,8%: 0,06 erro-padrão, com o efeito ganhando precisão em vez de
+perdê-la. Reescrever teria mantido, na seção **descritiva**, uma discussão de
+robustez que já vive por completo em dois outros lugares: a Seção 9 registra
+o descasamento de calendário entre numerador e denominador como problema de
+qualidade de registro, e a bateria de calendário da Seção 13 reestima os sete
+modelos sem essas observações e publica a escada inteira. **Nada foi perdido**
+— o que saiu foi a duplicata, e ela saiu da seção onde o leitor menos a
+procura.
+
+### E. Dois trechos reescritos para gestor
+
+**"Dois achados de método, que valem por si"** (Sumário Executivo) virou
+**"Duas descobertas sobre os próprios números"**. O diagnóstico de João foi
+"não entendi absolutamente nada", e ele estava certo: o texto pedia que o
+leitor já soubesse a diferença entre *lotação* e *taxa de ocupação* para
+entender o primeiro achado, e traduzia o segundo em pares de contagens sem
+dizer de onde vinham. A reescrita troca o vocabulário técnico pelo mecanismo
+("o cadastro só registra o leito habilitado; o sistema que paga a internação
+paga também a diária do leito extra"), nomeia os três grupos estruturais com
+o seu tamanho (67, 97 e 125 hospitais) e diz qual deles sustenta a
+comparação. Nenhum número mudou. Um foi **corrigido**: "só um terço da rede"
+descrevia 125 de 289 hospitais, que é 43%; o texto agora diz qual é o grupo
+em vez de estimar a fração.
+
+**O parágrafo da ocupação e da UTI não-aplicável** (Seção 2) foi partido em
+três, um por ideia, e reescrito sem a palavra "indefinida": ocupação acima de
+100% é superlotação e é dado verdadeiro; hospital sem UTI do SUS não tem taxa
+de ocupação de UTI, e lançar zero para ele diria que a UTI existe e está
+vazia; sobram 2.491 observações, e o zero verdadeiro aparece sete vezes nelas.
+
+### F. O Apêndice D, que é material novo
+
+João pediu a lista nominal dos hospitais que nunca fazem alta complexidade e
+perguntou se o mesmo tipo de análise era viável para a UTI. **É, e ela é mais
+informativa que a primeira.** As duas listas usam o mesmo critério, que é o
+mais exigente possível: zero nos onze anos, sem exceção.
+
+| | Nunca faz alta complexidade | Nunca tem leito de UTI SUS |
+|---|---|---|
+| Hospitais | **35** | **49** |
+| Observações que eles geram | — | **539** das 688 sem UTI |
+| Oscilam (fora da lista) | 133 têm ao menos um ano em zero | 29 oscilam, 149 observações |
+| Por rede | 22 Filantr., 7 Munic., 4 Direta, 2 OSS | 42 Filantr., 5 Munic., 1 Direta, 1 OSS |
+
+A lista da UTI **responde a uma pergunta que o documento tinha em aberto**:
+as 688 observações sem UTI vêm sempre dos mesmos hospitais ou de um cadastro
+que pisca? Vêm quase todas dos mesmos — 539 das 688, quase quatro quintos. A
+ausência de UTI no painel é **estrutural, não intermitente**, e isso é o
+argumento que faltava para tratá-las como não-aplicável em vez de zero. Os
+49 estão todos contidos no estrato E1 da Seção 14 (conferido), e 23 deles
+aparecem nas duas listas.
+
+Fonte: `analises/listas_estruturais.py`, que grava
+`tab_ap_sem_alta_complexidade.csv` e `tab_ap_sem_uti_sus.csv` e reconfere de
+quebra os totais por estrato que o Sumário Executivo passou a citar. Números
+registrados nos itens 1c e **1e** (novo) de `NUMEROS_CANONICOS.md`.
+
+**Ressalva de reprodutibilidade:** as linhas das duas tabelas do Apêndice D
+foram copiadas da saída do script para o `.tex`. Ao regerar as tabelas,
+regere também as listas em vez de editá-las à mão — está anotado no cabeçalho
+do próprio `apendiceD_listas_estruturais.tex`.
+
+### G. Estado da compilação
+
+`principal.pdf` recompilado: **171 páginas**, zero referência indefinida,
+zero `Overfull \hbox`. O `longtable` entrou no preâmbulo por causa das duas
+listas, que não cabem em página única.
+
+---
+
+## 21. Quarta rodada de legibilidade, e um erro de fato apanhado por um negrito (04/08/2026)
+
+**Executada em:** 04/08/2026
+**Situação:** **FECHADA**. Treze pedidos de João. Um deles apanhou um erro de
+fato no texto, três são retiradas de limitação declarada que ficam
+registradas aqui com o seu conteúdo íntegro, e um abriu figura nova.
+
+### A. O erro que o negrito denunciou
+
+João apontou que, na tabela de mediana e média por categoria da Seção 4, a
+**média de alta complexidade do Filantrópico (0,0831) estava em negrito, e a
+da Direta (0,0893), maior, não estava**. Ele estava certo, e o problema não
+era de formatação: o texto da subseção afirmava, em palavras, que 0,0831 era
+"a maior entre as quatro redes públicas e filantrópicas". **É a segunda
+maior.** A da administração Direta é 0,0893.
+
+O argumento da subseção não caía com isso — o que ele precisa mostrar é que
+a mediana de 0,0018 subestima grosseiramente a rede filantrópica —, mas a
+frase que o sustentava era falsa. Foi trocada pelo que de fato distingue o
+Filantrópico naquela coluna e é verificável:
+
+| Rede | mediana | média | média / mediana |
+|---|---|---|---|
+| Direta | 0,0213 | **0,0893** | 4,2 |
+| OSS | 0,0242 | 0,0672 | 2,8 |
+| Público Municipal | 0,0010 | 0,0216 | 21,9 |
+| Filantrópico | 0,0018 | 0,0831 | **45,9** |
+
+A liderança do Filantrópico em alta complexidade é **pelo agregado**
+(0,1403 contra 0,1026 da Direta), e essa parte do texto já estava certa e
+continua lá. Registrado também no item 1b de `NUMEROS_CANONICOS.md`.
+
+**A lição, e ela vale para o documento inteiro:** negrito é afirmação. Um
+número em negrito numa tabela diz "este é o maior" sem que ninguém tenha
+escrito isso, e por isso ninguém o audita. Foi um leitor batendo o olho na
+tabela, e não a varredura numérica registrada na seção 12 deste documento,
+que pegou o erro.
+
+### B. As três retiradas de limitação declarada
+
+Ficam registradas aqui **com o conteúdo íntegro**, porque saíram do
+documento a pedido de João e não deixam de ser verdade por isso. A ressalva
+foi apresentada a ele antes da execução.
+
+**B.1 — A produção de não alta complexidade não separa média complexidade de
+atenção básica.** O painel guarda `qtde_alta_complex` e `qtde`; tudo o mais
+sai por diferença. O campo COMPLEX do SIH distingue os três na origem, mas o
+construtor do painel só acumulou o primeiro, e separá-los exigiria reagregar
+as planilhas anuais brutas, que não estão no repositório. **A disciplina de
+nomenclatura sobrevive inteira**: o documento diz "produção de não alta
+complexidade" e nunca "média complexidade", porque isso afirmaria uma
+separação que o dado não sustenta. Registro permanente no cabeçalho de
+`_media_complexidade` em `analise_exploratoria.py`.
+
+**B.2 — A data de conversão de Presidente Prudente vem do painel, não de
+fonte documental.** A classificação do SIH para aquele CNES é Direta até
+2024 e OSS em 2025; não há data de assunção nem OSS contratada
+identificadas, de modo que não se sabe em que mês de 2025 a transição
+ocorreu. O texto agora informa apenas a mudança de classificação. A regra de
+atribuição do ano (categoria em que o hospital passou a maior parte dos
+meses) continua declarada, e continua sendo **favorável à cautela**: ela
+atenua o contraste medido.
+
+**B.3 — A bateria de descasamento de calendário e a sua tabela.** As duas
+ocupações dividem produção acumulada no ano por capacidade cadastrada vezes
+365; quando numerador e denominador não cobrem o mesmo período, a razão mede
+calendário. A bateria não corrigia isso — não é corrigível na granularidade
+anual —, ela media o **teto** do efeito. Os resultados, íntegros:
+
+| Amostra | n | Efeito OSS | Δ em EP |
+|---|---|---|---|
+| *Ocupação de internação* | | | |
+| Painel completo | 3.177 | +22,7% | — |
+| Sem qualquer mudança de cadastro | 2.281 | +25,7% | +0,31 |
+| Sem mudança acima de 10% | 2.749 | +23,1% | +0,04 |
+| Sem mudança acima de 25% | 3.030 | +23,2% | +0,06 |
+| Sem mudança acima de 50% | 3.132 | +23,0% | +0,04 |
+| *Ocupação de UTI (intensidade)* | | | |
+| Painel completo | 2.482 | +19,3% | — |
+| Sem qualquer mudança de cadastro | 2.251 | +16,6% | −0,38 |
+| Sem mudança acima de 10% | 2.276 | +16,4% | −0,41 |
+| Sem mudança acima de 25% | 2.331 | +16,6% | −0,39 |
+| Sem mudança acima de 50% | 2.393 | +18,2% | −0,16 |
+
+Mais: excluir os 30 anos parciais de UTI move o contraste de 19,3% para
+19,8% (0,06 erro-padrão); a ocupação acima de 100% é **3,2 vezes mais
+frequente onde o cadastro NÃO se mexeu** (9,8% contra 3,0%), o que mostra
+que o excesso mora no cadastro parado e não no que mudou no meio do ano. Os
+dois indicadores se deslocam em **direções opostas** no degrau mais severo,
+assinatura de ruído de amostragem e não de viés sistemático.
+
+**Foi por esse resultado que ela saiu**: três páginas e uma tabela de dez
+linhas para concluir que nada do que o documento afirma depende do assunto.
+Reprodutível por `analises/verificar_bateria_calendario.py` e
+`analises/auditar_uti_ano_parcial.py`. A Seção 9 (qualidade dos registros)
+**permanece intacta** e continua registrando o descasamento de calendário
+como problema de qualidade de registro; João não pediu a sua retirada e ela
+não foi tocada.
+
+### C. Vocabulário e unidade
+
+- **"produção não alta" → "produção de não alta complexidade"**, em todas as
+  ocorrências, inclusive nos títulos das figuras e em "volume total não alto".
+- Na Seção 3.2, **"hospitais" → "hospitais-ano"** onde o sujeito é a
+  observação e não o estabelecimento. Era leitura ambígua num ponto em que a
+  diferença importa: 31,3% é de hospitais-ano; de hospitais que nunca fazem,
+  são 35.
+- Saiu da Seção 3.3 a discussão de **escala linear contra logarítmica**.
+  Ficou o fato que interessa ao gestor: a cauda puxa a média para longe do
+  hospital típico, e por isso o documento reporta mediana.
+- O `Como foi feito` da Tabela 9 perdeu "log", "GLM Gama" e "diagnóstico
+  quantílico". As duas linhas de ocupação de UTI passaram a se chamar
+  **"Ocupação de UTI"** e **"cálculo alternativo"**.
+- Saiu do texto a menção `Tabela-fonte: tab_ae_perfil_so_nao_alta.csv`. As
+  demais ocorrências do padrão em outros blocos ficaram; se a decisão for
+  bani-lo, é uma varredura de cinco minutos.
+
+### D. A Tabela 9 ganhou coluna de efeito
+
+Pedido direto de João: a tabela publicava `−0,2237` e `0,3629` e o leitor não
+tinha como saber que aquilo era mortalidade e produção. Agora cada bloco traz
+**Efeito, Coef. e EP**, e o efeito é o número na unidade de leitura. Os dois
+indicadores que já são taxas seguem a regra 1d e trazem o par de taxas, com
+a seta lida como "sai de" e "chega a".
+
+**A taxa de partida muda com a amostra**, e isso é a única coisa nova que a
+coluna exigiu calcular: a média de mortalidade da Direta é 5,79% no painel
+inteiro e 5,58% sem o biênio pandêmico. Daí os pares **de 5,6% para 4,4%** e
+**de 8,9% para 7,7%**, registrados no item 1d de `NUMEROS_CANONICOS.md`.
+Todos os efeitos foram reproduzidos rodando `auditar_efeitos_robustez.py`.
+
+### E. As figuras
+
+**O Privado saiu dos seis violinos da Seção 4.** São 3 CNES, e um violino é
+uma estimativa de densidade: com três hospitais ela não descreve grupo
+nenhum, e ao lado de redes de dezenas a centenas convida à comparação que a
+própria legenda pedia para não fazer. Pior, ele **esticava o eixo**: mediana
+de R$ 16.262 contra R$ 1.293 a R$ 1.438 das outras quatro. O texto da seção
+declara a retirada e o motivo. **O Privado não sai da análise**: continua no
+painel, nas tabelas por categoria e em todos os modelos como controle.
+
+**Rótulos sobrepostos nas figuras de porte.** Na ocupação de UTI, o losango
+da média (75,6) pousava exatamente sobre o número da mediana escrito dentro
+da barra (77,6 no Grande Porte, 78,8 no Especial). `_rotular_mediana_e_media`
+passou a (i) considerar a **banda** que cada rótulo ocupa, e não o seu ponto
+de ancoragem, (ii) tentar primeiro o lado que **afasta** o rótulo da média do
+da mediana, e (iii) **descer o rótulo da mediana** quando o losango cai na
+faixa dele. Nenhuma outra figura da família mudou de aparência.
+
+**Títulos das figuras 06c.** "(a) Dependência: quanto do porte é a produção
+de não alta complexidade" e "(b) Exclusividade: quem vive só de produção de
+não alta complexidade". O subtítulo comum aos três painéis saiu: repetia em
+cada figura isolada um número que o texto já traz. A tira de três painéis
+mantém o título único.
+
+### F. Figura nova: do que cada rede é feita
+
+João pediu a distribuição de hospitais-ano por UTI e complexidade em cada
+tipo administrativo. Feita como **barra empilhada de 100% por rede**, com
+quatro grupos mutuamente exclusivos, porque ter UTI e fazer alta
+complexidade andam juntas na prática e é a **combinação** que descreve o
+hospital. A unidade é o hospital-ano, de propósito: hospital que habilita
+UTI no meio do período conta nos dois grupos, cada ano no seu.
+
+| Rede | UTI e alta | UTI, sem alta | Alta, sem UTI | Nenhuma das duas | n |
+|---|---|---|---|---|---|
+| Direta | 77,5% | 18,0% | 0,4% | 4,2% | 284 |
+| OSS | **86,6%** | 6,6% | 2,7% | 4,1% | 365 |
+| Público Municipal | 67,7% | 17,5% | 3,6% | 11,2% | 616 |
+| Filantrópico | 57,3% | 13,3% | 5,2% | **24,1%** | 1.881 |
+| Privado | 69,7% | 9,1% | 0,0% | 21,2% | 33 |
+
+O achado é que **as redes não operam com o mesmo material**, e ele reforça
+por caminho independente o argumento da segmentação da Seção 14: comparação
+entre modelos de gestão precisa acontecer dentro de estrutura parecida.
+Fonte: `fig_ae_04b_composicao_estrutural.png` e
+`tab_ae_composicao_estrutural.csv`, de `_composicao_estrutural` em
+`analise_exploratoria.py`.
+
+### G. Estado da compilação
+
+`principal.pdf` recompilado: **171 páginas**, zero referência indefinida,
+zero `Overfull \hbox`.
+
+---
+
+## 22. Quinta rodada: uma figura republicada, um método fora de ordem e a definição que chegava tarde (04/08/2026)
+
+**Executada em:** 04/08/2026
+**Situação:** **FECHADA**. Dez pedidos de João, dois deles apanhando defeitos
+de arquitetura do documento que nenhuma varredura numérica pegaria: uma
+figura publicada duas vezes e um método usado duas seções antes de ser
+explicado.
+
+### A. A figura que estava publicada duas vezes
+
+João leu a Seção 14 de ponta a ponta e desconfiou de que os seis painéis da
+figura `figSEG_13_estratos_por_ano.png` já tinham sido explicados antes.
+**Tinham.** Cinco dos seis painéis — mortalidade, TMP, faturamento por
+saída, ocupação de internação e fração de alta complexidade — já estavam
+publicados uma por página, na mesma seção e poucas páginas acima, na série
+`figSEG_02_serie_*`. Mesma mediana, mesma unidade (hospital-ano), mesma
+faixa cinza de pandemia, mesmo recorte por estrato.
+
+O sexto painel, saídas por leito SUS, era o único conteúdo novo — e o seu
+achado (a produtividade por leito **satura em E2**) já estava narrado, com
+teste junto, no primeiro dos "Três padrões que só aparecem com o painel
+largo", logo acima.
+
+**A figura saiu; as duas observações do texto ficaram**, conferidas rodando
+antes de serem realocadas: na mortalidade as curvas de E2 e E3 se cruzam
+**6 vezes** em onze anos, e nas saídas por leito o E2 fica acima do E3 em
+**6 dos 11 anos, inclusive nos três últimos**.
+
+**Lição:** a duplicata sobreviveu a todas as auditorias numéricas do projeto
+porque **os dois números batiam** — eram o mesmo número. Auditoria de
+consistência não pega repetição; só a leitura corrida pega.
+
+### B. O DEA por estrato estava duas seções antes do DEA
+
+A subseção "A eficiência técnica, medida dentro do estrato" vivia na Seção
+14 e usava *análise envoltória de dados*, *fronteira de melhores práticas*,
+*eficiência corrigida de viés* e *regressão de segunda etapa com
+reamostragem* — tudo isso **antes** de a Seção 16 explicar o que é qualquer
+uma dessas coisas. O leitor recebia o resultado de um método que ainda não
+conhecia.
+
+**Movida inteira para a Seção 16**, logo depois do DEA global, e reescrita
+sem o vocabulário técnico. O que ela afirma não mudou: no grupo comparável
+as OSS ficam a 0,747 da fronteira do próprio grupo contra 0,687 da
+administração Direta. As duas advertências sobreviveram, e a segunda é a que
+mais importa: **este resultado não é uma segunda prova**, porque usa os
+mesmos dados e as mesmas redes da tabela anterior; muda a técnica, não a
+informação.
+
+A figura de coeficiente por estrato e superlotação por categoria **não** era
+da subseção movida e permaneceu na Seção 14.
+
+### C. A definição de lotação chegava setenta páginas atrasada
+
+João perguntou se a Subseção 14.7 não deveria vir antes, na análise
+exploratória. **Sim e não, e a resposta foi partir a subseção** — decisão
+dele, entre três opções apresentadas.
+
+A subseção tinha duas metades que não viajam juntas:
+
+- A **definicional** — por que a ocupação passa de 100%, e a distinção entre
+  *lotação* (pode passar de 100%) e *taxa de ocupação* (não pode) — governa
+  **toda** taxa de ocupação do documento, inclusive as das Seções 2, 4, 5 e
+  11. Ela ficava depois de todas elas.
+- A **comparativa** — a tabela por categoria, a decomposição 91%/9%, a
+  frequência contra a profundidade — depende inteiramente do grupo E3, que
+  só é construído e justificado na Seção 14.
+
+**A definicional foi para a Seção 2**, reescrita sem notação, com o rótulo
+`sub:lotacao`. **A comparativa ficou na Seção 14**, agora sob
+`sub:decomposicao`, herdando a definição por referência em vez de repeti-la.
+A partir da Seção 2, portanto, toda ocupação do documento já se lê certa.
+
+### D. Três blocos reescritos para gestor
+
+**A tabela do gradiente (Tabela 12) ganhou tradução antes de si.** Ela
+publicava $\eta^2$, $p$ de Kruskal e Wallis e correção de Holm na legenda,
+sem explicação. Agora o texto que a antecede explica, em português: $\eta^2$
+é "de tudo o que faz um hospital ser diferente do outro, quanto o degrau da
+escada explica sozinho"; $p_{23}$ é "a diferença entre o segundo e o
+terceiro degrau é real ou pode ser acaso"; e o ajuste é "quem faz várias
+comparações acaba encontrando alguma diferença por acaso, e o ajuste
+desconta isso". Os nomes dos testes saíram; o que eles fazem ficou.
+
+**O achado central do gradiente** foi reescrito em torno de uma frase que o
+gestor leva embora: *saber em que degrau um hospital está permite prever com
+folga o tamanho e o ritmo dele, e quase não permite prever quantos dos seus
+pacientes morrem*. E a observação de que na mortalidade a escada **nem sequer
+sobe** (o terceiro degrau fica abaixo do segundo).
+
+**A decomposição da lotação e a frequência contra profundidade** perderam
+"identidade aditiva", "conflação" e "condicional a superlotar". A
+decomposição virou "quanto da vantagem das OSS é leito cheio, e quanto é
+transbordo", e a segunda ganhou o contraste que a torna acionável: a pressão
+sobre as OSS é **frequente e rasa**, a do Filantrópico é **rara e profunda**
+— dois problemas de gestão diferentes, que pedem respostas diferentes.
+
+### E. Retiradas menores
+
+- A menção a `tabSEG_22` e o parágrafo "Onde ficam as tabelas completas",
+  que indexava `tabSEG_20` a `tabSEG_25`. Eram um índice de arquivos de
+  trabalho endereçado a quem tem o repositório aberto. As seis tabelas
+  continuam sendo geradas por `descritivas_estratos_ampliada.py`.
+- A nota de que as seis figuras "eram, até 01/08/2026, um painel único".
+  História de edição não é informação para o leitor.
+- O parágrafo do **segundo cálculo com margem mais estreita** ("não é
+  informação a mais; é suposição a mais"). O documento continua publicando a
+  margem conservadora; o que saiu foi a defesa da escolha.
+
+### F. Estado da compilação
+
+`principal.pdf` recompilado: **169 páginas** (eram 171), zero referência
+indefinida, zero `Overfull \hbox`. A perda de duas páginas é a figura
+republicada e o parágrafo do segundo cálculo.

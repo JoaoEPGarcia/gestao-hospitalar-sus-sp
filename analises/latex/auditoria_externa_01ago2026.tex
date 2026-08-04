@@ -1,0 +1,957 @@
+% Relatório de auditoria externa do documento principal.
+% Documento AUTÔNOMO: não é incluído por principal.tex e não altera a
+% numeração dele. Compilar com:
+%   latexmk -pdf -interaction=nonstopmode auditoria_externa_01ago2026.tex
+% Convenções de preâmbulo herdadas de principal.tex (12pt, babel
+% brazilian, booktabs), com longtable para o quadro-resumo.
+
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[brazilian]{babel}
+\usepackage[top=2.2cm, bottom=2.2cm, left=2.2cm, right=2.2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\setcounter{tocdepth}{1}
+\hypersetup{bookmarksdepth=3, bookmarksnumbered=true, bookmarksopen=true}
+\captionsetup{font=small, labelfont=bf}
+\graphicspath{{figuras_estimacao/}{figuras_segmentacao/}}
+
+\raggedbottom
+\widowpenalty=10000
+\clubpenalty=10000
+
+% caminhos de arquivo e nomes de variável, com sublinhado literal
+\newcommand{\arq}[1]{\texttt{\detokenize{#1}}}
+
+% etiquetas de severidade
+\definecolor{corbloqueia}{HTML}{9B1C1C}
+\definecolor{corcorrige}{HTML}{9A6700}
+\definecolor{coranota}{HTML}{44546A}
+\newcommand{\bloqueia}{\textcolor{corbloqueia}{\textbf{BLOQUEIA}}}
+\newcommand{\corrige}{\textcolor{corcorrige}{\textbf{CORRIGE}}}
+\newcommand{\anota}{\textcolor{coranota}{\textbf{ANOTA}}}
+
+% bloco de campos de cada achado
+\newenvironment{achado}
+  {\begin{description}[leftmargin=!,labelwidth=3.5cm,style=nextline,
+     font=\bfseries\small,itemsep=2pt,topsep=4pt]}
+  {\end{description}\par\medskip}
+
+\title{Auditoria externa}
+
+\begin{document}
+
+% ══════════════════════════════ CAPA ══════════════════════════════
+\begin{titlepage}
+  \centering
+  \vspace*{2.5cm}
+  {\LARGE\bfseries Auditoria externa do relatório de pesquisa\par}
+  \vspace{1.0cm}
+  {\Large Gestão Hospitalar no SUS: painel de 289 hospitais
+   SUS/SP, 2015 a 2025\par}
+  \vspace{2.0cm}
+  {\large Documento auditado: \arq{analises/latex/principal.tex}\\
+   {\normalsize 146 páginas, 18 seções e 3 apêndices}\par}
+  \vspace{2.5cm}
+  {\large
+   19 achados: \textcolor{corbloqueia}{\textbf{3 BLOQUEIA}},
+   \textcolor{corcorrige}{\textbf{13 CORRIGE}},
+   \textcolor{coranota}{\textbf{3 ANOTA}}\\[1.4em]
+   \textbf{Veredito: nenhum achado altera uma conclusão do documento}\par}
+  \vfill
+  {\large São Paulo\\ 1º de agosto de 2026}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% ══════════════════════════════════════════════════════════════════
+\section{Escopo, método e limites desta auditoria}
+
+Este relatório é produto de auditoria externa, não de revisão editorial
+nem de coautoria. O critério de trabalho foi a \textbf{Regra 7 do
+projeto} aplicada ao próprio auditor: \emph{nada entra neste relatório
+sem ter sido reproduzido rodando}. Cada achado abaixo traz o comando ou
+a consulta que o produziu e a saída obtida.
+
+\subsection*{Estado de partida}
+
+O documento foi recompilado do zero antes de qualquer leitura, para
+partir de um estado reproduzido e não herdado:
+
+\begin{quote}\small\ttfamily
+latexmk -C principal.tex\\
+latexmk -pdf -interaction=nonstopmode principal.tex
+\end{quote}
+
+\noindent Resultado: \textbf{146 páginas}, \textbf{zero} ocorrências de
+\arq{undefined} em \arq{principal.log} e \textbf{zero} \arq{LaTeX
+Warning}. O \arq{principal.toc} confere com o mapa de numeração em todas
+as 22 linhas (arquivo \arq{sec13b} saindo como Seção 14, \arq{sec14}
+como 15, \arq{apendiceB} como Apêndice A, e assim por diante). Todas as
+referências a seção neste relatório trazem \textbf{arquivo:linha e o
+número impresso}, nessa ordem.
+
+\subsection*{O que foi efetivamente executado}
+
+\begin{itemize}[leftmargin=*,nosep]
+\item Painel carregado e conferido em \arq{painel_definitivo.parquet} e
+  \arq{painel_segmentado.csv} (3.179 observações, 289 CNES).
+\item Reimplementação e reestimação dos modelos log-MQO (ocupação de
+  internação; TMP e faturamento na especificação \emph{within}), com
+  conferência de coeficiente e $n$ contra o impresso.
+\item Recálculo direto da decomposição da lotação, das frequências e
+  profundidades de superlotação, da persistência por hospital, do funil
+  de estratos, da decomposição de variância \emph{within}/\emph{between},
+  das correlações de ordem do DEA e da tabela univariada inteira.
+\item Conferência de 30 tabelas-fonte em \arq{analises/tabelas/} e
+  \arq{resultados_fase2/tabelas/} contra o texto impresso.
+\item Varredura textual normalizada (convertendo \arq{{,}} de modo
+  matemático em vírgula) de todos os valores de
+  \arq{NUMEROS_CANONICOS.md} sobre os 22 arquivos de seção.
+\item Varredura estrutural de todos os blocos \arq{figure} com duas ou
+  mais \arq{\subfig}, para o defeito de ``esquerda/direita''.
+\item Inspeção visual dos PNG de \arq{fig_est_03},
+  \arq{fig_est_05}, \arq{figSEG_04} e \arq{figSEG_16}.
+\end{itemize}
+
+\subsection*{Limites declarados}
+
+Uma frente não coberta e não declarada seria pior que um achado errado.
+As seguintes não foram cobertas:
+
+\begin{enumerate}[leftmargin=*,nosep]
+\item \textbf{Nada em R foi reexecutado.} O \arq{Rscript} está fora do
+  \arq{PATH}. A Fase 2 foi auditada contra os artefatos versionados
+  (\arq{tabR_*}, \arq{tabB_*}, \arq{tabE_*},
+  \arq{dea_escores_*.csv}) e contra o
+  \arq{RELATORIO_EXECUCAO.md} --- três fontes independentes, suficientes
+  para os achados relatados, mas \textbf{sem confirmar que os
+  \arq{.R} regeneram esses CSV}. Isso pesa porque
+  \arq{tabB_uti_parte1_removida.md} documenta que uma reexecução
+  \emph{não} reproduz o estado publicado.
+\item \textbf{Os escores DEA não foram recalculados}: vieram prontos. A
+  fronteira e o bootstrap de Simar e Wilson não foram refeitos.
+\item \textbf{\arq{estimacao.py} não foi rodado de ponta a ponta.} Os
+  modelos Beta, ZOIB, ZIB e a Binomial Negativa foram auditados pelas
+  tabelas-fonte, não reestimados; os efeitos marginais de $-1{,}16$ e
+  $-1{,}31$ p.p.\ saem de \arq{auditar_efeitos_robustez.py}, não
+  executado.
+\item \textbf{A construção do painel a partir do SIH bruto}
+  (\arq{construir_painel_definitivo.py}, 830 $\rightarrow$ 289)
+  \textbf{não foi reproduzida}. O \arq{tab_auditoria_filtros.csv} foi
+  auditado como registro, não como cálculo.
+\item \textbf{Seções 5, 6, 7 e 17 tiveram verificação amostral}, limitada
+  aos valores listados em \arq{NUMEROS_CANONICOS.md}.
+\item \textbf{Legibilidade das figuras}: 4 dos $\sim$130 PNG foram
+  abertos. Rótulo sobreposto ou eixo cortado em qualquer um dos demais
+  passaria batido.
+\end{enumerate}
+
+\newpage
+% ══════════════════════════════════════════════════════════════════
+\section{Veredito: o que os erros fazem e o que não fazem}
+
+\subsection*{Nenhum achado altera uma conclusão do documento}
+
+Nem isoladamente, nem somados. Isso precisa ser dito com precisão,
+porque três achados estão graduados como \bloqueia{}: eles disparam o
+primeiro gatilho da escada de severidade (\emph{número errado}), não o
+terceiro (\emph{falha que muda uma conclusão}).
+
+\paragraph{Correção de graduação.} A ausência de tratamento de
+multiplicidade foi inicialmente graduada como \bloqueia{}. Está
+\textbf{rebaixada a \corrige{}} neste relatório. A escada tem três
+gatilhos independentes --- número errado, afirmação não sustentada pela
+fonte, ou falha de inferência que muda uma conclusão --- e a
+multiplicidade só poderia entrar pelo terceiro, que ela não satisfaz,
+pela razão exposta abaixo.
+
+\paragraph{Por que nenhum move a conclusão.}
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{A figura com 22,8\%.} O valor certo (19,3\%) e o errado
+  (22,8\%) apontam na mesma direção, com a mesma significância, e o
+  certo está impresso na tabela imediatamente acima e no texto. A
+  conclusão ``as OSS usam mais UTI'' sobrevive a qualquer um dos dois.
+\item \textbf{Os números da Seção 16.} A afirmação qualitativa do
+  parágrafo --- a ocupação cruza o zero na especificação principal e
+  passa a excluí-lo sem os conversores --- é \textbf{verdadeira tanto com
+  os números impressos quanto com os corretos}. Só a magnitude muda.
+\item \textbf{A frase da Conclusão.} A mesma sentença já diz ``o
+  faturamento sem diferença'', e a Seção 14 e o documento inteiro
+  tratam o faturamento como nulo em todo método. É autocontradição de
+  uma linha, não posição do documento.
+\item \textbf{Multiplicidade.} Sob Holm nos sete modelos principais,
+  produção, UTI e ocupação de internação \textbf{passam}; só o TMP para.
+  E o documento já rebaixou o TMP por conta própria, com três testes e
+  uma frase explícita (``evidência sugestiva forte, não fato
+  demonstrado''). A correção \textbf{reforça uma conclusão que o
+  documento já havia alcançado}; não a contraria.
+\end{itemize}
+
+\subsection*{O achado que chega mais perto}
+
+A qualificação de tendências pré perdida no Sumário Executivo, na
+Seção 15 e na Seção 18 (achado 11). O TMP é o único candidato causal do
+trabalho, e a arquitetura do argumento é ``passa nos testes que têm
+poder, não é corroborado nos que não têm''. Se o teste de tendências
+paralelas rejeita numa das suas duas versões (suporte comum,
+$F = 19{,}98$, $p < 0{,}001$), a perna do ``passa'' enfraquece.
+
+Mesmo assim não vira o veredito: a Seção 12 \textbf{reporta} a rejeição,
+a amostra de suporte comum tem 3 conversores com 2 de um ano só, e o
+próprio documento diz que ela ``não constitui prova independente''. O
+efeito é sobre \emph{quão firmemente a frase deve ser dita}, não sobre a
+conclusão. O TMP continua sugestivo antes e depois.
+
+As duas conclusões que o documento chama de firmes --- regime
+operacional mais intenso e eficiência produtiva maior das OSS --- não
+são tocadas por nada encontrado nesta auditoria. A produção tem $z$ de
+4,06, sobrevive a Holm, à exclusão da pandemia, à exclusão dos
+conversores e à leitura física por leito, que não usa dinheiro nenhum. O
+DEA tem intervalo inteiro abaixo do zero nas quatro variantes.
+
+\subsection*{O que os erros realmente ameaçam}
+
+Não a substância: o \textbf{rastro de auditoria}. Para um projeto cuja
+Regra 7 é ``nada entra em texto sem ser reproduzido rodando'', a figura
+carro-chefe da Seção 11 imprimindo um valor que o próprio documento
+declarou superado é falha de processo, ainda que inofensiva no conteúdo.
+
+E o \arq{NUMEROS_CANONICOS.md} carregando quatro entradas defasadas ---
+inclusive um 38,2\% que é o valor \emph{anterior} a uma correção já
+feita --- é o risco mais sério do conjunto, porque é o instrumento que
+alguém usará para ``conferir'' e pode acabar \textbf{desfazendo} uma
+correção correta.
+
+\subsection*{Ordem sugerida de correção}
+
+\begin{enumerate}[leftmargin=*,nosep]
+\item O \arq{NUMEROS_CANONICOS.md} (achado 15), que é onde o erro se
+  reproduz.
+\item A \arq{fig_est_03} (achado 1).
+\item Os dois números da Seção 16 e a frase da Conclusão (achados 2 e
+  3): edições de um minuto.
+\item O restante, que é qualificação e rótulo de base.
+\end{enumerate}
+
+\newpage
+% ══════════════════════════════════════════════════════════════════
+\section{Quadro-resumo dos 19 achados}
+
+\noindent Os nomes de arquivo aparecem abreviados nesta tabela; a forma
+completa está no campo \textbf{Onde} de cada achado, na Seção~4.
+
+\vspace{0.6em}
+\small
+\setlength{\tabcolsep}{5pt}
+\begin{longtable}{@{}
+  >{\raggedright\arraybackslash}p{2.15cm}
+  >{\raggedright\arraybackslash}p{4.35cm}
+  >{\raggedright\arraybackslash}p{8.7cm}@{}}
+\toprule
+\textbf{Sev.} & \textbf{Onde} & \textbf{Achado} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Sev.} & \textbf{Onde} & \textbf{Achado} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+\bloqueia{} & \arq{fig_est_03}\newline (Seção 11) &
+1. A figura imprime UTI $+22{,}8\%$ (log superado) enquanto a tabela
+acima e o texto imprimem $+19{,}3\%$ (Gama), o valor canônico. \\
+\addlinespace
+\bloqueia{} & \arq{sec15_fase2}:30 e :49\newline (Seção 16) &
+2. Ocupação hierárquica impressa como $11{,}5\%$ e ``0,108 para 0,218'';
+a fonte diz $12{,}5\%$ e ``0,118 para 0,235''. \\
+\addlinespace
+\bloqueia{} & \arq{sec17_conclusao}:175\newline (Seção 18) &
+3. ``Os dois primeiros excluindo o zero'' inclui o faturamento, cujo
+intervalo cruza o zero ($p = 0{,}332$). \\
+\addlinespace
+\corrige{} & Documento inteiro &
+4. Nenhum tratamento nem discussão de multiplicidade. Sob Holm nos 7
+modelos principais, o TMP não sobrevive. \\
+\addlinespace
+\corrige{} & \arq{sec13b}:146\newline (Seção 14) &
+5. Mediana de UTI em E1 dada como $66{,}2\%$ (unidade hospital) para
+completar uma tabela em hospital-ano, onde o valor é $64{,}6\%$. \\
+\addlinespace
+\corrige{} & \arq{sec09_qualidade}:10\newline (Seção 9) &
+6. Ocupação de UTI acima de 100\% dada como $6{,}5\%$, calculada sobre
+3.179 em vez das 2.491 do domínio ($8{,}3\%$). \\
+\addlinespace
+\corrige{} & \arq{sec08_correlacao}:57 e :86\newline (Seção 8) &
+7. Parcela \emph{within} do faturamento ($8{,}3\%$) calculada sobre a
+série \textbf{nominal}; sobre a real é $10{,}1\%$. \\
+\addlinespace
+\corrige{} & \arq{sec13b}:716\newline (Seção 14) &
+8. Legenda diz que as OSS superlotam com ``o dobro da frequência'' do
+Filantrópico; são $35{,}5\%$ contra $28{,}7\%$ (1,24 vez). \\
+\addlinespace
+\corrige{} & \arq{sec11_resultados}:96\newline (Seção 11) &
+9. O $+22{,}7\%$ é efeito sobre a média geométrica; sobre a média
+aritmética, com \emph{smearing} de Duan, é $+18{,}1\%$. \\
+\addlinespace
+\corrige{} & \arq{sec01_painel}:31 e\newline \arq{sec11}:95
+(Seções 1 e 11) &
+10. A produção usa a contagem \textbf{com} COVID, enquanto os quatro
+indicadores oficiais são líquidos; nunca declarado. \\
+\addlinespace
+\corrige{} & \arq{sec14}:302, \arq{sec17}:78,\newline \arq{sec00}:56 &
+11. A rejeição do teste de tendências pré no suporte comum
+($p < 0{,}001$) some das três peças de síntese. \\
+\addlinespace
+\corrige{} & \arq{sec00_resumo}:37\newline (Sumário) &
+12. ``Mantém sob cinco famílias'' omite que a lognormal cruza o zero ---
+omissão que a Seção 16 declara inaceitável. \\
+\addlinespace
+\corrige{} & \arq{apendiceA}:144\newline (Apêndice B) &
+13. A tabela de famílias elege a Fisk; os modelos estimados são
+LogNormal. A escolha nunca é reconciliada. \\
+\addlinespace
+\corrige{} & \arq{apendiceA}:406\newline (Apêndice B) &
+14. A tabela de resíduos tem 8 linhas; o apêndice reporta 6. A omitida é
+o segundo pior ajuste ($r = 0{,}947$). \\
+\addlinespace
+\corrige{} & \arq{NUMEROS_CANONICOS.md}\newline :50, 57, 58 e 151 &
+15. Quatro entradas defasadas, entre elas um $38{,}2\%$ anterior a uma
+correção já feita. \\
+\addlinespace
+\corrige{} & \arq{sec13b}:749\newline (Seção 14) &
+16. ``20 dos 33 hospitais'' OSS usa atribuição modal; a tabela da mesma
+seção dá 37, por outra convenção não declarada. \\
+\addlinespace
+\anota{} & \arq{sec15_fase2}:138\newline (Seção 16) &
+17. As réplicas válidas do bootstrap de segunda etapa (960, 376, 371 e
+262 de 1.000) não são declaradas. \\
+\addlinespace
+\anota{} & \arq{secoes/} (geral) &
+18. Cerca de 50 dos 127 rótulos de figura e tabela nunca recebem
+\arq{\ref}, inclusive sete tabelas. \\
+\addlinespace
+\anota{} & \arq{tabB_uti_parte1}\newline \arq{_removida.md} &
+19. Reexecutar \arq{fase2_hierarquico.R} reintroduz uma linha degenerada
+já removida à mão. \\
+\end{longtable}
+\normalsize
+\setlength{\tabcolsep}{6pt}
+
+\newpage
+% ══════════════════════════════════════════════════════════════════
+\section{Achados em detalhe}
+
+\subsection*{1 · \bloqueia{} A figura da Seção 11 contradiz a tabela da
+Seção 11}
+
+\begin{achado}
+\item[Onde] \arq{fig_est_03_contraste_oss_direta.png}, chamada em
+  \arq{sec11_resultados_indicadores.tex}:122 (\textbf{Seção 11}).
+\item[O que está escrito] A figura imprime
+  ``\,Ocupação UTI (intensidade) $+22{,}8\%$\,''. O texto em
+  \arq{sec11}:63 afirma: ``A Tabela~\arq{\ref{tab:contrasteoss}} traz os
+  mesmos contrastes em número. \textbf{A figura seguinte é a leitura
+  visual dela}''.
+\item[O que a fonte diz] A Tabela 11 (\arq{sec11}:97) e o texto
+  (\arq{sec11}:23) imprimem $+19{,}3\%$, da família Gama.
+  \arq{NUMEROS_CANONICOS.md}:49 declara $19{,}3\%$ o
+  \textbf{valor canônico}, e a linha 50 chama $22{,}8\%$ de
+  ``especificação log \textbf{superada}''.
+\item[Como reproduzi] \arq{estimacao.py}:888, função
+  \arq{figura_contraste_oss()}, desenha a partir do dicionário
+  \arq{resultados}, cujo item de UTI é o modelo em log
+  ($0{,}2058 \rightarrow 22{,}85\%$); a reestimação Gama ocorre depois e
+  nunca realimenta a figura. Em \arq{tab_est_ocup_uti_gama.csv} o
+  coeficiente de OSS é $0{,}17687$, e
+  $\exp(0{,}17687) - 1 = 19{,}35\%$. Figura aberta e conferida.
+\item[Correção proposta] Regerar \arq{fig_est_03} com a linha de UTI
+  vinda de \arq{tab_est_ocup_uti_gama.csv}: ponto em $19{,}3\%$ e
+  intervalo $\exp(0{,}17687 \pm 1{,}96 \times 0{,}06031) - 1$, isto é,
+  $[+6{,}0\%;\ +34{,}3\%]$.
+\end{achado}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.92\textwidth]{fig_est_03_contraste_oss_direta.png}
+\caption{Evidência do achado 1. A última linha imprime $+22{,}8\%$; a
+Tabela~11, na mesma página do documento auditado, imprime $+19{,}3\%$
+para o mesmo contraste. As outras quatro linhas conferem.}
+\end{figure}
+
+\subsection*{2 · \bloqueia{} Dois números da camada hierárquica não
+batem com nenhuma das suas três fontes}
+
+\begin{achado}
+\item[Onde] \arq{sec15_fase2_eficiencia.tex}:30 e :49
+  (\textbf{Seção 16}).
+\item[O que está escrito] ``a ocupação aponta na mesma direção com
+  magnitude menor (\textbf{11,5\%})\ldots\ na especificação
+  hierárquica''; e ``a ocupação de \textbf{0,108 para 0,218}''.
+\item[O que a fonte diz] \arq{tabB_modelos_hierarquicos.csv}:
+  \arq{ocupacao_internacao} tem coeficiente $0{,}118016$ e
+  \arq{efeito_pct} $12{,}526$. \arq{tabR_frente1_variantes.csv}:
+  principal $0{,}118$, \arq{sem_switchers} $0{,}235$. O
+  \arq{RELATORIO_EXECUCAO.md}:88 escreve ``12,5\% contra 22,7\%'' e a
+  linha 126, ``ocupação (0,235)''. E \arq{NUMEROS_CANONICOS.md}:97
+  registra ``0,281 / 0,492 / \textbf{0,235}''. São três fontes
+  independentes contra o impresso.
+\item[Como reproduzi] O próprio parágrafo prova a atribuição: os
+  intervalos citados em \arq{sec15}:282 ($-0{,}041$ a $+0{,}277$)
+  são exatamente os de $0{,}118$, não os de $0{,}108$. Os valores
+  impressos ($0{,}108$, $0{,}218$ e $11{,}46\%$) existem, mas em
+  \arq{tabE5_ocupacao_variantes.csv}, linha \arq{int_parteB}, que é
+  \emph{outro modelo} --- o de duas partes corrigido, não o
+  hierárquico.
+\item[Correção proposta] ``11,5\%'' $\rightarrow$
+  \textbf{``12,5\%''}; ``de 0,108 para 0,218'' $\rightarrow$
+  \textbf{``de 0,118 para 0,235''}.
+\end{achado}
+
+\subsection*{3 · \bloqueia{} A Conclusão afirma que o faturamento exclui
+o zero}
+
+\begin{achado}
+\item[Onde] \arq{sec17_conclusao.tex}:175 (\textbf{Seção 18}).
+\item[O que está escrito] ``o tempo de permanência 11,8\% menor,
+  \textbf{o faturamento sem diferença}, e a mortalidade 0,281 menor no
+  logito, \textbf{os dois primeiros excluindo o zero}''.
+\item[O que a fonte diz] \arq{tabSEG_10_cre_mundlak_por_estrato.csv}: o
+  faturamento em E3 tem intervalo $[-0{,}293;\ +0{,}099]$ e
+  $p = 0{,}332$ --- \textbf{cruza o zero}. E \arq{sec13b}:399, na
+  Seção 14, diz: ``\textbf{Dois resultados excluem o zero: o tempo de
+  permanência e a mortalidade}''.
+\item[Como reproduzi] A frase se contradiz sozinha: chama o faturamento
+  de ``sem diferença'' e em seguida o inclui entre os que excluem o
+  zero. Os seis coeficientes de \arq{tab:e3resultados} foram conferidos
+  um a um contra a tabela-fonte e todos os outros batem.
+\item[Correção proposta] \arq{os dois primeiros} $\rightarrow$
+  \textbf{\arq{o primeiro e o terceiro}}.
+\end{achado}
+
+\subsection*{4 · \corrige{} Nenhum tratamento de multiplicidade}
+
+\begin{achado}
+\item[Onde] Documento inteiro (Seções 11, 13, 14, 15 e 16). A única
+  correção de Holm existente (\arq{sec13b}:230) é descritiva, para os
+  contrastes E2 contra E3.
+\item[O que está escrito] Nada. Os contrastes significativos são
+  colhidos e reportados sem menção à família de testes de que saem.
+\item[O que a fonte diz] Considerando \emph{apenas} os 7 modelos
+  principais: sob Holm a sequência \textbf{para no TMP}
+  ($p = 0{,}0210$ contra o limiar de $0{,}0125$); sob Bonferroni
+  ($\alpha = 0{,}00714$) caem também a ocupação de internação
+  ($p = 0{,}0087$). O documento reporta mais de cem contrastes ao todo.
+\item[Como reproduzi] \arq{scipy.stats.norm.sf} sobre os $z$ de
+  \arq{tab_est_resumo_oss.csv} e \arq{tab_est_ocup_uti_gama.csv},
+  seguido de Holm e Bonferroni. Ordem obtida: produção
+  ($p = 0{,}00005$) passa, UTI ($0{,}00336$) passa, ocupação
+  ($0{,}00869$ contra $0{,}01000$) passa, TMP ($0{,}02103$ contra
+  $0{,}01250$) para.
+\item[Correção proposta] Parágrafo em \arq{sec10} ou \arq{sec14}
+  declarando a família de testes e o que sobrevive a Holm (produção e
+  UTI, com a ocupação passando por margem estreita), registrando
+  explicitamente que o TMP não sobrevive. Isso \textbf{não muda} a
+  leitura do TMP, que o documento já trata como sugestivo; acrescenta a
+  quarta razão para tratá-lo assim.
+\end{achado}
+
+\subsection*{5 · \corrige{} Mediana de UTI em E1 na unidade errada}
+
+\begin{achado}
+\item[Onde] \arq{sec13b_segmentacao_estrutural.tex}:146
+  (\textbf{Seção 14}).
+\item[O que está escrito] ``num total de \textbf{71 hospitais-ano}, e
+  para eles a razão existe e vale \textbf{66,2\%} na mediana'' ---
+  oferecido como a célula ausente da tabela do gradiente.
+\item[O que a fonte diz] \arq{tabSEG_21_estratos_hospital_ano.csv} dá
+  E1 $= 64{,}5753$; \arq{tabSEG_22_estratos_cnes.csv} dá
+  $66{,}1937$. A tabela que a frase completa está em
+  \textbf{hospital-ano}: imprime E2 $= 76{,}1$ e E3 $= 77{,}3$, que são
+  os valores de \arq{tabSEG_21} (em CNES seriam $75{,}2$ e $76{,}6$).
+\item[Como reproduzi] Em \arq{painel_segmentado.csv}, restrito a E1 com
+  \arq{uti_sus > 0}: mediana das 71 observações $= 64{,}58$; mediana das
+  medianas dos 18 CNES $= 66{,}19$. Os totais de 67 hospitais, 18 com
+  UTI e 71 hospitais-ano conferem exatamente.
+\item[Correção proposta] \arq{66,2\%} $\rightarrow$
+  \textbf{\arq{64,6\%}}; ou explicitar: ``66,2\% na mediana por hospital
+  (\arq{tabSEG_22}); 64,6\% na unidade desta tabela''.
+\end{achado}
+
+\subsection*{6 · \corrige{} Percentual de UTI acima de 100\% sobre o
+denominador errado}
+
+\begin{achado}
+\item[Onde] \arq{sec09_qualidade.tex}:10 (\textbf{Seção 9}).
+\item[O que está escrito] ``Na internação, 15,5\% das observações (492)
+  ultrapassam 100\%, e na UTI, \textbf{6,5\% (207)}''.
+\item[O que a fonte diz] $207/3.179 = 6{,}51\%$, mas sobre o domínio em
+  que a razão existe, $207/2.491 = \mathbf{8{,}31\%}$. E
+  \arq{sec02}:58 insiste no ponto: ``A ocupação de UTI é calculada sobre
+  as 2.491 observações\ldots\ e \textbf{não} sobre as 3.179 do painel''.
+\item[Como reproduzi] Contagem direta no painel restrito a
+  \arq{uti_sus > 0}: 207 observações acima de 100\%. Os dois
+  denominadores foram conferidos. O valor da internação (15,48\%, 492
+  observações) está correto.
+\item[Correção proposta] \arq{6,5\% (207)} $\rightarrow$
+  \textbf{\arq{8,3\% (207 das 2.491 com leito de UTI SUS)}}.
+\end{achado}
+
+\subsection*{7 · \corrige{} A variância \emph{within} do faturamento
+está em base nominal}
+
+\begin{achado}
+\item[Onde] \arq{sec08_correlacao_variancia.tex}:57 e :86
+  (\textbf{Seção 8}).
+\item[O que está escrito] ``no faturamento são \textbf{8,3\%}'' e a
+  linha de tabela ``Faturamento por saída \& 8,3 \& 91,7''.
+\item[O que a fonte diz] \arq{tab_ae_variancia_within_between.csv}
+  calcula essa linha sobre \arq{custo_saida}, a série
+  \textbf{nominal}. Sobre \arq{custo_real} a parcela é
+  $\mathbf{10{,}1\%}$. E \arq{NUMEROS_CANONICOS.md}:139 declara:
+  ``\textbf{Fechado em 27/07/2026.} Não há mais valor monetário em base
+  nominal no documento''.
+\item[Como reproduzi] \arq{analise_exploratoria.py}:1655 itera sobre a
+  lista \arq{IND7}, que contém \arq{custo_saida}. Replicando o método
+  exato do código (variância dos desvios sobre variância total):
+  nominal $= 8{,}25\%$, real $= 10{,}12\%$. As outras cinco linhas
+  conferem.
+\item[Correção proposta] Recalcular a linha sobre \arq{custo_real}
+  (\textbf{10,1 / 89,9}) e acrescentar a Seção 8 à tabela §7 do
+  \arq{NUMEROS_CANONICOS.md}, hoje ausente dela. A faixa citada em
+  \arq{sec10}:44 (``4,5\% e 16,7\%'') permanece válida.
+\end{achado}
+
+\subsection*{8 · \corrige{} Legenda diz ``o dobro'' onde a razão é 1,24}
+
+\begin{achado}
+\item[Onde] \arq{sec13b_segmentacao_estrutural.tex}:716
+  (\textbf{Seção 14}), legenda de \arq{figSEG_16}.
+\item[O que está escrito] ``As OSS superlotam com \textbf{o dobro da
+  frequência} do Filantrópico e com quatro pontos a menos de
+  profundidade mediana''.
+\item[O que a fonte diz] A tabela das duas perguntas, na mesma seção, dá
+  OSS $35{,}5\%$ e Filantrópico $28{,}7\%$: razão de
+  \textbf{1,24 vez}. A segunda metade da frase está certa
+  ($108{,}9 - 104{,}6 = 4{,}3$).
+\item[Como reproduzi] Em \arq{painel_segmentado.csv}, estrato E3:
+  frequências de $35{,}51\%$ e $28{,}73\%$; profundidades medianas de
+  $104{,}59$ e $108{,}93$. O painel (b) da própria figura mostra os dois
+  pontos em torno de 35 e 29 no eixo horizontal.
+\item[Correção proposta] ``o dobro da frequência'' $\rightarrow$
+  \textbf{``cerca de um quarto a mais de frequência''}. Se a intenção
+  era o \emph{alcance} ($60{,}6\%$ contra $32{,}2\%$, quase o dobro),
+  esse é o conteúdo da \arq{figSEG_17}, não desta figura.
+\end{achado}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{figSEG_16_profundidade_excesso.png}
+\caption{Evidência do achado 8. No painel (b), as marcas grandes de E3
+põem o Filantrópico perto de 29\% e as OSS perto de 35\% no eixo da
+frequência. A legenda do documento auditado descreve essa distância como
+``o dobro''.}
+\end{figure}
+
+\subsection*{9 · \corrige{} Retransformação sem tratamento do viés de
+Jensen}
+
+\begin{achado}
+\item[Onde] \arq{sec11_resultados_indicadores.tex}:96 e :22, e
+  \arq{sec00_resumo.tex}:34 (\textbf{Seção 11} e Sumário).
+\item[O que está escrito] ``ocupação de internação \textbf{22,7\%
+  maior}''. A coluna se chama apenas ``Efeito'', descrita no
+  \arq{\comofeito} como ``a tradução para variação percentual''.
+\item[O que a fonte diz] $\exp(0{,}2044) - 1 = 22{,}68\%$ é o efeito
+  sobre a \textbf{média geométrica}, não sobre a aritmética. Com o
+  fator de \emph{smearing} de Duan calculado por grupo, o efeito sobre a
+  média é $\mathbf{+18{,}1\%}$ (sob lognormalidade, $+17{,}4\%$). Os
+  resíduos são fortemente heterocedásticos entre grupos: variância de
+  $0{,}069$ nas OSS contra $0{,}157$ na Direta --- exatamente a condição
+  em que a retransformação ingênua erra.
+\item[Como reproduzi] Reestimei o log-MQO da ocupação e obtive
+  coeficiente $0{,}2044$ com $n = 3.177$, idênticos ao impresso; depois
+  calculei $\exp(\beta)\,s_1/s_0 - 1$ com
+  $s_i = \overline{\exp(\hat{u})}$ em cada grupo.
+  \textbf{Nos dois modelos \emph{within} o viés é irrelevante}: TMP vai
+  de $-10{,}24\%$ para $-10{,}55\%$ e faturamento de $-8{,}30\%$ para
+  $-8{,}91\%$. O achado é específico da ocupação de internação.
+\item[Correção proposta] Nota de rodapé na Tabela 11: as linhas de
+  log-MQO (ocupação, TMP e faturamento) trazem efeito sobre a média
+  geométrica, enquanto as de GLM com ligação log (produção em Binomial
+  Negativa, UTI em Gama) trazem efeito sobre a média. Registrar o valor
+  com \emph{smearing} da ocupação ($+18{,}1\%$). Uma única coluna
+  ``Efeito'' hoje mistura dois estimandos.
+\end{achado}
+
+\subsection*{10 · \corrige{} A produção usa a contagem com COVID, sem
+declarar}
+
+\begin{achado}
+\item[Onde] \arq{sec01_painel.tex}:31 (\textbf{Seção 1}) contra
+  \arq{sec11_resultados_indicadores.tex}:95 (\textbf{Seção 11}).
+\item[O que está escrito] ``Os indicadores analisados são os quatro
+  oficiais do estudo, \textbf{sempre nas versões que excluem as
+  internações por COVID}''. A produção entra na Tabela 11 sem qualquer
+  declaração de base.
+\item[O que a fonte diz] \arq{estimacao.py}:614 monta a fórmula
+  \arq{qtde ~ ...}, e \arq{qtde} \textbf{inclui} COVID. As séries
+  \arq{mort_all}, \arq{tmp} e \arq{custo_saida} são líquidas.
+\item[Como reproduzi] A identidade
+  \arq{mort_all == (obitos - obitos_covid)/(qtde - qtde_covid)} devolve
+  verdadeiro; \arq{qtde} difere de \arq{qtde_sem_covid} em
+  \textbf{537 observações}. Em 2020--2021 a COVID responde por
+  $7{,}19\%$ das saídas da Direta contra $4{,}18\%$ das OSS, isto é, o
+  viés \textbf{subestima} a vantagem das OSS; no painel inteiro a COVID
+  é $1{,}02\%$ das saídas. A robustez sem pandemia
+  ($43{,}7 \rightarrow 44{,}7\%$) já limita o efeito.
+\item[Correção proposta] Declarar em \arq{sec01} e na legenda da
+  Tabela 11 que \textbf{a produção e as duas ocupações usam a contagem
+  bruta, com COVID}, e que apenas os quatro indicadores oficiais são
+  líquidos.
+\end{achado}
+
+\subsection*{11 · \corrige{} A rejeição de tendências pré some das peças
+de síntese}
+
+\begin{achado}
+\item[Onde] \arq{sec14_inferencia_final.tex}:302,
+  \arq{sec17_conclusao.tex}:78 e \arq{sec00_resumo.tex}:56
+  (\textbf{Seções 15 e 18} e Sumário).
+\item[O que está escrito] ``sobrevive a todos os testes que têm poder
+  para avaliá-la, o teste de tendências anteriores
+  (\textbf{$p$ igual a 0,254})''.
+\item[O que a fonte diz] \arq{tab_est_tendencias_paralelas.csv} tem
+  \textbf{10 linhas}: na amostra de \textbf{suporte comum} o TMP é
+  rejeitado com $F = 19{,}98$ e $p = 0{,}000$. A Seção 12
+  (\arq{sec12}:148) reporta isso com todas as letras ---
+  ``rejeitado em todos os cinco indicadores\ldots\ $F$ entre 17,0 e
+  556,1'' --- mas as três peças de síntese, não.
+\item[Como reproduzi] Tabela lida diretamente e conferida contra o texto
+  da Seção 12, que a reporta corretamente. O $p = 0{,}25425$ da amostra
+  completa também confere.
+\item[Correção proposta] Acrescentar em cada uma das três: ``na amostra
+  completa (na região de suporte comum o teste é rejeitado, ver a
+  Seção~\arq{\ref{sec:efeitogestao}})''. É o achado que mais se aproxima
+  de alterar a força de uma conclusão, sem chegar a alterá-la.
+\end{achado}
+
+\subsection*{12 · \corrige{} O Sumário perde a exceção da lognormal}
+
+\begin{achado}
+\item[Onde] \arq{sec00_resumo.tex}:37 (\textbf{Sumário executivo}).
+\item[O que está escrito] ``estima a intensidade de UTI em 30,4\% acima
+  da Direta e \textbf{a mantém sob cinco famílias de distribuição}''.
+\item[O que a fonte diz] Na tabela das cinco famílias, a
+  \textbf{lognormal cruza o zero} ($[-0{,}3\%;\ +59{,}0\%]$). E
+  \arq{sec15}:245 declara essa omissão inaceitável:
+  ``\,`significativo em quatro de cinco' sem dizer qual é a exceção
+  \textbf{não é robustez reportada}''.
+\item[Como reproduzi] \arq{tabE5_sensibilidade_familias.csv}, linha
+  \arq{LN_semzero}: intervalo $[-0{,}00345;\ +0{,}46394]$ em log. As
+  cinco linhas da tabela impressa foram conferidas uma a uma e todas
+  batem.
+\item[Correção proposta] ``a mantém sob cinco famílias'' $\rightarrow$
+  \textbf{``mantém a direção nas cinco famílias e a significância em
+  quatro (a lognormal cruza o zero por margem mínima)''}.
+\end{achado}
+
+\subsection*{13 · \corrige{} O diagnóstico citado como justificativa
+elege outra família}
+
+\begin{achado}
+\item[Onde] \arq{apendiceA_diagnosticos.tex}:144
+  (\textbf{Apêndice B}), chamado por \arq{sec03_distribuicoes.tex}:94.
+\item[O que está escrito] ``A comparação formal entre as famílias de
+  distribuição candidatas está no Apêndice~B'', apresentada como a
+  justificativa da escala logarítmica.
+\item[O que a fonte diz] A tabela elege a \textbf{Log logística (Fisk)}
+  nas duas amostras (faturamento: AIC $52.206$ e $r = 0{,}9649$; TMP:
+  $11.878$ e $0{,}9974$). Os modelos efetivamente estimados são
+  \textbf{log-MQO}, isto é, LogNormal --- o segundo lugar, com
+  $r = 0{,}8883$ no faturamento. O apêndice nunca diz qual família foi
+  adotada nem por quê.
+\item[Como reproduzi] \arq{tab_ae_ajuste_continuas.csv} tem a coluna
+  \arq{melhor_aic} verdadeira somente nas linhas da Fisk.
+\item[Correção proposta] Uma frase ao apêndice: a Fisk vence o ajuste
+  \emph{marginal}, mas a estimação usa log-MQO por interpretabilidade do
+  coeficiente e compatibilidade com erro-padrão agrupado, e o
+  diagnóstico que sustenta a escolha é o resíduo \emph{condicional}
+  ($0{,}970$ e $0{,}952$), não o marginal. Como está, o apêndice
+  enfraquece em vez de sustentar a escolha.
+\end{achado}
+
+\subsection*{14 · \corrige{} A tabela de resíduos tem 8 linhas e o
+apêndice reporta 6}
+
+\begin{achado}
+\item[Onde] \arq{apendiceA_diagnosticos.tex}:406
+  (\textbf{Apêndice B}); a afirmação correspondente está em
+  \arq{sec13}:82.
+\item[O que está escrito] Lista o resíduo quantílico de \textbf{seis}
+  modelos ($0{,}976$, $0{,}991$, $0{,}967$, $0{,}970$, $0{,}952$ e
+  $0{,}814$), e a Seção 13 conclui: ``O resultado é bom em
+  \textbf{todos os modelos} com uma única exceção''.
+\item[O que a fonte diz] \arq{tab_est_residuos_quantilicos.csv} tem
+  \textbf{oito linhas}. Falta a de \textbf{``Ocupação internação
+  (log)'', $r = 0{,}9470$} --- o \textbf{segundo pior} ajuste do
+  conjunto, com assimetria $-1{,}93$ e curtose em excesso de $11{,}44$,
+  e justamente o indicador do $+22{,}7\%$ que o Sumário destaca.
+\item[Como reproduzi] Tabela lida diretamente.
+  \arq{NUMEROS_CANONICOS.md}:158 lista exatamente os cinco valores
+  reportados, sem coluna ``Fonte/citadas'' para esta tabela.
+\item[Correção proposta] Incluir a ocupação de internação na lista
+  ($0{,}947$), ou declarar ``6 dos 8 modelos, ver
+  \arq{tab_est_residuos_quantilicos.csv}''. Acrescentar a linha ao
+  \arq{NUMEROS_CANONICOS.md} com Fonte/citadas 8/6.
+\end{achado}
+
+\subsection*{15 · \corrige{} Quatro entradas defasadas no registro
+canônico}
+
+\begin{achado}
+\item[Onde] \arq{NUMEROS_CANONICOS.md}, linhas 50, 57, 58 e 151.
+\item[O que está escrito] Registra como impressos: ``22,8\%\ldots\
+  Seções 11 (nota), 14''; ``8,0\% / 22,3\% / 24,3\%\ldots\ 13'';
+  ``1,18 / 1,25 p.p.\ldots\ 13''; e ``\textbf{4,5\% a 38,2\%}\ldots\
+  8, 10''.
+\item[O que a fonte diz] \textbf{Nenhum} desses valores aparece em
+  qualquer seção. E o $38{,}2\%$ é a parcela \emph{within} da ocupação
+  de UTI calculada \textbf{sobre o painel inteiro, com os 688 zeros}:
+  é o valor \emph{anterior} à correção de domínio. O documento imprime
+  corretamente $66{,}3\%$.
+\item[Como reproduzi] Varredura de todos os 22 arquivos de seção
+  normalizando \arq{{,}} em vírgula, sem o que nenhuma busca por número
+  em modo matemático funciona. E, replicando o método do código:
+  parcela \emph{within} da \arq{ocupacao_uti} sobre o painel completo
+  $= \mathbf{38{,}15\%}$; sobre \arq{uti_sus > 0} $= 66{,}33\%$.
+\item[Correção proposta] Retirar as três primeiras entradas da coluna
+  ``Seções'' ou marcá-las ``só na tabela-fonte''; corrigir
+  ``4,5\% a 38,2\%'' para \textbf{``4,5\% a 66,3\%''}. \textbf{Este é o
+  achado de maior risco prospectivo do relatório}: um registro
+  defasado leva quem for ``conferir'' a desfazer uma correção correta.
+\end{achado}
+
+\subsection*{16 · \corrige{} Duas contagens de hospitais OSS na mesma
+seção}
+
+\begin{achado}
+\item[Onde] \arq{sec13b_segmentacao_estrutural.tex}:749 contra :85
+  (\textbf{Seção 14}).
+\item[O que está escrito] ``Nas OSS, \textbf{20 dos 33 hospitais}
+  (60,6\%)'' e ``No Filantrópico e na Direta\ldots\ (32,2\% e
+  \textbf{30,8\%})''.
+\item[O que a fonte diz] A tabela do funil, na mesma seção, dá OSS
+  \textbf{37} e Direta \textbf{27}, com a convenção declarada na
+  legenda (``os cinco conversores são contados nas duas categorias que
+  ocuparam''). Os 33 e 26 vêm da atribuição \textbf{modal} --- uma
+  categoria por CNES --- que nunca é declarada.
+\item[Como reproduzi] Reproduzi as duas convenções. A modal devolve
+  exatamente $8/26$, $55/171$, $20/33$ e $39/56$, e as medianas de 1, 2,
+  5,5 e 3 anos, todas conferindo com o texto. A convenção do funil
+  devolve 27 e 37. A diferença são precisamente os 5 conversores.
+\item[Correção proposta] Meia linha: ``aqui cada hospital entra uma vez
+  só, na categoria em que passou a maior parte do período, daí 33 OSS e
+  26 da Direta contra os 37 e 27 da tabela do funil''.
+\end{achado}
+
+\subsection*{17 · \anota{} Réplicas válidas do bootstrap não declaradas}
+
+\begin{achado}
+\item[Onde] \arq{sec15_fase2_eficiencia.tex}:138 (\textbf{Seção 16}).
+\item[O que está escrito] ``intervalo bootstrap'' e ``as quatro
+  estimativas com intervalo inteiro abaixo do zero'', sem número de
+  réplicas. As 2.000 réplicas citadas em \arq{sec15}:133 são as da
+  correção de viés dos escores, outro procedimento.
+\item[O que a fonte diz] \arq{tabE_segunda_etapa_log.csv}, coluna
+  \arq{replicas_validas}: \textbf{960, 376, 371 e 262} das 1.000
+  planejadas. O \arq{RELATORIO_EXECUCAO.md}:110 explica o descarte, por
+  réplicas que perdem nível de fator.
+\item[Como reproduzi] Coluna lida diretamente da tabela.
+\item[Correção proposta] Declarar as réplicas válidas por variante. Com
+  262, as caudas de um intervalo de percentil de 95\% ficam finas.
+\end{achado}
+
+\subsection*{18 · \anota{} Rótulos de figura e tabela sem chamada}
+
+\begin{achado}
+\item[Onde] \arq{analises/latex/secoes/}, em geral.
+\item[O que está escrito] Cerca de 50 dos 127 \arq{\label} de figura e
+  tabela nunca recebem \arq{\ref}, entre eles sete tabelas, inclusive as
+  dos resultados em E3, das cinco famílias de UTI, do funil de estratos
+  e da robustez sem pandemia.
+\item[O que a fonte diz] A convenção da casa (posicionamento
+  \arq{[H]} mais blocos \arq{\comoler} e \arq{\comofeito} adjacentes)
+  torna a chamada dispensável para figuras, que não flutuam. Para
+  tabelas, o texto usa ``a tabela acima'' e ``a tabela anterior''.
+\item[Como reproduzi] Varredura cruzando \arq{\label} e \arq{\ref} sobre
+  todos os arquivos, mais \arq{principal.tex}. Nenhuma \arq{\ref} sem
+  \arq{\label} e nenhum rótulo duplicado: a navegação existente está
+  íntegra.
+\item[Correção proposta] Decisão do João. Se ficar como está, vale
+  registrar a convenção em comentário no \arq{principal.tex}, ao lado da
+  nota que já explica a numeração deslocada.
+\end{achado}
+
+\subsection*{19 · \anota{} Reexecutar a Fase 2 reintroduz linha
+degenerada}
+
+\begin{achado}
+\item[Onde] \arq{resultados_fase2/tabelas/tabB_uti_parte1_removida.md}.
+\item[O que está escrito] ``reexecutar \arq{fase2_hierarquico.R} regenera
+  \arq{tabB_modelos_hierarquicos.csv} \textbf{com a linha
+  \arq{uti_parte1} de volta}''.
+\item[O que a fonte diz] A linha é degenerada por separação: logito de
+  $-58{,}96$ com erro-padrão vazio. Foi removida à mão em 28/07/2026, e
+  o \arq{.R} não foi alterado.
+\item[Como reproduzi] Arquivo lido. Não reexecutei o \arq{.R}, pelo
+  limite declarado na Seção 1.
+\item[Correção proposta] Levar a remoção para dentro do próprio
+  \arq{.R}, ou para um pós-processamento, de modo que a Regra 7 não
+  reintroduza o defeito a cada reexecução.
+\end{achado}
+
+\newpage
+% ══════════════════════════════════════════════════════════════════
+\section{O que verifiquei e está correto}
+
+Sem esta lista, a ausência de achado é ambígua. O que segue foi
+reproduzido rodando e \textbf{confere}.
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{Compilação.} Zero referências indefinidas, zero avisos,
+  146 páginas, índice conferido contra o mapa de numeração.
+
+\item \textbf{Contagens do painel.} 3.179 observações, 289 CNES,
+  balanceado. Os \emph{n} distintos usados no documento --- 688 sem UTI
+  SUS (21,6\%), 2.491 com, 2.484 com ocupação positiva, 2.482 após as
+  duas frágeis, 3.178 e 3.177 --- estão todos corretos e \textbf{cada
+  aparição usa o certo}.
+
+\item \textbf{Tabela univariada (Seção 2).} As 42 células reproduzidas
+  exatamente sobre \arq{custo_real}, incluindo $41.996{,}85$,
+  $1.833{,}34$, $1.327{,}62$, $875{,}21$, $31{,}3\%$, $15{,}5\%$,
+  $0{,}9\%$, as 79 observações acima de R\$~6.000 (2,5\%) e as 20 acima
+  de 200\% de UTI (0,8\%).
+
+\item \textbf{Tabela 11 (Seção 11).} Os sete coeficientes, erros-padrão,
+  $z$ e efeitos batem com as tabelas-fonte; o intervalo do faturamento
+  ($-23{,}8\%$ a $+10{,}4\%$) foi refeito. O $|0{,}2044|$ que aparece em
+  duas linhas é \textbf{coincidência genuína da fonte}, não erro de
+  cópia --- foi conferido.
+
+\item \textbf{A identidade da lotação (a decomposição da Seção 14).}
+  \textbf{Fecha exatamente, e fecha na média}:
+  $92{,}978 - 69{,}432 = 23{,}546 = 21{,}498 + 2{,}048$, com parcelas de
+  91\% e 9\%. As médias por categoria ($93{,}0$, $92{,}6$, $88{,}7$ e
+  $69{,}4$; excessos de $2{,}1$, $3{,}2$, $4{,}0$ e $0{,}06$) conferem
+  todas.
+
+\item \textbf{Superlotação.} Frequências ($2{,}9$, $28{,}7$, $35{,}5$ e
+  $36{,}4$), ocupações condicionais ($67{,}9$, $83{,}5$, $89{,}0$ e
+  $86{,}5$), profundidades ($100{,}5$, $108{,}9$, $104{,}6$ e $107{,}1$,
+  cauda em $236{,}6$), mediana de $106{,}9$ e p90 de $119{,}6$,
+  persistência de 123 contra 166 hospitais, mediana de 3 anos, 57 com um
+  ou dois anos e 3 com os onze --- \textbf{todos exatos}.
+
+\item \textbf{Segmentação.} O funil de $289 \rightarrow 67/97/125$
+  reproduzido célula a célula por categoria; o piscar cadastral em
+  \textbf{38 observações e 26 hospitais}, com o controle na internação
+  em \textbf{zero}; E1 com 67 hospitais, 18 com UTI e 71 hospitais-ano;
+  os seis coeficientes de E3 idênticos à tabela-fonte; o TMP de E1 em
+  $-72{,}9\%$; o DEA de E3 em $0{,}747$ contra $0{,}687$ e a segunda
+  etapa em $-0{,}601$ com $[-1{,}065;\ -0{,}169]$.
+
+\item \textbf{Inferência com poucos tratados.} Permutação
+  ($0{,}153$ e $0{,}395$), bootstrap selvagem ($0{,}324$ e $0{,}597$),
+  controle sintético (as seis linhas, com lacunas, RMSPE, $p$ e 283
+  doadores) e tendências paralelas (10 linhas) reproduzidos.
+  \textbf{O documento faz e reporta bootstrap selvagem por cluster e
+  inferência por permutação}: a fragilidade da inferência
+  cluster-robusta com cinco tratados está reconhecida e quantificada, e
+  a Seção 12 reporta honestamente a rejeição no suporte comum.
+
+\item \textbf{Fase 2.} Os coeficientes $0{,}262$, $0{,}003$, $0{,}281$ e
+  $0{,}492$; as cinco famílias de UTI com os cinco intervalos; a
+  amplitude de $4{,}5$ p.p.; a distância de $0{,}0087$; os erros-padrão
+  41\% e 11\% maiores; os AIC de $2.135$ contra $21.608$--$22.695$; o
+  DEA em $0{,}733$, $0{,}634$, $0{,}632$ e $0{,}595$; a versão só com
+  leitos em $0{,}65$ contra $0{,}42$; as correlações de ordem de
+  $0{,}51$ e $0{,}48$; as $55/51/36/35$ saídas por leito; e a segunda
+  etapa em $0{,}293$, $0{,}272$, $0{,}331$ e $0{,}319$.
+  \textbf{O $0{,}281$ da mortalidade em E3 e o $0{,}281$ do TMP sem
+  conversores são coincidência real}, não erro de cópia: conferido nas
+  duas fontes.
+
+\item \textbf{A Fase 2 não é chamada de bayesiana em lugar nenhum.}
+  Varredura por \arq{bayes}, \arq{priori}, \arq{posterior},
+  \arq{credibilidade} e \arq{MCMC}: \textbf{nenhuma ocorrência
+  bayesiana}. Todos os ``posterior'' são o adjetivo português, e o
+  ``teste de credibilidade'' da Seção 12 é o teste de plausibilidade,
+  não intervalo de credibilidade.
+
+\item \textbf{Nenhum resultado de SFA sobrevive no corpo.} Varredura por
+  \arq{SFA} e ``fronteira estocástica'': só remissões ao Apêndice C.
+
+\item \textbf{O DEA vem com tratamento de variabilidade.} Bootstrap de
+  Simar e Wilson com 2.000 réplicas para a correção de viés, e
+  intervalos bootstrap na segunda etapa. O documento chama o $0{,}002$
+  entre Direta e Município de ``empate'', em vez de ordená-los.
+
+\item \textbf{Figuras: o defeito de ``esquerda/direita'' não
+  reapareceu.} Varredura de todos os blocos com duas ou mais
+  \arq{\subfig}: \textbf{nenhuma ocorrência descrevendo posição
+  \emph{entre} subfiguras}. As 17 encontradas são todas \emph{dentro} de
+  uma imagem (cauda da distribuição, eixo, lado da linha de corte) e
+  estão corretas. A correção de 01/08/2026 não regrediu.
+
+\item \textbf{A tarja de E1 e E2 é respeitada.} Na \arq{figSEG_04} os
+  dois estratos saem em cinza, com nota no rodapé da própria imagem. O
+  Sumário Executivo e a Seção 18 citam apenas as contagens de hospitais
+  (``1 e 6 da Direta contra 2 e 7 das OSS''), \textbf{sem citar nenhum
+  coeficiente tarjado}.
+
+\item \textbf{Conversores.} As 15 células da tabela de antes e depois
+  (5 hospitais $\times$ 3 indicadores) batem com o registro canônico e
+  com a Seção 17, e a tabela-fonte \textbf{já não gera a linha
+  nominal} que originou a divergência de 2026.
+
+\item \textbf{Winsorização.} O p99 é $125{,}07\%$ na internação e
+  $171{,}24\%$ na UTI, 32 observações em cada --- exatamente o impresso
+  nas Seções 9 e 10 --- e o código \textbf{não trunca em 100\%}, como o
+  texto afirma.
+
+\item \textbf{Extremos e funil (Seção 9).} As 18, 90, 178 e 33
+  observações extremas, com os limiares de $17{,}2\%$ e R\$~$5.117{,}74$.
+  Os $5{,}57\%$ da legenda do funil são a \textbf{taxa agregada}, medida
+  correta ali, distinta dos $5{,}52\%$ da média das razões da Seção 2 ---
+  não é inconsistência.
+
+\item \textbf{Medianas por categoria e por porte (Seções 4 e 5).} Em
+  base \textbf{real} e rotuladas, conferidas contra as tabelas-fonte,
+  incluindo os $1.366{,}65$ da Direta e os $16.262{,}04$ do Privado. A
+  precisão sobre ``não ter UTI'' ($650 + 38 = 688$, em 76 e 26
+  hospitais) confere.
+\end{itemize}
+
+\vspace{1em}
+\noindent\textbf{Nenhuma correção foi aplicada.} Este relatório é insumo
+de decisão. Onde a correção pareceu óbvia, o texto exato está proposto no
+campo correspondente de cada achado, e a aplicação fica para depois:
+misturar auditoria com edição destrói o rastro de auditoria.
+
+\end{document}

@@ -63,7 +63,7 @@ estrutural, como no restante do documento (Seção~\ref{sec:painel}).
 
 \newpage
 A seleção de entrevistados separa um \textbf{núcleo de doze entrevistas
-previstas} de uma \textbf{reserva de dez entrevistas sugeridas} e
+previstas} de uma \textbf{reserva de cinco entrevistas sugeridas} e
 \textbf{duas entrevistas curtas de validação de registro}. Nenhum bloco
 é obrigatório à exceção dos conversores; os cinco conversores da
 administração Direta para OSS são os \textbf{prioritários}, por
@@ -72,8 +72,8 @@ seguir, reúne os conversores e os desviantes positivos e negativos de
 eficiência persistente no suporte comum de porte e complexidade. A
 reserva sugerida, cujas listas estão no Apêndice~\ref{ap:selecao},
 reúne os pares casados de contraste com
-estrutura parecida e eficiência divergente e os casos de maior
-discordância entre DEA e SFA. As duas entrevistas curtas de validação de
+estrutura parecida e eficiência divergente. As duas entrevistas curtas de
+validação de
 registro checam observações com valores extremos ou frágeis no painel,
 não hipóteses de gestão. O grupo Privado, com apenas três hospitais,
 fica fora de todos os blocos comparativos pelo tamanho; o painel
@@ -81,9 +81,11 @@ fica fora de todos os blocos comparativos pelo tamanho; o painel
 hospitais estruturalmente incomparáveis retirou os dezoito que havia,
 de modo que nenhum bloco precisa separá-los. As entrevistas são
 semiestruturadas: o roteiro-base comum vale para todos os entrevistados
-dos blocos de gestão (de a até e), e os módulos específicos por perfil
-acrescentam perguntas próprias de cada grupo; o módulo de validação de
-registro (bloco f) não usa o roteiro-base. Quando dois hospitais empatam
+dos blocos de gestão (a, b, c e d), e os módulos específicos por perfil
+acrescentam perguntas próprias de cada grupo; as duas entrevistas curtas
+de validação de registro (bloco f) não usam o roteiro-base nem módulo de
+perguntas próprio, e o que cada uma precisa checar está dito na ficha do
+respectivo hospital. Quando dois hospitais empatam
 nos critérios de um bloco, o desempate favorece o \textbf{estrato
 geográfico} menos representado entre os já escolhidos. O estrato é
 definido pelo código IBGE do município, em três faixas: \textbf{Capital}
@@ -102,36 +104,26 @@ resposta.
 
 \bloco{Bloco a: conversores da Direta para OSS (prioritários)}
 \begin{center}\small
-\begin{tabular}{llllrr}
+\begin{tabular}{llllr}
 \toprule
-CNES & Hospital & Município & Categoria & DEA & SFA \\
+CNES & Hospital & Município & Categoria & DEA \\
 \midrule
-2081695 & Conjunto Hospitalar Sorocaba & Sorocaba & OSS (conversor) & 0,563 & 0,999 \\
-2078287 & Centro De Referencia Da Saude Da Mulhe & Sao Paulo & OSS (conversor) & 0,827 & 0,805 \\
-2082225 & Hospital Katia De Souza Rodrigues Taip & Sao Paulo & OSS (conversor) & 0,818 & 0,912 \\
-2091755 & Hospital Geral De Vila Penteado Dr Jos & Sao Paulo & OSS (conversor) & 0,582 & 0,893 \\
-2750511 & Hospital Estadual Dr Odilo Antunes De  & Presidente Prudente & OSS (conversor) & 0,698 & 0,900 \\
+2081695 & Conjunto Hospitalar Sorocaba & Sorocaba & OSS (conversor) & 0,563 \\
+2078287 & Centro De Referencia Da Saude Da Mulhe & Sao Paulo & OSS (conversor) & 0,827 \\
+2082225 & Hospital Katia De Souza Rodrigues Taip & Sao Paulo & OSS (conversor) & 0,818 \\
+2091755 & Hospital Geral De Vila Penteado Dr Jos & Sao Paulo & OSS (conversor) & 0,582 \\
+2750511 & Hospital Estadual Dr Odilo Antunes De  & Presidente Prudente & OSS (conversor) & 0,698 \\
 \bottomrule
 \end{tabular}
 \end{center}
 \comofeito{as seis tabelas de seleção têm as mesmas seis colunas.
 \textbf{CNES} é o código do estabelecimento; \textbf{Hospital} e
 \textbf{Município} identificam-no; \textbf{Categoria} é o modelo de
-gestão; e \textbf{DEA} e \textbf{SFA} são os dois escores de eficiência
-técnica do hospital (entre 0 e 1), tomados pela \textbf{mediana dos anos
-de 2015 a 2025}, o DEA vem da análise envoltória de dados e o SFA, da
-fronteira estocástica (Seção~\ref{sec:fase2}). \textbf{Ressalva que vale
-para todas as seis tabelas e para todas as suas linhas:} a coluna SFA
-\textbf{não é citável em nenhuma categoria de gestão}. A fronteira que a
-produziu tem a monotonicidade violada em 94,9\% das observações
-(Seção~\ref{sec:fase2}) e não se comporta como função de produção. Nas
-linhas de categoria OSS há ainda um segundo problema, a
-\textbf{degeneração numérica}: a eficiência técnica das OSS na fronteira
-estocástica é praticamente uma constante (0,9993 a 0,9994 em todo o
-painel), não uma medida do hospital. \textbf{Em todas as linhas, portanto,
-vale a coluna DEA}; a coluna SFA fica impressa por transparência sobre
-como a seleção foi conduzida, e não deve ser citada nem comparada entre
-categorias.}
+gestão; e \textbf{DEA} é o escore de eficiência técnica do hospital
+(entre 0 e 1), tomado pela \textbf{mediana dos anos de 2015 a 2025} e
+vindo da análise envoltória de dados (Seção~\ref{sec:fase2}), que é o
+instrumento em que as conclusões de eficiência deste documento se
+apoiam.}
 
 Os cinco conversores são o material mais valioso da pesquisa, pois
 permitem observar o mesmo hospital antes e depois da mudança de gestão.
@@ -151,35 +143,30 @@ hospitais aparece.
 
 \bloco{Bloco b: desviantes positivos (quartil superior persistente)}
 \begin{center}\small
-\begin{tabular}{llllrr}
+\begin{tabular}{llllr}
 \toprule
-CNES & Hospital & Município & Categoria & DEA & SFA \\
+CNES & Hospital & Município & Categoria & DEA \\
 \midrule
-7573162 & Hospital Regional De Jundiai & Jundiai & OSS & 0,905 & 0,999 \\
-6164366 & Hospital Estadual Americo Brasiliense & Americo Brasiliense & Direta & 0,810 & 0,908 \\
-5718368 & Hosp Mun M Boi Mirim & Sao Paulo & Público Municipal & 0,870 & 0,962 \\
-2076896 & Hospital Sao Luiz Gonzaga & Sao Paulo & Filantrópico & 0,922 & 0,928 \\
+7573162 & Hospital Regional De Jundiai & Jundiai & OSS & 0,905 \\
+6164366 & Hospital Estadual Americo Brasiliense & Americo Brasiliense & Direta & 0,810 \\
+5718368 & Hosp Mun M Boi Mirim & Sao Paulo & Público Municipal & 0,870 \\
+2076896 & Hospital Sao Luiz Gonzaga & Sao Paulo & Filantrópico & 0,922 \\
 \bottomrule
 \end{tabular}
 \end{center}
-\comofeito{mesmas seis colunas da tabela do bloco a (CNES, hospital,
-município, categoria e os escores medianos DEA e SFA de 2015 a 2025),
-com a mesma ressalva, que vale para todas as linhas: a coluna SFA não é
-citável em categoria nenhuma, e o 0,999 da linha OSS acumula ainda a
-degeneração numérica.}
+\comofeito{mesmas cinco colunas da tabela do bloco a (CNES, hospital,
+município, categoria e o escore mediano de DEA de 2015 a 2025).}
 
 Um desviante positivo por categoria, todos no suporte comum de porte e
 complexidade, escolhidos por manterem eficiência alta ao longo dos onze
-anos. \textbf{Nota sobre o critério, e sobre o que ele deve à SFA.} A
-seleção exigia posição extrema \emph{nos dois} escores, DEA e SFA, e
-desempatava por uma média dos dois percentis. Como nenhum valor da
-fronteira estocástica é citável (Seção~\ref{sec:fase2}), o critério foi
-reexecutado \textbf{sem} a SFA, para saber de quanto a lista depende dela.
+anos. \textbf{Nota sobre o critério.} A triagem original exigia posição
+extrema em \emph{dois} escores de eficiência: o da análise envoltória e o
+de um segundo método, cujo cálculo deu errado e ficou de fora das medidas
+(Apêndice~\ref{ap:sfa}). O critério foi reexecutado \textbf{só com o
+DEA}, para saber de quanto a lista dependia do método descartado.
 \textbf{Neste bloco, de nada:} os quatro hospitais abaixo são exatamente
-os mesmos com e sem a SFA, e a justificativa de cada um repousa no DEA. O
-escore de SFA fica impresso nas fichas apenas como memória de como a
-triagem foi conduzida. \textbf{No bloco c o resultado é outro, e está
-declarado lá.} A pergunta que eles respondem é quais práticas concretas sustentam
+os mesmos nas duas versões, e a justificativa de cada um repousa no DEA.
+\textbf{No bloco c o resultado é outro, e está declarado lá.} A pergunta que eles respondem é quais práticas concretas sustentam
 esse giro alto de forma persistente. Em cada ficha abaixo, o
 \textbf{marcador financeiro$\times$físico} compara o rank do hospital no
 DEA com insumo financeiro (leitos e valor real) contra o rank no DEA só
@@ -188,10 +175,10 @@ pagamento, não de gestão real, e fica registrada como pergunta em aberto
 para a entrevista, não como conclusão.
 
 \newpage
-\noindent\textbf{7573162, Hospital Regional de Jundiaí} (Jundiaí, interior; Médio Porte, faixa Barcelona 3, complexidade Barcelona 246,0). Desviante positivo da categoria OSS (quartil superior persistente de eficiência técnica em DEA e SFA): mediana de 0,905 no DEA entre 2015 e 2025, no suporte comum de faixa 3 e Médio Porte; a mediana SFA de 0,999 não é citável (\emph{degeneração OSS}), de modo que a seleção deste hospital se apoia no DEA. Marcador financeiro$\times$físico: 4\textordmasculine{} no rank DEA com insumo financeiro contra 18\textordmasculine{} só com leitos (diferença de 14 posições).\par\medskip
-\noindent\textbf{6164366, Hospital Estadual Américo Brasiliense} (Américo Brasiliense, interior; Médio Porte, faixa Barcelona 3, complexidade Barcelona 187,0). Desviante positivo da categoria Direta, por critério relaxado (quartil superior de DEA e acima da mediana de SFA): medianas de 0,810 no DEA e 0,908 na SFA entre 2015 e 2025, no suporte comum de faixa 3 e Médio Porte. Marcador financeiro$\times$físico: 27\textordmasculine{} no rank DEA com insumo financeiro contra 75\textordmasculine{} só com leitos (diferença de 48 posições).\par\medskip
-\noindent\textbf{5718368, Hospital Municipal M'Boi Mirim} (São Paulo, capital; Grande Porte, faixa Barcelona 4, complexidade Barcelona 469,0). Desviante positivo da categoria Público Municipal (quartil superior persistente de eficiência técnica em DEA e SFA): medianas de 0,870 no DEA e 0,962 na SFA entre 2015 e 2025, no suporte comum de faixa 4 e Grande Porte. Marcador financeiro$\times$físico: 12\textordmasculine{} no rank DEA com insumo financeiro contra 4\textordmasculine{} só com leitos (diferença de $-$8 posições, ranqueia melhor sem o dinheiro, na direção oposta dos outros três hospitais deste bloco).\par\medskip
-\noindent\textbf{2076896, Hospital São Luiz Gonzaga} (São Paulo, capital; Grande Porte, faixa Barcelona 3, complexidade Barcelona 241,0). Desviante positivo da categoria Filantrópico (quartil superior persistente de eficiência técnica em DEA e SFA): medianas de 0,922 no DEA e 0,928 na SFA entre 2015 e 2025, no suporte comum de faixa 3 e Grande Porte. Marcador financeiro$\times$físico: 1\textordmasculine{} no rank DEA com insumo financeiro contra 66\textordmasculine{} só com leitos (diferença de 65 posições, a maior do bloco; candidato prioritário para a pergunta de mecanismo).\par\medskip
+\noindent\textbf{7573162, Hospital Regional de Jundiaí} (Jundiaí, interior; Médio Porte, faixa Barcelona 3, complexidade Barcelona 246,0). Desviante positivo da categoria OSS (quartil superior persistente de eficiência técnica): mediana de 0,905 no DEA entre 2015 e 2025, no suporte comum de faixa 3 e Médio Porte. Marcador financeiro$\times$físico: 4\textordmasculine{} no rank DEA com insumo financeiro contra 18\textordmasculine{} só com leitos (diferença de 14 posições).\par\medskip
+\noindent\textbf{6164366, Hospital Estadual Américo Brasiliense} (Américo Brasiliense, interior; Médio Porte, faixa Barcelona 3, complexidade Barcelona 187,0). Desviante positivo da categoria Direta, por critério relaxado (quartil superior de DEA): mediana de 0,810 no DEA entre 2015 e 2025, no suporte comum de faixa 3 e Médio Porte. Marcador financeiro$\times$físico: 27\textordmasculine{} no rank DEA com insumo financeiro contra 75\textordmasculine{} só com leitos (diferença de 48 posições).\par\medskip
+\noindent\textbf{5718368, Hospital Municipal M'Boi Mirim} (São Paulo, capital; Grande Porte, faixa Barcelona 4, complexidade Barcelona 469,0). Desviante positivo da categoria Público Municipal (quartil superior persistente de eficiência técnica): mediana de 0,870 no DEA entre 2015 e 2025, no suporte comum de faixa 4 e Grande Porte. Marcador financeiro$\times$físico: 12\textordmasculine{} no rank DEA com insumo financeiro contra 4\textordmasculine{} só com leitos (diferença de $-$8 posições, ranqueia melhor sem o dinheiro, na direção oposta dos outros três hospitais deste bloco).\par\medskip
+\noindent\textbf{2076896, Hospital São Luiz Gonzaga} (São Paulo, capital; Grande Porte, faixa Barcelona 3, complexidade Barcelona 241,0). Desviante positivo da categoria Filantrópico (quartil superior persistente de eficiência técnica): mediana de 0,922 no DEA entre 2015 e 2025, no suporte comum de faixa 3 e Grande Porte. Marcador financeiro$\times$físico: 1\textordmasculine{} no rank DEA com insumo financeiro contra 66\textordmasculine{} só com leitos (diferença de 65 posições, a maior do bloco; candidato prioritário para a pergunta de mecanismo).\par\medskip
 
 \noindent A trajetória de cada um destes quatro hospitais nos quatro
 indicadores, contra a mediana da sua categoria, está no
@@ -199,32 +186,32 @@ Apêndice~\ref{ap:selecao}.
 
 \bloco{Bloco c: desviantes negativos (quartil inferior persistente)}
 \begin{center}\small
-\begin{tabular}{llllrr}
+\begin{tabular}{llllr}
 \toprule
-CNES & Hospital & Município & Categoria & DEA & SFA \\
+CNES & Hospital & Município & Categoria & DEA \\
 \midrule
-2028840 & Instituto De Infectologia Emilio Ribas & Sao Paulo & Direta & 0,447 & 0,409 \\
-2698471 & Secao Hospital Municipal Dr Arthur Dom & Santos & Público Municipal & 0,378 & 0,717 \\
-2078465 & Real Sociedade Portuguesa De Beneficencia & Campinas & Filantrópico & 0,228 & 0,504 \\
+2028840 & Instituto De Infectologia Emilio Ribas & Sao Paulo & Direta & 0,447 \\
+2698471 & Secao Hospital Municipal Dr Arthur Dom & Santos & Público Municipal & 0,378 \\
+2078465 & Real Sociedade Portuguesa De Beneficencia & Campinas & Filantrópico & 0,228 \\
 \bottomrule
 \end{tabular}
 \end{center}
-\comofeito{mesmas seis colunas da tabela do bloco a (CNES, hospital,
-município, categoria e os escores medianos DEA e SFA de 2015 a 2025), com
-a mesma ressalva: a coluna SFA não é citável em categoria nenhuma.}
+\comofeito{mesmas cinco colunas da tabela do bloco a (CNES, hospital,
+município, categoria e o escore mediano de DEA de 2015 a 2025).}
 
-\noindent\textbf{Esta lista depende da SFA, e por isso é provisória.} Ao
-contrário do bloco b, em que os quatro selecionados são os mesmos com e
-sem a fronteira estocástica, aqui \textbf{dois dos três mudam} quando o
-critério é reexecutado só com o DEA: na administração Direta, o CNES
+\noindent\textbf{Esta lista é provisória.} Ela foi montada pelo critério
+antigo, que usava também o método descartado no
+Apêndice~\ref{ap:sfa}. Ao contrário do bloco b, em que os quatro
+selecionados são os mesmos nas duas versões, aqui \textbf{dois dos três
+mudam} quando o critério é reexecutado só com o DEA: na administração Direta, o CNES
 2028840 (Emílio Ribas, São Paulo) dá lugar ao 2083094 (Assis); no
 Filantrópico, o CNES 2078465 (Campinas) dá lugar ao 2077655 (São Paulo).
 Só o Público Municipal (2698471) se mantém. A razão é que o quartil
 inferior é um conjunto largo, com 37 candidatos no Filantrópico, e ali o
 desempate por percentil combinado pesa muito; no quartil superior os
-candidatos são poucos e o DEA decide sozinho. Como \textbf{nenhum valor da
-fronteira estocástica é citável}, esta seleção não pode ser tratada como
-fechada: ela precisa ser refeita apenas sobre o DEA antes que as
+candidatos são poucos e o DEA decide sozinho. Como o segundo método saiu
+das medidas (Apêndice~\ref{ap:sfa}), esta seleção não pode ser tratada
+como fechada: ela precisa ser refeita apenas sobre o DEA antes que as
 entrevistas do bloco c sejam agendadas. Os três hospitais abaixo ficam
 registrados como a lista que o critério antigo produziu, não como a
 escolha final.
@@ -234,64 +221,64 @@ inferior persistente de eficiência, para ouvir quais restrições
 impedem o giro, na visão de quem opera, antes de confrontá-las com os
 dados do painel.
 
-\noindent\textbf{2028840, Instituto de Infectologia Emílio Ribas} (São Paulo, capital; Grande Porte, faixa Barcelona 4, complexidade Barcelona 459,0). Desviante negativo da categoria Direta (quartil inferior persistente de eficiência técnica em DEA e SFA): medianas de 0,447 no DEA e 0,409 na SFA entre 2015 e 2025, no suporte comum de faixa 4 e Grande Porte.\par\medskip
-\noindent\textbf{2698471, Hospital Municipal Dr. Arthur Domingues Pinto} (Santos, Região Metropolitana da Baixada Santista; Médio Porte, faixa Barcelona 3, complexidade Barcelona 122,0). Desviante negativo da categoria Público Municipal (quartil inferior persistente de eficiência técnica em DEA e SFA): medianas de 0,378 no DEA e 0,717 na SFA entre 2015 e 2025, no suporte comum de faixa 3 e Médio Porte.\par\medskip
+\noindent\textbf{2028840, Instituto de Infectologia Emílio Ribas} (São Paulo, capital; Grande Porte, faixa Barcelona 4, complexidade Barcelona 459,0). Desviante negativo da categoria Direta (quartil inferior persistente de eficiência técnica): mediana de 0,447 no DEA entre 2015 e 2025, no suporte comum de faixa 4 e Grande Porte.\par\medskip
+\noindent\textbf{2698471, Hospital Municipal Dr. Arthur Domingues Pinto} (Santos, Região Metropolitana da Baixada Santista; Médio Porte, faixa Barcelona 3, complexidade Barcelona 122,0). Desviante negativo da categoria Público Municipal (quartil inferior persistente de eficiência técnica): mediana de 0,378 no DEA entre 2015 e 2025, no suporte comum de faixa 3 e Médio Porte.\par\medskip
 \newpage
-\noindent\textbf{2078465, Real Sociedade Portuguesa de Beneficência} (Campinas, interior; Médio Porte, faixa Barcelona 3, complexidade Barcelona 128,0). Desviante negativo da categoria Filantrópico (quartil inferior persistente de eficiência técnica em DEA e SFA): medianas de 0,228 no DEA e 0,504 na SFA entre 2015 e 2025, no suporte comum de faixa 3 e Médio Porte.\par\medskip
+\noindent\textbf{2078465, Real Sociedade Portuguesa de Beneficência} (Campinas, interior; Médio Porte, faixa Barcelona 3, complexidade Barcelona 128,0). Desviante negativo da categoria Filantrópico (quartil inferior persistente de eficiência técnica): mediana de 0,228 no DEA entre 2015 e 2025, no suporte comum de faixa 3 e Médio Porte.\par\medskip
 
 \noindent As trajetórias destes três hospitais também estão no
 Apêndice~\ref{ap:selecao}.
 
 \parte{A reserva sugerida: entrevistas adicionais}
 
-Além do núcleo acima, dois blocos de \textbf{sugestões} foram montados
+Além do núcleo acima, um bloco de \textbf{sugestões} foi montado
 para o caso de o tempo de campo permitir: os \textbf{pares casados de
 contraste} (bloco d), que aprofundam a comparação principal do
 documento pondo lado a lado hospitais de estrutura quase idêntica e
-eficiência divergente, e os \textbf{casos de discordância entre DEA e
-SFA} (bloco e), que ajudam a entender o que os modelos de eficiência
-não capturam. São dez hospitais, e como podem não ser entrevistados,
-suas tabelas, fichas e figuras ficam no
-Apêndice~\ref{ap:selecao}. Os módulos de roteiro correspondentes
-(D e E) continuam nesta seção, adiante.
+eficiência divergente. São cinco hospitais, e como podem não ser
+entrevistados, suas tabelas, fichas e figuras ficam no
+Apêndice~\ref{ap:selecao}. O módulo de roteiro correspondente (D)
+continua nesta seção, adiante.
 
 \parte{Validação de registro: as duas entrevistas curtas}
 
 \bloco{Bloco f: validação de registro (entrevistas curtas)}
 \begin{center}\small
-\begin{tabular}{llllrr}
+\begin{tabular}{llllr}
 \toprule
-CNES & Hospital & Município & Categoria & DEA & SFA \\
+CNES & Hospital & Município & Categoria & DEA \\
 \midrule
-2022648 & Hospital Irmaos Penteado E Santa Casa  & Campinas & Filantrópico & 0,354 & 0,664 \\
-2097613 & Hospital Infante D Henrique & Sao Jose Do Rio Preto & Filantrópico & 0,758 & 0,264 \\
+2022648 & Hospital Irmaos Penteado E Santa Casa  & Campinas & Filantrópico & 0,354 \\
+2097613 & Hospital Infante D Henrique & Sao Jose Do Rio Preto & Filantrópico & 0,758 \\
 \bottomrule
 \end{tabular}
 \end{center}
-\comofeito{mesmas seis colunas da tabela do bloco a (CNES, hospital,
-município, categoria e os escores medianos DEA e SFA de 2015 a 2025);
-estas duas linhas foram escolhidas por problema de registro, não por
+\comofeito{mesmas cinco colunas da tabela do bloco a (CNES, hospital,
+município, categoria e o escore mediano de DEA de 2015 a 2025); estas
+duas linhas foram escolhidas por problema de registro, não por
 eficiência.}
 
 Duas entrevistas curtas (vinte a trinta minutos), só com o responsável
 pelo cadastro CNES e faturamento SIH, restritas ao registro, não são
-entrevistas de gestão e não usam o roteiro-base.
+entrevistas de gestão e não usam o roteiro-base nem módulo de perguntas
+próprio: o que cada uma precisa checar está dito na ficha do respectivo
+hospital, logo abaixo.
 
 \noindent\textbf{2022648, Hospital Irmãos Penteado e Santa Casa de Campinas} (Campinas, interior; Médio Porte, faixa Barcelona 3, complexidade Barcelona 156,0). Ocupação de UTI registrada em 2021 chega a 875,2\% (2020: 561,6\%; leitos UTI cadastrados: 16). Verificar leitos CNES cadastrados contra leitos operacionais na pandemia.\par\medskip
 \noindent\textbf{2097613, Hospital Infante D. Henrique} (São José do Rio Preto, interior; Grande Porte, faixa Barcelona 2, complexidade Barcelona 39,0). Denominadores frágeis em 2020 e 2021 (saídas registradas: 13 em 2020, 4 em 2021; TMP zero em 2021). Verificar se o hospital fechou, mudou de papel ou parou de faturar pelo SIH nesse período; as duas observações já são tratadas como denominador frágil e excluídas dos desfechos em toda a estimação.\par\medskip
 
-\parte{Roteiro-base comum aos blocos de gestão (de a até e)}
+\parte{Roteiro-base comum aos blocos de gestão (a, b, c e d)}
 
 O roteiro-base cobre seis domínios e dura de cinquenta a sessenta
 minutos. Vale para os entrevistados dos blocos a, b e c do núcleo e, se
-realizados, dos pares casados sugeridos e dos casos de divergência. As
+realizados, dos pares casados sugeridos (bloco d). As
 perguntas são abertas; os itens entre colchetes são estímulos de
 aprofundamento para o entrevistador.
 
 \bloco{Governança e desenho institucional}
 \begin{enumerate}[itemsep=2pt]
   \item Como se organiza a direção do hospital: quem decide o quê entre a diretoria local, a mantenedora ou OSS e a Secretaria? [organograma real e formal; conselhos; tempo de mandato da direção]
-  \par\nopagebreak\achado{a eficiência técnica maior das OSS é traço robusto da rede, com DEA e SFA concordando; a hipótese é que o desenho de governança seja o canal.}
+  \par\nopagebreak\achado{a eficiência técnica maior das OSS é traço robusto da rede; a hipótese é que o desenho de governança seja o canal.}
   \item Que decisões precisam de autorização externa ao hospital e quanto tempo levam, do pedido à resposta? [contratação, compra acima de um teto, abertura de leito]
   \par\nopagebreak\achado{o regime operacional mais intenso das OSS sugere menor fricção decisória; a pergunta mede a fricção diretamente.}
   \item Com que frequência a direção examina indicadores assistenciais e o que acontece quando um indicador piora? [rotina de reunião; quem responde pelo indicador]
@@ -380,7 +367,7 @@ exemplo, o documento, a rotina, sem aceitar declaração de princípios.
 
 \begin{enumerate}[itemsep=2pt]
   \item O hospital está no quartil superior de eficiência da rede há onze anos. Na sua leitura, quais três práticas explicam isso? Para cada uma: desde quando, quem implantou, o que custou? [pedir exemplos datados]
-  \par\nopagebreak\achado{a persistência no quartil superior em DEA e SFA simultaneamente afasta artefato de método; deve haver prática real por trás.}
+  \par\nopagebreak\achado{a persistência no quartil superior ao longo de onze anos afasta oscilação de um ano isolado; deve haver prática real por trás.}
   \item Como funciona, passo a passo, a gestão de altas num dia típico? [reunião de leitos; previsão de alta; alta aos sábados]
   \par\nopagebreak\achado{giro alto com TMP baixo é a assinatura operacional dos desviantes positivos.}
   \item Que procedimentos o hospital faz em regime ambulatorial que vizinhos comparáveis internam? [cirurgia ambulatorial; hospital-dia; protocolos]
@@ -397,7 +384,7 @@ quem opera, e confrontar depois com as restrições objetivas do painel.
 
 \begin{enumerate}[itemsep=2pt]
   \item Quais são hoje os três maiores obstáculos para o hospital girar mais os leitos? [financiamento; RH; perfil de demanda; física do prédio]
-  \par\nopagebreak\achado{o hospital está no quartil inferior persistente de DEA e SFA; a pergunta colhe a explicação nativa antes de confrontá-la com os dados.}
+  \par\nopagebreak\achado{o hospital está no quartil inferior persistente de DEA; a pergunta colhe a explicação nativa antes de confrontá-la com os dados.}
   \item Descreva o paciente típico que fica internado mais tempo do que precisaria. Por que ele não sai? [internação social; retaguarda; exame que não sai]
   \par\nopagebreak\achado{TMP alto com ocupação alta indica leito ocupado por paciente que não precisaria dele; a pergunta identifica o gargalo.}
   \item O financiamento cobre o custo do que o hospital produz? Onde aperta primeiro? [tabela SUS; folha; incentivos]
@@ -420,46 +407,21 @@ comparação direta das respostas. Acrescentar:
   \par\nopagebreak\achado{diferenças de TMP entre pares estruturalmente parecidos costumam se concentrar no fim de semana; pergunta espelhada nos dois hospitais do par.}
 \end{enumerate}
 
-\bloco{Módulo E: divergência entre DEA e SFA (bloco e, sugeridos)}
-
-A divergência entre os dois métodos sugere algo que os modelos não
-capturam: composição de casos atípica, insumo mal medido, produção
-heterogênea. A entrevista busca esse fator omitido.
-
-\begin{enumerate}[itemsep=2pt]
-  \item O que este hospital faz que hospitais parecidos não fazem: serviços, perfis de paciente, papéis na rede que não aparecem em leitos e saídas? [ensino; referência regional; porta aberta e referenciada]
-  \par\nopagebreak\achado{DEA e SFA discordam fortemente sobre este hospital; a explicação provável é dimensão de produto ou insumo que nenhum dos dois modelos mede.}
-  \item Os números oficiais de leitos, produção e permanência do hospital refletem a operação real? Onde o registro distorce? [leitos bloqueados; produção não faturada]
-  \par\nopagebreak\achado{a divergência entre métodos também pode ser artefato de medida; a pergunta verifica a qualidade do dado antes de interpretar o resto da entrevista.}
-\end{enumerate}
-
-\bloco{Módulo F: validação de registro (bloco f)}
-
-Entrevistas curtas, restritas a quem responde pelo cadastro CNES e pelo
-faturamento SIH, não usam o roteiro-base nem os módulos de gestão.
-
-\begin{enumerate}[itemsep=2pt]
-  \item (CNES 2022648) Em 2021 a ocupação de UTI calculada chega a 875\%. Quantos leitos de UTI operavam de fato em 2020 e 2021, e quantos estavam cadastrados no CNES? Houve atraso ou represamento de atualização cadastral? [leitos de campanha; UTI COVID]
-  \par\nopagebreak\achado{ocupação acima de 100\% em escala implica denominador (leitos CNES) menor que a operação real; a resposta define como tratar as observações extremas de 2020 e 2021.}
-  \item (CNES 2097613) O registro mostra menos de 30 saídas sem COVID no biênio de 2020 a 2021 e TMP zero em 2021. O hospital fechou, mudou de papel ou parou de faturar pelo SIH nesse período? [interdição; reforma; migração de convênio]
-  \par\nopagebreak\achado{as duas observações desse CNES já são tratadas como denominador frágil e excluídas dos desfechos; a resposta confirma ou corrige esse tratamento.}
-\end{enumerate}
-
 \parte{Logística e esforço}
 
-A seleção soma \textbf{24 hospitais únicos}: \textbf{22 entrevistas
+A seleção soma \textbf{19 hospitais únicos}: \textbf{17 entrevistas
 plenas} (roteiro-base de cinquenta a sessenta minutos mais o módulo
-específico de vinte a trinta minutos, blocos de a até e) e \textbf{2
+específico de vinte a trinta minutos, blocos a, b, c e d) e \textbf{2
 entrevistas curtas} de validação de registro (bloco f, vinte a trinta
 minutos). O núcleo previsto (blocos a, b e c) soma doze entrevistas
-plenas; a reserva sugerida (blocos d e~e, no
-Apêndice~\ref{ap:selecao}) acrescenta até dez. O teto
+plenas; a reserva sugerida (bloco d, no
+Apêndice~\ref{ap:selecao}) acrescenta até cinco. O teto
 recomendado de campo é de 15 a 18 entrevistas. Havendo necessidade de
 priorizar ou cortar, a ordem recomendada é: bloco a (obrigatório), bloco
 f (curtas, custo baixo), blocos b e c, cujo contraste entre quartil
-superior e inferior é o coração da fase, bloco d, mantendo ao menos um
-par completo por âncora e preferindo o par Direta, que espelha a
-comparação principal da estimação, e por último bloco e. Recomenda-se
+superior e inferior é o coração da fase, e por último o bloco d,
+mantendo ao menos um par completo por âncora e preferindo o par Direta,
+que espelha a comparação principal da estimação. Recomenda-se
 gravar com consentimento, transcrever integralmente e codificar as
 respostas contra a lista de achados deste roteiro, para que a fase
 qualitativa feche o ciclo: cada mecanismo declarado nas entrevistas deve

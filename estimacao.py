@@ -223,6 +223,53 @@ def carregar_e_verificar() -> pd.DataFrame:
 # 1. PREPARO
 # ══════════════════════════════════════════════════════════════════════════════
 
+def marcar_uti_ano_parcial(painel: pd.DataFrame) -> pd.DataFrame:
+    """Marca os anos em que a UTI SUS operou por uma fração do ano contra o
+    denominador cheio de uti_sus × 365.
+
+    A ocupação da base é `100 * diarias_uti / (uti_sus * 365)` — identidade
+    verificada em 2.484 de 2.484 observações com uti_sus > 0. O denominador
+    é anual e o cadastro de leitos é uma fotografia, de modo que uma UTI
+    que abre em julho acumula meio ano de diárias contra um ano inteiro de
+    capacidade: a ocupação medida é artefato, não desempenho.
+
+    O painel é balanceado no HOSPITAL (289 CNES × 11 anos, sem entrada nem
+    saída), o que já elimina o caso análogo no nível da unidade. Não é
+    balanceado na UTI: 29 CNES oscilam entre ter e não ter UTI SUS.
+
+    Só a transição 0 ↔ positivo é marcada, porque só ela é identificável
+    sem competência mensal. Expansões bruscas de leito SEM passar por zero
+    (o cadastro que salta em 2020-21) produzem o viés na direção oposta —
+    ocupação acima de 100% — e continuam fora do alcance desta flag; o
+    tratamento delas segue sendo a winsorização no p99, que corta o topo e
+    por construção não alcança o ano de abertura, que fica na cauda baixa.
+
+    Colunas criadas (nenhuma entra em fórmula; servem para amostragem):
+      uti_abertura     — tem UTI e o ano anterior não tinha
+      uti_encerramento — tem UTI e o ano seguinte não tem
+      uti_ano_parcial  — união das duas
+
+    As duas transições são marcadas por simetria, mas só o ramo das
+    aberturas tem respaldo empírico: os 2 encerramentos do painel geram
+    MAIS diárias que o ano cheio anterior, o que não é ano parcial. A
+    ressalva está medida no bloco [2] de analises/auditar_uti_ano_parcial.py.
+
+    O primeiro e o último ano do painel nunca são marcados: sem o ano
+    vizinho não há como distinguir abertura de série censurada à esquerda.
+    """
+    d = painel.sort_values(["cnes", "ano"])
+    tem = d["uti_sus"].fillna(0) > 0
+    ant = tem.groupby(d["cnes"]).shift(1)
+    prox = tem.groupby(d["cnes"]).shift(-1)
+    marcas = pd.DataFrame({
+        "uti_abertura": tem & (ant == False),        # noqa: E712
+        "uti_encerramento": tem & (prox == False),   # noqa: E712
+    }, index=d.index)
+    marcas["uti_ano_parcial"] = (marcas["uti_abertura"]
+                                 | marcas["uti_encerramento"])
+    return painel.join(marcas)
+
+
 def preparar(painel: pd.DataFrame) -> pd.DataFrame:
     print("\n" + "=" * 70)
     print("[1] PREPARO: faturamento real, porte fixo, frágeis, longa permanência, "
@@ -309,6 +356,16 @@ def preparar(painel: pd.DataFrame) -> pd.DataFrame:
                  .groupby("modelo_gestao_proxy").size().to_dict())
     print(f"  Zeros de mortalidade por categoria: {zeros_cat} "
           f"(OSS e Municipal sem zeros: separação, base agregada no logito)")
+
+    # 1h. anos parciais de UTI: abertura e encerramento da UTI SUS dentro do
+    # painel, em que as diárias cobrem fração do ano e o denominador cobre o
+    # ano inteiro. Não entra em nenhuma fórmula — é amostragem, usada na
+    # robustez da ocupação de UTI (analises/auditar_uti_ano_parcial.py)
+    painel = marcar_uti_ano_parcial(painel)
+    n_ab = int(painel["uti_abertura"].sum())
+    n_enc = int(painel["uti_encerramento"].sum())
+    print(f"  Anos parciais de UTI: {n_ab} aberturas e {n_enc} encerramentos "
+          f"({int(painel['uti_ano_parcial'].sum())} observações)")
 
     # nomes fantasia fixados no painel completo (o cadastro só traz o nome
     # em parte dos anos, concentrados em 2020 e 2021)

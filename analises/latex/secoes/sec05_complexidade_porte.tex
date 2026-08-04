@@ -4,15 +4,22 @@
 Antes de qualquer comparação entre modelos de gestão, é preciso
 reconhecer o quanto a complexidade e o porte, sozinhos, separam os
 hospitais. As Figuras~\ref{fig:faixaA} a~\ref{fig:faixaC} mostram a
-mediana de cada indicador ao longo das faixas Barcelona de complexidade
-(da faixa 2, menor, à 6, maior), e as Figuras~\ref{fig:porteA}
-a~\ref{fig:porteC}, ao longo dos portes.
+mediana e a média de cada indicador ao longo das faixas Barcelona de
+complexidade (da faixa 2, menor, à 6, maior), e as
+Figuras~\ref{fig:porteA} a~\ref{fig:porteC}, ao longo dos portes. As duas
+medidas de centro aparecem juntas de propósito: em indicadores com muitos
+zeros, como a fração de alta complexidade, a mediana de um grupo pode ser
+zero enquanto boa parte dele é positiva, e a barra sozinha seria lida
+como ``este grupo não faz''.
 
 O padrão é de escada: o faturamento real mediano por saída (R\$ de
 dez/2025) sobe de \textbf{R\$~631
 na faixa 2 para R\$~3.780 na faixa 6} (quase seis vezes), o tempo de
-permanência vai de 3,16 para 6,30 dias, a fração de alta complexidade
-sai de zero e chega a 22,5\%, e a ocupação de internação sobe de 35,1\%
+permanência vai de 3,16 para 6,30 dias, a fração \emph{mediana} de alta
+complexidade sai de zero e chega a 22,5\% (a média correspondente parte
+de 7,9\%, e a diferença entre as duas é o assunto das
+Figuras~\ref{fig:alcancealtacomplex} a~\ref{fig:volumealtacomplex}), e a
+ocupação de internação sobe de 35,1\%
 para a casa dos 90\%. A mortalidade cresce com a complexidade até a
 faixa 5 (de 3,20\% para 6,52\%) e \textbf{recua na faixa 6 (5,43\%)},
 um sinal de que os hospitais de ponta convertem estrutura em resultado.
@@ -28,64 +35,78 @@ A conclusão para todo o restante do documento: \textbf{complexidade e
 porte precisam ser sempre levados em conta ao comparar categorias de
 gestão}, sob pena de atribuir ao modelo de gestão diferenças que são,
 na verdade, de perfil assistencial.
-
+\newpage
 \comoler{cada barra é a mediana do indicador naquela faixa de
-complexidade, com o valor impresso em cima. Na mortalidade, repare no
-degrau que sobe até a faixa 5 e desce na 6; no TMP, a escada é sempre
-ascendente.}
+complexidade e o losango é a média, os dois com o valor impresso. Na
+mortalidade, repare no degrau que sobe até a faixa 5 e desce na 6; no
+TMP, a escada é sempre ascendente. Onde o losango fica bem acima da
+barra, a faixa tem poucos hospitais puxando a média para cima.}
 
 \begin{figure}[H]
 \centering
 \subfig{fig_ae_05_faixa_mort_all.png}{Mortalidade geral}
 \subfig{fig_ae_05_faixa_tmp.png}{TMP}
-\caption{Mediana da mortalidade e do TMP por faixa Barcelona de
-complexidade (2 a 6), com o valor sobre cada barra.}
+\caption{Mediana (barra) e média (losango) da mortalidade e do TMP por
+faixa Barcelona de complexidade (2 a 6), com o valor de cada uma.}
 \label{fig:faixaA}
 \end{figure}
 
 \comofeito{gráfico de barras. O eixo horizontal traz as faixas Barcelona
-de complexidade (da 2, menor, à 6, maior) e o eixo vertical, a
-\textbf{mediana} do indicador entre todos os hospitais-ano daquela faixa
-(mortalidade em proporção; TMP em dias), com o valor impresso sobre cada
-barra. A faixa Barcelona é a métrica de complexidade construída no
-projeto, sempre na sua versão estrutural
+de complexidade (da 2, menor, à 6, maior) e o eixo vertical, duas medidas
+de centro do indicador entre todos os hospitais-ano daquela faixa
+(mortalidade em proporção; TMP em dias): a \textbf{barra é a mediana} e o
+\textbf{losango é a média}, ambos com o valor impresso. Vale para todas
+as figuras por faixa e por porte desta seção. Ter as duas evita a leitura
+errada mais comum deste tipo de gráfico: mediana e média coincidem quando
+o grupo é simétrico, e quando se afastam a distância entre elas mede a
+assimetria, isto é, quanto o grupo é puxado por poucos hospitais ou por
+uma massa de zeros. A faixa Barcelona é a métrica de complexidade
+construída no projeto, sempre na sua versão estrutural
 (Seção~\ref{sec:painel}).}
-
+\newpage
 \comoler{a escada do faturamento é a mais íngreme do documento: da faixa 2
-para a 6, a mediana mais que quintuplica. A alta complexidade parte do
-zero absoluto nas faixas baixas.}
+para a 6, a mediana mais que quintuplica. Na alta complexidade a mediana
+parte de zero nas faixas baixas, mas \textbf{a média não}: 0,0787 na
+faixa 2 e 0,0427 na 3. Zero é o hospital típico daquelas faixas, não a
+faixa inteira.}
 
 \begin{figure}[H]
 \centering
 \subfig{fig_ae_05_faixa_custo_real.png}{Faturamento real por saída,
 R\$ de dez/2025}
 \subfig{fig_ae_05_faixa_pct_alta_complex.png}{Fração alta complexidade}
-\caption{Mediana do faturamento real por saída (R\$ de dez/2025) e da
-fração de alta complexidade por faixa Barcelona.}
+\caption{Mediana (barra) e média (losango) do faturamento real por saída
+(R\$ de dez/2025) e da fração de alta complexidade por faixa Barcelona.}
 \label{fig:faixaB}
 \end{figure}
 
-\comofeito{mesma construção da figura anterior, agora com a mediana do
-faturamento real por saída (em R\$ de dez/2025, deflacionado pelo IPCA)
-e da fração de alta complexidade (proporção) no eixo vertical, ao longo
+\comofeito{mesma construção da figura anterior, agora com o faturamento
+real por saída (em R\$ de dez/2025, deflacionado pelo IPCA)
+e a fração de alta complexidade (proporção) no eixo vertical, ao longo
 das faixas Barcelona no eixo horizontal.}
-
-\comoler{quanto mais complexo o hospital, mais cheio ele opera. Na
-UTI, a barra da faixa 2 vale zero porque a maioria daqueles hospitais
-(33 dos 43) não tem UTI.}
+\newpage
+\comoler{quanto mais complexo o hospital, mais cheio ele opera. A faixa 2
+fica bem abaixo das demais na UTI (mediana de 37,3\% contra a casa dos
+76\%), e é a única faixa em que a leitura exige cuidado: \textbf{34 dos
+seus 43 hospitais não têm UTI SUS} e ficam fora da conta, de modo que a
+barra descreve os poucos que têm, e não a faixa.}
 
 \begin{figure}[H]
 \centering
 \subfig{fig_ae_05_faixa_ocupacao_internacao.png}{Ocupação de
 internação}
 \subfig{fig_ae_05_faixa_ocupacao_uti.png}{Ocupação de UTI}
-\caption{Mediana das taxas de ocupação por faixa Barcelona.}
+\caption{Mediana (barra) e média (losango) das taxas de ocupação por
+faixa Barcelona.}
 \label{fig:faixaC}
 \end{figure}
 
-\comofeito{mesma construção, com a mediana das duas taxas de ocupação
-(percentual) no eixo vertical, por faixa Barcelona no eixo horizontal.}
-
+\comofeito{mesma construção, com as duas taxas de ocupação
+(percentual) no eixo vertical, por faixa Barcelona no eixo horizontal. Na
+UTI o denominador de cada barra são apenas os hospitais-ano \textbf{com
+leito de UTI SUS cadastrado}: onde não há UTI a razão não existe, e a
+observação fica fora em vez de entrar como zero.}
+\newpage
 \comoler{mesma leitura das figuras por faixa, agora por porte:
 hospitais maiores seguram o paciente por mais tempo e têm mortalidade
 um pouco maior, coerente com casos mais graves.}
@@ -94,35 +115,229 @@ um pouco maior, coerente com casos mais graves.}
 \centering
 \subfig{fig_ae_06_porte_mort_all.png}{Mortalidade geral}
 \subfig{fig_ae_06_porte_tmp.png}{TMP}
-\caption{Mediana da mortalidade e do TMP por porte (classificação fixa
-pela mediana de leitos: 159 hospitais médios, 120 grandes e 10
-especiais).}
+\caption{Mediana (barra) e média (losango) da mortalidade e do TMP por
+porte (classificação fixa pela mediana de leitos: 159 hospitais médios,
+120 grandes e 10 especiais).}
 \label{fig:porteA}
 \end{figure}
 
 \comofeito{mesma leitura das figuras por faixa, mas agora o eixo
 horizontal traz o \textbf{porte} do hospital (classificação fixa pela
 mediana de leitos de todos os anos: médio, grande e especial) e o
-vertical, a mediana da mortalidade e do TMP.}
-
+vertical, a mediana (barra) e a média (losango) da mortalidade e do TMP.}
+\newpage
 \comoler{o faturamento mediano dos hospitais especiais é mais de três vezes o
 dos médios, e a alta complexidade se concentra quase toda nos portes
-grande e especial.}
+grande e especial. \textbf{Cuidado com a barra zerada do Médio Porte na
+alta complexidade}: ela diz que o hospital médio \emph{típico} não faz
+alta complexidade em metade dos anos, e \textbf{não} que hospitais médios
+não fazem alta complexidade. O losango da média, acima dela, já mostra
+que o grupo não é zero, e as três figuras seguintes abrem o ponto.}
 
 \begin{figure}[H]
 \centering
 \subfig{fig_ae_06_porte_custo_real.png}{Faturamento real por saída,
 R\$ de dez/2025}
 \subfig{fig_ae_06_porte_pct_alta_complex.png}{Fração alta complexidade}
-\caption{Mediana do faturamento real por saída (R\$ de dez/2025) e da
-fração de alta complexidade por porte.}
+\caption{Mediana (barra) e média (losango) do faturamento real por saída
+(R\$ de dez/2025) e da fração de alta complexidade por porte.}
 \label{fig:porteB}
 \end{figure}
 
 \comofeito{mesma construção, com a mediana do faturamento real por saída
 (em R\$ de dez/2025, deflacionado pelo IPCA) e da fração de alta
-complexidade (proporção) no eixo vertical, por porte no eixo
-horizontal.}
+complexidade (proporção) no eixo vertical, por porte no eixo horizontal.
+A partir desta versão \textbf{as duas medidas de centro aparecem juntas}:
+a barra é a mediana e o losango é a média. Onde as duas coincidem, a
+distribuição do grupo é simétrica e a mediana basta; onde se afastam, a
+distância entre elas é informação, e não ruído: mede a assimetria do
+grupo. Na alta complexidade do Médio Porte a mediana é 0 e a média é
+0,0283, e é essa distância que a figura seguinte decompõe.}
+
+\comoler{a mediana zero do Médio Porte é ``faz pouco'', não ``não faz'',
+e as três figuras a seguir mostram por quê. Na primeira, quase 8 em cada
+10 hospitais médios fazem alta complexidade em algum ano. Na segunda,
+quem faz, faz pouco: é daí que vem a mediana zero. Na terceira, o pouco
+de cada um somado dá 220 mil internações de alta complexidade no
+período.}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{fig_ae_06b_a_alcance.png}
+\caption{Quem faz alta complexidade, por porte. A mediana zero do Médio
+Porte esconde que \textbf{79,2\% dos seus hospitais} fazem alta
+complexidade em algum ano.}
+\label{fig:alcancealtacomplex}
+\end{figure}
+
+\comofeito{a barra cheia é o percentual dos hospitais (CNES) do porte que
+registram alta complexidade em ao menos um dos onze anos, e a barra
+hachurada é o percentual dos hospitais-ano com fração positiva; a
+diferença entre as duas é a intermitência, ou seja, o hospital que faz em
+uns anos e não em outros. A unidade é o hospital na barra cheia e o
+hospital-ano na hachurada.}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{fig_ae_06b_b_intensidade.png}
+\caption{Quanto de alta complexidade faz quem faz, por porte. Entre os
+hospitais-ano médios que fazem, a fração típica é de \textbf{0,44\%} das
+internações, contra 6,2\% no Grande Porte e 22,2\% no Especial: pouco, e
+por isso a mediana do porte inteiro cai a zero.}
+\label{fig:intensidadealtacomplex}
+\end{figure}
+
+\comofeito{boxplots da fração de alta complexidade \textbf{restritos aos
+hospitais-ano em que ela é positiva}, de modo que os zeros não puxem a
+caixa para baixo. A linha branca dentro da caixa é a mediana, a caixa vai
+do primeiro ao terceiro quartil e os pontos soltos são hospitais-ano
+extremos.}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{fig_ae_06b_c_volume.png}
+\caption{Volume de alta complexidade por porte, 2015 a 2025. O Médio
+Porte responde por \textbf{220 mil saídas} de alta complexidade no
+período: é o porte em que a mediana zero mais engana.}
+\label{fig:volumealtacomplex}
+\end{figure}
+
+\comofeito{soma das saídas de alta complexidade do porte em todo o
+período, em milhares. É a leitura em que o Médio Porte deixa de parecer
+irrelevante: cada hospital faz pouco, mas são 159 hospitais fazendo
+pouco por onze anos.}
+\newpage
+\subsection*{A outra ponta: os 90\% da produção que não são alta complexidade}
+\label{sub:naoalta}
+
+As três figuras anteriores descrevem em detalhe a alta complexidade, que é
+\textbf{9,9\% das internações do painel}. Falta dizer o que é o resto, e o
+resto é grande: \textbf{20,8 milhões de internações}, ou 90,1\% de tudo o
+que estes 289 hospitais produziram em onze anos. É o trabalho corrente da
+rede, aquele que não aparece em manchete de inauguração e que responde pela
+maior parte do leito ocupado todo dia.
+
+% O parágrafo "Uma limitação precisa vir antes dos números" saiu daqui em
+% 04/08/2026, a pedido expresso de João. Ele registrava que o painel guarda
+% `qtde_alta_complex` e `qtde`, e que tudo o mais sai por diferença, de modo
+% que a média complexidade e a atenção básica ficam somadas num bloco só.
+% O FATO CONTINUA VALENDO e continua governando o vocabulário: por isso o
+% documento diz "produção de não alta complexidade" e NUNCA "média
+% complexidade", que seria afirmar uma separação que este dado não sustenta.
+% A restrição segue registrada no cabeçalho de `_media_complexidade` em
+% analise_exploratoria.py e na seção 21 de PENDENCIAS.md. O que saiu do
+% documento foi a explicação ao leitor, não a disciplina de nomenclatura.
+A figura espelho exata da alta complexidade seria inútil: \textbf{100\% dos
+hospitais fazem produção de não alta complexidade, em todos os anos}, e a
+fração é simplesmente o complemento da outra. As três leituras que informam
+são outras, e estão nas Figuras~\ref{fig:dependencianaoalta}
+a~\ref{fig:volumenaoalta}: o quanto cada porte \emph{depende} dessa
+produção, quantos hospitais vivem \emph{só} dela, e o volume que ela move.
+
+\comoler{o Médio Porte é quase inteiramente produção de não alta
+complexidade (96,5\%), e mesmo o porte Especial, que concentra a alta
+complexidade do estado, tem três quartos da sua produção nessa faixa.
+Nenhum porte da rede paulista vive de alta complexidade.}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{fig_ae_06c_a_dependencia.png}
+\caption{Quanto da produção de cada porte não é alta complexidade. Mesmo
+no porte Especial, que é onde a alta complexidade se concentra,
+\textbf{77\% das internações são de outra natureza}.}
+\label{fig:dependencianaoalta}
+\end{figure}
+
+\comofeito{para cada porte, a soma das internações que não são de alta
+complexidade dividida pela soma de todas as internações do porte, na base
+sem COVID e no período completo. É uma razão agregada, e não a média das
+razões dos hospitais: cada hospital pesa pelo que produz.}
+\newpage
+\comoler{um em cada cinco hospitais de médio porte nunca registrou uma
+única internação de alta complexidade em onze anos. No Grande Porte são
+dois hospitais, e no Especial, nenhum.}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{fig_ae_06c_b_exclusividade.png}
+\caption{Quantos hospitais de cada porte vivem exclusivamente de produção
+de não alta complexidade. São \textbf{35 hospitais no painel}, nomeados um
+a um no Apêndice~\ref{ap:listaalta}, e eles formam uma sub-rede com perfil
+próprio, descrito abaixo.}
+\label{fig:exclusividadenaoalta}
+\end{figure}
+
+\comofeito{percentual dos hospitais (CNES) do porte cuja contagem de
+internações de alta complexidade é zero em \textbf{todos} os onze anos. O
+número absoluto de hospitais vem escrito na barra. Note a diferença em
+relação à Figura~\ref{fig:alcancealtacomplex}, que mede o oposto pela mesma
+régua: lá, quem faz em algum ano; aqui, quem nunca fez em ano nenhum.}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{fig_ae_06c_c_volume.png}
+\caption{Volume de internações de não alta complexidade por porte, 2015 a
+2025. O Grande Porte move \textbf{12,4 milhões} delas, quase o dobro do
+Médio e cinco vezes o Especial.}
+\label{fig:volumenaoalta}
+\end{figure}
+
+\comofeito{soma das internações de não alta complexidade do porte em todo o
+período, em milhões, na base sem COVID.}
+\newpage
+\textbf{Os 35 hospitais que nunca fazem alta complexidade são uma sub-rede
+coerente, e não uma lista de exceções.} Comparados com os outros 254 do
+painel, eles são consistentemente menores, mais rápidos e mais baratos, e é
+por isso que descrevê-los junto com o resto distorce as duas coisas.
+
+\begin{table}[H]
+\centering
+\caption{O perfil de quem nunca registra alta complexidade, contra o
+restante do painel. Todos os valores são medianas de hospital-ano, no
+período completo.}
+\label{tab:sonaoalta}
+\small
+\begin{tabular}{lrr}
+\toprule
+ & Faz alta em algum ano & Nunca faz alta \\
+\midrule
+Hospitais                        & 254   & \textbf{35} \\
+Leitos SUS                       & 100   & 52 \\
+Internações por ano              & 5.850 & 2.181 \\
+Tempo de permanência (dias)      & 4,39  & 3,29 \\
+Mortalidade                      & 0,058 & 0,030 \\
+Faturamento real por saída (R\$) & 1.410 & 688 \\
+Ocupação de internação (\%)      & 76,3  & 50,0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\comofeito{cada coluna é um grupo de hospitais e cada linha, a mediana do
+indicador entre todos os hospitais-ano do grupo. O corte é por CNES: o
+hospital entra na coluna da direita se a sua contagem de internações de alta
+complexidade for zero nos onze anos.}
+
+Eles têm \textbf{metade dos leitos}, produzem \textbf{pouco mais de um terço
+das internações por ano}, faturam \textbf{menos da metade por saída} e operam com
+\textbf{26 pontos a menos de ocupação}. A mortalidade menor (3,0\% contra
+5,8\%) não é qualidade superior: é casuística de outra natureza, e lê-la
+como desempenho seria exatamente o erro que a Seção~\ref{sec:categorias}
+adverte. Por rede, são \textbf{22 Filantrópicos, 7 Públicos Municipais, 4 da
+administração Direta e 2 sob gestão de OSS}, e 21 dos 35 estão na faixa 2 de
+complexidade, a mais baixa. Juntos respondem por \textbf{4,6\% da produção do
+painel}: pouco no agregado, mas são a porta de entrada do SUS em municípios
+onde não há outra.
+
+\textbf{Do lado das redes, a produção de não alta complexidade reproduz o
+mesmo ordenamento de intensidade do resto do documento.} Medida em
+internações de não alta complexidade por leito SUS, a mediana é de
+\textbf{61,9 nas OSS}, contra 59,3 no Público Municipal, 51,3 no
+Filantrópico e \textbf{39,1 na administração Direta}. O regime mais intenso
+das OSS, portanto, \textbf{não é um fenômeno da alta complexidade}: ele
+aparece igual no trabalho corrente, que é onde está a maior parte do leito
+ocupado. Em fatia do volume total de não alta complexidade, o
+Filantrópico responde por 47,9\%, o Público Municipal por 22,7\%, as OSS por
+20,1\% e a Direta por 9,1\%.
 
 \comoler{hospitais maiores operam mais cheios, tanto na internação
 quanto na UTI: mais um retrato de que porte e pressão assistencial
@@ -133,10 +348,12 @@ andam juntos.}
 \subfig{fig_ae_06_porte_ocupacao_internacao.png}{Ocupação de
 internação}
 \subfig{fig_ae_06_porte_ocupacao_uti.png}{Ocupação de UTI}
-\caption{Mediana das taxas de ocupação por porte.}
+\caption{Mediana (barra) e média (losango) das taxas de ocupação por
+porte.}
 \label{fig:porteC}
 \end{figure}
 
-\comofeito{mesma construção, com a mediana das duas taxas de ocupação
-(percentual) no eixo vertical, por porte no eixo horizontal.}
+\comofeito{mesma construção, com as duas taxas de ocupação
+(percentual) no eixo vertical, por porte no eixo horizontal; na UTI,
+sobre os hospitais-ano com leito de UTI SUS cadastrado.}
 
