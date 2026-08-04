@@ -1,0 +1,31 @@
+﻿cnes,nome_fantasia,ano,modelo_gestao_proxy,uti_sus,diarias_uti,ocupacao_uti,uti_abertura,uti_encerramento,ano_cheio,uti_sus_cheio,ocup_cheio,razao_diarias
+2082845,Santa Casa De Olimpia,2016,Filantrópico,5,1048,57.425,False,True,2015,5.0,44.658,1.286
+2083051,Santa Casa De Aparecida,2016,Filantrópico,9,582,17.717,True,False,2017,9.0,82.131,0.216
+2790580,Maternidade Santa Isabel,2016,OSS,10,472,12.932,True,False,2017,10.0,79.479,0.163
+7580770,Hospital Estadual De Caieiras,2016,Direta,6,0,0.0,True,False,2017,6.0,0.0,
+2082322,Hospital Dona Balbina,2017,Filantrópico,4,11,0.753,True,False,2018,4.0,85.616,0.009
+2096498,Hospital Municipal Dr Tabajara Ramos,2017,Público Municipal,5,986,54.027,True,False,2018,5.0,69.479,0.778
+7473702,Hosp Mun De Mogi Das Cruzes Pref Waldemar Costa Filho,2017,Público Municipal,10,1755,48.082,True,False,2018,10.0,77.041,0.624
+2082845,Santa Casa De Olimpia,2018,Filantrópico,5,1088,59.616,True,False,2019,5.0,86.575,0.689
+7573162,Hospital Regional De Jundiai,2018,OSS,10,0,0.0,True,False,2019,10.0,34.548,0.0
+2083019,Unidade Integrada De Saude De Mirandopolis,2019,OSS,10,0,0.0,True,False,2020,10.0,46.411,0.0
+7711980,Hosp Mun Gilson De Cassia Marques De Carvalho,2019,Público Municipal,20,716,9.808,True,False,2020,20.0,79.356,0.124
+2087804,Hospital Regional Jorge Rossmann De Itanhaem,2021,OSS,20,2595,35.548,True,False,2022,20.0,84.918,0.419
+2023474,Hospital Municipal Walter Ferrari,2022,Público Municipal,15,1236,22.575,True,False,2023,15.0,49.425,0.457
+2077582,Hospital Nossa Senhora Da Piedade,2022,Filantrópico,6,1622,74.064,True,False,2023,6.0,87.397,0.847
+2079097,Santa Casa De Capao Bonito,2022,Filantrópico,10,1036,28.384,True,False,2023,10.0,41.233,0.688
+2079593,Hospital Sao Joao Registro,2022,Filantrópico,10,842,23.068,True,False,2023,10.0,37.863,0.609
+2079704,Hospital Dr Renato Silva De Socorro,2022,Filantrópico,7,766,29.98,True,False,2023,7.0,59.53,0.504
+2082721,Hospital E Maternidade Sotero De Souza,2022,Filantrópico,8,604,20.685,True,False,2023,8.0,97.295,0.213
+2084422,Santa Casa De Sao Pedro,2022,Filantrópico,10,1438,39.397,True,False,2023,10.0,58.247,0.676
+2087219,Hospital De Clinicas Campo Limpo Paulista,2022,Público Municipal,10,2626,71.945,True,False,2023,10.0,87.288,0.824
+2087715,Hospital E Maternidade Municipal Governador Mario Covas,2022,Público Municipal,10,1957,53.616,True,False,2023,10.0,66.356,0.808
+2088487,Santa Casa De Novo Horizonte,2022,Filantrópico,8,1099,37.637,True,False,2023,8.0,59.178,0.636
+2698471,Secao Hospital Municipal Dr Arthur Domingues Pinto,2022,Público Municipal,7,1118,43.757,True,False,2023,7.0,56.047,0.781
+2748568,Santa Casa De Capivari,2022,Filantrópico,7,1616,63.249,True,False,2023,7.0,77.143,0.82
+2751623,Hospital Francisco Rosas,2022,Filantrópico,10,2534,69.425,True,False,2023,10.0,78.904,0.88
+5366828,Santa Casa De Atibaia,2022,Filantrópico,6,0,0.0,True,False,2023,6.0,83.516,0.0
+5586348,Hospital Universt Da Ufscar Prof Dr Horacio C Panepucci,2022,Privado,10,662,18.137,True,False,2023,10.0,64.575,0.281
+2078414,Santa Casa De Guaira,2023,Filantrópico,10,178,4.877,True,False,2024,10.0,78.274,0.062
+2791749,Santa Casa De Pederneiras,2023,Filantrópico,10,930,25.479,True,False,2024,10.0,50.164,0.508
+2790564,Hospital De Reabilitacao De Anomalias Craniofaciais Bauru,2024,Direta,6,601,27.443,False,True,2023,6.0,16.21,1.693

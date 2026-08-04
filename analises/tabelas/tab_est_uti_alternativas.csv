@@ -1,4 +1,5 @@
 ﻿modelo,n,coef_oss,ep_cluster,efeito_pct,r_qq
 log OLS (original),2482,0.2058,0.0747,22.8495,0.8138
 GLM Gama ligação log,2482,0.1769,0.0603,19.3471,0.9438
+"GLM Gama, sem 2020 e 2021",2039,0.1995,0.06,22.0824,0.9316
 log OLS com corte de 5%,2457,0.2098,0.0729,23.338,0.9431

@@ -1,0 +1,4 @@
+﻿porte,n_cnes,n_obs,pct_cnes_que_faz,pct_obs_que_faz,mediana_geral,media_geral,mediana_entre_os_que_fazem,saidas_alta_complex
+Médio Porte,159,1749,79.2453,48.3705,0.0,0.0283,0.0044,220256
+Grande Porte,120,1320,98.3333,93.1061,0.0524,0.1224,0.0624,1386731
+Especial,10,110,100.0,100.0,0.2221,0.2743,0.2221,686970

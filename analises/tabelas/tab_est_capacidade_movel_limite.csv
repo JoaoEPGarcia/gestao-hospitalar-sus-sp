@@ -1,0 +1,11 @@
+﻿indicador,especificacao,degrau,n,coef_oss,ep,efeito_pct,delta_em_ep
+Ocupação internação,log MQO,amostra cheia,3177,0.20437,0.07788,22.68,
+Ocupação internação,log MQO,sem QUALQUER mudança,2281,0.22843,0.08485,25.66,0.309
+Ocupação internação,log MQO,sem mudança > 10%,2749,0.20762,0.08051,23.07,0.042
+Ocupação internação,log MQO,sem mudança > 25%,3030,0.209,0.07855,23.24,0.059
+Ocupação internação,log MQO,sem mudança > 50%,3132,0.20725,0.07782,23.03,0.037
+Ocupação UTI (intensidade),GLM Gama,amostra cheia,2482,0.17687,0.06031,19.35,
+Ocupação UTI (intensidade),GLM Gama,sem QUALQUER mudança,2251,0.15384,0.06244,16.63,-0.382
+Ocupação UTI (intensidade),GLM Gama,sem mudança > 10%,2276,0.15199,0.06209,16.42,-0.412
+Ocupação UTI (intensidade),GLM Gama,sem mudança > 25%,2331,0.1536,0.06129,16.6,-0.386
+Ocupação UTI (intensidade),GLM Gama,sem mudança > 50%,2393,0.16699,0.06202,18.17,-0.164

@@ -1,4 +1,4 @@
-﻿porte_fixo,n_cnes,mort_all,tmp,custo_saida,pct_alta_complex,ocupacao_internacao,ocupacao_uti,custo_real
-Médio Porte,159,0.0527,3.6091,798.5997,0.0,56.5577,75.225,1035.095
-Grande Porte,120,0.0585,5.0547,1403.4471,0.0524,90.0228,77.5831,1806.4728
-Especial,10,0.0541,6.304,2882.159,0.2221,78.3158,78.7913,3831.302
+﻿porte_fixo,n_cnes,mort_all,tmp,custo_saida,pct_alta_complex,ocupacao_internacao,ocupacao_uti,custo_real,mort_all_media,tmp_media,custo_saida_media,pct_alta_complex_media,ocupacao_internacao_media,ocupacao_uti_media,custo_real_media
+Médio Porte,159,0.0527,3.6091,798.5997,0.0,56.5577,75.225,1035.095,0.0522,3.9669,906.1427,0.0283,58.6879,77.3778,1153.9613
+Grande Porte,120,0.0585,5.0547,1403.4471,0.0524,90.0228,77.5831,1806.4728,0.0591,5.426,1962.3306,0.1224,86.3944,75.5616,2521.6938
+Especial,10,0.0541,6.304,2882.159,0.2221,78.3158,78.7913,3831.302,0.0578,6.3064,3410.8505,0.2743,77.4382,75.6483,4375.1334

@@ -1,0 +1,6 @@
+﻿modelo_gestao_proxy,mort_all,tmp,custo_real,pct_alta_complex,ocupacao_internacao,ocupacao_uti,share_alta_complex_rede,share_saidas_rede,share_leitos_uti_rede
+Direta,0.0638,5.9529,1922.3829,0.1026,69.8339,63.7728,0.0941,0.091,0.1132
+OSS,0.052,4.9473,1664.056,0.0737,90.5525,74.8205,0.1454,0.1958,0.1619
+Público Municipal,0.0534,5.0844,1449.4228,0.0213,87.2694,73.1934,0.045,0.2093,0.1991
+Filantrópico,0.0566,4.8176,2585.0971,0.1403,74.3372,79.0935,0.7104,0.5023,0.5188
+Privado,0.047,4.3783,6532.3481,0.3206,56.8046,11.885,0.0051,0.0016,0.0069
