@@ -1,0 +1,227 @@
+\section{A fronteira estocástica: o que foi calculado e por que o
+cálculo não serve como medida}
+\label{ap:sfa}
+
+% O prefixo segue \thesection em vez da letra fixa: assim a numeração dos
+% flutuantes acompanha a posição do apêndice se a ordem mudar, do mesmo
+% modo que as referências cruzadas simbólicas já acompanham.
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+\setcounter{table}{0}
+\renewcommand{\thetable}{\thesection.\arabic{table}}
+
+Este apêndice existe por uma razão de honestidade de registro. A
+Seção~\ref{sec:fase2} anuncia que a eficiência deste documento é medida
+por um método só, a análise envoltória de dados, e que um segundo método
+foi calculado e \textbf{deu errado}. Aqui está o quê, exatamente, deu
+errado. Quem quiser apenas os resultados de eficiência não precisa desta
+página: nenhum número dela entra em conclusão alguma do documento.
+
+\subsection*{O que se tentou medir, e por qual caminho}
+
+Existem duas famílias de método para medir eficiência hospitalar, e a
+pesquisa tentou as duas. A que sustenta os resultados, a
+\textbf{análise envoltória de dados}, não supõe fórmula nenhuma: olha o
+que os hospitais de fato conseguiram fazer com o que tinham, traça a
+fronteira de melhores práticas pelos melhores casos observados e mede a
+distância de cada um até ela. A outra, a \textbf{fronteira estocástica},
+faz o contrário: parte de uma equação escrita de antemão para
+transformar recursos em atendimentos e, com ela, tenta separar o que é
+ineficiência de gestão do que é apenas azar do ano.
+
+O cálculo foi feito por inteiro, e não parou por falta de ajuste
+aparente. A forma funcional adotada foi a \textbf{Translog}, uma forma
+matemática mais flexível que a alternativa clássica, a Cobb-Douglas, por
+não obrigar os insumos a se combinarem sempre na mesma proporção; ela
+foi preferida com folga larga (razão de verossimilhança de \textbf{567,0}
+com 6 graus de liberdade, $p$ da ordem de $10^{-119}$), e
+\textbf{95,5\%} da variância composta foi atribuída à ineficiência. O
+resultado, além disso, \textbf{apontou na mesma direção do DEA}: as OSS
+na ponta de cima, o mesmo ordenamento geral entre as redes.
+
+É por isso que o problema precisa ser dito com precisão. O método não
+falhou em produzir números, nem produziu números que contrariassem o
+resto do documento. Ele produziu números que \textbf{não medem o que o
+nome diz que medem}, por três defeitos independentes.
+
+\subsection*{Defeito 1: o modelo trava exatamente no grupo de interesse}
+
+\textbf{Este é o defeito que inutiliza o método para esta pesquisa.} A
+fronteira devolveu, para \emph{todas} as OSS, praticamente o mesmo
+valor: uma eficiência técnica que fica entre \textbf{0,9993 e 0,9994} em
+todo o painel, variando menos de dois centésimos de milésimo entre o
+primeiro e o último hospital da categoria, ao longo de onze anos.
+
+Isso não é um resultado dizendo que as OSS são parecidas entre si; é o
+modelo travando. Um instrumento que dá a mesma nota a todos os hospitais
+de um grupo não está medindo aquele grupo, e as OSS são justamente a
+categoria que esta pesquisa existe para comparar.
+
+A consequência aparece na segunda equação do modelo, a que explica
+\emph{quanta} ineficiência cada hospital carrega: as OSS ficam tão
+coladas à fronteira que o coeficiente delas ali \textbf{perde
+identificação}, que é o análogo da separação perfeita já discutida na
+Seção~\ref{sec:estrategia}. A assinatura do problema é a instabilidade
+do ponto, não a sua imprecisão aparente: nas quatro amostras e nas três
+sensibilidades o coeficiente oscila entre $-772$ e $-1.971$, com
+erro-padrão entre 400 e 1.896. Um parâmetro identificado não varia por
+fator de 2,6 entre subamostras da mesma base.\footnote{Numa das amostras
+(sem o biênio pandêmico) o valor sai com $p$ de $8{,}3\times10^{-7}$.
+Isso \emph{não} é precisão: sob separação a verossimilhança fica
+praticamente plana numa região distante de zero, e o intervalo de Wald
+calculado ali não tem interpretação. Um $p$ pequeno sobre um parâmetro
+degenerado mede o formato da aproximação, não o dado.} O defeito
+reaparece em todas as variantes testadas e não tem conserto dentro deste
+método.
+
+\subsection*{Defeito 2: a fronteira não se comporta como função de produção}
+
+Uma função de produção precisa ser \textbf{monotônica}: acrescentar
+insumo não pode reduzir o produto possível. Na fronteira estimada, o
+insumo de UTI viola essa condição em \textbf{94,9\% das observações}
+(97,8\% entre as que têm leito de UTI habilitado, tenham-no usado ou não
+no ano; 96,9\% se o corte for ter registrado diária de UTI), contra
+99,7\% de respeito para leitos e 99,6\% para valor. É herança do
+logaritmo de um mais UTI, com 19\% de zeros, e da colinearidade alta com
+leitos totais e valor.
+
+\textbf{A violação não se concentra em categoria nenhuma}, o que impede
+tratá-la como problema de uma linha só: vai de 93,6\% no Filantrópico a
+\textbf{99,3\% na administração Direta}, que é justamente a referência de
+todos os contrastes. Cinco vírgula sete pontos de amplitude sobre uma
+base de 93,6\% é defeito geral da forma funcional. \textbf{A fronteira
+inteira está desqualificada como medida}, não uma parte dela.
+
+Isto tem uma consequência que costuma passar despercebida:
+significância mede a precisão de uma estimativa, não a validade da
+estrutura de onde ela sai. Coeficiente preciso extraído de fronteira
+mal-comportada é preciso sobre um objeto que não é o que o nome diz.
+
+\subsection*{Defeito 3: um erro de montagem do insumo, que ajuda a
+entender os outros dois}
+
+A lista de recursos entregue ao modelo continha o total de leitos do
+hospital \emph{e}, separadamente, os leitos de UTI, que já estavam
+contados dentro do total. É como perguntar quanto custa um carro e
+depois, na mesma conta, quanto custa o motor dele, somando as duas
+coisas. O modelo então precisa responder o que acontece quando se
+acrescenta um leito de UTI \emph{sem} acrescentar um leito ao hospital,
+que é uma pergunta sem sentido prático, e devolve uma resposta sem
+sentido: mais UTI aparecendo como se reduzisse a capacidade.
+
+Refeito o cálculo sem essa duplicação, o problema desaparece e a ordem
+dos hospitais quase não muda, o que mostra que o defeito estava na
+montagem e não na realidade hospitalar que se queria descrever. O
+diagnóstico importa por si: sem ele, a violação de monotonicidade do
+Defeito 2 seria lida como característica do parque hospitalar, e não
+como artefato da lista de insumos.
+
+\subsection*{A tabela que se preservou, e o estatuto dela}
+
+A equação de ineficiência é reproduzida abaixo porque omiti-la seria
+pior: ela contém o único resultado desta fase que o documento chegou a
+não mostrar, e resultado que desaparece depois de encontrado é omissão.
+Ela vem, porém, com a advertência dos parágrafos anteriores colada a
+cada uma das suas linhas.
+
+\begin{table}[H]
+\centering
+\caption{Equação de ineficiência da fronteira estocástica (Battese e
+Coelli 1995). Referência: administração Direta, porte médio.
+Coeficiente negativo indica \emph{menos} ineficiência.
+\textbf{Tabela tarjada: a monotonicidade da fronteira que produziu estes
+coeficientes está violada em 94,9\% das observações, de 93,6\% no
+Filantrópico a 99,3\% na própria Direta. Nenhum valor desta tabela é
+interpretável como magnitude nem entra em conclusão deste documento; ela
+é diagnóstico da inadequação da forma Translog.}}
+\label{tab:equacaoinef}
+\small
+\begin{tabular}{lrrr}
+\toprule
+Termo & Coeficiente & Erro-padrão & $p$ \\
+\midrule
+Público Municipal        & $-5{,}454$ & 1,020 & $9{,}0\times10^{-8}$ \\
+Filantrópico             & $-0{,}244$ & 0,163 & 0,134 \\
+Privado                  & $+2{,}474$ & 0,396 & $4{,}2\times10^{-10}$ \\
+Complexidade (padronizada) & $-2{,}159$ & 0,325 & $3{,}2\times10^{-11}$ \\
+Grande Porte             & $+2{,}470$ & 0,333 & $1{,}3\times10^{-13}$ \\
+Especial                 & $+7{,}401$ & 0,917 & $7{,}0\times10^{-16}$ \\
+Tendência linear         & $-0{,}010$ & 0,023 & 0,668 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Lida como diagnóstico e não como medida}, a linha que mais
+importa é a do Público Municipal ($-5{,}454$, $p$ de
+$9{,}0\times10^{-8}$): precisa, e apontando o Público Municipal como
+menos ineficiente que a administração Direta. \textbf{O DEA, que é o
+instrumento adequado, não confirma essa ordem, e tampouco a refuta.} Nas
+medianas corrigidas de viés da Seção~\ref{sec:fase2} a Direta (0,634)
+fica à frente do Município (0,632); nas médias o Município fica à frente
+(0,644 contra 0,620). Ano a ano, no escore corrigido de viés, o Município
+supera a Direta em seis dos onze anos, e os seis são de 2020 a 2025. No
+estrato de alta complexidade da Seção~\ref{sec:segmentacao}, que é onde a
+comparação entre redes é viável, o Município fica à frente; no estrato
+intermediário, atrás. \textbf{A ordem entre estas duas redes depende de
+qual escore e de qual estatística se escolhe, e por isso o documento não
+a afirma em direção nenhuma.} O que há é um sinal recorrente e sem
+corroboração por instrumento adequado, o que é diferente tanto de achado
+quanto de nada.
+
+As demais linhas têm o mesmo estatuto. O Filantrópico não se distingue da
+Direta ($p$ de 0,134). O porte carrega o maior coeficiente da tabela
+(Especial, $+7{,}401$, quase três vezes o do Grande Porte) enquanto a
+complexidade anda no sentido oposto ($-2{,}159$), e não há tendência
+temporal ($p$ de 0,668). Lidos como \emph{ordens de grandeza relativas
+dentro de uma fronteira que se sabe mal especificada}, esses sinais
+sugerem que a estrutura física do hospital move a ineficiência medida
+mais do que a rede que o administra. Lidos como magnitudes, não dizem
+nada.
+
+\subsection*{Concordar com o DEA não conserta nada}
+
+\comoler{quanto mais a nuvem sobe da esquerda para a direita, mais os
+dois procedimentos se parecem ao ordenar os hospitais. A faixa colada no
+topo é a degeneração das OSS do Defeito 1: o modelo paramétrico as
+coloca todas na fronteira. Mesmo descontando essa faixa, a semelhança
+permanece, e mesmo assim ela não é confirmação: o eixo vertical vem de
+uma fronteira cuja monotonicidade está violada em 94,9\% das
+observações.}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.58\textwidth]{figS02_dispersao_sfa_dea.png}
+\caption{Semelhança entre os dois procedimentos de eficiência: cada ponto
+é um hospital num ano, posicionado pelo escore DEA (horizontal) e pela
+eficiência da fronteira estocástica (vertical). O eixo vertical é
+diagnóstico, não medida: nenhum valor dele é citável.}
+\label{fig:convergencia}
+\end{figure}
+
+\comofeito{gráfico de dispersão. Cada ponto é um hospital em um ano,
+posicionado pelo \textbf{escore de eficiência DEA} no eixo horizontal e
+pela \textbf{eficiência técnica da fronteira estocástica} no vertical
+(ambos entre 0 e 1). Quanto mais a nuvem sobe da esquerda para a
+direita, mais os dois procedimentos, de naturezas opostas, concordam
+sobre quem é eficiente.}
+
+A correlação de ordem entre os dois conjuntos de escores é de
+\textbf{0,62} (0,63 excluindo as OSS, de modo que a semelhança não
+depende do grupo problemático). Ela não é corroboração de um método pelo
+outro: os dois consomem exatamente a mesma informação, e um deles não
+descreve uma função de produção. A semelhança tampouco cresce de forma
+gradual, como cresceria se refletisse aprendizado do modelo: fica
+achatada entre 0,50 e 0,55 de 2015 a 2019, salta para a faixa de 0,66 a
+0,74 já em 2020 e se mantém nesse patamar até 2025, um degrau que
+coincide com o início da pandemia.
+
+\subsection*{A regra, enunciada uma vez para todo o documento}
+
+\textbf{Nenhum coeficiente e nenhum nível da fronteira estocástica é
+citável, em nenhuma categoria de gestão, em nenhuma seção.} O que dela se
+aproveita é um achado de método, e não de gestão: a violação de
+monotonicidade em 94,9\% das observações diz que a forma Translog
+\textbf{não descreve bem o modo como estes hospitais transformam insumo
+em produto}. \textbf{Todas as medidas de eficiência deste documento vêm
+da análise envoltória de dados}, e é só sobre ela que as conclusões de
+eficiência se apoiam.

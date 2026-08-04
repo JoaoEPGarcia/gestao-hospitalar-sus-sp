@@ -1,0 +1,225 @@
+% Apêndice D (04/08/2026, a pedido de João). O documento publicava, desde a
+% Seção 2, dois percentuais que descrevem ausência de serviço — 31,3% de
+% hospitais-ano sem alta complexidade e 21,6% de observações sem leito de UTI
+% do SUS — e nunca dizia QUAIS hospitais estão por trás deles. Para quem
+% conhece a rede, essa é a primeira pergunta, e ela também é a que torna os
+% dois números auditáveis: nome, município e rede permitem conferir a lista
+% contra o CNES.
+%
+% As duas listas saem de analises/listas_estruturais.py, que grava
+% tab_ap_sem_alta_complexidade.csv e tab_ap_sem_uti_sus.csv. As linhas abaixo
+% foram copiadas da saída do script; ao regerar as tabelas, regere também
+% estas listas em vez de editá-las à mão.
+\section{Os hospitais por trás de dois números da Seção~\ref{sec:univariada}}
+\label{ap:listas}
+
+% Mesmo tratamento dos apêndices anteriores: o prefixo dos flutuantes segue
+% \thesection em vez de letra fixa, para acompanhar a posição do apêndice se
+% a ordem mudar.
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+\setcounter{table}{0}
+\renewcommand{\thetable}{\thesection.\arabic{table}}
+
+A Seção~\ref{sec:univariada} publica dois percentuais que descrevem
+\emph{ausência de serviço}: \textbf{31,3\%} das observações de hospital e
+ano não registram nenhuma internação de alta complexidade, e
+\textbf{21,6\%} são de hospital sem leito de UTI do SUS cadastrado.
+Percentual, porém, não diz \emph{quem}, e quem lê este documento dentro da
+rede quer saber de quem se está falando. Este apêndice nomeia os dois
+grupos.
+
+O critério das duas listas é o mesmo, e é o mais exigente possível: entra o
+hospital cuja contagem é \textbf{zero nos onze anos}, de 2015 a 2025, sem
+uma única exceção. Quem zera em alguns anos e não em outros fica
+\emph{fora} das listas, porque zerar num ano é outro fenômeno --- na alta
+complexidade, um ano sem procedimento; na UTI, um cadastro que se suspende
+sem que a ala feche. Os que oscilam estão contados no texto de cada
+subseção, e não escondidos.
+
+% sloppypar: os nomes de arquivo em \texttt{} são longos e indivisíveis, e
+% sem folga de entrelinha o TeX os empurra para fora da margem.
+\begin{sloppypar}
+Nas duas tabelas, o nome é o do cadastro (nome fantasia do CNES), o
+município é o da última competência e os leitos SUS são a mediana dos onze
+anos. Fonte: \texttt{analises/listas\_estruturais.py} sobre o
+\texttt{painel\_definitivo.csv}, com as tabelas
+\texttt{tab\_ap\_sem\_alta\_complexidade.csv} e
+\texttt{tab\_ap\_sem\_uti\_sus.csv}.
+\end{sloppypar}
+
+\subsection{Os 35 hospitais que nunca registram alta complexidade}
+\label{ap:listaalta}
+
+Dos 289 hospitais do painel, \textbf{133 têm ao menos um ano sem nenhuma
+internação de alta complexidade}, e é essa intermitência que produz os
+31,3\% de observações em zero. Mas \textbf{35 deles nunca registram uma
+única internação de alta complexidade em onze anos}: aqui não é ano fraco,
+é perfil assistencial. Por rede são \textbf{22 Filantrópicos, 7 Públicos
+Municipais, 4 da administração Direta e 2 sob gestão de OSS}, e 21 dos 35
+estão na faixa 2 de complexidade, a mais baixa.
+
+A Seção~\ref{sec:complexidadeporte} descreve o grupo em detalhe e o
+resultado é coerente de ponta a ponta: comparados com os outros 254
+hospitais, eles têm metade dos leitos, produzem pouco mais de um terço das
+internações por ano e faturam menos da metade por saída. Juntos respondem
+por 4,6\% da produção do painel. É pouco no agregado, e é tudo o que existe
+em boa parte dos municípios da lista abaixo.
+
+{\small
+\begin{longtable}{p{0.42\textwidth}p{0.19\textwidth}lr}
+\caption{Os 35 hospitais sem nenhuma internação de alta complexidade
+registrada entre 2015 e 2025. Leitos SUS é a mediana dos onze anos.}
+\label{tab:semaltacomplex}\\
+\toprule
+Hospital & Município & Rede & Leitos SUS \\
+\midrule
+\endfirsthead
+\toprule
+Hospital & Município & Rede & Leitos SUS \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{\footnotesize continua na página seguinte}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Hospital Amparo Maternal & Sao Paulo & Filantrópico & 94 \\
+Hospital Angatuba & Angatuba & Filantrópico & 54 \\
+Hospital da Mulher Maria Jose dos Santos Stein & Santo Andre & Público Municipal & 92 \\
+Hospital de Clinicas Campo Limpo Paulista & Campo Limpo Paulista & Público Municipal & 56 \\
+Hospital de Misericordia Nossa Senhora Aparecida & Presidente Bernardes & Filantrópico & 40 \\
+Hospital de Piraju & Piraju & Filantrópico & 51 \\
+Hospital e Maternidade Leonor Mendes de Barros Sao Paulo & Sao Paulo & Direta & 147 \\
+Hospital e Maternidade Municipal de Sao Vicente & Sao Vicente & Público Municipal & 36 \\
+Hospital Estadual de Caieiras & Caieiras & Direta & 46 \\
+Hospital Estadual Dr Odilo Antunes de Siqueira P Prudente & Presidente Prudente & OSS & 47 \\
+Hospital Estadual Porto Primavera Rosana & Rosana & OSS & 72 \\
+Hospital Maternidade Amador Aguiar & Osasco & Público Municipal & 155 \\
+Hospital Maternidade Interlagos & Sao Paulo & Direta & 75 \\
+Hospital Municipal de Emergencias Albert Sabin & Sao Caetano Do Sul & Público Municipal & 48 \\
+Hospital Municipal de Ibiuna Ibiuna Sp & Ibiuna & Público Municipal & 63 \\
+Hospital Regional de Teodoro Sampaio & Teodoro Sampaio & Filantrópico & 52 \\
+Hospital Sao Francisco de Americana & Americana & Filantrópico & 8 \\
+Hospital Sao Joao Registro & Registro & Filantrópico & 68 \\
+Hospital Sao Luiz & Boituva & Filantrópico & 36 \\
+Hospital Sao Miguel Arcanjo & Sao Miguel Arcanjo & Filantrópico & 54 \\
+Instituto Lauro de Souza Lima Bauru & Bauru & Direta & 63 \\
+Santa Casa de Caconde & Caconde & Filantrópico & 62 \\
+Santa Casa de Guariba & Guariba & Filantrópico & 59 \\
+Santa Casa de Jose Bonifacio & Jose Bonifacio & Filantrópico & 28 \\
+Santa Casa de Junqueiropolis & Junqueiropolis & Filantrópico & 25 \\
+Santa Casa de Misericordia de Pedregulho & Pedregulho & Filantrópico & 55 \\
+Santa Casa de Misericordia de Tiete & Tiete & Filantrópico & 33 \\
+Santa Casa de Monte Aprazivel & Monte Aprazivel & Filantrópico & 30 \\
+Santa Casa de Nova Granada & Nova Granada & Filantrópico & 19 \\
+Santa Casa de Pederneiras & Pederneiras & Filantrópico & 52 \\
+Santa Casa de Presidente Epitacio & Presidente Epitacio & Filantrópico & 68 \\
+Santa Casa de Santo Anastacio & Santo Anastacio & Filantrópico & 37 \\
+Santa Casa de Tanabi & Tanabi & Filantrópico & 30 \\
+Santa Casa Piedade & Piedade & Filantrópico & 59 \\
+Unidade Mista de Saude de Taboao da Serra & Taboao Da Serra & Público Municipal & 57 \\
+\end{longtable}}
+
+\subsection{Os 49 hospitais que nunca tiveram leito de UTI do SUS}
+\label{ap:listauti}
+
+Aqui a divisão é bem mais nítida do que na alta complexidade. Dos 289
+hospitais do painel, \textbf{211 têm leito de UTI do SUS cadastrado nos
+onze anos} e \textbf{49 não têm em nenhum deles}. Apenas \textbf{29}
+oscilam entre ter e não ter, e essa oscilação, como mostra a
+Seção~\ref{sec:segmentacao}, costuma ser cadastro que se suspende --- em
+geral por falta de intensivista --- e não ala que fecha.
+
+Isso responde a uma pergunta que o percentual sozinho deixava em aberto. As
+\textbf{688 observações sem UTI} da Seção~\ref{sec:univariada} se repartem
+assim: \textbf{539 vêm dos 49 hospitais que nunca tiveram UTI} e as outras
+\textbf{149 vêm dos 29 que oscilam}. Ou seja, quase quatro quintos da
+ausência de UTI no painel é \textbf{estrutural, e não intermitente}: são
+hospitais que simplesmente não oferecem terapia intensiva ao SUS, em nenhum
+ano. É exatamente por isso que lançar zero para eles seria erro de leitura,
+e não arredondamento: zero significa UTI ociosa, e o que existe aqui é
+ausência de UTI.
+
+Por rede são \textbf{42 Filantrópicos, 5 Públicos Municipais, 1 da
+administração Direta e 1 sob gestão de OSS}. Essa concentração no
+Filantrópico é o que sustenta a advertência da Seção~\ref{sec:categorias}:
+tratar ausência de UTI como ocupação zero penalizaria cada rede na
+proporção dos hospitais sem UTI que ela carrega, e nenhuma rede carrega
+tantos quanto a filantrópica. Dois recortes fecham o retrato.
+\textbf{Seis dos 49} mantêm leito de UTI \emph{não} SUS em algum ano, isto
+é, operam terapia intensiva que não está disponível ao SUS. E \textbf{23
+dos 49 aparecem também na lista anterior}: são hospitais sem UTI e sem alta
+complexidade ao mesmo tempo, o núcleo do estrato E1 da
+Seção~\ref{sec:segmentacao} --- dentro do qual, aliás, os 49 estão todos
+contidos.
+
+{\small
+\begin{longtable}{p{0.42\textwidth}p{0.19\textwidth}lr}
+\caption{Os 49 hospitais sem nenhum leito de UTI do SUS cadastrado entre
+2015 e 2025. Leitos SUS é a mediana dos onze anos e se refere ao leito de
+internação, não à UTI.}
+\label{tab:semutisus}\\
+\toprule
+Hospital & Município & Rede & Leitos SUS \\
+\midrule
+\endfirsthead
+\toprule
+Hospital & Município & Rede & Leitos SUS \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{\footnotesize continua na página seguinte}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Casa de Caridade Sao Vicente de Paulo Cajuru & Cajuru & Filantrópico & 55 \\
+Conderg Hospital Regional de Divinolandia & Divinolandia & Filantrópico & 186 \\
+Hospital Angatuba & Angatuba & Filantrópico & 54 \\
+Hospital Beneficente Santo Antonio Orlandia & Orlandia & Filantrópico & 60 \\
+Hospital de Agudos & Agudos & Filantrópico & 38 \\
+Hospital de Misericordia Nossa Senhora Aparecida & Presidente Bernardes & Filantrópico & 40 \\
+Hospital de Piraju & Piraju & Filantrópico & 51 \\
+Hospital Dr Adhemar de Barros Apiai & Apiai & Filantrópico & 45 \\
+Hospital e Maternidade Municipal de Sao Vicente & Sao Vicente & Público Municipal & 36 \\
+Hospital e Maternidade Sao Jose Barra Bonita & Barra Bonita & Filantrópico & 59 \\
+Hospital Estadual Porto Primavera Rosana & Rosana & OSS & 72 \\
+Hospital Municipal de Bebedouro Julia Pinto Caldeira & Bebedouro & Público Municipal & 63 \\
+Hospital Municipal de Ibiuna Ibiuna Sp & Ibiuna & Público Municipal & 63 \\
+Hospital Municipal Dr Acilio Carreon Garcia & Nova Odessa & Público Municipal & 53 \\
+Hospital Regional de Teodoro Sampaio & Teodoro Sampaio & Filantrópico & 52 \\
+Hospital Santa Luzia Duartina & Duartina & Filantrópico & 77 \\
+Hospital Sao Jose de Herculandia & Herculandia & Filantrópico & 58 \\
+Hospital Sao Luiz & Boituva & Filantrópico & 36 \\
+Hospital Sao Luiz Gonzaga & Sao Paulo & Filantrópico & 157 \\
+Hospital Sao Miguel Arcanjo & Sao Miguel Arcanjo & Filantrópico & 54 \\
+Instituto Lauro de Souza Lima Bauru & Bauru & Direta & 63 \\
+Santa Casa de Bariri & Bariri & Filantrópico & 49 \\
+Santa Casa de Caconde & Caconde & Filantrópico & 62 \\
+Santa Casa de Dois Corregos & Dois Corregos & Filantrópico & 47 \\
+Santa Casa de Guararapes & Guararapes & Filantrópico & 48 \\
+Santa Casa de Guariba & Guariba & Filantrópico & 59 \\
+Santa Casa de Jose Bonifacio & Jose Bonifacio & Filantrópico & 28 \\
+Santa Casa de Junqueiropolis & Junqueiropolis & Filantrópico & 25 \\
+Santa Casa de Miguelopolis & Miguelopolis & Filantrópico & 47 \\
+Santa Casa de Misericordia de Francisco Morato & Francisco Morato & Filantrópico & 85 \\
+Santa Casa de Misericordia de Itarare & Itarare & Filantrópico & 53 \\
+Santa Casa de Misericordia de Osvaldo Cruz & Osvaldo Cruz & Filantrópico & 58 \\
+Santa Casa de Misericordia de Palmital & Palmital & Filantrópico & 36 \\
+Santa Casa de Misericordia de Pedregulho & Pedregulho & Filantrópico & 55 \\
+Santa Casa de Misericordia de Pereira Barreto & Pereira Barreto & Filantrópico & 48 \\
+Santa Casa de Misericordia de Serrana & Serrana & Filantrópico & 42 \\
+Santa Casa de Misericordia de Tiete & Tiete & Filantrópico & 33 \\
+Santa Casa de Misericordia de Ubatuba & Ubatuba & Filantrópico & 84 \\
+Santa Casa de Monte Aprazivel & Monte Aprazivel & Filantrópico & 30 \\
+Santa Casa de Nova Granada & Nova Granada & Filantrópico & 19 \\
+Santa Casa de Porto Feliz & Porto Feliz & Filantrópico & 39 \\
+Santa Casa de Presidente Epitacio & Presidente Epitacio & Filantrópico & 68 \\
+Santa Casa de Santo Anastacio & Santo Anastacio & Filantrópico & 37 \\
+Santa Casa de Tanabi & Tanabi & Filantrópico & 30 \\
+Santa Casa de Valparaiso & Valparaiso & Filantrópico & 31 \\
+Santa Casa de Vinhedo & Vinhedo & Filantrópico & 62 \\
+Santa Casa Piedade & Piedade & Filantrópico & 59 \\
+Santa Casa Santa Rita do Passa Quatro & Santa Rita Do Passa Quatro & Filantrópico & 36 \\
+Unidade Mista de Saude de Taboao da Serra & Taboao Da Serra & Público Municipal & 57 \\
+\end{longtable}}
